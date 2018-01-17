@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>findfs(8) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="findfs(8) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="findfs(8) — Linux manual pages">
+    <a id="findfs.8" name="findfs.8" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>findfs — Find a filesystem by label or UUID</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">findfs</code> LABEL= label</p>
+      </div>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">findfs</code> UUID= uuid</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="findfs-8_sect1" name="findfs-8_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><span class="command"><strong>findfs</strong></span> will
+      search the disks in the system looking for a filesystem which
+      has a label matching <em class="parameter"><code>label</code></em> or a UUID equal to
+      <em class="parameter"><code>uuid</code></em>. If the
+      filesystem is found, the device name for the filesystem will
+      be printed on stdout.</p>
+    </div>
+
+    <div class="refsect1" title="AUTHOR">
+      <a id="findfs-8_sect2" name="findfs-8_sect2" shape="rect"> </a>
+
+      <h2>AUTHOR</h2>
+
+      <p><span class="command"><strong>findfs</strong></span> was
+      originally written by Theodore Ts'o (tytso@mit.edu) and
+      re-written for util-linux package by Karel Zak
+      (kzak@redhat.com).</p>
+    </div>
+
+    <div class="refsect1" title="AVAILABILITY">
+      <a id="findfs-8_sect3" name="findfs-8_sect3" shape="rect"> </a>
+
+      <h2>AVAILABILITY</h2>
+
+      <p>The findfs command is part of the util-linux package and
+      is available from
+      ftp://ftp.kernel.org/pub/linux/utils/util-linux/.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="findfs-8_sect4" name="findfs-8_sect4" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman8/blkid.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">blkid</span>(8)</span></a> <a class="link" href="../htmlman8/fsck.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fsck</span>(8)</span></a></p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright 1993, 1994, 1995 by Theodore Ts'o.  All Rights Reserved.<br />
+
+                  This file may be copied under the terms of the GNU Public License.<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

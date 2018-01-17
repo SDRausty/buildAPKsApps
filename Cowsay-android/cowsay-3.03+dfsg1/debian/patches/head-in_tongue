@@ -1,0 +1,15 @@
+Description: Fix tongue alignment problem in the head-in cow
+Forwarded: no
+Origin: vendor
+Author: Francois Marier <francois@debian.org>
+
+--- a/cows/head-in.cow
++++ b/cows/head-in.cow
+@@ -7,6 +7,6 @@ $the_cow = <<EOC;
+     ^__^         /
+     ($eyes)\\_______/  _________
+     (__)\\       )=(  ____|_ \\_____
+-   $tongue   ||----w |  \\ \\     \\_____ |
++     $tongue ||----w |  \\ \\     \\_____ |
+         ||     ||   ||           ||
+ EOC

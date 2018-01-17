@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>locale(7) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="locale(7) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="locale(7) — Linux manual pages">
+    <a id="locale.7" name="locale.7" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>locale — Description of multilanguage support</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+#include &lt;locale.h&gt;
+  
+</pre>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="locale-7_sect1" name="locale-7_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>A locale is a set of language and cultural rules. These
+      cover aspects such as language for messages, different
+      character sets, lexicographic conventions, etc. A program
+      needs to be able to determine its locale and act accordingly
+      to be portable to different cultures.</p>
+
+      <p>The header <code class="literal">&lt;</code><code class="filename">locale.h</code><code class="literal">&gt;</code>
+      declares data types, functions and macros which are useful in
+      this task.</p>
+
+      <p>The functions it declares are <a class="link" href="../htmlman3/setlocale.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">setlocale</span>(3)</span></a> to set the
+      current locale, and <a class="link" href="../htmlman3/localeconv.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">localeconv</span>(3)</span></a> to get
+      information about number formatting.</p>
+
+      <p>There are different categories for local information a
+      program might need; they are declared as macros. Using them
+      as the first argument to the <a class="link" href="../htmlman3/setlocale.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">setlocale</span>(3)</span></a> function, it
+      is possible to set one of these to the desired locale:</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="constant">LC_COLLATE</code></span></dt>
+
+          <dd>
+            <p>This is used to change the behavior of the functions
+            <a class="link" href="../htmlman3/strcoll.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">strcoll</span>(3)</span></a> and
+            <a class="link" href="../htmlman3/strxfrm.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">strxfrm</span>(3)</span></a>, which are
+            used to compare strings in the local alphabet. For
+            example, the German sharp s is sorted as "ss".</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">LC_CTYPE</code></span></dt>
+
+          <dd>
+            <p>This changes the behavior of the character handling
+            and classification functions, such as <a class="link" href="../htmlman3/isalpha.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">isupper</span>(3)</span></a> and
+            <a class="link" href="../htmlman3/toupper.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">toupper</span>(3)</span></a>, and the
+            multibyte character functions such as <a class="link" href="../htmlman3/mblen.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mblen</span>(3)</span></a> or <a class="link" href="../htmlman3/wctomb.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">wctomb</span>(3)</span></a>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">LC_MONETARY</code></span></dt>
+
+          <dd>
+            <p>changes the information returned by <a class="link" href="../htmlman3/localeconv.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">localeconv</span>(3)</span></a> which
+            describes the way numbers are usually printed, with
+            details such as decimal point versus decimal comma.
+            This information is internally used by the function
+            <a class="link" href="../htmlman3/strfmon.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">strfmon</span>(3)</span></a>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">LC_MESSAGES</code></span></dt>
+
+          <dd>
+            <p>changes the language messages are displayed in and
+            what an affirmative or negative answer looks like. The
+            GNU C-library contains the <span class="citerefentry"><span class="refentrytitle">gettext</span>(3)</span>, <span class="citerefentry"><span class="refentrytitle">ngettext</span>(3)</span>, and
+            <a class="link" href="../htmlman3/rpmatch.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">rpmatch</span>(3)</span></a> functions
+            to ease the use of these information. The GNU gettext
+            family of functions also obey the environment variable
+            <code class="constant">LANGUAGE</code> (containing a
+            colon-separated list of locales) if the category is set
+            to a valid locale other than <em class="replaceable"><code>"C"</code></em>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">LC_NUMERIC</code></span></dt>
+
+          <dd>
+            <p>changes the information used by the <a class="link" href="../htmlman3/printf.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">printf</span>(3)</span></a> and
+            <a class="link" href="../htmlman3/scanf.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">scanf</span>(3)</span></a> family of
+            functions, when they are advised to use the
+            locale-settings. This information can also be read with
+            the <a class="link" href="../htmlman3/localeconv.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">localeconv</span>(3)</span></a>
+            function.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">LC_TIME</code></span></dt>
+
+          <dd>
+            <p>changes the behavior of the <a class="link" href="../htmlman3/strftime.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">strftime</span>(3)</span></a> function
+            to display the current time in a locally acceptable
+            form; for example, most of Europe uses a 24-hour clock
+            versus the 12-hour clock used in the United States.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">LC_ALL</code></span></dt>
+
+          <dd>
+            <p>All of the above.</p>
+          </dd>
+        </dl>
+      </div>
+
+      <p>If the second argument to <a class="link" href="../htmlman3/setlocale.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">setlocale</span>(3)</span></a> is empty
+      string, <em class="replaceable"><code>""</code></em>, for the
+      default locale, it is determined using the following
+      steps:</p>
+
+      <div class="orderedlist">
+        <ol class="orderedlist" type="1">
+          <li class="listitem">
+            <p>If there is a non-null environment variable
+            <code class="constant">LC_ALL</code>, the value of
+            <code class="constant">LC_ALL</code> is used.</p>
+          </li>
+
+          <li class="listitem">
+            <p>If an environment variable with the same name as one
+            of the categories above exists and is non-null, its
+            value is used for that category.</p>
+          </li>
+
+          <li class="listitem">
+            <p>If there is a non-null environment variable
+            <code class="constant">LANG</code>, the value of
+            <code class="constant">LANG</code> is used.</p>
+          </li>
+        </ol>
+      </div>
+
+      <p>Values about local numeric formatting is made available in
+      a <span class="emphasis"><em>struct lconv</em></span>
+      returned by the <a class="link" href="../htmlman3/localeconv.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">localeconv</span>(3)</span></a> function,
+      which has the following declaration:</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="structdef">
+            <table style="border-collapse: collapse;">
+              <colgroup span="1">
+                <col span="1" />
+                <col span="1" />
+                <col span="1" />
+                <col span="1" />
+                <col span="1" />
+              </colgroup>
+
+              <tbody>
+                <tr>
+                  <td class="structdefhdr" style="" align="left" rowspan="1" colspan="1">
+                  struct</td>
+
+                  <td class="structdefhdr" style="" colspan="3" align="left" rowspan="1"><span class="structname">lconv</span> {</td>
+
+                  <td class="structdefhdrcomment" style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      
+                      /* Numeric (nonmonetary) information */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">char</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                  *</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>decimal_point</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      /* Radix character */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">char</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                  *</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>thousands_sep</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      
+                      /* Separator for digit groups to left<br />
+
+                      of radix character */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">char</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                  *</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>grouping</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      
+                      /* Each element is the number of digits in a<br />
+
+                      group; elements with higher indices are<br />
+
+                      further left.  An element with value CHAR_MAX<br />
+
+                      means that no further grouping is done.  An<br />
+
+                      element with value 0 means that the previous<br />
+
+                      element is used for all groups further left. */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" colspan="5" align="left" rowspan="1">
+                    <div class="literallayout">
+                      
+                      /* Remaining fields are for monetary information */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">char</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                  *</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>int_curr_symbol</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      
+                      /* First three chars are a currency symbol<br />
+
+                      from ISO 4217.  Fourth char is the<br />
+
+                      separator.  Fifth char is \(aq\\0\(aq. */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">char</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                  *</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>currency_symbol</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      
+                      /* Local currency symbol */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">char</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                  *</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>mon_decimal_point</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      /* Radix character */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">char</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                  *</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>mon_thousands_sep</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      
+                      /* Like thousands_sep above */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">char</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                  *</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>mon_grouping</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      
+                      /* Like grouping above */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">char</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                  *</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>positive_sign</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      
+                      /* Sign for positive values */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">char</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                  *</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>negative_sign</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      
+                      /* Sign for negative values */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">char</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>int_frac_digits</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      
+                      /* International fractional digits */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">char</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>frac_digits</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      
+                      /* Local fractional digits */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">char</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>p_cs_precedes</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      
+                      /* 1 if currency_symbol precedes a<br />
+
+                      positive value, 0 if succeeds */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">char</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>p_sep_by_space</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      
+                      /* 1 if a space separates currency_symbol<br />
+
+                      from a positive value */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">char</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>n_cs_precedes</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      
+                      /* 1 if currency_symbol precedes a<br />
+
+                      negative value, 0 if succeeds */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">char</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>n_sep_by_space</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      
+                      /* 1 if a space separates currency_symbol<br />
+
+                      from a negative value */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" colspan="5" align="left" rowspan="1">
+                    <div class="literallayout">
+                      
+                      /* Positive and negative sign positions:<br />
+
+                      0 Parentheses surround the quantity and currency_symbol.<br />
+
+                      1 The sign string precedes the quantity and currency_symbol.<br />
+
+                      2 The sign string succeeds the quantity and currency_symbol.<br />
+
+                      3 The sign string immediately precedes the currency_symbol.<br />
+
+                      4 The sign string immediately succeeds the currency_symbol. */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">char</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>p_sign_posn</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"> </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">char</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>n_sign_posn</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"> </td>
+                </tr>
+
+                <tr>
+                  <td class="structdefftr" style="" colspan="5" align="left" rowspan="1">};</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="locale-7_sect2" name="locale-7_sect2" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>POSIX.1-2001.</p>
+
+      <p>The GNU gettext functions are specified in
+      LI18NUX2000.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="locale-7_sect3" name="locale-7_sect3" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><span class="citerefentry"><span class="refentrytitle">locale</span>(1)</span>, <span class="citerefentry"><span class="refentrytitle">localedef</span>(1)</span>, <span class="citerefentry"><span class="refentrytitle">gettext</span>(3)</span>, <a class="link" href="../htmlman3/localeconv.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">localeconv</span>(3)</span></a>, <span class="citerefentry"><span class="refentrytitle">ngettext</span>(3)</span>, <a class="link" href="../htmlman3/nl_langinfo.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">nl_langinfo</span>(3)</span></a>, <a class="link" href="../htmlman3/rpmatch.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">rpmatch</span>(3)</span></a>, <a class="link" href="../htmlman3/setlocale.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">setlocale</span>(3)</span></a>, <a class="link" href="../htmlman3/strcoll.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">strcoll</span>(3)</span></a>, <a class="link" href="../htmlman3/strfmon.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">strfmon</span>(3)</span></a>, <a class="link" href="../htmlman3/strftime.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">strftime</span>(3)</span></a>, <a class="link" href="../htmlman3/strxfrm.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">strxfrm</span>(3)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="locale-7_sect4" name="locale-7_sect4" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.24 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright (c) 1993 by Thomas Koenig (ig25<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>rz.uni-karlsruhe.de)<br />
+
+                  <br />
+                  Permission is granted to make and distribute verbatim copies of this<br />
+
+                  manual provided the copyright notice and this permission notice are<br />
+
+                  preserved on all copies.<br />
+                  <br />
+                  Permission is granted to copy and distribute modified versions of this<br />
+
+                  manual under the conditions for verbatim copying, provided that the<br />
+
+                  entire resulting derived work is distributed under the terms of a<br />
+
+                  permission notice identical to this one.<br />
+
+                  <br />
+                  Since the Linux kernel and libraries are constantly changing, this<br />
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no<br />
+
+                  responsibility for errors or omissions, or for damages resulting from<br />
+
+                  the use of the information contained herein.  The author(s) may not<br />
+
+                  have taken the same level of care in the production of this manual,<br />
+
+                  which is licensed free of charge, as they might when working<br />
+
+                  professionally.<br />
+                  <br />
+                  Formatted or processed versions of this manual, if unaccompanied by<br />
+
+                  the source, must acknowledge the copyright and authors of this work.<br />
+
+                  <br />
+                  Modified Sat Jul 24 17:28:34 1993 by Rik Faith &lt;faith<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cs.unc.edu&gt;<br />
+
+                  Modified Sun Jun 01 17:16:34 1997 by Jochen Hein<br />
+
+                    &lt;jochen.hein<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>delphi.central.de&gt;<br />
+
+                  Modified Thu Apr 25 00:43:19 2002 by Bruno Haible &lt;bruno<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>clisp.org&gt;<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

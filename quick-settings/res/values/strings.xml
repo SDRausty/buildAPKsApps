@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="txt_quick_settings">Quick Settings</string>
+
+    <string name="txt_status_unknown">Unknown</string>
+    <string name="txt_status_turned_on">Turned on</string>
+    <string name="txt_status_turned_off">Turned off</string>
+    <string name="txt_status_turning_on">Turning on ...</string>
+    <string name="txt_status_turning_off">Turning off ...</string>
+    <string name="txt_status_enabled">Enabled</string>
+    <string name="txt_status_disabled">Disabled</string>
+    
+    <string name="wifi_title">Wi-Fi</string>
+    <string name="txt_net_status_connecting">Connecting ...</string>
+    <string name="txt_net_status_obtainingip">Obtaining IP address ...</string>
+    <string name="txt_net_status_connected_to">Connected to %s</string>
+    <string name="txt_net_status_connected">Connected</string>
+    <string name="txt_net_status_failed">Connection failed</string>
+    <string name="txt_net_status_disconnecting">Disconnecting ...</string>
+    <string name="txt_net_status_disconnected">Disconnected</string>
+    
+    <string name="gps_title">GPS receiver</string>
+    <string name="txt_brightness">Brightness</string>
+    <string name="msg_disable_autobrightness">Auto-brightness is switched on. Do you want to switch it off and control manually?</string>
+
+    <string name="battery_state_title">Battery state:</string>
+    <string name="battery_state_value">%d%%</string>
+    <string name="txt_memory_state_value">Phone free:</string>
+    <string name="txt_card_state_value">SD card free:</string>
+    <string name="txt_no_card">No SD card</string>
+
+    <string name="airmode_title">Airplane mode</string>
+
+    <string name="btn_yes">Yes</string>
+    <string name="btn_no">No</string>
+    <string name="btn_close">Close</string>
+    <string name="btn_set">Set</string>
+    <string name="btn_calcel">Cancel</string>
+
+    <string name="txt_ringer">Ringer</string>
+    <string name="txt_ringer_mode">Ringer mode</string>
+    <string name="txt_ringer_silent">Silent</string>
+    <string name="txt_ringer_sound">Sound only</string>
+    <string name="txt_ringer_vibro">Vibration only</string>
+    <string name="txt_ringer_vibrosound">Sound &amp; Vibration</string>
+    
+    <string name="txt_bt">Bluetooth</string>
+    <string name="txt_no_apn">No APN configured</string>
+    
+    <string name="txt_screen_timeout">Screen timeout</string>
+    <string name="txt_screen_timeout_value_seconds">%d seconds</string>
+    <string name="txt_screen_timeout_value_minute">%d minute</string>
+    <string name="txt_screen_timeout_value_minutes">%d minutes</string>
+    <string name="txt_screen_timeout_value_never">Never timeout</string>
+    
+    <string name="txt_customize_settings">Quick Settings > Customize</string>
+    <string name="txt_preferences">Quick Settings > Preferences</string>
+    <string name="txt_visible_settings">Visible Settings</string>
+    <string name="txt_hidden_settings">Hidden Settings</string>
+    <string name="msg_drag_and_drop">Tap and hold a drag icon to move settings between visible and hidden lists or to reorder settings.</string>
+    
+    <string name="txt_auto_sync">Auto-sync data</string>
+    <string name="txt_enable_background_data">Tap to enable background data</string>
+
+    <string name="txt_volume">Volume control</string>
+    <string name="txt_volume_descr">Tap to control volume</string>
+    <string name="txt_volume_ringer">Ringer volume</string>
+    <string name="txt_volume_notification">Notification volume</string>
+    <string name="txt_volume_media">Media volume</string>
+    <string name="txt_volume_alarm">Alarm volume</string>
+    <string name="txt_volume_voice_call">Voice call volume</string>
+    <string name="txt_volume_system">System volume</string>
+    <string name="msg_zero_ringer_warning">You might miss incoming calls as ringer volume is 0.</string>
+    <string name="msg_zero_notification_warning">You might miss notifications as notification volume is 0.</string>
+    <string name="msg_not_silent_warning">Your phone is not silent anymore as you increased ringer volume to %d.</string>
+
+    <string name="msg_disabled_warning">
+    You see this message because you use \"Mobile Data (APN)\" control first time.
+    \n\nAPN configurations were updated. If connection still persists try to change modifier string in APN control preferences (long press on APN setting).
+    \n\nUninstall Quick Settings with enabled APN otherwise you\'ll stay with no connection and you\'ll have to modify APN configurations manually.
+    \n\nCheck project\'s homepage for more information in case you have any questions or experience any problems with APN control.
+    </string>
+    
+    <string name="msg_switch_to_air_mode">Do you want to activate the Airplane mode and drop all wireless connections?</string>
+    <string name="msg_cannot_init_setting">Oups... Setting "%s" cannot be controlled on your device</string>
+
+    <string name="menu_customize_settings">Customize</string>
+    <string name="menu_preferences">Preferences</string>
+ 
+    <string name="txt_auto_rotate">Auto rotation</string>
+    
+    <!-- unlock pattern -->
+    <string name="txt_unlock_pattern">Unlock pattern</string>
+    <string name="txt_set_unlock_pattern">Tap to set unlock pattern</string>
+    <string name="msg_which_unlock_pattern">Which unlock pattern should be enabled?\n\nNote: if you did not set an unlock pattern before you should choose a new one.</string>
+    <string name="btn_current_unlock_pattern">Current one</string>
+    <string name="btn_new_unlock_pattern">New one</string>
+    
+    <string name="txt_toolbar">Toolbar</string>
+
+    <string name="pref_common">Common</string>
+    <string name="pref_status_bar">Status bar shortcut</string>
+    <string name="pref_status_bar_descr">Tap to enable or disable status bar shortcut</string>
+    <string name="pref_view_mode">Appearance</string>
+    <string name="pref_view_mode_descr">Tap to choose full screen or dialog appearance</string>
+    <string name="msg_tap_to_change_settings">Tap to quickly change settings</string>
+
+    <string name="msg_reinstall_required">Quick Settings application was not updated property. Please uninstall and install the application anew to get it working.\n\nWe apologize for any inconvenience it caused.</string>
+
+	<string name="txt_master_volume">Master volume</string>
+	<string name="txt_master_volume_desc">R: %1$d, N: %2$d, M: %3$d, A: %4$d</string>
+
+	<string name="txt_autobrightness_enabled">Auto-brightness is enabled</string>
+	<string name="txt_autobrightness_disabled">Auto-brightness was disabled</string>
+    <string name="msg_enable_autobrightness">You should only enable this option of your phone is equipped with a light sensor.\n\nEnable the option?</string>
+    <string name="pref_light_sensor">Use light sensor</string>
+    <string name="pref_light_sensor_descr">Tap to enable or disable usage of a light sensor</string>
+
+    <string name="txt_flashlight">Flashlight</string>
+    <string name="pref_flashlight_descr">Tap to choose a flashlight type</string>
+    <string name="msg_flashlight_led_usage">Long usage of LED flashlight can damage your phone. Knowing this you agree to take full responsibility for any damage it might cause.\n\nYou must not use LED flashlight if you do not accept this disclaimer.</string>
+    <string name="btn_accept">Accept</string>
+    <string name="msg_flashlight_not_supported">LED flashlight cannot be controlled on your phone. Screen flashlight will be used instead.</string>
+
+	<string name="txt_haptic_feedback">Haptic feedback</string>
+	<string name="txt_haptic_feedback_on">Vibrate shortly when pressing setting buttons</string>
+	<string name="txt_haptic_feedback_off">Do not vibrate when pressing setting buttons</string>
+
+<!-- 
+	<string name="txt_addons">Quick Settings > Add-ons</string>
+    <string name="menu_addons">Add-ons</string>
+    <string name="txt_addon_quick_battery">Quick Battery</string>
+    <string name="txt_addon_quick_battery_descr">It is a desktop widget showing remaining battery status in percent and a handy shortcut to Quick Settings application at the same time</string>
+    <string name="txt_install">Install</string>
+    <string name="txt_uninstall">Uninstall</string>
+ -->	
+	
+    <string name="pref_disable_mms">Disable MMS</string>
+    <string name="pref_disable_mms_descr_disabled">Device will be unable to receive MMS when you disable Mobile Data</string>
+    <string name="pref_disable_mms_descr_enabled">Device will stay able to receive MMS even if you disable Mobile Data</string>
+
+    <string name="txt_volume_bind">Use Ringer volume for Notifications</string>
+    <string name="txt_initializing">Initializing ...</string>
+    
+    <string name="pref_one_click_switch">One click switch</string>
+    <string name="txt_eula">End-User License Agreement</string>
+    <string name="btn_decline">Decline</string>
+
+    <string name="pref_anp_modifier">Modifier string</string>
+    <string name="pref_anp_modifier_descr">Suffix or prefix to be added to an APN configuration to disable it</string>
+    <string name="pref_restor_pref_apn">Restore preferred APN</string>
+    <string name="pref_restor_pref_apn_descr">Might help is some cases when a connection does not reestablish</string>
+
+    <string name="pref_statusbar_integration">Status bar integration</string>
+    <string name="pref_inverse_notif_color">Invert notification color</string>
+    <string name="pref_inverse_notif_color_on">Text and icon are white now</string>
+    <string name="pref_inverse_notif_color_off">Text and icon are black now</string>
+
+    <string name="pref_about">About</string>
+    <string name="pref_about_descr">About Quick Settings</string>
+
+    <string name="txt_full_brightness">Full brightness</string>
+    <string name="txt_full_brightness_descr">Tap to choose when screen flashlight shall go full brightness</string>
+    <string name="msg_flashlight_delay">Turn the screen out of your face as its brightness will go full in couple of seconds</string>
+    <string name="msg_flashlight_orientation">Tilt your phone screen down to enable full brightness</string>
+    <string name="msg_flashlight_shake">Shake your phone slightly to enable and disable full brightness</string>
+    
+<!-- 1.9.5 -->
+    <string name="txt_pattern">Pattern</string>
+    <string name="txt_pin">PIN</string>
+    <string name="txt_password">Password</string>
+    <string name="txt_wifi_hotspot">Wi-Fi hotspot</string>
+    
+<!-- 1.9.6 -->
+    <string name="txt_apn_control">Mobile data (APN)</string>
+    <string name="txt_mobile_data">Mobile data</string>
+    <string name="txt_enable_data_access_first">Enable \"Mobile data\" in system settings first</string>
+    <string name="msg_enabling_mobile_data">Enabling mobile data</string>
+    <string name="msg_2g_hint">If connection does not establish, try to toggle \"2G only\" checkbox in system settings on and off to force modem to reconnect</string>
+
+<!-- 1.9.7 -->
+    <string name="msg_mms_only">There is a single APN configuring both mobile data and MMS. If you disable it the phone won\'t be able to receive MMS as well. \n\nShould I disable this APN?</string>
+    <string name="btn_disable">Disable</string>
+    <string name="msg_use_mobile_data_hint">There are \"Mobile data (APN)\" and \"Mobile data\" switches. Use the one that works best for you.</string>
+    <string name="txt_apn_on_off_status">Data: %1$s, MMS: %2$s</string>
+    <string name="txt_on">ON</string>
+    <string name="txt_off">OFF</string>
+
+<!-- 1.9.8 -->
+    <string name="txt_four_g">4G</string>
+
+<!-- 1.9.9 -->
+	<string name="pref_doc">Documentation</string>
+	<string name="pref_online_doc">Online Documentation</string>
+	<string name="pref_doc_descr">More information on some settings, FAQs and how-to guides</string>
+
+<!-- 1.9.9.2 -->
+	<string name="pref_mobile_data_mode">Switch 3G directly</string>
+	<string name="pref_mobile_data_mode_descr">Direct Mobile Data switch works for Android versions below 2.3.3 only.</string>
+	<string name="pref_gps_mode">Switch GPS directly</string>
+	<string name="pref_gps_mode_descr">Direct GPS switch works for Android versions below 2.3 only.</string>
+
+<!-- about, should stay at very bottom -->
+    <string name="copyright">© 2010 Sergej Shafarenka</string>
+    <string name="about_info">&lt;b>Version:&lt;/b> %s&lt;br>&lt;b>Contributers:&lt;/b> Brian Rodgers, Shimon Simon&lt;br>&lt;b>Translators:&lt;/b> Hugo Lopes (pt), Rémi Chéno (fr), Sebastian Thiem (de), Lada Prudek (cs), Gabriele Ravanetti (it), Kay Schasfoort (nl), Hyunho Kim(ko)</string>
+    
+<!-- quicker -->
+    <string name="quicker_moto">Quicker. For those who quicker.</string>
+    <string name="quicker_features">Quicker brings you best Quick Settings\' functions in visually appealing way and enables you to have any system shortcuts just under your thumb.</string>
+    <string name="quicker_on_market">Available in Android Market</string>
+    <string name="quicker_see">Show Quicker</string>
+    <string name="quicker_about">About Quicker</string>
+    <string name="quicker_about_descr">Quicker is our new settings application</string>
+    <string name="quicker_continue">Continue</string>
+    
+</resources>

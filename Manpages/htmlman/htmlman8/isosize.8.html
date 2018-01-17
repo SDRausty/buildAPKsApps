@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>isosize(8) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="isosize(8) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="isosize(8) — Linux manual pages">
+    <a id="isosize.8" name="isosize.8" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>isosize — outputs the length of an iso9660 file
+      system</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">isosize</code> [<code class="option">−x</code>] [ <code class="option">−d</code> &lt;num&gt; ]
+        &lt;iso9660_image_file&gt;...</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="isosize-8_sect1" name="isosize-8_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>This command outputs the length of an iso9660 file system
+      that is contained in given file. That file may be a normal
+      file or a block device (e.g. /dev/hdd or /dev/sr0). In the
+      absence of any switches (or errors) it will output the size
+      of the iso9660 file system in bytes. This can now be a large
+      number (&gt;&gt; 4 GB).</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="option">−x</code></span></dt>
+
+          <dd>
+            <p>output in humanly readable form the block count and
+            the block size. Output uses the term "sectors" for
+            "blocks".</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−d
+          &lt;num&gt;</code></span></dt>
+
+          <dd>
+            <p>only has affect when <code class="option">−x</code> is not given. The number
+            output (if no errors) is the iso9660 file size in bytes
+            divided by <em class="parameter"><code>&lt;num&gt;</code></em>. So if
+            <em class="parameter"><code>&lt;num&gt;</code></em> is
+            the block size then the output number will be the block
+            count.</p>
+          </dd>
+        </dl>
+      </div>
+
+      <p>The size of the file (or block device) holding a iso9660
+      file system can be marginally larger than the actual size of
+      the iso9660 file system. One reason for this is that cd
+      writers are allowed to add "run out" sectors at the end of a
+      iso9660 image.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

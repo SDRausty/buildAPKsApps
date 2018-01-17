@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<item android:id="@+id/screen_on"
+		android:title="@string/menu_screen_on"
+		android:alphabeticShortcut="s"
+		android:icon="@android:drawable/button_onoff_indicator_off"
+		/>
+	<item android:id="@+id/clear_log"
+		android:title="@string/menu_clear_log"
+		android:alphabeticShortcut="c"
+		android:icon="@android:drawable/ic_menu_close_clear_cancel"
+		/>
+	<item android:id="@+id/about"
+		android:title="@string/menu_about"
+		android:alphabeticShortcut="a"
+		android:icon="@android:drawable/ic_menu_info_details"
+		/>
+</menu>

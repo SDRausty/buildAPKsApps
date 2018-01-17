@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>pcrecompat(3) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="pcrecompat(3) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="pcrecompat(3) — Linux manual pages">
+    <a id="pcrecompat.3" name="pcrecompat.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>PCRE — Perl-compatible regular expressions</p>
+    </div>
+
+    <div class="refsect1" title="DIFFERENCES BETWEEN PCRE AND PERL">
+      <a id="pcrecompat-3_sect1" name="pcrecompat-3_sect1" shape="rect"> </a>
+
+      <h2>DIFFERENCES BETWEEN PCRE AND PERL</h2>
+
+      <p>This document describes the differences in the ways that
+      PCRE and Perl handle regular expressions. The differences
+      described here are with respect to Perl versions 5.10 and
+      above.</p>
+
+      <p>1. PCRE has only a subset of Perl's UTF-8 and Unicode
+      support. Details of what it does have are given in the
+      section on UTF-8 support in the main <a class="link" href="../htmlman3/pcre.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pcre</span>(3)</span></a> page.</p>
+
+      <p>2. PCRE does not allow repeat quantifiers on lookahead
+      assertions. Perl permits them, but they do not mean what you
+      might think. For example, (?!a){3} does not assert that the
+      next three characters are not "a". It just asserts that the
+      next character is not "a" three times.</p>
+
+      <p>3. Capturing subpatterns that occur inside negative
+      lookahead assertions are counted, but their entries in the
+      offsets vector are never set. Perl sets its numerical
+      variables from any such patterns that are matched before the
+      assertion fails to match something (thereby succeeding), but
+      only if the negative lookahead assertion contains just one
+      branch.</p>
+
+      <p>4. Though binary zero characters are supported in the
+      subject string, they are not allowed in a pattern string
+      because it is passed as a normal C string, terminated by
+      zero. The escape sequence \0 can be used in the pattern to
+      represent a binary zero.</p>
+
+      <p>5. The following Perl escape sequences are not supported:
+      \l, \u, \L, \U, and \N. In fact these are implemented by
+      Perl's general string-handling and are not part of its
+      pattern matching engine. If any of these are encountered by
+      PCRE, an error is generated.</p>
+
+      <p>6. The Perl escape sequences \p, \P, and \X are supported
+      only if PCRE is built with Unicode character property
+      support. The properties that can be tested with \p and \P are
+      limited to the general category properties such as Lu and Nd,
+      script names such as Greek or Han, and the derived properties
+      Any and L&amp;. PCRE does support the Cs (surrogate)
+      property, which Perl does not; the Perl documentation says
+      "Because Perl hides the need for the user to understand the
+      internal representation of Unicode characters, there is no
+      need to implement the somewhat messy concept of
+      surrogates."</p>
+
+      <p>7. PCRE does support the \Q...\E escape for quoting
+      substrings. Characters in between are treated as literals.
+      This is slightly different from Perl in that $ and @ are also
+      handled as literals inside the quotes. In Perl, they cause
+      variable interpolation (but of course PCRE does not have
+      variables). Note the following examples:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+Pattern            PCRE matches      Perl matches
+</pre>
+      </div>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+   \Qabc$xyz\E        abc$xyz           abc followed by the
+                                          contents of $xyz
+   \Qabc\$xyz\E       abc\$xyz          abc\$xyz
+   \Qabc\E\$\Qxyz\E   abc$xyz           abc$xyz
+</pre>
+      </div>
+
+      <p>The \Q...\E sequence is recognized both inside and outside
+      character classes.</p>
+
+      <p>8. Fairly obviously, PCRE does not support the (?{code})
+      and (??{code}) constructions. However, there is support for
+      recursive patterns. This is not available in Perl 5.8, but it
+      is in Perl 5.10. Also, the PCRE "callout" feature allows an
+      external function to be called during pattern matching. See
+      the <a class="link" href="../htmlman3/pcrecallout.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pcrecallout</span>(3)</span></a>
+      documentation for details.</p>
+
+      <p>9. Subpatterns that are called recursively or as
+      "subroutines" are always treated as atomic groups in PCRE.
+      This is like Python, but unlike Perl. There is a discussion
+      of an example that explains this in more detail in the
+      section on recursion differences from Perl in the <a class="link" href="../htmlman3/pcrepattern.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pcrepattern</span>(3)</span></a> page.</p>
+
+      <p>10. There are some differences that are concerned with the
+      settings of captured strings when part of a pattern is
+      repeated. For example, matching "aba" against the pattern
+      /^(a(b)?)+$/ in Perl leaves $2 unset, but in PCRE it is set
+      to "b".</p>
+
+      <p>11. PCRE's handling of duplicate subpattern numbers and
+      duplicate subpattern names is not as general as Perl's. This
+      is a consequence of the fact the PCRE works internally just
+      with numbers, using an external table to translate between
+      numbers and names. In particular, a pattern such as
+      (?|(?&lt;a&gt;A)|(?&lt;b)B), where the two capturing
+      parentheses have the same number but different names, is not
+      supported, and causes an error at compile time. If it were
+      allowed, it would not be possible to distinguish which
+      parentheses matched, because both names map to capturing
+      subpattern number 1. To avoid this confusing situation, an
+      error is given at compile time.</p>
+
+      <p>12. Perl recognizes comments in some places that PCRE
+      doesn't, for example, between the ( and ? at the start of a
+      subpattern.</p>
+
+      <p>13. PCRE provides some extensions to the Perl regular
+      expression facilities. Perl 5.10 includes new features that
+      are not in earlier versions of Perl, some of which (such as
+      named parentheses) have been in PCRE for some time. This list
+      is with respect to Perl 5.10:</p>
+
+      <p>(a) Although lookbehind assertions in PCRE must match
+      fixed length strings, each alternative branch of a lookbehind
+      assertion can match a different length of string. Perl
+      requires them all to have the same length.</p>
+
+      <p>(b) If PCRE_DOLLAR_ENDONLY is set and PCRE_MULTILINE is
+      not set, the $ meta-character matches only at the very end of
+      the string.</p>
+
+      <p>(c) If PCRE_EXTRA is set, a backslash followed by a letter
+      with no special meaning is faulted. Otherwise, like Perl, the
+      backslash is quietly ignored. (Perl can be made to issue a
+      warning.)</p>
+
+      <p>(d) If PCRE_UNGREEDY is set, the greediness of the
+      repetition quantifiers is inverted, that is, by default they
+      are not greedy, but if followed by a question mark they
+      are.</p>
+
+      <p>(e) PCRE_ANCHORED can be used at matching time to force a
+      pattern to be tried only at the first matching position in
+      the subject string.</p>
+
+      <p>(f) The PCRE_NOTBOL, PCRE_NOTEOL, PCRE_NOTEMPTY,
+      PCRE_NOTEMPTY_ATSTART, and PCRE_NO_AUTO_CAPTURE options for
+      <code class="function">pcre_exec</code>() have no Perl
+      equivalents.</p>
+
+      <p>(g) The \R escape sequence can be restricted to match only
+      CR, LF, or CRLF by the PCRE_BSR_ANYCRLF option.</p>
+
+      <p>(h) The callout facility is PCRE-specific.</p>
+
+      <p>(i) The partial matching facility is PCRE-specific.</p>
+
+      <p>(j) Patterns compiled by PCRE can be saved and re-used at
+      a later time, even on different hosts that have the other
+      endianness.</p>
+
+      <p>(k) The alternative matching function (<code class="function">pcre_dfa_exec</code>()) matches in a different way
+      and is not Perl-compatible.</p>
+
+      <p>(l) PCRE recognizes some special sequences such as (*CR)
+      at the start of a pattern that set overall options that
+      cannot be changed within the pattern.</p>
+    </div>
+
+    <div class="refsect1" title="AUTHOR">
+      <a id="pcrecompat-3_sect2" name="pcrecompat-3_sect2" shape="rect"> </a>
+
+      <h2>AUTHOR</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+Philip Hazel
+University Computing Service
+Cambridge CB2 3QH, England.
+</pre>
+      </div>
+    </div>
+
+    <div class="refsect1" title="REVISION">
+      <a id="pcrecompat-3_sect3" name="pcrecompat-3_sect3" shape="rect"> </a>
+
+      <h2>REVISION</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+Last updated: 31 October 2010
+Copyright (c) 1997-2010 University of Cambridge.
+</pre>
+      </div>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <thead>
+            <tr>
+              <th style="" rowspan="1" colspan="1">COPYRIGHT</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <p>This manual page is taken from the <a class="ulink" href="http://www.PCRE.org/" target="_top" shape="rect">PCRE library</a>, which is distributed under
+                the BSD license.</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

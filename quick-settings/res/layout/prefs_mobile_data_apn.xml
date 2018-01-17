@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<PreferenceCategory android:title="@string/txt_apn_control">
+
+		<ListPreference 
+			android:key="apnModifier" 
+			android:title="@string/pref_anp_modifier"
+			android:summary="@string/pref_anp_modifier_descr"
+			android:entries="@array/apn_modifier_names" 
+			android:entryValues="@array/apn_modifier_values" 
+			android:defaultValue="0"/>
+
+		<CheckBoxPreference 
+			android:key="disableMms" 
+			android:singleLine="false"
+			android:id="@+id/pref_disable_mms"
+			android:title="@string/pref_disable_mms"
+			android:summary="@string/pref_disable_mms_descr_enabled"
+			/>
+
+		<CheckBoxPreference 
+			android:key="restorePreferredApn" 
+			android:singleLine="false"
+			android:title="@string/pref_restor_pref_apn"
+			android:summary="@string/pref_restor_pref_apn_descr"
+			/>
+			
+	</PreferenceCategory>
+	
+</PreferenceScreen>

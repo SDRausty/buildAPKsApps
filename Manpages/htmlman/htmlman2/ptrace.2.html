@@ -1,0 +1,695 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>ptrace(2) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="ptrace(2) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="ptrace(2) — Linux manual pages">
+    <a id="ptrace.2" name="ptrace.2" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>ptrace — process trace</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;sys/ptrace.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">long <b class="fsfunc">ptrace</b>(</code></td>
+
+            <td rowspan="1" colspan="1">enum __ptrace_request <var class="pdparam">request</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">pid_t <var class="pdparam">pid</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">void *<var class="pdparam">addr</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">void *<var class="pdparam">data</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="ptrace-2_sect1" name="ptrace-2_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>The <code class="function">ptrace</code>() system call
+      provides a means by which a parent process may observe and
+      control the execution of another process, and examine and
+      change its core image and registers. It is primarily used to
+      implement breakpoint debugging and system call tracing.</p>
+
+      <p>The parent can initiate a trace by calling <a class="link" href="../htmlman2/fork.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fork</span>(2)</span></a> and having the
+      resulting child do a <code class="constant">PTRACE_TRACEME</code>, followed (typically) by an
+      <a class="link" href="../htmlman3/exec.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">exec</span>(3)</span></a>. Alternatively, the
+      parent may commence trace of an existing process using
+      <code class="constant">PTRACE_ATTACH</code>.</p>
+
+      <p>While being traced, the child will stop each time a signal
+      is delivered, even if the signal is being ignored. (The
+      exception is <code class="constant">SIGKILL</code>, which has
+      its usual effect.) The parent will be notified at its next
+      <a class="link" href="../htmlman2/wait.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">wait</span>(2)</span></a> and may inspect and
+      modify the child process while it is stopped. The parent then
+      causes the child to continue, optionally ignoring the
+      delivered signal (or even delivering a different signal
+      instead).</p>
+
+      <p>When the parent is finished tracing, it can terminate the
+      child with <code class="constant">PTRACE_KILL</code> or cause
+      it to continue executing in a normal, untraced mode via
+      <code class="constant">PTRACE_DETACH</code>.</p>
+
+      <p>The value of <em class="parameter"><code>request</code></em> determines the action
+      to be performed:</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="constant">PTRACE_TRACEME</code></span></dt>
+
+          <dd>
+            <p>Indicates that this process is to be traced by its
+            parent. Any signal (except <code class="constant">SIGKILL</code>) delivered to this process
+            will cause it to stop and its parent to be notified via
+            <a class="link" href="../htmlman2/wait.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">wait</span>(2)</span></a>. Also, all
+            subsequent calls to <a class="link" href="../htmlman2/execve.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">execve</span>(2)</span></a> by this
+            process will cause a <code class="constant">SIGTRAP</code> to be sent to it, giving the
+            parent a chance to gain control before the new program
+            begins execution. A process probably shouldn't make
+            this request if its parent isn't expecting to trace it.
+            (<em class="parameter"><code>pid</code></em>,
+            <em class="parameter"><code>addr</code></em>, and
+            <em class="parameter"><code>data</code></em> are
+            ignored.)</p>
+          </dd>
+        </dl>
+      </div>
+
+      <p>The above request is used only by the child process; the
+      rest are used only by the parent. In the following requests,
+      <em class="parameter"><code>pid</code></em> specifies the
+      child process to be acted on. For requests other than
+      <code class="constant">PTRACE_KILL</code>, the child process
+      must be stopped.</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="constant">PTRACE_PEEKTEXT</code>, <code class="constant">PTRACE_PEEKDATA</code></span></dt>
+
+          <dd>
+            <p>Reads a word at the location <em class="parameter"><code>addr</code></em> in the child's
+            memory, returning the word as the result of the
+            <code class="function">ptrace</code>() call. Linux does
+            not have separate text and data address spaces, so the
+            two requests are currently equivalent. (The argument
+            <em class="parameter"><code>data</code></em> is
+            ignored.)</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PTRACE_PEEKUSER</code></span></dt>
+
+          <dd>
+            <p>Reads a word at offset <em class="parameter"><code>addr</code></em> in the child's USER
+            area, which holds the registers and other information
+            about the process (see <code class="literal">&lt;</code><code class="filename">sys/user.h</code><code class="literal">&gt;</code> The word is returned as the
+            result of the <code class="function">ptrace</code>()
+            call. Typically the offset must be word-aligned, though
+            this might vary by architecture. See NOTES. (<em class="parameter"><code>data</code></em> is ignored.)</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PTRACE_POKETEXT</code>, <code class="constant">PTRACE_POKEDATA</code></span></dt>
+
+          <dd>
+            <p>Copies the word <em class="parameter"><code>data</code></em> to location
+            <em class="parameter"><code>addr</code></em> in the
+            child's memory. As above, the two requests are
+            currently equivalent.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PTRACE_POKEUSER</code></span></dt>
+
+          <dd>
+            <p>Copies the word <em class="parameter"><code>data</code></em> to offset <em class="parameter"><code>addr</code></em> in the child's USER
+            area. As above, the offset must typically be
+            word-aligned. In order to maintain the integrity of the
+            kernel, some modifications to the USER area are
+            disallowed.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PTRACE_GETREGS</code>, <code class="constant">PTRACE_GETFPREGS</code></span></dt>
+
+          <dd>
+            <p>Copies the child's general purpose or floating-point
+            registers, respectively, to location <em class="parameter"><code>data</code></em> in the parent. See
+            <code class="literal">&lt;</code><code class="filename">sys/user.h</code><code class="literal">&gt;</code> for information on the format of
+            this data. (<em class="parameter"><code>addr</code></em> is ignored.)</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PTRACE_GETSIGINFO</code> (since Linux
+          2.3.99-pre6)</span></dt>
+
+          <dd>
+            <p>Retrieve information about the signal that caused
+            the stop. Copies a <span class="type">siginfo_t</span>
+            structure (see <a class="link" href="../htmlman2/sigaction.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">sigaction</span>(2)</span></a>) from
+            the child to location <em class="parameter"><code>data</code></em> in the parent.
+            (<em class="parameter"><code>addr</code></em> is
+            ignored.)</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PTRACE_SETREGS</code>, <code class="constant">PTRACE_SETFPREGS</code></span></dt>
+
+          <dd>
+            <p>Copies the child's general purpose or floating-point
+            registers, respectively, from location <em class="parameter"><code>data</code></em> in the parent. As
+            for <code class="constant">PTRACE_POKEUSER</code>, some
+            general purpose register modifications may be
+            disallowed. (<em class="parameter"><code>addr</code></em> is ignored.)</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PTRACE_SETSIGINFO</code> (since Linux
+          2.3.99-pre6)</span></dt>
+
+          <dd>
+            <p>Set signal information. Copies a <span class="type">siginfo_t</span> structure from location
+            <em class="parameter"><code>data</code></em> in the
+            parent to the child. This will only affect signals that
+            would normally be delivered to the child and were
+            caught by the tracer. It may be difficult to tell these
+            normal signals from synthetic signals generated by
+            <code class="function">ptrace</code>() itself.
+            (<em class="parameter"><code>addr</code></em> is
+            ignored.)</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PTRACE_SETOPTIONS</code> (since Linux 2.4.6;
+          see BUGS for caveats)</span></dt>
+
+          <dd>
+            <p>Sets ptrace options from <em class="parameter"><code>data</code></em> in the parent.
+            (<em class="parameter"><code>addr</code></em> is
+            ignored.) <em class="parameter"><code>data</code></em>
+            is interpreted as a bit mask of options, which are
+            specified by the following flags:</p>
+
+            <div class="blockquote">
+              <blockquote class="blockquote">
+                <div class="variablelist">
+                  <dl>
+                    <dt><span class="term"><code class="constant">PTRACE_O_TRACESYSGOOD</code> (since
+                    Linux 2.4.6)</span></dt>
+
+                    <dd>
+                      <p>When delivering syscall traps, set bit 7
+                      in the signal number (i.e., deliver
+                      <span class="emphasis"><em>(SIGTRAP |
+                      0x80)</em></span> This makes it easy for the
+                      tracer to tell the difference between normal
+                      traps and those caused by a syscall.
+                      (<code class="constant">PTRACE_O_TRACESYSGOOD</code> may
+                      not work on all architectures.)</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="constant">PTRACE_O_TRACEFORK</code> (since
+                    Linux 2.5.46)</span></dt>
+
+                    <dd>
+                      <p>Stop the child at the next <a class="link" href="../htmlman2/fork.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fork</span>(2)</span></a>
+                      call with <span class="emphasis"><em>SIGTRAP
+                      | PTRACE_EVENT_FORK &lt;&lt; 8</em></span>
+                      and automatically start tracing the newly
+                      forked process, which will start with a
+                      <code class="constant">SIGSTOP</code>. The
+                      PID for the new process can be retrieved with
+                      <code class="constant">PTRACE_GETEVENTMSG</code>.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="constant">PTRACE_O_TRACEVFORK</code> (since
+                    Linux 2.5.46)</span></dt>
+
+                    <dd>
+                      <p>Stop the child at the next <a class="link" href="../htmlman2/vfork.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">vfork</span>(2)</span></a>
+                      call with <span class="emphasis"><em>SIGTRAP
+                      | PTRACE_EVENT_VFORK &lt;&lt; 8</em></span>
+                      and automatically start tracing the newly
+                      vforked process, which will start with a
+                      <code class="constant">SIGSTOP</code>. The
+                      PID for the new process can be retrieved with
+                      <code class="constant">PTRACE_GETEVENTMSG</code>.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="constant">PTRACE_O_TRACECLONE</code> (since
+                    Linux 2.5.46)</span></dt>
+
+                    <dd>
+                      <p>Stop the child at the next <a class="link" href="../htmlman2/clone.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">clone</span>(2)</span></a>
+                      call with <span class="emphasis"><em>SIGTRAP
+                      | PTRACE_EVENT_CLONE &lt;&lt; 8</em></span>
+                      and automatically start tracing the newly
+                      cloned process, which will start with a
+                      <code class="constant">SIGSTOP</code>. The
+                      PID for the new process can be retrieved with
+                      <code class="constant">PTRACE_GETEVENTMSG</code>. This
+                      option may not catch <a class="link" href="../htmlman2/clone.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">clone</span>(2)</span></a>
+                      calls in all cases. If the child calls
+                      <a class="link" href="../htmlman2/clone.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">clone</span>(2)</span></a>
+                      with the <code class="constant">CLONE_VFORK</code> flag,
+                      <code class="constant">PTRACE_EVENT_VFORK</code> will be
+                      delivered instead if <code class="constant">PTRACE_O_TRACEVFORK</code> is set;
+                      otherwise if the child calls <a class="link" href="../htmlman2/clone.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">clone</span>(2)</span></a>
+                      with the exit signal set to <code class="constant">SIGCHLD</code>, <code class="constant">PTRACE_EVENT_FORK</code> will be
+                      delivered if <code class="constant">PTRACE_O_TRACEFORK</code> is
+                      set.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="constant">PTRACE_O_TRACEEXEC</code> (since
+                    Linux 2.5.46)</span></dt>
+
+                    <dd>
+                      <p>Stop the child at the next <a class="link" href="../htmlman2/execve.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">execve</span>(2)</span></a>
+                      call with <span class="emphasis"><em>SIGTRAP
+                      | PTRACE_EVENT_EXEC &lt;&lt;
+                      8</em></span>.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="constant">PTRACE_O_TRACEVFORKDONE</code>
+                    (since Linux 2.5.60)</span></dt>
+
+                    <dd>
+                      <p>Stop the child at the completion of the
+                      next <a class="link" href="../htmlman2/vfork.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">vfork</span>(2)</span></a>
+                      call with <span class="emphasis"><em>SIGTRAP
+                      | PTRACE_EVENT_VFORK_DONE &lt;&lt;
+                      8</em></span>.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="constant">PTRACE_O_TRACEEXIT</code> (since
+                    Linux 2.5.60)</span></dt>
+
+                    <dd>
+                      <p>Stop the child at exit with <span class="emphasis"><em>SIGTRAP | PTRACE_EVENT_EXIT
+                      &lt;&lt; 8</em></span>. The child's exit
+                      status can be retrieved with <code class="constant">PTRACE_GETEVENTMSG</code>. This
+                      stop will be done early during process exit
+                      when registers are still available, allowing
+                      the tracer to see where the exit occurred,
+                      whereas the normal exit notification is done
+                      after the process is finished exiting. Even
+                      though context is available, the tracer
+                      cannot prevent the exit from happening at
+                      this point.</p>
+                    </dd>
+                  </dl>
+                </div>
+              </blockquote>
+            </div>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PTRACE_GETEVENTMSG</code> (since Linux
+          2.5.46)</span></dt>
+
+          <dd>
+            <p>Retrieve a message (as an <span class="type">unsigned long</span>) about the ptrace event
+            that just happened, placing it in the location
+            <em class="parameter"><code>data</code></em> in the
+            parent. For <code class="constant">PTRACE_EVENT_EXIT</code> this is the child's
+            exit status. For <code class="constant">PTRACE_EVENT_FORK</code>, <code class="constant">PTRACE_EVENT_VFORK</code> and <code class="constant">PTRACE_EVENT_CLONE</code> this is the PID of
+            the new process. Since Linux 2.6.18, the PID of the new
+            process is also available for <code class="constant">PTRACE_EVENT_VFORK_DONE</code>. (<em class="parameter"><code>addr</code></em> is ignored.)</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PTRACE_CONT</code></span></dt>
+
+          <dd>
+            <p>Restarts the stopped child process. If <em class="parameter"><code>data</code></em> is nonzero and not
+            <code class="constant">SIGSTOP</code>, it is
+            interpreted as a signal to be delivered to the child;
+            otherwise, no signal is delivered. Thus, for example,
+            the parent can control whether a signal sent to the
+            child is delivered or not. (<em class="parameter"><code>addr</code></em> is ignored.)</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PTRACE_SYSCALL</code>, <code class="constant">PTRACE_SINGLESTEP</code></span></dt>
+
+          <dd>
+            <p>Restarts the stopped child as for <code class="constant">PTRACE_CONT</code>, but arranges for the
+            child to be stopped at the next entry to or exit from a
+            system call, or after execution of a single
+            instruction, respectively. (The child will also, as
+            usual, be stopped upon receipt of a signal.) From the
+            parent's perspective, the child will appear to have
+            been stopped by receipt of a <code class="constant">SIGTRAP</code>. So, for <code class="constant">PTRACE_SYSCALL</code>, for example, the idea
+            is to inspect the arguments to the system call at the
+            first stop, then do another <code class="constant">PTRACE_SYSCALL</code> and inspect the return
+            value of the system call at the second stop. The
+            <em class="parameter"><code>data</code></em> argument
+            is treated as for <code class="constant">PTRACE_CONT</code>. (<em class="parameter"><code>addr</code></em> is ignored.)</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PTRACE_SYSEMU</code>, <code class="constant">PTRACE_SYSEMU_SINGLESTEP</code> (since Linux
+          2.6.14)</span></dt>
+
+          <dd>
+            <p>For <code class="constant">PTRACE_SYSEMU</code>,
+            continue and stop on entry to the next syscall, which
+            will not be executed. For <code class="constant">PTRACE_SYSEMU_SINGLESTEP</code>, do the same
+            but also singlestep if not a syscall. This call is used
+            by programs like User Mode Linux that want to emulate
+            all the child's system calls. The <em class="parameter"><code>data</code></em> argument is treated
+            as for <code class="constant">PTRACE_CONT</code>.
+            (<em class="parameter"><code>addr</code></em> is
+            ignored; not supported on all architectures.)</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PTRACE_KILL</code></span></dt>
+
+          <dd>
+            <p>Sends the child a <code class="constant">SIGKILL</code> to terminate it. (<em class="parameter"><code>addr</code></em> and <em class="parameter"><code>data</code></em> are ignored.)</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PTRACE_ATTACH</code></span></dt>
+
+          <dd>
+            <p>Attaches to the process specified in <em class="parameter"><code>pid</code></em>, making it a traced
+            "child" of the calling process; the behavior of the
+            child is as if it had done a <code class="constant">PTRACE_TRACEME</code>. The calling process
+            actually becomes the parent of the child process for
+            most purposes (e.g., it will receive notification of
+            child events and appears in <span class="citerefentry"><span class="refentrytitle">ps</span>(1)</span> output as the
+            child's parent), but a <a class="link" href="../htmlman2/getpid.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">getppid</span>(2)</span></a> by the
+            child will still return the PID of the original parent.
+            The child is sent a <code class="constant">SIGSTOP</code>, but will not necessarily
+            have stopped by the completion of this call; use
+            <a class="link" href="../htmlman2/wait.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">wait</span>(2)</span></a> to wait for
+            the child to stop. (<em class="parameter"><code>addr</code></em> and <em class="parameter"><code>data</code></em> are ignored.)</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PTRACE_DETACH</code></span></dt>
+
+          <dd>
+            <p>Restarts the stopped child as for <code class="constant">PTRACE_CONT</code>, but first detaches from
+            the process, undoing the reparenting effect of
+            <code class="constant">PTRACE_ATTACH</code>, and the
+            effects of <code class="constant">PTRACE_TRACEME</code>. Although perhaps not
+            intended, under Linux a traced child can be detached in
+            this way regardless of which method was used to
+            initiate tracing. (<em class="parameter"><code>addr</code></em> is ignored.)</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="ptrace-2_sect2" name="ptrace-2_sect2" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p>On success, <em class="replaceable"><code>PTRACE_PEEK*</code></em> requests return
+      the requested data, while other requests return zero. On
+      error, all requests return −1, and <code class="varname">errno</code> is set appropriately. Since the value
+      returned by a successful <em class="replaceable"><code>PTRACE_PEEK*</code></em> request may be
+      −1, the caller must check <code class="varname">errno</code> after such requests to determine
+      whether or not an error occurred.</p>
+    </div>
+
+    <div class="refsect1" title="ERRORS">
+      <a id="ptrace-2_sect3" name="ptrace-2_sect3" shape="rect"> </a>
+
+      <h2>ERRORS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><span class="errorname">EBUSY</span></span></dt>
+
+          <dd>
+            <p>(i386 only) There was an error with allocating or
+            freeing a debug register.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EFAULT</span></span></dt>
+
+          <dd>
+            <p>There was an attempt to read from or write to an
+            invalid area in the parent's or child's memory,
+            probably because the area wasn't mapped or accessible.
+            Unfortunately, under Linux, different variations of
+            this fault will return <span class="errorname">EIO</span> or <span class="errorname">EFAULT</span> more or less arbitrarily.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EINVAL</span></span></dt>
+
+          <dd>
+            <p>An attempt was made to set an invalid option.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EIO</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>request</code></em> is
+            invalid, or an attempt was made to read from or write
+            to an invalid area in the parent's or child's memory,
+            or there was a word-alignment violation, or an invalid
+            signal was specified during a restart request.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EPERM</span></span></dt>
+
+          <dd>
+            <p>The specified process cannot be traced. This could
+            be because the parent has insufficient privileges (the
+            required capability is <code class="constant">CAP_SYS_PTRACE</code>); unprivileged
+            processes cannot trace processes that they cannot send
+            signals to or those running set-user-ID/set-group-ID
+            programs, for obvious reasons. Alternatively, the
+            process may already be being traced, or be <span class="citerefentry"><span class="refentrytitle">init</span>(8)</span> (PID 1).</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ESRCH</span></span></dt>
+
+          <dd>
+            <p>The specified process does not exist, or is not
+            currently being traced by the caller, or is not stopped
+            (for requests that require that).</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="ptrace-2_sect4" name="ptrace-2_sect4" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>SVr4, 4.3BSD.</p>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="ptrace-2_sect5" name="ptrace-2_sect5" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p>Although arguments to <code class="function">ptrace</code>() are interpreted according to the
+      prototype given, glibc currently declares <code class="function">ptrace</code>() as a variadic function with only
+      the <em class="parameter"><code>request</code></em> argument
+      fixed. This means that unneeded trailing arguments may be
+      omitted, though doing so makes use of undocumented
+      <span class="citerefentry"><span class="refentrytitle">gcc</span>(1)</span> behavior.</p>
+
+      <p><span class="citerefentry"><span class="refentrytitle">init</span>(8)</span>, the process with PID
+      1, may not be traced.</p>
+
+      <p>The layout of the contents of memory and the USER area are
+      quite OS- and architecture-specific. The offset supplied, and
+      the data returned, might not entirely match with the
+      definition of <span class="emphasis"><em>struct
+      user</em></span>.</p>
+
+      <p>The size of a "word" is determined by the OS variant
+      (e.g., for 32-bit Linux it is 32 bits, etc.).</p>
+
+      <p>Tracing causes a few subtle differences in the semantics
+      of traced processes. For example, if a process is attached to
+      with <code class="constant">PTRACE_ATTACH</code>, its
+      original parent can no longer receive notification via
+      <a class="link" href="../htmlman2/wait.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">wait</span>(2)</span></a> when it stops, and
+      there is no way for the new parent to effectively simulate
+      this notification.</p>
+
+      <p>When the parent receives an event with <em class="replaceable"><code>PTRACE_EVENT_*</code></em> set, the child
+      is not in the normal signal delivery path. This means the
+      parent cannot do <code class="function">ptrace</code>(PTRACE_CONT) with a signal or
+      <code class="function">ptrace</code>(PTRACE_KILL). <a class="link" href="../htmlman2/kill.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">kill</span>(2)</span></a> with a <code class="constant">SIGKILL</code> signal can be used instead to kill
+      the child process after receiving one of these messages.</p>
+
+      <p>This page documents the way the <code class="function">ptrace</code>() call works currently in Linux. Its
+      behavior differs noticeably on other flavors of UNIX. In any
+      case, use of <code class="function">ptrace</code>() is highly
+      OS- and architecture-specific.</p>
+
+      <p>The SunOS man page describes <code class="function">ptrace</code>() as "unique and arcane", which it
+      is. The proc-based debugging interface present in Solaris 2
+      implements a superset of <code class="function">ptrace</code>() functionality in a more powerful
+      and uniform way.</p>
+    </div>
+
+    <div class="refsect1" title="BUGS">
+      <a id="ptrace-2_sect6" name="ptrace-2_sect6" shape="rect"> </a>
+
+      <h2>BUGS</h2>
+
+      <p>On hosts with 2.6 kernel headers, <code class="constant">PTRACE_SETOPTIONS</code> is declared with a
+      different value than the one for 2.4. This leads to
+      applications compiled with such headers failing when run on
+      2.4 kernels. This can be worked around by redefining
+      <code class="constant">PTRACE_SETOPTIONS</code> to
+      <code class="constant">PTRACE_OLDSETOPTIONS</code>, if that
+      is defined.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="ptrace-2_sect7" name="ptrace-2_sect7" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><span class="citerefentry"><span class="refentrytitle">gdb</span>(1)</span>, <span class="citerefentry"><span class="refentrytitle">strace</span>(1)</span>, <a class="link" href="../htmlman2/execve.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">execve</span>(2)</span></a>, <a class="link" href="../htmlman2/fork.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fork</span>(2)</span></a>, <a class="link" href="../htmlman2/signal.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">signal</span>(2)</span></a>, <a class="link" href="../htmlman2/wait.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">wait</span>(2)</span></a>, <a class="link" href="../htmlman3/exec.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">exec</span>(3)</span></a>, <a class="link" href="../htmlman7/capabilities.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">capabilities</span>(7)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="ptrace-2_sect8" name="ptrace-2_sect8" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.29 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                  Copyright (c) 1993 Michael Haardt<br />
+
+                  (michael<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>moria.de),<br />
+                  Fri Apr  2 11:32:09 MET DST 1993<br />
+
+                  <br />
+                  changes Copyright 1999 Mike Coleman (mkc<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>acm.org)<br />
+
+                  -- major revision to fully document ptrace semantics per recent Linux<br />
+
+                     kernel (2.2.10) and glibc (2.1.2)<br />
+
+                  Sun Nov  7 03:18:35 CST 1999<br />
+
+                  <br />
+                  This is free documentation; you can redistribute it and/or<br />
+
+                  modify it under the terms of the GNU General Public License as<br />
+
+                  published by the Free Software Foundation; either version 2 of<br />
+
+                  the License, or (at your option) any later version.<br />
+
+                  <br />
+                  The GNU General Public License's references to "object code"<br />
+
+                  and "executables" are to be interpreted as the output of any<br />
+
+                  document formatting or typesetting system, including<br />
+
+                  intermediate and printed output.<br />
+
+                  <br />
+                  This manual is distributed in the hope that it will be useful,<br />
+
+                  but WITHOUT ANY WARRANTY; without even the implied warranty of<br />
+
+                  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<br />
+
+                  GNU General Public License for more details.<br />
+
+                  <br />
+                  You should have received a copy of the GNU General Public<br />
+
+                  License along with this manual; if not, write to the Free<br />
+
+                  Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111,<br />
+
+                  USA.<br />
+                  <br />
+                  Modified Fri Jul 23 23:47:18 1993 by Rik Faith &lt;faith<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cs.unc.edu&gt;<br />
+
+                  Modified Fri Jan 31 16:46:30 1997 by Eric S. Raymond &lt;esr<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>thyrsus.com&gt;<br />
+
+                  Modified Thu Oct  7 17:28:49 1999 by Andries Brouwer &lt;aeb<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cwi.nl&gt;<br />
+
+                  Modified, 27 May 2004, Michael Kerrisk &lt;mtk.manpages<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>gmail.com&gt;<br />
+
+                      Added notes on capability requirements<br />
+
+                  <br />
+                  2006-03-24, Chuck Ebbert &lt;76306.1226<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>compuserve.com&gt;<br />
+
+                     Added    PTRACE_SETOPTIONS, PTRACE_GETEVENTMSG, PTRACE_GETSIGINFO,<br />
+
+                         PTRACE_SETSIGINFO, PTRACE_SYSEMU, PTRACE_SYSEMU_SINGLESTEP<br />
+
+                     (Thanks to Blaisorblade, Daniel Jacobowitz and others who helped.)<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

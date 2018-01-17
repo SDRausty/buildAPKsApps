@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="eu.veldsoft.vitoshadm"
+    android:versionCode="2"
+    android:versionName="1.1" >
+
+    <uses-sdk
+        android:minSdkVersion="15"
+        android:targetSdkVersion="27" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".SplashActivity"
+            android:label="@string/title_activity_splash"
+            android:noHistory="true" >
+            <meta-data
+                android:name="timeout"
+                android:value="5000" />
+            <meta-data
+                android:name="redirect"
+                android:value="eu.veldsoft.vitoshadm.DecisionMakerActivity" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".DecisionMakerActivity"
+            android:label="@string/title_activity_decision_maker" >
+        </activity>
+        <activity
+            android:name=".HelpActivity"
+            android:label="@string/title_activity_help" >
+        </activity>
+        <activity
+            android:name=".AboutActivity"
+            android:label="@string/title_activity_about" >
+        </activity>
+    </application>
+
+</manifest>

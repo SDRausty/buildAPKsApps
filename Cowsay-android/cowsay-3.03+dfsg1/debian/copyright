@@ -1,0 +1,123 @@
+This package was debianized by michael d. ivey <ivey@debian.org>.
+It is currently maintained by Franz Pletz <fpletz@franz-pletz.org>.
+
+It was downloaded from http://www.nog.net/~tony/warez/cowsay.shtml
+
+Upstream Author: Tony Monroe <tony@nog.net>
+
+Copyright: 1999-2000 Tony Monroe
+
+On Debian GNU/Linux systems, the complete text of the Artistic License
+can be found in /usr/share/common-licenses/Artistic and that of the GNU
+Generel Public License in /usr/share/common-licenses/GPL.
+
+==============
+cowsay License
+==============
+
+cowsay is distributed under the same licensing terms as Perl: the
+Artistic License or the GNU General Public License.  If you don't
+want to track down these licenses and read them for yourself, use
+the parts that I'd prefer:
+
+(0) I wrote it and you didn't.
+
+(1) Give credit where credit is due if you borrow the code for some
+other purpose.
+
+(2) If you have any bugfixes or suggestions, please notify me so
+that I may incorporate them.
+
+(3) If you try to make money off of cowsay, you suck.
+
+===============
+cowsay Legalese
+===============
+
+(0) Copyright (c) 1999 Tony Monroe.  All rights reserved.  All
+lefts may or may not be reversed at my discretion.
+
+(1) This software package can be freely redistributed or modified
+under the terms described above in the "cowsay License" section
+of this file.
+
+(2) cowsay is provided "as is," with no warranties whatsoever,
+expressed or implied.  If you want some implied warranty about
+merchantability and/or fitness for a particular purpose, you will
+not find it here, because there is no such thing here.
+
+(3) I hate legalese.
+
+
+Contributed cow files
+---------------------
+
+cows/apt.cow:
+Copyright 2002 Steven Barker <scbarker@uiuc.edu>
+Released under the GNU General Public License
+
+cows/bong.cow:
+Copyright 1999 Lars Smith <lars@csua.berkeley.edu>
+Released under the same terms as cowsay
+
+cows/calvin.cow, cows/cock.cow:
+Copyright 2006 Krishna Kumar <krish.kumar@gmail.com>
+Released under the same terms as cowsay
+
+cows/dragon-and-cow.cow:
+Copyright 1999 kube@csua.berkeley.edu
+Released under the same terms as cowsay
+
+cows/duck.cow:
+Copyright 1999 Gürkan Sengün <gurkan@phys.ethz.ch>
+Released under the same terms as cowsay
+
+cows/flaming-sheep.cow:
+Copyright 1999 Geordan Rosario <geordan@csua.berkeley.edu>
+Released under the same terms as cowsay
+
+cows/gnu.cow, cows/suse.cow:
+Copyright 2006 Gerfried Fuchs <rhonda@deb.at>
+Released under the WTFPLv2 license:
+
+   Everyone is permitted to copy and distribute verbatim or modified
+   copies of this license document, and changing it is allowed as long
+   as the name is changed.
+
+               DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+      TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+
+     0. You just DO WHAT THE FUCK YOU WANT TO. 
+
+cows/mutilated.cow:
+Copyright 1999 aspolito@csua.berkeley.edu
+Released under the same terms as cowsay
+
+cows/pony.cow, cows/pony-smaller.cow, cows/unipony.cow,
+cows/unipony-smaller.cow:
+Copyright 2010 Nick Daly <nick.m.daly@gmail.com>
+Released under the same terms as cowsay
+
+cows/skeleton.cow:
+Copyright 1999 {appel,kube,rowe}@csua.berkeley.edu
+Released under the same terms as cowsay
+
+cows/snowman.cow:
+Copyright 2009 chrysn <chrysn@fsfe.org>
+Released under the same terms as cowsay or cc-by-3.0, at your discretion
+
+cows/three-eyes.cow:
+Copyright 1999 dpetrou@csua.berkeley.edu
+Released under the same terms as cowsay
+
+cows/tux.cow:
+Copyright 1999 pborys@p-soft.silesia.linux.org.pl
+Released under the same terms as cowsay
+
+cows/vader.cow:
+Copyright 1999 geordan@csua.berkeley.edu
+Released under the same terms as cowsay
+
+cows/www.cow:
+Copyright 1999 lim@csua.berkeley.edu
+Released under the same terms as cowsay

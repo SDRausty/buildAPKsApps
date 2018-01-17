@@ -1,0 +1,858 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>locale(5) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="locale(5) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="locale(5) — Linux manual pages">
+    <a id="locale.5" name="locale.5" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>locale — Describes a locale definition file</p>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="locale-5_sect1" name="locale-5_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>The <em class="replaceable"><code>locale</code></em>
+      definition files contains all the information that the
+      <span class="citerefentry"><span class="refentrytitle">localedef</span>(1)</span> command needs to
+      convert it into the binary locale database.</p>
+
+      <p>The definition files consist of sections which each
+      describe a locale category in detail.</p>
+
+      <div class="refsect2" title="Syntax">
+        <a id="locale-5_sect2" name="locale-5_sect2" shape="rect"> </a>
+
+        <h3>Syntax</h3>
+
+        <p>The locale definition file starts with a header that may
+        consist of the following keywords:</p>
+
+        <div class="variablelist">
+          <dl>
+            <dt><span class="term"><em class="replaceable"><code>&lt;escape_char&gt;</code></em></span></dt>
+
+            <dd>
+              <p>is followed by a character that should be used as
+              the escape-character for the rest of the file to mark
+              characters that should be interpreted in a special
+              way. It defaults to the backslash (\).</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>&lt;comment_char&gt;</code></em></span></dt>
+
+            <dd>
+              <p>is followed by a character that will be used as
+              the comment-character for the rest of the file. It
+              defaults to the number sign (#).</p>
+            </dd>
+          </dl>
+        </div>
+
+        <p>The locale definition has one part for each locale
+        category. Each part can be copied from another existing
+        locale or can be defined from scratch. If the category
+        should be copied, the only valid keyword in the definition
+        is <em class="replaceable"><code>copy</code></em> followed
+        by the name of the locale which should be copied.</p>
+      </div>
+
+      <div class="refsect2" title="LC_CTYPE">
+        <a id="locale-5_sect3" name="locale-5_sect3" shape="rect"> </a>
+
+        <h3>LC_CTYPE</h3>
+
+        <p>The definition for the <code class="constant">LC_CTYPE</code> category starts with the string
+        <code class="constant">LC_CTYPE</code> in the first
+        column.</p>
+
+        <p>There are the following keywords allowed:</p>
+
+        <div class="variablelist">
+          <dl>
+            <dt><span class="term"><em class="replaceable"><code>upper</code></em></span></dt>
+
+            <dd>
+              <p>followed by a list of uppercase letters. The
+              letters <code class="constant">A</code> through
+              <code class="constant">Z</code> are included
+              automatically. Characters also specified as
+              <em class="replaceable"><code>cntrl</code></em>,
+              <em class="replaceable"><code>digit</code></em>,
+              <em class="replaceable"><code>punct</code></em>, or
+              <em class="replaceable"><code>space</code></em> are
+              not allowed.</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>lower</code></em></span></dt>
+
+            <dd>
+              <p>followed by a list of lowercase letters. The
+              letters <code class="literal">a</code> through
+              <code class="literal">z</code> are included
+              automatically. Characters also specified as
+              <em class="replaceable"><code>cntrl</code></em>,
+              <em class="replaceable"><code>digit</code></em>,
+              <em class="replaceable"><code>punct</code></em>, or
+              <em class="replaceable"><code>space</code></em> are
+              not allowed.</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>alpha</code></em></span></dt>
+
+            <dd>
+              <p>followed by a list of letters. All character
+              specified as either <em class="replaceable"><code>upper</code></em> or <em class="replaceable"><code>lower</code></em> are
+              automatically included. Characters also specified as
+              <em class="replaceable"><code>cntrl</code></em>,
+              <em class="replaceable"><code>digit</code></em>,
+              <em class="replaceable"><code>punct</code></em>, or
+              <em class="replaceable"><code>space</code></em> are
+              not allowed.</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>digit</code></em></span></dt>
+
+            <dd>
+              <p>followed by the characters classified as numeric
+              digits. Only the digits <code class="constant">0</code> through <code class="constant">9</code> are allowed. They are included by
+              default in this class.</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>space</code></em></span></dt>
+
+            <dd>
+              <p>followed by a list of characters defined as
+              white-space characters. Characters also specified as
+              <em class="replaceable"><code>upper</code></em>,
+              <em class="replaceable"><code>lower</code></em>,
+              <em class="replaceable"><code>alpha</code></em>,
+              <em class="replaceable"><code>digit</code></em>,
+              <em class="replaceable"><code>graph</code></em>, or
+              <em class="replaceable"><code>xdigit</code></em> are
+              not allowed. The characters <em class="replaceable"><code>&lt;space&gt;</code></em>,
+              <em class="replaceable"><code>&lt;form-feed&gt;</code></em>,
+              <em class="replaceable"><code>&lt;newline&gt;</code></em>,
+              <em class="replaceable"><code>&lt;carriage-return&gt;</code></em>,
+              <em class="replaceable"><code>&lt;tab&gt;</code></em>, and
+              <em class="replaceable"><code>&lt;vertical-tab&gt;</code></em>
+              are automatically included.</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>cntrl</code></em></span></dt>
+
+            <dd>
+              <p>followed by a list of control characters.
+              Characters also specified as <em class="replaceable"><code>upper</code></em>, <em class="replaceable"><code>lower</code></em>, <em class="replaceable"><code>alpha</code></em>, <em class="replaceable"><code>digit</code></em>, <em class="replaceable"><code>punct</code></em>, <em class="replaceable"><code>graph</code></em>, <em class="replaceable"><code>print</code></em>, or <em class="replaceable"><code>xdigit</code></em> are not
+              allowed.</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>punct</code></em></span></dt>
+
+            <dd>
+              <p>followed by a list of punctuation characters.
+              Characters also specified as <em class="replaceable"><code>upper</code></em>, <em class="replaceable"><code>lower</code></em>, <em class="replaceable"><code>alpha</code></em>, <em class="replaceable"><code>digit</code></em>, <em class="replaceable"><code>cntrl</code></em>, <em class="replaceable"><code>xdigit</code></em>, or the
+              <em class="replaceable"><code>&lt;space&gt;</code></em>
+              character are not allowed.</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>graph</code></em></span></dt>
+
+            <dd>
+              <p>followed by a list of printable characters, not
+              including the <em class="replaceable"><code>&lt;space&gt;</code></em>
+              character. The characters defined as <em class="replaceable"><code>upper</code></em>, <em class="replaceable"><code>lower</code></em>, <em class="replaceable"><code>alpha</code></em>, <em class="replaceable"><code>digit</code></em>, <em class="replaceable"><code>xdigit</code></em>, and
+              <em class="replaceable"><code>punct</code></em> are
+              automatically included. Characters also specified as
+              <em class="replaceable"><code>cntrl</code></em> are
+              not allowed.</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>print</code></em></span></dt>
+
+            <dd>
+              <p>followed by a list of printable characters,
+              including the <em class="replaceable"><code>&lt;space&gt;</code></em>
+              character. The characters defined as <em class="replaceable"><code>upper</code></em>, <em class="replaceable"><code>lower</code></em>, <em class="replaceable"><code>alpha</code></em>, <em class="replaceable"><code>digit</code></em>, <em class="replaceable"><code>xdigit</code></em>, <em class="replaceable"><code>punct</code></em>, and the
+              <em class="replaceable"><code>&lt;space&gt;</code></em>
+              character are automatically included. Characters also
+              specified as <em class="replaceable"><code>cntrl</code></em> are not
+              allowed.</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>xdigit</code></em></span></dt>
+
+            <dd>
+              <p>followed by a list of characters classified as
+              hexadecimal digits. The decimal digits must be
+              included followed by one or more set of six
+              characters in ascending order. The following
+              characters are included by default: <code class="constant">0</code> through <code class="constant">9</code>, <code class="literal">a</code>
+              through <code class="literal">f</code>, <code class="constant">A</code> through <code class="constant">F</code>.</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>blank</code></em></span></dt>
+
+            <dd>
+              <p>followed by a list of characters classified as
+              <em class="replaceable"><code>blank</code></em>. The
+              characters <em class="replaceable"><code>&lt;space&gt;</code></em> and
+              <em class="replaceable"><code>&lt;tab&gt;</code></em>
+              are automatically included.</p>
+            </dd>
+
+            <dt><span class="term"><code class="function">toupper</code></span></dt>
+
+            <dd>
+              <p>followed by a list of mappings from lowercase to
+              uppercase letters. Each mapping is a pair of a
+              lowercase and an uppercase letter separated with a
+              <code class="literal">,</code> and enclosed in
+              parentheses. The members of the list are separated
+              with semicolons.</p>
+            </dd>
+
+            <dt><span class="term"><code class="function">tolower</code></span></dt>
+
+            <dd>
+              <p>followed by a list of mappings from uppercase to
+              lowercase letters. If the keyword tolower is not
+              present, the reverse of the toupper list is used.</p>
+            </dd>
+          </dl>
+        </div>
+
+        <p>The <code class="constant">LC_CTYPE</code> definition
+        ends with the string <span class="emphasis"><em>END
+        LC_CYTPE</em></span>.</p>
+      </div>
+
+      <div class="refsect2" title="LC_COLLATE">
+        <a id="locale-5_sect4" name="locale-5_sect4" shape="rect"> </a>
+
+        <h3>LC_COLLATE</h3>
+
+        <p>The <code class="constant">LC_COLLATE</code> category
+        defines the rules for collating characters. Due to
+        limitations of libc not all POSIX-options are
+        implemented.</p>
+
+        <p>The definition starts with the string <code class="constant">LC_COLLATE</code> in the first column.</p>
+
+        <p>There are the following keywords allowed:</p>
+
+        <div class="variablelist">
+          <dl>
+            <dt><span class="term"><em class="replaceable"><code>collating-element</code></em></span></dt>
+
+            <dt><span class="term"><em class="replaceable"><code>collating-symbol</code></em></span></dt>
+          </dl>
+        </div>
+
+        <p>The order-definition starts with a line:</p>
+
+        <div class="variablelist">
+          <dl>
+            <dt><span class="term"><em class="replaceable"><code>order_start</code></em></span></dt>
+          </dl>
+        </div>
+
+        <p>followed by a list of keywords out of <em class="replaceable"><code>forward</code></em>, <em class="replaceable"><code>backward</code></em>, or <em class="replaceable"><code>position</code></em>. The order
+        definition consists of lines that describe the order and is
+        terminated with the keyword</p>
+
+        <div class="variablelist">
+          <dl>
+            <dt><span class="term"><em class="replaceable"><code>order_end</code></em>.</span></dt>
+          </dl>
+        </div>
+
+        <p>For more details see the sources in <code class="filename">/usr/lib/nls/src</code> notably the examples
+        <code class="constant">POSIX</code>, <em class="replaceable"><code>Example</code></em> and <em class="replaceable"><code>Example2</code></em></p>
+
+        <p>The <code class="constant">LC_COLLATE</code> definition
+        ends with the string <span class="emphasis"><em>END
+        LC_COLLATE</em></span>.</p>
+      </div>
+
+      <div class="refsect2" title="LC_MONETARY">
+        <a id="locale-5_sect5" name="locale-5_sect5" shape="rect"> </a>
+
+        <h3>LC_MONETARY</h3>
+
+        <p>The definition starts with the string <code class="constant">LC_MONETARY</code> in the first column.</p>
+
+        <p>There are the following keywords allowed:</p>
+
+        <div class="variablelist">
+          <dl>
+            <dt><span class="term"><em class="replaceable"><code>int_curr_symbol</code></em></span></dt>
+
+            <dd>
+              <p>followed by the international currency symbol.
+              This must be a 4-character string containing the
+              international currency symbol as defined by the ISO
+              4217 standard (three characters) followed by a
+              separator.</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>currency_symbol</code></em></span></dt>
+
+            <dd>
+              <p>followed by the local currency symbol.</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>mon_decimal_point</code></em></span></dt>
+
+            <dd>
+              <p>followed by the string that will be used as the
+              decimal delimiter when formatting monetary
+              quantities.</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>mon_thousands_sep</code></em></span></dt>
+
+            <dd>
+              <p>followed by the string that will be used as a
+              group separator when formatting monetary
+              quantities.</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>mon_grouping</code></em></span></dt>
+
+            <dd>
+              <p>followed by a string that describes the formatting
+              of numeric quantities.</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>positive_sign</code></em></span></dt>
+
+            <dd>
+              <p>followed by a string that is used to indicate a
+              positive sign for monetary quantities.</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>negative_sign</code></em></span></dt>
+
+            <dd>
+              <p>followed by a string that is used to indicate a
+              negative sign for monetary quantities.</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>int_frac_digits</code></em></span></dt>
+
+            <dd>
+              <p>followed by the number of fractional digits that
+              should be used when formatting with the <em class="replaceable"><code>int_curr_symbol</code></em>.</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>frac_digits</code></em></span></dt>
+
+            <dd>
+              <p>followed by the number of fractional digits that
+              should be used when formatting with the <em class="replaceable"><code>currency_symbol</code></em>.</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>p_cs_precedes</code></em></span></dt>
+
+            <dd>
+              <p>followed by an integer set to <code class="constant">1</code> if the <em class="replaceable"><code>currency_symbol</code></em> or
+              <em class="replaceable"><code>int_curr_symbol</code></em>
+              should precede the formatted monetary quantity or set
+              to <code class="constant">0</code> if the symbol
+              succeeds the value.</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>p_sep_by_space</code></em></span></dt>
+
+            <dd>
+              <p>followed by an integer.</p>
+
+              <div class="blockquote">
+                <blockquote class="blockquote">
+                  <div class="variablelist">
+                    <dl>
+                      <dt><span class="term"><code class="constant">0</code></span></dt>
+
+                      <dd>
+                        <p>means that no space should be printed
+                        between the symbol and the value.</p>
+                      </dd>
+
+                      <dt><span class="term"><code class="constant">1</code></span></dt>
+
+                      <dd>
+                        <p>means that a space should be printed
+                        between the symbol and the value.</p>
+                      </dd>
+
+                      <dt><span class="term"><code class="constant">2</code></span></dt>
+
+                      <dd>
+                        <p>means that a space should be printed
+                        between the symbol and the sign string, if
+                        adjacent.</p>
+                      </dd>
+                    </dl>
+                  </div>
+                </blockquote>
+              </div>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>n_cs_precedes</code></em></span></dt>
+
+            <dd>
+              <div class="blockquote">
+                <blockquote class="blockquote">
+                  <div class="variablelist">
+                    <dl>
+                      <dt><span class="term"><code class="constant">0</code></span></dt>
+
+                      <dd>
+                        <p>- the symbol succeeds the value.</p>
+                      </dd>
+
+                      <dt><span class="term"><code class="constant">1</code></span></dt>
+
+                      <dd>
+                        <p>- the symbol precedes the value.</p>
+                      </dd>
+                    </dl>
+                  </div>
+                </blockquote>
+              </div>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>n_sep_by_space</code></em></span></dt>
+
+            <dd>
+              <p>An integer set to <code class="constant">0</code>
+              if no space separates the <em class="replaceable"><code>currency_symbol</code></em> or
+              <em class="replaceable"><code>int_curr_symbol</code></em> from
+              the value for a negative monetary quantity, set to
+              <code class="constant">1</code> if a space separates
+              the symbol from the value and set to <code class="constant">2</code> if a space separates the symbol
+              and the sign string, if adjacent.</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>p_sign_posn</code></em></span></dt>
+
+            <dd>
+              <div class="blockquote">
+                <blockquote class="blockquote">
+                  <div class="variablelist">
+                    <dl>
+                      <dt><span class="term"><code class="constant">0</code></span></dt>
+
+                      <dd>
+                        <p>Parentheses enclose the quantity and the
+                        <em class="replaceable"><code>currency_symbol</code></em>
+                        or <em class="replaceable"><code>int_curr_symbol</code></em>.</p>
+                      </dd>
+
+                      <dt><span class="term"><code class="constant">1</code></span></dt>
+
+                      <dd>
+                        <p>The sign string precedes the quantity
+                        and the <em class="replaceable"><code>currency_symbol</code></em>
+                        or the <em class="replaceable"><code>int_curr_symbol</code></em>.</p>
+                      </dd>
+
+                      <dt><span class="term"><code class="constant">2</code></span></dt>
+
+                      <dd>
+                        <p>The sign string succeeds the quantity
+                        and the <em class="replaceable"><code>currency_symbol</code></em>
+                        or the <em class="replaceable"><code>int_curr_symbol</code></em>.</p>
+                      </dd>
+
+                      <dt><span class="term"><code class="constant">3</code></span></dt>
+
+                      <dd>
+                        <p>The sign string precedes the <em class="replaceable"><code>currency_symbol</code></em>
+                        or the <em class="replaceable"><code>int_curr_symbol</code></em>.</p>
+                      </dd>
+
+                      <dt><span class="term"><code class="constant">4</code></span></dt>
+
+                      <dd>
+                        <p>The sign string succeeds the <em class="replaceable"><code>currency_symbol</code></em>
+                        or the <em class="replaceable"><code>int_curr_symbol</code></em>.</p>
+                      </dd>
+                    </dl>
+                  </div>
+                </blockquote>
+              </div>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>n_sign_posn</code></em></span></dt>
+
+            <dd>
+              <div class="blockquote">
+                <blockquote class="blockquote">
+                  <div class="variablelist">
+                    <dl>
+                      <dt><span class="term"><code class="constant">0</code></span></dt>
+
+                      <dd>
+                        <p>Parentheses enclose the quantity and the
+                        <em class="replaceable"><code>currency_symbol</code></em>
+                        or <em class="replaceable"><code>int_curr_symbol</code></em>.</p>
+                      </dd>
+
+                      <dt><span class="term"><code class="constant">1</code></span></dt>
+
+                      <dd>
+                        <p>The sign string precedes the quantity
+                        and the <em class="replaceable"><code>currency_symbol</code></em>
+                        or the <em class="replaceable"><code>int_curr_symbol</code></em>.</p>
+                      </dd>
+
+                      <dt><span class="term"><code class="constant">2</code></span></dt>
+
+                      <dd>
+                        <p>The sign string succeeds the quantity
+                        and the <em class="replaceable"><code>currency_symbol</code></em>
+                        or the <em class="replaceable"><code>int_curr_symbol</code></em>.</p>
+                      </dd>
+
+                      <dt><span class="term"><code class="constant">3</code></span></dt>
+
+                      <dd>
+                        <p>The sign string precedes the <em class="replaceable"><code>currency_symbol</code></em>
+                        or the <em class="replaceable"><code>int_curr_symbol</code></em>.</p>
+                      </dd>
+
+                      <dt><span class="term"><code class="constant">4</code></span></dt>
+
+                      <dd>
+                        <p>The sign string succeeds the <em class="replaceable"><code>currency_symbol</code></em>
+                        or the <em class="replaceable"><code>int_curr_symbol</code></em>.</p>
+                      </dd>
+                    </dl>
+                  </div>
+                </blockquote>
+              </div>
+            </dd>
+          </dl>
+        </div>
+
+        <p>The <code class="constant">LC_MONETARY</code> definition
+        ends with the string <span class="emphasis"><em>END
+        LC_MONETARY</em></span>.</p>
+      </div>
+
+      <div class="refsect2" title="LC_NUMERIC">
+        <a id="locale-5_sect6" name="locale-5_sect6" shape="rect"> </a>
+
+        <h3>LC_NUMERIC</h3>
+
+        <p>The definition starts with the string <code class="constant">LC_NUMERIC</code> in the first column.</p>
+
+        <p>The following keywords are allowed:</p>
+
+        <div class="variablelist">
+          <dl>
+            <dt><span class="term"><em class="replaceable"><code>decimal_point</code></em></span></dt>
+
+            <dd>
+              <p>followed by the string that will be used as the
+              decimal delimiter when formatting numeric
+              quantities.</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>thousands_sep</code></em></span></dt>
+
+            <dd>
+              <p>followed by the string that will be used as a
+              group separator when formatting numeric
+              quantities.</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>grouping</code></em></span></dt>
+
+            <dd>
+              <p>followed by a string that describes the formatting
+              of numeric quantities.</p>
+            </dd>
+          </dl>
+        </div>
+
+        <p>The <code class="constant">LC_NUMERIC</code> definition
+        ends with the string <span class="emphasis"><em>END
+        LC_NUMERIC</em></span>.</p>
+      </div>
+
+      <div class="refsect2" title="LC_TIME">
+        <a id="locale-5_sect7" name="locale-5_sect7" shape="rect"> </a>
+
+        <h3>LC_TIME</h3>
+
+        <p>The definition starts with the string <code class="constant">LC_TIME</code> in the first column.</p>
+
+        <p>The following keywords are allowed:</p>
+
+        <div class="variablelist">
+          <dl>
+            <dt><span class="term"><em class="replaceable"><code>abday</code></em></span></dt>
+
+            <dd>
+              <p>followed by a list of abbreviated weekday names.
+              The list starts with the first day of the week as
+              specified by <em class="replaceable"><code>week</code></em> (Sunday by
+              default).</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>day</code></em></span></dt>
+
+            <dd>
+              <p>followed by a list of weekday names. The list
+              starts with the first day of the week as specified by
+              <em class="replaceable"><code>week</code></em>
+              (Sunday by default).</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>abmon</code></em></span></dt>
+
+            <dd>
+              <p>followed by a list of abbreviated month names.</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>mon</code></em></span></dt>
+
+            <dd>
+              <p>followed by a list of month names.</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>am_pm</code></em></span></dt>
+
+            <dd>
+              <p>The appropriate representation of the <em class="replaceable"><code>am</code></em> and <em class="replaceable"><code>pm</code></em> strings.</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>d_t_fmt</code></em></span></dt>
+
+            <dd>
+              <p>The appropriate date and time format.</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>d_fmt</code></em></span></dt>
+
+            <dd>
+              <p>The appropriate date format.</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>t_fmt</code></em></span></dt>
+
+            <dd>
+              <p>The appropriate time format.</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>t_fmt_ampm</code></em></span></dt>
+
+            <dd>
+              <p>The appropriate time format when using 12h clock
+              format.</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>week</code></em></span></dt>
+
+            <dd>
+              <p>followed by a list of three values: The number of
+              days in a week (by default 7), a date of beginning of
+              the week (by default corresponds to Sunday), and the
+              minimal length of the first week in year (by default
+              4). Regarding the start of the week, <code class="constant">19971130</code> shall be used for Sunday
+              and <code class="constant">19971201</code> shall be
+              used for Monday. Thus, countries using <code class="constant">19971130</code> should have local Sunday
+              name as the first day in the <em class="replaceable"><code>day</code></em> list, while
+              countries using <code class="constant">19971201</code> should have Monday
+              translation as the first item in the <em class="replaceable"><code>day</code></em> list.</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>first_weekday</code></em> (since
+            glibc 2.2)</span></dt>
+
+            <dd>
+              <p>Number of the first day from the <em class="replaceable"><code>day</code></em> list to be shown
+              in calendar applications. The default value of
+              <code class="constant">1</code> corresponds to either
+              Sunday or Monday depending on the value of the second
+              <em class="replaceable"><code>week</code></em> list
+              item.</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>first_workday</code></em> (since
+            glibc 2.2)</span></dt>
+
+            <dd>
+              <p>Number of the first working day from the
+              <em class="replaceable"><code>day</code></em>
+              list.</p>
+            </dd>
+          </dl>
+        </div>
+
+        <p>The <code class="constant">LC_TIME</code> definition
+        ends with the string <span class="emphasis"><em>END
+        LC_TIME</em></span>.</p>
+      </div>
+
+      <div class="refsect2" title="LC_MESSAGES">
+        <a id="locale-5_sect8" name="locale-5_sect8" shape="rect"> </a>
+
+        <h3>LC_MESSAGES</h3>
+
+        <p>The definition starts with the string <code class="constant">LC_MESSAGES</code> in the first column.</p>
+
+        <p>The following keywords are allowed:</p>
+
+        <div class="variablelist">
+          <dl>
+            <dt><span class="term"><em class="replaceable"><code>yesexpr</code></em></span></dt>
+
+            <dd>
+              <p>followed by a regular expression that describes
+              possible yes-responses.</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>noexpr</code></em></span></dt>
+
+            <dd>
+              <p>followed by a regular expression that describes
+              possible no-responses.</p>
+            </dd>
+          </dl>
+        </div>
+
+        <p>The <code class="constant">LC_MESSAGES</code> definition
+        ends with the string <span class="emphasis"><em>END
+        LC_MESSAGES</em></span>.</p>
+
+        <p>See the POSIX.2 standard for details.</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="FILES">
+      <a id="locale-5_sect9" name="locale-5_sect9" shape="rect"> </a>
+
+      <h2>FILES</h2>
+
+      <p>/usr/lib/locale/ — database for the current locale
+      setting of that category</p>
+
+      <p>/usr/lib/nls/charmap/* — charmap-files</p>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="locale-5_sect10" name="locale-5_sect10" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>POSIX.2, ISO/IEC 14652.</p>
+    </div>
+
+    <div class="refsect1" title="BUGS">
+      <a id="locale-5_sect11" name="locale-5_sect11" shape="rect"> </a>
+
+      <h2>BUGS</h2>
+
+      <p>This manual page isn't complete.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="locale-5_sect12" name="locale-5_sect12" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><span class="citerefentry"><span class="refentrytitle">locale</span>(1)</span>, <span class="citerefentry"><span class="refentrytitle">localedef</span>(1)</span>, <a class="link" href="../htmlman3/localeconv.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">localeconv</span>(3)</span></a>, <a class="link" href="../htmlman3/setlocale.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">setlocale</span>(3)</span></a>, <a class="link" href="../htmlman5/charmap.5.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">charmap</span>(5)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="locale-5_sect13" name="locale-5_sect13" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.24 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                  This file is part of locale(1) which displays the settings of the<br />
+
+                  current locale.<br />
+                  Copyright (C) 1994  Jochen Hein (Hein<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>Student.TU-Clausthal.de)<br />
+
+                  Copyright (C) 2008  Petr Baudis (pasky<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>suse.cz)<br />
+
+                  <br />
+                  This program is free software; you can redistribute it and/or modify<br />
+
+                  it under the terms of the GNU General Public License as published by<br />
+
+                  the Free Software Foundation; either version 2 of the License, or<br />
+
+                  (at your option) any later version.<br />
+
+                  <br />
+                  This program is distributed in the hope that it will be useful,<br />
+
+                  but WITHOUT ANY WARRANTY; without even the implied warranty of<br />
+
+                  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<br />
+
+                  GNU General Public License for more details.<br />
+
+                  <br />
+                  You should have received a copy of the GNU General Public License<br />
+
+                  along with this program; if not, write to the Free Software<br />
+
+                  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.<br />
+
+                  <br />
+                  2008-06-17 Petr Baudis &lt;pasky<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>suse.cz&gt;<br />
+
+                      LC_TIME: Describe first_weekday and first_workday<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

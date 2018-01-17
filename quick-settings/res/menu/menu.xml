@@ -1,0 +1,7 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menu_customize" android:icon="@android:drawable/ic_menu_agenda" android:title="@string/menu_customize_settings" />
+    <!-- 
+    <item android:id="@+id/menu_addons" android:icon="@drawable/ic_menu_addons" android:title="@string/menu_addons" />
+     -->
+    <item android:id="@+id/menu_preferences" android:icon="@android:drawable/ic_menu_preferences" android:title="@string/menu_preferences" />
+</menu>

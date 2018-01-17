@@ -1,0 +1,145 @@
+cowsay (3.03+dfsg1-3) unstable; urgency=low
+
+  * Add ponies, thanks to Nick Daly (closes: #575317)
+  * Bump debhelper compatibility to 8
+
+ -- Francois Marier <francois@debian.org>  Wed, 22 Dec 2010 13:50:20 +1300
+
+cowsay (3.03+dfsg1-2) unstable; urgency=medium
+
+  * Update Rhonda's copyright statement on cows/gnu and cows/suse
+
+ -- Francois Marier <francois@debian.org>  Sat, 21 Aug 2010 00:42:31 -0400
+
+cowsay (3.03+dfsg1-1) unstable; urgency=medium
+
+  * Removed cows from unknown artists and added authors of contributed
+    cow files to debian/copyright (closes: #592917, #367347)
+  * Mangle the debian version in the watch file
+  * Bump Standards-Version up to 3.9.1
+
+ -- Francois Marier <francois@debian.org>  Wed, 18 Aug 2010 10:30:42 -0400
+
+cowsay (3.03-11) unstable; urgency=low
+
+  * Fix tongue alignment problem in head-in cow. Thanks to Xin Ouch.
+
+ -- Francois Marier <francois@debian.org>  Wed, 16 Jun 2010 09:56:12 +1200
+
+cowsay (3.03-10) unstable; urgency=low
+
+  * Adopt this package (closes: #579367)
+  * Acknowledge NMUs
+    (closes: #480404, #480405, #452816, #367310, #404287)
+  * Add snowman cow (closes: #561531)
+  * Partial fix for UTF-8 messages (closes: #254557, LP: 393212)
+
+  * Move all customisations to separate DEP-3 patches
+  * Add vcs-git fields
+  * Bump Standards-Version up to 3.8.4
+  * Bump debhelper compatibility to 7
+  * Move to 3.0 (quilt) source package format
+
+ -- Francois Marier <francois@debian.org>  Wed, 28 Apr 2010 16:34:32 +1200
+
+cowsay (3.03-9.2) unstable; urgency=low
+
+  * NMU to fix breakages introduced with last NMU.
+  * Make duck.cow work with unstable version
+    (Closes: #480404, #480405, #452816)
+  * Added some long standing cow files:
+    - gnu.cow and suse.cow (Closes: #367310)
+    - calvin.cow and cock.cow (Closes: #404287)
+  * filters lowered to suggests, there is no special functionality that would
+    require filters, it's just a nice-to-have.
+  * Some changes missing from the former NMU entry: Small fixes in the manual
+    page, Standards-Version bumped to 3.7.3.
+  * Actually bump Standards-Version to 3.8.0.
+  * Fixed watch file to make it watch again.
+
+ -- Gerfried Fuchs <rhonda@debian.at>  Mon, 21 Jul 2008 12:52:24 +0200
+
+cowsay (3.03-9.1) unstable; urgency=low
+
+  * Non-maintainer upload. (Closes: #452816)
+  * Move homepage field.
+  * Add recommnds for filters.
+  * Move manual page to games section and binaries to /usr/games.
+
+ -- Gurkan Sengun <gurkan@phys.ethz.ch>  Wed, 16 Apr 2008 08:41:50 +0200
+
+cowsay (3.03-9) unstable; urgency=low
+
+  * debian/control:
+    - new maintainer (Closes: #406507)
+    - fix typo (Closes: #398484)
+    - bumped Standards-Version
+  * Switch to debhelper 5
+  * cowsay.1: remove stray '(' (Closes: #352904)
+  * debian/copyright: updated
+
+ -- Franz Pletz <fpletz@franz-pletz.org>  Sat, 28 Jul 2007 21:35:42 +0200
+
+cowsay (3.03-8) unstable; urgency=low
+
+  * debian/watch: added
+
+ -- Florian Ernst <florian@debian.org>  Mon,  9 Jan 2006 15:02:56 +0100
+
+cowsay (3.03-7) unstable; urgency=low
+
+  * New maintainer, many thanks to Michael D. Ivey for his work, taking
+    over with his consent
+    - use debhelper 4 mode and ${perl:Depends}
+  * Remove bad mech-and-cow file (Closes: #327872)
+  * Trim trailing spaces to allow for better use for signatures
+    (Closes: #276144)
+  * Add new sheepy cowfile (Closes: #326063)
+  * Standards-Version 3.6.2
+  * Acknowledge previous NMU that actually was a MU by including it
+
+ -- Florian Ernst <florian@debian.org>  Wed, 19 Oct 2005 16:51:22 +0200
+
+cowsay (3.03-6) unstable; urgency=low
+
+  * Added reversal patch for elephant-in-snake (Closes: #190455)
+    Thanks to D. Joe Anderson ... although I have no clue what
+    this cow is supposed to be.
+  * Added patch from Thom May for mech-and-cow (Closes: #193440)
+  * Fixed typo in luke-koala (Closes: #203648)
+  * Updated package description (Closes: #209662)
+  * Bump standards-version
+
+ -- Michael D. Ivey <ivey@debian.org>  Sat, 15 Nov 2003 16:18:04 +0000
+
+cowsay (3.03-5) unstable; urgency=low
+
+  * Added maxlength patch from Jeronimo Pellegrini (Closes: #165218)
+
+ -- Michael D. Ivey <ivey@debian.org>  Mon,  9 Dec 2002 18:13:47 +0000
+
+cowsay (3.03-4) unstable; urgency=low
+
+  * Added apt.cow from Steven Barker (Closes: #143810)
+
+ -- Michael D. Ivey <ivey@debian.org>  Mon, 22 Apr 2002 17:45:57 +0000
+
+cowsay (3.03-3) unstable; urgency=low
+
+  * New standards version
+  * Changed description (Closes: #97193)
+
+ -- michael d. ivey <ivey@debian.org>  Tue, 29 May 2001 21:56:35 +0000
+
+cowsay (3.03-2) unstable; urgency=low
+
+  * Added URL into debian/copyright
+
+ -- michael d. ivey <ivey@debian.org>  Tue, 29 May 2001 19:35:48 +0000
+
+cowsay (3.03-1) unstable; urgency=low
+
+  * Initial Release.
+  * Closes: #75450
+
+ -- michael d. ivey <ivey@debian.org>  Wed,  9 May 2001 20:37:08 +0000

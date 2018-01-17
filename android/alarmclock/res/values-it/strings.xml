@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Translation by Daniele Ottorogo <daniele.ottorogo@gmail.com> -->
+<resources>
+  <string name="app_name">Alarm Klock</string>
+  <string name="delete_all">Elimina Tutto</string>
+  <string name="label">Nome</string>
+  <string name="repeat">Ripetizione</string>
+  <string name="alarm_tone">Suoneria Sveglia</string>
+  <string name="fade_description">Dal %1$d%% al %2$d%% in %3$d secondi</string>
+  <string name="ok">OK</string>
+  <string name="cancel">Annulla</string>
+  <string name="delete">Elimina</string>
+  <string name="snooze">POSPONI</string>
+  <string name="dismiss">SPEGNI</string>
+  <string name="plus_five">+5</string>
+  <string name="minus_five">-5</string>
+  <string name="day">%d giorno</string>
+  <string name="days">%d giorni</string>
+  <string name="hour">%d ora</string>
+  <string name="hours">%d ore</string>
+  <string name="minute">%d minuto</string>
+  <string name="minutes">%d minuti</string>
+  <string name="am">AM</string>
+  <string name="pm">PM</string>
+  <string name="dow_sun_short">Dom</string>
+  <string name="dow_mon_short">Lun</string>
+  <string name="dow_tue_short">Mar</string>
+  <string name="dow_wed_short">Mer</string>
+  <string name="dow_thu_short">Gio</string>
+  <string name="dow_fri_short">Ven</string>
+  <string name="dow_sat_short">Sab</string>
+  <string name="dow_sun">Domenica</string>
+  <string name="dow_mon">Lunedì</string>
+  <string name="dow_tue">Martedì</string>
+  <string name="dow_wed">Mercoledì</string>
+  <string name="dow_thu">Giovedì</string>
+  <string name="dow_fri">Venerdì</string>
+  <string name="dow_sat">Sabato</string>
+  <string name="no_repeats">Nessuna Ripetizione</string>
+  <string name="everyday">Ogni Giorno</string>
+  <string name="weekdays">Giorni Lavorativi</string>
+  <string name="weekends">Fine Settimana</string>
+  <string name="internal">Interne</string>
+  <string name="artists">Artisti</string>
+  <string name="songs">Brani</string>
+  <string name="selected">Selezionato: </string>
+  <string name="time_out_title">Time Out Allarme</string>
+  <string name="time_out_error">ATTENZIONE: Questo Allarme è scaduto aspettando informazioni.</string>
+</resources>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>pcre_free_substring_list(3) — Linux manual
+  pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="pcre_free_substring_list(3) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="pcre_free_substring_list(3) — Linux manual pages">
+    <a id="pcre-free-substring-list.3" name="pcre-free-substring-list.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>PCRE — Perl-compatible regular expressions</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;pcre.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">void <b class="fsfunc">pcre_free_substring_list</b>(</code></td>
+
+            <td rowspan="1" colspan="1">const char **<var class="pdparam">stringptr</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="pcre-free-substring-list-3_sect1" name="pcre-free-substring-list-3_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>This is a convenience function for freeing the store
+      obtained by a previous call to <code class="function">pcre_get_substring_list</code>(). Its only
+      argument is a pointer to the list of string pointers.</p>
+
+      <p>There is a complete description of the PCRE native API in
+      the <a class="link" href="../htmlman3/pcreapi.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pcreapi</span>(3)</span></a> page and a
+      description of the POSIX API in the <a class="link" href="../htmlman3/pcreposix.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pcreposix</span>(3)</span></a> page.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <thead>
+            <tr>
+              <th style="" rowspan="1" colspan="1">COPYRIGHT</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <p>This manual page is taken from the <a class="ulink" href="http://www.PCRE.org/" target="_top" shape="rect">PCRE library</a>, which is distributed under
+                the BSD license.</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

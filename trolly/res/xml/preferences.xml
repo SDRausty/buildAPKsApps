@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+	<ListPreference android:key="@string/key_sort_list"
+		android:title="List mode sort order"
+		android:summary="Order of items on the list when in list mode"
+		android:dialogTitle="Listing Mode Order"
+		android:entries="@array/sort_order"
+		android:entryValues="@array/sort_order_values" />
+	<ListPreference android:key="@string/key_sort_shop"
+		android:title="Shopping mode sort order"
+		android:summary="Order of items on the list when in shopping mode"
+		android:dialogTitle="Shopping Mode Order"
+		android:entries="@array/sort_order"
+		android:entryValues="@array/sort_order_values" />
+</PreferenceScreen>

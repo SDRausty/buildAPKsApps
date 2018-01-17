@@ -1,0 +1,4055 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>proc(5) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="proc(5) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="proc(5) — Linux manual pages">
+    <a id="proc.5" name="proc.5" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>proc — process information pseudo-file system</p>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="proc-5_sect1" name="proc-5_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>The <code class="literal">proc</code> file system is a
+      pseudo-file system which is used as an interface to kernel
+      data structures. It is commonly mounted at <code class="filename">/proc</code>. Most of it is read-only, but some
+      files allow kernel variables to be changed.</p>
+
+      <p>The following outline gives a quick tour through the
+      <code class="filename">/proc</code> hierarchy.</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="filename">/proc/[pid]</code></span></dt>
+
+          <dd>
+            <p>There is a numerical subdirectory for each running
+            process; the subdirectory is named by the process ID.
+            Each such subdirectory contains the following
+            pseudo-files and directories.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/[pid]/auxv (since
+          2.6.0-test7)</code></span></dt>
+
+          <dd>
+            <p>This contains the contents of the ELF interpreter
+            information passed to the process at exec time. The
+            format is one <span class="emphasis"><em>unsigned
+            long</em></span> ID plus one <span class="emphasis"><em>unsigned long</em></span> value for each
+            entry. The last entry contains two zeros.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/[pid]/cmdline</code></span></dt>
+
+          <dd>
+            <p>This holds the complete command line for the
+            process, unless the process is a zombie. In the latter
+            case, there is nothing in this file: that is, a read on
+            this file will return 0 characters. The command-line
+            arguments appear in this file as a set of strings
+            separated by null bytes ('\0'), with a further null
+            byte after the last string.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/[pid]/coredump_filter (since kernel
+          2.6.23)</code></span></dt>
+
+          <dd>
+            <p>See <a class="link" href="../htmlman5/core.5.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">core</span>(5)</span></a>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/[pid]/cpuset (since kernel
+          2.6.12)</code></span></dt>
+
+          <dd>
+            <p>See <a class="link" href="../htmlman7/cpuset.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">cpuset</span>(7)</span></a>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/[pid]/cwd</code></span></dt>
+
+          <dd>
+            <p>This is a symbolic link to the current working
+            directory of the process. To find out the current
+            working directory of process 20, for instance, you can
+            do this:</p>
+
+            <div class="blockquote">
+              <blockquote class="blockquote">
+                <div class="informalexample">
+                  <pre class="programlisting" xml:space="preserve">
+$<span class="emphasis"><em> cd /proc/20/cwd; /bin/pwd</em></span>
+</pre>
+                </div>
+              </blockquote>
+            </div>
+
+            <p>Note that the <span class="command"><strong>pwd</strong></span> command is often
+            a shell built-in, and might not work properly. In
+            <span class="citerefentry"><span class="refentrytitle">bash</span>(1)</span>, you may use
+            <span class="emphasis"><em>pwd
+            −P</em></span>.</p>
+
+            <p>In a multithreaded process, the contents of this
+            symbolic link are not available if the main thread has
+            already terminated (typically by calling <a class="link" href="../htmlman3/pthread_exit.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pthread_exit</span>(3)</span></a>).</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/[pid]/environ</code></span></dt>
+
+          <dd>
+            <p>This file contains the environment for the process.
+            The entries are separated by null bytes ('\0'), and
+            there may be a null byte at the end. Thus, to print out
+            the environment of process 1, you would do:</p>
+
+            <div class="blockquote">
+              <blockquote class="blockquote">
+                <div class="informalexample">
+                  <pre class="programlisting" xml:space="preserve">
+$<span class="emphasis"><em> (cat /proc/1/environ; echo) | tr '\000' '\n'</em></span>
+</pre>
+                </div>
+              </blockquote>
+            </div>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/[pid]/exe</code></span></dt>
+
+          <dd>
+            <p>Under Linux 2.2 and later, this file is a symbolic
+            link containing the actual pathname of the executed
+            command. This symbolic link can be dereferenced
+            normally; attempting to open it will open the
+            executable. You can even type <code class="filename">/proc/[pid]/exe</code> to run another copy
+            of the same executable as is being run by process
+            [pid]. In a multithreaded process, the contents of this
+            symbolic link are not available if the main thread has
+            already terminated (typically by calling <a class="link" href="../htmlman3/pthread_exit.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pthread_exit</span>(3)</span></a>).</p>
+
+            <p>Under Linux 2.0 and earlier <code class="filename">/proc/[pid]/exe</code> is a pointer to the
+            binary which was executed, and appears as a symbolic
+            link. A <a class="link" href="../htmlman2/readlink.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">readlink</span>(2)</span></a> call on
+            this file under Linux 2.0 returns a string in the
+            format:</p>
+
+            <p>[device]:inode</p>
+
+            <p>For example, [0301]:1502 would be inode 1502 on
+            device major 03 (IDE, MFM, etc. drives) minor 01 (first
+            partition on the first drive).</p>
+
+            <p><span class="citerefentry"><span class="refentrytitle">find</span>(1)</span> with the
+            <code class="option">−inum</code> option can be
+            used to locate the file.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/[pid]/fd</code></span></dt>
+
+          <dd>
+            <p>This is a subdirectory containing one entry for each
+            file which the process has open, named by its file
+            descriptor, and which is a symbolic link to the actual
+            file. Thus, 0 is standard input, 1 standard output, 2
+            standard error, etc.</p>
+
+            <p>In a multithreaded process, the contents of this
+            directory are not available if the main thread has
+            already terminated (typically by calling <a class="link" href="../htmlman3/pthread_exit.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pthread_exit</span>(3)</span></a>).</p>
+
+            <p>Programs that will take a filename as a command-line
+            argument, but will not take input from standard input
+            if no argument is supplied, or that write to a file
+            named as a command-line argument, but will not send
+            their output to standard output if no argument is
+            supplied, can nevertheless be made to use standard
+            input or standard out using <code class="filename">/proc/[pid]/fd</code>. For example, assuming
+            that <code class="option">−i</code> is the flag
+            designating an input file and <code class="option">−o</code> is the flag designating an
+            output file:</p>
+
+            <div class="blockquote">
+              <blockquote class="blockquote">
+                <div class="informalexample">
+                  <pre class="programlisting" xml:space="preserve">
+$<span class="emphasis"><em> foobar −i /proc/self/fd/0 −o /proc/self/fd/1 ...</em></span>
+</pre>
+                </div>
+              </blockquote>
+            </div>
+
+            <p>and you have a working filter.</p>
+
+            <p><code class="filename">/proc/self/fd/N</code> is
+            approximately the same as <code class="filename">/dev/fd/N</code> in some UNIX and UNIX-like
+            systems. Most Linux MAKEDEV scripts symbolically link
+            <code class="filename">/dev/fd</code> to <code class="filename">/proc/self/fd</code>, in fact.</p>
+
+            <p>Most systems provide symbolic links <code class="filename">/dev/stdin</code>, <code class="filename">/dev/stdout</code>, and <code class="filename">/dev/stderr</code>, which respectively link
+            to the files <code class="constant">0</code>,
+            <code class="constant">1</code>, and <code class="constant">2</code> in <code class="filename">/proc/self/fd</code>. Thus the example
+            command above could be written as:</p>
+
+            <div class="blockquote">
+              <blockquote class="blockquote">
+                <div class="informalexample">
+                  <pre class="programlisting" xml:space="preserve">
+$<span class="emphasis"><em> foobar −i /dev/stdin −o /dev/stdout ...</em></span>
+</pre>
+                </div>
+              </blockquote>
+            </div>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/[pid]/fdinfo/ (since kernel
+          2.6.22)</code></span></dt>
+
+          <dd>
+            <p>This is a subdirectory containing one entry for each
+            file which the process has open, named by its file
+            descriptor. The contents of each file can be read to
+            obtain information about the corresponding file
+            descriptor, for example:</p>
+
+            <div class="blockquote">
+              <blockquote class="blockquote">
+                <div class="informalexample">
+                  <pre class="programlisting" xml:space="preserve">
+$<span class="emphasis"><em> cat /proc/12015/fdinfo/4</em></span>
+pos:    1000
+flags:  01002002
+</pre>
+                </div>
+              </blockquote>
+            </div>
+
+            <p>The <code class="literal">pos</code> field is a
+            decimal number showing the current file offset. The
+            <code class="literal">flags</code> field is an octal
+            number that displays the file access mode and file
+            status flags (see <a class="link" href="../htmlman2/open.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">open</span>(2)</span></a>).</p>
+
+            <p>The files in this directory are readable only by the
+            owner of the process.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/[pid]/limits (since kernel
+          2.6.24)</code></span></dt>
+
+          <dd>
+            <p>This file displays the soft limit, hard limit, and
+            units of measurement for each of the process's resource
+            limits (see <a class="link" href="../htmlman2/getrlimit.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">getrlimit</span>(2)</span></a>). The
+            file is protected to only allow reading by the real UID
+            of the process.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/[pid]/maps</code></span></dt>
+
+          <dd>
+            <p>A file containing the currently mapped memory
+            regions and their access permissions.</p>
+
+            <p>The format is:</p>
+
+            <div class="informaltable">
+              <table style="border-collapse: collapse;">
+                <colgroup span="1">
+                  <col span="1" />
+                  <col span="1" />
+                  <col span="1" />
+                  <col span="1" />
+                  <col span="1" />
+                  <col span="1" />
+                </colgroup>
+
+                <tbody>
+                  <tr>
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">address</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">perms</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">offset</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">dev</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">inode</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">pathname</code></td>
+                  </tr>
+
+                  <tr>
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">08048000-08056000</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">r-xp</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">00000000</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">03:0c</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">64593</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">/usr/sbin/gpm</code></td>
+                  </tr>
+
+                  <tr>
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">08056000-08058000</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">rw-p</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0000d000</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">03:0c</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">64593</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">/usr/sbin/gpm</code></td>
+                  </tr>
+
+                  <tr>
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">08058000-0805b000</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">rwxp</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">00000000</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">00:00</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"></td>
+                  </tr>
+
+                  <tr>
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">40000000-40013000</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">r-xp</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">00000000</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">03:0c</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">4165</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">/lib/ld-2.2.4.so</code></td>
+                  </tr>
+
+                  <tr>
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">40013000-40015000</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">rw-p</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">00012000</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">03:0c</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">4165</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">/lib/ld-2.2.4.so</code></td>
+                  </tr>
+
+                  <tr>
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">4001f000-40135000</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">r-xp</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">00000000</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">03:0c</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">45494</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">/lib/libc-2.2.4.so</code></td>
+                  </tr>
+
+                  <tr>
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">40135000-4013e000</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">rw-p</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">00115000</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">03:0c</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">45494</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">/lib/libc-2.2.4.so</code></td>
+                  </tr>
+
+                  <tr>
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">4013e000-40142000</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">rw-p</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">00000000</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">00:00</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"></td>
+                  </tr>
+
+                  <tr>
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">bffff000-c0000000</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">rwxp</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">00000000</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">00:00</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p>where "address" is the address space in the process
+            that it occupies, "perms" is a set of permissions:</p>
+
+            <div class="blockquote">
+              <blockquote class="blockquote">
+                <div class="informalexample">
+                  <pre class="programlisting" xml:space="preserve">
+r = read
+w = write
+x = execute
+s = shared
+p = private (copy on write)
+</pre>
+                </div>
+              </blockquote>
+            </div>
+
+            <p>"offset" is the offset into the file/whatever, "dev"
+            is the device (major:minor), and "inode" is the inode
+            on that device. 0 indicates that no inode is associated
+            with the memory region, as the case would be with BSS
+            (uninitialized data).</p>
+
+            <p>Under Linux 2.0 there is no field giving
+            pathname.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/[pid]/mem</code></span></dt>
+
+          <dd>
+            <p>This file can be used to access the pages of a
+            process's memory through <a class="link" href="../htmlman2/open.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">open</span>(2)</span></a>, <a class="link" href="../htmlman2/read.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">read</span>(2)</span></a>, and
+            <a class="link" href="../htmlman2/lseek.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">lseek</span>(2)</span></a>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/[pid]/mountinfo</code> (since Linux
+          2.6.26)</span></dt>
+
+          <dd>
+            <p>This file contains information about mount points.
+            It contains lines of the form:</p>
+
+            <div class="informalexample">
+              <pre class="programlisting" xml:space="preserve">
+36 35 98:0 /mnt1 /mnt2 rw,noatime master:1 - ext3 /dev/root rw,errors=continue
+(1)(2)(3)   (4)   (5)      (6)      (7)   (8) (9)   (10)         (11)
+</pre>
+            </div>
+
+            <p>The numbers in parentheses are labels for the
+            descriptions below:</p>
+
+            <div class="blockquote">
+              <blockquote class="blockquote">
+                <div class="variablelist">
+                  <dl>
+                    <dt><span class="term">(1)</span></dt>
+
+                    <dd>
+                      <p>mount ID: unique identifier of the mount
+                      (may be reused after <a class="link" href="../htmlman2/umount.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">umount</span>(2)</span></a>).</p>
+                    </dd>
+
+                    <dt><span class="term">(2)</span></dt>
+
+                    <dd>
+                      <p>parent ID: ID of parent mount (or of self
+                      for the top of the mount tree).</p>
+                    </dd>
+
+                    <dt><span class="term">(3)</span></dt>
+
+                    <dd>
+                      <p>major:minor: value of <code class="literal">st_dev</code> for files on file
+                      system (see <a class="link" href="../htmlman2/stat.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">stat</span>(2)</span></a>).</p>
+                    </dd>
+
+                    <dt><span class="term">(4)</span></dt>
+
+                    <dd>
+                      <p>root: root of the mount within the file
+                      system.</p>
+                    </dd>
+
+                    <dt><span class="term">(5)</span></dt>
+
+                    <dd>
+                      <p>mount point: mount point relative to the
+                      process's root.</p>
+                    </dd>
+
+                    <dt><span class="term">(6)</span></dt>
+
+                    <dd>
+                      <p>mount options: per-mount options.</p>
+                    </dd>
+
+                    <dt><span class="term">(7)</span></dt>
+
+                    <dd>
+                      <p>optional fields: zero or more fields of
+                      the form "tag[:value]".</p>
+                    </dd>
+
+                    <dt><span class="term">(8)</span></dt>
+
+                    <dd>
+                      <p>separator: marks the end of the optional
+                      fields.</p>
+                    </dd>
+
+                    <dt><span class="term">(9)</span></dt>
+
+                    <dd>
+                      <p>file system type: name of file system in
+                      the form "type[.subtype]".</p>
+                    </dd>
+
+                    <dt><span class="term">(10)</span></dt>
+
+                    <dd>
+                      <p>mount source: file system-specific
+                      information or "none".</p>
+                    </dd>
+
+                    <dt><span class="term">(11)</span></dt>
+
+                    <dd>
+                      <p>super options: per-super block
+                      options.</p>
+                    </dd>
+                  </dl>
+                </div>
+              </blockquote>
+            </div>
+
+            <p>Parsers should ignore all unrecognized optional
+            fields. Currently the possible optional fields are:</p>
+
+            <div class="blockquote">
+              <blockquote class="blockquote">
+                <div class="variablelist">
+                  <dl>
+                    <dt><span class="term">shared:X</span></dt>
+
+                    <dd>
+                      <p>mount is shared in peer group X</p>
+                    </dd>
+
+                    <dt><span class="term">master:X</span></dt>
+
+                    <dd>
+                      <p>mount is slave to peer group X</p>
+                    </dd>
+
+                    <dt><span class="term">propagate_from:X</span></dt>
+
+                    <dd>
+                      <p>mount is slave and receives propagation
+                      from peer group X (*)</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">unbindable</code></span></dt>
+
+                    <dd>
+                      <p>mount is unbindable</p>
+                    </dd>
+                  </dl>
+                </div>
+              </blockquote>
+            </div>
+
+            <p>(*) X is the closest dominant peer group under the
+            process's root. If X is the immediate master of the
+            mount, or if there is no dominant peer group under the
+            same root, then only the "master:X" field is present
+            and not the "propagate_from:X" field.</p>
+
+            <p>For more information on mount propagation see:
+            <code class="filename">Documentation/filesystems/sharedsubtree.txt</code>
+            in the kernel source tree.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/[pid]/mounts</code> (since Linux
+          2.4.19)</span></dt>
+
+          <dd>
+            <p>This is a list of all the file systems currently
+            mounted in the process's mount namespace. The format of
+            this file is documented in <a class="link" href="../htmlman5/fstab.5.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fstab</span>(5)</span></a>. Since
+            kernel version 2.6.15, this file is pollable: after
+            opening the file for reading, a change in this file
+            (i.e., a file system mount or unmount) causes <a class="link" href="../htmlman2/select.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">select</span>(2)</span></a> to mark the
+            file descriptor as readable, and <a class="link" href="../htmlman2/poll.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">poll</span>(2)</span></a> and <a class="link" href="../htmlman2/epoll_wait.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">epoll_wait</span>(2)</span></a> mark
+            the file as having an error condition.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/[pid]/mountstats</code> (since Linux
+          2.6.17)</span></dt>
+
+          <dd>
+            <p>This file exports information (statistics,
+            configuration information) about the mount points in
+            the process's name space. Lines in this file have the
+            form:</p>
+
+            <div class="informalexample">
+              <pre class="programlisting" xml:space="preserve">
+device /dev/sda7 mounted on /home with fstype ext3 [statistics]
+(       1      )            ( 2 )             (3 ) (4)
+</pre>
+            </div>
+
+            <p>The fields in each line are:</p>
+
+            <div class="blockquote">
+              <blockquote class="blockquote">
+                <div class="variablelist">
+                  <dl>
+                    <dt><span class="term">(1)</span></dt>
+
+                    <dd>
+                      <p>The name of the mounted device (or
+                      "nodevice" if there is no corresponding
+                      device).</p>
+                    </dd>
+
+                    <dt><span class="term">(2)</span></dt>
+
+                    <dd>
+                      <p>The mount point within the file system
+                      tree.</p>
+                    </dd>
+
+                    <dt><span class="term">(3)</span></dt>
+
+                    <dd>
+                      <p>The file system type.</p>
+                    </dd>
+
+                    <dt><span class="term">(4)</span></dt>
+
+                    <dd>
+                      <p>Optional statistics and configuration
+                      information. Currently (as at Linux 2.6.26),
+                      only NFS file systems export information via
+                      this field.</p>
+                    </dd>
+                  </dl>
+                </div>
+              </blockquote>
+            </div>
+
+            <p>This file is only readable by the owner of the
+            process.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/[pid]/numa_maps</code> (since Linux
+          2.6.14)</span></dt>
+
+          <dd>
+            <p>See <a class="link" href="../htmlman7/numa.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">numa</span>(7)</span></a>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/[pid]/oom_adj</code> (since Linux
+          2.6.11)</span></dt>
+
+          <dd>
+            <p>This file can be used to adjust the score used to
+            select which process should be killed in an
+            out-of-memory (OOM) situation. The kernel uses this
+            value for a bit-shift operation of the process's
+            <code class="literal">oom_score</code> value: valid
+            values are in the range −16 to +15, plus the
+            special value −17, which disables OOM-killing
+            altogether for this process. A positive score increases
+            the likelihood of this process being killed by the
+            OOM-killer; a negative score decreases the likelihood.
+            The default value for this file is 0; a new process
+            inherits its parent's <code class="literal">oom_adj</code> setting. A process must be
+            privileged (<code class="constant">CAP_SYS_RESOURCE</code>) to update this
+            file.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/[pid]/oom_score</code> (since Linux
+          2.6.11)</span></dt>
+
+          <dd>
+            <p>This file displays the current score that the kernel
+            gives to this process for the purpose of selecting a
+            process for the OOM-killer. A higher score means that
+            the process is more likely to be selected by the
+            OOM-killer. The basis for this score is the amount of
+            memory used by the process, with increases (+) or
+            decreases (−) for factors including:</p>
+
+            <div class="blockquote">
+              <blockquote class="blockquote">
+                <div class="itemizedlist">
+                  <ul class="itemizedlist" type="disc">
+                    <li class="listitem">
+                      <p>whether the process creates a lot of
+                      children using <a class="link" href="../htmlman2/fork.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fork</span>(2)</span></a>
+                      (+);</p>
+                    </li>
+
+                    <li class="listitem">
+                      <p>whether the process has been running a
+                      long time, or has used a lot of CPU time
+                      (−);</p>
+                    </li>
+
+                    <li class="listitem">
+                      <p>whether the process has a low nice value
+                      (i.e., &gt; 0) (+);</p>
+                    </li>
+
+                    <li class="listitem">
+                      <p>whether the process is privileged
+                      (−); and</p>
+                    </li>
+
+                    <li class="listitem">
+                      <p>whether the process is making direct
+                      hardware access (−).</p>
+                    </li>
+                  </ul>
+                </div>
+              </blockquote>
+            </div>
+
+            <p>The <code class="literal">oom_score</code> also
+            reflects the bit-shift adjustment specified by the
+            <code class="literal">oom_adj</code> setting for the
+            process.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/[pid]/root</code></span></dt>
+
+          <dd>
+            <p>UNIX and Linux support the idea of a per-process
+            root of the file system, set by the <a class="link" href="../htmlman2/chroot.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">chroot</span>(2)</span></a> system
+            call. This file is a symbolic link that points to the
+            process's root directory, and behaves as exe, fd/*,
+            etc. do.</p>
+
+            <p>In a multithreaded process, the contents of this
+            symbolic link are not available if the main thread has
+            already terminated (typically by calling <a class="link" href="../htmlman3/pthread_exit.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pthread_exit</span>(3)</span></a>).</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/[pid]/smaps</code> (since Linux
+          2.6.14)</span></dt>
+
+          <dd>
+            <p>This file shows memory consumption for each of the
+            process's mappings. For each of mappings there is a
+            series of lines such as the following:</p>
+
+            <div class="blockquote">
+              <blockquote class="blockquote">
+                <div class="informalexample">
+                  <pre class="programlisting" xml:space="preserve">
+08048000-080bc000 r-xp 00000000 03:02 13130      /bin/bash
+Size:               464 kB
+Rss:                424 kB
+Shared_Clean:       424 kB
+Shared_Dirty:         0 kB
+Private_Clean:        0 kB
+Private_Dirty:        0 kB
+</pre>
+                </div>
+              </blockquote>
+            </div>
+
+            <p>The first of these lines shows the same information
+            as is displayed for the mapping in <code class="filename">/proc/[pid]/maps</code>. The remaining lines
+            show the size of the mapping, the amount of the mapping
+            that is currently resident in RAM, the number of clean
+            and dirty shared pages in the mapping, and the number
+            of clean and dirty private pages in the mapping.</p>
+
+            <p>This file is only present if the <code class="constant">CONFIG_MMU</code> kernel configuration
+            option is enabled.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/[pid]/stat</code></span></dt>
+
+          <dd>
+            <p>Status information about the process. This is used
+            by <span class="citerefentry"><span class="refentrytitle">ps</span>(1)</span>. It is defined in
+            <code class="filename">/usr/src/linux/fs/proc/array.c</code>.</p>
+
+            <p>The fields, in order, with their proper <a class="link" href="../htmlman3/scanf.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">scanf</span>(3)</span></a> format
+            specifiers, are:</p>
+
+            <div class="blockquote">
+              <blockquote class="blockquote">
+                <div class="variablelist">
+                  <dl>
+                    <dt><span class="term"><code class="literal">pid</code> %d</span></dt>
+
+                    <dd>
+                      <p>The process ID.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">comm</code> %s</span></dt>
+
+                    <dd>
+                      <p>The filename of the executable, in
+                      parentheses. This is visible whether or not
+                      the executable is swapped out.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">state</code> %c</span></dt>
+
+                    <dd>
+                      <p>One character from the string "RSDZTW"
+                      where R is running, S is sleeping in an
+                      interruptible wait, D is waiting in
+                      uninterruptible disk sleep, Z is zombie, T is
+                      traced or stopped (on a signal), and W is
+                      paging.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">ppid</code> %d</span></dt>
+
+                    <dd>
+                      <p>The PID of the parent.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">pgrp</code> %d</span></dt>
+
+                    <dd>
+                      <p>The process group ID of the process.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">session</code> %d</span></dt>
+
+                    <dd>
+                      <p>The session ID of the process.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">tty_nr</code> %d</span></dt>
+
+                    <dd>
+                      <p>The controlling terminal of the process.
+                      (The minor device number is contained in the
+                      combination of bits 31 to 20 and 7 to 0; the
+                      major device number is in bits 15 to 8.)</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">tpgid</code> %d</span></dt>
+
+                    <dd>
+                      <p>The ID of the foreground process group of
+                      the controlling terminal of the process.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">flags</code> %u (%lu before Linux
+                    2.6.22)</span></dt>
+
+                    <dd>
+                      <p>The kernel flags word of the process. For
+                      bit meanings, see the PF_* defines in
+                      <code class="literal">&lt;</code><code class="filename">linux/sched.h</code><code class="literal">&gt;</code> Details depend on the
+                      kernel version.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">minflt</code> %lu</span></dt>
+
+                    <dd>
+                      <p>The number of minor faults the process has
+                      made which have not required loading a memory
+                      page from disk.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">cminflt</code> %lu</span></dt>
+
+                    <dd>
+                      <p>The number of minor faults that the
+                      process's waited-for children have made.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">majflt</code> %lu</span></dt>
+
+                    <dd>
+                      <p>The number of major faults the process has
+                      made which have required loading a memory
+                      page from disk.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">cmajflt</code> %lu</span></dt>
+
+                    <dd>
+                      <p>The number of major faults that the
+                      process's waited-for children have made.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">utime</code> %lu</span></dt>
+
+                    <dd>
+                      <p>Amount of time that this process has been
+                      scheduled in user mode, measured in clock
+                      ticks (divide by <em class="replaceable"><code>sysconf(_SC_CLK_TCK)</code></em>.
+                      This includes guest time, <code class="literal">guest_time</code> (time spent
+                      running a virtual CPU, see below), so that
+                      applications that are not aware of the guest
+                      time field do not lose that time from their
+                      calculations.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">stime</code> %lu</span></dt>
+
+                    <dd>
+                      <p>Amount of time that this process has been
+                      scheduled in kernel mode, measured in clock
+                      ticks (divide by <em class="replaceable"><code>sysconf(_SC_CLK_TCK)</code></em>.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">cutime</code> %ld</span></dt>
+
+                    <dd>
+                      <p>Amount of time that this process's
+                      waited-for children have been scheduled in
+                      user mode, measured in clock ticks (divide by
+                      <em class="replaceable"><code>sysconf(_SC_CLK_TCK)</code></em>.
+                      (See also <a class="link" href="../htmlman2/times.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">times</span>(2)</span></a>.)
+                      This includes guest time, <code class="literal">cguest_time</code> (time spent
+                      running a virtual CPU, see below).</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">cstime</code> %ld</span></dt>
+
+                    <dd>
+                      <p>Amount of time that this process's
+                      waited-for children have been scheduled in
+                      kernel mode, measured in clock ticks (divide
+                      by <em class="replaceable"><code>sysconf(_SC_CLK_TCK)</code></em>.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">priority</code> %ld</span></dt>
+
+                    <dd>
+                      <p>(Explanation for Linux 2.6) For processes
+                      running a real-time scheduling policy
+                      (<code class="literal">policy</code> below;
+                      see <a class="link" href="../htmlman2/sched_setscheduler.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">sched_setscheduler</span>(2)</span></a>),
+                      this is the negated scheduling priority,
+                      minus one; that is, a number in the range
+                      −2 to −100, corresponding to
+                      real-time priorities 1 to 99. For processes
+                      running under a non-real-time scheduling
+                      policy, this is the raw nice value (<a class="link" href="../htmlman2/getpriority.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">setpriority</span>(2)</span></a>)
+                      as represented in the kernel. The kernel
+                      stores nice values as numbers in the range 0
+                      (high) to 39 (low), corresponding to the
+                      user-visible nice range of −20 to
+                      19.</p>
+
+                      <p>Before Linux 2.6, this was a scaled value
+                      based on the scheduler weighting given to
+                      this process.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">nice</code> %ld</span></dt>
+
+                    <dd>
+                      <p>The nice value (see <a class="link" href="../htmlman2/getpriority.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">setpriority</span>(2)</span></a>),
+                      a value in the range 19 (low priority) to
+                      −20 (high priority).</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">num_threads</code> %ld</span></dt>
+
+                    <dd>
+                      <p>Number of threads in this process (since
+                      Linux 2.6). Before kernel 2.6, this field was
+                      hard coded to 0 as a placeholder for an
+                      earlier removed field.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">itrealvalue</code> %ld</span></dt>
+
+                    <dd>
+                      <p>The time in jiffies before the next
+                      <code class="constant">SIGALRM</code> is sent
+                      to the process due to an interval timer.
+                      Since kernel 2.6.17, this field is no longer
+                      maintained, and is hard coded as 0.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">starttime</code> %llu (was %lu before
+                    Linux 2.6)</span></dt>
+
+                    <dd>
+                      <p>The time in jiffies the process started
+                      after system boot.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">vsize</code> %lu</span></dt>
+
+                    <dd>
+                      <p>Virtual memory size in bytes.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">rss</code> %ld</span></dt>
+
+                    <dd>
+                      <p>Resident Set Size: number of pages the
+                      process has in real memory. This is just the
+                      pages which count toward text, data, or stack
+                      space. This does not include pages which have
+                      not been demand-loaded in, or which are
+                      swapped out.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">rsslim</code> %lu</span></dt>
+
+                    <dd>
+                      <p>Current soft limit in bytes on the rss of
+                      the process; see the description of
+                      <code class="constant">RLIMIT_RSS</code> in
+                      <a class="link" href="../htmlman2/getpriority.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">getpriority</span>(2)</span></a>.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">startcode</code> %lu</span></dt>
+
+                    <dd>
+                      <p>The address above which program text can
+                      run.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">endcode</code> %lu</span></dt>
+
+                    <dd>
+                      <p>The address below which program text can
+                      run.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">startstack</code> %lu</span></dt>
+
+                    <dd>
+                      <p>The address of the start (i.e., bottom) of
+                      the stack.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">kstkesp</code> %lu</span></dt>
+
+                    <dd>
+                      <p>The current value of ESP (stack pointer),
+                      as found in the kernel stack page for the
+                      process.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">kstkeip</code> %lu</span></dt>
+
+                    <dd>
+                      <p>The current EIP (instruction pointer).</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">signal</code> %lu</span></dt>
+
+                    <dd>
+                      <p>The bitmap of pending signals, displayed
+                      as a decimal number. Obsolete, because it
+                      does not provide information on real-time
+                      signals; use <code class="filename">/proc/[pid]/status</code>
+                      instead.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">blocked</code> %lu</span></dt>
+
+                    <dd>
+                      <p>The bitmap of blocked signals, displayed
+                      as a decimal number. Obsolete, because it
+                      does not provide information on real-time
+                      signals; use <code class="filename">/proc/[pid]/status</code>
+                      instead.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">sigignore</code> %lu</span></dt>
+
+                    <dd>
+                      <p>The bitmap of ignored signals, displayed
+                      as a decimal number. Obsolete, because it
+                      does not provide information on real-time
+                      signals; use <code class="filename">/proc/[pid]/status</code>
+                      instead.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">sigcatch</code> %lu</span></dt>
+
+                    <dd>
+                      <p>The bitmap of caught signals, displayed as
+                      a decimal number. Obsolete, because it does
+                      not provide information on real-time signals;
+                      use <code class="filename">/proc/[pid]/status</code>
+                      instead.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">wchan</code> %lu</span></dt>
+
+                    <dd>
+                      <p>This is the "channel" in which the process
+                      is waiting. It is the address of a system
+                      call, and can be looked up in a namelist if
+                      you need a textual name. (If you have an
+                      up-to-date <code class="filename">/etc/psdatabase</code>, then try
+                      <span class="emphasis"><em>ps
+                      −l</em></span> to see the WCHAN field
+                      in action.)</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">nswap</code> %lu</span></dt>
+
+                    <dd>
+                      <p>Number of pages swapped (not
+                      maintained).</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">cnswap</code> %lu</span></dt>
+
+                    <dd>
+                      <p>Cumulative <code class="literal">nswap</code> for child processes
+                      (not maintained).</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">exit_signal</code> %d (since Linux
+                    2.1.22)</span></dt>
+
+                    <dd>
+                      <p>Signal to be sent to parent when we
+                      die.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">processor</code> %d (since Linux
+                    2.2.8)</span></dt>
+
+                    <dd>
+                      <p>CPU number last executed on.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">rt_priority</code> %u (since Linux
+                    2.5.19; was %lu before Linux
+                    2.6.22)</span></dt>
+
+                    <dd>
+                      <p>Real-time scheduling priority, a number in
+                      the range 1 to 99 for processes scheduled
+                      under a real-time policy, or 0, for
+                      non-real-time processes (see <a class="link" href="../htmlman2/sched_setscheduler.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">sched_setscheduler</span>(2)</span></a>).</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">policy</code> %u (since Linux 2.5.19;
+                    was %lu before Linux 2.6.22)</span></dt>
+
+                    <dd>
+                      <p>Scheduling policy (see <a class="link" href="../htmlman2/sched_setscheduler.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">sched_setscheduler</span>(2)</span></a>).
+                      Decode using the SCHED_* constants in
+                      <code class="filename">linux/sched.h</code>.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">delayacct_blkio_ticks</code> %llu
+                    (since Linux 2.6.18)</span></dt>
+
+                    <dd>
+                      <p>Aggregated block I/O delays, measured in
+                      clock ticks (centiseconds).</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">guest_time</code> %lu (since Linux
+                    2.6.24)</span></dt>
+
+                    <dd>
+                      <p>Guest time of the process (time spent
+                      running a virtual CPU for a guest operating
+                      system), measured in clock ticks (divide by
+                      <em class="replaceable"><code>sysconf(_SC_CLK_TCK)</code></em>.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="literal">cguest_time</code> %ld (since Linux
+                    2.6.24)</span></dt>
+
+                    <dd>
+                      <p>Guest time of the process's children,
+                      measured in clock ticks (divide by <em class="replaceable"><code>sysconf(_SC_CLK_TCK)</code></em>.</p>
+                    </dd>
+                  </dl>
+                </div>
+              </blockquote>
+            </div>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/[pid]/statm</code></span></dt>
+
+          <dd>
+            <p>Provides information about memory usage, measured in
+            pages. The columns are:</p>
+
+            <div class="blockquote">
+              <blockquote class="blockquote">
+                <div class="informalexample">
+                  <pre class="programlisting" xml:space="preserve">
+size       total program size
+           (same as VmSize in <code class="filename">/proc/[pid]/status</code>)
+resident   resident set size
+           (same as VmRSS in <code class="filename">/proc/[pid]/status</code>)
+share      shared pages (from shared mappings)
+text       text (code)
+lib        library (unused in Linux 2.6)
+data       data + stack
+dt         dirty pages (unused in Linux 2.6)
+</pre>
+                </div>
+              </blockquote>
+            </div>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/[pid]/status</code></span></dt>
+
+          <dd>
+            <p>Provides much of the information in <code class="filename">/proc/[pid]/stat</code> and <code class="filename">/proc/[pid]/statm</code> in a format that's
+            easier for humans to parse. Here's an example:</p>
+
+            <div class="blockquote">
+              <blockquote class="blockquote">
+                <div class="informalexample">
+                  <pre class="programlisting" xml:space="preserve">
+$<span class="emphasis"><em> cat /proc/$$/status</em></span>
+Name:   bash
+State:  S (sleeping)
+Tgid:   3515
+Pid:    3515
+PPid:   3452
+TracerPid:      0
+Uid:    1000    1000    1000    1000
+Gid:    100     100     100     100
+FDSize: 256
+Groups: 16 33 100
+VmPeak:     9136 kB
+VmSize:     7896 kB
+VmLck:         0 kB
+VmHWM:      7572 kB
+VmRSS:      6316 kB
+VmData:     5224 kB
+VmStk:        88 kB
+VmExe:       572 kB
+VmLib:      1708 kB
+VmPTE:        20 kB
+Threads:        1
+SigQ:   0/3067
+SigPnd: 0000000000000000
+ShdPnd: 0000000000000000
+SigBlk: 0000000000010000
+SigIgn: 0000000000384004
+SigCgt: 000000004b813efb
+CapInh: 0000000000000000
+CapPrm: 0000000000000000
+CapEff: 0000000000000000
+CapBnd: ffffffffffffffff
+Cpus_allowed:   00000001
+Cpus_allowed_list:      0
+Mems_allowed:   1
+Mems_allowed_list:      0
+voluntary_ctxt_switches:        150
+nonvoluntary_ctxt_switches:     545
+</pre>
+                </div>
+              </blockquote>
+            </div>
+
+            <p>The fields are as follows:</p>
+
+            <div class="blockquote">
+              <blockquote class="blockquote">
+                <div class="itemizedlist">
+                  <ul class="itemizedlist" type="disc">
+                    <li class="listitem">
+                      <p><code class="literal">Name</code>: Command
+                      run by this process.</p>
+                    </li>
+
+                    <li class="listitem">
+                      <p><code class="literal">State</code>:
+                      Current state of the process. One of "R
+                      (running)", "S (sleeping)", "D (disk sleep)",
+                      "T (stopped)", "T (tracing stop)", "Z
+                      (zombie)", or "X (dead)".</p>
+                    </li>
+
+                    <li class="listitem">
+                      <p><code class="literal">Tgid</code>: Thread
+                      group ID (i.e., Process ID).</p>
+                    </li>
+
+                    <li class="listitem">
+                      <p><code class="literal">Pid</code>: Thread
+                      ID (see <a class="link" href="../htmlman2/gettid.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">gettid</span>(2)</span></a>).</p>
+                    </li>
+
+                    <li class="listitem">
+                      <p><code class="literal">TracerPid</code>:
+                      PID of process tracing this process (0 if not
+                      being traced).</p>
+                    </li>
+
+                    <li class="listitem">
+                      <p><code class="literal">Uid</code>,
+                      <code class="literal">Gid</code>: Real,
+                      effective, saved set, and file system UIDs
+                      (GIDs).</p>
+                    </li>
+
+                    <li class="listitem">
+                      <p><code class="literal">FDSize</code>:
+                      Number of file descriptor slots currently
+                      allocated.</p>
+                    </li>
+
+                    <li class="listitem">
+                      <p><code class="literal">Groups</code>:
+                      Supplementary group list.</p>
+                    </li>
+
+                    <li class="listitem">
+                      <p><code class="literal">VmPeak</code>: Peak
+                      virtual memory size.</p>
+                    </li>
+
+                    <li class="listitem">
+                      <p><code class="literal">VmSize</code>:
+                      Virtual memory size.</p>
+                    </li>
+
+                    <li class="listitem">
+                      <p><code class="literal">VmLck</code>: Locked
+                      memory size (see <span class="citerefentry"><span class="refentrytitle">mlock</span>(3)</span>).</p>
+                    </li>
+
+                    <li class="listitem">
+                      <p><code class="literal">VmHWM</code>: Peak
+                      resident set size ("high water mark").</p>
+                    </li>
+
+                    <li class="listitem">
+                      <p><code class="literal">VmRSS</code>:
+                      Resident set size.</p>
+                    </li>
+
+                    <li class="listitem">
+                      <p><code class="literal">VmData</code>,
+                      <code class="literal">VmStk</code>,
+                      <code class="literal">VmExe</code>: Size of
+                      data, stack, and text segments.</p>
+                    </li>
+
+                    <li class="listitem">
+                      <p><code class="literal">VmLib</code>: Shared
+                      library code size.</p>
+                    </li>
+
+                    <li class="listitem">
+                      <p><code class="literal">VmPTE</code>: Page
+                      table entries size (since Linux 2.6.10).</p>
+                    </li>
+
+                    <li class="listitem">
+                      <p><code class="literal">Threads</code>:
+                      Number of threads in process containing this
+                      thread.</p>
+                    </li>
+
+                    <li class="listitem">
+                      <p><code class="literal">SigPnd</code>,
+                      <code class="literal">ShdPnd</code>: Number
+                      of signals pending for thread and for process
+                      as a whole (see <a class="link" href="../htmlman7/pthreads.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pthreads</span>(7)</span></a>
+                      and <a class="link" href="../htmlman7/signal.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">signal</span>(7)</span></a>).</p>
+                    </li>
+
+                    <li class="listitem">
+                      <p><code class="literal">SigBlk</code>,
+                      <code class="literal">SigIgn</code>,
+                      <code class="literal">SigCgt</code>: Masks
+                      indicating signals being blocked, ignored,
+                      and caught (see <a class="link" href="../htmlman7/signal.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">signal</span>(7)</span></a>).</p>
+                    </li>
+
+                    <li class="listitem">
+                      <p><code class="literal">CapInh</code>,
+                      <code class="literal">CapPrm</code>,
+                      <code class="literal">CapEff</code>: Masks of
+                      capabilities enabled in inheritable,
+                      permitted, and effective sets (see <a class="link" href="../htmlman7/capabilities.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">capabilities</span>(7)</span></a>).</p>
+                    </li>
+
+                    <li class="listitem">
+                      <p><code class="literal">CapBnd</code>:
+                      Capability Bounding set (since kernel 2.6.26,
+                      see <a class="link" href="../htmlman7/capabilities.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">capabilities</span>(7)</span></a>).</p>
+                    </li>
+
+                    <li class="listitem">
+                      <p><code class="literal">Cpus_allowed</code>:
+                      Mask of CPUs on which this process may run
+                      (since Linux 2.6.24, see <a class="link" href="../htmlman7/cpuset.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">cpuset</span>(7)</span></a>).</p>
+                    </li>
+
+                    <li class="listitem">
+                      <p><code class="literal">Cpus_allowed_list</code>: Same as
+                      previous, but in "list format" (since Linux
+                      2.6.26, see <a class="link" href="../htmlman7/cpuset.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">cpuset</span>(7)</span></a>).</p>
+                    </li>
+
+                    <li class="listitem">
+                      <p><code class="literal">Mems_allowed</code>:
+                      Mask of memory nodes allowed to this process
+                      (since Linux 2.6.24, see <a class="link" href="../htmlman7/cpuset.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">cpuset</span>(7)</span></a>).</p>
+                    </li>
+
+                    <li class="listitem">
+                      <p><code class="literal">Mems_allowed_list</code>: Same as
+                      previous, but in "list format" (since Linux
+                      2.6.26, see <a class="link" href="../htmlman7/cpuset.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">cpuset</span>(7)</span></a>).</p>
+                    </li>
+
+                    <li class="listitem">
+                      <p><code class="literal">voluntary_context_switches</code>,
+                      <code class="literal">nonvoluntary_context_switches</code>:
+                      Number of voluntary and involuntary context
+                      switches (since Linux 2.6.23).</p>
+                    </li>
+                  </ul>
+                </div>
+              </blockquote>
+            </div>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/[pid]/task</code> (since Linux
+          2.6.0-test6)</span></dt>
+
+          <dd>
+            <p>This is a directory that contains one subdirectory
+            for each thread in the process. The name of each
+            subdirectory is the numerical thread ID (<em class="replaceable"><code>[tid]</code></em>) of the thread
+            (see <a class="link" href="../htmlman2/gettid.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">gettid</span>(2)</span></a>). Within
+            each of these subdirectories, there is a set of files
+            with the same names and contents as under the
+            <code class="filename">/proc/[pid]</code> directories.
+            For attributes that are shared by all threads, the
+            contents for each of the files under the <em class="replaceable"><code>task/[tid]</code></em>
+            subdirectories will be the same as in the corresponding
+            file in the parent <code class="filename">/proc/[pid]</code> directory (e.g., in a
+            multithreaded process, all of the <em class="replaceable"><code>task/[tid]/cwd</code></em> files
+            will have the same value as the <code class="filename">/proc/[pid]/cwd</code> file in the parent
+            directory, since all of the threads in a process share
+            a working directory). For attributes that are distinct
+            for each thread, the corresponding files under
+            <em class="replaceable"><code>task/[tid]</code></em>
+            may have different values (e.g., various fields in each
+            of the <em class="replaceable"><code>task/[tid]/status</code></em> files
+            may be different for each thread).</p>
+
+            <p>In a multithreaded process, the contents of the
+            <code class="filename">/proc/[pid]/task</code>
+            directory are not available if the main thread has
+            already terminated (typically by calling <a class="link" href="../htmlman3/pthread_exit.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pthread_exit</span>(3)</span></a>).</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/apm</code></span></dt>
+
+          <dd>
+            <p>Advanced power management version and battery
+            information when <code class="constant">CONFIG_APM</code> is defined at kernel
+            compilation time.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/bus</code></span></dt>
+
+          <dd>
+            <p>Contains subdirectories for installed busses.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/bus/pccard</code></span></dt>
+
+          <dd>
+            <p>Subdirectory for PCMCIA devices when <code class="constant">CONFIG_PCMCIA</code> is set at kernel
+            compilation time.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/bus/pccard/drivers</code></span></dt>
+
+          <dt><span class="term"><code class="filename">/proc/bus/pci</code></span></dt>
+
+          <dd>
+            <p>Contains various bus subdirectories and pseudo-files
+            containing information about PCI busses, installed
+            devices, and device drivers. Some of these files are
+            not ASCII.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/bus/pci/devices</code></span></dt>
+
+          <dd>
+            <p>Information about PCI devices. They may be accessed
+            through <span class="citerefentry"><span class="refentrytitle">lspci</span>(8)</span> and <span class="citerefentry"><span class="refentrytitle">setpci</span>(8)</span>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/cmdline</code></span></dt>
+
+          <dd>
+            <p>Arguments passed to the Linux kernel at boot time.
+            Often done via a boot manager such as <span class="citerefentry"><span class="refentrytitle">lilo</span>(8)</span> or <span class="citerefentry"><span class="refentrytitle">grub</span>(8)</span>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/config.gz</code> (since Linux
+          2.6)</span></dt>
+
+          <dd>
+            <p>This file exposes the configuration options that
+            were used to build the currently running kernel, in the
+            same format as they would be shown in the <em class="replaceable"><code>.config</code></em> file that
+            resulted when configuring the kernel (using
+            <span class="emphasis"><em>make xconfig</em></span>,
+            <span class="emphasis"><em>make config</em></span>, or
+            similar). The file contents are compressed; view or
+            search them using <span class="citerefentry"><span class="refentrytitle">zcat</span>(1)</span>, <span class="citerefentry"><span class="refentrytitle">zgrep</span>(1)</span>, etc. As long as
+            no changes have been made to the following file, the
+            contents of <code class="filename">/proc/config.gz</code> are the same as those
+            provided by :</p>
+
+            <div class="blockquote">
+              <blockquote class="blockquote">
+                <div class="informalexample">
+                  <pre class="programlisting" xml:space="preserve">
+cat /lib/modules/$(uname -r)/build/.config
+</pre>
+                </div>
+              </blockquote>
+            </div>
+
+            <p><code class="filename">/proc/config.gz</code> is
+            only provided if the kernel is configured with
+            <code class="constant">CONFIG_IKCONFIG_PROC</code>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/cpuinfo</code></span></dt>
+
+          <dd>
+            <p>This is a collection of CPU and system architecture
+            dependent items, for each supported architecture a
+            different list. Two common entries are <code class="literal">processor</code> which gives CPU number and
+            <code class="literal">bogomips</code>; a system
+            constant that is calculated during kernel
+            initialization. SMP machines have information for each
+            CPU.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/devices</code></span></dt>
+
+          <dd>
+            <p>Text listing of major numbers and device groups.
+            This can be used by MAKEDEV scripts for consistency
+            with the kernel.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/diskstats</code> (since Linux
+          2.5.69)</span></dt>
+
+          <dd>
+            <p>This file contains disk I/O statistics for each disk
+            device. See the kernel source file <code class="filename">Documentation/iostats.txt</code> for further
+            information.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/dma</code></span></dt>
+
+          <dd>
+            <p>This is a list of the registered <code class="constant">ISA</code> DMA (direct memory access)
+            channels in use.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/driver</code></span></dt>
+
+          <dd>
+            <p>Empty subdirectory.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/execdomains</code></span></dt>
+
+          <dd>
+            <p>List of the execution domains (ABI
+            personalities).</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/fb</code></span></dt>
+
+          <dd>
+            <p>Frame buffer information when <code class="constant">CONFIG_FB</code> is defined during kernel
+            compilation.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/filesystems</code></span></dt>
+
+          <dd>
+            <p>A text listing of the file systems which are
+            supported by the kernel, namely file systems which were
+            compiled into the kernel or whose kernel modules are
+            currently loaded. (See also <a class="link" href="../htmlman5/filesystems.5.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">filesystems</span>(5)</span></a>.) If a
+            file system is marked with "nodev", this means that it
+            does not require a block device to be mounted (e.g.,
+            virtual file system, network file system).</p>
+
+            <p>Incidentally, this file may be used by <a class="link" href="../htmlman8/mount.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mount</span>(8)</span></a> when no file
+            system is specified and it didn't manage to determine
+            the file system type. Then file systems contained in
+            this file are tried (excepted those that are marked
+            with "nodev").</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/fs</code></span></dt>
+
+          <dd>
+            <p>Empty subdirectory.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/ide</code></span></dt>
+
+          <dd>
+            <p>This directory exists on systems with the IDE bus.
+            There are directories for each IDE channel and attached
+            device. Files include:</p>
+
+            <div class="blockquote">
+              <blockquote class="blockquote">
+                <div class="informalexample">
+                  <pre class="programlisting" xml:space="preserve">
+cache              buffer size in KB
+capacity           number of sectors
+driver             driver version
+geometry           physical and logical geometry
+identify           in hexadecimal
+media              media type
+model              manufacturer's model number
+settings           drive settings
+smart_thresholds   in hexadecimal
+smart_values       in hexadecimal
+</pre>
+                </div>
+              </blockquote>
+            </div>
+
+            <p>The <span class="citerefentry"><span class="refentrytitle">hdparm</span>(8)</span> utility
+            provides access to this information in a friendly
+            format.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/interrupts</code></span></dt>
+
+          <dd>
+            <p>This is used to record the number of interrupts per
+            CPU per IO device. Since Linux 2.6.24, for the i386 and
+            x86_64 architectures, at least, this also includes
+            interrupts internal to the system (that is, not
+            associated with a device as such), such as NMI
+            (nonmaskable interrupt), LOC (local timer interrupt),
+            and for SMP systems, TLB (TLB flush interrupt), RES
+            (rescheduling interrupt), CAL (remote function call
+            interrupt), and possibly others. Very easy to read
+            formatting, done in ASCII.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/iomem</code></span></dt>
+
+          <dd>
+            <p>I/O memory map in Linux 2.4.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/ioports</code></span></dt>
+
+          <dd>
+            <p>This is a list of currently registered Input-Output
+            port regions that are in use.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/kallsyms</code> (since Linux
+          2.5.71)</span></dt>
+
+          <dd>
+            <p>This holds the kernel exported symbol definitions
+            used by the <code class="function">modules</code>(X)
+            tools to dynamically link and bind loadable modules. In
+            Linux 2.5.47 and earlier, a similar file with slightly
+            different syntax was named <code class="literal">ksyms</code>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/kcore</code></span></dt>
+
+          <dd>
+            <p>This file represents the physical memory of the
+            system and is stored in the ELF core file format. With
+            this pseudo-file, and an unstripped kernel
+            (<code class="filename">/usr/src/linux/vmlinux</code>)
+            binary, GDB can be used to examine the current state of
+            any kernel data structures.</p>
+
+            <p>The total length of the file is the size of physical
+            memory (RAM) plus 4KB.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/kmsg</code></span></dt>
+
+          <dd>
+            <p>This file can be used instead of the <a class="link" href="../htmlman2/syslog.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">syslog</span>(2)</span></a> system call
+            to read kernel messages. A process must have superuser
+            privileges to read this file, and only one process
+            should read this file. This file should not be read if
+            a syslog process is running which uses the <a class="link" href="../htmlman2/syslog.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">syslog</span>(2)</span></a> system call
+            facility to log kernel messages.</p>
+
+            <p>Information in this file is retrieved with the
+            <a class="link" href="../htmlman1/dmesg.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">dmesg</span>(1)</span></a> program.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/ksyms
+          (Linux 1.1.23-2.5.47)</code></span></dt>
+
+          <dd>
+            <p>See <code class="filename">/proc/kallsyms</code>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/loadavg</code></span></dt>
+
+          <dd>
+            <p>The first three fields in this file are load average
+            figures giving the number of jobs in the run queue
+            (state R) or waiting for disk I/O (state D) averaged
+            over 1, 5, and 15 minutes. They are the same as the
+            load average numbers given by <a class="link" href="../htmlman1/uptime.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">uptime</span>(1)</span></a> and other
+            programs. The fourth field consists of two numbers
+            separated by a slash (/). The first of these is the
+            number of currently executing kernel scheduling
+            entities (processes, threads); this will be less than
+            or equal to the number of CPUs. The value after the
+            slash is the number of kernel scheduling entities that
+            currently exist on the system. The fifth field is the
+            PID of the process that was most recently created on
+            the system.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/locks</code></span></dt>
+
+          <dd>
+            <p>This file shows current file locks (<a class="link" href="../htmlman2/flock.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">flock</span>(2)</span></a> and
+            <a class="link" href="../htmlman2/fcntl.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fcntl</span>(2)</span></a>) and leases
+            (<a class="link" href="../htmlman2/fcntl.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fcntl</span>(2)</span></a>).</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/malloc (only up to and including Linux
+          2.2)</code></span></dt>
+
+          <dd>
+            <p>This file is only present if <code class="constant">CONFIG_DEBUG_MALLOC</code> was defined
+            during compilation.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/meminfo</code></span></dt>
+
+          <dd>
+            <p>This file reports statistics about memory usage on
+            the system. It is used by <span class="citerefentry"><span class="refentrytitle">free</span>(1)</span> to report the
+            amount of free and used memory (both physical and swap)
+            on the system as well as the shared memory and buffers
+            used by the kernel.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/modules</code></span></dt>
+
+          <dd>
+            <p>A text list of the modules that have been loaded by
+            the system. See also <span class="citerefentry"><span class="refentrytitle">lsmod</span>(8)</span>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/mounts</code></span></dt>
+
+          <dd>
+            <p>Before kernel 2.4.19, this file was a list of all
+            the file systems currently mounted on the system. With
+            the introduction of per-process mount namespaces in
+            Linux 2.4.19, this file became a link to <code class="filename">/proc/self/mounts</code>, which lists the
+            mount points of the process's own mount namespace. The
+            format of this file is documented in <a class="link" href="../htmlman5/fstab.5.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fstab</span>(5)</span></a>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/mtrr</code></span></dt>
+
+          <dd>
+            <p>Memory Type Range Registers. See the kernel source
+            file <code class="filename">Documentation/mtrr.txt</code> for
+            details.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/net</code></span></dt>
+
+          <dd>
+            <p>various net pseudo-files, all of which give the
+            status of some part of the networking layer. These
+            files contain ASCII structures and are, therefore,
+            readable with <a class="link" href="../htmlman1/cat.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">cat</span>(1)</span></a>. However, the
+            standard <span class="citerefentry"><span class="refentrytitle">netstat</span>(8)</span> suite provides
+            much cleaner access to these files.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/net/arp</code></span></dt>
+
+          <dd>
+            <p>This holds an ASCII readable dump of the kernel ARP
+            table used for address resolutions. It will show both
+            dynamically learned and preprogrammed ARP entries. The
+            format is:</p>
+
+            <div class="informaltable">
+              <table style="border-collapse: collapse;">
+                <colgroup span="1">
+                  <col span="1" />
+                  <col span="1" />
+                  <col span="1" />
+                  <col span="1" />
+                  <col span="1" />
+                  <col span="1" />
+                </colgroup>
+
+                <tbody>
+                  <tr>
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">IP address</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">HW type</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">Flags</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">HW address</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">Mask</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">Device</code></td>
+                  </tr>
+
+                  <tr>
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">192.168.0.50</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0x1</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0x2</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">00:50:BF:25:68:F3</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">*</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">eth0</code></td>
+                  </tr>
+
+                  <tr>
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">192.168.0.250</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0x1</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0xc</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">00:00:00:00:00:00</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">*</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">eth0</code></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p>Here "IP address" is the IPv4 address of the machine
+            and the "HW type" is the hardware type of the address
+            from RFC 826. The flags are the internal flags of the
+            ARP structure (as defined in <code class="filename">/usr/include/linux/if_arp.h</code>) and the
+            "HW address" is the data link layer mapping for that IP
+            address if it is known.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/net/dev</code></span></dt>
+
+          <dd>
+            <p>The dev pseudo-file contains network device status
+            information. This gives the number of received and sent
+            packets, the number of errors and collisions and other
+            basic statistics. These are used by the <span class="citerefentry"><span class="refentrytitle">ifconfig</span>(8)</span> program to
+            report device status. The format is:</p>
+
+            <div class="blockquote">
+              <blockquote class="blockquote">
+                <div class="informaltable">
+                  <table style="border-collapse: collapse;">
+                    <colgroup span="1">
+                      <col span="1" />
+                      <col span="1" />
+                      <col span="1" />
+                      <col span="1" />
+                      <col span="1" />
+                      <col span="1" />
+                      <col span="1" />
+                      <col span="1" />
+                      <col span="1" />
+                      <col span="1" />
+                      <col span="1" />
+                      <col span="1" />
+                      <col span="1" />
+                      <col span="1" />
+                      <col span="1" />
+                      <col span="1" />
+                      <col span="1" />
+                    </colgroup>
+
+                    <thead>
+                      <tr>
+                        <th style="" rowspan="2" colspan="1"><code class="literal">Interface</code></th>
+
+                        <th style="" colspan="8" rowspan="1"><code class="literal">Receive</code></th>
+
+                        <th style="" colspan="8" rowspan="1"><code class="literal">Transmit</code></th>
+                      </tr>
+
+                      <tr>
+                        <th style="" rowspan="1" colspan="1"><code class="literal">bytes</code></th>
+
+                        <th style="" rowspan="1" colspan="1"><code class="literal">packets</code></th>
+
+                        <th style="" rowspan="1" colspan="1"><code class="literal">errs</code></th>
+
+                        <th style="" rowspan="1" colspan="1"><code class="literal">drop</code></th>
+
+                        <th style="" rowspan="1" colspan="1"><code class="literal">fifo</code></th>
+
+                        <th style="" rowspan="1" colspan="1"><code class="literal">frame</code></th>
+
+                        <th style="" rowspan="1" colspan="1"><code class="literal">compressed</code></th>
+
+                        <th style="" rowspan="1" colspan="1"><code class="literal">multicast</code></th>
+
+                        <th style="" rowspan="1" colspan="1"><code class="literal">bytes</code></th>
+
+                        <th style="" rowspan="1" colspan="1"><code class="literal">packets</code></th>
+
+                        <th style="" rowspan="1" colspan="1"><code class="literal">errs</code></th>
+
+                        <th style="" rowspan="1" colspan="1"><code class="literal">drop</code></th>
+
+                        <th style="" rowspan="1" colspan="1"><code class="literal">fifo</code></th>
+
+                        <th style="" rowspan="1" colspan="1"><code class="literal">colls</code></th>
+
+                        <th style="" rowspan="1" colspan="1"><code class="literal">carrier</code></th>
+
+                        <th style="" rowspan="1" colspan="1"><code class="literal">compressed</code></th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr>
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">lo:</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">2776770</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">11307</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">2776770</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">11307</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+                      </tr>
+
+                      <tr>
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">eth0:</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">1215645</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">2751</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">1782404</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">4324</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">427</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+                      </tr>
+
+                      <tr>
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">ppp0:</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">1622270</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">5552</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">1</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">354130</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">5669</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+                      </tr>
+
+                      <tr>
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">tap0:</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">7714</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">81</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">7714</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">81</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </blockquote>
+            </div>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/net/dev_mcast</code></span></dt>
+
+          <dd>
+            <p>Defined in <code class="filename">/usr/src/linux/net/core/dev_mcast.c<code class="literal">:</code></code></p>
+
+            <div class="blockquote">
+              <blockquote class="blockquote">
+                <div class="informaltable">
+                  <table style="border-collapse: collapse;">
+                    <colgroup span="1">
+                      <col span="1" />
+                      <col span="1" />
+                      <col span="1" />
+                      <col span="1" />
+                      <col span="1" />
+                    </colgroup>
+
+                    <tbody>
+                      <tr>
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">indx</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">interface_name</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">dmi_u</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">dmi_g</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">dmi_address</code></td>
+                      </tr>
+
+                      <tr>
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">2</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">eth0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">1</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">01005e000001</code></td>
+                      </tr>
+
+                      <tr>
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">3</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">eth1</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">1</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">01005e000001</code></td>
+                      </tr>
+
+                      <tr>
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">4</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">eth2</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">1</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">01005e000001</code></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </blockquote>
+            </div>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/net/igmp</code></span></dt>
+
+          <dd>
+            <p>Internet Group Management Protocol. Defined in
+            <code class="filename">/usr/src/linux/net/core/igmp.c</code>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/net/rarp</code></span></dt>
+
+          <dd>
+            <p>This file uses the same format as the <code class="literal">arp</code> file and contains the current
+            reverse mapping database used to provide <span class="citerefentry"><span class="refentrytitle">rarp</span>(8)</span> reverse address
+            lookup services. If RARP is not configured into the
+            kernel, this file will not be present.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/net/raw</code></span></dt>
+
+          <dd>
+            <p>Holds a dump of the RAW socket table. Much of the
+            information is not of use apart from debugging. The
+            "sl" value is the kernel hash slot for the socket, the
+            "local_address" is the local address and protocol
+            number pair. "St" is the internal status of the socket.
+            The "tx_queue" and "rx_queue" are the outgoing and
+            incoming data queue in terms of kernel memory usage.
+            The "tr", "tm−&gt;when", and "rexmits" fields are
+            not used by RAW. The "uid" field holds the effective
+            UID of the creator of the socket.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/net/snmp</code></span></dt>
+
+          <dd>
+            <p>This file holds the ASCII data needed for the IP,
+            ICMP, TCP, and UDP management information bases for an
+            SNMP agent.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/net/tcp</code></span></dt>
+
+          <dd>
+            <p>Holds a dump of the TCP socket table. Much of the
+            information is not of use apart from debugging. The
+            "sl" value is the kernel hash slot for the socket, the
+            "local_address" is the local address and port number
+            pair. The "rem_address" is the remote address and port
+            number pair (if connected). "St" is the internal status
+            of the socket. The "tx_queue" and "rx_queue" are the
+            outgoing and incoming data queue in terms of kernel
+            memory usage. The "tr", "tm−&gt;when", and
+            "rexmits" fields hold internal information of the
+            kernel socket state and are only useful for debugging.
+            The "uid" field holds the effective UID of the creator
+            of the socket.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/net/udp</code></span></dt>
+
+          <dd>
+            <p>Holds a dump of the UDP socket table. Much of the
+            information is not of use apart from debugging. The
+            "sl" value is the kernel hash slot for the socket, the
+            "local_address" is the local address and port number
+            pair. The "rem_address" is the remote address and port
+            number pair (if connected). "St" is the internal status
+            of the socket. The "tx_queue" and "rx_queue" are the
+            outgoing and incoming data queue in terms of kernel
+            memory usage. The "tr", "tm−&gt;when", and
+            "rexmits" fields are not used by UDP. The "uid" field
+            holds the effective UID of the creator of the socket.
+            The format is:</p>
+
+            <div class="blockquote">
+              <blockquote class="blockquote">
+                <div class="informaltable">
+                  <table style="border-collapse: collapse;">
+                    <colgroup span="1">
+                      <col span="1" />
+                      <col span="1" />
+                      <col span="1" />
+                      <col span="1" />
+                      <col span="1" />
+                      <col span="1" />
+                      <col span="1" />
+                      <col span="1" />
+                    </colgroup>
+
+                    <tbody>
+                      <tr>
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">sl</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">local_address</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">rem_address</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">st</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">tx_queue rx_queue</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">tr rexmits</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">tm−&gt;when</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">uid</code></td>
+                      </tr>
+
+                      <tr>
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">1:</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">01642C89:0201</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0C642C89:03FF</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">01</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">00000000:00000001</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">01:000071BA</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">00000000</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+                      </tr>
+
+                      <tr>
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">1:</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">00000000:0801</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">00000000:0000</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0A</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">00000000:00000000</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">00:00000000</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">6F000100</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+                      </tr>
+
+                      <tr>
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">1:</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">00000000:0201</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">00000000:0000</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0A</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">00000000:00000000</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">00:00000000</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">00000000</code></td>
+
+                        <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0</code></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </blockquote>
+            </div>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/net/unix</code></span></dt>
+
+          <dd>
+            <p>Lists the UNIX domain sockets present within the
+            system and their status. The format is:</p>
+
+            <div class="informaltable">
+              <table style="border-collapse: collapse;">
+                <colgroup span="1">
+                  <col span="1" />
+                  <col span="1" />
+                  <col span="1" />
+                  <col span="1" />
+                  <col span="1" />
+                  <col span="1" />
+                  <col span="1" />
+                </colgroup>
+
+                <tbody>
+                  <tr>
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">Num</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">RefCount</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">Protocol</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">Flags</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">Type</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">St</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">Path</code></td>
+                  </tr>
+
+                  <tr>
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0:</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">00000002</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">00000000</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">00000000</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0001</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">03</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"></td>
+                  </tr>
+
+                  <tr>
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">1:</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">00000001</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">00000000</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">00010000</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">0001</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">01</code></td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><code class="literal">/dev/printer</code></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p>Here "Num" is the kernel table slot number,
+            "RefCount" is the number of users of the socket,
+            "Protocol" is currently always 0, "Flags" represent the
+            internal kernel flags holding the status of the socket.
+            Currently, type is always "1" (UNIX domain datagram
+            sockets are not yet supported in the kernel). "St" is
+            the internal state of the socket and Path is the bound
+            path (if any) of the socket.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/partitions</code></span></dt>
+
+          <dd>
+            <p>Contains major and minor numbers of each partition
+            as well as number of blocks and partition name.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/pci</code></span></dt>
+
+          <dd>
+            <p>This is a listing of all PCI devices found during
+            kernel initialization and their configuration.</p>
+
+            <p>This file has been deprecated in favor of a new
+            <code class="filename">/proc</code> interface for PCI
+            (<code class="filename">/proc/bus/pci</code>). It
+            became optional in Linux 2.2 (available with
+            <code class="constant">CONFIG_PCI_OLD_PROC</code> set
+            at kernel compilation). It became once more
+            nonoptionally enabled in Linux 2.4. Next, it was
+            deprecated in Linux 2.6 (still available with
+            <code class="constant">CONFIG_PCI_LEGACY_PROC</code>
+            set), and finally removed altogether since Linux
+            2.6.17.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/scsi</code></span></dt>
+
+          <dd>
+            <p>A directory with the <code class="literal">scsi</code> mid-level pseudo-file and various
+            SCSI low-level driver directories, which contain a file
+            for each SCSI host in this system, all of which give
+            the status of some part of the SCSI IO subsystem. These
+            files contain ASCII structures and are, therefore,
+            readable with <a class="link" href="../htmlman1/cat.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">cat</span>(1)</span></a>.</p>
+
+            <p>You can also write to some of the files to
+            reconfigure the subsystem or switch certain features on
+            or off.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/scsi/scsi</code></span></dt>
+
+          <dd>
+            <p>This is a listing of all SCSI devices known to the
+            kernel. The listing is similar to the one seen during
+            bootup. scsi currently supports only the <em class="replaceable"><code>add-single-device</code></em>
+            command which allows root to add a hotplugged device to
+            the list of known devices.</p>
+
+            <p>The command</p>
+
+            <div class="blockquote">
+              <blockquote class="blockquote">
+                <div class="informalexample">
+                  <pre class="programlisting" xml:space="preserve">
+echo 'scsi add-single-device 1 0 5 0' &gt; /proc/scsi/scsi
+</pre>
+                </div>
+              </blockquote>
+            </div>
+
+            <p>will cause host scsi1 to scan on SCSI channel 0 for
+            a device on ID 5 LUN 0. If there is already a device
+            known on this address or the address is invalid, an
+            error will be returned.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/scsi/[drivername]</code></span></dt>
+
+          <dd>
+            <p><em class="replaceable"><code>[drivername]</code></em> can
+            currently be NCR53c7xx, aha152x, aha1542, aha1740,
+            aic7xxx, buslogic, eata_dma, eata_pio, fdomain, in2000,
+            pas16, qlogic, scsi_debug, seagate, t128, u15-24f,
+            ultrastore, or wd7000. These directories show up for
+            all drivers that registered at least one SCSI HBA.
+            Every directory contains one file per registered host.
+            Every host-file is named after the number the host was
+            assigned during initialization.</p>
+
+            <p>Reading these files will usually show driver and
+            host configuration, statistics, etc.</p>
+
+            <p>Writing to these files allows different things on
+            different hosts. For example, with the <code class="literal">latency</code> and <code class="literal">nolatency</code> commands, root can switch on
+            and off command latency measurement code in the
+            eata_dma driver. With the <code class="literal">lockup</code> and <code class="literal">unlock</code> commands, root can control bus
+            lockups simulated by the scsi_debug driver.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/self</code></span></dt>
+
+          <dd>
+            <p>This directory refers to the process accessing the
+            <code class="filename">/proc</code> file system, and is
+            identical to the <code class="filename">/proc</code>
+            directory named by the process ID of the same
+            process.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/slabinfo</code></span></dt>
+
+          <dd>
+            <p>Information about kernel caches. Since Linux 2.6.16
+            this file is only present if the <code class="constant">CONFIG_SLAB</code> kernel configuration
+            option is enabled. The columns in <code class="filename">/proc/slabinfo</code> are:</p>
+
+            <div class="blockquote">
+              <blockquote class="blockquote">
+                <div class="informalexample">
+                  <pre class="programlisting" xml:space="preserve">
+cache-name
+num-active-objs
+total-objs
+object-size
+num-active-slabs
+total-slabs
+num-pages-per-slab
+</pre>
+                </div>
+              </blockquote>
+            </div>
+
+            <p>See <a class="link" href="../htmlman5/slabinfo.5.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">slabinfo</span>(5)</span></a> for
+            details.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/stat</code></span></dt>
+
+          <dd>
+            <p>kernel/system statistics. Varies with architecture.
+            Common entries include:</p>
+
+            <div class="blockquote">
+              <blockquote class="blockquote">
+                <div class="variablelist">
+                  <dl>
+                    <dt><span class="term"><span class="emphasis"><em>cpu 3357 0 4313
+                    1362393</em></span></span></dt>
+
+                    <dd>
+                      <p>The amount of time, measured in units of
+                      USER_HZ (1/100ths of a second on most
+                      architectures, use <em class="replaceable"><code>sysconf(_SC_CLK_TCK)</code></em>
+                      to obtain the right value), that the system
+                      spent in user mode, user mode with low
+                      priority (nice), system mode, and the idle
+                      task, respectively. The last value should be
+                      USER_HZ times the second entry in the uptime
+                      pseudo-file.</p>
+
+                      <p>In Linux 2.6 this line includes three
+                      additional columns: <code class="literal">iowait</code> − time waiting
+                      for I/O to complete (since 2.5.41);
+                      <code class="literal">irq</code> − time
+                      servicing interrupts (since 2.6.0-test4);
+                      <code class="literal">softirq</code> −
+                      time servicing softirqs (since
+                      2.6.0-test4).</p>
+
+                      <p>Since Linux 2.6.11, there is an eighth
+                      column, <code class="literal">steal</code>
+                      − stolen time, which is the time spent
+                      in other operating systems when running in a
+                      virtualized environment</p>
+
+                      <p>Since Linux 2.6.24, there is a ninth
+                      column, <code class="literal">guest</code>,
+                      which is the time spent running a virtual CPU
+                      for guest operating systems under the control
+                      of the Linux kernel.</p>
+                    </dd>
+
+                    <dt><span class="term"><span class="emphasis"><em>page 5741
+                    1808</em></span></span></dt>
+
+                    <dd>
+                      <p>The number of pages the system paged in
+                      and the number that were paged out (from
+                      disk).</p>
+                    </dd>
+
+                    <dt><span class="term"><span class="emphasis"><em>swap 1 0</em></span></span></dt>
+
+                    <dd>
+                      <p>The number of swap pages that have been
+                      brought in and out.</p>
+                    </dd>
+
+                    <dt><span class="term"><span class="emphasis"><em>intr
+                    1462898</em></span></span></dt>
+
+                    <dd>
+                      <p>This line shows counts of interrupts
+                      serviced since boot time, for each of the
+                      possible system interrupts. The first column
+                      is the total of all interrupts serviced; each
+                      subsequent column is the total for a
+                      particular interrupt.</p>
+                    </dd>
+
+                    <dt><span class="term"><span class="emphasis"><em>disk_io: (2,0):(31,30,5764,1,2)
+                    (3,0):</em></span>...</span></dt>
+
+                    <dd>
+                      <p>(major,disk_idx):(noinfo, read_io_ops,
+                      blks_read, write_io_ops, blks_written)</p>
+                    </dd>
+                  </dl>
+                </div>
+
+                <p>(Linux 2.4 only)</p>
+
+                <div class="variablelist">
+                  <dl>
+                    <dt><span class="term"><span class="emphasis"><em>ctxt
+                    115315</em></span></span></dt>
+
+                    <dd>
+                      <p>The number of context switches that the
+                      system underwent.</p>
+                    </dd>
+
+                    <dt><span class="term"><span class="emphasis"><em>btime
+                    769041601</em></span></span></dt>
+
+                    <dd>
+                      <p>boot time, in seconds since the Epoch,
+                      1970-01-01 00:00:00 +0000 (UTC).</p>
+                    </dd>
+
+                    <dt><span class="term"><span class="emphasis"><em>processes
+                    86031</em></span></span></dt>
+
+                    <dd>
+                      <p>Number of forks since boot.</p>
+                    </dd>
+
+                    <dt><span class="term"><span class="emphasis"><em>procs_running
+                    6</em></span></span></dt>
+
+                    <dd>
+                      <p>Number of processes in runnable state.
+                      (Linux 2.5.45 onward.)</p>
+                    </dd>
+
+                    <dt><span class="term"><span class="emphasis"><em>procs_blocked
+                    2</em></span></span></dt>
+
+                    <dd>
+                      <p>Number of processes blocked waiting for
+                      I/O to complete. (Linux 2.5.45 onward.)</p>
+                    </dd>
+                  </dl>
+                </div>
+              </blockquote>
+            </div>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/swaps</code></span></dt>
+
+          <dd>
+            <p>Swap areas in use. See also <a class="link" href="../htmlman8/swapon.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">swapon</span>(8)</span></a>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys</code></span></dt>
+
+          <dd>
+            <p>This directory (present since 1.3.57) contains a
+            number of files and subdirectories corresponding to
+            kernel variables. These variables can be read and
+            sometimes modified using the <code class="filename">/proc</code> file system, and the
+            (deprecated) <a class="link" href="../htmlman2/sysctl.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">sysctl</span>(2)</span></a> system
+            call.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/abi</code> (since Linux
+          2.4.10)</span></dt>
+
+          <dd>
+            <p>This directory may contain files with application
+            binary information. See the kernel source file
+            <code class="filename">Documentation/sysctl/abi.txt</code> for more
+            information.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/debug</code></span></dt>
+
+          <dd>
+            <p>This directory may be empty.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/dev</code></span></dt>
+
+          <dd>
+            <p>This directory contains device-specific information
+            (e.g., <code class="literal">dev/cdrom/info</code>). On
+            some systems, it may be empty.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/fs</code></span></dt>
+
+          <dd>
+            <p>This directory contains the files and subdirectories
+            for kernel variables related to file systems.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/fs/binfmt_misc</code></span></dt>
+
+          <dd>
+            <p>Documentation for files in this directory can be
+            found in the kernel sources in <code class="filename">Documentation/binfmt_misc.txt</code>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/fs/dentry-state</code> (since Linux
+          2.2)</span></dt>
+
+          <dd>
+            <p>This file contains information about the status of
+            the directory cache (dcache). The file contains six
+            numbers, <code class="literal">nr_dentry</code>,
+            <code class="literal">nr_unused</code>, <code class="literal">age_limit</code> (age in seconds),
+            <code class="literal">want_pages</code> (pages
+            requested by system) and two dummy values.</p>
+
+            <div class="blockquote">
+              <blockquote class="blockquote">
+                <div class="itemizedlist">
+                  <ul class="itemizedlist" type="disc">
+                    <li class="listitem">
+                      <p><code class="literal">nr_dentry</code> is
+                      the number of allocated dentries (dcache
+                      entries). This field is unused in Linux
+                      2.2.</p>
+                    </li>
+
+                    <li class="listitem">
+                      <p><code class="literal">nr_unused</code> is
+                      the number of unused dentries.</p>
+                    </li>
+
+                    <li class="listitem">
+                      <p><code class="literal">age_limit</code> is
+                      the age in seconds after which dcache entries
+                      can be reclaimed when memory is short.</p>
+                    </li>
+
+                    <li class="listitem">
+                      <p><code class="literal">want_pages</code> is
+                      nonzero when the kernel has called
+                      shrink_dcache_pages() and the dcache isn't
+                      pruned yet.</p>
+                    </li>
+                  </ul>
+                </div>
+              </blockquote>
+            </div>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/fs/dir-notify-enable</code></span></dt>
+
+          <dd>
+            <p>This file can be used to disable or enable the
+            <code class="literal">dnotify</code> interface
+            described in <a class="link" href="../htmlman2/fcntl.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fcntl</span>(2)</span></a> on a
+            system-wide basis. A value of 0 in this file disables
+            the interface, and a value of 1 enables it.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/fs/dquot-max</code></span></dt>
+
+          <dd>
+            <p>This file shows the maximum number of cached disk
+            quota entries. On some (2.4) systems, it is not
+            present. If the number of free cached disk quota
+            entries is very low and you have some awesome number of
+            simultaneous system users, you might want to raise the
+            limit.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/fs/dquot-nr</code></span></dt>
+
+          <dd>
+            <p>This file shows the number of allocated disk quota
+            entries and the number of free disk quota entries.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/fs/epoll</code> (since Linux
+          2.6.28)</span></dt>
+
+          <dd>
+            <p>This directory contains the file <code class="literal">max_user_watches</code>, which can be used to
+            limit the amount of kernel memory consumed by the
+            <code class="literal">epoll</code> interface. For
+            further details, see <a class="link" href="../htmlman7/epoll.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">epoll</span>(7)</span></a>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/fs/file-max</code></span></dt>
+
+          <dd>
+            <p>This file defines a system-wide limit on the number
+            of open files for all processes. (See also <a class="link" href="../htmlman2/getrlimit.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">setrlimit</span>(2)</span></a>, which
+            can be used by a process to set the per-process limit,
+            <code class="constant">RLIMIT_NOFILE</code>, on the
+            number of files it may open.) If you get lots of error
+            messages about running out of file handles, try
+            increasing this value:</p>
+          </dd>
+        </dl>
+      </div>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+echo 100000 &gt; /proc/sys/fs/file-max
+</pre>
+      </div>
+
+      <p>The kernel constant <code class="constant">NR_OPEN</code>
+      imposes an upper limit on the value that may be placed in
+      <em class="replaceable"><code>file-max</code></em>.</p>
+
+      <p>If you increase <code class="filename">/proc/sys/fs/file-max</code>, be sure to increase
+      <code class="filename">/proc/sys/fs/inode-max</code> to 3-4
+      times the new value of <code class="filename">/proc/sys/fs/file-max</code>, or you will run out
+      of inodes.</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="filename">/proc/sys/fs/file-nr</code></span></dt>
+
+          <dd>
+            <p>This (read-only) file gives the number of files
+            presently opened. It contains three numbers: the number
+            of allocated file handles; the number of free file
+            handles; and the maximum number of file handles. The
+            kernel allocates file handles dynamically, but it
+            doesn't free them again. If the number of allocated
+            files is close to the maximum, you should consider
+            increasing the maximum. When the number of free file
+            handles is large, you've encountered a peak in your
+            usage of file handles and you probably don't need to
+            increase the maximum.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/fs/inode-max</code></span></dt>
+
+          <dd>
+            <p>This file contains the maximum number of in-memory
+            inodes. On some (2.4) systems, it may not be present.
+            This value should be 3-4 times larger than the value in
+            <em class="replaceable"><code>file-max</code></em>,
+            since <code class="varname">stdin</code>, <code class="varname">stdout</code> and network sockets also need
+            an inode to handle them. When you regularly run out of
+            inodes, you need to increase this value.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/fs/inode-nr</code></span></dt>
+
+          <dd>
+            <p>This file contains the first two values from
+            <em class="replaceable"><code>inode-state</code></em>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/fs/inode-state</code></span></dt>
+
+          <dd>
+            <p>This file contains seven numbers: <code class="literal">nr_inodes</code>, <code class="literal">nr_free_inodes</code>, <code class="literal">preshrink</code>, and four dummy values.
+            <code class="literal">nr_inodes</code> is the number of
+            inodes the system has allocated. This can be slightly
+            more than <em class="replaceable"><code>inode-max</code></em> because Linux
+            allocates them one page full at a time. <code class="literal">nr_free_inodes</code> represents the number
+            of free inodes. <code class="literal">preshrink</code>
+            is nonzero when the <code class="literal">nr_inodes</code> &gt; <em class="replaceable"><code>inode-max</code></em> and the
+            system needs to prune the inode list instead of
+            allocating more.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/fs/inotify</code> (since Linux
+          2.6.13)</span></dt>
+
+          <dd>
+            <p>This directory contains files <code class="literal">max_queued_events</code>, <code class="literal">max_user_instances</code>, and <code class="literal">max_user_watches</code>, that can be used to
+            limit the amount of kernel memory consumed by the
+            <code class="literal">inotify</code> interface. For
+            further details, see <a class="link" href="../htmlman7/inotify.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">inotify</span>(7)</span></a>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/fs/lease-break-time</code></span></dt>
+
+          <dd>
+            <p>This file specifies the grace period that the kernel
+            grants to a process holding a file lease (<a class="link" href="../htmlman2/fcntl.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fcntl</span>(2)</span></a>) after it
+            has sent a signal to that process notifying it that
+            another process is waiting to open the file. If the
+            lease holder does not remove or downgrade the lease
+            within this grace period, the kernel forcibly breaks
+            the lease.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/fs/leases-enable</code></span></dt>
+
+          <dd>
+            <p>This file can be used to enable or disable file
+            leases (<a class="link" href="../htmlman2/fcntl.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fcntl</span>(2)</span></a>) on a
+            system-wide basis. If this file contains the value 0,
+            leases are disabled. A nonzero value enables
+            leases.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/fs/mqueue</code> (since Linux
+          2.6.6)</span></dt>
+
+          <dd>
+            <p>This directory contains files <code class="literal">msg_max</code>, <code class="literal">msgsize_max</code>, and <code class="literal">queues_max</code>, controlling the resources
+            used by POSIX message queues. See <a class="link" href="../htmlman7/mq_overview.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mq_overview</span>(7)</span></a> for
+            details.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/fs/overflowgid and
+          /proc/sys/fs/overflowuid</code></span></dt>
+
+          <dd>
+            <p>These files allow you to change the value of the
+            fixed UID and GID. The default is 65534. Some file
+            systems only support 16-bit UIDs and GIDs, although in
+            Linux UIDs and GIDs are 32 bits. When one of these file
+            systems is mounted with writes enabled, any UID or GID
+            that would exceed 65535 is translated to the overflow
+            value before being written to disk.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/fs/pipe-max-size</code> (since Linux
+          2.6.35)</span></dt>
+
+          <dd>
+            <p>The value in this file defines an upper limit for
+            raising the capacity of a pipe using the <a class="link" href="../htmlman2/fcntl.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fcntl</span>(2)</span></a> <code class="constant">F_SETPIPE_SZ</code> operation. This limit
+            applies only to unprivileged processes. The default
+            value for this file is 1,048,576. The value assigned to
+            this file may be rounded upward, to reflect the value
+            actually employed for a convenient implementation. To
+            determine the rounded-up value, display the contents of
+            this file after assigning a value to it. The minimum
+            value that can be assigned to this file is the system
+            page size.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/fs/suid_dumpable</code> (since Linux
+          2.6.13)</span></dt>
+
+          <dd>
+            <p>The value in this file determines whether core dump
+            files are produced for set-user-ID or otherwise
+            protected/tainted binaries. Three different integer
+            values can be specified:</p>
+
+            <p><span class="emphasis"><em>0 (default)</em></span>
+            This provides the traditional (pre-Linux 2.6.13)
+            behavior. A core dump will not be produced for a
+            process which has changed credentials (by calling
+            <a class="link" href="../htmlman2/seteuid.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">seteuid</span>(2)</span></a>, <a class="link" href="../htmlman2/setgid.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">setgid</span>(2)</span></a>, or
+            similar, or by executing a set-user-ID or set-group-ID
+            program) or whose binary does not have read permission
+            enabled.</p>
+
+            <p><span class="emphasis"><em>1 ("debug")</em></span>
+            All processes dump core when possible. The core dump is
+            owned by the file system user ID of the dumping process
+            and no security is applied. This is intended for system
+            debugging situations only. Ptrace is unchecked.</p>
+
+            <p><span class="emphasis"><em>2
+            ("suidsafe")</em></span> Any binary which normally
+            would not be dumped (see "0" above) is dumped readable
+            by root only. This allows the user to remove the core
+            dump file but not to read it. For security reasons core
+            dumps in this mode will not overwrite one another or
+            other files. This mode is appropriate when
+            administrators are attempting to debug problems in a
+            normal environment.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/fs/super-max</code></span></dt>
+
+          <dd>
+            <p>This file controls the maximum number of
+            superblocks, and thus the maximum number of mounted
+            file systems the kernel can have. You only need to
+            increase <em class="replaceable"><code>super-max</code></em> if you need
+            to mount more file systems than the current value in
+            <em class="replaceable"><code>super-max</code></em>
+            allows you to.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/fs/super-nr</code></span></dt>
+
+          <dd>
+            <p>This file contains the number of file systems
+            currently mounted.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/kernel</code></span></dt>
+
+          <dd>
+            <p>This directory contains files controlling a range of
+            kernel parameters, as described below.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/kernel/acct</code></span></dt>
+
+          <dd>
+            <p>This file contains three numbers: <code class="literal">highwater</code>, <code class="literal">lowwater</code>, and <code class="literal">frequency</code>. If BSD-style process
+            accounting is enabled these values control its
+            behavior. If free space on file system where the log
+            lives goes below <code class="literal">lowwater</code>
+            percent accounting suspends. If free space gets above
+            <code class="literal">highwater</code> percent
+            accounting resumes. <code class="literal">frequency</code> determines how often the
+            kernel checks the amount of free space (value is in
+            seconds). Default values are 4, 2 and 30. That is,
+            suspend accounting if 2% or less space is free; resume
+            it if 4% or more space is free; consider information
+            about amount of free space valid for 30 seconds.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/kernel/cap-bound (from Linux 2.2 to
+          2.6.24)</code></span></dt>
+
+          <dd>
+            <p>This file holds the value of the kernel <span class="emphasis"><em>capability bounding set</em></span>
+            (expressed as a signed decimal number). This set is
+            ANDed against the capabilities permitted to a process
+            during <a class="link" href="../htmlman2/execve.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">execve</span>(2)</span></a>. Starting
+            with Linux 2.6.25, the system-wide capability bounding
+            set disappeared, and was replaced by a per-thread
+            bounding set; see <a class="link" href="../htmlman7/capabilities.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">capabilities</span>(7)</span></a>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/kernel/core_pattern</code></span></dt>
+
+          <dd>
+            <p>See <a class="link" href="../htmlman5/core.5.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">core</span>(5)</span></a>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/kernel/core_uses_pid</code></span></dt>
+
+          <dd>
+            <p>See <a class="link" href="../htmlman5/core.5.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">core</span>(5)</span></a>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/kernel/ctrl-alt-del</code></span></dt>
+
+          <dd>
+            <p>This file controls the handling of Ctrl-Alt-Del from
+            the keyboard. When the value in this file is 0,
+            Ctrl-Alt-Del is trapped and sent to the <span class="citerefentry"><span class="refentrytitle">init</span>(8)</span> program to handle
+            a graceful restart. When the value is greater than
+            zero, Linux's reaction to a Vulcan Nerve Pinch (tm)
+            will be an immediate reboot, without even syncing its
+            dirty buffers. Note: when a program (like dosemu) has
+            the keyboard in "raw" mode, the ctrl-alt-del is
+            intercepted by the program before it ever reaches the
+            kernel tty layer, and it's up to the program to decide
+            what to do with it.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/kernel/hotplug</code></span></dt>
+
+          <dd>
+            <p>This file contains the path for the hotplug policy
+            agent. The default value in this file is <code class="filename">/sbin/hotplug</code>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/kernel/domainname and
+          /proc/sys/kernel/hostname</code></span></dt>
+
+          <dd>
+            <p>can be used to set the NIS/YP domainname and the
+            hostname of your box in exactly the same way as the
+            commands <span class="citerefentry"><span class="refentrytitle">domainname</span>(1)</span> and
+            <span class="citerefentry"><span class="refentrytitle">hostname</span>(1)</span>, that is:</p>
+
+            <div class="blockquote">
+              <blockquote class="blockquote">
+                <div class="informalexample">
+                  <pre class="programlisting" xml:space="preserve">
+#<span class="emphasis"><em> echo 'darkstar' &gt; /proc/sys/kernel/hostname</em></span>
+#<span class="emphasis"><em> echo 'mydomain' &gt; /proc/sys/kernel/domainname</em></span>
+</pre>
+                </div>
+              </blockquote>
+            </div>
+
+            <p>has the same effect as</p>
+
+            <div class="blockquote">
+              <blockquote class="blockquote">
+                <div class="informalexample">
+                  <pre class="programlisting" xml:space="preserve">
+#<span class="emphasis"><em> hostname 'darkstar'</em></span>
+#<span class="emphasis"><em> domainname 'mydomain'</em></span>
+</pre>
+                </div>
+              </blockquote>
+            </div>
+
+            <p>Note, however, that the classic darkstar.frop.org
+            has the hostname "darkstar" and DNS (Internet Domain
+            Name Server) domainname "frop.org", not to be confused
+            with the NIS (Network Information Service) or YP
+            (Yellow Pages) domainname. These two domain names are
+            in general different. For a detailed discussion see the
+            <span class="citerefentry"><span class="refentrytitle">hostname</span>(1)</span> man page.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/kernel/htab-reclaim</code></span></dt>
+
+          <dd>
+            <p>(PowerPC only) If this file is set to a nonzero
+            value, the PowerPC htab (see kernel file <code class="filename">Documentation/powerpc/ppc_htab.txt</code>)
+            is pruned each time the system hits the idle loop.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/kernel/l2cr</code></span></dt>
+
+          <dd>
+            <p>(PowerPC only) This file contains a flag that
+            controls the L2 cache of G3 processor boards. If 0, the
+            cache is disabled. Enabled if nonzero.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/kernel/modprobe</code></span></dt>
+
+          <dd>
+            <p>This file contains the path for the kernel module
+            loader. The default value is <code class="filename">/sbin/modprobe</code>. The file is only
+            present if the kernel is built with the <code class="constant">CONFIG_KMOD</code> option enabled. It is
+            described by the kernel source file <code class="filename">Documentation/kmod.txt</code> (only present
+            in kernel 2.4 and earlier).</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/kernel/msgmax</code></span></dt>
+
+          <dd>
+            <p>This file defines a system-wide limit specifying the
+            maximum number of bytes in a single message written on
+            a System V message queue.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/kernel/msgmni</code></span></dt>
+
+          <dd>
+            <p>This file defines the system-wide limit on the
+            number of message queue identifiers. (This file is only
+            present in Linux 2.4 onward.)</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/kernel/msgmnb</code></span></dt>
+
+          <dd>
+            <p>This file defines a system-wide parameter used to
+            initialize the <code class="literal">msg_qbytes</code>
+            setting for subsequently created message queues. The
+            <code class="literal">msg_qbytes</code> setting
+            specifies the maximum number of bytes that may be
+            written to the message queue.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/kernel/ostype and
+          /proc/sys/kernel/osrelease</code></span></dt>
+
+          <dd>
+            <p>These files give substrings of <code class="filename">/proc/version</code>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/kernel/overflowgid and
+          /proc/sys/kernel/overflowuid</code></span></dt>
+
+          <dd>
+            <p>These files duplicate the files <code class="filename">/proc/sys/fs/overflowgid</code> and
+            <code class="filename">/proc/sys/fs/overflowuid</code>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/kernel/panic</code></span></dt>
+
+          <dd>
+            <p>This file gives read/write access to the kernel
+            variable <code class="literal">panic_timeout</code>. If
+            this is zero, the kernel will loop on a panic; if
+            nonzero it indicates that the kernel should autoreboot
+            after this number of seconds. When you use the software
+            watchdog device driver, the recommended setting is
+            60.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/kernel/panic_on_oops</code> (since
+          Linux 2.5.68)</span></dt>
+
+          <dd>
+            <p>This file controls the kernel's behavior when an
+            oops or BUG is encountered. If this file contains 0,
+            then the system tries to continue operation. If it
+            contains 1, then the system delays a few seconds (to
+            give klogd time to record the oops output) and then
+            panics. If the <code class="filename">/proc/sys/kernel/panic</code> file is also
+            nonzero then the machine will be rebooted.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/kernel/pid_max</code> (since Linux
+          2.5.34)</span></dt>
+
+          <dd>
+            <p>This file specifies the value at which PIDs wrap
+            around (i.e., the value in this file is one greater
+            than the maximum PID). The default value for this file,
+            32768, results in the same range of PIDs as on earlier
+            kernels. On 32-bit platforms, 32768 is the maximum
+            value for <code class="literal">pid_max</code>. On
+            64-bit systems, <code class="literal">pid_max</code>
+            can be set to any value up to 2^22 (<code class="constant">PID_MAX_LIMIT</code>, approximately 4
+            million).</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/kernel/powersave-nap (PowerPC
+          only)</code></span></dt>
+
+          <dd>
+            <p>This file contains a flag. If set, Linux-PPC will
+            use the "nap" mode of powersaving, otherwise the "doze"
+            mode will be used.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/kernel/printk</code></span></dt>
+
+          <dd>
+            <p>The four values in this file are <code class="literal">console_loglevel</code>, <code class="literal">default_message_loglevel</code>, <code class="literal">minimum_console_level</code>, and
+            <code class="literal">default_console_loglevel</code>.
+            These values influence <code class="function">printk</code>() behavior when printing or
+            logging error messages. See <a class="link" href="../htmlman2/syslog.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">syslog</span>(2)</span></a> for more
+            info on the different loglevels. Messages with a higher
+            priority than <code class="literal">console_loglevel</code> will be printed to
+            the console. Messages without an explicit priority will
+            be printed with priority <code class="literal">default_message_level</code>. <code class="literal">minimum_console_loglevel</code> is the
+            minimum (highest) value to which <code class="literal">console_loglevel</code> can be set.
+            <code class="literal">default_console_loglevel</code>
+            is the default value for <code class="literal">console_loglevel</code>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/kernel/pty</code> (since Linux
+          2.6.4)</span></dt>
+
+          <dd>
+            <p>This directory contains two files relating to the
+            number of UNIX 98 pseudoterminals (see <a class="link" href="../htmlman4/pts.4.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pts</span>(4)</span></a>) on the
+            system.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/kernel/pty/max</code></span></dt>
+
+          <dd>
+            <p>This file defines the maximum number of
+            pseudoterminals.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/kernel/pty/nr</code></span></dt>
+
+          <dd>
+            <p>This read-only file indicates how many
+            pseudoterminals are currently in use.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/kernel/random</code></span></dt>
+
+          <dd>
+            <p>This directory contains various parameters
+            controlling the operation of the file <code class="filename">/dev/random</code>. See <a class="link" href="../htmlman4/random.4.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">random</span>(4)</span></a> for further
+            information.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/kernel/real-root-dev</code></span></dt>
+
+          <dd>
+            <p>This file is documented in the kernel source file
+            <code class="filename">Documentation/initrd.txt</code>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/kernel/reboot-cmd (Sparc
+          only)</code></span></dt>
+
+          <dd>
+            <p>This file seems to be a way to give an argument to
+            the SPARC ROM/Flash boot loader. Maybe to tell it what
+            to do after rebooting?</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/kernel/rtsig-max</code></span></dt>
+
+          <dd>
+            <p>(Only in kernels up to and including 2.6.7; see
+            <a class="link" href="../htmlman2/getrlimit.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">setrlimit</span>(2)</span></a>) This
+            file can be used to tune the maximum number of POSIX
+            real-time (queued) signals that can be outstanding in
+            the system.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/kernel/rtsig-nr</code></span></dt>
+
+          <dd>
+            <p>(Only in kernels up to and including 2.6.7.) This
+            file shows the number POSIX real-time signals currently
+            queued.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/kernel/sem</code> (since Linux
+          2.4)</span></dt>
+
+          <dd>
+            <p>This file contains 4 numbers defining limits for
+            System V IPC semaphores. These fields are, in
+            order:</p>
+
+            <div class="blockquote">
+              <blockquote class="blockquote">
+                <div class="variablelist">
+                  <dl>
+                    <dt><span class="term"><code class="constant">SEMMSL</code></span></dt>
+
+                    <dd>
+                      <p>The maximum semaphores per semaphore
+                      set.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="constant">SEMMNS</code></span></dt>
+
+                    <dd>
+                      <p>A system-wide limit on the number of
+                      semaphores in all semaphore sets.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="constant">SEMOPM</code></span></dt>
+
+                    <dd>
+                      <p>The maximum number of operations that may
+                      be specified in a <a class="link" href="../htmlman2/semop.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">semop</span>(2)</span></a>
+                      call.</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="constant">SEMMNI</code></span></dt>
+
+                    <dd>
+                      <p>A system-wide limit on the maximum number
+                      of semaphore identifiers.</p>
+                    </dd>
+                  </dl>
+                </div>
+              </blockquote>
+            </div>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/kernel/sg-big-buff</code></span></dt>
+
+          <dd>
+            <p>This file shows the size of the generic SCSI device
+            (sg) buffer. You can't tune it just yet, but you could
+            change it at compile time by editing <code class="filename">include/scsi/sg.h</code> and changing the
+            value of <code class="constant">SG_BIG_BUFF</code>.
+            However, there shouldn't be any reason to change this
+            value.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/kernel/shmall</code></span></dt>
+
+          <dd>
+            <p>This file contains the system-wide limit on the
+            total number of pages of System V shared memory.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/kernel/shmmax</code></span></dt>
+
+          <dd>
+            <p>This file can be used to query and set the run-time
+            limit on the maximum (System V IPC) shared memory
+            segment size that can be created. Shared memory
+            segments up to 1GB are now supported in the kernel.
+            This value defaults to <code class="constant">SHMMAX</code>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/kernel/shmmni</code></span></dt>
+
+          <dd>
+            <p>(available in Linux 2.4 and onward) This file
+            specifies the system-wide maximum number of System V
+            shared memory segments that can be created.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/kernel/sysrq</code></span></dt>
+
+          <dd>
+            <p>This file controls the functions allowed to be
+            invoked by the SysRq key. By default, the file contains
+            1 meaning that every possible SysRq request is allowed
+            (in older kernel versions, SysRq was disabled by
+            default, and you were required to specifically enable
+            it at run-time, but this is not the case any more).
+            Possible values in this file are:</p>
+
+            <p>0 - disable sysrq completely 1 - enable all
+            functions of sysrq &gt;1 - bitmask of allowed sysrq
+            functions, as follows: 2 - enable control of console
+            logging level 4 - enable control of keyboard (SAK,
+            unraw) 8 - enable debugging dumps of processes etc. 16
+            - enable sync command 32 - enable remount read-only 64
+            - enable signalling of processes (term, kill, oom-kill)
+            128 - allow reboot/poweroff 256 - allow nicing of all
+            real-time tasks</p>
+
+            <p>This file is only present if the <code class="constant">CONFIG_MAGIC_SYSRQ</code> kernel
+            configuration option is enabled. For further details
+            see the kernel source file <code class="filename">Documentation/sysrq.txt</code>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/kernel/version</code></span></dt>
+
+          <dd>
+            <p>This file contains a string like:</p>
+
+            <p>#5 Wed Feb 25 21:49:24 MET 1998</p>
+
+            <p>The "#5" means that this is the fifth kernel built
+            from this source base and the date behind it indicates
+            the time the kernel was built.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/kernel/threads-max</code> (since
+          Linux 2.3.11)</span></dt>
+
+          <dd>
+            <p>This file specifies the system-wide limit on the
+            number of threads (tasks) that can be created on the
+            system.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/kernel/zero-paged (PowerPC
+          only)</code></span></dt>
+
+          <dd>
+            <p>This file contains a flag. When enabled (nonzero),
+            Linux-PPC will pre-zero pages in the idle loop,
+            possibly speeding up get_free_pages.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/net</code></span></dt>
+
+          <dd>
+            <p>This directory contains networking stuff.
+            Explanations for some of the files under this directory
+            can be found in <a class="link" href="../htmlman7/tcp.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">tcp</span>(7)</span></a> and <a class="link" href="../htmlman7/ip.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">ip</span>(7)</span></a>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/net/core/somaxconn</code></span></dt>
+
+          <dd>
+            <p>This file defines a ceiling value for the
+            <code class="literal">backlog</code> argument of
+            <a class="link" href="../htmlman2/listen.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">listen</span>(2)</span></a>; see the
+            <a class="link" href="../htmlman2/listen.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">listen</span>(2)</span></a> manual page
+            for details.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/proc</code></span></dt>
+
+          <dd>
+            <p>This directory may be empty.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/sunrpc</code></span></dt>
+
+          <dd>
+            <p>This directory supports Sun remote procedure call
+            for network file system (NFS). On some systems, it is
+            not present.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/vm</code></span></dt>
+
+          <dd>
+            <p>This directory contains files for memory management
+            tuning, buffer and cache management.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/vm/drop_caches</code> (since Linux
+          2.6.16)</span></dt>
+
+          <dd>
+            <p>Writing to this file causes the kernel to drop clean
+            caches, dentries and inodes from memory, causing that
+            memory to become free.</p>
+
+            <p>To free pagecache, use <span class="emphasis"><em>echo 1 &gt;
+            /proc/sys/vm/drop_caches</em></span>; to free dentries
+            and inodes, use <span class="emphasis"><em>echo 2 &gt;
+            /proc/sys/vm/drop_caches</em></span>; to free
+            pagecache, dentries and inodes, use <span class="emphasis"><em>echo 3 &gt;
+            /proc/sys/vm/drop_caches</em></span>.</p>
+
+            <p>Because this is a nondestructive operation and dirty
+            objects are not freeable, the user should run <a class="link" href="../htmlman8/sync.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">sync</span>(8)</span></a> first.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/vm/legacy_va_layout</code> (since
+          Linux 2.6.9)</span></dt>
+
+          <dd>
+            <p>If nonzero, this disables the new 32-bit
+            memory-mapping layout; the kernel will use the legacy
+            (2.4) layout for all processes.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/vm/memory_failure_early_kill</code>
+          (since Linux 2.6.32)</span></dt>
+
+          <dd>
+            <p>Control how to kill processes when an uncorrected
+            memory error (typically a 2-bit error in a memory
+            module) that cannot be handled by the kernel is
+            detected in the background by hardware. In some cases
+            (like the page still having a valid copy on disk), the
+            kernel will handle the failure transparently without
+            affecting any applications. But if there is no other
+            up-to-date copy of the data, it will kill processes to
+            prevent any data corruptions from propagating.</p>
+
+            <p>The file has one of the following values:</p>
+
+            <div class="blockquote">
+              <blockquote class="blockquote">
+                <div class="variablelist">
+                  <dl>
+                    <dt><span class="term"><em class="replaceable"><code>1:</code></em></span></dt>
+
+                    <dd>
+                      <p>Kill all processes that have the
+                      corrupted-and-not-reloadable page mapped as
+                      soon as the corruption is detected. Note this
+                      is not supported for a few types of pages,
+                      like kernel internally allocated data or the
+                      swap cache, but works for the majority of
+                      user pages.</p>
+                    </dd>
+
+                    <dt><span class="term"><em class="replaceable"><code>0:</code></em></span></dt>
+
+                    <dd>
+                      <p>Only unmap the corrupted page from all
+                      processes and only kill a process who tries
+                      to access it.</p>
+                    </dd>
+                  </dl>
+                </div>
+              </blockquote>
+            </div>
+
+            <p>The kill is performed using a <code class="constant">SIGBUS</code> signal with <code class="literal">si_code</code> set to <code class="constant">BUS_MCEERR_AO</code>. Processes can handle
+            this if they want to; see <a class="link" href="../htmlman2/sigaction.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">sigaction</span>(2)</span></a> for more
+            details.</p>
+
+            <p>This feature is only active on
+            architectures/platforms with advanced machine check
+            handling and depends on the hardware capabilities.</p>
+
+            <p>Applications can override the <code class="literal">memory_failure_early_kill</code> setting
+            individually with the <a class="link" href="../htmlman2/prctl.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">prctl</span>(2)</span></a> <code class="constant">PR_MCE_KILL</code> operation.</p>
+
+            <p>Only present if the kernel was configured with
+            <code class="constant">CONFIG_MEMORY_FAILURE</code>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/vm/memory_failure_recovery</code>
+          (since Linux 2.6.32)</span></dt>
+
+          <dd>
+            <p>Enable memory failure recovery (when supported by
+            the platform)</p>
+
+            <div class="blockquote">
+              <blockquote class="blockquote">
+                <div class="variablelist">
+                  <dl>
+                    <dt><span class="term"><em class="replaceable"><code>1:</code></em></span></dt>
+
+                    <dd>
+                      <p>Attempt recovery.</p>
+                    </dd>
+
+                    <dt><span class="term"><em class="replaceable"><code>0:</code></em></span></dt>
+
+                    <dd>
+                      <p>Always panic on a memory failure.</p>
+                    </dd>
+                  </dl>
+                </div>
+              </blockquote>
+            </div>
+
+            <p>Only present if the kernel was configured with
+            <code class="constant">CONFIG_MEMORY_FAILURE</code>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/vm/oom_dump_tasks</code> (since
+          Linux 2.6.25)</span></dt>
+
+          <dd>
+            <p>Enables a system-wide task dump (excluding kernel
+            threads) to be produced when the kernel performs an
+            OOM-killing. The dump includes the following
+            information for each task (thread, process): thread ID,
+            real user ID, thread group ID (process ID), virtual
+            memory size, resident set size, the CPU that the task
+            is scheduled on, oom_adj score (see the description of
+            <code class="filename">/proc/[pid]/oom_adj</code>), and
+            command name. This is helpful to determine why the
+            OOM-killer was invoked and to identify the rogue task
+            that caused it.</p>
+
+            <p>If this contains the value zero, this information is
+            suppressed. On very large systems with thousands of
+            tasks, it may not be feasible to dump the memory state
+            information for each one. Such systems should not be
+            forced to incur a performance penalty in OOM situations
+            when the information may not be desired.</p>
+
+            <p>If this is set to nonzero, this information is shown
+            whenever the OOM-killer actually kills a memory-hogging
+            task.</p>
+
+            <p>The default value is 0.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/vm/oom_kill_allocating_task</code>
+          (since Linux 2.6.24)</span></dt>
+
+          <dd>
+            <p>This enables or disables killing the OOM-triggering
+            task in out-of-memory situations.</p>
+
+            <p>If this is set to zero, the OOM-killer will scan
+            through the entire tasklist and select a task based on
+            heuristics to kill. This normally selects a rogue
+            memory-hogging task that frees up a large amount of
+            memory when killed.</p>
+
+            <p>If this is set to nonzero, the OOM-killer simply
+            kills the task that triggered the out-of-memory
+            condition. This avoids a possibly expensive tasklist
+            scan.</p>
+
+            <p>If <code class="filename">/proc/sys/vm/panic_on_oom</code> is nonzero,
+            it takes precedence over whatever value is used in
+            <code class="filename">/proc/sys/vm/oom_kill_allocating_task</code>.</p>
+
+            <p>The default value is 0.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/vm/overcommit_memory</code></span></dt>
+
+          <dd>
+            <p>This file contains the kernel virtual memory
+            accounting mode. Values are:</p>
+
+            <div class="blockquote">
+              <blockquote class="blockquote">
+                <div class="itemizedlist">
+                  <ul class="itemizedlist" type="disc">
+                    <li class="listitem">
+                      <p>0: heuristic overcommit (this is the
+                      default)</p>
+                    </li>
+                  </ul>
+                </div>
+
+                <p>1: always overcommit, never check</p>
+
+                <p>2: always check, never overcommit</p>
+              </blockquote>
+            </div>
+
+            <p>In mode 0, calls of <a class="link" href="../htmlman2/mmap.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mmap</span>(2)</span></a> with
+            <code class="constant">MAP_NORESERVE</code> are not
+            checked, and the default check is very weak, leading to
+            the risk of getting a process "OOM-killed". Under Linux
+            2.4 any nonzero value implies mode 1. In mode 2
+            (available since Linux 2.6), the total virtual address
+            space on the system is limited to (SS + RAM*(r/100)),
+            where SS is the size of the swap space, and RAM is the
+            size of the physical memory, and r is the contents of
+            the file <code class="filename">/proc/sys/vm/overcommit_ratio</code>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/vm/overcommit_ratio</code></span></dt>
+
+          <dd>
+            <p>See the description of <code class="filename">/proc/sys/vm/overcommit_memory</code>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/vm/panic_on_oom</code> (since Linux
+          2.6.18)</span></dt>
+
+          <dd>
+            <p>This enables or disables a kernel panic in an
+            out-of-memory situation.</p>
+
+            <p>If this file is set to the value 0, the kernel's
+            OOM-killer will kill some rogue process. Usually, the
+            OOM-killer is able to kill a rogue process and the
+            system will survive.</p>
+
+            <p>If this file is set to the value 1, then the kernel
+            normally panics when out-of-memory happens. However, if
+            a process limits allocations to certain nodes using
+            memory policies (<a class="link" href="../htmlman2/mbind.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mbind</span>(2)</span></a> <code class="constant">MPOL_BIND</code>) or cpusets (<a class="link" href="../htmlman7/cpuset.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">cpuset</span>(7)</span></a>) and those
+            nodes reach memory exhaustion status, one process may
+            be killed by the OOM-killer. No panic occurs in this
+            case: because other nodes' memory may be free, this
+            means the system as a whole may not have reached an
+            out-of-memory situation yet.</p>
+
+            <p>If this file is set to the value 2, the kernel
+            always panics when an out-of-memory condition
+            occurs.</p>
+
+            <p>The default value is 0. 1 and 2 are for failover of
+            clustering. Select either according to your policy of
+            failover.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sys/vm/swappiness</code></span></dt>
+
+          <dd>
+            <p>The value in this file controls how aggressively the
+            kernel will swap memory pages. Higher values increase
+            aggressiveness, lower values decrease aggressiveness.
+            The default value is 60.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sysrq-trigger</code> (since Linux
+          2.4.21)</span></dt>
+
+          <dd>
+            <p>Writing a character to this file triggers the same
+            SysRq function as typing ALT-SysRq-&lt;character&gt;
+            (see the description of <code class="filename">/proc/sys/kernel/sysrq</code>). This file is
+            normally only writable by <code class="literal">root</code>. For further details see the
+            kernel source file <code class="filename">Documentation/sysrq.txt</code>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/sysvipc</code></span></dt>
+
+          <dd>
+            <p>Subdirectory containing the pseudo-files
+            <code class="literal">msg</code>, <code class="literal">sem</code> and <code class="literal">shm</code>. These files list the System V
+            Interprocess Communication (IPC) objects (respectively:
+            message queues, semaphores, and shared memory) that
+            currently exist on the system, providing similar
+            information to that available via <a class="link" href="../htmlman1/ipcs.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">ipcs</span>(1)</span></a>. These files
+            have headers and are formatted (one IPC object per
+            line) for easy understanding. <a class="link" href="../htmlman7/svipc.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">svipc</span>(7)</span></a> provides
+            further background on the information shown by these
+            files.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/tty</code></span></dt>
+
+          <dd>
+            <p>Subdirectory containing the pseudo-files and
+            subdirectories for tty drivers and line
+            disciplines.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/uptime</code></span></dt>
+
+          <dd>
+            <p>This file contains two numbers: the uptime of the
+            system (seconds), and the amount of time spent in idle
+            process (seconds).</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/version</code></span></dt>
+
+          <dd>
+            <p>This string identifies the kernel version that is
+            currently running. It includes the contents of
+            <code class="filename">/proc/sys/kernel/ostype</code>,
+            <code class="filename">/proc/sys/kernel/osrelease</code> and
+            <code class="filename">/proc/sys/kernel/version</code>.
+            For example:</p>
+
+            <div class="informalexample">
+              <pre class="programlisting" xml:space="preserve">
+Linux version 1.0.9 (quinlan@phaze) #1 Sat May 14 01:51:54 EDT 1994
+</pre>
+            </div>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/vmstat</code> (since Linux
+          2.6)</span></dt>
+
+          <dd>
+            <p>This file displays various virtual memory
+            statistics.</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/proc/zoneinfo</code> (since Linux
+          2.6.13)</span></dt>
+
+          <dd>
+            <p>This file display information about memory zones.
+            This is useful for analyzing virtual memory
+            behavior.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="proc-5_sect2" name="proc-5_sect2" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p>Many strings (i.e., the environment and command line) are
+      in the internal format, with subfields terminated by null
+      bytes ('\0'), so you may find that things are more readable
+      if you use <span class="emphasis"><em>od −c</em></span>
+      or <span class="emphasis"><em>tr"\000" "\n"</em></span> to
+      read them. Alternatively, <span class="emphasis"><em>echo
+      `cat &lt;file&gt;`</em></span> works well.</p>
+
+      <p>This manual page is incomplete, possibly inaccurate, and
+      is the kind of thing that needs to be updated very often.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="proc-5_sect3" name="proc-5_sect3" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman1/cat.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">cat</span>(1)</span></a>, <a class="link" href="../htmlman1/dmesg.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">dmesg</span>(1)</span></a>, <span class="citerefentry"><span class="refentrytitle">find</span>(1)</span>, <span class="citerefentry"><span class="refentrytitle">free</span>(1)</span>, <span class="citerefentry"><span class="refentrytitle">ps</span>(1)</span>, <a class="link" href="../htmlman1/tr.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">tr</span>(1)</span></a>, <a class="link" href="../htmlman1/uptime.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">uptime</span>(1)</span></a>, <a class="link" href="../htmlman2/chroot.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">chroot</span>(2)</span></a>, <a class="link" href="../htmlman2/mmap.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mmap</span>(2)</span></a>, <a class="link" href="../htmlman2/readlink.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">readlink</span>(2)</span></a>, <a class="link" href="../htmlman2/syslog.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">syslog</span>(2)</span></a>, <a class="link" href="../htmlman5/slabinfo.5.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">slabinfo</span>(5)</span></a>, <a class="link" href="../htmlman7/hier.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">hier</span>(7)</span></a>, <a class="link" href="../htmlman7/time.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">time</span>(7)</span></a>, <span class="citerefentry"><span class="refentrytitle">arp</span>(8)</span>, <span class="citerefentry"><span class="refentrytitle">hdparm</span>(8)</span>, <span class="citerefentry"><span class="refentrytitle">ifconfig</span>(8)</span>, <span class="citerefentry"><span class="refentrytitle">init</span>(8)</span>, <span class="citerefentry"><span class="refentrytitle">lsmod</span>(8)</span>, <span class="citerefentry"><span class="refentrytitle">lspci</span>(8)</span>, <a class="link" href="../htmlman8/mount.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mount</span>(8)</span></a>, <span class="citerefentry"><span class="refentrytitle">netstat</span>(8)</span>, <span class="citerefentry"><span class="refentrytitle">procinfo</span>(8)</span>, <span class="citerefentry"><span class="refentrytitle">route</span>(8)</span></p>
+
+      <p>The kernel source files: <code class="filename">Documentation/filesystems/proc.txt</code>,
+      <code class="filename">Documentation/sysctl/vm.txt</code></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="proc-5_sect4" name="proc-5_sect4" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.32 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright (C) 1994, 1995 by Daniel Quinlan (quinlan<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>yggdrasil.com)<br />
+
+                  and Copyright (C) 2002-2008 Michael Kerrisk &lt;mtk.manpages<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>gmail.com&gt;<br />
+
+                  with networking additions from Alan Cox (A.Cox<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>swansea.ac.uk)<br />
+
+                  and scsi additions from Michael Neuffer (neuffer<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>mail.uni-mainz.de)<br />
+
+                  and sysctl additions from Andries Brouwer (aeb<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cwi.nl)<br />
+
+                  and System V IPC (as well as various other) additions from<br />
+
+                  Michael Kerrisk &lt;mtk.manpages<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>gmail.com&gt;<br />
+
+                  <br />
+                  This is free documentation; you can redistribute it and/or<br />
+
+                  modify it under the terms of the GNU General Public License as<br />
+
+                  published by the Free Software Foundation; either version 2 of<br />
+
+                  the License, or (at your option) any later version.<br />
+
+                  <br />
+                  The GNU General Public License's references to "object code"<br />
+
+                  and "executables" are to be interpreted as the output of any<br />
+
+                  document formatting or typesetting system, including<br />
+
+                  intermediate and printed output.<br />
+
+                  <br />
+                  This manual is distributed in the hope that it will be useful,<br />
+
+                  but WITHOUT ANY WARRANTY; without even the implied warranty of<br />
+
+                  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<br />
+
+                  GNU General Public License for more details.<br />
+
+                  <br />
+                  You should have received a copy of the GNU General Public<br />
+
+                  License along with this manual; if not, write to the Free<br />
+
+                  Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111,<br />
+
+                  USA.<br />
+                  <br />
+                  Modified 1995-05-17 by faith<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cs.unc.edu<br />
+
+                  Minor changes by aeb and Marty Leisner (leisner<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>sdsp.mc.xerox.com).<br />
+
+                  Modified 1996-04-13, 1996-07-22 by aeb<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cwi.nl<br />
+
+                  Modified 2001-12-16 by rwhron<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>earthlink.net<br />
+
+                  Modified 2002-07-13 by jbelton<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>shaw.ca<br />
+
+                  Modified 2002-07-22, 2003-05-27, 2004-04-06, 2004-05-25<br />
+
+                     by Michael Kerrisk &lt;mtk.manpages<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>gmail.com&gt;<br />
+
+                  2004-11-17, mtk -- updated notes on /proc/loadavg<br />
+
+                  2004-12-01, mtk, rtsig-max and rtsig-nr went away in 2.6.8<br />
+
+                  2004-12-14, mtk, updated 'statm', and fixed error in order of list<br />
+
+                  2005-05-12, mtk, updated 'stat'<br />
+
+                  2005-07-13, mtk, added /proc/sys/fs/mqueue/*<br />
+
+                  2005-09-16, mtk, Added /proc/sys/fs/suid_dumpable<br />
+
+                  2005-09-19, mtk, added /proc/zoneinfo<br />
+
+                  2005-03-01, mtk, moved /proc/sys/fs/mqueue/* material to mq_overview.7.<br />
+
+                  2008-06-05, mtk, Added /proc/[pid]/oom_score, /proc/[pid]/oom_adj,<br />
+
+                      /proc/[pid]/limits, /proc/[pid]/mountinfo, /proc/[pid]/mountstats,<br />
+
+                      and /proc/[pid]/fdinfo/*.<br />
+
+                  2008-06-19, mtk, Documented /proc/[pid]/status.<br />
+
+                  2008-07-15, mtk, added /proc/config.gz<br />
+
+                  <br />
+                  FIXME 2.6.13 seems to have /proc/vmcore implemented<br />
+
+                  in the source code, but there is no option available under<br />
+
+                  'make xconfig'; eventually this should be fixed, and then info<br />
+
+                  from the patch-2.6.13 and change log could be used to write an<br />
+
+                  entry in this man page.<br />
+                  Needs CONFIG_VMCORE<br />
+                  <br />
+                  FIXME cross check against Documentation/filesystems/proc.txt<br />
+
+                  to see what information could be imported from that file<br />
+
+                  into this file.<br />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

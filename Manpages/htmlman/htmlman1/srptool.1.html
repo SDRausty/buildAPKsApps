@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>srptool(1) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="srptool(1) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="srptool(1) — Linux manual pages">
+    <a id="srptool.1" name="srptool.1" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>srptool — Simple SRP password tool</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="srptool-1_sect1" name="srptool-1_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>Very simple program that emulates the programs in the
+      Stanford SRP (Secure Remote Password) libraries using GnuTLS.
+      It is intended for use in places where you don't expect SRP
+      authentication to be the used for system users.</p>
+
+      <p>In brief, to use SRP you need to create two files. These
+      are the password file that holds the users and the verifiers
+      associated with them and the configuration file to hold the
+      group parameters (called tpasswd.conf).</p>
+    </div>
+
+    <div class="refsect1" title="OPTIONS">
+      <a id="srptool-1_sect2" name="srptool-1_sect2" shape="rect"> </a>
+
+      <h2>OPTIONS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="option">−−bits <code class="constant">BITS</code></code></span></dt>
+
+          <dd>
+            <p>specify the number of bits for prime numbers (used
+            only when the <code class="option">−−create−conf</code> option
+            is used).</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−−create−conf <code class="constant">FILE</code></code></span></dt>
+
+          <dd>
+            <p>Generate a tpasswd.conf file.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−h,
+          −−help</code></span></dt>
+
+          <dd>
+            <p>Prints a short reminder of the command line
+            options.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−i,
+          −−index <code class="constant">INDEX</code></code></span></dt>
+
+          <dd>
+            <p>Specify the index of the parameters in tpasswd.conf
+            to use.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−p,
+          −−passwd <code class="constant">FILE</code></code></span></dt>
+
+          <dd>
+            <p>Specify a password file.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−c,
+          −−passwd−conf <code class="constant">FILE</code></code></span></dt>
+
+          <dd>
+            <p>Specify a password configuration file.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−s,
+          −−salt <code class="constant">SALT</code></code></span></dt>
+
+          <dd>
+            <p>Specify salt size for crypt algorithm.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−u,
+          −−username <em class="parameter"><code>username</code></em></code></span></dt>
+
+          <dd>
+            <p>Specify username.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−−verify</code></span></dt>
+
+          <dd>
+            <p>Just verify password.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="EXAMPLES">
+      <a id="srptool-1_sect3" name="srptool-1_sect3" shape="rect"> </a>
+
+      <h2>EXAMPLES</h2>
+
+      <p>To create tpasswd.conf which holds the g and n values for
+      SRP protocol (generator and a large prime), run:</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="informalexample">
+            <pre class="programlisting" xml:space="preserve">
+$ srptool −−create−conf /etc/tpasswd.conf
+</pre>
+          </div>
+        </blockquote>
+      </div>
+
+      <p>This command will create /etc/tpasswd and will add user
+      'test' (you will also be prompted for a password). Verifiers
+      are stored by default in the way libsrp expects.</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="informalexample">
+            <pre class="programlisting" xml:space="preserve">
+$ srptool −−passwd /etc/tpasswd \
+    −−passwd−conf /etc/tpasswd.conf −u test
+</pre>
+          </div>
+        </blockquote>
+      </div>
+
+      <p>This command will check against a password. If the
+      password matches the one in /etc/tpasswd you will get an
+      ok.</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="informalexample">
+            <pre class="programlisting" xml:space="preserve">
+$ srptool −−passwd /etc/tpasswd \
+    −−passwd−conf /etc/tpasswd.conf −−verify −u test
+</pre>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="refsect1" title="AUTHOR">
+      <a id="srptool-1_sect4" name="srptool-1_sect4" shape="rect"> </a>
+
+      <h2>AUTHOR</h2>
+
+      <p>Nikos Mavrogiannopoulos &lt;nmav@gnutls.org&gt; and
+      others; see /usr/share/doc/gnutls−bin/AUTHORS for a
+      complete list.</p>
+
+      <p>This manual page was written by Ivo Timmermans
+      &lt;ivo@debian.org&gt;, for the Debian GNU/Linux system (but
+      may be used by others).</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

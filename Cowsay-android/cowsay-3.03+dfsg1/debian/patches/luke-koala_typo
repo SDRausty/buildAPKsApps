@@ -1,0 +1,16 @@
+Description: Fix a small typo in the luke-koala cow
+Forwarded: no
+Origin: vendor, http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=203648#5
+Bug-Debian: http://bugs.debian.org/203648
+Author: Adam Garside <asg@gimp.shacknet.nu>
+
+--- cowsay-3.03.orig/cows/luke-koala.cow
++++ cowsay-3.03/cows/luke-koala.cow
+@@ -10,6 +10,6 @@ $the_cow = <<EOC;
+      ()~*~()   
+      (_)-(_)   
+      Luke    
+-     Sywalker
++     Skywalker
+      koala   
+ EOC

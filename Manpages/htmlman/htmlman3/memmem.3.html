@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>memmem(3) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="memmem(3) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="memmem(3) — Linux manual pages">
+    <a id="memmem.3" name="memmem.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>memmem — locate a substring</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+#define _GNU_SOURCE          /* See feature_test_macros(7) */
+#include &lt;string.h&gt;
+</pre>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">void *<b class="fsfunc">memmem</b>(</code></td>
+
+            <td rowspan="1" colspan="1">const void *<var class="pdparam">haystack</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">size_t <var class="pdparam">haystacklen</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">const void *<var class="pdparam">needle</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">size_t <var class="pdparam">needlelen</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="memmem-3_sect1" name="memmem-3_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>The <code class="function">memmem</code>() function finds
+      the start of the first occurrence of the substring <em class="parameter"><code>needle</code></em> of length <em class="parameter"><code>needlelen</code></em> in the memory area
+      <em class="parameter"><code>haystack</code></em> of length
+      <em class="parameter"><code>haystacklen</code></em>.</p>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="memmem-3_sect2" name="memmem-3_sect2" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p>The <code class="function">memmem</code>() function
+      returns a pointer to the beginning of the substring, or NULL
+      if the substring is not found.</p>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="memmem-3_sect3" name="memmem-3_sect3" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>This function is a GNU extension.</p>
+    </div>
+
+    <div class="refsect1" title="BUGS">
+      <a id="memmem-3_sect4" name="memmem-3_sect4" shape="rect"> </a>
+
+      <h2>BUGS</h2>
+
+      <p>This function was broken in Linux libraries up to and
+      including libc 5.0.9; there the <em class="parameter"><code>needle</code></em> and <em class="parameter"><code>haystack</code></em> arguments were
+      interchanged, and a pointer to the end of the first
+      occurrence of <em class="parameter"><code>needle</code></em>
+      was returned.</p>
+
+      <p>Both old and new libc's have the bug that if <em class="parameter"><code>needle</code></em> is empty, <em class="replaceable"><code>haystack−1</code></em> (instead of
+      <em class="parameter"><code>haystack</code></em>) is
+      returned. And glibc 2.0 makes it worse, returning a pointer
+      to the last byte of <em class="parameter"><code>haystack</code></em>. This is fixed in
+      glibc 2.1.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="memmem-3_sect5" name="memmem-3_sect5" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman3/strstr.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">strstr</span>(3)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="memmem-3_sect6" name="memmem-3_sect6" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.30 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright 1993 David Metcalfe (david<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>prism.demon.co.uk)<br />
+
+                  <br />
+                  Permission is granted to make and distribute verbatim copies of this<br />
+
+                  manual provided the copyright notice and this permission notice are<br />
+
+                  preserved on all copies.<br />
+                  <br />
+                  Permission is granted to copy and distribute modified versions of this<br />
+
+                  manual under the conditions for verbatim copying, provided that the<br />
+
+                  entire resulting derived work is distributed under the terms of a<br />
+
+                  permission notice identical to this one.<br />
+
+                  <br />
+                  Since the Linux kernel and libraries are constantly changing, this<br />
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no<br />
+
+                  responsibility for errors or omissions, or for damages resulting from<br />
+
+                  the use of the information contained herein.  The author(s) may not<br />
+
+                  have taken the same level of care in the production of this manual,<br />
+
+                  which is licensed free of charge, as they might when working<br />
+
+                  professionally.<br />
+                  <br />
+                  Formatted or processed versions of this manual, if unaccompanied by<br />
+
+                  the source, must acknowledge the copyright and authors of this work.<br />
+
+                  <br />
+                  References consulted:<br />
+                      Linux libc source code<br />
+
+                      386BSD man pages<br />
+
+                  Modified Sat Jul 24 18:50:48 1993 by Rik Faith (faith<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cs.unc.edu)<br />
+
+                  Interchanged 'needle' and 'haystack'; added history, aeb, 980113.<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

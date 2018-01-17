@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>mq_getattr(3) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="mq_getattr(3) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="mq_getattr(3) — Linux manual pages">
+    <a id="mq-getattr.3" name="mq-getattr.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>mq_getattr, mq_setattr — get/set message queue
+      attributes</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;mqueue.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">mq_getattr</b>(</code></td>
+
+            <td rowspan="1" colspan="1">mqd_t <var class="pdparam">mqdes</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">struct mq_attr *<var class="pdparam">attr</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">mq_setattr</b>(</code></td>
+
+            <td rowspan="1" colspan="1">mqd_t <var class="pdparam">mqdes</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">struct mq_attr *<var class="pdparam">newattr</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">struct mq_attr *<var class="pdparam">oldattr</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;">
+        <table border="0" summary="Note">
+          <tr>
+            <td rowspan="2" align="center" valign="top" width="25" colspan="1">
+            <img alt="[Note]" src="../stylesheet/note.png" /></td>
+
+            <th align="left" rowspan="1" colspan="1">Note</th>
+          </tr>
+
+          <tr>
+            <td align="left" valign="top" rowspan="1" colspan="1">
+              <p>Link with <code class="option">−lrt</code>.</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="mq-getattr-3_sect1" name="mq-getattr-3_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><code class="function">mq_getattr</code>() and
+      <code class="function">mq_setattr</code>() respectively
+      retrieve and modify attributes of the message queue referred
+      to by the descriptor <em class="parameter"><code>mqdes</code></em>.</p>
+
+      <p><code class="function">mq_getattr</code>() returns an
+      <span class="structname">mq_attr</span> structure in the
+      buffer pointed by <em class="parameter"><code>attr</code></em>. This structure is defined
+      as:</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="structdef">
+            <table style="border-collapse: collapse;">
+              <colgroup span="1">
+                <col span="1" />
+                <col span="1" />
+                <col span="1" />
+                <col span="1" />
+                <col span="1" />
+              </colgroup>
+
+              <tbody>
+                <tr>
+                  <td class="structdefhdr" style="" align="left" rowspan="1" colspan="1">
+                  struct</td>
+
+                  <td class="structdefhdr" style="" colspan="4" align="left" rowspan="1"><span class="structname">mq_attr</span> {</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">long</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>mq_flags</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      
+                      /* Flags: 0 or O_NONBLOCK */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">long</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>mq_maxmsg</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      
+                      /* Max. # of messages on queue */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">long</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>mq_msgsize</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      
+                      /* Max. message size (bytes) */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">long</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>mq_curmsgs</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      
+                      /* # of messages currently in queue */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="structdefftr" style="" colspan="5" align="left" rowspan="1">};</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </blockquote>
+      </div>
+
+      <p>The <em class="parameter"><code>mq_flags</code></em> field
+      contains flags associated with the open message queue
+      description. This field is initialized when the queue is
+      created by <a class="link" href="../htmlman3/mq_open.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mq_open</span>(3)</span></a>. The only flag
+      that can appear in this field is <code class="constant">O_NONBLOCK</code>.</p>
+
+      <p>The <em class="parameter"><code>mq_maxmsg</code></em> and
+      <em class="parameter"><code>mq_msgsize</code></em> fields are
+      set when the message queue is created by <a class="link" href="../htmlman3/mq_open.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mq_open</span>(3)</span></a>. The <em class="parameter"><code>mq_maxmsg</code></em> field is an upper
+      limit on the number of messages that may be placed on the
+      queue using <a class="link" href="../htmlman3/mq_send.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mq_send</span>(3)</span></a>. The <em class="parameter"><code>mq_msgsize</code></em> field is an upper
+      limit on the size of messages that may be placed on the
+      queue. Both of these fields must have a value greater than
+      zero. Two <code class="filename">/proc</code> files that
+      place ceilings on the values for these fields are described
+      in <a class="link" href="../htmlman3/mq_open.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mq_open</span>(3)</span></a>.</p>
+
+      <p>The <em class="parameter"><code>mq_curmsgs</code></em>
+      field returns the number of messages currently held in the
+      queue.</p>
+
+      <p><code class="function">mq_setattr</code>() sets message
+      queue attributes using information supplied in the
+      <span class="structname">mq_attr</span> structure pointed to
+      by <em class="parameter"><code>newattr</code></em>. The only
+      attribute that can be modified is the setting of the
+      <code class="constant">O_NONBLOCK</code> flag in <em class="parameter"><code>mq_flags</code></em>. The other fields in
+      <em class="parameter"><code>newattr</code></em> are ignored.
+      If the <em class="parameter"><code>oldattr</code></em> field
+      is not NULL, then the buffer that it points to is used to
+      return an <span class="structname">mq_attr</span> structure
+      that contains the same information that is returned by
+      <code class="function">mq_getattr</code>().</p>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="mq-getattr-3_sect2" name="mq-getattr-3_sect2" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p>On success <code class="function">mq_getattr</code>() and
+      <code class="function">mq_setattr</code>() return 0; on
+      error, −1 is returned, with <code class="varname">errno</code> set to indicate the error.</p>
+    </div>
+
+    <div class="refsect1" title="ERRORS">
+      <a id="mq-getattr-3_sect3" name="mq-getattr-3_sect3" shape="rect"> </a>
+
+      <h2>ERRORS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><span class="errorname">EBADF</span></span></dt>
+
+          <dd>
+            <p>The descriptor specified in <em class="parameter"><code>mqdes</code></em> is invalid.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EINVAL</span></span></dt>
+
+          <dd>
+            <p><em class="replaceable"><code>newattr−&gt;mq_flags</code></em>
+            contained set bits other than <code class="constant">O_NONBLOCK</code>.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="mq-getattr-3_sect4" name="mq-getattr-3_sect4" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>POSIX.1-2001.</p>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="mq-getattr-3_sect5" name="mq-getattr-3_sect5" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p>On Linux, <code class="function">mq_getattr</code>() and
+      <code class="function">mq_setattr</code>() are library
+      functions layered on top of the <a class="link" href="../htmlman2/mq_getsetattr.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mq_getsetattr</span>(2)</span></a> system
+      call.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="mq-getattr-3_sect6" name="mq-getattr-3_sect6" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman3/mq_close.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mq_close</span>(3)</span></a>, <a class="link" href="../htmlman3/mq_notify.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mq_notify</span>(3)</span></a>, <a class="link" href="../htmlman3/mq_open.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mq_open</span>(3)</span></a>, <a class="link" href="../htmlman3/mq_receive.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mq_receive</span>(3)</span></a>, <a class="link" href="../htmlman3/mq_send.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mq_send</span>(3)</span></a>, <a class="link" href="../htmlman3/mq_unlink.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mq_unlink</span>(3)</span></a>, <a class="link" href="../htmlman7/mq_overview.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mq_overview</span>(7)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="mq-getattr-3_sect7" name="mq-getattr-3_sect7" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.26 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    t<br />
+                  <br />
+                  Copyright (C) 2006 Michael Kerrisk &lt;mtk.manpages<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>gmail.com&gt;<br />
+
+                  <br />
+                  Permission is granted to make and distribute verbatim copies of this<br />
+
+                  manual provided the copyright notice and this permission notice are<br />
+
+                  preserved on all copies.<br />
+                  <br />
+                  Permission is granted to copy and distribute modified versions of this<br />
+
+                  manual under the conditions for verbatim copying, provided that the<br />
+
+                  entire resulting derived work is distributed under the terms of a<br />
+
+                  permission notice identical to this one.<br />
+
+                  <br />
+                  Since the Linux kernel and libraries are constantly changing, this<br />
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no<br />
+
+                  responsibility for errors or omissions, or for damages resulting from<br />
+
+                  the use of the information contained herein.  The author(s) may not<br />
+
+                  have taken the same level of care in the production of this manual,<br />
+
+                  which is licensed free of charge, as they might when working<br />
+
+                  professionally.<br />
+                  <br />
+                  Formatted or processed versions of this manual, if unaccompanied by<br />
+
+                  the source, must acknowledge the copyright and authors of this work.<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

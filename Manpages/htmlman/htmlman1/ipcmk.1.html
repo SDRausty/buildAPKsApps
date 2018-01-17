@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>ipcmk(1) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="ipcmk(1) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="ipcmk(1) — Linux manual pages">
+    <a id="ipcmk.1" name="ipcmk.1" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>ipcmk — create various ipc resources</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">ipcmk</code> <code class="option">−h</code></p>
+      </div>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">ipcmk</code> [ <code class="option">−M</code> size ] [ <code class="option">−S</code> nsems ] [<code class="option">−Q</code>] [ <code class="option">−p</code> mode ]</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="ipcmk-1_sect1" name="ipcmk-1_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><span class="command"><strong>ipcmk</strong></span> allows
+      you to create shared memory segments, message queues or
+      semaphore arrays.</p>
+    </div>
+
+    <div class="refsect1" title="OPTIONS">
+      <a id="ipcmk-1_sect2" name="ipcmk-1_sect2" shape="rect"> </a>
+
+      <h2>OPTIONS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term">Resources may be specified as
+          follows:</span></dt>
+
+          <dt><span class="term"><code class="option">−M
+          size</code></span></dt>
+
+          <dd>
+            <p>shared memory segment of size <em class="parameter"><code>size</code></em></p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−S
+          nsems</code></span></dt>
+
+          <dd>
+            <p>semaphore array with <em class="parameter"><code>nsems</code></em> elements</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−Q</code></span></dt>
+
+          <dd>
+            <p>message queue</p>
+          </dd>
+
+          <dt><span class="term">Other options</span></dt>
+
+          <dt><span class="term"><code class="option">−p
+          mode</code></span></dt>
+
+          <dd>
+            <p>permission for the resource (default is 0644)</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−h</code></span></dt>
+
+          <dd>
+            <p>display a short help message and exit</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="ipcmk-1_sect3" name="ipcmk-1_sect3" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman1/ipcrm.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">ipcrm</span>(1)</span></a>, <a class="link" href="../htmlman1/ipcs.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">ipcs</span>(1)</span></a></p>
+    </div>
+
+    <div class="refsect1" title="AUTHOR">
+      <a id="ipcmk-1_sect4" name="ipcmk-1_sect4" shape="rect"> </a>
+
+      <h2>AUTHOR</h2>
+
+      <p>Hayden A. James (hayden.james@gmail.com)</p>
+    </div>
+
+    <div class="refsect1" title="AVAILABILITY">
+      <a id="ipcmk-1_sect5" name="ipcmk-1_sect5" shape="rect"> </a>
+
+      <h2>AVAILABILITY</h2>
+
+      <p>The ipcmk command is part of the util-linux package and is
+      available from
+      ftp://ftp.kernel.org/pub/linux/utils/util-linux/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright 2008 Hayden A. James (hayden.james<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>gmail.com)<br />
+
+                  May be distributed under the GNU General Public License<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

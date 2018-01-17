@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">VitoshaPokerOdds</string>
+    <string name="chance_label">Chance%:</string>
+    <string name="calculate_label">Calculate</string>
+    <string name="player_hand_label">Player Hand:</string>
+    <string name="flop_label">Flop:</string>
+    <string name="turn_label">Turn:</string>
+    <string name="river_label">River:</string>
+    <string name="number_of_iterations_label">Number of Iterations:</string>
+    <string name="number_of_players_label">Number of Players:</string>
+    <string name="clear_label">Clear</string>
+    <string name="default_iterations_value">100</string>
+    <string name="default_number_of_players_value">2</string>
+    <string name="default_card_value">-</string>
+    <string name="player_s_cards_needed_toast">Player\'s cards needed!</string>
+    <string name="flop_has_3_cards_toast">Flop has 3 cards!</string>
+    <string name="do_not_miss_turn_before_river_toast">Do not miss turn before river!</string>
+    <string name="cards_are_not_unique_tast">Cards are not unique!</string>
+
+    <string-array name="cards_array">
+        <item>-</item>
+        <item>2\u2665</item>
+        <item>3\u2665</item>
+        <item>4\u2665</item>
+        <item>5\u2665</item>
+        <item>6\u2665</item>
+        <item>7\u2665</item>
+        <item>8\u2665</item>
+        <item>9\u2665</item>
+        <item>10\u2665</item>
+        <item>J\u2665</item>
+        <item>Q\u2665</item>
+        <item>K\u2665</item>
+        <item>A\u2665</item>
+        <item>2\u2666</item>
+        <item>3\u2666</item>
+        <item>4\u2666</item>
+        <item>5\u2666</item>
+        <item>6\u2666</item>
+        <item>7\u2666</item>
+        <item>8\u2666</item>
+        <item>9\u2666</item>
+        <item>10\u2666</item>
+        <item>J\u2666</item>
+        <item>Q\u2666</item>
+        <item>K\u2666</item>
+        <item>A\u2666</item>
+        <item>2\u2663</item>
+        <item>3\u2663</item>
+        <item>4\u2663</item>
+        <item>5\u2663</item>
+        <item>6\u2663</item>
+        <item>7\u2663</item>
+        <item>8\u2663</item>
+        <item>9\u2663</item>
+        <item>10\u2663</item>
+        <item>J\u2663</item>
+        <item>Q\u2663</item>
+        <item>K\u2663</item>
+        <item>A\u2663</item>
+        <item>2\u2660</item>
+        <item>3\u2660</item>
+        <item>4\u2660</item>
+        <item>5\u2660</item>
+        <item>6\u2660</item>
+        <item>7\u2660</item>
+        <item>8\u2660</item>
+        <item>9\u2660</item>
+        <item>10\u2660</item>
+        <item>J\u2660</item>
+        <item>Q\u2660</item>
+        <item>K\u2660</item>
+        <item>A\u2660</item>
+    </string-array>
+    <string-array name="card_codes_array">
+        <item></item>
+        <item>2H</item>
+        <item>3H</item>
+        <item>4H</item>
+        <item>5H</item>
+        <item>6H</item>
+        <item>7H</item>
+        <item>8H</item>
+        <item>9H</item>
+        <item>TH</item>
+        <item>JH</item>
+        <item>QH</item>
+        <item>KH</item>
+        <item>AH</item>
+        <item>2D</item>
+        <item>3D</item>
+        <item>4D</item>
+        <item>5D</item>
+        <item>6D</item>
+        <item>7D</item>
+        <item>8D</item>
+        <item>9D</item>
+        <item>TD</item>
+        <item>JD</item>
+        <item>QD</item>
+        <item>KD</item>
+        <item>AD</item>
+        <item>2C</item>
+        <item>3C</item>
+        <item>4C</item>
+        <item>5C</item>
+        <item>6C</item>
+        <item>7C</item>
+        <item>8C</item>
+        <item>9C</item>
+        <item>TC</item>
+        <item>JC</item>
+        <item>QC</item>
+        <item>KC</item>
+        <item>AC</item>
+        <item>2S</item>
+        <item>3S</item>
+        <item>4S</item>
+        <item>5S</item>
+        <item>6S</item>
+        <item>7S</item>
+        <item>8S</item>
+        <item>9S</item>
+        <item>TS</item>
+        <item>JS</item>
+        <item>QS</item>
+        <item>KS</item>
+        <item>AS</item>
+    </string-array>
+    <string-array name="iterations_array">
+        <item>100</item>
+        <item>1000</item>
+        <item>10000</item>
+        <item>100000</item>
+        <item>1000000</item>
+        <item>10000000</item>
+    </string-array>
+    <string-array name="number_of_players_array">
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+    </string-array>
+        <string name="stop_label">Stop</string>
+        <string name="exit">Exit</string>
+        <string name="about">About</string>
+
+</resources>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>     
+    <color name="notpress">#D30308</color> 
+    <color name="press">#900205</color>
+</resources>

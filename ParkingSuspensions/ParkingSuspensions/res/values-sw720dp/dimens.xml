@@ -1,0 +1,39 @@
+<resources>
+
+    <!--
+         Customize dimensions originally defined in res/values/dimens.xml (such as
+         screen margins) for sw720dp devices (e.g. 10" tablets) here.
+    -->
+    <dimen name="activity_horizontal_margin">8dp</dimen>
+    <dimen name="activity_vertical_margin">8dp</dimen>
+    <dimen name="app_min_width">390dp</dimen>
+    <dimen name="app_min_height">40dp</dimen>
+    <dimen name="cal_icon_size">89dp</dimen>
+    <dimen name="num_width">60dp</dimen>
+    <dimen name="help_icon_size">69dp</dimen>
+    <dimen name="date_text_size">21dp</dimen>
+    <dimen name="status_text_size">18dp</dimen>
+    <dimen name="text_padding_left">0dp</dimen>
+    <dimen name="divider_height">20dp</dimen>
+    <dimen name="date_layout_pad">10dp</dimen>
+    <dimen name="scroll_padding">16dp</dimen>
+    <dimen name="cal_text_left_margin">20dp</dimen>
+    <dimen name="cal_text_size">30dp</dimen>
+    <dimen name="img_top_header">130dp</dimen>
+    <dimen name="menu_button">80dp</dimen>
+    <dimen name="top_hdr_logo_width">100dp</dimen>
+	<dimen name="top_hdr_logo_height">100dp</dimen>
+	<dimen name="img_hdr_height">180dp</dimen>
+	<dimen name="about_logo_size">200dp</dimen>
+	<dimen name="about_divider_height">45dp</dimen>
+	<dimen name="about_hdr_text">34dp</dimen>
+    <dimen name="about_ftr_text">28dp</dimen>
+    <dimen name="about_section_pad">45dp</dimen>
+    <dimen name="about_section_pad_hdr">15dp</dimen>
+    <dimen name="padding_for_about_info">20dp</dimen>
+    <dimen name="rl_guide_height">200dp</dimen>
+    <dimen name="help_text_pad_bottom">12dp</dimen>
+    <dimen name="explain_height">80dp</dimen>
+    <dimen name="explain_margin_left">20dp</dimen>
+	
+</resources>

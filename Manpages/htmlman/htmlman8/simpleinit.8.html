@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>simpleinit(8) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="simpleinit(8) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="simpleinit(8) — Linux manual pages">
+    <a id="simpleinit.8" name="simpleinit.8" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>simpleinit — process control initialization</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">init</code> [single] [script]</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="simpleinit-8_sect1" name="simpleinit-8_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><span class="command"><strong>init</strong></span> is
+      invoked as the last step in the Linux boot sequence. If the
+      <em class="parameter"><code>single</code></em> option is
+      used, or if the file <code class="filename">/etc/singleboot</code> exists, then single user
+      mode will be entered, by starting <code class="filename">/bin/sh</code>. If the file <code class="filename">/etc/securesingle</code> exists, then the root
+      password will be required to start single user mode. If the
+      root password does not exist, or if <code class="filename">/etc/passwd</code> does not exist, the checking of
+      the password will be skipped.</p>
+
+      <p>If the file <code class="filename">/etc/TZ</code> exists,
+      then the contents of that file will be read, and used to set
+      the TZ environment variable for each process started by
+      <span class="command"><strong>simpleinit</strong></span>.
+      This "feature" is only available if it's configured at
+      compile-time. It's not normally needed.</p>
+
+      <p>After single user mode is terminated, the <code class="filename">/etc/rc</code> file is executed, and the
+      information in <code class="filename">/etc/inittab</code>
+      will be used to start processes. Alternatively, the
+      <code class="filename">/etc/inittab</code> file may be
+      configured to run a different boot script. See below for
+      details.</p>
+    </div>
+
+    <div class="refsect1" title="THE INITTAB FILE">
+      <a id="simpleinit-8_sect2" name="simpleinit-8_sect2" shape="rect"> </a>
+
+      <h2>THE INITTAB FILE</h2>
+
+      <p>Because of the number of init programs which are appearing
+      in the Linux community, the documentation for the
+      <code class="filename">/etc/inittab</code> file, which is
+      usually found with the <span class="citerefentry"><span class="refentrytitle">inittab</span>(5)</span>
+      man page, is presented here:</p>
+
+      <p>The format is</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <p><em class="replaceable"><code>bootprog=file</code></em></p>
+
+          <p><em class="replaceable"><code>fileprefix=string</code></em></p>
+
+          <p><span class="emphasis"><em>PATH=search
+          path</em></span></p>
+
+          <p><span class="emphasis"><em>INIT_PATH=search
+          path</em></span></p>
+
+          <p><em class="replaceable"><code>ttyline:termcap-entry:getty-command</code></em></p>
+
+          <p><em class="replaceable"><code>finalprog=path</code></em></p>
+        </blockquote>
+      </div>
+
+      <p>An example is as follows:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+        bootprog     =
+        fileprefix   =  /sbin/init.d/
+        PATH         =  /usr/sbin:/usr/bin:/sbin:/bin
+        INIT_PATH    =  /sbin/init.d
+        
+        tty1:linux:/sbin/getty 9600 tty1
+        tty2:linux:/sbin/getty 9600 tty2
+        tty3:linux:/sbin/getty 9600 tty3
+        tty4:linux:/sbin/getty 9600 tty4
+        # tty5:linux:/sbin/getty 9600 tty5
+        # ttyS1:dumb:/sbin/getty 9600 ttyS1
+        # ttyS2:dumb:/sbin/getty -m -t60 2400 ttyS2
+        
+        finalprog   = /sbin/rc.xdm
+</pre>
+      </div>
+
+      <p>Lines beginning with the <code class="literal">#</code>
+      character are treated as comments. Please see documentation
+      for the <span class="citerefentry"><span class="refentrytitle">getty</span>(8)</span> command that you are
+      using, since there are several of these in the Linux
+      community at this time.</p>
+
+      <p>The <span class="command"><strong>bootprog</strong></span>
+      value is appended to the <span class="command"><strong>fileprefix</strong></span> value, and the
+      result specifies the boot programme (script) to run. If
+      unspecified, the default is <code class="filename">/etc/rc</code>. If the boot programme is a
+      directory, then all scripts in that directory tree are
+      executed, in parallel. See the <span class="citerefentry"><span class="refentrytitle">need</span>(8)</span> programme for details
+      on how to elegantly control order of execution and manage
+      dependencies.</p>
+
+      <p>The <code class="constant">PATH</code> value is assigned
+      to the PATH environment variable of child processes (boot
+      scripts).</p>
+
+      <p>The <code class="constant">INIT_PATH</code> value is used
+      by simpleinit(8) itself to find the location of scripts to
+      run (if an absolute path is not given). If unset and the boot
+      programme is a directory, that directory is used. Finally, if
+      the script cannot be found in this path, the standard
+      <code class="constant">PATH</code> is used. This separation
+      allows boot scripts to invoke programmes of the same name
+      without conflict and without needing to specify absolute
+      paths.</p>
+
+      <p>The <span class="command"><strong>finalprog</strong></span> value specifies
+      the path of the programme to run after all <span class="citerefentry"><span class="refentrytitle">getty</span>(8)</span> instances are spawned.
+      At bootup, it is passed a single argument: "start". At
+      shutdown, it is called again, this time with the argument:
+      "stop".</p>
+    </div>
+
+    <div class="refsect1" title="SIGNALS">
+      <a id="simpleinit-8_sect3" name="simpleinit-8_sect3" shape="rect"> </a>
+
+      <h2>SIGNALS</h2>
+
+      <p><a class="link" href="../htmlman8/simpleinit.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">simpleinit</span>(8)</span></a> responds to
+      signals in a variety of ways:</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="constant">SIGHUP</code></span></dt>
+
+          <dd>
+            <p>The <code class="filename">/etc/inittab</code>
+            configuration file will be read again.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">SIGTSTP</code></span></dt>
+
+          <dd>
+            <p>This flips a toggle, which controls whether more
+            processes will be spawned.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">SIGINT</code></span></dt>
+
+          <dd>
+            <p><a class="link" href="../htmlman8/simpleinit.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">simpleinit</span>(8)</span></a> will
+            sync a few times, and try to start <a class="link" href="../htmlman8/shutdown.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">reboot</span>(8)</span></a>. Failing
+            this, it will execute the system <a class="link" href="../htmlman2/reboot.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">reboot</span>(2)</span></a> call. Under
+            Linux, it is possible to configure the Ctrl-Alt-Del
+            sequence to send a signal to the <span class="command"><strong>init</strong></span> process instead
+            of rebooting the system ( <a class="link" href="../htmlman8/simpleinit.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">simpleinit</span>(8)</span></a> does
+            this by default).</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">SIGQUIT</code></span></dt>
+
+          <dd>
+            <p>The <a class="link" href="../htmlman8/shutdown.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">reboot</span>(8)</span></a> programme
+            is executed in place of the <a class="link" href="../htmlman8/simpleinit.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">simpleinit</span>(8)</span></a>
+            programme. This allows <a class="link" href="../htmlman8/shutdown.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">reboot</span>(8)</span></a> to cleanly
+            remount (read-only) the root filesystem, even if the
+            old inode for the <span class="command"><strong>init</strong></span> process was
+            unlinked.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="FILES">
+      <a id="simpleinit-8_sect4" name="simpleinit-8_sect4" shape="rect"> </a>
+
+      <h2>FILES</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+<code class="filename">/etc/inittab</code>
+<code class="filename">/etc/singleboot</code>
+<code class="filename">/etc/securesingle</code>
+<code class="filename">/etc/TZ</code>
+<code class="filename">/etc/passwd</code>
+<code class="filename">/etc/rc</code>
+</pre>
+      </div>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="simpleinit-8_sect5" name="simpleinit-8_sect5" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><span class="citerefentry"><span class="refentrytitle">inittab</span>(5)</span>, <a class="link" href="../htmlman8/ctrlaltdel.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">ctrlaltdel</span>(8)</span></a> <a class="link" href="../htmlman8/shutdown.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">reboot</span>(8)</span></a>, <a class="link" href="../htmlman5/termcap.5.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">termcap</span>(5)</span></a>, <span class="citerefentry"><span class="refentrytitle">getty</span>(8)</span>, <a class="link" href="../htmlman8/agetty.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">agetty</span>(8)</span></a>, <a class="link" href="../htmlman8/shutdown.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">shutdown</span>(8)</span></a>, <a class="link" href="../htmlman8/initctl.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">initctl</span>(8)</span></a></p>
+    </div>
+
+    <div class="refsect1" title="BUGS">
+      <a id="simpleinit-8_sect6" name="simpleinit-8_sect6" shape="rect"> </a>
+
+      <h2>BUGS</h2>
+
+      <p>This program is called <span class="command"><strong>simpleinit</strong></span> to distinguish
+      it from the System V compatible versions of init which are
+      starting to appear in the Linux community. <span class="command"><strong>simpleinit</strong></span> should be linked
+      to, or made identical with, <span class="command"><strong>init</strong></span> for correct
+      functionality.</p>
+    </div>
+
+    <div class="refsect1" title="AUTHOR">
+      <a id="simpleinit-8_sect7" name="simpleinit-8_sect7" shape="rect"> </a>
+
+      <h2>AUTHOR</h2>
+
+      <p>Peter Orbaek (poe@daimi.aau.dk)</p>
+
+      <p>Version 1.20, with patches for singleuser mode by Werner
+      Almesberger</p>
+
+      <p>Richard Gooch &lt;rgooch@atnf.csiro.au&gt;</p>
+
+      <p>Dependency support</p>
+    </div>
+
+    <div class="refsect1" title="AVAILABILITY">
+      <a id="simpleinit-8_sect8" name="simpleinit-8_sect8" shape="rect"> </a>
+
+      <h2>AVAILABILITY</h2>
+
+      <p>The simpleinit command is part of the util-linux package
+      and is available from
+      ftp://ftp.kernel.org/pub/linux/utils/util-linux/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright 1992, 1993 Rickard E. Faith (faith<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cs.unc.edu)<br />
+
+                  May be distributed under the GNU General Public License<br />
+
+                  " for emacs's hilit19 mode :-)<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

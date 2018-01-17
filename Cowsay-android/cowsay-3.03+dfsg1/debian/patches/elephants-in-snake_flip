@@ -1,0 +1,36 @@
+Description: This cow was backwards, this patch flips it
+ For those wondering what this cow is about:
+   http://www.odaha.com/littleprince.php?f=English
+   http://www.sparknotes.com/lit/littleprince/section1.html
+Forwarded: no
+Origin: vendor, http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=190455#10
+Bug-Debian: http://bugs.debian.org/190455
+Author: D. Joe Anderson <deejoe@raccoon.com>
+
+--- cowsay-3.03.orig/cows/elephant-in-snake.cow
++++ cowsay-3.03/cows/elephant-in-snake.cow
+@@ -1,14 +1,16 @@
+ ##
+ ## Do we need to explain this?
+ ##
++## Reversal patch from "D. Joe Anderson" <deejoe@raccoon.com>
++##  in Bug #190455
++##
+ $the_cow = <<EOC;
+-   $thoughts
+-    $thoughts              ....       
+-           ........    .      
+-          .            .      
+-         .             .      
+-.........              .......
+-..............................
+-
++       $thoughts
++        $thoughts  ....
++          .    ........
++          .            .
++          .             .
++    .......              .........
++    ..............................
+ Elephant inside ASCII snake
+ EOC

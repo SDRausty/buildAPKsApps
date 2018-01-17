@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>des_crypt(3) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="des_crypt(3) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="des_crypt(3) — Linux manual pages">
+    <a id="des-crypt.3" name="des-crypt.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>des_crypt, ecb_crypt, cbc_crypt, des_setparity, DES_FAILED
+      — fast DES encryption</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;rpc/des_crypt.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">ecb_crypt</b>(</code></td>
+
+            <td rowspan="1" colspan="1">char *<var class="pdparam">key</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">char *<var class="pdparam">data</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">unsigned <var class="pdparam">datalen</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">unsigned <var class="pdparam">mode</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">cbc_crypt</b>(</code></td>
+
+            <td rowspan="1" colspan="1">char *<var class="pdparam">key</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">char *<var class="pdparam">data</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">unsigned <var class="pdparam">datalen</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">unsigned <var class="pdparam">mode</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">char *<var class="pdparam">ivec</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">void <b class="fsfunc">des_setparity</b>(</code></td>
+
+            <td rowspan="1" colspan="1">char *<var class="pdparam">key</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">DES_FAILED</b>(</code></td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">status</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+.fi
+  
+</pre>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="des-crypt-3_sect1" name="des-crypt-3_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><code class="function">ecb_crypt</code>() and <code class="function">cbc_crypt</code>() implement the NBS DES (Data
+      Encryption Standard). These routines are faster and more
+      general purpose than <a class="link" href="../htmlman3/crypt.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">crypt</span>(3)</span></a>. They also are
+      able to utilize DES hardware if it is available. <code class="function">ecb_crypt</code>() encrypts in ECB (Electronic
+      Code Book) mode, which encrypts blocks of data independently.
+      <code class="function">cbc_crypt</code>() encrypts in CBC
+      (Cipher Block Chaining) mode, which chains together
+      successive blocks. CBC mode protects against insertions,
+      deletions and substitutions of blocks. Also, regularities in
+      the clear text will not appear in the cipher text.</p>
+
+      <p>Here is how to use these routines. The first argument,
+      <em class="parameter"><code>key</code></em>, is the 8-byte
+      encryption key with parity. To set the key's parity, which
+      for DES is in the low bit of each byte, use <code class="function">des_setparity</code>(). The second argument,
+      <em class="parameter"><code>data</code></em>, contains the
+      data to be encrypted or decrypted. The third argument,
+      <em class="parameter"><code>datalen</code></em>, is the
+      length in bytes of <em class="parameter"><code>data</code></em>, which must be a multiple
+      of 8. The fourth argument, <em class="parameter"><code>mode</code></em>, is formed by OR 'ing
+      together some things. For the encryption direction OR in
+      either <code class="constant">DES_ENCRYPT</code> or
+      <code class="constant">DES_DECRYPT</code>. For software
+      versus hardware encryption, OR in either <code class="constant">DES_HW</code> or <code class="constant">DES_SW</code>. If <code class="constant">DES_HW</code> is specified, and there is no
+      hardware, then the encryption is performed in software and
+      the routine returns <code class="constant">DESERR_NOHWDEVICE</code>. For <code class="function">cbc_crypt</code>(), the argument <em class="parameter"><code>ivec</code></em> is the 8-byte
+      initialization vector for the chaining. It is updated to the
+      next initialization vector upon return.</p>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="des-crypt-3_sect2" name="des-crypt-3_sect2" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="constant">DESERR_NONE</code></span></dt>
+
+          <dd>
+            <p>No error.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">DESERR_NOHWDEVICE</code></span></dt>
+
+          <dd>
+            <p>Encryption succeeded, but done in software instead
+            of the requested hardware.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">DESERR_HWERROR</code></span></dt>
+
+          <dd>
+            <p>An error occurred in the hardware or driver.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">DESERR_BADPARAM</code></span></dt>
+
+          <dd>
+            <p>Bad argument to routine.</p>
+          </dd>
+        </dl>
+      </div>
+
+      <p>Given a result status <code class="function">stat</code>,
+      the macro <code class="function">DES_FAILED</code>(<em class="parameter"><code>stat</code></em>) is false only for the
+      first two statuses.</p>
+    </div>
+
+    <div class="refsect1" title="VERSIONS">
+      <a id="des-crypt-3_sect3" name="des-crypt-3_sect3" shape="rect"> </a>
+
+      <h2>VERSIONS</h2>
+
+      <p>These routines are present in libc 4.6.27 and later, and
+      in glibc 2.1 and later.</p>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="des-crypt-3_sect4" name="des-crypt-3_sect4" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>4.3BSD. Not in POSIX.1-2001.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="des-crypt-3_sect5" name="des-crypt-3_sect5" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><span class="citerefentry"><span class="refentrytitle">des</span>(1)</span>, <a class="link" href="../htmlman3/crypt.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">crypt</span>(3)</span></a>, <a class="link" href="../htmlman3/xcrypt.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">xcrypt</span>(3)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="des-crypt-3_sect6" name="des-crypt-3_sect6" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.24 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    <script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>(#)des_crypt.3
+                  2.1 88/08/11 4.0 RPCSRC; from 1.16 88/03/02 SMI;<br />
+
+                  <br />
+                  Taken from libc4 sources, which say:<br />
+
+                  Copyright (C) 1993 Eric Young - can be distributed under GPL.<br />
+
+                  <br />
+                  However, the above header line suggests that this file in fact is<br />
+
+                  Copyright Sun Microsystems, Inc (and is provided for unrestricted use,<br />
+
+                  see other Sun RPC sources).<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

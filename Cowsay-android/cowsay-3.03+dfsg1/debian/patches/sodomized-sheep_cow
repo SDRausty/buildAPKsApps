@@ -1,0 +1,27 @@
+Description: Add a new cow
+ This is the official I-can't-believe-we-have-this-in-Debian cow file.
+ .
+ Added thanks to peer pressure on #debian-uk.
+Forwarded: no
+Origin: vendor, http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=326063#5
+Bug-Debian: http://bugs.debian.org/326063
+Author: Vincent Sanders <vince@kyllikki.org>
+
+--- /dev/null
++++ cowsay-3.03/cows/sodomized-sheep.cow
+@@ -0,0 +1,15 @@
++##
++## The non-flaming sheep.
++##
++$the_cow = <<EOC
++  $thoughts                 __ 
++   $thoughts               (${eyes})
++    $thoughts              (${tongue})
++     $thoughts             /--\\
++       __         / \\  \\ 
++      U${eyes}U\\.'\@\@\@\@\@\@`.\\  )
++      \\__/(\@\@\@\@\@\@\@\@\@\@) /
++           (\@\@\@\@\@\@\@\@)(( 
++           `YY~~~~YY' \\\\
++            ||    ||   >> 
++EOC

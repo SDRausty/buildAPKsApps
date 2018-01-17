@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="txt_quick_settings">快速設定</string>
+
+    <string name="txt_status_unknown">未知</string>
+    <string name="txt_status_turned_on">已開啟舊檔</string>
+    <string name="txt_status_turned_off">已關閉</string>
+    <string name="txt_status_turning_on">正在開啟舊檔 ...</string>
+    <string name="txt_status_turning_off">正在關閉 ...</string>
+    <string name="txt_status_enabled">已啟用</string>
+    <string name="txt_status_disabled">已禁用</string>
+    
+    <string name="wifi_title">Wi-Fi</string>
+    <string name="txt_net_status_connecting">正在連線 ...</string>
+    <string name="txt_net_status_obtainingip">正在獲取IP位址 ...</string>
+    <string name="txt_net_status_connected_to">已連線到%s</string>
+    <string name="txt_net_status_connected">Connected</string>
+    <string name="txt_net_status_failed">連線失敗</string>
+    <string name="txt_net_status_disconnecting">正在斷開 ...</string>
+    <string name="txt_net_status_disconnected">已斷開</string>
+    
+    <string name="gps_title">GPS 接收器</string>
+    <string name="txt_brightness">亮度</string>
+    <string name="msg_disable_autobrightness">自動亮度已開啟舊檔。您想要關閉它並手動控制麼?</string>
+
+    <string name="battery_state_title">電集區狀態:</string>
+    <string name="battery_state_value">%d%%</string>
+    <string name="txt_memory_state_value">手機剩餘空間:</string>
+    <string name="txt_card_state_value">SD 卡剩餘空間:</string>
+    <string name="txt_no_card">沒有 SD 卡</string>
+
+    <string name="airmode_title">飛行模式</string>
+
+    <string name="btn_yes">是</string>
+    <string name="btn_no">否</string>
+    <string name="btn_close">關閉</string>
+    <string name="btn_set">設定</string>
+    <string name="btn_calcel">取消</string>
+
+    <string name="txt_ringer">鈴聲</string>
+    <string name="txt_ringer_mode">鈴聲模式</string>
+    <string name="txt_ringer_silent">靜音</string>
+    <string name="txt_ringer_sound">僅聲音</string>
+    <string name="txt_ringer_vibro">僅震動</string>
+    <string name="txt_ringer_vibrosound">聲音和震動</string>
+    
+    <string name="txt_bt">藍芽</string>
+    <string name="txt_no_apn">沒有 APN 組態</string>
+    
+    <string name="txt_screen_timeout">螢幕待機</string>
+    <string name="txt_screen_timeout_value_seconds">%d 秒</string>
+    <string name="txt_screen_timeout_value_minute">%d 分鐘</string>
+    <string name="txt_screen_timeout_value_minutes">%d 分鐘</string>
+    <string name="txt_screen_timeout_value_never">從不待機</string>
+    
+    <string name="txt_customize_settings">快速設定 > 自訂</string>
+    <string name="txt_preferences">快速設定 > 偏好</string>
+    <string name="txt_visible_settings">顯示設定</string>
+    <string name="txt_hidden_settings">隱藏設定</string>
+    <string name="msg_drag_and_drop">按並按住右邊的圖示來隱藏, 顯示或整理設定。</string>
+    
+    <string name="txt_auto_sync">自動同步資料</string>
+
+    <string name="txt_volume">音量控制</string>
+    <string name="txt_volume_descr">按控制音量</string>
+    <string name="txt_volume_ringer">鈴聲音量</string>
+    <string name="txt_volume_notification">通知音量</string>
+    <string name="txt_volume_media">媒體音量</string>
+    <string name="txt_volume_alarm">鬧鈴音量</string>
+    <string name="txt_volume_voice_call">通話音量</string>
+    <string name="txt_volume_system">系統音量</string>
+    <string name="msg_zero_ringer_warning">因為鈴聲音量是0, 因此您可能會漏接電話。</string>
+    <string name="msg_zero_notification_warning">因為通知音量是0, 因此您可能會錯過通知。</string>
+    <string name="msg_not_silent_warning">您的手機不再靜音因為您調整鈴聲音量到 %d。</string>
+
+    <string name="msg_disabled_warning">2G/3G 連線和短信已禁用。\n\n如果您解除安裝了 Quick Settings 請不要忘記啟用資料連線。</string>
+    <string name="msg_switch_to_air_mode">您確定要啟用飛行模式並斷開全部無線連線麼?</string>
+    <string name="msg_cannot_init_setting">啊... 設定 "%s" 無法再您的手機上控制。</string>
+
+    <string name="menu_customize_settings">自訂</string>
+    <string name="menu_preferences">偏好</string>
+
+    <string name="txt_auto_rotate">自動旋轉</string>
+    <string name="txt_unlock_pattern">解鎖圖案</string>
+    <string name="txt_toolbar">工具列</string>
+
+    <string name="pref_common">常規</string>
+    <string name="pref_status_bar">狀態列捷徑</string>
+    <string name="pref_status_bar_descr">按啟用或禁用狀態列捷徑</string>
+    <string name="pref_view_mode">外觀</string>
+    <string name="pref_view_mode_descr">按選擇全螢幕或對話方塊外觀</string>
+    <string name="msg_tap_to_change_settings">按快速變更設定</string>
+
+    <string name="msg_reinstall_required">Quick Settings 程式沒有更新功能。請解除安裝並安裝新新版。\n\n我們對它造成的不便深表歉意。</string>
+
+    <string name="pref_about">關於</string>
+
+<!-- 1.9.5 -->
+    <string name="txt_pattern">Pattern</string>
+    <string name="txt_pin">PIN</string>
+    <string name="txt_password">Password</string>
+    <string name="txt_wifi_hotspot">Wi-Fi hotspot</string>
+    
+<!-- 1.9.6 -->
+    <string name="txt_apn_control">網路資料 (APN)</string>
+    <string name="txt_mobile_data">網路資料</string>
+    <string name="txt_enable_data_access_first">Enable \"Mobile data\" in system settings first</string>
+    <string name="msg_enabling_mobile_data">Enabling mobile data</string>
+    <string name="msg_2g_hint">If connection does not establish, try to toggle \"2G only\" checkbox in system settings to force modem to reconnect</string>
+    <string name="msg_use_mobile_data_hint">You should better use \"Mobile data\" setting instead of \"Mobile data (APN)\" one</string>
+
+</resources>

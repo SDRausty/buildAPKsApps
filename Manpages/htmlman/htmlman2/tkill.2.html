@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>tkill(2) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="tkill(2) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="tkill(2) — Linux manual pages">
+    <a id="tkill.2" name="tkill.2" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>tkill, tgkill — send a signal to a thread</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">tkill</b>(</code></td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">tid</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">sig</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">tgkill</b>(</code></td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">tgid</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">tid</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">sig</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="tkill-2_sect1" name="tkill-2_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><code class="function">tgkill</code>() sends the signal
+      <em class="parameter"><code>sig</code></em> to the thread
+      with the thread ID <em class="parameter"><code>tid</code></em> in the thread group
+      <em class="parameter"><code>tgid</code></em>. (By contrast,
+      <a class="link" href="../htmlman2/kill.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">kill</span>(2)</span></a> can only be used to
+      send a signal to a process (i.e., thread group) as a whole,
+      and the signal will be delivered to an arbitrary thread
+      within that process.)</p>
+
+      <p><code class="function">tkill</code>() is an obsolete
+      predecessor to <code class="function">tgkill</code>(). It
+      only allows the target thread ID to be specified, which may
+      result in the wrong thread being signaled if a thread
+      terminates and its thread ID is recycled. Avoid using this
+      system call.</p>
+
+      <p>If <em class="parameter"><code>tgid</code></em> is
+      specified as −1, <code class="function">tgkill</code>()
+      is equivalent to <code class="function">tkill</code>().</p>
+
+      <p>These are the raw system call interfaces, meant for
+      internal thread library use.</p>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="tkill-2_sect2" name="tkill-2_sect2" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p>On success, zero is returned. On error, −1 is
+      returned, and <code class="varname">errno</code> is set
+      appropriately.</p>
+    </div>
+
+    <div class="refsect1" title="ERRORS">
+      <a id="tkill-2_sect3" name="tkill-2_sect3" shape="rect"> </a>
+
+      <h2>ERRORS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><span class="errorname">EINVAL</span></span></dt>
+
+          <dd>
+            <p>An invalid thread ID, thread group ID, or signal was
+            specified.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EPERM</span></span></dt>
+
+          <dd>
+            <p>Permission denied. For the required permissions, see
+            <a class="link" href="../htmlman2/kill.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">kill</span>(2)</span></a>.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ESRCH</span></span></dt>
+
+          <dd>
+            <p>No process with the specified thread ID (and thread
+            group ID) exists.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="VERSIONS">
+      <a id="tkill-2_sect4" name="tkill-2_sect4" shape="rect"> </a>
+
+      <h2>VERSIONS</h2>
+
+      <p><code class="function">tkill</code>() is supported since
+      Linux 2.4.19 / 2.5.4. <code class="function">tgkill</code>()
+      was added in Linux 2.5.75.</p>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="tkill-2_sect5" name="tkill-2_sect5" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p><code class="function">tkill</code>() and <code class="function">tgkill</code>() are Linux-specific and should not
+      be used in programs that are intended to be portable.</p>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="tkill-2_sect6" name="tkill-2_sect6" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p>See the description of <code class="constant">CLONE_THREAD</code> in <a class="link" href="../htmlman2/clone.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">clone</span>(2)</span></a> for an explanation
+      of thread groups.</p>
+
+      <p>Glibc does not provide wrappers for these system calls;
+      call them using <a class="link" href="../htmlman2/syscall.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">syscall</span>(2)</span></a>.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="tkill-2_sect7" name="tkill-2_sect7" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman2/clone.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">clone</span>(2)</span></a>, <a class="link" href="../htmlman2/gettid.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">gettid</span>(2)</span></a>, <a class="link" href="../htmlman2/kill.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">kill</span>(2)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="tkill-2_sect8" name="tkill-2_sect8" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.24 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                  Copyright (C) 2008 Michael Kerrisk &lt;tmk.manpages<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>gmail.com&gt;<br />
+
+                  and Copyright 2003 Abhijit Menon-Sen &lt;ams<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>wiw.org&gt;<br />
+
+                  <br />
+                  Permission is granted to make and distribute verbatim copies of this<br />
+
+                  manual provided the copyright notice and this permission notice are<br />
+
+                  preserved on all copies.<br />
+                  <br />
+                  Permission is granted to copy and distribute modified versions of this<br />
+
+                  manual under the conditions for verbatim copying, provided that the<br />
+
+                  entire resulting derived work is distributed under the terms of a<br />
+
+                  permission notice identical to this one.<br />
+
+                  <br />
+                  Since the Linux kernel and libraries are constantly changing, this<br />
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no<br />
+
+                  responsibility for errors or omissions, or for damages resulting from<br />
+
+                  the use of the information contained herein.  The author(s) may not<br />
+
+                  have taken the same level of care in the production of this manual,<br />
+
+                  which is licensed free of charge, as they might when working<br />
+
+                  professionally.<br />
+                  <br />
+                  Formatted or processed versions of this manual, if unaccompanied by<br />
+
+                  the source, must acknowledge the copyright and authors of this work.<br />
+
+                  <br />
+                  2004-05-31, added tgkill, ahu, aeb<br />
+
+                  2008-01-15 mtk -- rewote DESCRIPTION<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

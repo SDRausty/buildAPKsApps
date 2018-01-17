@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="txt_quick_settings">Quick Settings</string>
+
+    <string name="txt_status_unknown">Onbekend</string>
+    <string name="txt_status_turned_on">Ingeschakeld</string>
+    <string name="txt_status_turned_off">Uitgeschakeld</string>
+    <string name="txt_status_turning_on">Inschakelen ...</string>
+    <string name="txt_status_turning_off">Uitschakelen ...</string>
+    <string name="txt_status_enabled">Ingeschakeld</string>
+    <string name="txt_status_disabled">Uitgeschakeld</string>
+    
+    <string name="wifi_title">Wi-Fi</string>
+    <string name="txt_net_status_connecting">Verbinden ...</string>
+    <string name="txt_net_status_obtainingip">IP-adres ophalen ...</string>
+    <string name="txt_net_status_connected_to">Verbonden met %s</string>
+    <string name="txt_net_status_connected">Verbonden</string>
+    <string name="txt_net_status_failed">Verbinden mislukt</string>
+    <string name="txt_net_status_disconnecting">Verbinding verbreken ...</string>
+    <string name="txt_net_status_disconnected">Verbinding verbroken</string>
+    
+    <string name="gps_title">GPS ontvanger</string>
+    <string name="txt_brightness">Helderheid</string>
+    <string name="msg_disable_autobrightness">Automatisch helderheid is ingeschakeld. Wilt u het uitschakelen en handmatig aanpassen?</string>
+
+    <string name="battery_state_title">Batterij status:</string>
+    <string name="battery_state_value">%d%%</string>
+    <string name="txt_memory_state_value">Telefoon vrij:</string>
+    <string name="txt_card_state_value">SD-kaart vrij:</string>
+    <string name="txt_no_card">Geen SD-kaart</string>
+
+    <string name="airmode_title">Vliegtuig modus</string>
+
+    <string name="btn_yes">Ja</string>
+    <string name="btn_no">Nee</string>
+    <string name="btn_close">Sluiten</string>
+    <string name="btn_set">Instellen</string>
+    <string name="btn_calcel">Annuleren</string>
+
+    <string name="txt_ringer">Beltoon</string>
+    <string name="txt_ringer_mode">Stille modus</string>
+    <string name="txt_ringer_silent">Stil</string>
+    <string name="txt_ringer_sound">Alleen geluid</string>
+    <string name="txt_ringer_vibro">Alleen vibratie</string>
+    <string name="txt_ringer_vibrosound">Geluid &amp; Vibratie</string>
+    
+    <string name="txt_bt">Bluetooth</string>
+    <string name="txt_no_apn">Geen APN geconfigureerd</string>
+    
+    <string name="txt_screen_timeout">Time-out scherm</string>
+    <string name="txt_screen_timeout_value_seconds">%d seconden</string>
+    <string name="txt_screen_timeout_value_minute">%d minuten</string>
+    <string name="txt_screen_timeout_value_minutes">%d minuten</string>
+    <string name="txt_screen_timeout_value_never">Nooit uitschakelen</string>
+    
+    <string name="txt_customize_settings">Quick Settings > Aanpassen</string>
+    <string name="txt_preferences">Quick Settings > Voorkeuren</string>
+    <string name="txt_visible_settings">Zichtbare instellingen</string>
+    <string name="txt_hidden_settings">Verborgen instellingen</string>
+    <string name="msg_drag_and_drop">Houd het sleep icoon vast om instellingen tussen zichtbare en verborgen instellingen te verplaatsen.</string>
+    
+    <string name="txt_auto_sync">Auto-sync data</string>
+    <string name="txt_enable_background_data">Tik om achtergrond data aan te schakelen</string>
+
+    <string name="txt_volume">Volume</string>
+    <string name="txt_volume_descr">Tik om het volume te veranderen</string>
+    <string name="txt_volume_ringer">Beltoon volume</string>
+    <string name="txt_volume_notification">Melding volume</string>
+    <string name="txt_volume_media">Media volume</string>
+    <string name="txt_volume_alarm">Alarm volume</string>
+    <string name="txt_volume_voice_call">Spraakoproep volume</string>
+    <string name="txt_volume_system">Systeem volume</string>
+    <string name="msg_zero_ringer_warning">U kunt inkomende oproeppen missen als het beltoon volume op 0 staat.</string>
+    <string name="msg_zero_notification_warning">U kunt meldingen missen als het melding volume op 0 staat.</string>
+    <string name="msg_not_silent_warning">De telefoon is niet meer stil nadat u het beltoon volume veranderde naar %d.</string>
+
+    <string name="msg_disabled_warning">
+    U krijgt deze melding, omdat u \"Mobiel netwerk (APN)\" voor de eerste keer gebruikt.
+    \n\nAPN configuraties zijn geüpdatet. Als de verbinding nog steeds aanwezig is, verander de modifier string in de APN regelaar voorkeuren (houd APN instellingen lang ingedrukt).
+    \n\nDeïnstalleer Quick Settings met APN ingeschakeld, anders kunt u geen verbinding meer maken en zult u de APN instellingen handmatig moeten aanpassen.
+    \n\nBekijk de website van het project voor meer informatie indien u vragen heeft of tegen problemen aanloopt met de APN regelaar.
+    </string>
+    
+    <string name="msg_switch_to_air_mode">Wilt u de Vliegtuig modus activeren en alle draadloze verbindingen verbreken?</string>
+    <string name="msg_cannot_init_setting">Oeps... De instelling "%s" kan niet veranderd worden op jouw apparaat</string>
+
+    <string name="menu_customize_settings">Aanpassen</string>
+    <string name="menu_preferences">Voorkeuren</string>
+ 
+    <string name="txt_auto_rotate">Automatisch draaien</string>
+    
+    <!-- unlock pattern -->
+    <string name="txt_unlock_pattern">Scherm vergrendeling</string>
+    <string name="txt_set_unlock_pattern">Tik om schermvergrendeling in te stellen</string>
+    <string name="msg_which_unlock_pattern">Welk patroon moet worden aangezet?\n\nLet op: Indien u geen patroon had, moet u een nieuwe kiezen.</string>
+    <string name="btn_current_unlock_pattern">Huidige</string>
+    <string name="btn_new_unlock_pattern">Nieuwe</string>
+    
+    <string name="txt_toolbar">Menubalk</string>
+
+    <string name="pref_common">Algemeen</string>
+    <string name="pref_status_bar">Status balk snelkoppeling</string>
+    <string name="pref_status_bar_descr">Tik om status balk snelkoppeling aan of uit te schakelen</string>
+    <string name="pref_view_mode">Uiterlijk</string>
+    <string name="pref_view_mode_descr">Tik om te schakelen tussen volledig scherm en dialoogvenster</string>
+    <string name="msg_tik_to_change_settings">Tik om snel instellingen te wijzigen</string>
+
+    <string name="msg_reinstall_required">Het Quick Settings programma is niet goed geüpdatet. Herinstalleer het programma opnieuw om het te laten werken.\n\nWij verontschuldigen ons voor het ongemak.</string>
+
+	<string name="txt_master_volume">Hoofdvolume</string>
+	<string name="txt_master_volume_desc">R: %1$d, N: %2$d, M: %3$d, A: %4$d</string>
+
+	<string name="txt_autobrightness_enabled">Automatische helderheid is ingeschakeld</string>
+	<string name="txt_autobrightness_disabled">Automatische helderheid is uitgeschakeld</string>
+    <string name="msg_enable_autobrightness">Deze optie zou alleen aan moeten staan als de telefoon een lichtsensor heeft.\n\nWilt u dit inschakelen?</string>
+    <string name="pref_light_sensor">Gebruik de lichtsensor</string>
+    <string name="pref_light_sensor_descr">Tik om het gebruik van een lichtsensor aan of uit te schakelen</string>
+
+    <string name="txt_flashlight">Zaklamp</string>
+    <string name="pref_flashlight_descr">Tik om zaklamp gedrag te kiezen</string>
+    <string name="msg_flashlight_led_usage">Lang gebruik LED zaklamp kan het apparaat beschadigen. Neem volledige verantwoordelijkheid voor schade die kan ontstaan.\n\nU zult LED zaklamp niet moeten gebruiken als u de disclaimer niet accepteert.</string>
+    <string name="btn_accept">Accepteren</string>
+    <string name="msg_flashlight_not_supported">LED zaklamp kan niet worden gebruikt op dit apparaat. Scherm zaklamp zal worden gebruikt.</string>
+
+	<string name="txt_haptic_feedback">Haptische feedback</string>
+	<string name="txt_haptic_feedback_on">Vibreer kort bij het indrukken van knoppen</string>
+	<string name="txt_haptic_feedback_off">Vibreer niet bij het indrukken van knoppen</string>
+
+<!-- 
+	<string name="txt_addons">Quick Settings > Invoegtoepassingen</string>
+    <string name="menu_addons">Invoegtoepassingen</string>
+    <string name="txt_addon_quick_battery">Quick Battery</string>
+    <string name="txt_addon_quick_battery_descr">Is een bureaublad widget welke het batterij niveau percentage laat zien met een snelkoppeling naar Quick Settings</string>
+    <string name="txt_install">installeren</string>
+    <string name="txt_uninstall">de-installeren</string>
+ -->	
+	
+    <string name="pref_disable_mms">MMS uitschakelen</string>
+    <string name="pref_disable_mms_descr_disabled">Het apparaat kan geen MMS berichten ontvangen als mobiel netwerk is uitgeschakeld</string>
+    <string name="pref_disable_mms_descr_enabled">Het apparaat kan MMS berichten ontvangen ongeacht of mobiel netwerk is uitgeschakeld</string>
+
+    <string name="txt_volume_bind">Gebruik beltoon volume voor meldingen</string>
+    <string name="txt_initializing">Initialiseren ...</string>
+    
+    <string name="pref_one_click_switch">1-klik schakelaar</string>
+    <string name="txt_eula">Eind-gebruiker licentie overeenkomst</string>
+    <string name="btn_decline">Afwijzen</string>
+
+    <string name="pref_anp_modifier">Modifier string</string>
+    <string name="pref_anp_modifier_descr">Achter of voorvoegsel welke toegevoegd wordt aan de APN instellingen om het uit te schakelen</string>
+    <string name="pref_restor_pref_apn">Herstel APN</string>
+    <string name="pref_restor_pref_apn_descr">Kan helpen als geen verbinding meer kan worden gemaakt</string>
+
+    <string name="pref_statusbar_integration">Status balk integratie</string>
+    <string name="pref_inverse_notif_color">Witte melding kleur</string>
+    <string name="pref_inverse_notif_color_on">Tekst en icoon zijn wit</string>
+    <string name="pref_inverse_notif_color_off">Tekst en icoon zijn zwart</string>
+
+    <string name="pref_about">Over</string>
+    <string name="pref_about_descr">Over Quick Settings</string>
+
+    <string name="txt_full_brightness">Volledige helderheid</string>
+    <string name="txt_full_brightness_descr">Tik om te kiezen wanneer de zaklamp naar volledige helderheid gaat</string>
+    <string name="msg_flashlight_delay">Draai het scherm weg van uw gezicht. De helderheid van het scherm gaat omhoog in een paar seconden</string>
+    <string name="msg_flashlight_orientation">Draai het scherm naar beneden om volledige helderheid te activeren</string>
+    <string name="msg_flashlight_shake">Schud uw telefoon voorzichtig om volledige helderheid aan of uit te schakelen</string>
+    
+<!-- 1.9.5 -->
+    <string name="txt_pattern">Patroon</string>
+    <string name="txt_pin">PIN</string>
+    <string name="txt_password">Wachtwoord</string>
+    <string name="txt_wifi_hotspot">Mobiel toeganspunt</string>
+    
+<!-- 1.9.6 -->
+    <string name="txt_apn_control">Mobiel netwerk (APN)</string>
+    <string name="txt_mobile_data">Mobiel netwerk</string>
+    <string name="txt_enable_data_access_first">Activeer \"Mobiel netwerk\" eerst in de systeem instellingen</string>
+    <string name="msg_enabling_mobile_data">Activeer mobiel netwerk</string>
+    <string name="msg_2g_hint">Als de verbinding niet tot stand komt, schakel dan de\"Alleen 2G\" checkbox in de systeem instellingen aan en uit om het modem opnieuw te laten verbinden</string>
+
+<!-- 1.9.7 -->
+    <string name="msg_mms_only">Er is een enkele APN welke mobiel netwerk én MMS beheerd. Als u dit uitschakeld kan de telefoon ook geen geen MMS berichten meer ontvangen. \n\nMoet deze APN worden uitgeschakeld?</string>
+    <string name="btn_disable">Uitschakelen</string>
+    <string name="msg_use_mobile_data_hint">Er is een \"Mobiel netwerk (APN)\" en \"Mobiel netwerk\" schakelaar. Gebruik die welke het beste voor u werkt.</string>
+    <string name="txt_apn_on_off_status">Data: %1$s, MMS: %2$s</string>
+    <string name="txt_on">AAN</string>
+    <string name="txt_off">UIT</string>
+
+<!-- 1.9.8 -->
+    <string name="txt_four_g">4G</string>
+
+<!-- about, should stay at very bottom -->
+    <string name="copyright">© 2010 Sergej Shafarenka</string>
+    <string name="about_info">&lt;b>Versie:&lt;/b> %s&lt;br>&lt;b>Medewerkers:&lt;/b> Brian Rodgers, Shimon Simon&lt;br>&lt;b>Vertalers:&lt;/b> Kay Schasfoort (nl)</string>
+    
+</resources>

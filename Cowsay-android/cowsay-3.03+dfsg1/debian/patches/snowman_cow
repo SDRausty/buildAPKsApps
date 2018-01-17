@@ -1,0 +1,25 @@
+Description: Add a new cow
+Forwarded: no
+Origin: vendor, http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=561531#5
+Bug-Debian: http://bugs.debian.org/561531
+Author: chrysn <chrysn@fsfe.org>
+
+--- /dev/null
++++ b/cows/snowman.cow
+@@ -0,0 +1,16 @@
++# a snowman
++# (c) 2009 chrysn <chrysn@fsfe.org>
++# published under the same terms as cowsay or cc-by-3.0, at your discretion
++$the_cow = <<EOF
++   $thoughts
++ ___###
++   /$eyes\\ |||
++   \\$tongue/ \\|/
++   /""\\  I
++()|    |(I)
++   \\  /  I
++  /""""\\ I
++ |      |I
++ |      |I
++  \\____/ I
++EOF

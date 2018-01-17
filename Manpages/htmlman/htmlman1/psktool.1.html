@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>psktool(1) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="psktool(1) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="psktool(1) — Linux manual pages">
+    <a id="psktool.1" name="psktool.1" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>psktool — Simple PSK password tool</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="psktool-1_sect1" name="psktool-1_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>Very simple program that generates random keys for use
+      with TLS-PSK. The keys are stored in hexadecimal format in a
+      file.</p>
+    </div>
+
+    <div class="refsect1" title="OPTIONS">
+      <a id="psktool-1_sect2" name="psktool-1_sect2" shape="rect"> </a>
+
+      <h2>OPTIONS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="option">−−keysize <code class="constant">BYTES</code></code></span></dt>
+
+          <dd>
+            <p>specify the number of bytes of the key</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−p,
+          −−passwd <code class="constant">FILE</code></code></span></dt>
+
+          <dd>
+            <p>Specify a password file.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−u,
+          −−username <em class="parameter"><code>username</code></em></code></span></dt>
+
+          <dd>
+            <p>Specify username.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−h,
+          −−help</code></span></dt>
+
+          <dd>
+            <p>Prints a short reminder of the command line
+            options.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="EXAMPLES">
+      <a id="psktool-1_sect3" name="psktool-1_sect3" shape="rect"> </a>
+
+      <h2>EXAMPLES</h2>
+
+      <p>To create a passwd.psk with a user called test for use
+      with gnuTLS run:</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="informalexample">
+            <pre class="programlisting" xml:space="preserve">
+$ psktool −−passwd /etc/passwd.psk −u test
+</pre>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="refsect1" title="AUTHOR">
+      <a id="psktool-1_sect4" name="psktool-1_sect4" shape="rect"> </a>
+
+      <h2>AUTHOR</h2>
+
+      <p>Nikos Mavroyanopoulos &lt;nmav@gnutls.org&gt; and others;
+      see /usr/share/doc/gnutls−bin/AUTHORS for a complete
+      list.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

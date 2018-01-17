@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="app_name">VitoshaDM</string>
+    <string name="title_activity_splash">VitoshaDM</string>
+    <string name="redirect_activity_is_missing_message">Redirect activity is missing!</string>
+    <string name="title_activity_decision_maker">VitoshaDM</string>
+    <string name="roll_button_label">Roll</string>
+    <string name="title_activity_help">Help</string>
+    <string name="title_activity_about">About</string>
+    <string name="help_text">"  It is really simple decision maker toy. It uses random numbers. It is better than flipping a coin, because it has more options. 
+\n  The usage is very simple. You need to have a specific question in mind, for which it is difficult for you to take a solution. After that, just hit the roll button and observe the result. 
+\n  Have in mind that all final decisions are your own responsibility. This is just a toy and it can not help you in really difficult or dangerous situations.  
+\n  Good luck and have fun!"</string>
+    <string name="about_text">"  Vitosha Decision Maker is published by Velbazhd Software LLC.
+\n  This is a simple decision maker based on random numbers. It has eight sectors with common answers. When you are not confident what exactly to do, just spin the wheel and face your destiny. 
+\n  Newer versions can be checked at: 
+\n  http://github.com/TodorBalabanov/VitoshaDM"</string>
+    <string name="help_option">Help</string>
+    <string name="about_option">About</string>
+
+</resources>

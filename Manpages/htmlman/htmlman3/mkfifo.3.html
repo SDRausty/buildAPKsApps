@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>mkfifo(3) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="mkfifo(3) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="mkfifo(3) — Linux manual pages">
+    <a id="mkfifo.3" name="mkfifo.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>mkfifo — make a FIFO special file (a named pipe)</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+#include &lt;sys/types.h&gt;
+#include &lt;sys/stat.h&gt;
+</pre>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">mkfifo</b>(</code></td>
+
+            <td rowspan="1" colspan="1">const char *<var class="pdparam">pathname</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">mode_t <var class="pdparam">mode</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="mkfifo-3_sect1" name="mkfifo-3_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><code class="function">mkfifo</code>() makes a FIFO
+      special file with name <em class="parameter"><code>pathname</code></em>. <em class="parameter"><code>mode</code></em> specifies the FIFO's
+      permissions. It is modified by the process's <code class="function">umask</code> in the usual way: the permissions of
+      the created file are <code class="literal">(</code><em class="parameter"><code>mode</code></em> <span class="emphasis"><em>&amp; ~umask)</em></span>.</p>
+
+      <p>A FIFO special file is similar to a pipe, except that it
+      is created in a different way. Instead of being an anonymous
+      communications channel, a FIFO special file is entered into
+      the file system by calling <code class="function">mkfifo</code>().</p>
+
+      <p>Once you have created a FIFO special file in this way, any
+      process can open it for reading or writing, in the same way
+      as an ordinary file. However, it has to be open at both ends
+      simultaneously before you can proceed to do any input or
+      output operations on it. Opening a FIFO for reading normally
+      blocks until some other process opens the same FIFO for
+      writing, and vice versa. See <a class="link" href="../htmlman7/fifo.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fifo</span>(7)</span></a> for nonblocking
+      handling of FIFO special files.</p>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="mkfifo-3_sect2" name="mkfifo-3_sect2" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p>On success <code class="function">mkfifo</code>() returns
+      0. In the case of an error, −1 is returned (in which
+      case, <code class="varname">errno</code> is set
+      appropriately).</p>
+    </div>
+
+    <div class="refsect1" title="ERRORS">
+      <a id="mkfifo-3_sect3" name="mkfifo-3_sect3" shape="rect"> </a>
+
+      <h2>ERRORS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><span class="errorname">EACCES</span></span></dt>
+
+          <dd>
+            <p>One of the directories in <em class="parameter"><code>pathname</code></em> did not allow
+            search (execute) permission.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EEXIST</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>pathname</code></em>
+            already exists. This includes the case where <em class="parameter"><code>pathname</code></em> is a symbolic
+            link, dangling or not.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENAMETOOLONG</span></span></dt>
+
+          <dd>
+            <p>Either the total length of <em class="parameter"><code>pathname</code></em> is greater than
+            <code class="constant">PATH_MAX</code>, or an
+            individual filename component has a length greater than
+            <code class="constant">NAME_MAX</code>. In the GNU
+            system, there is no imposed limit on overall filename
+            length, but some file systems may place limits on the
+            length of a component.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENOENT</span></span></dt>
+
+          <dd>
+            <p>A directory component in <em class="parameter"><code>pathname</code></em> does not exist
+            or is a dangling symbolic link.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENOSPC</span></span></dt>
+
+          <dd>
+            <p>The directory or file system has no room for the new
+            file.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENOTDIR</span></span></dt>
+
+          <dd>
+            <p>A component used as a directory in <em class="parameter"><code>pathname</code></em> is not, in fact,
+            a directory.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EROFS</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>pathname</code></em>
+            refers to a read-only file system.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="mkfifo-3_sect4" name="mkfifo-3_sect4" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>POSIX.1-2001.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="mkfifo-3_sect5" name="mkfifo-3_sect5" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman1/mkfifo.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mkfifo</span>(1)</span></a>, <a class="link" href="../htmlman2/close.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">close</span>(2)</span></a>, <a class="link" href="../htmlman2/open.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">open</span>(2)</span></a>, <a class="link" href="../htmlman2/read.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">read</span>(2)</span></a>, <a class="link" href="../htmlman2/stat.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">stat</span>(2)</span></a>, <a class="link" href="../htmlman2/umask.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">umask</span>(2)</span></a>, <a class="link" href="../htmlman2/write.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">write</span>(2)</span></a>, <a class="link" href="../htmlman3/mkfifoat.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mkfifoat</span>(3)</span></a>, <a class="link" href="../htmlman7/fifo.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fifo</span>(7)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="mkfifo-3_sect6" name="mkfifo-3_sect6" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.24 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                  This manpage is Copyright (C) 1995 James R. Van Zandt &lt;jrv<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>vanzandt.mv.com&gt;<br />
+
+                  <br />
+                  Permission is granted to make and distribute verbatim copies of this<br />
+
+                  manual provided the copyright notice and this permission notice are<br />
+
+                  preserved on all copies.<br />
+                  <br />
+                  Permission is granted to copy and distribute modified versions of this<br />
+
+                  manual under the conditions for verbatim copying, provided that the<br />
+
+                  entire resulting derived work is distributed under the terms of a<br />
+
+                  permission notice identical to this one.<br />
+
+                  <br />
+                  Since the Linux kernel and libraries are constantly changing, this<br />
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no<br />
+
+                  responsibility for errors or omissions, or for damages resulting from<br />
+
+                  the use of the information contained herein.  The author(s) may not<br />
+
+                  have taken the same level of care in the production of this manual,<br />
+
+                  which is licensed free of charge, as they might when working<br />
+
+                  professionally.<br />
+                  <br />
+                  Formatted or processed versions of this manual, if unaccompanied by<br />
+
+                  the source, must acknowledge the copyright and authors of this work.<br />
+
+                  <br />
+                  changed section from 2 to 3, aeb, 950919<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

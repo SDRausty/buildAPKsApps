@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>lsblk(8) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="lsblk(8) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="lsblk(8) — Linux manual pages">
+    <a id="lsblk.8" name="lsblk.8" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>lsblk — list block devices</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">lsblk</code> [options]</p>
+      </div>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">lsblk</code> [options]
+        device...</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="lsblk-8_sect1" name="lsblk-8_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><span class="command"><strong>lsblk</strong></span> lists
+      information about all or the specified block devices. The
+      <span class="command"><strong>lsblk</strong></span> command
+      reads the <span class="command"><strong>sysfs</strong></span>
+      filesystem to gather information.</p>
+
+      <p>The command prints all block devices (except RAM disks) in
+      a tree-like format by default. Use <span class="emphasis"><em>lsblk --help</em></span> to get a list of all
+      available columns.</p>
+    </div>
+
+    <div class="refsect1" title="OPTIONS">
+      <a id="lsblk-8_sect2" name="lsblk-8_sect2" shape="rect"> </a>
+
+      <h2>OPTIONS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="option">−a,
+          −−all</code></span></dt>
+
+          <dd>
+            <p>List all block devices.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−b,
+          −−bytes</code></span></dt>
+
+          <dd>
+            <p>Print the SIZE column in bytes rather than in
+            human-readable format.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−d,
+          −−nodeps</code></span></dt>
+
+          <dd>
+            <p>Don't print device holders or slaves. For example
+            "lsblk --nodeps /dev/sda" prints information about the
+            sda device only.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−e,
+          −−exclude</code> <span class="command"><strong>list</strong></span></span></dt>
+
+          <dd>
+            <p>Exclude the devices specified by a comma-delimited
+            list of major device numbers. Note that RAM disks
+            (major=1) are excluded by default.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−f,
+          −−fs</code></span></dt>
+
+          <dd>
+            <p>Output info about filesystems. This option is
+            equivalent to "-o NAME,FSTYPE,LABEL,MOUNTPOINT". The
+            authoritative information about filesystems and raids
+            is provided by the <a class="link" href="../htmlman8/blkid.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">blkid</span>(8)</span></a> command.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−h,
+          −−help</code></span></dt>
+
+          <dd>
+            <p>Print a help text and exit.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−i,
+          −−ascii</code></span></dt>
+
+          <dd>
+            <p>Use ascii characters for tree formatting.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−m,
+          −−perms</code></span></dt>
+
+          <dd>
+            <p>Output info about device owner, group and mode. This
+            option is equivalent to "-o
+            NAME,SIZE,OWNER,GROUP,MODE".</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−l,
+          −−list</code></span></dt>
+
+          <dd>
+            <p>Use the list output format.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−n,
+          −−noheadings</code></span></dt>
+
+          <dd>
+            <p>Do not print a header line.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−o,
+          −−output</code> <span class="command"><strong>list</strong></span></span></dt>
+
+          <dd>
+            <p>Specify which output columns to print. Use
+            <code class="option">−−help</code> to get a
+            list of all supported columns.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−r,
+          −−raw</code></span></dt>
+
+          <dd>
+            <p>Use the raw output format.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−t,
+          −−topology</code></span></dt>
+
+          <dd>
+            <p>Output info about block device topology. This option
+            is equivalent to "-o
+            NAME,ALIGNMENT,MIN-IO,OPT-IO,PHY-SEC,LOG-SEC,ROTA,SCHED".</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="AUTHORS">
+      <a id="lsblk-8_sect3" name="lsblk-8_sect3" shape="rect"> </a>
+
+      <h2>AUTHORS</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+Milan Broz &lt;mbroz@redhat.com&gt;
+Karel Zak &lt;kzak@redhat.com&gt;
+</pre>
+      </div>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="lsblk-8_sect4" name="lsblk-8_sect4" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman8/findmnt.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">findmnt</span>(8)</span></a>, <a class="link" href="../htmlman8/blkid.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">blkid</span>(8)</span></a>, <a class="link" href="../htmlman1/ls.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">ls</span>(1)</span></a></p>
+    </div>
+
+    <div class="refsect1" title="AVAILABILITY">
+      <a id="lsblk-8_sect5" name="lsblk-8_sect5" shape="rect"> </a>
+
+      <h2>AVAILABILITY</h2>
+
+      <p>The lsblk command is part of the util-linux package and is
+      available from
+      ftp://ftp.kernel.org/pub/linux/utils/util-linux/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>tzset(3) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="tzset(3) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="tzset(3) — Linux manual pages">
+    <a id="tzset.3" name="tzset.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>tzset, tzname, timezone, daylight — initialize time
+      conversion information</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;time.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">void <b class="fsfunc">tzset</b>(</code></td>
+
+            <td rowspan="1" colspan="1"><code>void)</code>;</td>
+
+            <td rowspan="1" colspan="1"> </td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;">
+        <table border="0" summary="Note">
+          <tr>
+            <td rowspan="2" align="center" valign="top" width="25" colspan="1">
+            <img alt="[Note]" src="../stylesheet/note.png" /></td>
+
+            <th align="left" rowspan="1" colspan="1">Note</th>
+          </tr>
+
+          <tr>
+            <td align="left" valign="top" rowspan="1" colspan="1">
+              <div class="featuretests">
+                <table style="border-collapse: collapse;">
+                  <colgroup span="1">
+                    <col span="1" />
+                  </colgroup>
+
+                  <thead>
+                    <tr>
+                      <th style="" rowspan="1" colspan="1">Feature Test Macro Requirements
+                      for glibc (see <a class="link" href="../htmlman7/feature_test_macros.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">feature_test_macros</span>(7)</span></a>):</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td style="" rowspan="1" colspan="1"><code class="function">tzset</code>():</td>
+                    </tr>
+
+                    <tr>
+                      <td class="featuretestdef" style="" rowspan="1" colspan="1">
+                      <code class="constant">_POSIX_C_SOURCE</code>
+                      &gt;= 1 || <code class="constant">_XOPEN_SOURCE</code> ||
+                      <code class="constant">_POSIX_SOURCE</code></td>
+                    </tr>
+
+                    <tr>
+                      <td style="" rowspan="1" colspan="1"><code class="varname">tzname</code>: <code class="constant">_POSIX_C_SOURCE</code> &gt;= 1 ||
+                      <code class="constant">_XOPEN_SOURCE</code>
+                      || <code class="constant">_POSIX_SOURCE</code></td>
+                    </tr>
+
+                    <tr>
+                      <td style="" rowspan="1" colspan="1"><code class="varname">timezone</code>: <code class="constant">_SVID_SOURCE</code> ||
+                      <code class="constant">_XOPEN_SOURCE</code></td>
+                    </tr>
+
+                    <tr>
+                      <td style="" rowspan="1" colspan="1"><code class="varname">daylight</code>: <code class="constant">_SVID_SOURCE</code> ||
+                      <code class="constant">_XOPEN_SOURCE</code></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+extern char *tzname[2];
+extern long timezone;
+extern int daylight;
+  
+</pre>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="tzset-3_sect1" name="tzset-3_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>The <code class="function">tzset</code>() function
+      initializes the <code class="varname">tzname</code> variable
+      from the <code class="constant">TZ</code> environment
+      variable. This function is automatically called by the other
+      time conversion functions that depend on the timezone. In a
+      System-V-like environment, it will also set the variables
+      <code class="varname">timezone</code> (seconds West of UTC)
+      and <code class="varname">daylight</code> (to 0 if this
+      timezone does not have any daylight saving time rules, or to
+      nonzero if there is a time during the year when daylight
+      saving time applies).</p>
+
+      <p>If the <code class="constant">TZ</code> variable does not
+      appear in the environment, the <code class="varname">tzname</code> variable is initialized with the best
+      approximation of local wall clock time, as specified by the
+      <a class="link" href="../htmlman5/tzfile.5.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">tzfile</span>(5)</span></a>-format file
+      <code class="filename">localtime</code> found in the system
+      timezone directory (see below). (One also often sees
+      <code class="filename">/etc/localtime</code> used here, a
+      symlink to the right file in the system timezone
+      directory.)</p>
+
+      <p>If the <code class="constant">TZ</code> variable does
+      appear in the environment but its value is empty or its value
+      cannot be interpreted using any of the formats specified
+      below, Coordinated Universal Time (UTC) is used.</p>
+
+      <p>The value of <code class="constant">TZ</code> can be one
+      of three formats. The first format is used when there is no
+      daylight saving time in the local timezone:</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <p><span class="emphasis"><em>std offset</em></span></p>
+        </blockquote>
+      </div>
+
+      <p>The <code class="varname">std</code> string specifies the
+      name of the timezone and must be three or more alphabetic
+      characters. The <code class="varname">offset</code> string
+      immediately follows <code class="varname">std</code> and
+      specifies the time value to be added to the local time to get
+      Coordinated Universal Time (UTC). The <code class="varname">offset</code> is positive if the local timezone is
+      west of the Prime Meridian and negative if it is east. The
+      hour must be between 0 and 24, and the minutes and seconds 0
+      and 59.</p>
+
+      <p>The second format is used when there is daylight saving
+      time:</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <p><span class="emphasis"><em>std offset dst
+          [offset],start[/time],end[/time]</em></span></p>
+        </blockquote>
+      </div>
+
+      <p>There are no spaces in the specification. The initial
+      <code class="varname">std</code> and <code class="varname">offset</code> specify the standard timezone, as
+      described above. The <code class="varname">dst</code> string
+      and <code class="varname">offset</code> specify the name and
+      offset for the corresponding daylight saving timezone. If the
+      offset is omitted, it default to one hour ahead of standard
+      time.</p>
+
+      <p>The <code class="varname">start</code> field specifies
+      when daylight saving time goes into effect and the
+      <code class="varname">end</code> field specifies when the
+      change is made back to standard time. These fields may have
+      the following formats:</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term">J<code class="literal">n</code></span></dt>
+
+          <dd>
+            <p>This specifies the Julian day with <code class="literal">n</code> between 1 and 365. February 29 is
+            never counted even in leap years.</p>
+          </dd>
+
+          <dt><span class="term"><code class="literal">n</code></span></dt>
+
+          <dd>
+            <p>This specifies the Julian day with <code class="literal">n</code> between 1 and 365. February 29 is
+            counted in leap years.</p>
+          </dd>
+
+          <dt><span class="term">M<code class="literal">m</code>.<code class="literal">w</code>.<code class="literal">d</code></span></dt>
+
+          <dd>
+            <p>This specifies day <code class="literal">d</code> (0
+            &lt;= <code class="literal">d</code> &lt;= 6) of week
+            <code class="literal">w</code> (1 &lt;= <code class="literal">w</code> &lt;= 5) of month <code class="literal">m</code> (1 &lt;= <code class="literal">m</code> &lt;= 12). Week 1 is the first week
+            in which day <code class="literal">d</code> occurs and
+            week 5 is the last week in which day <code class="literal">d</code> occurs. Day 0 is a Sunday.</p>
+          </dd>
+        </dl>
+      </div>
+
+      <p>The <code class="function">time</code> fields specify
+      when, in the local time currently in effect, the change to
+      the other time occurs. If omitted, the default is
+      02:00:00.</p>
+
+      <p>Here is an example for New Zealand, where the standard
+      time (NZST) is 12 hours ahead of UTC, and daylight saving
+      time (NZDT), 13 hours ahead of UTC, runs from the first
+      Sunday in October to the third Sunday in March, and the
+      changeovers happen at the default time of 02:00:00:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+    TZ="NZST-12.00:00NZDT-13:00:00,M10.1.0,M3.3.0"
+</pre>
+      </div>
+
+      <p>The third format specifies that the timezone information
+      should be read from a file:</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <p>:[filespec]</p>
+        </blockquote>
+      </div>
+
+      <p>If the file specification <code class="varname">filespec</code> is omitted, the timezone
+      information is read from the file <code class="filename">localtime</code> in the system timezone directory,
+      which nowadays usually is <code class="filename">/usr/share/zoneinfo</code>. This file is in
+      <a class="link" href="../htmlman5/tzfile.5.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">tzfile</span>(5)</span></a> format. If
+      <code class="varname">filespec</code> is given, it specifies
+      another <a class="link" href="../htmlman5/tzfile.5.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">tzfile</span>(5)</span></a>-format file to
+      read the timezone information from. If <code class="varname">filespec</code> does not begin with a '/', the file
+      specification is relative to the system timezone
+      directory.</p>
+
+      <p>Here's an example, once more for New Zealand:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+    TZ=":Pacific/Auckland"
+</pre>
+      </div>
+    </div>
+
+    <div class="refsect1" title="FILES">
+      <a id="tzset-3_sect2" name="tzset-3_sect2" shape="rect"> </a>
+
+      <h2>FILES</h2>
+
+      <p>The system timezone directory used depends on the (g)libc
+      version. Libc4 and libc5 use <code class="filename">/usr/lib/zoneinfo</code>, and, since libc-5.4.6,
+      when this doesn't work, will try <code class="filename">/usr/share/zoneinfo</code>. Glibc2 will use the
+      environment variable <code class="constant">TZDIR</code>,
+      when that exists. Its default depends on how it was
+      installed, but normally is <code class="filename">/usr/share/zoneinfo</code>.</p>
+
+      <p>This timezone directory contains the files</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+localtime      local timezone file
+posixrules     rules for POSIX-style TZ's
+</pre>
+      </div>
+
+      <p>Often <code class="filename">/etc/localtime</code> is a
+      symlink to the file <code class="filename">localtime</code>
+      or to the correct timezone file in the system timezone
+      directory.</p>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="tzset-3_sect3" name="tzset-3_sect3" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>SVr4, POSIX.1-2001, 4.3BSD.</p>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="tzset-3_sect4" name="tzset-3_sect4" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p>Note that the variable <code class="varname">daylight</code> does not indicate that daylight
+      saving time applies right now. It used to give the number of
+      some algorithm (see the variable <code class="varname">tz_dsttime</code> in <a class="link" href="../htmlman2/gettimeofday.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">gettimeofday</span>(2)</span></a>). It has
+      been obsolete for many years but is required by SUSv2.</p>
+
+      <p>4.3BSD had a function <code class="function">char
+      *timezone</code>(<em class="parameter"><code>zone</code></em>, <em class="parameter"><code>dst</code></em>) that returned the name of
+      the timezone corresponding to its first argument (minutes
+      West of UTC). If the second argument was 0, the standard name
+      was used, otherwise the daylight saving time version.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="tzset-3_sect5" name="tzset-3_sect5" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman1/date.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">date</span>(1)</span></a>, <a class="link" href="../htmlman2/gettimeofday.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">gettimeofday</span>(2)</span></a>, <a class="link" href="../htmlman2/time.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">time</span>(2)</span></a>, <a class="link" href="../htmlman3/ctime.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">ctime</span>(3)</span></a>, <a class="link" href="../htmlman3/getenv.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">getenv</span>(3)</span></a>, <a class="link" href="../htmlman5/tzfile.5.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">tzfile</span>(5)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="tzset-3_sect6" name="tzset-3_sect6" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.24 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright 1993 David Metcalfe (david<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>prism.demon.co.uk)<br />
+
+                  <br />
+                  Permission is granted to make and distribute verbatim copies of this<br />
+
+                  manual provided the copyright notice and this permission notice are<br />
+
+                  preserved on all copies.<br />
+                  <br />
+                  Permission is granted to copy and distribute modified versions of this<br />
+
+                  manual under the conditions for verbatim copying, provided that the<br />
+
+                  entire resulting derived work is distributed under the terms of a<br />
+
+                  permission notice identical to this one.<br />
+
+                  <br />
+                  Since the Linux kernel and libraries are constantly changing, this<br />
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no<br />
+
+                  responsibility for errors or omissions, or for damages resulting from<br />
+
+                  the use of the information contained herein.  The author(s) may not<br />
+
+                  have taken the same level of care in the production of this manual,<br />
+
+                  which is licensed free of charge, as they might when working<br />
+
+                  professionally.<br />
+                  <br />
+                  Formatted or processed versions of this manual, if unaccompanied by<br />
+
+                  the source, must acknowledge the copyright and authors of this work.<br />
+
+                  <br />
+                  References consulted:<br />
+                      Linux libc source code<br />
+
+                      Lewine's _POSIX Programmer's Guide_ (O'Reilly &amp; Associates, 1991)<br />
+
+                      386BSD man pages<br />
+
+                  Modified Sun Jul 25 11:01:58 1993 by Rik Faith (faith<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cs.unc.edu)<br />
+
+                  Modified 2001-11-13, aeb<br />
+                  Modified 2004-12-01 mtk and Martin Schulze &lt;joey<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>infodrom.org&gt;<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

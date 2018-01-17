@@ -1,0 +1,3 @@
+version=3
+opts=dversionmangle=s/\+dfsg\d+$// \
+    http://www.nog.net/~tony/warez/cowsay.shtml  cowsay-([.\d]+)\.tar\.gz

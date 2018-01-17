@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>pthread_kill_other_threads_np(3) — Linux manual
+  pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="pthread_kill_other_threads_np(3) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="pthread_kill_other_threads_np(3) — Linux manual pages">
+    <a id="pthread-kill-other-threads-np.3" name="pthread-kill-other-threads-np.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>pthread_kill_other_threads_np — terminate all other
+      threads in process</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;pthread.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">void <b class="fsfunc">pthread_kill_other_threads_np</b>(</code></td>
+
+            <td rowspan="1" colspan="1"><code>void)</code>;</td>
+
+            <td rowspan="1" colspan="1"> </td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="pthread-kill-other-threads-np-3_sect1" name="pthread-kill-other-threads-np-3_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><code class="function">pthread_kill_other_threads_np</code>() only has an
+      effect in the LinuxThreads threading implementation. On that
+      implementation, calling this function causes the immediate
+      termination of all threads in the application, except the
+      calling thread. The cancellation state and cancellation type
+      of the to-be-terminated threads are ignored, and the cleanup
+      handlers are not called in those threads.</p>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="pthread-kill-other-threads-np-3_sect2" name="pthread-kill-other-threads-np-3_sect2" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>This function is a nonstandard GNU extension; hence the
+      suffix "_np" (nonportable) in the name.</p>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="pthread-kill-other-threads-np-3_sect3" name="pthread-kill-other-threads-np-3_sect3" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p><code class="function">pthread_kill_other_threads_np</code>() is intended
+      to be called just before a thread calls <a class="link" href="../htmlman2/execve.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">execve</span>(2)</span></a> or a similar
+      function. This function is designed to address a limitation
+      in the obsolete LinuxThreads implementation whereby the other
+      threads of an application are not automatically terminated
+      (as POSIX.1-2001 requires) during <a class="link" href="../htmlman2/execve.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">execve</span>(2)</span></a>.</p>
+
+      <p>In the NPTL threading implementation, <code class="function">pthread_kill_other_threads_np</code>() exists, but
+      does nothing. (Nothing needs to be done, because the
+      implementation does the right thing during an <a class="link" href="../htmlman2/execve.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">execve</span>(2)</span></a>.)</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="pthread-kill-other-threads-np-3_sect4" name="pthread-kill-other-threads-np-3_sect4" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman2/execve.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">execve</span>(2)</span></a>, <a class="link" href="../htmlman3/pthread_cancel.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pthread_cancel</span>(3)</span></a>,
+      <a class="link" href="../htmlman3/pthread_setcancelstate.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pthread_setcancelstate</span>(3)</span></a>,
+      <a class="link" href="../htmlman3/pthread_setcancelstate.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pthread_setcanceltype</span>(3)</span></a>,
+      <a class="link" href="../htmlman7/pthreads.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pthreads</span>(7)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="pthread-kill-other-threads-np-3_sect5" name="pthread-kill-other-threads-np-3_sect5" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.30 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright (c) 2009 Linux Foundation, written by Michael Kerrisk<br />
+
+                      &lt;mtk.manpages<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>gmail.com&gt;<br />
+
+                  <br />
+                  Permission is granted to make and distribute verbatim copies of this<br />
+
+                  manual provided the copyright notice and this permission notice are<br />
+
+                  preserved on all copies.<br />
+                  <br />
+                  Permission is granted to copy and distribute modified versions of this<br />
+
+                  manual under the conditions for verbatim copying, provided that the<br />
+
+                  entire resulting derived work is distributed under the terms of a<br />
+
+                  permission notice identical to this one.<br />
+
+                  <br />
+                  Since the Linux kernel and libraries are constantly changing, this<br />
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no<br />
+
+                  responsibility for errors or omissions, or for damages resulting from<br />
+
+                  the use of the information contained herein.  The author(s) may not<br />
+
+                  have taken the same level of care in the production of this manual,<br />
+
+                  which is licensed free of charge, as they might when working<br />
+
+                  professionally.<br />
+                  <br />
+                  Formatted or processed versions of this manual, if unaccompanied by<br />
+
+                  the source, must acknowledge the copyright and authors of this work.<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

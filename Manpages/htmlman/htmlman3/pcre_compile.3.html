@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>pcre_compile(3) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="pcre_compile(3) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="pcre_compile(3) — Linux manual pages">
+    <a id="pcre-compile.3" name="pcre-compile.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>PCRE — Perl-compatible regular expressions</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+
+
+#include &lt;pcre.h&gt;
+</pre>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">pcre *<b class="fsfunc">pcre_compile</b>(</code></td>
+
+            <td rowspan="1" colspan="1">const char *<var class="pdparam">pattern</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">options</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">const char **<var class="pdparam">errptr</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">int *<var class="pdparam">erroffset</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">const unsigned char *<var class="pdparam">tableptr</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="pcre-compile-3_sect1" name="pcre-compile-3_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>This function compiles a regular expression into an
+      internal form. It is the same as <code class="function">pcre_compile2</code>(), except for the absence of
+      the <code class="varname">errorcodeptr</code> argument. Its
+      arguments are:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+ <em class="parameter"><code>pattern</code></em>       A zero-terminated string containing the
+                 regular expression to be compiled
+ <em class="parameter"><code>options</code></em>       Zero or more option bits
+ <em class="parameter"><code>errptr</code></em>        Where to put an error message
+ <em class="parameter"><code>erroffset</code></em>     Offset in pattern where error was found
+ <em class="parameter"><code>tableptr</code></em>      Pointer to character tables, or NULL to
+                 use the built-in default
+</pre>
+      </div>
+
+      <p>The option bits are:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+ PCRE_ANCHORED           Force pattern anchoring
+ PCRE_AUTO_CALLOUT       Compile automatic callouts
+ PCRE_BSR_ANYCRLF        \R matches only CR, LF, or CRLF
+ PCRE_BSR_UNICODE        \R matches all Unicode line endings
+ PCRE_CASELESS           Do caseless matching
+ PCRE_DOLLAR_ENDONLY     $ not to match newline at end
+ PCRE_DOTALL             . matches anything including NL
+ PCRE_DUPNAMES           Allow duplicate names for subpatterns
+ PCRE_EXTENDED           Ignore whitespace and # comments
+ PCRE_EXTRA              PCRE extra features
+                           (not much use currently)
+ PCRE_FIRSTLINE          Force matching to be before newline
+ PCRE_JAVASCRIPT_COMPAT  JavaScript compatibility
+ PCRE_MULTILINE          ^ and $ match newlines within data
+ PCRE_NEWLINE_ANY        Recognize any Unicode newline sequence
+ PCRE_NEWLINE_ANYCRLF    Recognize CR, LF, and CRLF as newline
+                           sequences
+ PCRE_NEWLINE_CR         Set CR as the newline sequence
+ PCRE_NEWLINE_CRLF       Set CRLF as the newline sequence
+ PCRE_NEWLINE_LF         Set LF as the newline sequence
+ PCRE_NO_AUTO_CAPTURE    Disable numbered capturing paren-
+                           theses (named ones available)
+ PCRE_NO_UTF8_CHECK      Do not check the pattern for UTF-8
+                           validity (only relevant if
+                           PCRE_UTF8 is set)
+ PCRE_UCP                Use Unicode properties for \d, \w, etc.
+ PCRE_UNGREEDY           Invert greediness of quantifiers
+ PCRE_UTF8               Run in UTF-8 mode
+</pre>
+      </div>
+
+      <p>PCRE must be built with UTF-8 support in order to use
+      PCRE_UTF8 and PCRE_NO_UTF8_CHECK, and with UCP support if
+      PCRE_UCP is used.</p>
+
+      <p>The yield of the function is a pointer to a private data
+      structure that contains the compiled pattern, or NULL if an
+      error was detected. Note that compiling regular expressions
+      with one version of PCRE for use with a different version is
+      not guaranteed to work and may cause crashes.</p>
+
+      <p>There is a complete description of the PCRE native API in
+      the <a class="link" href="../htmlman3/pcreapi.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pcreapi</span>(3)</span></a> page and a
+      description of the POSIX API in the <a class="link" href="../htmlman3/pcreposix.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pcreposix</span>(3)</span></a> page.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <thead>
+            <tr>
+              <th style="" rowspan="1" colspan="1">COPYRIGHT</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <p>This manual page is taken from the <a class="ulink" href="http://www.PCRE.org/" target="_top" shape="rect">PCRE library</a>, which is distributed under
+                the BSD license.</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

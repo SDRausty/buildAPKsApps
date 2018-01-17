@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="txt_quick_settings">Quick Settings</string>
+
+    <string name="txt_status_unknown">Unknown</string>
+    <string name="txt_status_turned_on">켜짐</string>
+    <string name="txt_status_turned_off">꺼짐</string>
+    <string name="txt_status_turning_on">켜지는 중 ...</string>
+    <string name="txt_status_turning_off">꺼지는 중 ...</string>
+    <string name="txt_status_enabled">가능</string>
+    <string name="txt_status_disabled">불가</string>
+    
+    <string name="wifi_title">와이파이</string>
+    <string name="txt_net_status_connecting">연결중 ...</string>
+    <string name="txt_net_status_obtainingip">IP 주소 얻어오는 중 ...</string>
+    <string name="txt_net_status_connected_to">연결됨- %s</string>
+    <string name="txt_net_status_connected">연결됨</string>
+    <string name="txt_net_status_failed">연결 실패</string>
+    <string name="txt_net_status_disconnecting">연결 종료 중 ...</string>
+    <string name="txt_net_status_disconnected">연결 종료됨</string>
+    
+    <string name="gps_title">GPS 수신기</string>
+    <string name="txt_brightness">밝기</string>
+    <string name="msg_disable_autobrightness">자동 밝기가 켜져있습니다. 밝기를 수동 제어하시겠습니까?</string>
+
+    <string name="battery_state_title">배터리 상태:</string>
+    <string name="battery_state_value">%d%%</string>
+    <string name="txt_memory_state_value">가용메모리:</string>
+    <string name="txt_card_state_value">SD 카드:</string>
+    <string name="txt_no_card">SD 카드 없음</string>
+
+    <string name="airmode_title">비행모드</string>
+
+    <string name="btn_yes">예</string>
+    <string name="btn_no">아니요</string>
+    <string name="btn_close">닫기</string>
+    <string name="btn_set">설정</string>
+    <string name="btn_calcel">취소</string>
+
+    <string name="txt_ringer">벨소리</string>
+    <string name="txt_ringer_mode">벨소리 모드</string>
+    <string name="txt_ringer_silent">무음</string>
+    <string name="txt_ringer_sound">소리만</string>
+    <string name="txt_ringer_vibro">진동만</string>
+    <string name="txt_ringer_vibrosound">소리 &amp; 진동</string>
+    
+    <string name="txt_bt">블루투스</string>
+    <string name="txt_no_apn">APN 설정되지 않음</string>
+    
+    <string name="txt_screen_timeout">화면 꺼짐</string>
+    <string name="txt_screen_timeout_value_seconds">%d 초</string>
+    <string name="txt_screen_timeout_value_minute">%d 분</string>
+    <string name="txt_screen_timeout_value_minutes">%d 분</string>
+    <string name="txt_screen_timeout_value_never">꺼지지 않음</string>
+    
+    <string name="txt_customize_settings">Quick Settings > 메뉴 변경</string>
+    <string name="txt_preferences">Quick Settings > 설정</string>
+    <string name="txt_visible_settings">보여지는 설정들</string>
+    <string name="txt_hidden_settings">숨겨진 설정들</string>
+    <string name="msg_drag_and_drop">보여지는 항목을 변경하거나, 순서를 변경하기 위해서, 선택한 항목을 드래그하세요.</string>
+    
+    <string name="txt_auto_sync">데이터 자동 동기화</string>
+    <string name="txt_enable_background_data">백그라운드 데이터를 활성시키기 위해 선택하세요.</string>
+
+    <string name="txt_volume">볼륨 조정</string>
+    <string name="txt_volume_descr">볼륨 조정을 위해 선택하세요.</string>
+    <string name="txt_volume_ringer">벨소리 볼륨</string>
+    <string name="txt_volume_notification">알림 볼륨</string>
+    <string name="txt_volume_media">미디어 볼륨</string>
+    <string name="txt_volume_alarm">알람 볼륨</string>
+    <string name="txt_volume_voice_call">음성 통화 볼륨</string>
+    <string name="txt_volume_system">시스템 볼륨</string>
+    <string name="msg_zero_ringer_warning">벨소리 볼륨이 0인 경우, 전화를 받지 못할 수 있습니다.</string>
+    <string name="msg_zero_notification_warning">알림 볼륨이 0인 경우, 알림을 확인하지 못할 수 있습니다.</string>
+    <string name="msg_not_silent_warning">벨소리 볼륨이 %d 이기 때문에 더 이상 무음 모드가 아닙니다.</string>
+
+    <string name="msg_disabled_warning">
+    \"Mobile Data (APN)\" 을 처음 제어할 때 보여지는 메시지입니다.
+    \n\nAPN 설정이 업데이트 되었습니다. 연결이 계속해서 진행중이라면, APN 제어 설정의 수식문자열을 변경하여 주세요(APN 설정을 길게 누르세요).
+    \n\nAPN이 켜진 상태로 Quick Settings을 삭제해야 합니다. 그렇지 않으면, 연결이 정상적으로 되지 않는 상태로 남아 있을 것이며 이 경우 수동으로 APN 설정을 변경해야 합니다.
+    \n\nAPN 제어와 관련된 문제나, 도움을 위해서는 프로젝트 홈페이지를 방문하여 주십시오.
+    </string>
+    
+    <string name="msg_switch_to_air_mode">비행모드를 활성화하고, 모든 무선 연결을 종료하기를 원하십니까?</string>
+    <string name="msg_cannot_init_setting">"%s" 설정은 이 디바이스에서 제어될 수 없습니다.</string>
+
+    <string name="menu_customize_settings">화면 변경</string>
+    <string name="menu_preferences">옵션</string>
+ 
+    <string name="txt_auto_rotate">자동 회전</string>
+    
+    <!-- unlock pattern -->
+    <string name="txt_unlock_pattern">언락 패턴</string>
+    <string name="txt_set_unlock_pattern">언락 패턴을 설정합니다.</string>
+    <string name="msg_which_unlock_pattern">어떤 언락패턴을 선택할까요?\n\n주의: 언락 패턴을 이전에 설정하지 않았다면 새로운것을 선택해야 합니다.</string>
+    <string name="btn_current_unlock_pattern">현재 것</string>
+    <string name="btn_new_unlock_pattern">새로운 것</string>
+    
+    <string name="txt_toolbar">툴바</string>
+
+    <string name="pref_common">일반</string>
+    <string name="pref_status_bar">상태바 바로가기</string>
+    <string name="pref_status_bar_descr">상태바에 바로가기를 설정하거나 해제할 수 있습니다</string>
+    <string name="pref_view_mode">화면 모양</string>
+    <string name="pref_view_mode_descr">전체화면 또는 다이얼로그로 보여질 수 있습니다.</string>
+    <string name="msg_tap_to_change_settings">지금 바로 설정을 변경합니다.</string>
+
+    <string name="msg_reinstall_required">Quick Settings 응용프로그램이 적절하게 업데이트되지 않았습니다. 프로그램을 삭제한 후 다시 설치해 주세요.\n\n사용에 불편을 드려서 죄송합니다.</string>
+
+	<string name="txt_master_volume">마스터 볼륨</string>
+	<string name="txt_master_volume_desc">R: %1$d, N: %2$d, M: %3$d, A: %4$d</string>
+
+	<string name="txt_autobrightness_enabled">자동 밝기 조절이 설정되었습니다.</string>
+	<string name="txt_autobrightness_disabled">자동 밝기 조절이 해제되었습니다.</string>
+    <string name="msg_enable_autobrightness">기기가 라이트센서를 지원할때만 이 옵션을 사용할 수 있습니다.\n\n이 옵션을 활성화할까요?</string>
+    <string name="pref_light_sensor">라이트 센서 사용하기</string>
+    <string name="pref_light_sensor_descr">라이트 센서를 사용 또는 해제합니다.</string>
+
+    <string name="txt_flashlight">플래시 라이트</string>
+    <string name="pref_flashlight_descr">플래시 라이트 타입을 선택합니다.</string>
+    <string name="msg_flashlight_led_usage">장시간의 LED 플래시라이트 사용은 기기에 손상을 줄 수 있습니다. 이와 관련된 기기의 손상은 전적으로 사용자에게 있습니다.\n\n사용에 주의해주세요.</string>
+    <string name="btn_accept">동의</string>
+    <string name="msg_flashlight_not_supported">LED 플래시 라이트는 이 기기에서 제어될 수 없습니다. 스크린 플래시 라이트로 대체됩니다.</string>
+
+	<string name="txt_haptic_feedback">햅틱 반응</string>
+	<string name="txt_haptic_feedback_on">버튼 선택시 짧게 진동</string>
+	<string name="txt_haptic_feedback_off">버튼 선택시 진동하지 않음</string>
+
+<!-- 
+	<string name="txt_addons">Quick Settings > Add-ons</string>
+    <string name="menu_addons">Add-ons</string>
+    <string name="txt_addon_quick_battery">Quick Battery</string>
+    <string name="txt_addon_quick_battery_descr">It is a desktop widget showing remaining battery status in percent and a handy shortcut to Quick Settings application at the same time</string>
+    <string name="txt_install">Install</string>
+    <string name="txt_uninstall">Uninstall</string>
+ -->	
+	
+    <string name="pref_disable_mms">MMS 사용하지 않기</string>
+    <string name="pref_disable_mms_descr_disabled">모바일 데이터를 비활성화 시켰을 때, 기기는 MMS를 받지 않을 것입니다.</string>
+    <string name="pref_disable_mms_descr_enabled">모바일 데이터를 비활성화 시켰을 지라도, 기기는 MMS를 받기 위해 대기할 것입니다.</string>
+
+    <string name="txt_volume_bind">알림 시 벨소리 볼륨을 사용하기</string>
+    <string name="txt_initializing">초기화 작업중 ...</string>
+    
+    <string name="pref_one_click_switch">원클릭 전환</string>
+    <string name="txt_eula">최종 사용자 라이선스 동의</string>
+    <string name="btn_decline">거절</string>
+
+    <string name="pref_anp_modifier">수식 문자</string>
+    <string name="pref_anp_modifier_descr">APN 설정을 위해 사용되는 접두사나 접미사</string>
+    <string name="pref_restor_pref_apn">선호 APN으로 복구</string>
+    <string name="pref_restor_pref_apn_descr">연결이 재설정되지 않을 경우 몇가지 도움말</string>
+
+    <string name="pref_statusbar_integration">상태바 통합</string>
+    <string name="pref_inverse_notif_color">알림 색깔 반전</string>
+    <string name="pref_inverse_notif_color_on">텍스트와 아이콘 색깔이 하얀색으로 표시됩니다</string>
+    <string name="pref_inverse_notif_color_off">텍스트와 아이콘 색깔이 검정색으로 표시됩니다</string>
+
+    <string name="pref_about">정보</string>
+    <string name="pref_about_descr">Quick Settings에 대해서</string>
+
+    <string name="txt_full_brightness">최고 밝기</string>
+    <string name="txt_full_brightness_descr">플래시 라이트가 최고 밝기를 가질 수 있는 방법을 선택합니다.</string>
+    <string name="msg_flashlight_delay">얼굴방향으로 폰을 향하게 하면 몇초동안 스크린이 최고 밝기를 가지게 됩니다.</string>
+    <string name="msg_flashlight_orientation">최고 밝기를 설정하기 위해서 폰을 아래로 향하게 합니다.</string>
+    <string name="msg_flashlight_shake">최고 밝기를 설정 또는 해제 하기 위해서 가볍게 폰을 흔들어 줍니다.</string>
+    
+<!-- 1.9.5 -->
+    <string name="txt_pattern">패턴</string>
+    <string name="txt_pin">PIN</string>
+    <string name="txt_password">암호</string>
+    <string name="txt_wifi_hotspot">와이파이 핫스팟</string>
+    
+<!-- 1.9.6 -->
+    <string name="txt_apn_control">모바일 데이터 (APN)</string>
+    <string name="txt_mobile_data">모바일 데이터</string>
+    <string name="txt_enable_data_access_first">시스템 설정 처음에 \"모바일 데이터\" 활성화</string>
+    <string name="msg_enabling_mobile_data">모바일 데이터 활성화하기</string>
+    <string name="msg_2g_hint">연결이 이루어지지 않으면 모뎀 재연결을 위해 시스템 설정에서 \"2G only\" 체크 박스를 해제 선택하신 후 다시 시도해 주세요.</string>
+
+<!-- 1.9.7 -->
+    <string name="msg_mms_only">모바일 데이터와 MMS를 설정하는 단일 APN입니다. 이것을 해제시키면 폰이 MMS를 받지 못할 수 있습니다.\n\n정말 해제하시겠습니까?</string>
+    <string name="btn_disable">사용불가</string>
+    <string name="msg_use_mobile_data_hint">\"모바일 데이터 (APN)\" 와 \"모바일 데이터\" 중에서 선택할 수 있습니다. 적합한 것을 선택하세요.</string>
+    <string name="txt_apn_on_off_status">Data: %1$s, MMS: %2$s</string>
+    <string name="txt_on">켜짐</string>
+    <string name="txt_off">꺼짐</string>
+
+<!-- 1.9.8 -->
+    <string name="txt_four_g">4G</string>
+
+<!-- about, should stay at very bottom -->
+    <string name="copyright">© 2010 Sergej Shafarenka</string>
+    <string name="about_info">&lt;b>Version:&lt;/b> %s&lt;br>&lt;b>Contributers:&lt;/b> Brian Rodgers&lt;br>&lt;b>Translators:&lt;/b> Hugo Lopes (pt), Rémi Chéno (fr), Sebastian Thiem (de), Lada Prudek (cs), Gabriele Ravanetti (it), Kay Schasfoort (nl)</string>
+    
+</resources>

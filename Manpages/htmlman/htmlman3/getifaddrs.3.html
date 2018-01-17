@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>getifaddrs(3) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="getifaddrs(3) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="getifaddrs(3) — Linux manual pages">
+    <a id="getifaddrs.3" name="getifaddrs.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>getifaddrs, freeifaddrs — get interface
+      addresses</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+#include &lt;sys/types.h&gt;
+#include &lt;ifaddrs.h&gt;
+</pre>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">getifaddrs</b>(</code></td>
+
+            <td rowspan="1" colspan="1">struct ifaddrs **<var class="pdparam">ifap</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">void <b class="fsfunc">freeifaddrs</b>(</code></td>
+
+            <td rowspan="1" colspan="1">struct ifaddrs *<var class="pdparam">ifa</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="getifaddrs-3_sect1" name="getifaddrs-3_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>The <code class="function">getifaddrs</code>() function
+      creates a linked list of structures describing the network
+      interfaces of the local system, and stores the address of the
+      first item of the list in *<em class="parameter"><code>ifap</code></em>. The list consists of
+      <span class="structname">ifaddrs</span> structures, defined
+      as follows:</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="informalexample">
+            <pre class="programlisting" xml:space="preserve">
+struct ifaddrs {
+    struct ifaddrs  *ifa_next;    /* Next item in list */
+    char            *ifa_name;    /* Name of interface */
+    unsigned int     ifa_flags;   /* Flags from SIOCGIFFLAGS */
+    struct sockaddr *ifa_addr;    /* Address of interface */
+    struct sockaddr *ifa_netmask; /* Netmask of interface */
+    union {
+        struct sockaddr *ifu_broadaddr;
+                         /* Broadcast address of interface */
+        struct sockaddr *ifu_dstaddr;
+                         /* Point-to-point destination address */
+    } ifa_ifu;
+#define              ifa_broadaddr ifa_ifu.ifu_broadaddr
+#define              ifa_dstaddr   ifa_ifu.ifu_dstaddr
+    void            *ifa_data;    /* Address-specific data */
+};
+</pre>
+          </div>
+        </blockquote>
+      </div>
+
+      <p>The <code class="function">ifa_next</code> field contains
+      a pointer to the next structure on the list, or NULL if this
+      is the last item of the list.</p>
+
+      <p>The <code class="function">ifa_name</code> points to the
+      null-terminated interface name.</p>
+
+      <p>The <code class="function">ifa_flags</code> field contains
+      the interface flags, as returned by the <code class="constant">SIOCGIFFLAGS</code> <a class="link" href="../htmlman2/ioctl.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">ioctl</span>(2)</span></a> operation (see
+      <a class="link" href="../htmlman7/netdevice.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">netdevice</span>(7)</span></a> for a list of
+      these flags).</p>
+
+      <p>The <code class="function">ifa_addr</code> field points to
+      a structure containing the interface address. (The
+      <code class="function">sa_family</code> subfield should be
+      consulted to determine the format of the address
+      structure.)</p>
+
+      <p>The <code class="function">ifa_netmask</code> field points
+      to a structure containing the netmask associated with
+      <code class="function">ifa_addr</code>, if applicable for the
+      address family.</p>
+
+      <p>Depending on whether the bit <code class="constant">IFF_BROADCAST</code> or <code class="constant">IFF_POINTOPOINT</code> is set in <code class="function">ifa_flags</code> (only one can be set at a time),
+      either <code class="function">ifa_broadaddr</code> will
+      contain the broadcast address associated with <code class="function">ifa_addr</code> (if applicable for the address
+      family) or <code class="function">ifa_dstaddr</code> will
+      contain the destination address of the point-to-point
+      interface.</p>
+
+      <p>The <code class="function">ifa_data</code> field points to
+      a buffer containing address-family-specific data; this field
+      may be NULL if there is no such data for this interface.</p>
+
+      <p>The data returned by <code class="function">getifaddrs</code>() is dynamically allocated and
+      should be freed using <code class="function">freeifaddrs</code>() when no longer needed.</p>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUES">
+      <a id="getifaddrs-3_sect2" name="getifaddrs-3_sect2" shape="rect"> </a>
+
+      <h2>RETURN VALUES</h2>
+
+      <p>On success, <code class="function">getifaddrs</code>()
+      returns zero; on error, -1 is returned, and <code class="varname">errno</code> is set appropriately.</p>
+    </div>
+
+    <div class="refsect1" title="ERRORS">
+      <a id="getifaddrs-3_sect3" name="getifaddrs-3_sect3" shape="rect"> </a>
+
+      <h2>ERRORS</h2>
+
+      <p><code class="function">getifaddrs</code>() may fail and
+      set <code class="varname">errno</code> for any of the errors
+      specified for <a class="link" href="../htmlman2/socket.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">socket</span>(2)</span></a>, <a class="link" href="../htmlman2/bind.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">bind</span>(2)</span></a>, <a class="link" href="../htmlman2/getsockname.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">getsockname</span>(2)</span></a>, <a class="link" href="../htmlman2/recv.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">recvmsg</span>(2)</span></a>, <a class="link" href="../htmlman2/send.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">sendto</span>(2)</span></a>, <a class="link" href="../htmlman3/malloc.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">malloc</span>(3)</span></a>, or <a class="link" href="../htmlman3/malloc.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">realloc</span>(3)</span></a>.</p>
+    </div>
+
+    <div class="refsect1" title="VERSIONS">
+      <a id="getifaddrs-3_sect4" name="getifaddrs-3_sect4" shape="rect"> </a>
+
+      <h2>VERSIONS</h2>
+
+      <p>The <code class="function">getifaddrs</code>() function
+      first appeared in glibc 2.3, but before glibc 2.3.3, the
+      implementation only supported IPv4 addresses; IPv6 support
+      was added in glibc 2.3.3. Support of address families other
+      than IPv4 is only available on kernels that support
+      netlink.</p>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="getifaddrs-3_sect5" name="getifaddrs-3_sect5" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>Not in POSIX.1-2001. This function first appeared in BSDi
+      and is present on the BSD systems, but with slightly
+      different semantics documented—returning one entry per
+      interface, not per address. This means <code class="function">ifa_addr</code> and other fields can actually be
+      NULL if the interface has no address, and no link-level
+      address is returned if the interface has an IP address
+      assigned. Also, the way of choosing either <code class="function">ifa_broadaddr</code> or <code class="function">ifa_dstaddr</code> differs on various systems.</p>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="getifaddrs-3_sect6" name="getifaddrs-3_sect6" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p>The addresses returned on Linux will usually be the IPv4
+      and IPv6 addresses assigned to the interface, but also one
+      <code class="constant">AF_PACKET</code> address per interface
+      containing lower-level details about the interface and its
+      physical layer. In this case, the <code class="function">ifa_data</code> field may contain a pointer to a
+      <span class="emphasis"><em>struct
+      net_device_stats</em></span>, defined in <code class="literal">&lt;</code><code class="filename">linux/netdevice.h</code><code class="literal">&gt;</code> which contains various interface
+      attributes and statistics.</p>
+    </div>
+
+    <div class="refsect1" title="EXAMPLE">
+      <a id="getifaddrs-3_sect7" name="getifaddrs-3_sect7" shape="rect"> </a>
+
+      <h2>EXAMPLE</h2>
+
+      <p>The program below demonstrates the use of <code class="function">getifaddrs</code>(), <code class="function">freeifaddrs</code>(), and <a class="link" href="../htmlman3/getnameinfo.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">getnameinfo</span>(3)</span></a>. Here is
+      what we see when running this program on one system:</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="informalexample">
+            <pre class="programlisting" xml:space="preserve">
+$ <em class="replaceable"><code>./a.out</code></em>
+lo      address family: 17 (AF_PACKET)
+eth0    address family: 17 (AF_PACKET)
+lo      address family: 2 (AF_INET)
+        address: &lt;127.0.0.1&gt;
+eth0    address family: 2 (AF_INET)
+        address: &lt;10.1.1.4&gt;
+lo      address family: 10 (AF_INET6)
+        address: &lt;::1&gt;
+eth0    address family: 10 (AF_INET6)
+        address: &lt;fe80::2d0:59ff:feda:eb51%eth0&gt;
+</pre>
+          </div>
+        </blockquote>
+      </div>
+
+      <div class="refsect2" title="Program source">
+        <a id="getifaddrs-3_sect8" name="getifaddrs-3_sect8" shape="rect"> </a>
+
+        <h3>Program source</h3>
+
+        <div class="informalexample">
+          <pre class="programlisting" xml:space="preserve">
+#include &lt;arpa/inet.h&gt;
+#include &lt;sys/socket.h&gt;
+#include &lt;netdb.h&gt;
+#include &lt;ifaddrs.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;unistd.h&gt;
+
+int
+main(int argc, char *argv[])
+{
+    struct ifaddrs *ifaddr, *ifa;
+    int family, s;
+    char host[NI_MAXHOST];
+
+    if (getifaddrs(&amp;ifaddr) == −1) {
+        perror("getifaddrs");
+        exit(EXIT_FAILURE);
+    }
+
+    /* Walk through linked list, maintaining head pointer so we
+       can free list later */
+
+    for (ifa = ifaddr; ifa != NULL; ifa = ifa−&gt;ifa_next) {
+        if (ifa−&gt;ifa_addr == NULL)
+            continue;
+
+        family = ifa−&gt;ifa_addr−&gt;sa_family;
+
+        /* Display interface name and family (including symbolic
+           form of the latter for the common families) */
+
+        printf("%s        address family: %d%s\n",
+                ifa−&gt;ifa_name, family,
+                (family == AF_PACKET) ? " (AF_PACKET)" :
+                (family == AF_INET) ?   " (AF_INET)" :
+                (family == AF_INET6) ?  " (AF_INET6)" : "");
+
+        /* For an AF_INET* interface address, display the address */
+
+        if (family == AF_INET || family == AF_INET6) {
+            s = getnameinfo(ifa−&gt;ifa_addr,
+                    (family == AF_INET) ? sizeof(struct sockaddr_in) :
+                                          sizeof(struct sockaddr_in6),
+                    host, NI_MAXHOST, NULL, 0, NI_NUMERICHOST);
+            if (s != 0) {
+                printf("getnameinfo() failed: %s\n", gai_strerror(s));
+                exit(EXIT_FAILURE);
+            }
+            printf("\taddress: &lt;%s&gt;\n", host);
+        }
+    }
+
+    freeifaddrs(ifaddr);
+    exit(EXIT_SUCCESS);
+}
+</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="getifaddrs-3_sect9" name="getifaddrs-3_sect9" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman2/bind.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">bind</span>(2)</span></a>, <a class="link" href="../htmlman2/getsockname.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">getsockname</span>(2)</span></a>, <a class="link" href="../htmlman2/socket.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">socket</span>(2)</span></a>, <a class="link" href="../htmlman7/packet.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">packet</span>(7)</span></a>, <span class="citerefentry"><span class="refentrytitle">ifconfig</span>(8)</span></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="getifaddrs-3_sect10" name="getifaddrs-3_sect10" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.29 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright (c) 2008 Petr Baudis &lt;pasky<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>suse.cz&gt;<br />
+
+                  and copyright (c) 2009, Linux Foundation, written by Michael Kerrisk<br />
+
+                      &lt;mtk.manpages<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>gmail.com&gt;<br />
+
+                  <br />
+                  Permission is granted to make and distribute verbatim copies of this<br />
+
+                  manual provided the copyright notice and this permission notice are<br />
+
+                  preserved on all copies.<br />
+                  <br />
+                  Permission is granted to copy and distribute modified versions of this<br />
+
+                  manual under the conditions for verbatim copying, provided that the<br />
+
+                  entire resulting derived work is distributed under the terms of a<br />
+
+                  permission notice identical to this one.<br />
+
+                  <br />
+                  Since the Linux kernel and libraries are constantly changing, this<br />
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no<br />
+
+                  responsibility for errors or omissions, or for damages resulting from<br />
+
+                  the use of the information contained herein.  The author(s) may not<br />
+
+                  have taken the same level of care in the production of this manual,<br />
+
+                  which is licensed free of charge, as they might when working<br />
+
+                  professionally.<br />
+                  <br />
+                  Formatted or processed versions of this manual, if unaccompanied by<br />
+
+                  the source, must acknowledge the copyright and authors of this work.<br />
+
+                  Redistribution and use in source and binary forms, with or without<br />
+
+                  modification, are permitted provided that the following conditions<br />
+
+                  are met:<br />
+                  <br />
+                  2008-12-08 Petr Baudis &lt;pasky<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>suse.cz&gt;<br />
+
+                     Rewrite the BSD manpage in the Linux man pages style and account<br />
+
+                     for glibc specificities, provide an example.<br />
+
+                  2009-01-14 mtk, many edits and changes, rewrote example program.<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

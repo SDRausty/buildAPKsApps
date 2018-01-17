@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>wipefs(8) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="wipefs(8) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="wipefs(8) — Linux manual pages">
+    <a id="wipefs.8" name="wipefs.8" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>wipefs — wipe a filesystem signature from a
+      device</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">wipefs</code> [<code class="option">−ahnp</code>] [ <code class="option">−o</code> offset ] device</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="wipefs-8_sect1" name="wipefs-8_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><span class="command"><strong>wipefs</strong></span>
+      allows to erase filesystem or raid signatures (magic strings)
+      from the <em class="parameter"><code>device</code></em> to
+      make the filesystem invisible for libblkid. <span class="command"><strong>wipefs</strong></span> does not erase the
+      whole filesystem or any other data from the device. When used
+      without options -a or -o, it lists all visible filesystems
+      and offsets of their signatures.</p>
+    </div>
+
+    <div class="refsect1" title="OPTIONS">
+      <a id="wipefs-8_sect2" name="wipefs-8_sect2" shape="rect"> </a>
+
+      <h2>OPTIONS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="option">−a,
+          −−all</code></span></dt>
+
+          <dd>
+            <p>Erase all available signatures.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−h,
+          −−help</code></span></dt>
+
+          <dd>
+            <p>Print help and exit.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−n,
+          −−no−act</code></span></dt>
+
+          <dd>
+            <p>Causes everything to be done except for the write()
+            call.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−o,
+          −−offset</code> <em class="parameter"><code>offset</code></em></span></dt>
+
+          <dd>
+            <p>Specifies location (in bytes) of the signature which
+            should be erased from the device. The offset number may
+            include a "0x" prefix, and then the number will be read
+            as a hex value. It is possible to specify multiple -o
+            options.</p>
+
+            <p>The <em class="parameter"><code>offset</code></em>
+            argument may be followed by binary (2^N) suffixes KiB,
+            MiB, GiB, TiB, PiB and EiB (the "iB" is optional, e.g.
+            "K" has the same meaning as "KiB") or decimal (10^N)
+            suffixes KB, MB, GB, PB and EB.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−p,
+          −−parsable</code></span></dt>
+
+          <dd>
+            <p>Print out in parsable instead of printable format.
+            Encode all potentially unsafe characters of a string to
+            the corresponding hex value prefixed by '\x'.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="AUTHOR">
+      <a id="wipefs-8_sect3" name="wipefs-8_sect3" shape="rect"> </a>
+
+      <h2>AUTHOR</h2>
+
+      <p>Karel Zak &lt;kzak@redhat.com&gt;.</p>
+    </div>
+
+    <div class="refsect1" title="AVAILABILITY">
+      <a id="wipefs-8_sect4" name="wipefs-8_sect4" shape="rect"> </a>
+
+      <h2>AVAILABILITY</h2>
+
+      <p>The wipefs command is part of the util-linux package and
+      is available from
+      ftp://ftp.kernel.org/pub/linux/utils/util-linux/.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="wipefs-8_sect5" name="wipefs-8_sect5" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman8/blkid.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">blkid</span>(8)</span></a> <a class="link" href="../htmlman8/findfs.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">findfs</span>(8)</span></a></p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright 2009 by Karel Zak.  All Rights Reserved.<br />
+
+                  This file may be copied under the terms of the GNU Public License.<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

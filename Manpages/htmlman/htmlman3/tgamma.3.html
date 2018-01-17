@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>tgamma(3) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="tgamma(3) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="tgamma(3) — Linux manual pages">
+    <a id="tgamma.3" name="tgamma.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>tgamma, tgammaf, tgammal — true gamma function</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;math.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">double <b class="fsfunc">tgamma</b>(</code></td>
+
+            <td rowspan="1" colspan="1">double <var class="pdparam">x</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">float <b class="fsfunc">tgammaf</b>(</code></td>
+
+            <td rowspan="1" colspan="1">float <var class="pdparam">x</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">long double <b class="fsfunc">tgammal</b>(</code></td>
+
+            <td rowspan="1" colspan="1">long double <var class="pdparam">x</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;">
+        <table border="0" summary="Note">
+          <tr>
+            <td rowspan="2" align="center" valign="top" width="25" colspan="1">
+            <img alt="[Note]" src="../stylesheet/note.png" /></td>
+
+            <th align="left" rowspan="1" colspan="1">Note</th>
+          </tr>
+
+          <tr>
+            <td align="left" valign="top" rowspan="1" colspan="1">
+              <div class="featuretests">
+                <table style="border-collapse: collapse;">
+                  <colgroup span="1">
+                    <col span="1" />
+                  </colgroup>
+
+                  <thead>
+                    <tr>
+                      <th style="" rowspan="1" colspan="1">Feature Test Macro Requirements
+                      for glibc (see <a class="link" href="../htmlman7/feature_test_macros.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">feature_test_macros</span>(7)</span></a>):</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td style="" rowspan="1" colspan="1"><code class="function">tgamma</code>(), <code class="function">tgammaf</code>(), <code class="function">tgammal</code>():</td>
+                    </tr>
+
+                    <tr>
+                      <td class="featuretestdef" style="" rowspan="1" colspan="1">
+                      <code class="constant">_XOPEN_SOURCE</code>
+                      &gt;= 600 || <code class="constant">_ISOC99_SOURCE</code> ||
+                      <code class="constant">_POSIX_C_SOURCE</code>
+                      &gt;= 200112L;</td>
+                    </tr>
+
+                    <tr>
+                      <td style="" rowspan="1" colspan="1">or <span class="command"><strong>cc</strong></span>
+                      <code class="option">-std=c99</code></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;">
+        <table border="0" summary="Note">
+          <tr>
+            <td rowspan="2" align="center" valign="top" width="25" colspan="1">
+            <img alt="[Note]" src="../stylesheet/note.png" /></td>
+
+            <th align="left" rowspan="1" colspan="1">Note</th>
+          </tr>
+
+          <tr>
+            <td align="left" valign="top" rowspan="1" colspan="1">
+              <p>Link with <code class="option">−lm</code>.</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="tgamma-3_sect1" name="tgamma-3_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>The Gamma function is defined by</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+    Gamma(x) = integral from 0 to infinity of t^(x−1) e^−t dt
+</pre>
+      </div>
+
+      <p>It is defined for every real number except for nonpositive
+      integers. For nonnegative integral <code class="literal">m</code> one has</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+    Gamma(m+1) = m!
+</pre>
+      </div>
+
+      <p>and, more generally, for all <em class="parameter"><code>x</code></em>:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+    Gamma(x+1) = x * Gamma(x)
+</pre>
+      </div>
+
+      <p>Furthermore, the following is valid for all values of
+      <em class="parameter"><code>x</code></em> outside the
+      poles:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+    Gamma(x) * Gamma(1 − x) = PI / sin(PI * x)
+</pre>
+      </div>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="tgamma-3_sect2" name="tgamma-3_sect2" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p>On success, these functions return Gamma(x).</p>
+
+      <p>If <em class="parameter"><code>x</code></em> is a NaN, a
+      NaN is returned.</p>
+
+      <p>If <em class="parameter"><code>x</code></em> is positive
+      infinity, positive infinity is returned.</p>
+
+      <p>If <em class="parameter"><code>x</code></em> is a negative
+      integer, or is negative infinity, a domain error occurs, and
+      a NaN is returned.</p>
+
+      <p>If the result overflows, a range error occurs, and the
+      functions return <code class="constant">HUGE_VAL</code>,
+      <code class="constant">HUGE_VALF</code>, or <code class="constant">HUGE_VALL</code>, respectively, with the correct
+      mathematical sign.</p>
+
+      <p>If the result underflows, a range error occurs, and the
+      functions return 0, with the correct mathematical sign.</p>
+
+      <p>If <em class="parameter"><code>x</code></em> is -0 or +0,
+      a pole error occurs, and the functions return <code class="constant">HUGE_VAL</code>, <code class="constant">HUGE_VALF</code>, or <code class="constant">HUGE_VALL</code>, respectively, with the same sign
+      as the 0.</p>
+    </div>
+
+    <div class="refsect1" title="ERRORS">
+      <a id="tgamma-3_sect3" name="tgamma-3_sect3" shape="rect"> </a>
+
+      <h2>ERRORS</h2>
+
+      <p>See <a class="link" href="../htmlman7/math_error.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">math_error</span>(7)</span></a> for
+      information on how to determine whether an error has occurred
+      when calling these functions.</p>
+
+      <p>The following errors can occur:</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term">Domain error: <em class="parameter"><code>x</code></em> is a negative integer, or
+          negative infinity</span></dt>
+
+          <dd>
+            <p><code class="varname">errno</code> is set to
+            <span class="errorname">EDOM</span>. An invalid
+            floating-point exception (<code class="constant">FE_INVALID</code>) is raised (but see
+            BUGS).</p>
+          </dd>
+
+          <dt><span class="term">Pole error: <em class="parameter"><code>x</code></em> is +0 or
+          −0</span></dt>
+
+          <dd>
+            <p><code class="varname">errno</code> is set to
+            <span class="errorname">ERANGE</span>. A divide-by-zero
+            floating-point exception (<code class="constant">FE_DIVBYZERO</code>) is raised.</p>
+          </dd>
+
+          <dt><span class="term">Range error: result
+          overflow</span></dt>
+
+          <dd>
+            <p><code class="varname">errno</code> is set to
+            <span class="errorname">ERANGE</span>. An overflow
+            floating-point exception (<code class="constant">FE_OVERFLOW</code>) is raised.</p>
+          </dd>
+        </dl>
+      </div>
+
+      <p>glibc also gives the following error which is not
+      specified in C99 or POSIX.1-2001.</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term">Range error: result
+          underflow</span></dt>
+
+          <dd>
+            <p>An underflow floating-point exception (<code class="constant">FE_UNDERFLOW</code>) is raised.</p>
+
+            <p><code class="varname">errno</code> is not set for
+            this case.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="VERSIONS">
+      <a id="tgamma-3_sect4" name="tgamma-3_sect4" shape="rect"> </a>
+
+      <h2>VERSIONS</h2>
+
+      <p>These functions first appeared in glibc in version
+      2.1.</p>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="tgamma-3_sect5" name="tgamma-3_sect5" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>C99, POSIX.1-2001.</p>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="tgamma-3_sect6" name="tgamma-3_sect6" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p>This function had to be called "true gamma function" since
+      there is already a function <a class="link" href="../htmlman3/gamma.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">gamma</span>(3)</span></a> that returns
+      something else (see <a class="link" href="../htmlman3/gamma.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">gamma</span>(3)</span></a> for details).</p>
+    </div>
+
+    <div class="refsect1" title="BUGS">
+      <a id="tgamma-3_sect7" name="tgamma-3_sect7" shape="rect"> </a>
+
+      <h2>BUGS</h2>
+
+      <p>If <em class="parameter"><code>x</code></em> is negative
+      infinity, <code class="varname">errno</code> is not set (it
+      should be set to <span class="errorname">EDOM</span>).</p>
+
+      <p>In glibc versions 2.3.3 and earlier, an argument of +0 or
+      -0 incorrectly produced a domain error (<code class="varname">errno</code> set to <span class="errorname">EDOM</span> and an <code class="constant">FE_INVALID</code> exception raised), rather than a
+      pole error.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="tgamma-3_sect8" name="tgamma-3_sect8" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman3/gamma.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">gamma</span>(3)</span></a>, <a class="link" href="../htmlman3/lgamma.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">lgamma</span>(3)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="tgamma-3_sect9" name="tgamma-3_sect9" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.27 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright 2002 Walter Harms (walter.harms<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>informatik.uni-oldenburg.de)<br />
+
+                  Distributed under GPL<br />
+                  Based on glibc infopages<br />
+                  and Copyright 2008, Linux Foundation, written by Michael Kerrisk<br />
+
+                      &lt;mtk.manpages<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>gmail.com&gt;<br />
+
+                  Modified 2004-11-15, fixed error noted by Fabian Kreutz<br />
+
+                   &lt;kreutz<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>dbs.uni-hannover.de&gt;<br />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

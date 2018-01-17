@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>nan(3) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="nan(3) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="nan(3) — Linux manual pages">
+    <a id="nan.3" name="nan.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>nan, nanf, nanl — return 'Not a Number'</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;math.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">double <b class="fsfunc">nan</b>(</code></td>
+
+            <td rowspan="1" colspan="1">const char *<var class="pdparam">tagp</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">float <b class="fsfunc">nanf</b>(</code></td>
+
+            <td rowspan="1" colspan="1">const char *<var class="pdparam">tagp</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">long double <b class="fsfunc">nanl</b>(</code></td>
+
+            <td rowspan="1" colspan="1">const char *<var class="pdparam">tagp</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;">
+        <table border="0" summary="Note">
+          <tr>
+            <td rowspan="2" align="center" valign="top" width="25" colspan="1">
+            <img alt="[Note]" src="../stylesheet/note.png" /></td>
+
+            <th align="left" rowspan="1" colspan="1">Note</th>
+          </tr>
+
+          <tr>
+            <td align="left" valign="top" rowspan="1" colspan="1">
+              <div class="featuretests">
+                <table style="border-collapse: collapse;">
+                  <colgroup span="1">
+                    <col span="1" />
+                  </colgroup>
+
+                  <thead>
+                    <tr>
+                      <th style="" rowspan="1" colspan="1">Feature Test Macro Requirements
+                      for glibc (see <a class="link" href="../htmlman7/feature_test_macros.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">feature_test_macros</span>(7)</span></a>):</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td style="" rowspan="1" colspan="1"><code class="function">nan</code>(), <code class="function">nanf</code>(), <code class="function">nanl</code>():</td>
+                    </tr>
+
+                    <tr>
+                      <td class="featuretestdef" style="" rowspan="1" colspan="1">
+                      <code class="constant">_XOPEN_SOURCE</code>
+                      &gt;= 600 || <code class="constant">_ISOC99_SOURCE</code> ||
+                      <code class="constant">_POSIX_C_SOURCE</code>
+                      &gt;= 200112L;</td>
+                    </tr>
+
+                    <tr>
+                      <td style="" rowspan="1" colspan="1">or <span class="command"><strong>cc</strong></span>
+                      <code class="option">-std=c99</code></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;">
+        <table border="0" summary="Note">
+          <tr>
+            <td rowspan="2" align="center" valign="top" width="25" colspan="1">
+            <img alt="[Note]" src="../stylesheet/note.png" /></td>
+
+            <th align="left" rowspan="1" colspan="1">Note</th>
+          </tr>
+
+          <tr>
+            <td align="left" valign="top" rowspan="1" colspan="1">
+              <p>Link with <code class="option">−lm</code>.</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="nan-3_sect1" name="nan-3_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>These functions return a representation (determined by
+      <em class="parameter"><code>tagp</code></em>) of a quiet NaN.
+      If the implementation does not support quiet NaNs, these
+      functions return zero.</p>
+
+      <p>The call <em class="replaceable"><code>nan("char-sequence")</code></em> is
+      equivalent to:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+    strtod("NAN(char-sequence)", NULL);
+</pre>
+      </div>
+
+      <p>Similarly, calls to <code class="function">nanf</code>()
+      and <code class="function">nanl</code>() are equivalent to
+      analogous calls to <a class="link" href="../htmlman3/strtod.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">strtof</span>(3)</span></a> and <a class="link" href="../htmlman3/strtod.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">strtold</span>(3)</span></a>.</p>
+
+      <p>The argument <em class="parameter"><code>tagp</code></em>
+      is used in an unspecified manner. On IEEE 754 systems, there
+      are many representations of NaN, and <em class="parameter"><code>tagp</code></em> selects one. On other
+      systems it may do nothing.</p>
+    </div>
+
+    <div class="refsect1" title="VERSIONS">
+      <a id="nan-3_sect2" name="nan-3_sect2" shape="rect"> </a>
+
+      <h2>VERSIONS</h2>
+
+      <p>These functions first appeared in glibc in version
+      2.1.</p>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="nan-3_sect3" name="nan-3_sect3" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>C99, POSIX.1-2001. See also IEC 559 and the appendix with
+      recommended functions in IEEE 754/IEEE 854.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="nan-3_sect4" name="nan-3_sect4" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman3/fpclassify.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">isnan</span>(3)</span></a>, <a class="link" href="../htmlman3/strtod.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">strtod</span>(3)</span></a>, <a class="link" href="../htmlman7/math_error.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">math_error</span>(7)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="nan-3_sect5" name="nan-3_sect5" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.27 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright 2002 Walter Harms (walter.harms<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>informatik.uni-oldenburg.de)<br />
+
+                  Distributed under GPL<br />
+                  Based on glibc infopages<br />
+                  <br />
+                  Corrections by aeb<br />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

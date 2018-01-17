@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>pthread_setconcurrency(3) — Linux manual
+  pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="pthread_setconcurrency(3) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="pthread_setconcurrency(3) — Linux manual pages">
+    <a id="pthread-setconcurrency.3" name="pthread-setconcurrency.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>pthread_setconcurrency, pthread_getconcurrency —
+      set/get the concurrency level</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;pthread.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">pthread_setconcurrency</b>(</code></td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">new_level</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">pthread_getconcurrency</b>(</code></td>
+
+            <td rowspan="1" colspan="1"><code>void)</code>;</td>
+
+            <td rowspan="1" colspan="1"> </td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;">
+        <table border="0" summary="Note">
+          <tr>
+            <td rowspan="2" align="center" valign="top" width="25" colspan="1">
+            <img alt="[Note]" src="../stylesheet/note.png" /></td>
+
+            <th align="left" rowspan="1" colspan="1">Note</th>
+          </tr>
+
+          <tr>
+            <td align="left" valign="top" rowspan="1" colspan="1">
+              <p>Compile and link with <code class="option">−pthread</code>.</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="pthread-setconcurrency-3_sect1" name="pthread-setconcurrency-3_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>The <code class="function">pthread_setconcurrency</code>()
+      function informs the implementation of the application's
+      desired concurrency level, specified in <em class="parameter"><code>new_level</code></em>. The implementation
+      only takes this as a hint: POSIX.1 does not specify the level
+      of concurrency that should be provided as a result of calling
+      <code class="function">pthread_setconcurrency</code>().</p>
+
+      <p>Specifying <em class="parameter"><code>new_level</code></em> as 0 instructs the
+      implementation to manage the concurrency level as it deems
+      appropriate.</p>
+
+      <p><code class="function">pthread_getconcurrency</code>()
+      returns the current value of the concurrency level for this
+      process.</p>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="pthread-setconcurrency-3_sect2" name="pthread-setconcurrency-3_sect2" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p>On success, <code class="function">pthread_setconcurrency</code>() returns 0; on
+      error, it returns a nonzero error number.</p>
+
+      <p><code class="function">pthread_getconcurrency</code>()
+      always succeeds, returning the concurrency level set by a
+      previous call to <code class="function">pthread_setconcurrency</code>(), or 0, if
+      <code class="function">pthread_setconcurrency</code>() has
+      not previously been called.</p>
+    </div>
+
+    <div class="refsect1" title="ERRORS">
+      <a id="pthread-setconcurrency-3_sect3" name="pthread-setconcurrency-3_sect3" shape="rect"> </a>
+
+      <h2>ERRORS</h2>
+
+      <p><code class="function">pthread_setconcurrency</code>() can
+      fail with the following error:</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><span class="errorname">EINVAL</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>new_level</code></em> is
+            negative.</p>
+          </dd>
+        </dl>
+      </div>
+
+      <p>POSIX.1-2001 also documents an <span class="errorname">EAGAIN</span> error ("the value specified by
+      <em class="parameter"><code>new_level</code></em> would cause
+      a system resource to be exceeded").</p>
+    </div>
+
+    <div class="refsect1" title="VERSIONS">
+      <a id="pthread-setconcurrency-3_sect4" name="pthread-setconcurrency-3_sect4" shape="rect"> </a>
+
+      <h2>VERSIONS</h2>
+
+      <p>These functions are available in glibc since version
+      2.1.</p>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="pthread-setconcurrency-3_sect5" name="pthread-setconcurrency-3_sect5" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>POSIX.1-2001.</p>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="pthread-setconcurrency-3_sect6" name="pthread-setconcurrency-3_sect6" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p>The default concurrency level is 0.</p>
+
+      <p>Concurrency levels are only meaningful for M:N threading
+      implementations, where at any moment a subset of a process's
+      set of user-level threads may be bound to a smaller number of
+      kernel-scheduling entities. Setting the concurrency level
+      allows the application to give the system a hint as to the
+      number of kernel-scheduling entities that should be provided
+      for efficient execution of the application.</p>
+
+      <p>Both LinuxThreads and NPTL are 1:1 threading
+      implementations, so setting the concurrency level has no
+      meaning. In other words, on Linux these functions merely
+      exist for compatibility with other systems, and they have no
+      effect on the execution of a program.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="pthread-setconcurrency-3_sect7" name="pthread-setconcurrency-3_sect7" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman3/pthread_attr_setscope.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pthread_attr_setscope</span>(3)</span></a>,
+      <a class="link" href="../htmlman7/pthreads.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pthreads</span>(7)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="pthread-setconcurrency-3_sect8" name="pthread-setconcurrency-3_sect8" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.24 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright (c) 2009 Michael Kerrisk, &lt;mtk.manpages<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>gmail.com&gt;<br />
+
+                  <br />
+                  Permission is granted to make and distribute verbatim copies of this<br />
+
+                  manual provided the copyright notice and this permission notice are<br />
+
+                  preserved on all copies.<br />
+                  <br />
+                  Permission is granted to copy and distribute modified versions of this<br />
+
+                  manual under the conditions for verbatim copying, provided that the<br />
+
+                  entire resulting derived work is distributed under the terms of a<br />
+
+                  permission notice identical to this one.<br />
+
+                  <br />
+                  Since the Linux kernel and libraries are constantly changing, this<br />
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no<br />
+
+                  responsibility for errors or omissions, or for damages resulting from<br />
+
+                  the use of the information contained herein.  The author(s) may not<br />
+
+                  have taken the same level of care in the production of this manual,<br />
+
+                  which is licensed free of charge, as they might when working<br />
+
+                  professionally.<br />
+                  <br />
+                  Formatted or processed versions of this manual, if unaccompanied by<br />
+
+                  the source, must acknowledge the copyright and authors of this work.<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

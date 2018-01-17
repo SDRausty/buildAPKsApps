@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>mkdir(2) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="mkdir(2) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="mkdir(2) — Linux manual pages">
+    <a id="mkdir.2" name="mkdir.2" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>mkdir — create a directory</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+#include &lt;sys/stat.h&gt;
+#include &lt;sys/types.h&gt;
+</pre>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">mkdir</b>(</code></td>
+
+            <td rowspan="1" colspan="1">const char *<var class="pdparam">pathname</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">mode_t <var class="pdparam">mode</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="mkdir-2_sect1" name="mkdir-2_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><code class="function">mkdir</code>() attempts to create a
+      directory named <em class="parameter"><code>pathname</code></em>.</p>
+
+      <p>The argument <em class="parameter"><code>mode</code></em>
+      specifies the permissions to use. It is modified by the
+      process's <code class="literal">umask</code> in the usual
+      way: the permissions of the created directory are (<em class="parameter"><code>mode</code></em> &amp; ~<code class="literal">umask</code> &amp; 0777). Other mode bits of the
+      created directory depend on the operating system. For Linux,
+      see below.</p>
+
+      <p>The newly created directory will be owned by the effective
+      user ID of the process. If the directory containing the file
+      has the set-group-ID bit set, or if the file system is
+      mounted with BSD group semantics (<span class="emphasis"><em>mount -o bsdgroups</em></span> or,
+      synonymously <span class="emphasis"><em>mount -o
+      grpid</em></span>), the new directory will inherit the group
+      ownership from its parent; otherwise it will be owned by the
+      effective group ID of the process.</p>
+
+      <p>If the parent directory has the set-group-ID bit set then
+      so will the newly created directory.</p>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="mkdir-2_sect2" name="mkdir-2_sect2" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p><code class="function">mkdir</code>() returns zero on
+      success, or −1 if an error occurred (in which case,
+      <code class="varname">errno</code> is set appropriately).</p>
+    </div>
+
+    <div class="refsect1" title="ERRORS">
+      <a id="mkdir-2_sect3" name="mkdir-2_sect3" shape="rect"> </a>
+
+      <h2>ERRORS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><span class="errorname">EACCES</span></span></dt>
+
+          <dd>
+            <p>The parent directory does not allow write permission
+            to the process, or one of the directories in <em class="parameter"><code>pathname</code></em> did not allow
+            search permission. (See also <a class="link" href="../htmlman7/path_resolution.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">path_resolution</span>(7)</span></a>.)</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EEXIST</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>pathname</code></em>
+            already exists (not necessarily as a directory). This
+            includes the case where <em class="parameter"><code>pathname</code></em> is a symbolic
+            link, dangling or not.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EFAULT</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>pathname</code></em>
+            points outside your accessible address space.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ELOOP</span></span></dt>
+
+          <dd>
+            <p>Too many symbolic links were encountered in
+            resolving <em class="parameter"><code>pathname</code></em>.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EMLINK</span></span></dt>
+
+          <dd>
+            <p>The number of links to the parent directory would
+            exceed <code class="constant">LINK_MAX</code>.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENAMETOOLONG</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>pathname</code></em> was
+            too long.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENOENT</span></span></dt>
+
+          <dd>
+            <p>A directory component in <em class="parameter"><code>pathname</code></em> does not exist
+            or is a dangling symbolic link.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENOMEM</span></span></dt>
+
+          <dd>
+            <p>Insufficient kernel memory was available.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENOSPC</span></span></dt>
+
+          <dd>
+            <p>The device containing <em class="parameter"><code>pathname</code></em> has no room for
+            the new directory.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENOSPC</span></span></dt>
+
+          <dd>
+            <p>The new directory cannot be created because the
+            user's disk quota is exhausted.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENOTDIR</span></span></dt>
+
+          <dd>
+            <p>A component used as a directory in <em class="parameter"><code>pathname</code></em> is not, in fact,
+            a directory.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EPERM</span></span></dt>
+
+          <dd>
+            <p>The file system containing <em class="parameter"><code>pathname</code></em> does not support
+            the creation of directories.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EROFS</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>pathname</code></em>
+            refers to a file on a read-only file system.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="mkdir-2_sect4" name="mkdir-2_sect4" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>SVr4, BSD, POSIX.1-2001.</p>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="mkdir-2_sect5" name="mkdir-2_sect5" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p>Under Linux apart from the permission bits, only the
+      <code class="constant">S_ISVTX</code> mode bit is honored.
+      That is, under Linux the created directory actually gets mode
+      (<em class="parameter"><code>mode</code></em> &amp;
+      ~<code class="literal">umask</code> &amp; 01777). See also
+      <a class="link" href="../htmlman2/stat.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">stat</span>(2)</span></a>.</p>
+
+      <p>There are many infelicities in the protocol underlying
+      NFS. Some of these affect <code class="function">mkdir</code>().</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="mkdir-2_sect6" name="mkdir-2_sect6" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman1/mkdir.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mkdir</span>(1)</span></a>, <a class="link" href="../htmlman2/chmod.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">chmod</span>(2)</span></a>, <a class="link" href="../htmlman2/chown.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">chown</span>(2)</span></a>, <a class="link" href="../htmlman2/mkdirat.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mkdirat</span>(2)</span></a>, <a class="link" href="../htmlman2/mknod.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mknod</span>(2)</span></a>, <a class="link" href="../htmlman2/mount.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mount</span>(2)</span></a>, <a class="link" href="../htmlman2/rmdir.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">rmdir</span>(2)</span></a>, <a class="link" href="../htmlman2/stat.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">stat</span>(2)</span></a>, <a class="link" href="../htmlman2/umask.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">umask</span>(2)</span></a>, <a class="link" href="../htmlman2/unlink.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">unlink</span>(2)</span></a>, <a class="link" href="../htmlman7/path_resolution.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">path_resolution</span>(7)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="mkdir-2_sect7" name="mkdir-2_sect7" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.26 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                  This manpage is Copyright (C) 1992 Drew Eckhardt;<br />
+
+                                                1993 Michael Haardt<br />
+
+                                                1993,1994 Ian Jackson.<br />
+
+                  You may distribute it under the terms of the GNU General<br />
+
+                  Public License. It comes with NO WARRANTY.<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tallyphant</string>
+    <string name="elephant">Elephant</string>
+    <string name="menu_newitem">New Item</string>
+    <string name="menu_preferences">Preferences</string>
+    <string name="menu_about">About</string>
+    <string name="feedback">feedback</string>
+    <string name="pref_playsound">Play sound</string>
+    <string name="pref_playsound_d">Play sound when count changes</string>
+    <string name="about_version">Version:</string>
+    <string name="about_site">Web Site:</string>
+    <string name="about_desc">Tallyphant - copyright 2012 Ciaran Gultnieks. Released under the GNU GPL version 3.</string>
+    <string name="about_title">About Tallyphant</string>
+    <string name="ok">Ok</string>
+    <string name="about_website">Web Site</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="pref_speak">Speak</string>
+    <string name="pref_speak_d">Speak when count changes</string>
+    <string name="pref_vibrate">Vibrate</string>
+    <string name="pref_vibrate_d">Vibrate when count changes</string>
+    <string name="speechReady">Speech ready!</string>
+    <string name="speechInit">Initialising speech engine...</string>
+    <string name="menu_resetall">Reset All</string>
+    <string name="validnumber">You need to enter a sensible number! (Or leave the box empty for 0)</string>
+    <string name="pref_udp">UDP Update</string>
+    <string name="pref_udp_d">Notify counter updates via UDP</string>
+    <string name="pref_udpHost">Host</string>
+    <string name="pref_udpHost_d">Host/IP Address to send updates to</string>
+    <string name="pref_udpPort">Port</string>
+    <string name="pref_udpPort_d">Port to send updates to</string>
+    <string name="network">Network</string>
+    <string name="elephants">Elephants</string>
+    <string-array name="buttonstyles">
+        
+        <item >Minus and Plus</item><item>Plus Only</item>
+    </string-array>
+    <string-array name="labelstyles">
+        <item >Item</item>
+        <item >Score</item>
+        <item >Item with plural</item>
+    </string-array>
+    <string name="edititem_plural">Plural:</string>
+    <string name="edititem_buttonstyle">Button style:</string>
+    <string name="edititem_labelstyle">Label style:</string>
+    <string name="edititem_count">Count:</string>
+    <string name="edititem_name">Name:</string>
+    <string name="edititem_title">Tallyphant - Edit Item</string>
+    <string name="share_subject">Results from Tallyphant</string>
+    <string name="share_title">Share current results with...</string>
+    <string name="menu_share">Share</string>
+    <string name="any_title">Enter amount</string>
+    <string name="anyadd">Enter the amount to add.</string>
+    <string name="anysubtract">Enter the amount to subtract.</string>
+
+</resources>

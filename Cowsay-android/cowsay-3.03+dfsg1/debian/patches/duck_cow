@@ -1,0 +1,14 @@
+Description: Add a new cow
+Forwarded: no
+Author: Gürkan Sengün <gurkan@phys.ethz.ch>
+
+--- /dev/null
++++ cowsay-3.03/cows/duck.cow
+@@ -0,0 +1,7 @@
++# provided by Gürkan Sengün <gurkan@phys.ethz.ch>
++$the_cow = <<"EOC";
++ $thoughts
++  $thoughts
++   $thoughts >()_
++      (__)__ _
++EOC

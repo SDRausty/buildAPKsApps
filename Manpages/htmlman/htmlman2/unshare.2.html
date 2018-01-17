@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>unshare(2) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="unshare(2) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="unshare(2) — Linux manual pages">
+    <a id="unshare.2" name="unshare.2" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>unshare — disassociate parts of the process
+      execution context</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+#define _GNU_SOURCE              /* See feature_test_macros(7) */
+#include &lt;sched.h&gt;
+</pre>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">unshare</b>(</code></td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">flags</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="unshare-2_sect1" name="unshare-2_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><code class="function">unshare</code>() allows a process
+      to disassociate parts of its execution context that are
+      currently being shared with other processes. Part of the
+      execution context, such as the mount namespace, is shared
+      implicitly when a new process is created using <a class="link" href="../htmlman2/fork.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fork</span>(2)</span></a> or <a class="link" href="../htmlman2/vfork.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">vfork</span>(2)</span></a>, while other
+      parts, such as virtual memory, may be shared by explicit
+      request when creating a process using <a class="link" href="../htmlman2/clone.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">clone</span>(2)</span></a>.</p>
+
+      <p>The main use of <code class="function">unshare</code>() is
+      to allow a process to control its shared execution context
+      without creating a new process.</p>
+
+      <p>The <em class="parameter"><code>flags</code></em> argument
+      is a bit mask that specifies which parts of the execution
+      context should be unshared. This argument is specified by
+      ORing together zero or more of the following constants:</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="constant">CLONE_FILES</code></span></dt>
+
+          <dd>
+            <p>Reverse the effect of the <a class="link" href="../htmlman2/clone.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">clone</span>(2)</span></a> <code class="constant">CLONE_FILES</code> flag. Unshare the file
+            descriptor table, so that the calling process no longer
+            shares its file descriptors with any other process.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">CLONE_FS</code></span></dt>
+
+          <dd>
+            <p>Reverse the effect of the <a class="link" href="../htmlman2/clone.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">clone</span>(2)</span></a> <code class="constant">CLONE_FS</code> flag. Unshare file system
+            attributes, so that the calling process no longer
+            shares its root directory, current directory, or umask
+            attributes with any other process. <a class="link" href="../htmlman2/chroot.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">chroot</span>(2)</span></a>, <a class="link" href="../htmlman2/chdir.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">chdir</span>(2)</span></a>, or
+            <a class="link" href="../htmlman2/umask.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">umask</span>(2)</span></a></p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">CLONE_NEWIPC</code> (since Linux
+          2.6.19)</span></dt>
+
+          <dd>
+            <p>This flag has the same effect as the <a class="link" href="../htmlman2/clone.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">clone</span>(2)</span></a> <code class="constant">CLONE_NEWIPC</code> flag. Unshare the System
+            V IPC namespace, so that the calling process has a
+            private copy of the System V IPC namespace which is not
+            shared with any other process. Specifying this flag
+            automatically implies <code class="constant">CLONE_SYSVSEM</code> as well. Use of
+            <code class="constant">CLONE_NEWIPC</code> requires the
+            <code class="constant">CAP_SYS_ADMIN</code>
+            capability.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">CLONE_NEWNET</code> (since Linux
+          2.6.24)</span></dt>
+
+          <dd>
+            <p>This flag has the same effect as the <a class="link" href="../htmlman2/clone.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">clone</span>(2)</span></a> <code class="constant">CLONE_NEWNET</code> flag. Unshare the
+            network namespace, so that the calling process is moved
+            into a new network namespace which is not shared with
+            any previously existing process. <code class="constant">CLONE_NEWNET</code> requires the
+            <code class="constant">CAP_SYS_ADMIN</code>
+            capability.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">CLONE_NEWNS</code></span></dt>
+
+          <dd>
+            <p>This flag has the same effect as the <a class="link" href="../htmlman2/clone.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">clone</span>(2)</span></a> <code class="constant">CLONE_NEWNS</code> flag. Unshare the mount
+            namespace, so that the calling process has a private
+            copy of its namespace which is not shared with any
+            other process. Specifying this flag automatically
+            implies <code class="constant">CLONE_FS</code> as well.
+            Use of <code class="constant">CLONE_NEWNS</code>
+            requires the <code class="constant">CAP_SYS_ADMIN</code> capability.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">CLONE_SYSVSEM</code> (since Linux
+          2.6.26)</span></dt>
+
+          <dd>
+            <p>This flag reverses the effect of the <a class="link" href="../htmlman2/clone.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">clone</span>(2)</span></a> <code class="constant">CLONE_SYSVSEM</code> flag. Unshare System V
+            semaphore undo values, so that the calling process has
+            a private copy which is not shared with any other
+            process. Use of <code class="constant">CLONE_SYSVSEM</code> requires the
+            <code class="constant">CAP_SYS_ADMIN</code>
+            capability.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">CLONE_NEWUTS</code> (since Linux
+          2.6.19)</span></dt>
+
+          <dd>
+            <p>This flag has the same effect as the <a class="link" href="../htmlman2/clone.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">clone</span>(2)</span></a> <code class="constant">CLONE_NEWUTS</code> flag. Unshare the UTS
+            IPC namespace, so that the calling process has a
+            private copy of the UTS namespace which is not shared
+            with any other process. Use of <code class="constant">CLONE_NEWUTS</code> requires the
+            <code class="constant">CAP_SYS_ADMIN</code>
+            capability.</p>
+          </dd>
+        </dl>
+      </div>
+
+      <p>If <em class="parameter"><code>flags</code></em> is
+      specified as zero, then <code class="function">unshare</code>() is a no-op; no changes are made
+      to the calling process's execution context.</p>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="unshare-2_sect2" name="unshare-2_sect2" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p>On success, zero returned. On failure, −1 is
+      returned and <code class="varname">errno</code> is set to
+      indicate the error.</p>
+    </div>
+
+    <div class="refsect1" title="ERRORS">
+      <a id="unshare-2_sect3" name="unshare-2_sect3" shape="rect"> </a>
+
+      <h2>ERRORS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><span class="errorname">EINVAL</span></span></dt>
+
+          <dd>
+            <p>An invalid bit was specified in <em class="parameter"><code>flags</code></em>.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENOMEM</span></span></dt>
+
+          <dd>
+            <p>Cannot allocate sufficient memory to copy parts of
+            caller's context that need to be unshared.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EPERM</span></span></dt>
+
+          <dd>
+            <p>The calling process did not have the required
+            privileges for this operation.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="VERSIONS">
+      <a id="unshare-2_sect4" name="unshare-2_sect4" shape="rect"> </a>
+
+      <h2>VERSIONS</h2>
+
+      <p>The <code class="function">unshare</code>() system call
+      was added to Linux in kernel 2.6.16.</p>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="unshare-2_sect5" name="unshare-2_sect5" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>The <code class="function">unshare</code>() system call is
+      Linux-specific.</p>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="unshare-2_sect6" name="unshare-2_sect6" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p>Not all of the process attributes that can be shared when
+      a new process is created using <a class="link" href="../htmlman2/clone.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">clone</span>(2)</span></a> can be unshared
+      using <code class="function">unshare</code>(). In particular,
+      as at kernel 2.6.16, <code class="function">unshare</code>()
+      does not implement flags that reverse the effects of
+      <code class="constant">CLONE_SIGHAND</code>, <code class="constant">CLONE_SYSVSEM</code>, <code class="constant">CLONE_THREAD</code>, or <code class="constant">CLONE_VM</code>. Such functionality may be added
+      in the future, if required.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="unshare-2_sect7" name="unshare-2_sect7" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman2/clone.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">clone</span>(2)</span></a>, <a class="link" href="../htmlman2/fork.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fork</span>(2)</span></a>, <a class="link" href="../htmlman2/vfork.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">vfork</span>(2)</span></a>,
+      Documentation/unshare.txt</p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="unshare-2_sect8" name="unshare-2_sect8" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.30 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright (C) 2006, Janak Desai &lt;janak<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>us.ibm.com&gt;<br />
+
+                  and Copyright (C) 2006, Michael Kerrisk &lt;mtk.manpages<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>gmail.com&gt;<br />
+
+                  Licensed under the GPL<br />
+                  <br />
+                  Patch Justification:<br />
+                  unshare system call is needed to implement, using PAM,<br />
+
+                  per-security_context and/or per-user namespace to provide<br />
+
+                  polyinstantiated directories. Using unshare and bind mounts, a<br />
+
+                  PAM module can create private namespace with appropriate<br />
+
+                  directories(based on user's security context) bind mounted on<br />
+
+                  public directories such as /tmp, thus providing an instance of<br />
+
+                  /tmp that is based on user's security context. Without the<br />
+
+                  unshare system call, namespace separation can only be achieved<br />
+
+                  by clone, which would require porting and maintaining all commands<br />
+
+                  such as login, and su, that establish a user session.<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

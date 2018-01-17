@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- setting row lays out elements needed to show a single setting -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/link"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:background="@android:drawable/list_selector_background"
+    >
+    
+	<include layout="@layout/row_setting_base"/>
+ 
+</LinearLayout>

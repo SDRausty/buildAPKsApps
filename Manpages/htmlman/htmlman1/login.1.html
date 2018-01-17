@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>login(1) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="login(1) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="login(1) — Linux manual pages">
+    <a id="login.1" name="login.1" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>login — sign on</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">login</code> [name]</p>
+      </div>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">login</code> <code class="option">−p</code></p>
+      </div>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">login</code> <code class="option">−h</code> hostname</p>
+      </div>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">login</code> <code class="option">−f</code> name</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="login-1_sect1" name="login-1_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><span class="command"><strong>login</strong></span> is
+      used when signing onto a system.</p>
+
+      <p>If an argument is not given, <span class="command"><strong>login</strong></span> prompts for the
+      username.</p>
+
+      <p>If the user is not root, and if <code class="filename">/etc/nologin</code> exists, the contents of this
+      file are printed to the screen, and the login is terminated.
+      This is typically used to prevent logins when the system is
+      being taken down.</p>
+
+      <p>If special access restrictions are specified for the user
+      in <code class="filename">/etc/usertty</code>, these must be
+      met, or the log in attempt will be denied and a <span class="quote">“<span class="quote">syslog</span>”</span> message will be
+      generated. See the section on "Special Access
+      Restrictions".</p>
+
+      <p>If the user is root, then the login must be occurring on a
+      tty listed in <code class="filename">/etc/securetty</code>.
+      Failures will be logged with the <span class="quote">“<span class="quote">syslog</span>”</span> facility.</p>
+
+      <p>After these conditions have been checked, the password
+      will be requested and checked (if a password is required for
+      this username). Ten attempts are allowed before <span class="command"><strong>login</strong></span> dies, but after the
+      first three, the response starts to get very slow. Login
+      failures are reported via the <span class="quote">“<span class="quote">syslog</span>”</span> facility. This facility
+      is also used to report any successful root logins.</p>
+
+      <p>If the file <em class="replaceable"><code>.hushlogin</code></em> exists, then a
+      "quiet" login is performed (this disables the checking of
+      mail and the printing of the last login time and message of
+      the day). Otherwise, if <code class="filename">/var/log/lastlog</code> exists, the last login
+      time is printed (and the current login is recorded).</p>
+
+      <p>Random administrative things, such as setting the UID and
+      GID of the tty are performed. The TERM environment variable
+      is preserved, if it exists (other environment variables are
+      preserved if the <code class="option">−p</code> option
+      is used). Then the HOME, PATH, SHELL, TERM, MAIL, and LOGNAME
+      environment variables are set. PATH defaults to <code class="filename">/usr/local/bin:/bin:/usr/bin</code> for normal
+      users, and to <code class="filename">/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin</code>
+      for root. Last, if this is not a "quiet" login, the message
+      of the day is printed and the file with the user's name in
+      <code class="filename">/var/spool/mail</code> will be
+      checked, and a message printed if it has non-zero length.</p>
+
+      <p>The user's shell is then started. If no shell is specified
+      for the user in <code class="filename">/etc/passwd</code>,
+      then <code class="filename">/bin/sh</code> is used. If there
+      is no directory specified in <code class="filename">/etc/passwd</code>, then <code class="filename">/</code> is used (the home directory is checked
+      for the <em class="replaceable"><code>.hushlogin</code></em>
+      file described above).</p>
+    </div>
+
+    <div class="refsect1" title="OPTIONS">
+      <a id="login-1_sect2" name="login-1_sect2" shape="rect"> </a>
+
+      <h2>OPTIONS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="option">−p</code></span></dt>
+
+          <dd>
+            <p>Used by <span class="citerefentry"><span class="refentrytitle">getty</span>(8)</span> to tell
+            <span class="command"><strong>login</strong></span> not
+            to destroy the environment</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−f</code></span></dt>
+
+          <dd>
+            <p>Used to skip a second login authentication. This
+            specifically does not work for root, and does not
+            appear to work well under Linux.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−h</code></span></dt>
+
+          <dd>
+            <p>Used by other servers (i.e., <span class="citerefentry"><span class="refentrytitle">telnetd</span>(8)</span>) to pass the
+            name of the remote host to <span class="command"><strong>login</strong></span> so that it may
+            be placed in utmp and wtmp. Only the superuser may use
+            this option.</p>
+
+            <p>Note that the <em class="parameter"><code>−h</code></em> option has
+            impact on the <span class="emphasis"><em>PAM service
+            name</em></span>. The standard service name is "login",
+            with the <em class="parameter"><code>−h</code></em> option the name
+            is "remote". It's necessary to create a proper PAM
+            config files (e.g. <code class="filename">/etc/pam.d/login</code> and <code class="filename">/etc/pam.d/remote</code> ).</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="SPECIAL ACCESS RESTRICTIONS">
+      <a id="login-1_sect3" name="login-1_sect3" shape="rect"> </a>
+
+      <h2>SPECIAL ACCESS RESTRICTIONS</h2>
+
+      <p>The file <code class="filename">/etc/securetty</code>
+      lists the names of the ttys where root is allowed to log in.
+      One name of a tty device without the /dev/ prefix must be
+      specified on each line. If the file does not exist, root is
+      allowed to log in on any tty.</p>
+
+      <p>On most modern Linux systems PAM (Pluggable Authentication
+      Modules) is used. On systems that do not use PAM, the file
+      <code class="filename">/etc/usertty</code> specifies
+      additional access restrictions for specific users. If this
+      file does not exist, no additional access restrictions are
+      imposed. The file consists of a sequence of sections. There
+      are three possible section types: CLASSES, GROUPS and USERS.
+      A CLASSES section defines classes of ttys and hostname
+      patterns, A GROUPS section defines allowed ttys and hosts on
+      a per group basis, and a USERS section defines allowed ttys
+      and hosts on a per user basis.</p>
+
+      <p>Each line in this file in may be no longer than 255
+      characters. Comments start with # character and extend to the
+      end of the line.</p>
+
+      <div class="refsect2" title="The CLASSES Section">
+        <a id="login-1_sect4" name="login-1_sect4" shape="rect"> </a>
+
+        <h3>The CLASSES Section</h3>
+
+        <p>A CLASSES section begins with the word CLASSES at the
+        start of a line in all upper case. Each following line
+        until the start of a new section or the end of the file
+        consists of a sequence of words separated by tabs or
+        spaces. Each line defines a class of ttys and host
+        patterns.</p>
+
+        <p>The word at the beginning of a line becomes defined as a
+        collective name for the ttys and host patterns specified at
+        the rest of the line. This collective name can be used in
+        any subsequent GROUPS or USERS section. No such class name
+        must occur as part of the definition of a class in order to
+        avoid problems with recursive classes.</p>
+
+        <p>An example CLASSES section:</p>
+
+        <div class="blockquote">
+          <blockquote class="blockquote">
+            <div class="informalexample">
+              <pre class="programlisting" xml:space="preserve">
+CLASSES
+myclass1                tty1 tty2
+myclass2                tty3 @.foo.com
+</pre>
+            </div>
+
+            <p>This defines the classes <em class="replaceable"><code>myclass1</code></em> and <em class="replaceable"><code>myclass2</code></em> as the
+            corresponding right hand sides.</p>
+          </blockquote>
+        </div>
+      </div>
+
+      <div class="refsect2" title="The GROUPS Section">
+        <a id="login-1_sect5" name="login-1_sect5" shape="rect"> </a>
+
+        <h3>The GROUPS Section</h3>
+
+        <p>A GROUPS section defines allowed ttys and hosts on a per
+        Unix group basis. If a user is a member of a Unix group
+        according to <code class="filename">/etc/passwd</code> and
+        <code class="filename">/etc/group</code> and such a group
+        is mentioned in a GROUPS section in <code class="filename">/etc/usertty</code> then the user is granted
+        access if the group is.</p>
+
+        <p>A GROUPS section starts with the word GROUPS in all
+        upper case at the start of a line, and each following line
+        is a sequence of words separated by spaces or tabs. The
+        first word on a line is the name of the group and the rest
+        of the words on the line specifies the ttys and hosts where
+        members of that group are allowed access. These
+        specifications may involve the use of classes defined in
+        previous CLASSES sections.</p>
+
+        <p>An example GROUPS section.</p>
+
+        <div class="blockquote">
+          <blockquote class="blockquote">
+            <div class="informalexample">
+              <pre class="programlisting" xml:space="preserve">
+GROUPS
+sys             tty1 @.bar.edu
+stud            myclass1 tty4
+</pre>
+            </div>
+
+            <p>This example specifies that members of group
+            <code class="constant">sys</code> may log in on tty1
+            and from hosts in the bar.edu domain. Users in group
+            <code class="constant">stud</code> may log in from
+            hosts/ttys specified in the class myclass1 or from
+            tty4.</p>
+          </blockquote>
+        </div>
+      </div>
+
+      <div class="refsect2" title="The USERS Section">
+        <a id="login-1_sect6" name="login-1_sect6" shape="rect"> </a>
+
+        <h3>The USERS Section</h3>
+
+        <p>A USERS section starts with the word USERS in all upper
+        case at the start of a line, and each following line is a
+        sequence of words separated by spaces or tabs. The first
+        word on a line is a username and that user is allowed to
+        log in on the ttys and from the hosts mentioned on the rest
+        of the line. These specifications may involve classes
+        defined in previous CLASSES sections. If no section header
+        is specified at the top of the file, the first section
+        defaults to be a USERS section.</p>
+
+        <p>An example USERS section:</p>
+
+        <div class="blockquote">
+          <blockquote class="blockquote">
+            <div class="informalexample">
+              <pre class="programlisting" xml:space="preserve">
+USERS
+zacho           tty1 @130.225.16.0/255.255.255.0
+blue            tty3 myclass2
+</pre>
+            </div>
+
+            <p>This lets the user zacho login only on tty1 and from
+            hosts with IP addreses in the range 130.225.16.0
+            − 130.225.16.255, and user blue is allowed to log
+            in from tty3 and whatever is specified in the class
+            myclass2.</p>
+
+            <p>There may be a line in a USERS section starting with
+            a username of *. This is a default rule and it will be
+            applied to any user not matching any other line.</p>
+
+            <p>If both a USERS line and GROUPS line match a user
+            then the user is allowed access from the union of all
+            the ttys/hosts mentioned in these specifications.</p>
+          </blockquote>
+        </div>
+      </div>
+
+      <div class="refsect2" title="Origins">
+        <a id="login-1_sect7" name="login-1_sect7" shape="rect"> </a>
+
+        <h3>Origins</h3>
+
+        <p>The tty and host pattern specifications used in the
+        specification of classes, group and user access are called
+        origins. An origin string may have one of these
+        formats:</p>
+
+        <div class="itemizedlist">
+          <ul class="itemizedlist" type="disc">
+            <li class="listitem">
+              <p>The name of a tty device without the /dev/ prefix,
+              for example tty1 or ttyS0.</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="itemizedlist">
+          <ul class="itemizedlist" type="disc">
+            <li class="listitem">
+              <p>The string @localhost, meaning that the user is
+              allowed to telnet/rlogin from the local host to the
+              same host. This also allows the user to for example
+              run the command: xterm -e /bin/login.</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="itemizedlist">
+          <ul class="itemizedlist" type="disc">
+            <li class="listitem">
+              <p>A domain name suffix such as @.some.dom, meaning
+              that the user may rlogin/telnet from any host whose
+              domain name has the suffix .some.dom.</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="itemizedlist">
+          <ul class="itemizedlist" type="disc">
+            <li class="listitem">
+              <p>A range of IPv4 addresses, written
+              @x.x.x.x/y.y.y.y where x.x.x.x is the IP address in
+              the usual dotted quad decimal notation, and y.y.y.y
+              is a bitmask in the same notation specifying which
+              bits in the address to compare with the IP address of
+              the remote host. For example
+              @130.225.16.0/255.255.254.0 means that the user may
+              rlogin/telnet from any host whose IP address is in
+              the range 130.225.16.0 − 130.225.17.255.</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="itemizedlist">
+          <ul class="itemizedlist" type="disc">
+            <li class="listitem">
+              <p>An range of IPv6 addresses, written
+              @[n:n:n:n:n:n:n:n]/m is interpreted as a
+              [net]/prefixlen pair. An IPv6 host address is matched
+              if prefixlen bits of net is equal to the prefixlen
+              bits of the address. For example, the [net]/prefixlen
+              pattern [3ffe:505:2:1::]/64 matches every address in
+              the range 3ffe:505:2:1:: through
+              3ffe:505:2:1:ffff:ffff:ffff:ffff.</p>
+            </li>
+          </ul>
+        </div>
+
+        <p>Any of the above origins may be prefixed by a time
+        specification according to the syntax:</p>
+
+        <div class="informalexample">
+          <pre class="programlisting" xml:space="preserve">
+timespec    ::= '[' &lt;day-or-hour&gt; [':' &lt;day-or-hour&gt;]* ']'
+day         ::= 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat' | 'sun'
+hour        ::= '0' | '1' | ... | '23'
+hourspec    ::= &lt;hour&gt; | &lt;hour&gt; '−' &lt;hour&gt;
+day-or-hour ::= &lt;day&gt; | &lt;hourspec&gt;
+</pre>
+        </div>
+
+        <p>For example, the origin
+        [mon:tue:wed:thu:fri:8−17]tty3 means that log in is
+        allowed on mondays through fridays between 8:00 and 17:59
+        (5:59 pm) on tty3. This also shows that an hour range
+        a−b includes all moments between a:00 and b:59. A
+        single hour specification (such as 10) means the time span
+        between 10:00 and 10:59.</p>
+
+        <p>Not specifying any time prefix for a tty or host means
+        log in from that origin is allowed any time. If you give a
+        time prefix be sure to specify both a set of days and one
+        or more hours or hour ranges. A time specification may not
+        include any white space.</p>
+
+        <p>If no default rule is given then users not matching any
+        line <code class="filename">/etc/usertty</code> are allowed
+        to log in from anywhere as is standard behavior.</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="FILES">
+      <a id="login-1_sect8" name="login-1_sect8" shape="rect"> </a>
+
+      <h2>FILES</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+<code class="filename">/var/run/utmp</code>
+<code class="filename">/var/log/wtmp</code>
+<code class="filename">/var/log/lastlog</code>
+<code class="filename">/var/spool/mail/*</code>
+<code class="filename">/etc/motd</code>
+<code class="filename">/etc/passwd</code>
+<code class="filename">/etc/nologin</code>
+<code class="filename">/etc/usertty</code>
+<code class="filename">/etc/pam.d/login</code>
+<code class="filename">/etc/pam.d/remote</code>
+<em class="replaceable"><code>.hushlogin</code></em>
+</pre>
+      </div>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="login-1_sect9" name="login-1_sect9" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><span class="citerefentry"><span class="refentrytitle">init</span>(8)</span>, <span class="citerefentry"><span class="refentrytitle">getty</span>(8)</span>, <span class="citerefentry"><span class="refentrytitle">mail</span>(1)</span>, <span class="citerefentry"><span class="refentrytitle">passwd</span>(1)</span>, <a class="link" href="../htmlman5/passwd.5.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">passwd</span>(5)</span></a>, <a class="link" href="../htmlman7/environ.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">environ</span>(7)</span></a>, <a class="link" href="../htmlman8/shutdown.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">shutdown</span>(8)</span></a></p>
+    </div>
+
+    <div class="refsect1" title="BUGS">
+      <a id="login-1_sect10" name="login-1_sect10" shape="rect"> </a>
+
+      <h2>BUGS</h2>
+
+      <p>The undocumented BSD <code class="option">−r</code>
+      option is not supported. This may be required by some
+      <span class="citerefentry"><span class="refentrytitle">rlogind</span>(8)</span> programs.</p>
+
+      <p>A recursive login, as used to be possible in the good old
+      days, no longer works; for most purposes <span class="citerefentry"><span class="refentrytitle">su</span>(1)</span> is a satisfactory
+      substitute. Indeed, for security reasons, login does a
+      vhangup() system call to remove any possible listening
+      processes on the tty. This is to avoid password sniffing. If
+      one uses the command "login", then the surrounding shell gets
+      killed by vhangup() because it's no longer the true owner of
+      the tty. This can be avoided by using "exec login" in a
+      top-level shell or xterm.</p>
+    </div>
+
+    <div class="refsect1" title="AUTHOR">
+      <a id="login-1_sect11" name="login-1_sect11" shape="rect"> </a>
+
+      <h2>AUTHOR</h2>
+
+      <p>Derived from BSD login 5.40 (5/9/89) by Michael Glad
+      (glad@daimi.dk) for HP-UX</p>
+
+      <p>Ported to Linux 0.12: Peter Orbaek (poe@daimi.aau.dk)</p>
+    </div>
+
+    <div class="refsect1" title="AVAILABILITY">
+      <a id="login-1_sect12" name="login-1_sect12" shape="rect"> </a>
+
+      <h2>AVAILABILITY</h2>
+
+      <p>The login command is part of the util-linux package and is
+      available from
+      ftp://ftp.kernel.org/pub/linux/utils/util-linux/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright 1993 Rickard E. Faith (faith<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cs.unc.edu)<br />
+
+                  May be distributed under the GNU General Public License<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

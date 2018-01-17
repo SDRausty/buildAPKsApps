@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Cowsay</string>
+    <string name="type_prompt">Selecciona una Vaca :</string>
+    <string name="face_prompt">Selecciona una cara :</string>
+    <string name="btn_close">Cerrar</string>
+    <string name="menu_share">Compartir</string>
+    <string name="menu_share_text">Compartir como texto</string>
+    <string name="menu_share_image">Compartir como imagen</string>
+    <string name="menu_copy">Copiar al portapapeles</string>
+    <string name="share_chooser">Compartir con</string>
+    <string name="message_hint">Mensaje</string>
+    <string name="think_on">Pensar</string>
+    <string name="think_off">Decir</string>
+    <string name="toast_copy">¡La vaca se ha copiado al portapapeles correctamente!</string>
+    <string name="toast_share_image">¡Por favor, espera mientras se crea la imagen!</string>
+    <string name="error_parse">Fallo al parsear la vaca</string>
+    <string name="error_crash">La vaca no está disponible debido a algún fallo al parsear, ¡qué mal!</string>
+    <string name="about_title">Acerca de...</string>
+    <string name="about_message">Adaptación de la aplicación de línea de comandos original "cowsay" para la plataforma móvil Android.
+        Esta pequeña aplicación la han hecho algunos miembros del hackerspace FIXME.CH durante el 28C3 en Berlín.\n\n
+        Cowsay se distribuye bajo los mismos términos de licencia que Perl: la Licencia Artística o la Licencia Pública General GNU.\n\n
+        https://github.com/rorist/Cowsay-android</string>
+</resources>

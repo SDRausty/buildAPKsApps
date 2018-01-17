@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>shutdown(8) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="shutdown(8) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="shutdown(8) — Linux manual pages">
+    <a id="shutdown.8" name="shutdown.8" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>shutdown — close down the system</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">shutdown</code> [ <code class="option">−h</code> | <code class="option">−r</code> ] [<code class="option">−fqs</code>] [ now | hh:ss | +mins ]
+        [message]</p>
+      </div>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">reboot</code> [ <code class="option">−h</code> | <code class="option">−r</code> ] [<code class="option">−fqs</code>] [ now | hh:ss | +mins ]
+        [message]</p>
+      </div>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">fastboot</code> [ <code class="option">−h</code> | <code class="option">−r</code> ] [<code class="option">−fqs</code>] [ now | hh:ss | +mins ]
+        [message]</p>
+      </div>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">halt</code> [ <code class="option">−h</code> | <code class="option">−r</code> ] [<code class="option">−fqs</code>] [ now | hh:ss | +mins ]
+        [message]</p>
+      </div>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">fasthalt</code> [ <code class="option">−h</code> | <code class="option">−r</code> ] [<code class="option">−fqs</code>] [ now | hh:ss | +mins ]
+        [message]</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="shutdown-8_sect1" name="shutdown-8_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>In general, <span class="command"><strong>shutdown</strong></span> prepares the
+      system for a power down or reboot. A absolute or delta time
+      can be given, and periodic messages will be sent to all users
+      warning of the shutdown. If no message is specified on the
+      command line, <span class="command"><strong>shutdown</strong></span> will ask for a
+      message to be sent, unless the <code class="option">−q</code> option is set.</p>
+
+      <p><span class="command"><strong>halt</strong></span> is the
+      same as <span class="emphasis"><em>shutdown -h -q
+      now</em></span></p>
+
+      <p><span class="command"><strong>fasthalt</strong></span> is
+      the same as <span class="emphasis"><em>shutdown -h -q -f
+      now</em></span></p>
+
+      <p><span class="command"><strong>reboot</strong></span> is
+      the same as <span class="emphasis"><em>shutdown -r -q
+      now</em></span></p>
+
+      <p><span class="command"><strong>fastboot</strong></span> is
+      the same as <span class="emphasis"><em>shutdown -r -q -f
+      now</em></span></p>
+
+      <p>The default delta time, if none is specified, is 2
+      minutes.</p>
+
+      <p>Five minutes before shutdown (or immediately, if shutdown
+      is less than five minutes away), the <code class="filename">/etc/nologin</code> file is created with a message
+      stating that the system is going down and that logins are no
+      longer permitted. The <a class="link" href="../htmlman1/login.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">login</span>(1)</span></a> program will not
+      allow non-superusers to login during this period. A message
+      will be sent to all users at this time.</p>
+
+      <p>When the shutdown time arrives, <span class="command"><strong>shutdown</strong></span> notifies all
+      users, tells <span class="citerefentry"><span class="refentrytitle">init</span>(8)</span> not to spawn more
+      <span class="citerefentry"><span class="refentrytitle">getty</span>(8)</span>'s, writes the shutdown
+      time into the <code class="filename">/var/log/wtmp</code>
+      file, kills all other processes on the system, <a class="link" href="../htmlman2/sync.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">sync</span>(2)</span></a>'s, unmounts all the
+      disks, <a class="link" href="../htmlman2/sync.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">sync</span>(2)</span></a>'s again, waits for
+      a second, and then either terminates or reboots the
+      system.</p>
+
+      <p>Prior to unmounting all discs, the <code class="constant">SIGQUIT</code> signal is sent to the <span class="command"><strong>init</strong></span> process, which will in
+      turn exec <a class="link" href="../htmlman8/shutdown.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">shutdown</span>(8)</span></a>. This allows
+      for clean unmounting, even if the old inode for the
+      <span class="command"><strong>init</strong></span> process
+      was unlinked. If the current process ID (PID) equals 1, then
+      <a class="link" href="../htmlman8/shutdown.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">shutdown</span>(8)</span></a> will pause
+      forever.</p>
+    </div>
+
+    <div class="refsect1" title="OPTIONS">
+      <a id="shutdown-8_sect2" name="shutdown-8_sect2" shape="rect"> </a>
+
+      <h2>OPTIONS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="option">−h</code></span></dt>
+
+          <dd>
+            <p>Halt the system. Do not reboot. This option is used
+            when powering down the system.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−r</code></span></dt>
+
+          <dd>
+            <p>Reboot the system.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−f</code></span></dt>
+
+          <dd>
+            <p>Fast. When the system is rebooted, the file systems
+            will not be checked. This is arranged by creating
+            <code class="filename">/fastboot</code>, which
+            <code class="filename">/etc/rc</code> must detect (and
+            delete).</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−q</code></span></dt>
+
+          <dd>
+            <p>Quiet. This uses a default broadcast message, and
+            does not prompt the user for one.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−s</code></span></dt>
+
+          <dd>
+            <p>Reboot in single user mode. This is arranged by
+            creating <code class="filename">/etc/singleboot</code>,
+            which <a class="link" href="../htmlman8/simpleinit.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">simpleinit</span>(8)</span></a> detects
+            (and deletes).</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="FILES">
+      <a id="shutdown-8_sect3" name="shutdown-8_sect3" shape="rect"> </a>
+
+      <h2>FILES</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+<code class="filename">/etc/rc</code>
+<code class="filename">/fastboot</code>
+<code class="filename">/etc/singleboot</code>
+<code class="filename">/etc/nologin</code>
+<code class="filename">/var/log/wtmp</code>
+<code class="filename">/etc/shutdown.conf</code>
+</pre>
+      </div>
+    </div>
+
+    <div class="refsect1" title="CONFIG">
+      <a id="shutdown-8_sect4" name="shutdown-8_sect4" shape="rect"> </a>
+
+      <h2>CONFIG</h2>
+
+      <p>The configuration file <code class="filename">/etc/shutdown.conf</code> is used to determine the
+      action to take when halting the machine. The currently
+      supported file format is extremely primitive. The first line
+      must contain two strings separated by whitespace. The first
+      string must be <code class="constant">HALT_ACTION</code> and
+      the second specifies the action you wish to take on halt. The
+      options allowed are:</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><span class="command"><strong>halt</strong></span></span></dt>
+
+          <dd>
+            <p>This will simply halt the system. This is the
+            default behaviour. Note also that this is the fallback
+            if another option fails.</p>
+          </dd>
+
+          <dt><span class="term"><span class="command"><strong>power_off</strong></span></span></dt>
+
+          <dd>
+            <p>This will use the kernel power shutdown facility.
+            This is usually only available on machines with
+            Advanced Power Management (APM).</p>
+          </dd>
+
+          <dt><span class="term"><span class="command"><strong>programname</strong></span></span></dt>
+
+          <dd>
+            <p>This specifies a command to run to shut down the
+            power. The first character must be a "/". Bear in mind
+            that this command will be run with only the root
+            filesystem mounted (and it will be read-only), and no
+            daemons running.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="shutdown-8_sect5" name="shutdown-8_sect5" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman8/umount.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">umount</span>(8)</span></a>, <a class="link" href="../htmlman1/login.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">login</span>(1)</span></a>, <a class="link" href="../htmlman2/reboot.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">reboot</span>(2)</span></a>, <a class="link" href="../htmlman8/simpleinit.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">simpleinit</span>(8)</span></a>, <span class="citerefentry"><span class="refentrytitle">init</span>(8)</span></p>
+    </div>
+
+    <div class="refsect1" title="BUGS">
+      <a id="shutdown-8_sect6" name="shutdown-8_sect6" shape="rect"> </a>
+
+      <h2>BUGS</h2>
+
+      <p>Unlike the BSD <span class="command"><strong>shutdown</strong></span>, users are
+      notified of shutdown only once or twice, instead of many
+      times, and at shorter and shorter intervals as "apocalypse
+      approaches." Some would construe this as a feature.</p>
+    </div>
+
+    <div class="refsect1" title="AUTHOR">
+      <a id="shutdown-8_sect7" name="shutdown-8_sect7" shape="rect"> </a>
+
+      <h2>AUTHOR</h2>
+
+      <p>This page documents the version of <span class="command"><strong>shutdown</strong></span> originally written
+      by Peter Orbaek (poe@daimi.aau.dk).</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright 1992 Rickard E. Faith (faith<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cs.unc.edu)<br />
+
+                  May be distributed under the GNU General Public License<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

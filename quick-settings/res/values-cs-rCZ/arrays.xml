@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string-array name="status_bar_variant_names">
+		<item>Přidat text&amp; černou ikonu</item>
+		<item>Přidat text&amp; bílou ikonu</item>
+		<item>Přidat text&amp; skrýt ikonu</item>
+		<item>Nic nepřidávat</item>
+	</string-array>
+
+	<string-array name="status_bar_variant_values">
+		<item>2</item>
+		<item>3</item>
+		<item>1</item>
+		<item>0</item>
+	</string-array>
+
+	<string-array name="appearance_variant_names">
+		<item>Celá obrazovka</item>
+		<item>Dialog</item>
+	</string-array>
+
+	<string-array name="appearance_variant_values">
+		<item>0</item>
+		<item>1</item>
+	</string-array>
+
+	<string-array name="flashlight_names">
+		<item>Obrazovková svítilna</item>
+		<item>LED svítilna</item>
+		<item>Žádná svítilna</item>
+	</string-array>
+
+	<string-array name="flashlight_values">
+		<item>0</item>
+		<item>1</item>
+		<item>2</item>
+	</string-array>
+
+	<string-array name="apn_modifier_names">
+		<item>Classic: \"[disabled]\"</item>
+		<item>APNdroid: \"apndroid\"</item>
+		<item>Simple prefix: \"-\"</item>
+	</string-array>
+
+	<string-array name="apn_modifier_values">
+		<item>1</item>
+		<item>0</item>
+		<item>2</item>
+	</string-array>
+
+	<string-array name="flashlight_switch_names">
+		<item>Změnou orientace</item>
+		<item>Po prodlevě</item>
+		<item>Zatřesením telefonu</item>
+	</string-array>
+
+	<string-array name="flashlight_switch_values">
+		<item>0</item>
+		<item>1</item>
+		<item>2</item>
+	</string-array>
+
+</resources>

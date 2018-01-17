@@ -1,0 +1,4 @@
+sdk-location=/opt/android-sdk
+sdk.dir=/opt/android-sdk
+key.store=/home/you/.android/my-release-key.keystore
+key.alias=you

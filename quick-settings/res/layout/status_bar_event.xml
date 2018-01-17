@@ -1,0 +1,49 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:paddingTop="7dp"
+        android:paddingLeft="5dp">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="3dp">
+        
+        <ImageView
+        	android:id="@+id/image1"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_logo_black"/>
+            
+        <TextView 
+        	android:id="@+id/text1"
+        	android:text="@string/txt_quick_settings"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:ellipsize="marquee"
+            android:fadingEdge="horizontal"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:paddingLeft="4dp"
+            />
+    </LinearLayout>
+    
+    <TextView 
+       	android:id="@+id/text2"
+    	android:text="@string/msg_tap_to_change_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:fadingEdge="horizontal"
+        android:textSize="14sp"
+        android:paddingLeft="4dp"
+        />
+            
+</LinearLayout>

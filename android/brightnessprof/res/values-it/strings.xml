@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Translation by Daniele Ottorogo <daniele.ottorogo@gmail.com> -->
+<resources>
+  <string name="app_name">Brightness Profiles</string>
+  <string name="name">Nome:</string>
+  <string name="brightness">Luminosità:</string>
+  <string name="auto_brightness">Luminosità Automatica</string>
+  <string name="add">Aggiungi...</string>
+  <string name="edit">Modifica...</string>
+  <string name="delete">Cancella</string>
+  <string name="ok">OK</string>
+  <string name="cancel">Annulla</string>
+  <string name="close">Chiudi</string>
+  <string name="calibrate">Calibra</string>
+  <string name="current_setting">Impostazione corrente:</string>
+  <string name="test_setting">Testa Impostazioni:</string>
+  <string name="calibration_warning">ATTENZIONE: Questo ti permette di configurare la luminosità minima accettabile per lo schermo del tuo telefono. Impostare questo valore troppo basso può rendere inutilizzabile il telefono. Usa VOLUME UP e VOLUME DOWN per trovare l\'impostazione minima della luminosità che preferisci. Questa sarà la luminosità che verrà usata quando imposterai il livello a 0 in questa applicazione.</string>
+</resources>

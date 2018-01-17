@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>complex(7) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="complex(7) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="complex(7) — Linux manual pages">
+    <a id="complex.7" name="complex.7" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>complex — basics of complex mathematics</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+#include &lt;complex.h&gt;
+  
+</pre>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="complex-7_sect1" name="complex-7_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>Complex numbers are numbers of the form z = a+b*i, where a
+      and b are real numbers and i = sqrt(−1), so that i*i =
+      −1.</p>
+
+      <p>There are other ways to represent that number. The pair
+      (a,b) of real numbers may be viewed as a point in the plane,
+      given by X- and Y-coordinates. This same point may also be
+      described by giving the pair of real numbers (r,phi), where r
+      is the distance to the origin O, and phi the angle between
+      the X-axis and the line Oz. Now z = r*exp(i*phi) =
+      r*(cos(phi)+i*sin(phi)).</p>
+
+      <p>The basic operations are defined on z = a+b*i and w =
+      c+d*i as:</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><span class="emphasis"><em>addition: z+w = (a+c) +
+          (b+d)*i</em></span></span></dt>
+
+          <dt><span class="term"><span class="emphasis"><em>multiplication: z*w = (a*c − b*d) +
+          (a*d + b*c)*i</em></span></span></dt>
+
+          <dt><span class="term"><span class="emphasis"><em>division: z/w = ((a*c + b*d)/(c*c + d*d))
+          + ((b*c − a*d)/(c*c +
+          d*d))*i</em></span></span></dt>
+        </dl>
+      </div>
+
+      <p>Nearly all math function have a complex counterpart but
+      there are some complex-only functions.</p>
+    </div>
+
+    <div class="refsect1" title="EXAMPLE">
+      <a id="complex-7_sect2" name="complex-7_sect2" shape="rect"> </a>
+
+      <h2>EXAMPLE</h2>
+
+      <p>Your C-compiler can work with complex numbers if it
+      supports the C99 standard. Link with <code class="option">−lm</code>. The imaginary unit is represented
+      by I.</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+/* check that exp(i * pi) == −1 */
+#include &lt;math.h&gt;        /* for atan */
+#include &lt;stdio.h&gt;
+#include &lt;complex.h&gt;
+
+int
+main(void)
+{
+    double pi = 4 * atan(1.0);
+    double complex z = cexp(I * pi);
+    printf("%f + %f * i\n", creal(z), cimag(z));
+}
+</pre>
+      </div>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="complex-7_sect3" name="complex-7_sect3" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman3/cabs.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">cabs</span>(3)</span></a>, <a class="link" href="../htmlman3/carg.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">carg</span>(3)</span></a>, <a class="link" href="../htmlman3/cexp.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">cexp</span>(3)</span></a>, <a class="link" href="../htmlman3/cimag.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">cimag</span>(3)</span></a>, <a class="link" href="../htmlman3/creal.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">creal</span>(3)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="complex-7_sect4" name="complex-7_sect4" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.24 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright 2002 Walter Harms (walter.harms<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>informatik.uni-oldenburg.de)<br />
+
+                  Distributed under GPL<br />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

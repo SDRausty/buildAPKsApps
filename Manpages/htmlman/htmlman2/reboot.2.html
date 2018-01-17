@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>reboot(2) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="reboot(2) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="reboot(2) — Linux manual pages">
+    <a id="reboot.2" name="reboot.2" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>reboot — reboot or enable/disable Ctrl-Alt-Del</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+/* For libc4 and libc5 the library call and the system call
+   are identical, and since kernel version 2.1.30 there are
+   symbolic names LINUX_REBOOT_* for the constants and a
+   fourth argument to the call: */
+
+#include &lt;unistd.h&gt;
+#include &lt;linux/reboot.h&gt;
+</pre>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">reboot</b>(</code></td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">magic</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">magic2</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">cmd</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">void *<var class="pdparam">arg</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+
+/* Under glibc some of the constants involved have gotten
+   symbolic names RB_*, and the library call is a 1-argument
+   wrapper around the 3-argument system call: */
+
+#include &lt;unistd.h&gt;
+#include &lt;sys/reboot.h&gt;
+</pre>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">reboot</b>(</code></td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">cmd</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="reboot-2_sect1" name="reboot-2_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>The <code class="function">reboot</code>() call reboots
+      the system, or enables/disables the reboot keystroke
+      (abbreviated CAD, since the default is Ctrl-Alt-Delete; it
+      can be changed using <span class="citerefentry"><span class="refentrytitle">loadkeys</span>(1)</span>).</p>
+
+      <p>This system call will fail (with <span class="errorname">EINVAL</span>) unless <em class="parameter"><code>magic</code></em> equals <code class="constant">LINUX_REBOOT_MAGIC1</code> (that is, 0xfee1dead)
+      and <em class="parameter"><code>magic2</code></em> equals
+      <code class="constant">LINUX_REBOOT_MAGIC2</code> (that is,
+      672274793). However, since 2.1.17 also <code class="constant">LINUX_REBOOT_MAGIC2A</code> (that is, 85072278)
+      and since 2.1.97 also <code class="constant">LINUX_REBOOT_MAGIC2B</code> (that is, 369367448)
+      and since 2.5.71 also <code class="constant">LINUX_REBOOT_MAGIC2C</code> (that is, 537993216)
+      are permitted as value for <em class="parameter"><code>magic2</code></em>. (The hexadecimal values
+      of these constants are meaningful.) The <em class="parameter"><code>cmd</code></em> argument can have the
+      following values:</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="constant">LINUX_REBOOT_CMD_CAD_OFF</code></span></dt>
+
+          <dd>
+            <p>(RB_DISABLE_CAD, 0). CAD is disabled. This means
+            that the CAD keystroke will cause a <code class="constant">SIGINT</code> signal to be sent to init
+            (process 1), whereupon this process may decide upon a
+            proper action (maybe: kill all processes, sync,
+            reboot).</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">LINUX_REBOOT_CMD_CAD_ON</code></span></dt>
+
+          <dd>
+            <p>(RB_ENABLE_CAD, 0x89abcdef). CAD is enabled. This
+            means that the CAD keystroke will immediately cause the
+            action associated with <code class="constant">LINUX_REBOOT_CMD_RESTART</code>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">LINUX_REBOOT_CMD_HALT</code></span></dt>
+
+          <dd>
+            <p>(RB_HALT_SYSTEM, 0xcdef0123; since 1.1.76). The
+            message "System halted." is printed, and the system is
+            halted. Control is given to the ROM monitor, if there
+            is one. If not preceded by a <a class="link" href="../htmlman2/sync.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">sync</span>(2)</span></a>, data will be
+            lost.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">LINUX_REBOOT_CMD_KEXEC</code> (since Linux
+          2.6.13)</span></dt>
+
+          <dd>
+            <p>Execute a kernel that has been loaded earlier with
+            <a class="link" href="../htmlman2/kexec_load.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">kexec_load</span>(2)</span></a>. This
+            option is only available if the kernel was configured
+            with <code class="constant">CONFIG_KEXEC</code>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">LINUX_REBOOT_CMD_POWER_OFF</code></span></dt>
+
+          <dd>
+            <p>(0x4321fedc; since 2.1.30). The message "Power
+            down." is printed, the system is stopped, and all power
+            is removed from the system, if possible. If not
+            preceded by a <a class="link" href="../htmlman2/sync.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">sync</span>(2)</span></a>, data will be
+            lost.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">LINUX_REBOOT_CMD_RESTART</code></span></dt>
+
+          <dd>
+            <p>(RB_AUTOBOOT, 0x1234567). The message "Restarting
+            system." is printed, and a default restart is performed
+            immediately. If not preceded by a <a class="link" href="../htmlman2/sync.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">sync</span>(2)</span></a>, data will be
+            lost.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">LINUX_REBOOT_CMD_RESTART2</code></span></dt>
+
+          <dd>
+            <p>(0xa1b2c3d4; since 2.1.30). The message "Restarting
+            system with command '%s'" is printed, and a restart
+            (using the command string given in <em class="parameter"><code>arg</code></em>) is performed
+            immediately. If not preceded by a <a class="link" href="../htmlman2/sync.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">sync</span>(2)</span></a>, data will be
+            lost.</p>
+          </dd>
+        </dl>
+      </div>
+
+      <p>Only the superuser may call <code class="function">reboot</code>().</p>
+
+      <p>The precise effect of the above actions depends on the
+      architecture. For the i386 architecture, the additional
+      argument does not do anything at present (2.1.122), but the
+      type of reboot can be determined by kernel command-line
+      arguments ("reboot=...") to be either warm or cold, and
+      either hard or through the BIOS.</p>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="reboot-2_sect2" name="reboot-2_sect2" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p>For the values of <em class="parameter"><code>cmd</code></em> that stop or restart the
+      system, a successful call to <code class="function">reboot</code>() does not return. For the other
+      <em class="parameter"><code>cmd</code></em> values, zero is
+      returned on success. In all cases, −1 is returned on
+      failure, and <code class="varname">errno</code> is set
+      appropriately.</p>
+    </div>
+
+    <div class="refsect1" title="ERRORS">
+      <a id="reboot-2_sect3" name="reboot-2_sect3" shape="rect"> </a>
+
+      <h2>ERRORS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><span class="errorname">EFAULT</span></span></dt>
+
+          <dd>
+            <p>Problem with getting userspace data under
+            <code class="constant">LINUX_REBOOT_CMD_RESTART2</code>.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EINVAL</span></span></dt>
+
+          <dd>
+            <p>Bad magic numbers or <em class="parameter"><code>cmd</code></em>.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EPERM</span></span></dt>
+
+          <dd>
+            <p>The calling process has insufficient privilege to
+            call <code class="function">reboot</code>(); the
+            <code class="constant">CAP_SYS_BOOT</code> capability
+            is required.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="reboot-2_sect4" name="reboot-2_sect4" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p><code class="function">reboot</code>() is Linux-specific,
+      and should not be used in programs intended to be
+      portable.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="reboot-2_sect5" name="reboot-2_sect5" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman2/sync.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">sync</span>(2)</span></a>, <a class="link" href="../htmlman7/bootparam.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">bootparam</span>(7)</span></a>, <a class="link" href="../htmlman7/capabilities.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">capabilities</span>(7)</span></a>, <a class="link" href="../htmlman8/ctrlaltdel.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">ctrlaltdel</span>(8)</span></a>, <a class="link" href="../htmlman8/shutdown.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">halt</span>(8)</span></a>, <a class="link" href="../htmlman8/shutdown.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">reboot</span>(8)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="reboot-2_sect6" name="reboot-2_sect6" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.30 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright (c) 1998 Andries Brouwer (aeb<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cwi.nl), 24 September 1998<br />
+
+                  <br />
+                  Permission is granted to make and distribute verbatim copies of this<br />
+
+                  manual provided the copyright notice and this permission notice are<br />
+
+                  preserved on all copies.<br />
+                  <br />
+                  Permission is granted to copy and distribute modified versions of this<br />
+
+                  manual under the conditions for verbatim copying, provided that the<br />
+
+                  entire resulting derived work is distributed under the terms of a<br />
+
+                  permission notice identical to this one.<br />
+
+                  <br />
+                  Since the Linux kernel and libraries are constantly changing, this<br />
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no<br />
+
+                  responsibility for errors or omissions, or for damages resulting from<br />
+
+                  the use of the information contained herein.  The author(s) may not<br />
+
+                  have taken the same level of care in the production of this manual,<br />
+
+                  which is licensed free of charge, as they might when working<br />
+
+                  professionally.<br />
+                  <br />
+                  Formatted or processed versions of this manual, if unaccompanied by<br />
+
+                  the source, must acknowledge the copyright and authors of this work.<br />
+
+                  Modified, 27 May 2004, Michael Kerrisk &lt;mtk.manpages<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>gmail.com&gt;<br />
+
+                      Added notes on capability requirements<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

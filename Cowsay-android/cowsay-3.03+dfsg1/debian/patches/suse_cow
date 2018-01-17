@@ -1,0 +1,21 @@
+Description: Add a new cow
+Forwarded: no
+Origin: vendor, http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=367310#5
+Bug-Debian: http://bugs.debian.org/367310
+Author: Gerfried Fuchs <alfie@debian.org>
+
+--- /dev/null
++++ cowsay-3.03/cows/suse.cow
+@@ -0,0 +1,12 @@
++## vim:ft=perl:
++## SuSE thingy - (c) 2006 Gerfried Fuchs <rhonda@deb.at>
++##                   distributed under the WTFPLv2 license
++##
++$the_cow = <<"EOC";
++  $thoughts
++   ${thoughts}____
++  /@    ~-.
++  \\/ __ .- |
++   // //  @
++EOC
++

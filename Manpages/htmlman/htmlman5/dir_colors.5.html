@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>dir_colors(5) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="dir_colors(5) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="dir_colors(5) — Linux manual pages">
+    <a id="dir-colors.5" name="dir-colors.5" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>dir_colors — configuration file for dircolors(1)</p>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="dir-colors-5_sect1" name="dir-colors-5_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>The program <a class="link" href="../htmlman1/ls.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">ls</span>(1)</span></a> uses the environment
+      variable <code class="constant">LS_COLORS</code> to determine
+      the colors in which the filenames are to be displayed. This
+      environment variable is usually set by a command like</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <p>eval `dircolors some_path/dir_colors`</p>
+        </blockquote>
+      </div>
+
+      <p>found in a system default shell initialization file, like
+      <code class="filename">/etc/profile</code> or <code class="filename">/etc/csh.cshrc</code>. (See also <a class="link" href="../htmlman1/dircolors.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">dircolors</span>(1)</span></a>.) Usually, the
+      file used here is <code class="filename">/etc/DIR_COLORS</code> and can be overridden by a
+      <em class="replaceable"><code>.dir_colors</code></em> file in
+      one's home directory.</p>
+
+      <p>This configuration file consists of several statements,
+      one per line. Anything right of a hash mark (#) is treated as
+      a comment, if the hash mark is at the beginning of a line or
+      is preceded by at least one whitespace. Blank lines are
+      ignored.</p>
+
+      <p>The <em class="replaceable"><code>global</code></em>
+      section of the file consists of any statement before the
+      first <code class="constant">TERM</code> statement. Any
+      statement in the global section of the file is considered
+      valid for all terminal types. Following the global section is
+      one or more <em class="replaceable"><code>terminal-specific</code></em> sections,
+      preceded by one or more <code class="constant">TERM</code>
+      statements which specify the terminal types (as given by the
+      <code class="constant">TERM</code> environment variable) the
+      following declarations apply to. It is always possible to
+      override a global declaration by a subsequent
+      terminal-specific one.</p>
+
+      <p>The following statements are recognized; case is
+      insignificant:</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><span class="emphasis"><em>TERM
+          <em class="replaceable"><code>terminal-type</code></em></em></span></span></dt>
+
+          <dd>
+            <p>Starts a terminal-specific section and specifies
+            which terminal it applies to. Multiple <code class="constant">TERM</code> statements can be used to create
+            a section which applies for several terminal types.</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>COLOR
+          yes|all|no|none|tty</em></span></span></dt>
+
+          <dd>
+            <p>(Slackware only; ignored by GNU <a class="link" href="../htmlman1/dircolors.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">dircolors</span>(1)</span></a>.)
+            Specifies that colorization should always be enabled
+            (<em class="replaceable"><code>yes</code></em> or
+            <em class="replaceable"><code>all</code></em>), never
+            enabled (<em class="replaceable"><code>no</code></em>
+            or <em class="replaceable"><code>none</code></em>), or
+            enabled only if the output is a terminal (<em class="replaceable"><code>tty</code></em>). The default is
+            <em class="replaceable"><code>no</code></em>.</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>EIGHTBIT yes|no</em></span></span></dt>
+
+          <dd>
+            <p>(Slackware only; ignored by GNU <a class="link" href="../htmlman1/dircolors.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">dircolors</span>(1)</span></a>.)
+            Specifies that eight-bit ISO 8859 characters should be
+            enabled by default. For compatibility reasons, this can
+            also be specified as 1 for <em class="replaceable"><code>yes</code></em> or 0 for <em class="replaceable"><code>no</code></em>. The default is
+            <em class="replaceable"><code>no</code></em>.</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>OPTIONS
+          <em class="replaceable"><code>options</code></em></em></span></span></dt>
+
+          <dd>
+            <p>(Slackware only; ignored by GNU <a class="link" href="../htmlman1/dircolors.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">dircolors</span>(1)</span></a>.) Adds
+            command-line options to the default <span class="command"><strong>ls</strong></span> command line. The
+            options can be any valid <span class="command"><strong>ls</strong></span> command-line
+            options, and should include the leading minus sign.
+            Note that <span class="command"><strong>dircolors</strong></span> does not
+            verify the validity of these options.</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>NORMAL
+          <em class="replaceable"><code>color-sequence</code></em></em></span></span></dt>
+
+          <dd>
+            <p>Specifies the color used for normal (nonfilename)
+            text.</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>FILE
+          <em class="replaceable"><code>color-sequence</code></em></em></span></span></dt>
+
+          <dd>
+            <p>Specifies the color used for a regular file.</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>DIR
+          <em class="replaceable"><code>color-sequence</code></em></em></span></span></dt>
+
+          <dd>
+            <p>Specifies the color used for directories.</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>LINK
+          <em class="replaceable"><code>color-sequence</code></em></em></span></span></dt>
+
+          <dd>
+            <p>Specifies the color used for a symbolic link.</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>ORPHAN
+          <em class="replaceable"><code>color-sequence</code></em></em></span></span></dt>
+
+          <dd>
+            <p>Specifies the color used for an orphaned symbolic
+            link (one which points to a nonexistent file). If this
+            is unspecified, <span class="command"><strong>ls</strong></span> will use the
+            <code class="constant">LINK</code> color instead.</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>MISSING
+          <em class="replaceable"><code>color-sequence</code></em></em></span></span></dt>
+
+          <dd>
+            <p>Specifies the color used for a missing file (a
+            nonexistent file which nevertheless has a symbolic link
+            pointing to it). If this is unspecified, <span class="command"><strong>ls</strong></span> will use the
+            <code class="constant">FILE</code> color instead.</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>FIFO
+          <em class="replaceable"><code>color-sequence</code></em></em></span></span></dt>
+
+          <dd>
+            <p>Specifies the color used for a FIFO (named
+            pipe).</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>SOCK
+          <em class="replaceable"><code>color-sequence</code></em></em></span></span></dt>
+
+          <dd>
+            <p>Specifies the color used for a socket.</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>DOOR
+          <em class="replaceable"><code>color-sequence</code></em></em></span></span></dt>
+
+          <dd>
+            <p>(Supported since fileutils 4.1) Specifies the color
+            used for a door (Solaris 2.5 and later).</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>BLK
+          <em class="replaceable"><code>color-sequence</code></em></em></span></span></dt>
+
+          <dd>
+            <p>Specifies the color used for a block device special
+            file.</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>CHR
+          <em class="replaceable"><code>color-sequence</code></em></em></span></span></dt>
+
+          <dd>
+            <p>Specifies the color used for a character device
+            special file.</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>EXEC
+          <em class="replaceable"><code>color-sequence</code></em></em></span></span></dt>
+
+          <dd>
+            <p>Specifies the color used for a file with the
+            executable attribute set.</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>LEFTCODE <em class="replaceable"><code>color-sequence</code></em></em></span></span></dt>
+
+          <dd>
+            <p>Specifies the <span class="emphasis"><em>left
+            code</em></span> for non-ISO 6429 terminals (see
+            below).</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>RIGHTCODE <em class="replaceable"><code>color-sequence</code></em></em></span></span></dt>
+
+          <dd>
+            <p>Specifies the <span class="emphasis"><em>right
+            code</em></span> for non-ISO 6429 terminals (see
+            below).</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>ENDCODE
+          <em class="replaceable"><code>color-sequence</code></em></em></span></span></dt>
+
+          <dd>
+            <p>Specifies the <span class="emphasis"><em>end
+            code</em></span> for non-ISO 6429 terminals (see
+            below).</p>
+          </dd>
+
+          <dt><span class="term">*<em class="replaceable"><code>extension</code></em> <em class="replaceable"><code>color-sequence</code></em></span></dt>
+
+          <dd>
+            <p>Specifies the color used for any file that ends in
+            <em class="replaceable"><code>extension</code></em>.</p>
+          </dd>
+
+          <dt><span class="term">.<em class="replaceable"><code>extension</code></em> <em class="replaceable"><code>color-sequence</code></em></span></dt>
+
+          <dd>
+            <p>Same as <code class="literal">*</code>.<em class="replaceable"><code>extension</code></em>. Specifies
+            the color used for any file that ends in .<em class="replaceable"><code>extension</code></em>. Note that
+            the period is included in the extension, which makes it
+            impossible to specify an extension not starting with a
+            period, such as <code class="literal">~</code> for
+            <em class="replaceable"><code>emacs</code></em> backup
+            files. This form should be considered obsolete.</p>
+          </dd>
+        </dl>
+      </div>
+
+      <div class="refsect2" title="ISO 6429 (ANSI) Color Sequences">
+        <a id="dir-colors-5_sect2" name="dir-colors-5_sect2" shape="rect"> </a>
+
+        <h3>ISO 6429 (ANSI) Color Sequences</h3>
+
+        <p>Most color-capable ASCII terminals today use ISO 6429
+        (ANSI) color sequences, and many common terminals without
+        color capability, including <em class="replaceable"><code>xterm</code></em> and the widely used
+        and cloned DEC VT100, will recognize ISO 6429 color codes
+        and harmlessly eliminate them from the output or emulate
+        them. <span class="command"><strong>ls</strong></span> uses
+        ISO 6429 codes by default, assuming colorization is
+        enabled.</p>
+
+        <p>ISO 6429 color sequences are composed of sequences of
+        numbers separated by semicolons. The most common codes
+        are:</p>
+
+        <div class="blockquote">
+          <blockquote class="blockquote">
+            <div class="informalexample">
+              <pre class="programlisting" xml:space="preserve">
+ 0     to restore default color
+ 1     for brighter colors
+ 4     for underlined text
+ 5     for flashing text
+30     for black foreground
+31     for red foreground
+32     for green foreground
+33     for yellow (or brown) foreground
+34     for blue foreground
+35     for purple foreground
+36     for cyan foreground
+37     for white (or gray) foreground
+40     for black background
+41     for red background
+42     for green background
+43     for yellow (or brown) background
+44     for blue background
+45     for purple background
+46     for cyan background
+47     for white (or gray) background
+</pre>
+            </div>
+          </blockquote>
+        </div>
+
+        <p>Not all commands will work on all systems or display
+        devices.</p>
+
+        <p><span class="command"><strong>ls</strong></span> uses
+        the following defaults:</p>
+
+        <div class="blockquote">
+          <blockquote class="blockquote">
+            <div class="informalexample">
+              <pre class="programlisting" xml:space="preserve">
+<code class="constant">NORMAL</code>   0       Normal (nonfilename) text
+<code class="constant">FILE</code>     0       Regular file
+<code class="constant">DIR</code>      32      Directory
+<code class="constant">LINK</code>     36      Symbolic link
+<code class="constant">ORPHAN</code>   undefined       Orphaned symbolic link
+<code class="constant">MISSING</code>  undefined       Missing file
+<code class="constant">FIFO</code>     31      Named pipe (FIFO)
+<code class="constant">SOCK</code>     33      Socket
+<code class="constant">BLK</code>      44;37   Block device
+<code class="constant">CHR</code>      44;37   Character device
+<code class="constant">EXEC</code>     35      Executable file
+</pre>
+            </div>
+          </blockquote>
+        </div>
+
+        <p>A few terminal programs do not recognize the default
+        properly. If all text gets colorized after you do a
+        directory listing, change the <code class="constant">NORMAL</code> and <code class="constant">FILE</code> codes to the numerical codes for
+        your normal foreground and background colors.</p>
+      </div>
+
+      <div class="refsect2" title="Other Terminal Types (Advanced Configuration)">
+        <a id="dir-colors-5_sect3" name="dir-colors-5_sect3" shape="rect"> </a>
+
+        <h3>Other Terminal Types (Advanced Configuration)</h3>
+
+        <p>If you have a color-capable (or otherwise highlighting)
+        terminal (or printer!) which uses a different set of codes,
+        you can still generate a suitable setup. To do so, you will
+        have to use the <code class="constant">LEFTCODE</code>,
+        <code class="constant">RIGHTCODE</code>, and <code class="constant">ENDCODE</code> definitions.</p>
+
+        <p>When writing out a filename, <span class="command"><strong>ls</strong></span> generates the
+        following output sequence: <code class="constant">LEFTCODE</code> <em class="replaceable"><code>typecode</code></em> <code class="constant">RIGHTCODE</code> <em class="replaceable"><code>filename</code></em> <code class="constant">ENDCODE</code>, where the <em class="replaceable"><code>typecode</code></em> is the color
+        sequence that depends on the type or name of file. If the
+        <code class="constant">ENDCODE</code> is undefined, the
+        sequence <span class="emphasis"><em>LEFTCODE NORMAL
+        RIGHTCODE</em></span> will be used instead. The purpose of
+        the left- and rightcodes is merely to reduce the amount of
+        typing necessary (and to hide ugly escape codes away from
+        the user). If they are not appropriate for your terminal,
+        you can eliminate them by specifying the respective keyword
+        on a line by itself.</p>
+
+        <div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Note">
+            <tr>
+              <td rowspan="2" align="center" valign="top" width="25" colspan="1"><img alt="[Note]" src="../stylesheet/note.png" /></td>
+
+              <th align="left" rowspan="1" colspan="1">Note</th>
+            </tr>
+
+            <tr>
+              <td align="left" valign="top" rowspan="1" colspan="1">
+                <p>If the <code class="constant">ENDCODE</code> is
+                defined in the global section of the setup file, it
+                <em class="replaceable"><code>cannot</code></em> be
+                undefined in a terminal-specific section of the
+                file. This means any <code class="constant">NORMAL</code> definition will have no
+                effect. A different <code class="constant">ENDCODE</code> can, however, be
+                specified, which would have the same effect.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="refsect2" title="Escape Sequences">
+        <a id="dir-colors-5_sect4" name="dir-colors-5_sect4" shape="rect"> </a>
+
+        <h3>Escape Sequences</h3>
+
+        <p>To specify control- or blank characters in the color
+        sequences or filename extensions, either C-style \-escaped
+        notation or <code class="function">stty</code>−style
+        ^-notation can be used. The C-style notation includes the
+        following characters:</p>
+
+        <div class="blockquote">
+          <blockquote class="blockquote">
+            <div class="informalexample">
+              <pre class="programlisting" xml:space="preserve">
+<em class="replaceable"><code>\a</code></em>      Bell (ASCII 7)
+<em class="replaceable"><code>\b</code></em>      Backspace (ASCII 8)
+<em class="replaceable"><code>\e</code></em>      Escape (ASCII 27)
+<em class="replaceable"><code>\f</code></em>      Form feed (ASCII 12)
+<em class="replaceable"><code>\n</code></em>      Newline (ASCII 10)
+<em class="replaceable"><code>\r</code></em>      Carriage Return (ASCII 13)
+<em class="replaceable"><code>\t</code></em>      Tab (ASCII 9)
+<em class="replaceable"><code>\v</code></em>      Vertical Tab (ASCII 11)
+<em class="replaceable"><code>\?</code></em>      Delete (ASCII 127)
+\<em class="replaceable"><code>nnn</code></em> Any character (octal notation)
+\x<em class="replaceable"><code>nnn</code></em>        Any character (hexadecimal notation)
+<em class="replaceable"><code>\_</code></em>      Space
+<em class="replaceable"><code>\\</code></em>     Backslash (\)
+<em class="replaceable"><code>\^</code></em>      Caret (^)
+<em class="replaceable"><code>\#</code></em>      Hash mark (#)
+</pre>
+            </div>
+          </blockquote>
+        </div>
+
+        <p>Please note that escapes are necessary to enter a space,
+        backslash, caret, or any control character anywhere in the
+        string, as well as a hash mark as the first character.</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="FILES">
+      <a id="dir-colors-5_sect5" name="dir-colors-5_sect5" shape="rect"> </a>
+
+      <h2>FILES</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="filename">/etc/DIR_COLORS</code></span></dt>
+
+          <dd>
+            <p>System-wide configuration file.</p>
+          </dd>
+
+          <dt><span class="term"><em class="replaceable"><code>~/.dir_colors</code></em></span></dt>
+
+          <dd>
+            <p>Per-user configuration file.</p>
+          </dd>
+        </dl>
+      </div>
+
+      <p>This page describes the <em class="replaceable"><code>dir_colors</code></em> file format as
+      used in the fileutils-4.1 package; other versions may differ
+      slightly.</p>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="dir-colors-5_sect6" name="dir-colors-5_sect6" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p>The default <code class="constant">LEFTCODE</code> and
+      <code class="constant">RIGHTCODE</code> definitions, which
+      are used by ISO 6429 terminals are:</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="informalexample">
+            <pre class="programlisting" xml:space="preserve">
+<code class="constant">LEFTCODE</code>  \e[
+<code class="constant">RIGHTCODE</code> m
+</pre>
+          </div>
+        </blockquote>
+      </div>
+
+      <p>The default <code class="constant">ENDCODE</code> is
+      undefined.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="dir-colors-5_sect7" name="dir-colors-5_sect7" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman1/dircolors.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">dircolors</span>(1)</span></a>, <a class="link" href="../htmlman1/ls.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">ls</span>(1)</span></a>, <a class="link" href="../htmlman1/stty.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">stty</span>(1)</span></a>, <span class="citerefentry"><span class="refentrytitle">xterm</span>(1)</span></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="dir-colors-5_sect8" name="dir-colors-5_sect8" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.24 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                  manpage for /etc/dir_colors, config file for dircolors(1)<br />
+
+                  extracted from color-ls 3.12.0.3 dircolors(1) manpage<br />
+
+                  <br />
+                  This file may be copied under the conditions described<br />
+
+                  in the LDP GENERAL PUBLIC LICENSE, Version 1, September 1998<br />
+
+                  that should have been distributed together with this file.<br />
+
+                  <br />
+                  Modified Sat Dec 22 22:25:33 2001 by Martin Schulze &lt;joey<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>infodrom.org&gt;<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

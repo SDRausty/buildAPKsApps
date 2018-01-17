@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="faces">
+        <item>Predeterminada</item>
+        <item>Borg</item>
+        <item>Muerta</item>
+        <item>Avariciosa</item>
+        <item>Paranoica</item>
+        <item>Drogada</item>
+        <item>Cansada</item>
+        <item>Conectada</item>
+        <item>Joven</item>
+    </string-array>
+</resources>

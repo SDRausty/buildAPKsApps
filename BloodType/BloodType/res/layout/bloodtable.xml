@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/bloodTable"
+    android:background="#FFFFFF" >
+	<LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rowTwo">
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="@dimen/bloodtype_table_height"
+            android:id="@+id/btnD"
+            android:layout_weight="1"
+            android:text="@string/table_blood"
+            android:background="#D30308"
+            android:textColor="#FFFFFF"
+            android:layout_margin="2dp"
+            android:textSize="@dimen/bloodtype_table_hdr_text"
+            android:textStyle="bold"
+            android:shadowDx="4"
+            android:shadowDy="4"
+            android:shadowColor="#CC900205"
+            android:shadowRadius="15" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="@dimen/bloodtype_table_height"
+            android:layout_weight="1"
+            android:text="@string/table_give_blood"
+            android:background="#D30308"
+            android:textColor="#FFFFFF"
+            android:layout_margin="2dp"
+            android:textSize="@dimen/bloodtype_table_hdr_text"
+            android:textStyle="bold"
+            android:shadowDx="4"
+            android:shadowDy="4"
+            android:shadowColor="#CC900205"
+            android:shadowRadius="15" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="@dimen/bloodtype_table_height"
+            android:id="@+id/btnF"
+            android:layout_weight="1"
+            android:text="@string/table_receive_blood"
+            android:background="#D30308"
+            android:textColor="#FFFFFF"
+            android:layout_margin="2dp"
+            android:textSize="@dimen/bloodtype_table_hdr_text"
+            android:textStyle="bold"
+            android:shadowDx="4"
+            android:shadowDy="4"
+            android:shadowColor="#CC900205"
+            android:shadowRadius="15" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rowTwo">
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="@dimen/bloodtype_table_height"
+            android:id="@+id/btnD"
+            android:layout_weight="1"
+            android:text="A+"
+            android:background="#F5F5F5"
+            android:textColor="#D30308"
+            android:layout_margin="2dp"
+            android:textSize="@dimen/bloodtype_table_hdr_text"
+            android:textStyle="bold"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowColor="#CCFFFFFF"
+            android:shadowRadius="5" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="@dimen/bloodtype_table_height"
+            android:layout_weight="1"
+            android:text="A+, AB+"
+            android:background="#F5F5F5"
+            android:textColor="#D30308"
+            android:layout_margin="2dp"
+            android:textSize="@dimen/bloodtype_table_hdr_text"
+            android:textStyle="bold"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowColor="#CCFFFFFF"
+            android:shadowRadius="5" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="@dimen/bloodtype_table_height"
+            android:id="@+id/btnF"
+            android:layout_weight="1"
+            android:text="A+, A-, O+, O-"
+            android:background="#F5F5F5"
+            android:textColor="#D30308"
+            android:layout_margin="2dp"
+            android:textSize="@dimen/bloodtype_table_hdr_text"
+            android:textStyle="bold"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowColor="#CCFFFFFF"
+            android:shadowRadius="5" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rowTwo">
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="@dimen/bloodtype_table_height"
+            android:id="@+id/btnD"
+            android:layout_weight="1"
+            android:text="O+"
+            android:background="#F5F5F5"
+            android:textColor="#D30308"
+            android:layout_margin="2dp"
+            android:textSize="@dimen/bloodtype_table_hdr_text"
+            android:textStyle="bold"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowColor="#CCFFFFFF"
+            android:shadowRadius="5" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="@dimen/bloodtype_table_height"
+            android:layout_weight="1"
+            android:text="O+, A+, B+, AB+"
+            android:background="#F5F5F5"
+            android:textColor="#D30308"
+            android:layout_margin="2dp"
+            android:textSize="@dimen/bloodtype_table_hdr_text"
+            android:textStyle="bold"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowColor="#CCFFFFFF"
+            android:shadowRadius="5" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="@dimen/bloodtype_table_height"
+            android:id="@+id/btnF"
+            android:layout_weight="1"
+            android:text="O+, O-"
+            android:background="#F5F5F5"
+            android:textColor="#D30308"
+            android:layout_margin="2dp"
+            android:textSize="@dimen/bloodtype_table_hdr_text"
+            android:textStyle="bold"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowColor="#CCFFFFFF"
+            android:shadowRadius="5" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rowTwo">
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="@dimen/bloodtype_table_height"
+            android:id="@+id/btnD"
+            android:layout_weight="1"
+            android:text="B+"
+            android:background="#F5F5F5"
+            android:textColor="#D30308"
+            android:layout_margin="2dp"
+            android:textSize="@dimen/bloodtype_table_hdr_text"
+            android:textStyle="bold"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowColor="#CCFFFFFF"
+            android:shadowRadius="5" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="@dimen/bloodtype_table_height"
+            android:layout_weight="1"
+            android:text="B+, AB+"
+            android:background="#F5F5F5"
+            android:textColor="#D30308"
+            android:layout_margin="2dp"
+            android:textSize="@dimen/bloodtype_table_hdr_text"
+            android:textStyle="bold"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowColor="#CCFFFFFF"
+            android:shadowRadius="5" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="@dimen/bloodtype_table_height"
+            android:id="@+id/btnF"
+            android:layout_weight="1"
+            android:text="B+, B-, O+, O-"
+            android:background="#F5F5F5"
+            android:textColor="#D30308"
+            android:layout_margin="2dp"
+            android:textSize="@dimen/bloodtype_table_hdr_text"
+            android:textStyle="bold"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowColor="#CCFFFFFF"
+            android:shadowRadius="5" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rowTwo">
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="@dimen/bloodtype_table_height"
+            android:id="@+id/btnD"
+            android:layout_weight="1"
+            android:text="AB+"
+            android:background="#F5F5F5"
+            android:textColor="#D30308"
+            android:layout_margin="2dp"
+            android:textSize="@dimen/bloodtype_table_hdr_text"
+            android:textStyle="bold"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowColor="#CCFFFFFF"
+            android:shadowRadius="5" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="@dimen/bloodtype_table_height"
+            android:layout_weight="1"
+            android:text="AB+"
+            android:background="#F5F5F5"
+            android:textColor="#D30308"
+            android:layout_margin="2dp"
+            android:textSize="@dimen/bloodtype_table_hdr_text"
+            android:textStyle="bold"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowColor="#CCFFFFFF"
+            android:shadowRadius="5" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="@dimen/bloodtype_table_height"
+            android:id="@+id/btnF"
+            android:layout_weight="1"
+            android:text="Everyone"
+            android:background="#F5F5F5"
+            android:textColor="#D30308"
+            android:layout_margin="2dp"
+            android:textSize="@dimen/bloodtype_table_hdr_text"
+            android:textStyle="bold"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowColor="#CCFFFFFF"
+            android:shadowRadius="5" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rowTwo">
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="@dimen/bloodtype_table_height"
+            android:id="@+id/btnD"
+            android:layout_weight="1"
+            android:text="A-"
+            android:background="#F5F5F5"
+            android:textColor="#D30308"
+            android:layout_margin="2dp"
+            android:textSize="@dimen/bloodtype_table_hdr_text"
+            android:textStyle="bold"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowColor="#CCFFFFFF"
+            android:shadowRadius="5" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="@dimen/bloodtype_table_height"
+            android:layout_weight="1"
+            android:text="A+, A-, AB+, AB-"
+            android:background="#F5F5F5"
+            android:textColor="#D30308"
+            android:layout_margin="2dp"
+            android:textSize="@dimen/bloodtype_table_hdr_text"
+            android:textStyle="bold"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowColor="#CCFFFFFF"
+            android:shadowRadius="5" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="@dimen/bloodtype_table_height"
+            android:id="@+id/btnF"
+            android:layout_weight="1"
+            android:text="A-, O-"
+            android:background="#F5F5F5"
+            android:textColor="#D30308"
+            android:layout_margin="2dp"
+            android:textSize="@dimen/bloodtype_table_hdr_text"
+            android:textStyle="bold"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowColor="#CCFFFFFF"
+            android:shadowRadius="5" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rowTwo">
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="@dimen/bloodtype_table_height"
+            android:id="@+id/btnD"
+            android:layout_weight="1"
+            android:text="O-"
+            android:background="#F5F5F5"
+            android:textColor="#D30308"
+            android:layout_margin="2dp"
+            android:textSize="@dimen/bloodtype_table_hdr_text"
+            android:textStyle="bold"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowColor="#CCFFFFFF"
+            android:shadowRadius="5" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="@dimen/bloodtype_table_height"
+            android:layout_weight="1"
+            android:text="Everyone"
+            android:background="#F5F5F5"
+            android:textColor="#D30308"
+            android:layout_margin="2dp"
+            android:textSize="@dimen/bloodtype_table_hdr_text"
+            android:textStyle="bold"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowColor="#CCFFFFFF"
+            android:shadowRadius="5" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="@dimen/bloodtype_table_height"
+            android:id="@+id/btnF"
+            android:layout_weight="1"
+            android:text="O-"
+            android:background="#F5F5F5"
+            android:textColor="#D30308"
+            android:layout_margin="2dp"
+            android:textSize="@dimen/bloodtype_table_hdr_text"
+            android:textStyle="bold"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowColor="#CCFFFFFF"
+            android:shadowRadius="5" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rowTwo">
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="@dimen/bloodtype_table_height"
+            android:id="@+id/btnD"
+            android:layout_weight="1"
+            android:text="B-"
+            android:background="#F5F5F5"
+            android:textColor="#D30308"
+            android:layout_margin="2dp"
+            android:textSize="@dimen/bloodtype_table_hdr_text"
+            android:textStyle="bold"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowColor="#CCFFFFFF"
+            android:shadowRadius="5" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="@dimen/bloodtype_table_height"
+            android:layout_weight="1"
+            android:text="B+, B-, AB+, AB-"
+            android:background="#F5F5F5"
+            android:textColor="#D30308"
+            android:layout_margin="2dp"
+            android:textSize="@dimen/bloodtype_table_hdr_text"
+            android:textStyle="bold"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowColor="#CCFFFFFF"
+            android:shadowRadius="5" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="@dimen/bloodtype_table_height"
+            android:id="@+id/btnF"
+            android:layout_weight="1"
+            android:text="B-, O-"
+            android:background="#F5F5F5"
+            android:textColor="#D30308"
+            android:layout_margin="2dp"
+            android:textSize="@dimen/bloodtype_table_hdr_text"
+            android:textStyle="bold"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowColor="#CCFFFFFF"
+            android:shadowRadius="5" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rowTwo">
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="@dimen/bloodtype_table_height"
+            android:id="@+id/btnD"
+            android:layout_weight="1"
+            android:text="AB-"
+            android:background="#F5F5F5"
+            android:textColor="#D30308"
+            android:layout_margin="2dp"
+            android:textSize="@dimen/bloodtype_table_hdr_text"
+            android:textStyle="bold"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowColor="#CCFFFFFF"
+            android:shadowRadius="5" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="@dimen/bloodtype_table_height"
+            android:layout_weight="1"
+            android:text="AB+, AB-"
+            android:background="#F5F5F5"
+            android:textColor="#D30308"
+            android:layout_margin="2dp"
+            android:textSize="@dimen/bloodtype_table_hdr_text"
+            android:textStyle="bold"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowColor="#CCFFFFFF"
+            android:shadowRadius="5" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="@dimen/bloodtype_table_height"
+            android:id="@+id/btnF"
+            android:layout_weight="1"
+            android:text="AB-, A-, B-, O-"
+            android:background="#F5F5F5"
+            android:textColor="#D30308"
+            android:layout_margin="2dp"
+            android:textSize="@dimen/bloodtype_table_hdr_text"
+            android:textStyle="bold"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowColor="#CCFFFFFF"
+            android:shadowRadius="5" />
+    </LinearLayout>
+</LinearLayout>

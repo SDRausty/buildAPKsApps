@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>fallocate(1) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="fallocate(1) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="fallocate(1) — Linux manual pages">
+    <a id="fallocate.1" name="fallocate.1" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>fallocate — preallocate space to a file.</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">fallocate</code> [<code class="option">−n</code>] [ <code class="option">−o</code> offset ] <code class="option">−l</code> length filename</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="fallocate-1_sect1" name="fallocate-1_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><span class="command"><strong>fallocate</strong></span> is
+      used to preallocate blocks to a file. For filesystems which
+      support the fallocate system call, this is done quickly by
+      allocating blocks and marking them as uninitialized,
+      requiring no IO to the data blocks. This is much faster than
+      creating a file by filling it with zeros.</p>
+
+      <p>As of the Linux Kernel v2.6.31, the fallocate system call
+      is supported by the btrfs, ext4, ocfs2, and xfs
+      filesystems.</p>
+
+      <p>The exit code returned by <span class="command"><strong>fallocate</strong></span> is 0 on success
+      and 1 on failure.</p>
+    </div>
+
+    <div class="refsect1" title="OPTIONS">
+      <a id="fallocate-1_sect2" name="fallocate-1_sect2" shape="rect"> </a>
+
+      <h2>OPTIONS</h2>
+
+      <p>The <em class="parameter"><code>length</code></em> and
+      <em class="parameter"><code>offset</code></em> arguments may
+      be followed by binary (2^N) suffixes KiB, MiB, GiB, TiB, PiB
+      and EiB (the "iB" is optional, e.g. "K" has the same meaning
+      as "KiB") or decimal (10^N) suffixes KB, MB, GB, PB and
+      EB.</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="option">−h,
+          −−help</code></span></dt>
+
+          <dd>
+            <p>Print help and exit.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−n,
+          −−keep−size</code></span></dt>
+
+          <dd>
+            <p>Do not modify the apparent length of the file. This
+            may effectively allocate blocks past EOF, which can be
+            removed with a truncate.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−o,
+          −−offset</code> <em class="parameter"><code>offset</code></em></span></dt>
+
+          <dd>
+            <p>Specifies the beginning offset of the allocation, in
+            bytes.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−l,
+          −−length</code> <em class="parameter"><code>length</code></em></span></dt>
+
+          <dd>
+            <p>Specifies the length of the allocation, in
+            bytes.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="AUTHORS">
+      <a id="fallocate-1_sect3" name="fallocate-1_sect3" shape="rect"> </a>
+
+      <h2>AUTHORS</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+Eric Sandeen &lt;sandeen@redhat.com&gt;
+Karel Zak &lt;kzak@redhat.com&gt;
+</pre>
+      </div>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="fallocate-1_sect4" name="fallocate-1_sect4" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman2/fallocate.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fallocate</span>(2)</span></a>, <a class="link" href="../htmlman3/posix_fallocate.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">posix_fallocate</span>(3)</span></a>,
+      <a class="link" href="../htmlman1/truncate.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">truncate</span>(1)</span></a></p>
+    </div>
+
+    <div class="refsect1" title="AVAILABILITY">
+      <a id="fallocate-1_sect5" name="fallocate-1_sect5" shape="rect"> </a>
+
+      <h2>AVAILABILITY</h2>
+
+      <p>The fallocate command is part of the util-linux package
+      and is available from
+      ftp://ftp.kernel.org/pub/linux/utils/util-linux/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>epoll_wait(2) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="epoll_wait(2) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="epoll_wait(2) — Linux manual pages">
+    <a id="epoll-wait.2" name="epoll-wait.2" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>epoll_wait, epoll_pwait — wait for an I/O event on
+      an epoll file descriptor</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;sys/epoll.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">epoll_wait</b>(</code></td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">epfd</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">struct epoll_event *<var class="pdparam">events</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">maxevents</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">timeout</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">epoll_pwait</b>(</code></td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">epfd</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">struct epoll_event *<var class="pdparam">events</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">maxevents</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">timeout</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">const sigset_t *<var class="pdparam">sigmask</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="epoll-wait-2_sect1" name="epoll-wait-2_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>The <code class="function">epoll_wait</code>() system call
+      waits for events on the <em class="replaceable"><code>epoll</code></em> instance referred to by
+      the file descriptor <em class="parameter"><code>epfd</code></em>. The memory area pointed
+      to by <em class="parameter"><code>events</code></em> will
+      contain the events that will be available for the caller. Up
+      to <em class="parameter"><code>maxevents</code></em> are
+      returned by <code class="function">epoll_wait</code>(). The
+      <em class="parameter"><code>maxevents</code></em> argument
+      must be greater than zero.</p>
+
+      <p>The call waits for a maximum time of <em class="parameter"><code>timeout</code></em> milliseconds.
+      Specifying a <em class="parameter"><code>timeout</code></em>
+      of −1 makes <code class="function">epoll_wait</code>()
+      wait indefinitely, while specifying a <em class="parameter"><code>timeout</code></em> equal to zero makes
+      <code class="function">epoll_wait</code>() to return
+      immediately even if no events are available (return code
+      equal to zero).</p>
+
+      <p>The <span class="emphasis"><em>struct
+      epoll_event</em></span> is defined as :</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="structdef">
+            <table style="border-collapse: collapse;">
+              <colgroup span="1">
+                <col span="1" />
+                <col span="1" />
+                <col span="1" />
+                <col span="1" />
+                <col span="1" />
+              </colgroup>
+
+              <tbody>
+                <tr>
+                  <td class="structdefhdr" style="" align="left" rowspan="1" colspan="1">
+                  typedef</td>
+
+                  <td class="structdefhdr" style="" colspan="4" align="left" rowspan="1">union <span class="structname">epoll_data</span> {</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">void</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                  *</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>ptr</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"> </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">int</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>fd</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"> </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">uint32_t</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>u32</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"> </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">uint64_t</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>u64</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"> </td>
+                </tr>
+
+                <tr>
+                  <td class="structdefftr" style="" colspan="5" align="left" rowspan="1">} epoll_data_t;</td>
+                </tr>
+
+                <tr>
+                  <td class="structsep" style="" colspan="5" align="left" rowspan="1"></td>
+                </tr>
+
+                <tr>
+                  <td class="structdefhdr2" style="" align="left" rowspan="1" colspan="1">
+                  struct</td>
+
+                  <td class="structdefhdr2" style="" colspan="4" align="left" rowspan="1"><span class="structname">epoll_event</span> {</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">uint32_t</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>events</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      /* Epoll events */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">epoll_data_t</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>data</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      
+                      /* User data variable */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="structdefftr" style="" colspan="5" align="left" rowspan="1">};</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </blockquote>
+      </div>
+
+      <p>The <em class="parameter"><code>data</code></em> of each
+      returned structure will contain the same data the user set
+      with an <a class="link" href="../htmlman2/epoll_ctl.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">epoll_ctl</span>(2)</span></a> (<code class="constant">EPOLL_CTL_ADD</code>,<code class="constant">EPOLL_CTL_MOD</code>) while the <em class="parameter"><code>events</code></em> member will contain the
+      returned event bit field.</p>
+
+      <div class="refsect2" title="epoll_pwait()">
+        <a id="epoll-wait-2_sect2" name="epoll-wait-2_sect2" shape="rect"> </a>
+
+        <h3>epoll_pwait()</h3>
+
+        <p>The relationship between <code class="function">epoll_wait</code>() and <code class="function">epoll_pwait</code>() is analogous to the
+        relationship between <a class="link" href="../htmlman2/select.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">select</span>(2)</span></a> and <a class="link" href="../htmlman2/select.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pselect</span>(2)</span></a>: like
+        <a class="link" href="../htmlman2/select.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pselect</span>(2)</span></a>, <code class="function">epoll_pwait</code>() allows an application to
+        safely wait until either a file descriptor becomes ready or
+        until a signal is caught.</p>
+
+        <p>The following <code class="function">epoll_pwait</code>() call:</p>
+
+        <div class="informalexample">
+          <pre class="programlisting" xml:space="preserve">
+    ready = epoll_pwait(epfd, &amp;events, maxevents, timeout, &amp;sigmask);
+</pre>
+        </div>
+
+        <p>is equivalent to <em class="replaceable"><code>atomically</code></em> executing the
+        following calls:</p>
+
+        <div class="informalexample">
+          <pre class="programlisting" xml:space="preserve">
+    sigset_t origmask;
+
+    sigprocmask(SIG_SETMASK, &amp;sigmask, &amp;origmask);
+    ready = epoll_wait(epfd, &amp;events, maxevents, timeout);
+    sigprocmask(SIG_SETMASK, &amp;origmask, NULL);
+</pre>
+        </div>
+
+        <p>The <em class="parameter"><code>sigmask</code></em>
+        argument may be specified as NULL, in which case
+        <code class="function">epoll_pwait</code>() is equivalent
+        to <code class="function">epoll_wait</code>().</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="epoll-wait-2_sect3" name="epoll-wait-2_sect3" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p>When successful, <code class="function">epoll_wait</code>() returns the number of file
+      descriptors ready for the requested I/O, or zero if no file
+      descriptor became ready during the requested <em class="parameter"><code>timeout</code></em> milliseconds. When an
+      error occurs, <code class="function">epoll_wait</code>()
+      returns −1 and <code class="varname">errno</code> is
+      set appropriately.</p>
+    </div>
+
+    <div class="refsect1" title="ERRORS">
+      <a id="epoll-wait-2_sect4" name="epoll-wait-2_sect4" shape="rect"> </a>
+
+      <h2>ERRORS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><span class="errorname">EBADF</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>epfd</code></em> is not
+            a valid file descriptor.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EFAULT</span></span></dt>
+
+          <dd>
+            <p>The memory area pointed to by <em class="parameter"><code>events</code></em> is not accessible
+            with write permissions.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EINTR</span></span></dt>
+
+          <dd>
+            <p>The call was interrupted by a signal handler before
+            any of the requested events occurred or the <em class="parameter"><code>timeout</code></em> expired; see
+            <a class="link" href="../htmlman7/signal.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">signal</span>(7)</span></a>.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EINVAL</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>epfd</code></em> is not
+            an <em class="replaceable"><code>epoll</code></em> file
+            descriptor, or <em class="parameter"><code>maxevents</code></em> is less than or
+            equal to zero.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="VERSIONS">
+      <a id="epoll-wait-2_sect5" name="epoll-wait-2_sect5" shape="rect"> </a>
+
+      <h2>VERSIONS</h2>
+
+      <p><code class="function">epoll_wait</code>() was added to
+      the kernel in version 2.6. Library support is provided in
+      glibc starting with version 2.3.2.</p>
+
+      <p><code class="function">epoll_pwait</code>() was added to
+      Linux in kernel 2.6.19. Library support is provided in glibc
+      starting with version 2.6.</p>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="epoll-wait-2_sect6" name="epoll-wait-2_sect6" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p><code class="function">epoll_wait</code>() is
+      Linux-specific.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="epoll-wait-2_sect7" name="epoll-wait-2_sect7" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman2/epoll_create.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">epoll_create</span>(2)</span></a>, <a class="link" href="../htmlman2/epoll_ctl.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">epoll_ctl</span>(2)</span></a>, <a class="link" href="../htmlman7/epoll.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">epoll</span>(7)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="epoll-wait-2_sect8" name="epoll-wait-2_sect8" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.32 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                   epoll by Davide Libenzi ( efficient event notification retrieval )<br />
+
+                   Copyright (C) 2003  Davide Libenzi<br />
+
+                  <br />
+                   This program is free software; you can redistribute it and/or modify<br />
+
+                   it under the terms of the GNU General Public License as published by<br />
+
+                   the Free Software Foundation; either version 2 of the License, or<br />
+
+                   (at your option) any later version.<br />
+
+                  <br />
+                   This program is distributed in the hope that it will be useful,<br />
+
+                   but WITHOUT ANY WARRANTY; without even the implied warranty of<br />
+
+                   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<br />
+
+                   GNU General Public License for more details.<br />
+
+                  <br />
+                   You should have received a copy of the GNU General Public License<br />
+
+                   along with this program; if not, write to the Free Software<br />
+
+                   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA<br />
+
+                  <br />
+                   Davide Libenzi &lt;davidel<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>xmailserver.org&gt;<br />
+
+                  <br />
+                  2007-04-30: mtk, Added description of epoll_pwait()<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

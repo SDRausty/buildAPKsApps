@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#000000">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="5dip"
+        android:layout_marginTop="5dip">
+        <Spinner
+            android:id="@+id/type"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:prompt="@string/type_prompt" />
+        <Spinner
+            android:id="@+id/face"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:prompt="@string/face_prompt" />
+        <Button android:id="@+id/think_toggle"
+            android:layout_width="70dip"
+            android:layout_height="wrap_content"
+            android:text="@string/think_off"/>
+    </LinearLayout>
+
+    <ch.fixme.cowsay.WScrollView
+        android:id="@+id/wsv"
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:fillViewport="true">
+            <TextView
+                android:id="@+id/thecow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dip"
+                android:paddingRight="15dip"
+                android:textColor="#00ff00"
+                android:background="#000000"
+                android:typeface="monospace"
+                android:layout_gravity="bottom"
+                android:singleLine="false"
+                android:scrollbars="vertical" />
+    </ch.fixme.cowsay.WScrollView>
+
+    <EditText
+        android:id="@+id/message"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:maxLines="1"
+        android:singleLine="true"
+        android:hint="@string/message_hint"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="5dip"
+        android:layout_marginBottom="5dip" />
+
+</LinearLayout>
+

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="txt_quick_settings">Quick Settings</string>
+
+    <string name="txt_status_unknown">Neznámé</string>
+    <string name="txt_status_turned_on">Zapnuto</string>
+    <string name="txt_status_turned_off">Vypnuto</string>
+    <string name="txt_status_turning_on">Zapínání ...</string>
+    <string name="txt_status_turning_off">Vypínání ...</string>
+    <string name="txt_status_enabled">Povoleno</string>
+    <string name="txt_status_disabled">Zakázáno</string>
+    
+    <string name="wifi_title">Wi-Fi</string>
+    <string name="txt_net_status_connecting">Připojování ...</string>
+    <string name="txt_net_status_obtainingip">Získávání IP adresy ...</string>
+    <string name="txt_net_status_connected_to">Připojeno k %s</string>
+    <string name="txt_net_status_connected">Připojeno</string>
+    <string name="txt_net_status_failed">Připojení selhalo</string>
+    <string name="txt_net_status_disconnecting">Odpojování ...</string>
+    <string name="txt_net_status_disconnected">Odpojena</string>
+    
+    <string name="gps_title">GPS přijímač</string>
+    <string name="txt_brightness">Jas</string>
+    <string name="msg_disable_autobrightness">Auto-řízení jasu je zapnuto. Chcete jej vypnout a ovládat ručně?</string>
+
+    <string name="battery_state_title">Stav baterie:</string>
+    <string name="battery_state_value">%d%%</string>
+    <string name="txt_memory_state_value">Telefon volno:</string>
+    <string name="txt_card_state_value">SD karta volno:</string>
+    <string name="txt_no_card">Chybí SD karta</string>
+
+    <string name="airmode_title">Režim v letadle</string>
+
+    <string name="btn_yes">Ano</string>
+    <string name="btn_no">Ne</string>
+    <string name="btn_close">Zavřít</string>
+    <string name="btn_set">Nastav</string>
+    <string name="btn_calcel">Zrušit</string>
+
+    <string name="txt_ringer">Zvonek</string>
+    <string name="txt_ringer_mode">Režim zvonku</string>
+    <string name="txt_ringer_silent">Tichý</string>
+    <string name="txt_ringer_sound">Pouze zvuk</string>
+    <string name="txt_ringer_vibro">Pouze vibrace</string>
+    <string name="txt_ringer_vibrosound">Zvuk &amp; Vibrace</string>
+    
+    <string name="txt_bt">Bluetooth</string>
+    <string name="txt_no_apn">APN není konfigurované</string>
+    
+    <string name="txt_screen_timeout">Zhasnutí displeje</string>
+    <string name="txt_screen_timeout_value_seconds">%d sekund</string>
+    <string name="txt_screen_timeout_value_minute">%d min.</string>
+    <string name="txt_screen_timeout_value_minutes">%d min.</string>
+    <string name="txt_screen_timeout_value_never">Nezhasínat</string>
+    
+    <string name="txt_customize_settings">Rychlá nastavení > Vlastní</string>
+    <string name="txt_preferences">Rychlá nastavení > Předvolby</string>
+    <string name="txt_visible_settings">Viditelná nastavení</string>
+    <string name="txt_hidden_settings">Skrytá nastavení</string>
+    <string name="msg_drag_and_drop">Tapni, drž a táhni ikonu k přesunu nastavení mezi viditelným a skrytým seznamem nebo změň pořadí nastavení.</string>
+    
+    <string name="txt_auto_sync">Auto-sync data</string>
+    <string name="txt_enable_background_data">Tapni k povolení dat na pozadí</string>
+
+    <string name="txt_volume">Ovládání hlasitosti</string>
+    <string name="txt_volume_descr">Tapni k ovládání hlasitosti</string>
+    <string name="txt_volume_ringer">Hlasitost zvonění</string>
+    <string name="txt_volume_notification">Hlasitost oznámení</string>
+    <string name="txt_volume_media">Hlasitost přehrávání médií</string>
+    <string name="txt_volume_alarm">Hlasitost budíku</string>
+    <string name="txt_volume_voice_call">Hlasitost hlasového volání</string>
+    <string name="txt_volume_system">Systémová hlasitost</string>
+    <string name="msg_zero_ringer_warning">Můžete zmeškat příchozí hovory, neboť hlasitost vyzvánění je 0.</string>
+    <string name="msg_zero_notification_warning">Můžete zmeškat upozornění, neboť hlasitost upozornění je 0.</string>
+    <string name="msg_not_silent_warning">Telefon už není dále Tichý, když jste zvýšili hlasitost zvonku na %d.</string>
+
+    <string name="msg_disabled_warning">
+    Tuto zprávu vidíte, protože používáte ovládání APN poprvé.
+    \n\nKonfigurace APN byly aktualizovány. Pokud spojení stále přetrvává, zkuste změnit modifikační řetězec v ovládání APN (dlouze stisknout na nastavení APN).
+    \n\nOdinstalujte Rychlá Nastavení s povoleným APN, jinak zůstanete bez připojení a budete muset změnit APN konfigurace ručně.
+    \n\nZkontrolujte domácí stránku projektu pro další informace v případě, že máte nějaké dotazy nebo máte nějaké problémy s ovládáním APN.
+    </string>
+    
+    <string name="msg_switch_to_air_mode">Přejete si aktivovat režim V letadle a zrušit všechna bezdrátová připojení?</string>
+    <string name="msg_cannot_init_setting">Ouvej... Nastavení "%s" nemůže  být ovládáno na vašem zařízení</string>
+
+    <string name="menu_customize_settings">Vlastní</string>
+    <string name="menu_preferences">Předvolby</string>
+ 
+    <string name="txt_auto_rotate">Auto rotace</string>
+    
+    <!-- unlock pattern -->
+    <string name="txt_unlock_pattern">Odemykací vzor</string>
+    <string name="txt_set_unlock_pattern">Tapni k nast. odemyk.vzoru</string>
+    <string name="msg_which_unlock_pattern">Který odemykací vzor by měl být povolen?\n\nPozn.: pokud jsi nenastavil odemyk. vzor, než jsi zvolil nový.</string>
+    <string name="btn_current_unlock_pattern">Aktuální</string>
+    <string name="btn_new_unlock_pattern">Nový</string>
+    
+    <string name="txt_toolbar">Nástroj.lišta</string>
+
+    <string name="pref_common">Obecné</string>
+    <string name="pref_status_bar">Doplnění stavové řádky</string>
+    <string name="pref_status_bar_descr">Tapni k povolení nebo zakázání doplnění stavové řádky</string>
+    <string name="pref_view_mode">Vzhled</string>
+    <string name="pref_view_mode_descr">Tapni k volbě plného displeje nebo dialogového vzhledu</string>
+    <string name="msg_tap_to_change_settings">Tapni pro rychlou změnu nastavení</string>
+
+    <string name="msg_reinstall_required">Aplikace Quick Settings nebyla správně aktualizovaná. Prosím odinstalujte a znovu nainstalujte aplikaci k jejímu zprovoznění.\n\nOmlouváme se za případné nepříjemnosti.</string>
+
+	<string name="txt_master_volume">Hlavní hlasitost</string>
+	<string name="txt_master_volume_desc">Z: %1$d, O: %2$d, M: %3$d, B: %4$d</string>
+
+	<string name="txt_autobrightness_enabled">Auto-řízení jasu povoleno</string>
+	<string name="txt_autobrightness_disabled">Auto-řízení jasu zakázáno</string>
+    <string name="msg_enable_autobrightness">Tuto opci můžete povolit, jen když je váš telefon vybaven světelným senzorem.\n\nPovolit opci?</string>
+    <string name="pref_light_sensor">Použít světelný senzor</string>
+    <string name="pref_light_sensor_descr">Tapni k povolení nebo zakázání použití světelného senzoru</string>
+
+    <string name="txt_flashlight">Svítilna</string>
+    <string name="pref_flashlight_descr">Tapni k volbě typu svítilny</string>
+    <string name="msg_flashlight_led_usage">Dlouhé použití LED svítilny může poškodit váš telefon. Tím, že to víte, přebíráte plnou odpovědnost za škody, které to může způsobit.\n\nNemusíte použít LED svítilnu, pokud se zříkáte odpovědnosti.</string>
+    <string name="btn_accept">Přijmout</string>
+    <string name="msg_flashlight_not_supported">LED svítilna nemůže být na vašem telefonu ovládána. Místo ní bude použita displejová svítilna.</string>
+
+	<string name="txt_haptic_feedback">Hmatová zpětná vazba</string>
+	<string name="txt_haptic_feedback_on">Krátce zavibrovat po stisku tlačítek nastavení</string>
+	<string name="txt_haptic_feedback_off">Nevibrovat po stisku tlačítek nastavení</string>
+	
+	<string name="txt_addons">Rychlá nastavení > Doplňky</string>
+    <string name="menu_addons">Doplňky</string>
+    <string name="txt_addon_quick_battery">Quick Battery</string>
+    <string name="txt_addon_quick_battery_descr">Jde o widget, ukazující zbývající stav baterie v procentech a šikovného zástupce pro rychlé nastavení aplikací současně</string>
+    <string name="txt_install">Instaluj</string>
+    <string name="txt_uninstall">Odinstaluj</string>
+	
+    <string name="pref_disable_mms">Zakázat MMS</string>
+    <string name="pref_disable_mms_descr_disabled">Přístroj nebude moci přijímat MMS, když zakážete Mobilní Data</string>
+    <string name="pref_disable_mms_descr_enabled">Přístroji zůstává schopnost přijímat MMS, i když zakážete Mobilní Data</string>
+
+    <string name="txt_volume_bind">Hlasitost zvonění je stejná i pro oznámení</string>
+    <string name="txt_initializing">Inicializace ...</string>
+    
+    <string name="pref_one_click_switch">Přepnout jedním klikem</string>
+    <string name="txt_eula">Licenční dohoda koncového uživatele</string>
+    <string name="btn_decline">Odmítnout</string>
+
+    <string name="pref_anp_modifier">Modifikační řetězec</string>
+    <string name="pref_anp_modifier_descr">Přípona nebo předpona, přidávaná ke konfiguraci APN, k jejímu zakázání</string>
+    <string name="pref_restor_pref_apn">Přednostní obnova APN</string>
+    <string name="pref_restor_pref_apn_descr">Může pomoci v některých případech, kdy se nemá obnovit spojení</string>
+
+    <string name="pref_statusbar_integration">Integrace stavové řádky</string>
+    <string name="pref_inverse_notif_color">Inverze barvy oznámení</string>
+    <string name="pref_inverse_notif_color_on">Text a ikona jsou nyní bílé</string>
+    <string name="pref_inverse_notif_color_off">Text a ikona jsou nyní černé</string>
+
+    <string name="pref_about">O programu</string>
+    <string name="pref_about_descr">O aplikaci Quick Settings</string>
+
+    <string name="txt_full_brightness">Plný jas</string>
+    <string name="txt_full_brightness_descr">Tapnutím zvolit, kdy má mít svítilna plný jas</string>
+    <string name="msg_flashlight_delay">Otočte displej od tváře a jeho jas v několika vteřinách plně zesílí</string>
+    <string name="msg_flashlight_orientation">Nakloňte displej vašeho telefonu směrem dolů k jeho plnému rozjasnění</string>
+    <string name="msg_flashlight_shake">Mírně zatřeste vaším telefonem k povolení a zakázání plného jasu</string>
+
+<!-- version 1.9.5 -->    
+    <string name="txt_pattern">Gesto</string>
+    <string name="txt_pin">PIN</string>
+    <string name="txt_password">Heslo</string>
+    <string name="txt_wifi_hotspot">Wi-Fi hotspot</string>
+  
+<!-- 1.9.6 -->
+    <string name="txt_apn_control">Mobilní data (APN)</string>
+    <string name="txt_mobile_data">Mobilní data</string>
+    <string name="txt_enable_data_access_first">Nejprve povolit \"Mobilní data\" v nastavení systému</string>
+    <string name="msg_enabling_mobile_data">Povolení mobilních dat</string>
+    <string name="msg_2g_hint">Pokud se spojení neuskuteční, zaškrtněte volbu \"pouze 2G\" v nastavení systému pro přinucení modemu k přepojení</string>
+    <string name="msg_use_mobile_data_hint">Je pro vás výhodnější používat nastavení \"Mobilní data\" místo volby \"Mobilní data (APN)\"</string>
+    
+<!-- about -->    
+    <!-- about, should stay at very bottom -->
+    <string name="copyright">© 2010 Sergej Shafarenka</string>
+    <string name="about_info">&lt;b>Verze:&lt;/b> %s&lt;br>&lt;b>Contributers:&lt;/b> Brian Rodgers, Shimon Simon&lt;br>&lt;b>Překlady:&lt;/b> Lada Prudek (cs)</string>
+    
+</resources>

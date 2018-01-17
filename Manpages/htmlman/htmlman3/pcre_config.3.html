@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>pcre_config(3) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="pcre_config(3) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="pcre_config(3) — Linux manual pages">
+    <a id="pcre-config.3" name="pcre-config.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>PCRE — Perl-compatible regular expressions</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;pcre.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">pcre_config</b>(</code></td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">what</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">void *<var class="pdparam">where</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="pcre-config-3_sect1" name="pcre-config-3_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>This function makes it possible for a client program to
+      find out which optional features are available in the version
+      of the PCRE library it is using. Its arguments are as
+      follows:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+ <em class="parameter"><code>what</code></em>     A code specifying what information is required
+ <em class="parameter"><code>where</code></em>    Points to where to put the data
+</pre>
+      </div>
+
+      <p>The available codes are:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+ PCRE_CONFIG_LINK_SIZE     Internal link size: 2, 3, or 4
+ PCRE_CONFIG_MATCH_LIMIT   Internal resource limit
+ PCRE_CONFIG_MATCH_LIMIT_RECURSION
+                           Internal recursion depth limit
+ PCRE_CONFIG_NEWLINE       Value of the default newline sequence:
+                               13 (0x000d)    for CR
+                               10 (0x000a)    for LF
+                             3338 (0x0d0a)    for CRLF
+                               -2             for ANYCRLF
+                               -1             for ANY
+ PCRE_CONFIG_BSR           Indicates what \R matches by default:
+                                0             all Unicode line endings
+                                1             CR, LF, or CRLF only
+ PCRE_CONFIG_POSIX_MALLOC_THRESHOLD
+                           Threshold of return slots, above
+                             which <code class="function">malloc</code>() is used by
+                             the POSIX API
+ PCRE_CONFIG_STACKRECURSE  Recursion implementation (1=stack 0=heap)
+ PCRE_CONFIG_UTF8          Availability of UTF-8 support (1=yes 0=no)
+ PCRE_CONFIG_UNICODE_PROPERTIES
+                           Availability of Unicode property support
+                             (1=yes 0=no)
+</pre>
+      </div>
+
+      <p>The function yields 0 on success or PCRE_ERROR_BADOPTION
+      otherwise.</p>
+
+      <p>There is a complete description of the PCRE native API in
+      the <a class="link" href="../htmlman3/pcreapi.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pcreapi</span>(3)</span></a> page and a
+      description of the POSIX API in the <a class="link" href="../htmlman3/pcreposix.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pcreposix</span>(3)</span></a> page.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <thead>
+            <tr>
+              <th style="" rowspan="1" colspan="1">COPYRIGHT</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <p>This manual page is taken from the <a class="ulink" href="http://www.PCRE.org/" target="_top" shape="rect">PCRE library</a>, which is distributed under
+                the BSD license.</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

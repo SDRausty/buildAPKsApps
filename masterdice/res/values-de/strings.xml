@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GM Dice</string>
+    <string name="app_name_long">GameMaster Dice</string>
+    <string name="ds_choose">Würfel wählen</string>
+    <string name="ds_custom">Mehr...</string>
+    <string name="ds_config">Würfel konfigurieren</string>
+    <string name="spin_count">Anzahl Würfel</string>
+    <string name="spin_sides">Seitenanzahl</string>
+    <string name="spin_modifier">Modifikator</string>
+
+    <string name="log_empty">Knöpfe zum Würfeln drücken!\n\nLange drücken zum Wert Einstellen.</string>
+    <string name="roll_placeholder">Würfle!</string>
+    <string name="roll_result">Würfelergebnis</string>
+
+    <string name="binary_no">nein</string>
+    <string name="binary_yes">ja</string>
+
+    <string name="menu_screen_on">Bildschirm anlassen</string>
+    <string name="menu_clear_log">Verlauf löschen</string>
+    <string name="menu_about">Über...</string>
+
+    <string name="about_home">Homepage</string>
+</resources>

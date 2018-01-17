@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- setting row lays out elements needed to show a single setting -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/switchable_slider_view"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:minHeight="58dp"
+    android:background="@android:drawable/list_selector_background"
+    >
+    
+    <ViewSwitcher android:id="@+id/switcher"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center_vertical"
+	    android:layout_weight="1">
+    </ViewSwitcher>
+
+    <ToggleButton android:id="@+id/toggle"
+    	android:layout_gravity="center_vertical"
+   		android:layout_marginRight="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        />
+
+</LinearLayout>

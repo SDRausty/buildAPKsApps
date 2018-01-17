@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_save"
+        android:orderInCategory="200"
+        android:showAsAction="never"
+        android:icon="@drawable/icon"
+        android:title="Save Chart Image" />
+    <item
+        android:id="@+id/action_share"
+        android:orderInCategory="200"
+        android:showAsAction="never"
+        android:icon="@drawable/icon"
+        android:title="Share Chart Image" />
+</menu>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<style name="Transparent" parent="@android:style/Theme.Holo">
+      	<!-- after 3.0 -->
+      	<item name="android:actionBarStyle">@style/DarkActionBar</item>
+		<item name="android:windowIsTranslucent">true</item>
+	    <item name="android:windowBackground">@android:color/transparent</item>
+	    <item name="android:windowIsFloating">false</item>
+	    <item name="android:backgroundDimEnabled">true</item>
+	</style>
+	
+	<style name="DarkActionBar" parent="@android:style/Widget.Holo.ActionBar">
+        <item name="android:background">#80000000</item> <!-- 50% black (alpha: 128) -->
+    </style>
+</resources>

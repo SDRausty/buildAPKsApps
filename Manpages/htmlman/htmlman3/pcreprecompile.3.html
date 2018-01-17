@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>pcreprecompile(3) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="pcreprecompile(3) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="pcreprecompile(3) — Linux manual pages">
+    <a id="pcreprecompile.3" name="pcreprecompile.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>PCRE — Perl-compatible regular expressions</p>
+    </div>
+
+    <div class="refsect1" title="SAVING AND RE-USING PRECOMPILED PCRE PATTERNS">
+      <a id="pcreprecompile-3_sect1" name="pcreprecompile-3_sect1" shape="rect"> </a>
+
+      <h2>SAVING AND RE-USING PRECOMPILED PCRE PATTERNS</h2>
+
+      <p>If you are running an application that uses a large number
+      of regular expression patterns, it may be useful to store
+      them in a precompiled form instead of having to compile them
+      every time the application is run. If you are not using any
+      private character tables (see the <span class="citerefentry"><span class="refentrytitle">pcre_maketables()</span>(3)</span>
+      documentation), this is relatively straightforward. If you
+      are using private tables, it is a little bit more
+      complicated.</p>
+
+      <p>If you save compiled patterns to a file, you can copy them
+      to a different host and run them there. This works even if
+      the new host has the opposite endianness to the one on which
+      the patterns were compiled. There may be a small performance
+      penalty, but it should be insignificant. However, compiling
+      regular expressions with one version of PCRE for use with a
+      different version is not guaranteed to work and may cause
+      crashes.</p>
+    </div>
+
+    <div class="refsect1" title="SAVING A COMPILED PATTERN">
+      <a id="pcreprecompile-3_sect2" name="pcreprecompile-3_sect2" shape="rect"> </a>
+
+      <h2>SAVING A COMPILED PATTERN</h2>
+
+      <p>The value returned by <code class="function">pcre_compile</code>() points to a single block of
+      memory that holds the compiled pattern and associated data.
+      You can find the length of this block in bytes by calling
+      <code class="function">pcre_fullinfo</code>() with an
+      argument of PCRE_INFO_SIZE. You can then save the data in any
+      appropriate manner. Here is sample code that compiles a
+      pattern and writes it to a file. It assumes that the variable
+      <code class="varname">fd</code> refers to a file that is open
+      for output:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+ int erroroffset, rc, size;
+ char *error;
+ pcre *re;
+</pre>
+      </div>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+ re = pcre_compile("my pattern", 0, &amp;error, &amp;erroroffset, NULL);
+ if (re == NULL) { ... handle errors ... }
+ rc = pcre_fullinfo(re, NULL, PCRE_INFO_SIZE, &amp;size);
+ if (rc &lt; 0) { ... handle errors ... }
+ rc = fwrite(re, 1, size, fd);
+ if (rc != size) { ... handle errors ... }
+</pre>
+      </div>
+
+      <p>In this example, the bytes that comprise the compiled
+      pattern are copied exactly. Note that this is binary data
+      that may contain any of the 256 possible byte values. On
+      systems that make a distinction between binary and non-binary
+      data, be sure that the file is opened for binary output.</p>
+
+      <p>If you want to write more than one pattern to a file, you
+      will have to devise a way of separating them. For binary
+      data, preceding each pattern with its length is probably the
+      most straightforward approach. Another possibility is to
+      write out the data in hexadecimal instead of binary, one
+      pattern to a line.</p>
+
+      <p>Saving compiled patterns in a file is only one possible
+      way of storing them for later use. They could equally well be
+      saved in a database, or in the memory of some daemon process
+      that passes them via sockets to the processes that want
+      them.</p>
+
+      <p>If the pattern has been studied, it is also possible to
+      save the study data in a similar way to the compiled pattern
+      itself. When studying generates additional information,
+      <code class="function">pcre_study</code>() returns a pointer
+      to a <code class="function">pcre_extra</code> data block. Its
+      format is defined in the section on matching a pattern in the
+      <a class="link" href="../htmlman3/pcreapi.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pcreapi</span>(3)</span></a> documentation.
+      The <code class="varname">study_data</code> field points to
+      the binary study data, and this is what you must save (not
+      the <code class="function">pcre_extra</code> block itself).
+      The length of the study data can be obtained by calling
+      <code class="function">pcre_fullinfo</code>() with an
+      argument of PCRE_INFO_STUDYSIZE. Remember to check that
+      <code class="function">pcre_study</code>() did return a
+      non-NULL value before trying to save the study data.</p>
+    </div>
+
+    <div class="refsect1" title="RE-USING A PRECOMPILED PATTERN">
+      <a id="pcreprecompile-3_sect3" name="pcreprecompile-3_sect3" shape="rect"> </a>
+
+      <h2>RE-USING A PRECOMPILED PATTERN</h2>
+
+      <p>Re-using a precompiled pattern is straightforward. Having
+      reloaded it into main memory, you pass its pointer to
+      <code class="function">pcre_exec</code>() or <code class="function">pcre_dfa_exec</code>() in the usual way. This
+      should work even on another host, and even if that host has
+      the opposite endianness to the one where the pattern was
+      compiled.</p>
+
+      <p>However, if you passed a pointer to custom character
+      tables when the pattern was compiled (the <em class="parameter"><code>tableptr</code></em> argument of
+      <code class="function">pcre_compile</code>()), you must now
+      pass a similar pointer to <code class="function">pcre_exec</code>() or <code class="function">pcre_dfa_exec</code>(), because the value saved
+      with the compiled pattern will obviously be nonsense. A field
+      in a <code class="function">pcre_extra</code>() block is used
+      to pass this data, as described in the section on matching a
+      pattern in the <a class="link" href="../htmlman3/pcreapi.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pcreapi</span>(3)</span></a>
+      documentation.</p>
+
+      <p>If you did not provide custom character tables when the
+      pattern was compiled, the pointer in the compiled pattern is
+      NULL, which causes <code class="function">pcre_exec</code>()
+      to use PCRE's internal tables. Thus, you do not need to take
+      any special action at run time in this case.</p>
+
+      <p>If you saved study data with the compiled pattern, you
+      need to create your own <code class="function">pcre_extra</code> data block and set the
+      <code class="varname">study_data</code> field to point to the
+      reloaded study data. You must also set the
+      PCRE_EXTRA_STUDY_DATA bit in the <code class="varname">flags</code> field to indicate that study data is
+      present. Then pass the <code class="function">pcre_extra</code> block to <code class="function">pcre_exec</code>() or <code class="function">pcre_dfa_exec</code>() in the usual way.</p>
+    </div>
+
+    <div class="refsect1" title="COMPATIBILITY WITH DIFFERENT PCRE RELEASES">
+      <a id="pcreprecompile-3_sect4" name="pcreprecompile-3_sect4" shape="rect"> </a>
+
+      <h2>COMPATIBILITY WITH DIFFERENT PCRE RELEASES</h2>
+
+      <p>In general, it is safest to recompile all saved patterns
+      when you update to a new PCRE release, though not all updates
+      actually require this.</p>
+    </div>
+
+    <div class="refsect1" title="AUTHOR">
+      <a id="pcreprecompile-3_sect5" name="pcreprecompile-3_sect5" shape="rect"> </a>
+
+      <h2>AUTHOR</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+Philip Hazel
+University Computing Service
+Cambridge CB2 3QH, England.
+</pre>
+      </div>
+    </div>
+
+    <div class="refsect1" title="REVISION">
+      <a id="pcreprecompile-3_sect6" name="pcreprecompile-3_sect6" shape="rect"> </a>
+
+      <h2>REVISION</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+Last updated: 17 November 2010
+Copyright (c) 1997-2010 University of Cambridge.
+</pre>
+      </div>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <thead>
+            <tr>
+              <th style="" rowspan="1" colspan="1">COPYRIGHT</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <p>This manual page is taken from the <a class="ulink" href="http://www.PCRE.org/" target="_top" shape="rect">PCRE library</a>, which is distributed under
+                the BSD license.</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

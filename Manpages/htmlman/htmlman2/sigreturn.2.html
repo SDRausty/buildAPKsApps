@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>sigreturn(2) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="sigreturn(2) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="sigreturn(2) — Linux manual pages">
+    <a id="sigreturn.2" name="sigreturn.2" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>sigreturn — return from signal handler and cleanup
+      stack frame</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">sigreturn</b>(</code></td>
+
+            <td rowspan="1" colspan="1">unsigned long <var class="pdparam">__unused</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="sigreturn-2_sect1" name="sigreturn-2_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>When the Linux kernel creates the stack frame for a signal
+      handler, a call to <code class="function">sigreturn</code>()
+      is inserted into the stack frame so that upon return from the
+      signal handler, <code class="function">sigreturn</code>()
+      will be called.</p>
+
+      <p>This <code class="function">sigreturn</code>() call undoes
+      everything that was done—changing the process's signal
+      mask, switching stacks (see <a class="link" href="../htmlman2/sigaltstack.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">sigaltstack</span>(2)</span></a>)\(emin order
+      to invoke the signal handler: it restores the process's
+      signal mask, switches stacks, and restores the process's
+      context (registers, processor flags), so that the process
+      directly resumes execution at the point where it was
+      interrupted by the signal.</p>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="sigreturn-2_sect2" name="sigreturn-2_sect2" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p><code class="function">sigreturn</code>() never
+      returns.</p>
+    </div>
+
+    <div class="refsect1" title="FILES">
+      <a id="sigreturn-2_sect3" name="sigreturn-2_sect3" shape="rect"> </a>
+
+      <h2>FILES</h2>
+
+      <p>/usr/src/linux/arch/i386/kernel/signal.c</p>
+
+      <p>/usr/src/linux/arch/alpha/kernel/entry.S</p>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="sigreturn-2_sect4" name="sigreturn-2_sect4" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p><code class="function">sigreturn</code>() is specific to
+      Linux and should not be used in programs intended to be
+      portable.</p>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="sigreturn-2_sect5" name="sigreturn-2_sect5" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p>The <code class="function">sigreturn</code>() call is used
+      by the kernel to implement signal handlers. It should
+      <em class="replaceable"><code>never</code></em> be called
+      directly. Better yet, the specific use of the <em class="parameter"><code>__unused</code></em> argument varies
+      depending on the architecture.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="sigreturn-2_sect6" name="sigreturn-2_sect6" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman2/kill.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">kill</span>(2)</span></a>, <a class="link" href="../htmlman2/sigaltstack.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">sigaltstack</span>(2)</span></a>, <a class="link" href="../htmlman2/signal.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">signal</span>(2)</span></a>, <a class="link" href="../htmlman7/signal.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">signal</span>(7)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="sigreturn-2_sect7" name="sigreturn-2_sect7" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.24 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright (C) 1995, Thomas K. Dyas &lt;tdyas<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>eden.rutgers.edu&gt;<br />
+
+                  <br />
+                  Permission is granted to make and distribute verbatim copies of this<br />
+
+                  manual provided the copyright notice and this permission notice are<br />
+
+                  preserved on all copies.<br />
+                  <br />
+                  Permission is granted to copy and distribute modified versions of this<br />
+
+                  manual under the conditions for verbatim copying, provided that the<br />
+
+                  entire resulting derived work is distributed under the terms of a<br />
+
+                  permission notice identical to this one.<br />
+
+                  <br />
+                  Since the Linux kernel and libraries are constantly changing, this<br />
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no<br />
+
+                  responsibility for errors or omissions, or for damages resulting from<br />
+
+                  the use of the information contained herein.  The author(s) may not<br />
+
+                  have taken the same level of care in the production of this manual,<br />
+
+                  which is licensed free of charge, as they might when working<br />
+
+                  professionally.<br />
+                  <br />
+                  Formatted or processed versions of this manual, if unaccompanied by<br />
+
+                  the source, must acknowledge the copyright and authors of this work.<br />
+
+                  <br />
+                  Created   Sat Aug 21 1995     Thomas K. Dyas &lt;tdyas<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>eden.rutgers.edu&gt;<br />
+
+                  Modified Tue Oct 22 22:09:03 1996 by Eric S. Raymond &lt;esr<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>thyrsus.com&gt;<br />
+
+                  2008-06-26, mtk, added some more detail on the work done by sigreturn()<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

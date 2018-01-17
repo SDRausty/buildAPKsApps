@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Cowsay</string>
+    <string name="type_prompt">Select a Cow :</string>
+    <string name="face_prompt">Select a face :</string>
+    <string name="btn_close">Close</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_share_text">Share as text</string>
+    <string name="menu_share_image">Share as image</string>
+    <string name="menu_copy">Copy to clipboard</string>
+    <string name="share_chooser">Share with</string>
+    <string name="message_hint">Message</string>
+    <string name="think_on">Think</string>
+    <string name="think_off">Say</string>
+    <string name="toast_copy">Cow successfully copied to clipboard !</string>
+    <string name="toast_share_image">Please wait during image creation!</string>
+    <string name="error_parse">Cow parsing failure</string>
+    <string name="error_crash">No cow available due to some parser crash, too bad!</string>
+    <string name="about_title">About</string>
+    <string name="about_message">Port of the original command line application "cowsay" for the Android mobile platform.
+        This little application was made by some FIXME.CH hackerspace members during the 28C3 in Berlin.\n\n
+        Cowsay is distributed under the same licensing terms as Perl: the Artistic License or the GNU General Public License.\n\n
+        https://github.com/rorist/Cowsay-android</string>
+</resources>

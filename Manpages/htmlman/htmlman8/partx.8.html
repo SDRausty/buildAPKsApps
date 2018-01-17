@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>partx(8) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="partx(8) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="partx(8) — Linux manual pages">
+    <a id="partx.8" name="partx.8" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>partx — tell the Linux kernel about the presence and
+      numbering of on-disk partitions</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">partx</code> [ <code class="option">−a</code> | <code class="option">−d</code> | <code class="option">−s</code> ] [ <code class="option">−t</code> TYPE ] [ <code class="option">−n</code> M:N ] [<code class="option">−</code>] disk</p>
+      </div>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">partx</code> [ <code class="option">−a</code> | <code class="option">−d</code> | <code class="option">−s</code> ] [ <code class="option">−t</code> TYPE ] partition [disk]</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="partx-8_sect1" name="partx-8_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>Given a device or disk-image, <span class="command"><strong>partx</strong></span> tries to parse the
+      partition table and list its contents. It optionally adds or
+      removes partitions.</p>
+
+      <p>The <em class="parameter"><code>disk</code></em> argument
+      is optional when a <em class="parameter"><code>partition</code></em> argument is provided.
+      To force scanning a partition as if it were a whole disk (for
+      example to list nested subpartitions), use the argument "-".
+      For example:</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <p><span class="emphasis"><em>partx −−show
+          − /dev/sda3</em></span></p>
+        </blockquote>
+      </div>
+
+      <p>This will see sda3 as a whole-disk rather than a
+      partition.</p>
+
+      <p><span class="emphasis"><em>This is not an fdisk
+      program</em></span> −− adding and removing
+      partitions does not change the disk, it just tells the kernel
+      about the presence and numbering of on-disk partitions.</p>
+    </div>
+
+    <div class="refsect1" title="OPTIONS">
+      <a id="partx-8_sect2" name="partx-8_sect2" shape="rect"> </a>
+
+      <h2>OPTIONS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="option">−a,
+          −−add</code></span></dt>
+
+          <dd>
+            <p>Add the specified partitions, or read the disk and
+            add all partitions.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−b,
+          −−bytes</code></span></dt>
+
+          <dd>
+            <p>Print the SIZE column in bytes rather than in
+            human-readable format.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−d,
+          −−delete</code></span></dt>
+
+          <dd>
+            <p>Delete the specified partitions or all
+            partitions.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−g,
+          −−noheadings</code></span></dt>
+
+          <dd>
+            <p>Do not print a header line.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−l,
+          −−list</code></span></dt>
+
+          <dd>
+            <p>List the partitions. Note that all numbers are in
+            512-byte sectors. This output format is DEPRECATED in
+            favour of <code class="option">−−show</code>. Don't use it in
+            newly written scripts.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−o,
+          −−output</code> <span class="command"><strong>list</strong></span></span></dt>
+
+          <dd>
+            <p>Define the output columns to use for <code class="option">−−show</code> and <code class="option">−−raw</code> output. If no output
+            arrangement is specified, then a default set is used.
+            Use <code class="option">−−help</code> to
+            get list of all supported columns.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−r,
+          −−raw</code></span></dt>
+
+          <dd>
+            <p>Use the raw output format.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−s,
+          −−show</code></span></dt>
+
+          <dd>
+            <p>List the partitions. All numbers (except SIZE) are
+            in 512-byte sectors. The output columns can be
+            rearranged with the <code class="option">−−output</code> option.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−t,
+          −−type</code> <span class="command"><strong>type</strong></span></span></dt>
+
+          <dd>
+            <p>Specify the partition table type -- aix, bsd, dos,
+            gpt, mac, minix, sgi, solaris_x86, sun, ultrix or
+            unixware.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−n,
+          −−nr</code> <em class="parameter"><code>M:N</code></em></span></dt>
+
+          <dd>
+            <p>Specify the range of partitions. For backward
+            compatibility also the format &lt;M-N&gt; is supported.
+            The range may contain negative numbers, for example
+            "--nr :-1" means the last partition, and "--nr -2:-1"
+            means the last two partitions. Supported range
+            specifications are:</p>
+
+            <div class="blockquote">
+              <blockquote class="blockquote">
+                <div class="variablelist">
+                  <dl>
+                    <dt><span class="term">&lt;M&gt;</span></dt>
+
+                    <dd>
+                      <p>Specifies just one partition (e.g. --nr
+                      3).</p>
+                    </dd>
+
+                    <dt><span class="term">&lt;M:&gt;</span></dt>
+
+                    <dd>
+                      <p>Specifies lower limit only (e.g. --nr
+                      2:).</p>
+                    </dd>
+
+                    <dt><span class="term">&lt;:N&gt;</span></dt>
+
+                    <dd>
+                      <p>Specifies upper limit only (e.g. --nr
+                      :4).</p>
+                    </dd>
+
+                    <dt><span class="term">&lt;M:N&gt;</span></dt>
+
+                    <dd>
+                      <p>or <em class="replaceable"><code>&lt;M-N&gt;</code></em>
+                      Specifies lower and upper limits (e.g. --nr
+                      2:4).</p>
+                    </dd>
+                  </dl>
+                </div>
+              </blockquote>
+            </div>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="EXAMPLES">
+      <a id="partx-8_sect3" name="partx-8_sect3" shape="rect"> </a>
+
+      <h2>EXAMPLES</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><span class="emphasis"><em>partx
+          −−show /dev/sdb3</em></span></span></dt>
+
+          <dt><span class="term"><span class="emphasis"><em>partx
+          −−show --nr 3
+          /dev/sdb</em></span></span></dt>
+
+          <dt><span class="term"><span class="emphasis"><em>partx
+          −−show /dev/sdb3
+          /dev/sdb</em></span></span></dt>
+
+          <dd>
+            <p>All three commands list partition 3 of /dev/sdb.</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>partx
+          −−show −
+          /dev/sdb3</em></span></span></dt>
+
+          <dd>
+            <p>Lists all subpartitions on /dev/sdb3 (the device is
+            used as whole-disk).</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>partx
+          −o START -g --nr 3 /dev/sdb</em></span></span></dt>
+
+          <dd>
+            <p>Prints the start sector of partition 5 on /dev/sda
+            without header.</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>partx
+          −o SECTORS,SIZE /dev/sda5
+          /dev/sda</em></span></span></dt>
+
+          <dd>
+            <p>Lists the length in sectors and human-readable size
+            of partition 5 on /dev/sda.</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>partx
+          −−add --nr 3:5
+          /dev/sdd</em></span></span></dt>
+
+          <dd>
+            <p>Adds all available partitions from 3 to 5
+            (inclusive) on /dev/sdd.</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>partx
+          −d --nr :-1 /dev/sdd</em></span></span></dt>
+
+          <dd>
+            <p>Removes the last partition on /dev/sdd.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="partx-8_sect4" name="partx-8_sect4" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman8/addpart.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">addpart</span>(8)</span></a>, <a class="link" href="../htmlman8/delpart.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">delpart</span>(8)</span></a>, <a class="link" href="../htmlman8/fdisk.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fdisk</span>(8)</span></a>, <span class="citerefentry"><span class="refentrytitle">parted</span>(8)</span>, <span class="citerefentry"><span class="refentrytitle">partprobe</span>(8)</span></p>
+    </div>
+
+    <div class="refsect1" title="AUTHORS">
+      <a id="partx-8_sect5" name="partx-8_sect5" shape="rect"> </a>
+
+      <h2>AUTHORS</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+Davidlohr Bueso &lt;dave@gnu.org&gt;
+Karel Zak &lt;kzak@redhat.com&gt;
+</pre>
+      </div>
+
+      <p>The original version was written by Andries E. Brouwer
+      &lt;aeb@cwi.nl&gt;.</p>
+    </div>
+
+    <div class="refsect1" title="AVAILABILITY">
+      <a id="partx-8_sect6" name="partx-8_sect6" shape="rect"> </a>
+
+      <h2>AVAILABILITY</h2>
+
+      <p>The partx command is part of the util-linux package and is
+      available from
+      ftp://ftp.kernel.org/pub/linux/utils/util-linux/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    partx.8 --<br />
+                  Copyright 2007 Karel Zak &lt;kzak<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>redhat.com&gt;<br />
+
+                  Copyright 2007 Red Hat, Inc.<br />
+
+                  Copyright 2010 Davidlohr Bueso &lt;dave<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>gnu.org&gt;<br />
+
+                  May be distributed under the GNU General Public License<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

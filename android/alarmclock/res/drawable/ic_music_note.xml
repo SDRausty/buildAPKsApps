@@ -1,0 +1,10 @@
+<!-- https://github.com/google/material-design-icons/blob/master/image/svg/production/ic_music_note_48px.svg -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+        android:height="48dp"
+        android:width="48dp"
+        android:viewportWidth="48"
+        android:viewportHeight="48">
+  <path
+      android:fillColor="@android:color/white"
+      android:pathData="M24 6v21.11c-1.18-.69-2.54-1.11-4-1.11-4.42 0-8 3.58-8 8s3.58 8 8 8 8-3.58 8-8V14h8V6H24z" />
+</vector>

@@ -1,0 +1,20 @@
+Source: cowsay
+Section: games
+Priority: optional
+Maintainer: Francois Marier <francois@debian.org>
+Build-Depends: debhelper (>= 8)
+Homepage: http://www.nog.net/~tony/warez/cowsay.shtml
+Standards-Version: 3.9.1
+Vcs-Git: git://git.debian.org/git/collab-maint/cowsay.git
+Vcs-Browser: http://git.debian.org/?p=collab-maint/cowsay.git;a=summary
+
+Package: cowsay
+Architecture: all
+Depends: ${perl:Depends}, ${misc:Depends}
+Suggests: filters
+Description: A configurable talking cow
+ Cowsay (or cowthink) will turn text into happy ASCII cows, with
+ speech (or thought) balloons. If you don't like cows, ASCII art is
+ available to replace it with some other creatures (Tux, the BSD
+ daemon, dragons, and a plethora of animals, from a turkey to
+ an elephant in a snake).

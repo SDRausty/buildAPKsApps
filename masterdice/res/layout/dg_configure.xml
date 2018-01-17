@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+	      xmlns:np="http://schemas.android.com/apk/res/de.duenndns.gmdice"
+		android:orientation="horizontal"
+		android:minWidth="300sp"
+		android:gravity="center"
+		android:layout_width="fill_parent" 
+		android:layout_height="fill_parent">
+
+		<de.duenndns.gmdice.NumberPicker
+		        android:id="@+id/spin_count"
+			np:startRange="1"
+			np:endRange="999"
+			np:wrap="false"
+			android:layout_weight="1"
+			android:layout_width="10dp"
+			android:layout_height="wrap_content" />
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="24sp"
+			android:text="d" />
+
+		<Spinner android:id="@+id/spin_sides"
+			android:prompt="@string/spin_sides"
+			android:layout_weight="1"
+			android:layout_width="35dp"
+			android:layout_height="wrap_content" />
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="24sp"
+			android:text="±" />
+
+		<de.duenndns.gmdice.NumberPicker
+		        android:id="@+id/spin_modifier"
+			np:startRange="-999"
+			np:endRange="999"
+			np:wrap="false"
+			android:layout_weight="1"
+			android:layout_width="10dp"
+			android:layout_height="wrap_content" />
+</LinearLayout>

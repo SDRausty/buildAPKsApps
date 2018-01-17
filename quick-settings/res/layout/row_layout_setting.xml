@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?> 
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/settings"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:clickable="false">
+    
+    <LinearLayout
+	    android:orientation="horizontal"
+    	android:minHeight="58dp"
+	    android:focusable="false"
+	    android:clickable="false"
+    	android:layout_weight="1"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="top"
+	    android:layout_marginRight="4dp">
+
+	    <!-- image icon  -->
+	    <ImageView android:id="@+id/icon_view"
+	   		android:layout_marginLeft="6dp"
+	    	android:layout_gravity="center_vertical"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"/>
+
+
+    	<!-- title text -->
+    	<TextView android:id="@+id/title_view"
+    		android:textSize="21sp"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:layout_weight="1"
+            android:ellipsize="marquee"
+            android:singleLine="true" 
+            android:marqueeRepeatLimit="marquee_forever"
+    		android:layout_gravity="center_vertical"
+    		android:layout_marginLeft="10dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" 
+            />
+
+    	<ImageButton
+    		android:id="@+id/wrench"
+    		android:src="@drawable/ic_wrench"
+    		android:gravity="center"
+    		android:layout_gravity="center_vertical"
+    		android:layout_height="40dp"
+            android:layout_width="40dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="8dp"
+            />
+
+	    <!-- drag icon  -->
+	    <ImageView android:id="@+id/icon"
+	    	android:src="@drawable/ic_mp_move"
+	   		android:layout_marginRight="6dp"
+	    	android:layout_gravity="center_vertical"
+	    	android:layout_width="42dp"
+	    	android:layout_height="42dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

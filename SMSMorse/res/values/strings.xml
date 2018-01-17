@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">SMSMorse</string>
+	<string name="app_receiver">EventReceiver</string>
+	<string name="app_about">Developed by Jake Wharton &lt;jakewharton@gmail.com&gt;\n\nWebsite:\nhttp://jakewharton.com\n\nGitHub Project:\nhttp://github.com/JakeWharton/smsmorse\n\nFollow on Twitter:\nhttp://twitter.com/JakeWharton</string>
+	
+	<!-- Menu Items -->
+	<string name="menu_restore_defaults">Restore Defaults</string>
+	<string name="menu_about">About</string>
+	
+	<!-- Preference Headers -->
+	<string name="preference_header_general">General Settings</string>
+	<string name="preference_header_rules">Rule Settings</string>
+	<string name="preference_header_input">Input Settings</string>
+	<string name="preference_header_other">Other</string>
+	
+	<!-- General Preferences -->
+	<string name="preference_enabled">enabled</string>
+	<string name="preference_enabled_title">Service Enabled</string>
+	<string name="preference_enabled_summary">Enable Morse code vibration for incoming SMS messages.</string>
+	<string name="preference_dot_length">dot_length</string>
+	<string name="preference_dot_length_title">Dot Length</string>
+	<string name="preference_dot_length_summary">Length (ms) of the Morse code dot.</string>
+	<string name="preference_vibrate_counts">vibrate_counts</string>
+	<string name="preference_vibrate_counts_title">Vibrate Number Counts</string>
+	<string name="preference_vibrate_counts_summary">Use counts to vibrate the sender number rather than Morse code representation.</string>
+	<string name="preference_lookup_contact_name">lookup_contact_name</string>
+	<string name="preference_lookup_contact_name_title">Lookup Contact Name</string>
+	<string name="preference_lookup_contact_name_summary">Use the contact name rather than just the number for "sender".</string>
+	<string name="preference_vibrate_parts">vibrate_parts</string>
+	<string name="preference_vibrate_parts_title">Vibrate Parts</string>
+	<string name="preference_vibrate_parts_summary">Currently:</string>
+	<string name="preference_vibrate_parts_dialog_title">Choose message part(s)</string>
+	<string name="preference_test">test</string>
+	<string name="preference_test_title">Test Vibrate</string>
+	<string name="preference_test_summary">Enter test message to test configuration.</string>
+	
+	<!-- Rules Preferences -->
+	<string name="preference_screen_off_only">vibrate_when_screen_off_only</string>
+	<string name="preference_screen_off_only_title">Screen Off Only</string>
+	<string name="preference_screen_off_only_summary">Only vibrate when the screen is off or is locked.</string>
+	<string name="preference_vibrate_normal">vibrate_when_on_normal</string>
+	<string name="preference_vibrate_normal_title">Active On Normal</string>
+	<string name="preference_vibrate_normal_summary">Vibrate Morse code when the device ringer is on normal.</string>
+	<string name="preference_vibrate_vibrate">vibrate_when_on_vibrate</string>
+	<string name="preference_vibrate_vibrate_title">Active On Vibrate</string>
+	<string name="preference_vibrate_vibrate_summary">Vibrate Morse code when the device ringer is on vibrate.</string>
+	<string name="preference_vibrate_silent">vibrate_when_on_silent</string>
+	<string name="preference_vibrate_silent_title">Active On Silent</string>
+	<string name="preference_vibrate_silent_summary">Vibrate Morse code when the device ringer is on silent.</string>
+	
+	<!-- Input Preferences -->
+	<string name="preference_input_enabled">input_enabled</string>
+	<string name="preference_input_enabled_title">Input Enabled</string>
+	<string name="preference_input_enabled_summary">Enable ability to reply to SMS message by tapping Morse code.</string>
+	<string name="preference_error_char">error_char</string>
+	<string name="preference_error_allowed">error_allowed</string>
+	
+	<!-- Other Preferences -->
+	<string name="preference_about">about</string>
+	<string name="preference_about_title">About SMSMorse</string>
+	<string name="preference_other">other</string>
+	<string name="preference_other_title">View Other Apps</string>
+	
+	<!--
+	 * Morse code binary lookup tree. Left for every dot, right for every dash
+	 * 
+	 *                                        #
+	 *                       E                                T
+	 *              I                 A               N               M
+	 *        S          U       R        W       D       K       G       O
+	 *    H       V    F   #   L    A   P   J   B   X   C   Y   Z   Q   #   #
+	 *  5   4   #   3 # # # 2 & #  + # # # # 1 6 = / # # # ( # 7 # # # 8 # 9 0
+	 * # # # # # #  ######?_####\"##.####@###'##-########;!#)#####,####:#######
+	 * #########$
+	 -->
+	<string name="morse_code_binary_lookup_tree">#ETIANMSURWDKGOHVF#LAPJBXCYZQ##54#3###2&amp;#+####16+/###(#7###8#90############?_####"##.####@###'##-########;!#)#####,####:################$</string>
+	<string name="morse_code_binary_lookup_tree_null_char">#</string>
+</resources>

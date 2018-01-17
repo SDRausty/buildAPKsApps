@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="app_theme" parent="android:Theme">
+        <item name="android:windowBackground">@drawable/app_background</item>
+        <item name="android:listViewStyle">@style/TransparentListView</item>
+        <item name="android:expandableListViewStyle">@style/TransparentExpandableListView</item>
+    </style>
+
+ <style name="TransparentListView" parent="@android:style/Widget.ListView">
+  <item name="android:cacheColorHint">@android:color/transparent</item>
+ </style>
+
+ <style name="TransparentExpandableListView" parent="@android:style/Widget.ExpandableListView">
+  <item name="android:cacheColorHint">@android:color/transparent</item>
+ </style>
+
+</resources>

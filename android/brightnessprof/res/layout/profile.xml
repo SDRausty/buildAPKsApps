@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/profile_name"
+  android:singleLine="true"
+  android:textSize="24sp"
+  android:paddingTop="10sp"
+  android:paddingBottom="10sp"
+  android:paddingLeft="5sp"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content" />

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Translation by Biljana Milicevic <engr3337@gmail.com> -->
+<resources>
+  <string name="app_name">Alarm Klock</string>
+  <string name="delete_all">Tout supprimer</string>
+  <string name="label">Étiquette</string>
+  <string name="repeat">Répéter</string>
+  <string name="alarm_tone">Sonnerie d\'alarme</string>
+  <string name="fade_description">De %1$d%% à %2$d%% durée %3$d secondes</string>
+  <string name="ok">OK</string>
+  <string name="cancel">Annuler</string>
+  <string name="delete">Supprimer</string>
+  <string name="snooze">EN VEILLE</string>
+  <string name="dismiss">RÉVOQUER</string>
+  <string name="plus_five">+5</string>
+  <string name="minus_five">-5</string>
+  <string name="day">%d jour</string>
+  <string name="days">%d jours</string>
+  <string name="hour">%d heure</string>
+  <string name="hours">%d heure</string>
+  <string name="minute">%d minute</string>
+  <string name="minutes">%d minutes</string>
+  <string name="am">AM</string>
+  <string name="pm">PM</string>
+  <string name="dow_sun_short">Dim</string>
+  <string name="dow_mon_short">Lun</string>
+  <string name="dow_tue_short">Mar</string>
+  <string name="dow_wed_short">Mer</string>
+  <string name="dow_thu_short">Jeu</string>
+  <string name="dow_fri_short">Ven</string>
+  <string name="dow_sat_short">Sam</string>
+  <string name="dow_sun">Dimanche</string>
+  <string name="dow_mon">Lundi</string>
+  <string name="dow_tue">Mardi</string>
+  <string name="dow_wed">Mercredi</string>
+  <string name="dow_thu">Jeudi</string>
+  <string name="dow_fri">Vendredi</string>
+  <string name="dow_sat">Samedi</string>
+  <string name="no_repeats">Pas de répétition</string>
+  <string name="everyday">Chaque jour</string>
+  <string name="weekdays">Jours de semaine</string>
+  <string name="weekends">Weekends</string>
+  <string name="internal">Interne</string>
+  <string name="artists">Artistes</string>
+  <string name="songs">Chansons</string>
+  <string name="selected">Choix: </string>
+  <string name="time_out_title">Alarm time out</string>
+  <string name="time_out_error">WARNING: AVERTISSEMENT:. Cette alarme a expiré en attente d\'un accusé de réception</string>
+</resources>

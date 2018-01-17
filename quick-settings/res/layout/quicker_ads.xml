@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical" >
+
+	<ImageView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_horizontal"
+		android:layout_marginTop="20dp"
+		android:layout_marginBottom="20dp"
+		android:src="@drawable/ic_quicker_ads"
+		/>
+
+	<TextView 
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_horizontal"
+		android:text="@string/quicker_moto"
+		android:textColor="@android:color/white"
+		android:textSize="18sp"
+		android:layout_marginBottom="20dp"
+		/>
+
+	<TextView 
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_horizontal"
+		android:gravity="center_horizontal"
+		android:text="@string/quicker_features"
+		android:textSize="16sp"
+		android:layout_marginBottom="20dp"
+		/>
+
+	<TextView 
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_horizontal"
+		android:text="@string/quicker_on_market"
+		android:textColor="@android:color/white"
+		android:textSize="18sp"
+		android:layout_marginBottom="20dp"
+		/>
+
+	<LinearLayout 
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="6dp"
+		android:layout_marginLeft="4dp" 
+		android:layout_marginRight="4dp"
+		android:layout_marginBottom="4dp" 
+		android:orientation="horizontal"
+		android:gravity="center_horizontal" 
+		>
+		<Button android:id="@+id/button1" android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:layout_weight="0.5"
+			android:text="@string/quicker_see" />
+		<Button android:id="@+id/button2" android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:layout_weight="0.5"
+			android:text="@string/quicker_continue" />
+	</LinearLayout>
+
+
+</LinearLayout>

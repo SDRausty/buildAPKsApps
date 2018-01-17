@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Parking Suspension</string>
+    <string name="about_app">About App</string>
+    <string name="widgetname">Parking Suspension</string>
+    <string name="widgetmininame">Parking Suspension</string>
+    
+    <string name="date_one"><b>Date:</b> Monday, January 21</string>
+    <string name="holiday_one"><b>Holiday:</b> New Years Day</string>
+    
+    <string name="date_two"><b>Date:</b> Tuesday, January 1</string>
+    <string name="holiday_two"><b>Holiday:</b> Martin Luther King</string>
+    
+    <string name="date_three"><b>Date:</b> Sunday, February 10</string>
+    <string name="holiday_three"><b>Holiday:</b> Asian Lunar New Year</string>
+    
+    <string name="date_four"><b>Date:</b> Tuesday, February 12</string>
+    <string name="holiday_four"><b>Holiday:</b> Lincolns Birthday</string>
+    
+    <string name="date_five"><b>Date:</b> Wednesday, February 13</string>
+    <string name="holiday_five"><b>Holiday:</b> Ash Wednesday</string>
+    
+    <string name="date_six"><b>Date:</b> Monday, February 18</string>
+    <string name="holiday_six"><b>Holiday:</b> Washingtons Birthday</string>
+    
+    <string name="date_seven"><b>Date:</b> Sunday, February 24</string>
+    <string name="holiday_seven"><b>Holiday:</b> Purim</string>
+    
+    <string name="date_eight"><b>Date:</b> Tuesday, March 26</string>
+    <string name="holiday_eight"><b>Holiday:</b> First day of Passover</string>
+    
+    <string name="date_nine"><b>Date:</b> Wednesday, March 27</string>
+    <string name="holiday_nine"><b>Holiday:</b> Second day of Passover</string>
+    
+    <string name="date_ten"><b>Date:</b> Thursday, March 28</string>
+    <string name="holiday_ten"><b>Holiday:</b> Holy Thursday</string>
+    
+    <string name="date_eleven"><b>Date:</b> Friday, March 29</string>
+    <string name="holiday_eleven"><b>Holiday:</b> Good Friday</string>
+    
+    <string name="date_twelve"><b>Date:</b> Monday, April 1</string>
+    <string name="holiday_twelve"><b>Holiday:</b> Seventh day of Passover</string>
+    
+    <string name="date_thirteen"><b>Date:</b> Tuesday, April 2</string>
+    <string name="holiday_thirteen"><b>Holiday:</b> Eighth day of Passover</string>
+    
+    <string name="date_fourteen"><b>Date:</b> Thursday, May 2</string>
+    <string name="holiday_fourteen"><b>Holiday:</b> Orthodox Holy Thursday</string>
+    
+    <string name="date_fifteen"><b>Date:</b> Friday, May 3</string>
+    <string name="holiday_fifteen"><b>Holiday:</b> Orthodox Good Friday</string>
+    
+    <string name="date_sixteen"><b>Date:</b> Thursday, May 9</string>
+    <string name="holiday_sixteen"><b>Holiday:</b> Solemnity of the Ascension</string>
+    
+    <string name="date_seventeen"><b>Date:</b> Wednesday, May 15</string>
+    <string name="holiday_seventeen"><b>Holiday:</b> Shavuot</string>
+    
+    <string name="date_eighteen"><b>Date:</b> Thursday, May 16</string>
+    <string name="holiday_eighteen"><b>Holiday:</b> Shavuot</string>
+    
+    <string name="date_nineteen"><b>Date:</b> Monday, May 27</string>
+    <string name="holiday_nineteen"><b>Holiday:</b> Memorial Day</string>
+    
+    <string name="date_twenty"><b>Date:</b> Thursday, July 4</string>
+    <string name="holiday_twenty"><b>Holiday:</b> Independence Day</string>
+    
+    <string name="date_twentyone"><b>Date:</b> Wednesday, August 7</string>
+    <string name="holiday_twentyone"><b>Holiday:</b> Idul-Fitr</string>
+    
+    <string name="date_twentytwo"><b>Date:</b> Thursday, August 8</string>
+    <string name="holiday_twentytwo"><b>Holiday:</b> Idul-Fitr</string>
+    
+    <string name="date_twentythree"><b>Date:</b> Friday, August 9</string>
+    <string name="holiday_twentythree"><b>Holiday:</b> Idul-Fitr</string>
+    
+    <string name="date_twentyfour"><b>Date:</b> Thursday, August 15</string>
+    <string name="holiday_twentyfour"><b>Holiday:</b> Feast of the Assumption</string>
+    
+    <string name="date_twentyfive"><b>Date:</b> Monday, September 2</string>
+    <string name="holiday_twentyfive"><b>Holiday:</b> Labor Day</string>
+    
+    <string name="date_twentysix"><b>Date:</b> Thursday, September 5</string>
+    <string name="holiday_twentysix"><b>Holiday:</b> Rosh Hashanah</string>
+    
+    <string name="date_twentyseven"><b>Date:</b> Friday, September 6</string>
+    <string name="holiday_twentyseven"><b>Holiday:</b> Rosh Hashanah</string>
+    
+    <string name="date_twentyeight"><b>Date:</b> Saturday, September 14</string>
+    <string name="holiday_twentyeight"><b>Holiday:</b> Yom Kippur</string>
+    
+    <string name="date_twentynine"><b>Date:</b> Thursday, September 19</string>
+    <string name="holiday_twentynine"><b>Holiday:</b> Succoth</string>
+    
+    <string name="date_thirty"><b>Date:</b> Friday, September 20</string>
+    <string name="holiday_thirty"><b>Holiday:</b> Succoth</string>
+    
+    <string name="date_thirtyone"><b>Date:</b> Thursday, September 26</string>
+    <string name="holiday_thirtyone"><b>Holiday:</b> Shemini Atzereth</string>
+    
+    <string name="date_thirtytwo"><b>Date:</b> Friday, September 27</string>
+    <string name="holiday_thirtytwo"><b>Holiday:</b> Simchas Torah</string>
+    
+    <string name="date_thirtythree"><b>Date:</b> Monday, October 14</string>
+    <string name="holiday_thirtythree"><b>Holiday:</b> Columbus Day</string>
+    
+    <string name="date_thirtyfour"><b>Date:</b> Tuesday, October 15</string>
+    <string name="holiday_thirtyfour"><b>Holiday:</b> Idul-Adha</string>
+    
+    <string name="date_thirtyfive"><b>Date:</b> Wednesday, October 16</string>
+    <string name="holiday_thirtyfive"><b>Holiday:</b> Idul-Adha</string>
+    
+    <string name="date_thirtysix"><b>Date:</b> Thursday, October 17</string>
+    <string name="holiday_thirtysix"><b>Holiday:</b> Idul-Adha</string>
+    
+    <string name="date_thirtyseven"><b>Date:</b> Friday, November 1</string>
+    <string name="holiday_thirtyseven"><b>Holiday:</b> All Saints Day</string>
+    
+    <string name="date_thirtyeight"><b>Date:</b> Sunday, November 3</string>
+    <string name="holiday_thirtyeight"><b>Holiday:</b> Diwali</string>
+    
+    <string name="date_thirtynine"><b>Date:</b> Tuesday, November 5</string>
+    <string name="holiday_thirtynine"><b>Holiday:</b> Election Day</string>
+    
+    <string name="date_forty"><b>Date:</b> Monday, November 11</string>
+    <string name="holiday_forty"><b>Holiday:</b> Veterans Day</string>
+    
+    <string name="date_fortyone"><b>Date:</b> Thursday, November 28</string>
+    <string name="holiday_fortyone"><b>Holiday:</b> Thanksgiving Day</string>
+    
+    <string name="date_fortytwo"><b>Date:</b> Sunday, December 8</string>
+    <string name="holiday_fortytwo"><b>Holiday:</b> Immaculate Conception</string>
+    
+    <string name="date_fortythree"><b>Date:</b> Wednesday, December 25</string>
+    <string name="holiday_fortythree"><b>Holiday:</b> Christmas Day</string>
+    
+	<string name="about"><u>ABOUT</u></string>
+     <string name="ver"><u>VERSION</u></string>
+     <string name="copy"><u>COPYRIGHT</u></string>
+     <string name="specthanks"><u>SPECIAL THANKS TO</u></string>
+     <string name="contact"><u>CONTACT</u></string>
+
+</resources>

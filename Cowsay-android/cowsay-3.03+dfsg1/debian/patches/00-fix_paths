@@ -1,0 +1,23 @@
+Description: Fix some paths for Debian
+Forwarded: not-needed
+Origin: vendor, included in the first Debian upload
+Bug-Debian: http://bugs.debian.org/75450
+Author: Michael D. Ivey <ivey@debian.org>
+
+--- cowsay-3.03.orig/cowsay
++++ cowsay-3.03/cowsay
+@@ -1,4 +1,4 @@
+-#%BANGPERL%
++#!/usr/bin/perl
+ 
+ ##
+ ## Cowsay 3.03
+@@ -16,7 +16,7 @@ $version = "3.03";
+ $progname = basename($0);
+ $eyes = "oo";
+ $tongue = "  ";
+-$cowpath = $ENV{'COWPATH'} || '%PREFIX%/share/cows';
++$cowpath = $ENV{'COWPATH'} || '/usr/share/cowsay/cows';
+ @message = ();
+ $thoughts = "";
+ 

@@ -1,0 +1,14 @@
+<resources>
+
+    <!--
+         Customize dimensions originally defined in res/values/dimens.xml (such as
+         screen margins) for sw600dp devices (e.g. 7" tablets) in landscape here.
+    -->
+    <dimen name="activity_horizontal_margin">8dp</dimen>
+    <dimen name="activity_vertical_margin">8dp</dimen>
+	<dimen name="app_min_width">320dp</dimen>
+    <dimen name="app_min_height">40dp</dimen>
+	<dimen name="date_text_size">22dp</dimen>
+    <dimen name="status_text_size">18dp</dimen>
+
+</resources>

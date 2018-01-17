@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="txt_quick_settings">Quick Settings</string>
+
+    <string name="txt_status_unknown">Inconnu</string>
+    <string name="txt_status_turned_on">En marche</string>
+    <string name="txt_status_turned_off">Arrêté</string>
+    <string name="txt_status_turning_on">Mise en marche...</string>
+    <string name="txt_status_turning_off">Arrêt...</string>
+    <string name="txt_status_enabled">En service</string>
+    <string name="txt_status_disabled">Hors service</string>
+    
+    <string name="wifi_title">Wifi</string>
+    <string name="txt_net_status_connecting">Connexion...</string>
+    <string name="txt_net_status_obtainingip">Attente adresse IP...</string>
+    <string name="txt_net_status_connected_to">Connecté à %s</string>
+    <string name="txt_net_status_connected">Connecté</string>
+    <string name="txt_net_status_failed">Échec de connexion</string>
+    <string name="txt_net_status_disconnecting">Déconnexion...</string>
+    <string name="txt_net_status_disconnected">Déconnecté</string>
+    
+    <string name="gps_title">Signal GPS</string>
+    <string name="txt_brightness">Luminosité</string>
+    <string name="msg_disable_autobrightness">Le réglage de la luminosité est automatique. Préférez-vous un contrôle manuel ?</string>
+
+    <string name="battery_state_title">État batterie :</string>
+    <string name="battery_state_value">%d%%</string>
+    <string name="txt_memory_state_value">Mém. tél. disp.:</string>
+    <string name="txt_card_state_value">Carte SD disp.:</string>
+    <string name="txt_no_card">Carte SD absente</string>
+
+    <string name="airmode_title">Mode avion</string>
+
+    <string name="btn_yes">Oui</string>
+    <string name="btn_no">Non</string>
+    <string name="btn_close">Fermer</string>
+    <string name="btn_set">Appliquer</string>
+    <string name="btn_calcel">Annuler</string>
+
+    <string name="txt_ringer">Sonnerie</string>
+    <string name="txt_ringer_mode">Mode sonnerie</string>
+    <string name="txt_ringer_silent">Silence</string>
+    <string name="txt_ringer_sound">Son uniquement</string>
+    <string name="txt_ringer_vibro">Vibration uniquement</string>
+    <string name="txt_ringer_vibrosound">Son &amp; vibration</string>
+    
+    <string name="txt_bt">Bluetooth</string>
+    <string name="txt_no_apn">Aucun point d\'accès configuré</string>
+    
+    <string name="txt_screen_timeout">Extinction auto.</string>
+    <string name="txt_screen_timeout_value_seconds">%d secondes</string>
+    <string name="txt_screen_timeout_value_minute">%d minute</string>
+    <string name="txt_screen_timeout_value_minutes">%d minutes</string>
+    <string name="txt_screen_timeout_value_never">Jamais</string>
+    
+    <string name="txt_customize_settings">Quick Settings > Personnaliser</string>
+    <string name="txt_preferences">Quick Settings > Préférences</string>
+    <string name="txt_visible_settings">Réglages visibles</string>
+    <string name="txt_hidden_settings">Réglages cachés</string>
+    <string name="msg_drag_and_drop">Appuyez et maintenez une barre de déplacement pour passer un réglage de caché à visible ou en changer la position.</string>
+    
+    <string name="txt_auto_sync">Données auto-sync</string>
+    <string name="txt_enable_background_data">Appuyez pour activer les données d\'arrière-plan</string>
+
+    <string name="txt_volume">Contrôle du volume</string>
+    <string name="txt_volume_descr">Appuyez pour contrôler le volume</string>
+    <string name="txt_volume_ringer">Volume de la sonnerie</string>
+    <string name="txt_volume_notification">Volume des notifications</string>
+    <string name="txt_volume_media">Volume des médias</string>
+    <string name="txt_volume_alarm">Volume des alarmes</string>
+    <string name="txt_volume_voice_call">Volume des appels vocaux</string>
+    <string name="txt_volume_system">Volume des sons système</string>
+    <string name="msg_zero_ringer_warning">Vous pouvez rater un appel entrant avec un volume de sonnerie à 0.</string>
+    <string name="msg_zero_notification_warning">Vous pouvez rater une notification avec un volume à 0.</string>
+    <string name="msg_not_silent_warning">Votre tél. n\'est plus silencieux car vous avez réglé le volume de sonnerie à %d.</string>
+
+    <string name="msg_disabled_warning">
+    Vous voyez ce message parce que vous utilisez le contrôle des Noms de points d\'accès (APN) pour la première fois.
+    \n\nLes configurations des points d\'accès ont été mises à jour. Si la connexion persiste, essayez de changer la chaîne de modification dans les préférences du contrôle APN (appui long sur réglage APN).
+    \n\nDésinstallez Quick Settings avec l\'APN en service sinon vous n\'aurez plus de connexion et devrez modifier manuellement la configuration APN.
+    \n\nVisitez la page d\'accueil du logiciel pour des informations supplémentaires en cas de questions ou de difficultés avec les contrôles APN.
+    </string>
+    
+    <string name="msg_switch_to_air_mode">Voulez-vous activer le mode avion et couper les connexions sans fil ?</string>
+    <string name="msg_cannot_init_setting">Aïe... Le réglage "%s" n\'est pas disponible pour votre appareil.</string>
+
+    <string name="menu_customize_settings">Personnaliser</string>
+    <string name="menu_preferences">Préférences</string>
+ 
+    <string name="txt_auto_rotate">Rotation auto</string>
+    
+    <!-- unlock pattern -->
+    <string name="txt_unlock_pattern">Schéma déverr.</string>
+    <string name="txt_set_unlock_pattern">Appuyez pour définir le schéma</string>
+    <string name="msg_which_unlock_pattern">Quel schéma doit-il être activé ?\n\nN.B. : Si vous n\'avez encore défini aucun schéma, vous devez en choisir un nouveau.</string>
+    <string name="btn_current_unlock_pattern">L\'actuel</string>
+    <string name="btn_new_unlock_pattern">Un nouveau</string>
+    
+    <string name="txt_toolbar">Barre d\'outils</string>
+
+    <string name="pref_common">Commun</string>
+    <string name="pref_status_bar">Barre de notifications</string>
+    <string name="pref_status_bar_descr">Appuyez pour activer ou désactiver le raccourci</string>
+    <string name="pref_view_mode">Apparence</string>
+    <string name="pref_view_mode_descr">Appuyez pour choisir le mode plein écran ou le mode dialogue</string>
+    <string name="msg_tap_to_change_settings">Appuyez pour modifier rapidement les réglages</string>
+
+    <string name="msg_reinstall_required">Quick Settings n\'a pas été correctement mis à jour. Merci de le désinstaller et l\'installer à nouveau.\n\nDésolé si cela entraîne des complications.</string>
+
+	<string name="txt_master_volume">Volume maître</string>
+	<string name="txt_master_volume_desc">R: %1$d, N: %2$d, M: %3$d, A: %4$d</string>
+
+	<string name="txt_autobrightness_enabled">Auto-éclairage activé</string>
+	<string name="txt_autobrightness_disabled">Auto-éclairage désactivé</string>
+    <string name="msg_enable_autobrightness">Vous ne devez activer cette option que si votre tél. dispose d\'un capteur de lumière.\n\nActiver l\'option ?</string>
+    <string name="pref_light_sensor">Utiliser le capteur</string>
+    <string name="pref_light_sensor_descr">Appuyez pour activer ou désactiver l\'usage du capteur</string>
+
+    <string name="txt_flashlight">Torche</string>
+    <string name="pref_flashlight_descr">Appuyez pour choisir un type de torche</string>
+    <string name="msg_flashlight_led_usage">Un usage prolongé du LED peut abîmer votre tél. Sachant cela, vous prenez vos responsabilités pour tout dégât occasionné.\n\nVous ne devez pas utiliser le LED si vous n\'acceptez pas cette mise en garde.</string>
+    <string name="btn_accept">Accepter</string>
+    <string name="msg_flashlight_not_supported">Le LED ne peut être contrôlé sur votre tél. La lumière de l\'écran sera utilisée à la place.</string>
+
+	<string name="txt_haptic_feedback">Retour tactile</string>
+	<string name="txt_haptic_feedback_on">Courte vibration à chaque pression d\'un bouton de réglage</string>
+	<string name="txt_haptic_feedback_off">Aucune vibration à la pression d\'un bouton de réglage</string>
+	
+	<string name="txt_addons">Quick Settings > Extensions</string>
+    <string name="menu_addons">Extensions</string>
+    <string name="txt_addon_quick_battery">Batterie rapide</string>
+    <string name="txt_addon_quick_battery_descr">C\'est un widget affichant le niveau de batterie restant en pourcentage et en même temps un raccourci pratique vers Quick Settings</string>
+    <string name="txt_install">Installer</string>
+    <string name="txt_uninstall">Désinstaller</string>
+	
+    <string name="pref_disable_mms">Désactiver MMS</string>
+    <string name="pref_disable_mms_descr_disabled">Le tél. ne pourra recevoir des MMS si vous désactivez les données mobiles</string>
+    <string name="pref_disable_mms_descr_enabled">Le tél. pourra recevoir des MMS même si vous désactivez les données mobiles</string>
+
+    <string name="txt_volume_bind">Utiliser le volume de sonnerie pour les notifications</string>
+    <string name="txt_initializing">Initialisation...</string>
+    
+    <string name="pref_one_click_switch">Bascule en un clic</string>
+    <string name="txt_eula">Licence utilisateur final</string>
+    <string name="btn_decline">Refuser</string>
+
+    <string name="pref_anp_modifier">Chaîne de modification</string>
+    <string name="pref_anp_modifier_descr">Suffixe ou préfixe à ajouter à la configuration APN pour la désactiver</string>
+    <string name="pref_restor_pref_apn">Restaurer l\'APN préféré</string>
+    <string name="pref_restor_pref_apn_descr">Peut être utile dans certains cas si aucune connexion n\'est rétablie</string>
+
+    <string name="pref_statusbar_integration">Intégration dans la barre de notifications</string>
+    <string name="pref_inverse_notif_color">Inverser la couleur de notification</string>
+    <string name="pref_inverse_notif_color_on">Le texte et l\'icône sont blancs maintenant</string>
+    <string name="pref_inverse_notif_color_off">Le texte et l\'icône sont noirs maintenant</string>
+
+    <string name="pref_about">À propos</string>
+    <string name="pref_about_descr">À propos de Quick Settings</string>
+
+    <string name="txt_full_brightness">Luminosité maxi</string>
+    <string name="txt_full_brightness_descr">Appuyez pour choisir quand la luminosité doit être maximale</string>
+    <string name="msg_flashlight_delay">Retournez l\'écran de vos yeux car la luminosité sera au maximum dans quelques secondes</string>
+    <string name="msg_flashlight_orientation">Tournez le tél. face vers le bas pour activer la luminosité maximale</string>
+    <string name="msg_flashlight_shake">Secouez doucement votre tél. pour activer ou désactiver la luminosité</string>
+    
+<!-- version 1.9.5 -->    
+    <string name="txt_pattern">Schéma</string>
+    <string name="txt_pin">Code PIN</string>
+    <string name="txt_password">Mot de passe</string>
+    <string name="txt_wifi_hotspot">Hotspot Wifi</string>
+    
+<!-- 1.9.6 -->
+    <string name="txt_apn_control">Données Mobile (APN)</string>
+    <string name="txt_mobile_data">Données Mobile</string>
+    <string name="txt_enable_data_access_first">Mettre \"Données Mobile\" en service d\'abord dans les préférences système</string>
+    <string name="msg_enabling_mobile_data">Mise en route des Données Mobile</string>
+    <string name="msg_2g_hint">Si la connexion ne se fait pas, tentez de basculer l\'état de la case \"2G seulement\" dans les préférences système pour obliger le modem à se reconnecter</string>
+    <string name="msg_use_mobile_data_hint">Utilisez de préférence le réglage \"Données Mobile\" plutôt que celui \"Données Mobile (APN)\"</string>
+    
+    <!-- about, should stay at very bottom -->
+    <string name="copyright">© 2010 Sergej Shafarenka</string>
+    <string name="about_info">&lt;b>Version:&lt;/b> %s&lt;br>&lt;b>Contributers:&lt;/b> Brian Rodgers, Shimon Simon&lt;br>&lt;b>Traduction :&lt;/b> Rémi Chéno (fr)</string>
+    
+</resources>

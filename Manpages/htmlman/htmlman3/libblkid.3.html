@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>libblkid(3) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="libblkid(3) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="libblkid(3) — Linux manual pages">
+    <a id="libblkid.3" name="libblkid.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>libblkid — block device identification library</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+#include &lt;blkid.h&gt;
+
+cc file.c −lblkid
+  
+</pre>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="libblkid-3_sect1" name="libblkid-3_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>The <code class="function">libblkid</code> library is used
+      to identify block devices (disks) as to their content (e.g.
+      filesystem type) as well as extracting additional information
+      such as filesystem labels/volume names, unique
+      identifiers/serial numbers, etc. A common use is to allow use
+      of LABEL= and UUID= tags instead of hard-coding specific
+      block device names into configuration files.</p>
+
+      <p>Block device information is normally kept in a cache file
+      <code class="filename">/etc/blkid.tab</code> and is verified
+      to still be valid before being returned to the user (if the
+      user has read permission on the raw block device, otherwise
+      not). The cache file also allows unprivileged users (normally
+      anyone other than root, or those not in the "disk" group) to
+      locate devices by label/id. The standard location of the
+      cache file can be overridden by the environment variable
+      BLKID_FILE.</p>
+
+      <p>In situations where one is getting information about a
+      single known device, it does not impact performance whether
+      the cache is used or not (unless you are not able to read the
+      block device directly). If you are dealing with multiple
+      devices, use of the cache is highly recommended (even if
+      empty) as devices will be scanned at most one time and the
+      on-disk cache will be updated if possible. There is rarely a
+      reason not to use the cache.</p>
+
+      <p>In some cases (modular kernels), block devices are not
+      even visible until after they are accessed the first time, so
+      it is critical that there is some way to locate these devices
+      without enumerating only visible devices, so the use of the
+      cache file is <code class="function">required</code> in this
+      situation.</p>
+    </div>
+
+    <div class="refsect1" title="CONFIGURATION FILE">
+      <a id="libblkid-3_sect2" name="libblkid-3_sect2" shape="rect"> </a>
+
+      <h2>CONFIGURATION FILE</h2>
+
+      <p>The standard location of the <code class="filename">/etc/blkid.conf</code> config file can be
+      overridden by the environment variable BLKID_CONF. The
+      following options control the libblkid library:</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><em class="replaceable"><code>SEND_UEVENT=&lt;yes|not&gt;</code></em></span></dt>
+
+          <dd>
+            <p>Sends uevent when <code class="filename">/dev/disk/by-{label,uuid}/</code> symlink
+            does not match with LABEL or UUID on the device.
+            Default is "yes".</p>
+          </dd>
+
+          <dt><span class="term"><em class="replaceable"><code>CACHE_FILE=&lt;path&gt;</code></em></span></dt>
+
+          <dd>
+            <p>Overrides the standard location of the cache file.
+            This setting can be overridden by the environment
+            variable BLKID_FILE. Default is <code class="filename">/etc/blkid.tab.</code></p>
+          </dd>
+
+          <dt><span class="term"><em class="replaceable"><code>EVALUATE=&lt;methods&gt;</code></em></span></dt>
+
+          <dd>
+            <p>Defines LABEL and UUID evaluation method(s).
+            Currently, the libblkid library supports "udev" and
+            "scan" methods. More than one methods may be specified
+            in a comma separated list. Default is "udev,scan". The
+            "udev" method uses udev <code class="filename">/dev/disk/by-*</code> symlinks and the
+            "scan" method scans all block devices from the
+            <code class="filename">/proc/partitions</code>
+            file.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="AUTHOR">
+      <a id="libblkid-3_sect3" name="libblkid-3_sect3" shape="rect"> </a>
+
+      <h2>AUTHOR</h2>
+
+      <p><code class="function">libblkid</code> was written by
+      Andreas Dilger for the ext2 filesystem utilties, with input
+      from Ted Ts'o. The library was subsequently heavily modified
+      by Ted Ts'o.</p>
+
+      <p>The low-level probing code was rewritten by Karel Zak.</p>
+    </div>
+
+    <div class="refsect1" title="FILES">
+      <a id="libblkid-3_sect4" name="libblkid-3_sect4" shape="rect"> </a>
+
+      <h2>FILES</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="filename">/etc/blkid.tab</code></span></dt>
+
+          <dd>
+            <p>caches data extracted from each recognized block
+            device</p>
+          </dd>
+
+          <dt><span class="term"><code class="filename">/etc/blkid.conf</code></span></dt>
+
+          <dd>
+            <p>configuration file</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="AVAILABILITY">
+      <a id="libblkid-3_sect5" name="libblkid-3_sect5" shape="rect"> </a>
+
+      <h2>AVAILABILITY</h2>
+
+      <p><code class="function">libblkid</code> is part of the
+      util-linux package since version 2.15 and is available from
+      ftp://ftp.kernel.org/pub/linux/utils/util-linux/.</p>
+    </div>
+
+    <div class="refsect1" title="COPYING">
+      <a id="libblkid-3_sect6" name="libblkid-3_sect6" shape="rect"> </a>
+
+      <h2>COPYING</h2>
+
+      <p><code class="function">libblkid</code> is available under
+      the terms of the GNU Library General Public License (LGPL),
+      version 2 (or at your discretion any later version). A copy
+      of the LGPL should be included with this library in the file
+      COPYING. If not, write to</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <p>Free Software Foundation, Inc.</p>
+
+          <p>51 Franklin St</p>
+
+          <p>Fifth Floor</p>
+
+          <p>Boston, MA 02110-1301 USA</p>
+        </blockquote>
+      </div>
+
+      <p>or visit <a class="literalurl" href="http://www.gnu.org/licenses/licenses.html#LGPL" target="_top" shape="rect">http://www.gnu.org/licenses/licenses.html#LGPL</a></p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="libblkid-3_sect7" name="libblkid-3_sect7" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman8/blkid.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">blkid</span>(8)</span></a> <a class="link" href="../htmlman8/findfs.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">findfs</span>(8)</span></a></p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright 2001 Andreas Dilger (adilger<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>turbolinux.com)<br />
+
+                  <br />
+                  This man page was created for libblkid.so.1.0 from e2fsprogs-1.24.<br />
+
+                  <br />
+                  This file may be copied under the terms of the GNU Public License.<br />
+
+                  <br />
+                  Created  Wed Sep 14 12:02:12 2001, Andreas Dilger<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

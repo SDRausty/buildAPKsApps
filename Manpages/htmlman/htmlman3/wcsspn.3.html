@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>wcsspn(3) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="wcsspn(3) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="wcsspn(3) — Linux manual pages">
+    <a id="wcsspn.3" name="wcsspn.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>wcsspn — advance in a wide-character string,
+      skipping any of a set of wide characters</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;wchar.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">size_t <b class="fsfunc">wcsspn</b>(</code></td>
+
+            <td rowspan="1" colspan="1">const wchar_t *<var class="pdparam">wcs</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">const wchar_t *<var class="pdparam">accept</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="wcsspn-3_sect1" name="wcsspn-3_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>The <code class="function">wcsspn</code>() function is the
+      wide-character equivalent of the <a class="link" href="../htmlman3/strspn.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">strspn</span>(3)</span></a> function. It
+      determines the length of the longest initial segment of
+      <em class="parameter"><code>wcs</code></em> which consists
+      entirely of wide-characters listed in <em class="parameter"><code>accept</code></em>. In other words, it
+      searches for the first occurrence in the wide-character
+      string <em class="parameter"><code>wcs</code></em> of a
+      wide-character not contained in the wide-character string
+      <em class="parameter"><code>accept</code></em>.</p>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="wcsspn-3_sect2" name="wcsspn-3_sect2" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p>The <code class="function">wcsspn</code>() function
+      returns the number of wide characters in the longest initial
+      segment of <em class="parameter"><code>wcs</code></em> which
+      consists entirely of wide-characters listed in <em class="parameter"><code>accept</code></em>. In other words, it
+      returns the position of the first occurrence in the
+      wide-character string <em class="parameter"><code>wcs</code></em> of a wide-character not
+      contained in the wide-character string <em class="parameter"><code>accept</code></em>, or <em class="replaceable"><code>wcslen(wcs)</code></em> if there is
+      none.</p>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="wcsspn-3_sect3" name="wcsspn-3_sect3" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>C99.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="wcsspn-3_sect4" name="wcsspn-3_sect4" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman3/strspn.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">strspn</span>(3)</span></a>, <a class="link" href="../htmlman3/wcscspn.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">wcscspn</span>(3)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="wcsspn-3_sect5" name="wcsspn-3_sect5" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.29 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright (c) Bruno Haible &lt;haible<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>clisp.cons.org&gt;<br />
+
+                  <br />
+                  This is free documentation; you can redistribute it and/or<br />
+
+                  modify it under the terms of the GNU General Public License as<br />
+
+                  published by the Free Software Foundation; either version 2 of<br />
+
+                  the License, or (at your option) any later version.<br />
+
+                  <br />
+                  References consulted:<br />
+                    GNU glibc-2 source code and manual<br />
+
+                    Dinkumware C library reference http://www.dinkumware.com/<br />
+
+                    OpenGroup's Single UNIX specification http://www.UNIX-systems.org/online.html<br />
+
+                    ISO/IEC 9899:1999<br />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

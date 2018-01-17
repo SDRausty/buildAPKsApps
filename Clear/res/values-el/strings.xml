@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Clear</string>
+    <string name="configure_service">Διαμόρφωση υπηρεσίας</string>
+    <string name="clear_notifications">Καθαρισμός ειδοποιήσεων</string>
+</resources>

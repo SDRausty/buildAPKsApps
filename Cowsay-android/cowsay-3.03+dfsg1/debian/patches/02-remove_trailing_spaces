@@ -1,0 +1,28 @@
+Description: Removing trailing spaces
+ This is mainly to work-around broken word-wrapping by mail clients.
+Forwarded: no
+Origin: vendor, http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=276144#42
+Bug-Debian: http://bugs.debian.org/276144
+Author: Florian Ernst <florian@uni-hd.de>
+
+--- cowsay-3.03.orig/cowsay
++++ cowsay-3.03/cowsay
+@@ -128,15 +132,16 @@ sub construct_balloon {
+ 	    @border = qw[ / \ \ / | | ];	
+ 	}
+     }
++## no trailing spaces (#276144)
+     push(@balloon_lines, 
+-	" " . ("_" x $max2) . " \n" ,
++	" " . ("_" x $max2) . "\n" ,
+ 	sprintf($format, $border[0], $message[0], $border[1]),
+ 	(@message < 2 ? "" : 
+ 	    map { sprintf($format, $border[4], $_, $border[5]) } 
+ 		@message[1 .. $#message - 1]),
+ 	(@message < 2 ? "" : 
+ 	    sprintf($format, $border[2], $message[$#message], $border[3])),
+-        " " . ("-" x $max2) . " \n"
++        " " . ("-" x $max2) . "\n"
+     );
+ }
+ 

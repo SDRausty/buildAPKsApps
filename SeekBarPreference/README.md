@@ -1,0 +1,1 @@
+Clone of [SeekBarPreference](http://www.codeproject.com/Articles/163541/SeekBar-Preference) with some fixes

@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>setbuf(3) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="setbuf(3) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="setbuf(3) — Linux manual pages">
+    <a id="setbuf.3" name="setbuf.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>setbuf, setbuffer, setlinebuf, setvbuf — stream
+      buffering operations</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;stdio.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">void <b class="fsfunc">setbuf</b>(</code></td>
+
+            <td rowspan="1" colspan="1">FILE *<var class="pdparam">stream</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">char *<var class="pdparam">buf</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">void <b class="fsfunc">setbuffer</b>(</code></td>
+
+            <td rowspan="1" colspan="1">FILE *<var class="pdparam">stream</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">char *<var class="pdparam">buf</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">size_t <var class="pdparam">size</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">void <b class="fsfunc">setlinebuf</b>(</code></td>
+
+            <td rowspan="1" colspan="1">FILE *<var class="pdparam">stream</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">setvbuf</b>(</code></td>
+
+            <td rowspan="1" colspan="1">FILE *<var class="pdparam">stream</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">char *<var class="pdparam">buf</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">mode</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">size_t <var class="pdparam">size</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;">
+        <table border="0" summary="Note">
+          <tr>
+            <td rowspan="2" align="center" valign="top" width="25" colspan="1">
+            <img alt="[Note]" src="../stylesheet/note.png" /></td>
+
+            <th align="left" rowspan="1" colspan="1">Note</th>
+          </tr>
+
+          <tr>
+            <td align="left" valign="top" rowspan="1" colspan="1">
+              <div class="featuretests">
+                <table style="border-collapse: collapse;">
+                  <colgroup span="1">
+                    <col span="1" />
+                  </colgroup>
+
+                  <thead>
+                    <tr>
+                      <th style="" rowspan="1" colspan="1">Feature Test Macro Requirements
+                      for glibc (see <a class="link" href="../htmlman7/feature_test_macros.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">feature_test_macros</span>(7)</span></a>):</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td style="" rowspan="1" colspan="1"><code class="function">setbuffer</code>(), <code class="function">setlinebuf</code>():</td>
+                    </tr>
+
+                    <tr>
+                      <td class="featuretestdef" style="" rowspan="1" colspan="1">
+                      <code class="constant">_BSD_SOURCE</code></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="setbuf-3_sect1" name="setbuf-3_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>The three types of buffering available are unbuffered,
+      block buffered, and line buffered. When an output stream is
+      unbuffered, information appears on the destination file or
+      terminal as soon as written; when it is block buffered many
+      characters are saved up and written as a block; when it is
+      line buffered characters are saved up until a newline is
+      output or input is read from any stream attached to a
+      terminal device (typically <code class="varname">stdin</code>). The function <a class="link" href="../htmlman3/fflush.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fflush</span>(3)</span></a> may be used to
+      force the block out early. (See <a class="link" href="../htmlman3/fclose.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fclose</span>(3)</span></a>.) Normally all
+      files are block buffered. When the first I/O operation occurs
+      on a file, <a class="link" href="../htmlman3/malloc.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">malloc</span>(3)</span></a> is called, and a
+      buffer is obtained. If a stream refers to a terminal (as
+      <code class="varname">stdout</code> normally does) it is line
+      buffered. The standard error stream <code class="varname">stderr</code> is always unbuffered by default.</p>
+
+      <p>The <code class="function">setvbuf</code>() function may
+      be used on any open stream to change its buffer. The
+      <em class="parameter"><code>mode</code></em> argument must be
+      one of the following three macros:</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="variablelist">
+            <dl>
+              <dt><span class="term"><code class="constant">_IONBF</code></span></dt>
+
+              <dd>
+                <p>unbuffered</p>
+              </dd>
+
+              <dt><span class="term"><code class="constant">_IOLBF</code></span></dt>
+
+              <dd>
+                <p>line buffered</p>
+              </dd>
+
+              <dt><span class="term"><code class="constant">_IOFBF</code></span></dt>
+
+              <dd>
+                <p>fully buffered</p>
+              </dd>
+            </dl>
+          </div>
+        </blockquote>
+      </div>
+
+      <p>Except for unbuffered files, the <em class="parameter"><code>buf</code></em> argument should point to a
+      buffer at least <em class="parameter"><code>size</code></em>
+      bytes long; this buffer will be used instead of the current
+      buffer. If the argument <em class="parameter"><code>buf</code></em> is NULL, only the mode is
+      affected; a new buffer will be allocated on the next read or
+      write operation. The <code class="function">setvbuf</code>()
+      function may only be used after opening a stream and before
+      any other operations have been performed on it.</p>
+
+      <p>The other three calls are, in effect, simply aliases for
+      calls to <code class="function">setvbuf</code>(). The
+      <code class="function">setbuf</code>() function is exactly
+      equivalent to the call</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <p>setvbuf(stream, buf, buf ? _IOFBF : _IONBF,
+          BUFSIZ);</p>
+        </blockquote>
+      </div>
+
+      <p>The <code class="function">setbuffer</code>() function is
+      the same, except that the size of the buffer is up to the
+      caller, rather than being determined by the default
+      <code class="constant">BUFSIZ</code>. The <code class="function">setlinebuf</code>() function is exactly equivalent
+      to the call:</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <p>setvbuf(stream, (char *) NULL, _IOLBF, 0);</p>
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="setbuf-3_sect2" name="setbuf-3_sect2" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p>The function <code class="function">setvbuf</code>()
+      returns 0 on success. It returns nonzero on failure
+      (<em class="parameter"><code>mode</code></em> is invalid or
+      the request cannot be honored). It may set <code class="varname">errno</code> on failure.</p>
+
+      <p>The other functions do not return a value.</p>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="setbuf-3_sect3" name="setbuf-3_sect3" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>The <code class="function">setbuf</code>() and
+      <code class="function">setvbuf</code>() functions conform to
+      C89 and C99.</p>
+    </div>
+
+    <div class="refsect1" title="BUGS">
+      <a id="setbuf-3_sect4" name="setbuf-3_sect4" shape="rect"> </a>
+
+      <h2>BUGS</h2>
+
+      <p>The <code class="function">setbuffer</code>() and
+      <code class="function">setlinebuf</code>() functions are not
+      portable to versions of BSD before 4.2BSD, and are available
+      under Linux since libc 4.5.21. On 4.2BSD and 4.3BSD systems,
+      <code class="function">setbuf</code>() always uses a
+      suboptimal buffer size and should be avoided.</p>
+
+      <p>You must make sure that the space that <em class="parameter"><code>buf</code></em> points to still exists by
+      the time <em class="parameter"><code>stream</code></em> is
+      closed, which also happens at program termination. For
+      example, the following is invalid:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+#include &lt;stdio.h&gt;
+
+int
+main(void)
+{
+    char buf[BUFSIZ];
+    setbuf(stdin, buf);
+    printf("Hello, world!\n");
+    return 0;
+}
+</pre>
+      </div>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="setbuf-3_sect5" name="setbuf-3_sect5" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman3/fclose.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fclose</span>(3)</span></a>, <a class="link" href="../htmlman3/fflush.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fflush</span>(3)</span></a>, <a class="link" href="../htmlman3/fopen.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fopen</span>(3)</span></a>, <a class="link" href="../htmlman3/fread.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fread</span>(3)</span></a>, <a class="link" href="../htmlman3/malloc.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">malloc</span>(3)</span></a>, <a class="link" href="../htmlman3/printf.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">printf</span>(3)</span></a>, <a class="link" href="../htmlman3/puts.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">puts</span>(3)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="setbuf-3_sect6" name="setbuf-3_sect6" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.24 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright (c) 1980, 1991 Regents of the University of California.<br />
+
+                  All rights reserved.<br />
+                  <br />
+                  This code is derived from software contributed to Berkeley by<br />
+
+                  the American National Standards Committee X3, on Information<br />
+
+                  Processing Systems.<br />
+                  <br />
+                  Redistribution and use in source and binary forms, with or without<br />
+
+                  modification, are permitted provided that the following conditions<br />
+
+                  are met:<br />
+                  1. Redistributions of source code must retain the above copyright<br />
+
+                     notice, this list of conditions and the following disclaimer.<br />
+
+                  2. Redistributions in binary form must reproduce the above copyright<br />
+
+                     notice, this list of conditions and the following disclaimer in the<br />
+
+                     documentation and/or other materials provided with the distribution.<br />
+
+                  3. All advertising materials mentioning features or use of this software<br />
+
+                     must display the following acknowledgement:<br />
+
+                  This product includes software developed by the University of<br />
+
+                  California, Berkeley and its contributors.<br />
+
+                  4. Neither the name of the University nor the names of its contributors<br />
+
+                     may be used to endorse or promote products derived from this software<br />
+
+                     without specific prior written permission.<br />
+
+                  <br />
+                  THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND<br />
+
+                  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE<br />
+
+                  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE<br />
+
+                  ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE<br />
+
+                  FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL<br />
+
+                  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS<br />
+
+                  OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)<br />
+
+                  HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT<br />
+
+                  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY<br />
+
+                  OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF<br />
+
+                  SUCH DAMAGE.<br />
+                  <br />
+                      <script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>(#)setbuf.3
+                  6.10 (Berkeley) 6/29/91<br />
+                  <br />
+                  Converted for Linux, Mon Nov 29 14:55:24 1993, faith<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cs.unc.edu<br />
+
+                  Added section to BUGS, Sun Mar 12 22:28:33 MET 1995,<br />
+
+                                    Thomas.Koenig<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>ciw.uni-karlsruhe.de<br />
+
+                  Correction,  Sun, 11 Apr 1999 15:55:18,<br />
+
+                      Martin Vicente &lt;martin<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>netadmin.dgac.fr&gt;<br />
+
+                  Correction,  2000-03-03, Andreas Jaeger &lt;aj<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>suse.de&gt;<br />
+
+                  Added return value for setvbuf, aeb,<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

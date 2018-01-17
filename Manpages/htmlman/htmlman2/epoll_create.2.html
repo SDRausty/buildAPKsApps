@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>epoll_create(2) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="epoll_create(2) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="epoll_create(2) — Linux manual pages">
+    <a id="epoll-create.2" name="epoll-create.2" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>epoll_create, epoll_create1 — open an epoll file
+      descriptor</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;sys/epoll.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">epoll_create</b>(</code></td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">size</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">epoll_create1</b>(</code></td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">flags</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="epoll-create-2_sect1" name="epoll-create-2_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><code class="function">epoll_create</code>() creates an
+      epoll "instance", requesting the kernel to allocate an event
+      backing store dimensioned for <em class="parameter"><code>size</code></em> descriptors. The
+      <em class="parameter"><code>size</code></em> is not the
+      maximum size of the backing store but just a hint to the
+      kernel about how to dimension internal structures. (Nowadays,
+      <em class="parameter"><code>size</code></em> is unused; see
+      NOTES below.)</p>
+
+      <p><code class="function">epoll_create</code>() returns a
+      file descriptor referring to the new epoll instance. This
+      file descriptor is used for all the subsequent calls to the
+      <em class="replaceable"><code>epoll</code></em> interface.
+      When no longer required, the file descriptor returned by
+      <code class="function">epoll_create</code>() should be closed
+      by using <a class="link" href="../htmlman2/close.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">close</span>(2)</span></a>. When all file
+      descriptors referring to an epoll instance have been closed,
+      the kernel destroys the instance and releases the associated
+      resources for reuse.</p>
+
+      <p>If <em class="parameter"><code>flags</code></em> is 0,
+      then, other than the fact that the obsolete <em class="parameter"><code>size</code></em> argument is dropped,
+      <code class="function">epoll_create1</code>() is the same as
+      <code class="function">epoll_create</code>(). The following
+      value can be included in <em class="parameter"><code>flags</code></em> to obtain different
+      behavior:</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="constant">EPOLL_CLOEXEC</code></span></dt>
+
+          <dd>
+            <p>Set the close-on-exec (<code class="constant">FD_CLOEXEC</code>) flag on the new file
+            descriptor. See the description of the <code class="constant">O_CLOEXEC</code> flag in <a class="link" href="../htmlman2/open.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">open</span>(2)</span></a> for reasons
+            why this may be useful.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="epoll-create-2_sect2" name="epoll-create-2_sect2" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p>On success, these system calls return a nonnegative file
+      descriptor. On error, −1 is returned, and <code class="varname">errno</code> is set to indicate the error.</p>
+    </div>
+
+    <div class="refsect1" title="ERRORS">
+      <a id="epoll-create-2_sect3" name="epoll-create-2_sect3" shape="rect"> </a>
+
+      <h2>ERRORS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><span class="errorname">EINVAL</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>size</code></em> is not
+            positive.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EINVAL</span></span></dt>
+
+          <dd>
+            <p>(<code class="function">epoll_create1</code>())
+            Invalid value specified in <em class="parameter"><code>flags</code></em>.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EMFILE</span></span></dt>
+
+          <dd>
+            <p>The per-user limit on the number of epoll instances
+            imposed by <code class="filename">/proc/sys/fs/epoll/max_user_instances</code>
+            was encountered. See <a class="link" href="../htmlman7/epoll.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">epoll</span>(7)</span></a> for further
+            details.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENFILE</span></span></dt>
+
+          <dd>
+            <p>The system limit on the total number of open files
+            has been reached.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENOMEM</span></span></dt>
+
+          <dd>
+            <p>There was insufficient memory to create the kernel
+            object.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="VERSIONS">
+      <a id="epoll-create-2_sect4" name="epoll-create-2_sect4" shape="rect"> </a>
+
+      <h2>VERSIONS</h2>
+
+      <p><code class="function">epoll_create</code>() was added to
+      the kernel in version 2.6. Library support is provided in
+      glibc starting with version 2.3.2.</p>
+
+      <p><code class="function">epoll_create1</code>() was added to
+      the kernel in version 2.6.27. Library support is provided in
+      glibc starting with version 2.9.</p>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="epoll-create-2_sect5" name="epoll-create-2_sect5" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p><code class="function">epoll_create</code>() is
+      Linux-specific.</p>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="epoll-create-2_sect6" name="epoll-create-2_sect6" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p>Since Linux 2.6.8, the <em class="parameter"><code>size</code></em> argument is unused, but
+      must be greater than zero. (The kernel dynamically sizes the
+      required data structures without needing this initial
+      hint.)</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="epoll-create-2_sect7" name="epoll-create-2_sect7" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman2/close.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">close</span>(2)</span></a>, <a class="link" href="../htmlman2/epoll_ctl.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">epoll_ctl</span>(2)</span></a>, <a class="link" href="../htmlman2/epoll_wait.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">epoll_wait</span>(2)</span></a>, <a class="link" href="../htmlman7/epoll.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">epoll</span>(7)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="epoll-create-2_sect8" name="epoll-create-2_sect8" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.32 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                   epoll by Davide Libenzi ( efficient event notification retrieval )<br />
+
+                   Copyright (C) 2003  Davide Libenzi<br />
+
+                  <br />
+                   This program is free software; you can redistribute it and/or modify<br />
+
+                   it under the terms of the GNU General Public License as published by<br />
+
+                   the Free Software Foundation; either version 2 of the License, or<br />
+
+                   (at your option) any later version.<br />
+
+                  <br />
+                   This program is distributed in the hope that it will be useful,<br />
+
+                   but WITHOUT ANY WARRANTY; without even the implied warranty of<br />
+
+                   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<br />
+
+                   GNU General Public License for more details.<br />
+
+                  <br />
+                   You should have received a copy of the GNU General Public License<br />
+
+                   along with this program; if not, write to the Free Software<br />
+
+                   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA<br />
+
+                  <br />
+                   Davide Libenzi &lt;davidel<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>xmailserver.org&gt;<br />
+
+                  <br />
+                  Modified 2004-06-17 by Michael Kerrisk &lt;mtk.manpages<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>gmail.com&gt;<br />
+
+                  Modified 2005-04-04 by Marko Kohtala &lt;marko.kohtala<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>gmail.com&gt;<br />
+
+                  2008-10-10, mtk: add description of epoll_create1()<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

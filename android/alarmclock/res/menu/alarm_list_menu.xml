@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <item android:id="@+id/default_options"
+        android:title="@string/default_options" />
+  <item android:id="@+id/display_notification"
+        android:title="@string/display_notification"
+        android:checkable="true" />
+  <item android:id="@+id/delete_all"
+        android:title="@string/delete_all" />
+</menu>

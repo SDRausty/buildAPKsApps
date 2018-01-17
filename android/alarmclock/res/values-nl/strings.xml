@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Translation by Jasper <jvgeem@gmail.com> -->
+<resources>
+  <string name="app_name">Alarm Klock</string>
+  <string name="delete_all">Verwijder Alles</string>
+  <string name="label">Omschrijving</string>
+  <string name="repeat">Herhalen</string>
+  <string name="alarm_tone">Alarm toon</string>
+  <string name="fade_description">Van %1$d%% tot %2$d%% over %3$d seconden</string>
+  <string name="ok">OK</string>
+  <string name="cancel">Herstel</string>
+  <string name="delete">Verwijder</string>
+  <string name="snooze">SNOOZE</string>
+  <string name="dismiss">ANNULEREN</string>
+  <string name="plus_five">+5</string>
+  <string name="minus_five">-5</string>
+  <string name="day">%d dag</string>
+  <string name="days">%d dagen</string>
+  <string name="hour">%d uur</string>
+  <string name="hours">%d uur</string>
+  <string name="minute">%d minuut</string>
+  <string name="minutes">%d minuten</string>
+  <string name="am">AM</string>
+  <string name="pm">PM</string>
+  <string name="dow_sun_short">Zo</string>
+  <string name="dow_mon_short">Ma</string>
+  <string name="dow_tue_short">Di</string>
+  <string name="dow_wed_short">Wo</string>
+  <string name="dow_thu_short">Do</string>
+  <string name="dow_fri_short">Vr</string>
+  <string name="dow_sat_short">Za</string>
+  <string name="dow_sun">Zondag</string>
+  <string name="dow_mon">Maandag</string>
+  <string name="dow_tue">Dinsdag</string>
+  <string name="dow_wed">Woensdag</string>
+  <string name="dow_thu">Donderdag</string>
+  <string name="dow_fri">Vrijdag</string>
+  <string name="dow_sat">Zaterdag</string>
+  <string name="no_repeats">Geen herhalingen</string>
+  <string name="everyday">Elke dag</string>
+  <string name="weekdays">Doordeweeks</string>
+  <string name="weekends">Weekenden</string>
+  <string name="internal">Intern</string>
+  <string name="artists">Artiest</string>
+  <string name="songs">Liedjes</string>
+  <string name="selected">Geselecteerd: </string>
+  <string name="time_out_title">Alarm tijd uit</string>
+  <string name="time_out_error">WAARSCHUWING: Dit alarm is vergaan tijdens het wachten op erkenning.</string>
+</resources>

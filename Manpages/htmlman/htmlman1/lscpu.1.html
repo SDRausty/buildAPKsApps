@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>lscpu(1) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="lscpu(1) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="lscpu(1) — Linux manual pages">
+    <a id="lscpu.1" name="lscpu.1" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>lscpu — CPU architecture information helper</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">lscpu</code> [<code class="option">−hpx</code>] [ <code class="option">−s</code> directory ]</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="lscpu-1_sect1" name="lscpu-1_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><span class="command"><strong>lscpu</strong></span>
+      gathers CPU architecture information like number of CPUs,
+      threads, cores, sockets, NUMA nodes, information about CPU
+      caches, CPU family, model, bogoMIPS, byte order and stepping
+      from sysfs and /proc/cpuinfo, and prints it in a
+      human-readable format. It supports both online and offline
+      CPUs. It can also print out in a parsable format, including
+      how different caches are shared by different CPUs, which can
+      be fed to other programs.</p>
+    </div>
+
+    <div class="refsect1" title="OPTIONS">
+      <a id="lscpu-1_sect2" name="lscpu-1_sect2" shape="rect"> </a>
+
+      <h2>OPTIONS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="option">−h,
+          −−help</code></span></dt>
+
+          <dd>
+            <p>Print a help message.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−p,
+          −−parse</code></span></dt>
+
+          <dd>
+            <p>Print out in parsable instead of human-readable
+            format.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−s,
+          −−sysroot <em class="parameter"><code>directory</code></em></code></span></dt>
+
+          <dd>
+            <p>Use the specified <em class="parameter"><code>directory</code></em> as system root.
+            This allows you to inspect a snapshot from a different
+            system.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−x,
+          −−hex</code></span></dt>
+
+          <dd>
+            <p>Use hexadecimal masks for CPU sets (e.g. 0x3). The
+            default is to print the sets in list format (e.g.
+            0,1).</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="BUGS">
+      <a id="lscpu-1_sect3" name="lscpu-1_sect3" shape="rect"> </a>
+
+      <h2>BUGS</h2>
+
+      <p>The basic overview about CPU family, model, etc. is always
+      based on the first CPU only.</p>
+
+      <p>Sometimes in Xen Dom0 the kernel reports wrong data.</p>
+    </div>
+
+    <div class="refsect1" title="AUTHOR">
+      <a id="lscpu-1_sect4" name="lscpu-1_sect4" shape="rect"> </a>
+
+      <h2>AUTHOR</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+Cai Qian &lt;qcai@redhat.com&gt;
+Karel Zak &lt;kzak@redhat.com&gt;
+</pre>
+      </div>
+    </div>
+
+    <div class="refsect1" title="AVAILABILITY">
+      <a id="lscpu-1_sect5" name="lscpu-1_sect5" shape="rect"> </a>
+
+      <h2>AVAILABILITY</h2>
+
+      <p>The lscpu command is part of the util-linux package and is
+      available from
+      ftp://ftp.kernel.org/pub/linux/utils/util-linux/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Process this file with<br />
+
+                  groff -man -Tascii lscpu.1<br />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

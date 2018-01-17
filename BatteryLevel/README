@@ -1,0 +1,15 @@
+Minimalistic Application which shows the current Battery Level of your Android device
+
+Source: https://github.com/rrelmy/BatteryLevel
+
+Features
+- Click anywhere to close it
+
+Changelog
+0.1
+- initial
+
+0.2
+- level will be updated
+- about screen
+- source at github

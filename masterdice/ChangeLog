@@ -1,0 +1,27 @@
+0.1.6:
+ * new FUDGE/FATE dice (4dF) by David Pflug
+ * added d30 dice
+ * improved display of long rolls (i.e. 999d100), tap on log entry for full result
+
+0.1.5:
+ * new options menu:
+ * keep screen on
+ * clear log
+ * about dialog
+
+0.1.4:
+ * redesigned dice dialog
+
+0.1.3:
+ * colored buttons and log
+ * german translation
+ * 1d2 now displays "yes"/"no"
+
+0.1.2:
+ * larger buttons
+
+0.1.1:
+ * fix for a config loading issue
+
+0.1:
+ * initial release

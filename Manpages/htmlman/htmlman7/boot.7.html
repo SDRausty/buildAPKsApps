@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>boot(7) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="boot(7) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="boot(7) — Linux manual pages">
+    <a id="boot.7" name="boot.7" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>boot-scripts — General description of boot
+      sequence</p>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="boot-7_sect1" name="boot-7_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>The boot sequence varies in details among systems but can
+      be roughly divided to the following steps: (i) hardware boot,
+      (ii) OS loader, (iii) kernel startup, (iv) init and inittab,
+      (v) boot scripts. We will describe each of these in more
+      detail below.</p>
+
+      <div class="refsect2" title="Hardware-boot">
+        <a id="boot-7_sect2" name="boot-7_sect2" shape="rect"> </a>
+
+        <h3>Hardware-boot</h3>
+
+        <p>After power-on or hard reset, control is given to a
+        program stored on read-only memory (normally PROM). In PC
+        we usually call this program the <code class="constant">BIOS</code>.</p>
+
+        <p>This program normally makes a basic self-test of the
+        machine and accesses nonvolatile memory to read further
+        parameters. This memory in the PC is battery-backed CMOS
+        memory, so most people refer to it as the <code class="constant">CMOS</code>, although outside of the PC world,
+        it is usually called <em class="replaceable"><code>nvram</code></em> (nonvolatile
+        ram).</p>
+
+        <p>The parameters stored in the nvram vary between systems,
+        but as a minimum, the hardware boot program should know
+        what is the boot device, or which devices to probe as
+        possible boot devices.</p>
+
+        <p>Then the hardware boot stage accesses the boot device,
+        loads the OS Loader, which is located on a fixed position
+        on the boot device, and transfers control to it.</p>
+
+        <div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Note">
+            <tr>
+              <td rowspan="2" align="center" valign="top" width="25" colspan="1"><img alt="[Note]" src="../stylesheet/note.png" /></td>
+
+              <th align="left" rowspan="1" colspan="1">Note</th>
+            </tr>
+
+            <tr>
+              <td align="left" valign="top" rowspan="1" colspan="1">
+                <p>We do not cover here booting from network. Those
+                who want to investigate this subject may want to
+                research: DHCP, TFTP, PXE, Etherboot.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="refsect2" title="OS Loader">
+        <a id="boot-7_sect3" name="boot-7_sect3" shape="rect"> </a>
+
+        <h3>OS Loader</h3>
+
+        <p>In PC, the OS Loader is located in the first sector of
+        the boot device − this is the <code class="constant">MBR</code> (Master Boot Record).</p>
+
+        <p>In most systems, this primary loader is very limited due
+        to various constraints. Even on non-PC systems there are
+        some limitations to the size and complexity of this loader,
+        but the size limitation of the PC MBR (512 bytes including
+        the partition table) makes it almost impossible to squeeze
+        a full OS Loader into it.</p>
+
+        <p>Therefore, most operating systems make the primary
+        loader call a secondary OS loader which may be located on a
+        specified disk partition.</p>
+
+        <p>In Linux the OS loader is normally <span class="citerefentry"><span class="refentrytitle">lilo</span>(8)</span> or <span class="citerefentry"><span class="refentrytitle">grub</span>(8)</span>. Both of them may
+        install either as secondary loaders (where the DOS
+        installed MBR points to them), or as a two part loader
+        where they provide special MBR containing the bootstrap
+        code to load the second part of the loader from the root
+        partition.</p>
+
+        <p>The main job of the OS Loader is to locate the kernel on
+        the disk, load it and run it. Most OS loaders allow
+        interactive use, to enable specification of alternative
+        kernel (maybe a backup in case the last compiled one isn't
+        functioning) and to pass optional parameters to the
+        kernel.</p>
+      </div>
+
+      <div class="refsect2" title="Kernel Startup">
+        <a id="boot-7_sect4" name="boot-7_sect4" shape="rect"> </a>
+
+        <h3>Kernel Startup</h3>
+
+        <p>When the kernel is loaded, it initializes the devices
+        (via their drivers), starts the swapper (it is a "kernel
+        process", called kswapd in modern Linux kernels), and
+        mounts the root file system (/).</p>
+
+        <p>Some of the parameters that may be passed to the kernel
+        relate to these activities (e.g: You can override the
+        default root file system). For further information on Linux
+        kernel parameters read <a class="link" href="../htmlman7/bootparam.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">bootparam</span>(7)</span></a>.</p>
+
+        <p>Only then the kernel creates the first (user land)
+        process which is numbered 1. This process executes the
+        program <code class="filename">/sbin/init</code>, passing
+        any parameters that weren't handled by the kernel
+        already.</p>
+      </div>
+
+      <div class="refsect2" title="init and inittab">
+        <a id="boot-7_sect5" name="boot-7_sect5" shape="rect"> </a>
+
+        <h3>init and inittab</h3>
+
+        <p>When init starts it reads <code class="filename">/etc/inittab</code> for further instructions.
+        This file defines what should be run in different
+        <em class="replaceable"><code>run-levels</code></em>.</p>
+
+        <p>This gives the system administrator an easy management
+        scheme, where each run-level is associated with a set of
+        services (e.g: <code class="constant">S</code> is
+        <em class="replaceable"><code>single-user</code></em>, on
+        <code class="constant">2</code> most network services
+        start, etc.). The administrator may change the current
+        run-level via <span class="citerefentry"><span class="refentrytitle">init</span>(8)</span> and query the current
+        run-level via <span class="citerefentry"><span class="refentrytitle">runlevel</span>(8)</span>.</p>
+
+        <p>However, since it is not convenient to manage individual
+        services by editing this file, inittab only bootstraps a
+        set of scripts that actually start/stop the individual
+        services.</p>
+      </div>
+
+      <div class="refsect2" title="Boot Scripts">
+        <a id="boot-7_sect6" name="boot-7_sect6" shape="rect"> </a>
+
+        <h3>Boot Scripts</h3>
+
+        <div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Note">
+            <tr>
+              <td rowspan="2" align="center" valign="top" width="25" colspan="1"><img alt="[Note]" src="../stylesheet/note.png" /></td>
+
+              <th align="left" rowspan="1" colspan="1">Note</th>
+            </tr>
+
+            <tr>
+              <td align="left" valign="top" rowspan="1" colspan="1">
+                <p>The following description applies to System V
+                release 4-based systems, which currently covers
+                most commercial UNIX systems (Solaris, HP-UX, Irix,
+                Tru64) as well as the major Linux distributions
+                (Red Hat, Debian, Mandriva, SUSE, Ubuntu). Some
+                systems (Slackware Linux, FreeBSD, OpenBSD) have a
+                somewhat different scheme of boot scripts.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <p>For each managed service (mail, nfs server, cron, etc.)
+        there is a single startup script located in a specific
+        directory (<code class="filename">/etc/init.d</code> in
+        most versions of Linux). Each of these scripts accepts as a
+        single argument the word "start" −− causing it
+        to start the service, or the word "stop" −−
+        causing it to stop the service. The script may optionally
+        accept other "convenience" parameters (e.g: "restart", to
+        stop and then start, "status" do display the service
+        status). Running the script without parameters displays the
+        possible arguments.</p>
+      </div>
+
+      <div class="refsect2" title="Sequencing Directories">
+        <a id="boot-7_sect7" name="boot-7_sect7" shape="rect"> </a>
+
+        <h3>Sequencing Directories</h3>
+
+        <p>To make specific scripts start/stop at specific
+        run-levels and in specific order, there are <span class="emphasis"><em>sequencing directories</em></span>. These
+        are normally in <code class="filename">/etc/rc[0−6S].d</code>. In each of these
+        directories there are links (usually symbolic) to the
+        scripts in the <code class="filename">/etc/init.d</code>
+        directory.</p>
+
+        <p>A primary script (usually <code class="filename">/etc/rc</code>) is called from <span class="citerefentry"><span class="refentrytitle">inittab</span>(5)</span> and calls the
+        services scripts via the links in the sequencing
+        directories. All links with names that begin with 'S' are
+        being called with the argument "start" (thereby starting
+        the service). All links with names that begin with 'K' are
+        being called with the argument "stop" (thereby stopping the
+        service).</p>
+
+        <p>To define the starting or stopping order within the same
+        run-level, the names of the links contain order-numbers.
+        Also, to make the names clearer, they usually end with the
+        name of the service they refer to. Example: the link
+        <code class="filename">/etc/rc2.d/S80sendmail</code> starts
+        the sendmail service on runlevel 2. This happens after
+        <code class="filename">/etc/rc2.d/S12syslog</code> is run
+        but before <code class="filename">/etc/rc2.d/S90xfs</code>
+        is run.</p>
+
+        <p>To manage the boot order and run-levels, we have to
+        manage these links. However, on many versions of Linux,
+        there are tools to help with this task (e.g: <span class="citerefentry"><span class="refentrytitle">chkconfig</span>(8)</span>).</p>
+      </div>
+
+      <div class="refsect2" title="Boot Configuration">
+        <a id="boot-7_sect8" name="boot-7_sect8" shape="rect"> </a>
+
+        <h3>Boot Configuration</h3>
+
+        <p>Usually the daemons started may optionally receive
+        command-line options and parameters. To allow system
+        administrators to change these parameters without editing
+        the boot scripts themselves, configuration files are used.
+        These are located in a specific directory (<code class="filename">/etc/sysconfig</code> on Red Hat systems) and
+        are used by the boot scripts.</p>
+
+        <p>In older UNIX systems, these files contained the actual
+        command line options for the daemons, but in modern Linux
+        systems (and also in HP-UX), these files just contain shell
+        variables. The boot scripts in <code class="filename">/etc/init.d</code> <em class="replaceable"><code>source</code></em> the configuration
+        files, and then use the variable values.</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="FILES">
+      <a id="boot-7_sect9" name="boot-7_sect9" shape="rect"> </a>
+
+      <h2>FILES</h2>
+
+      <p><code class="filename">/etc/init.d/</code>, <code class="filename">/etc/rc[S0−6].d/</code>, <code class="filename">/etc/sysconfig/</code></p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="boot-7_sect10" name="boot-7_sect10" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><span class="citerefentry"><span class="refentrytitle">inittab</span>(5)</span>, <a class="link" href="../htmlman7/bootparam.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">bootparam</span>(7)</span></a>, <span class="citerefentry"><span class="refentrytitle">init</span>(8)</span>, <span class="citerefentry"><span class="refentrytitle">runlevel</span>(8)</span>, <a class="link" href="../htmlman8/shutdown.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">shutdown</span>(8)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="boot-7_sect11" name="boot-7_sect11" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.31 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Written by Oron Peled &lt;oron<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>actcom.co.il&gt;.<br />
+
+                  May be distributed subject to the GPL.<br />
+
+                  <br />
+                  I tried to be as much generic in the description as possible:<br />
+
+                  - General boot sequence is applicable to almost any<br />
+
+                  OS/Machine (DOS/PC, Linux/PC, Solaris/SPARC, CMS/S390)<br />
+
+                  - kernel and init(8) is applicable to almost any UNIX/Linux<br />
+
+                  - boot scripts are applicable to SYSV-R4 based UNIX/Linux<br />
+
+                  <br />
+                  Modified 2004-11-03 patch from Martin Schulze &lt;joey<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>infodrom.org&gt;<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+= About ActivityForResult
+
+This project demonstrates how one Activity can start another and then
+have the second activity return information back to the first in the
+form of an Intent.
+
+This code was developed to support Marakana's Android Training courses.
+
+For more info, see http://marakana.com/training/android/
+
+== Legal
+
+Please see ++NOTICE++ file in this directory for copyright, license terms, and legal disclaimers.
+
+Copyright © 2012 Marakana Inc.

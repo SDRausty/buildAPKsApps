@@ -1,0 +1,648 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>hexdump(1) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="hexdump(1) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="hexdump(1) — Linux manual pages">
+    <a id="hexdump.1" name="hexdump.1" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>hexdump — ascii, decimal, hexadecimal, octal
+      dump</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">hexdump</code> [<code class="option">−bcCdovx</code>] [ <code class="option">−e</code> format_string ] [ <code class="option">−f</code> format_file ] [ <code class="option">−n</code> length ] [ <code class="option">−s</code> skip ] file...</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="hexdump-1_sect1" name="hexdump-1_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>The hexdump utility is a filter which displays the
+      specified files, or the standard input, if no files are
+      specified, in a user specified format.</p>
+
+      <p>The options are as follows:</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="option">−b</code></span></dt>
+
+          <dd>
+            <p><span class="emphasis"><em>One-byte octal
+            display</em></span>. Display the input offset in
+            hexadecimal, followed by sixteen space-separated, three
+            column, zero-filled, bytes of input data, in octal, per
+            line.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−c</code></span></dt>
+
+          <dd>
+            <p><span class="emphasis"><em>One-byte character
+            display</em></span>. Display the input offset in
+            hexadecimal, followed by sixteen space-separated, three
+            column, space-filled, characters of input data per
+            line.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−C</code></span></dt>
+
+          <dd>
+            <p><span class="emphasis"><em>Canonical hex+ASCII
+            display</em></span>. Display the input offset in
+            hexadecimal, followed by sixteen space-separated, two
+            column, hexadecimal bytes, followed by the same sixteen
+            bytes in %_p format enclosed in ``|'' characters.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−d</code></span></dt>
+
+          <dd>
+            <p><span class="emphasis"><em>Two-byte decimal
+            display</em></span>. Display the input offset in
+            hexadecimal, followed by eight space-separated, five
+            column, zero-filled, two-byte units of input data, in
+            unsigned decimal, per line.</p>
+          </dd>
+
+          <dt><span class="term"><em class="parameter"><code>−e</code></em> <em class="parameter"><code>format_string</code></em></span></dt>
+
+          <dd>
+            <p>Specify a format string to be used for displaying
+            data.</p>
+          </dd>
+
+          <dt><span class="term"><em class="parameter"><code>−f</code></em> <em class="parameter"><code>format_file</code></em></span></dt>
+
+          <dd>
+            <p>Specify a file that contains one or more newline
+            separated format strings. Empty lines and lines whose
+            first non-blank character is a hash mark ( <code class="literal">#</code>) are ignored.</p>
+          </dd>
+
+          <dt><span class="term"><em class="parameter"><code>−n</code></em> <em class="parameter"><code>length</code></em></span></dt>
+
+          <dd>
+            <p>Interpret only <em class="parameter"><code>length</code></em> bytes of
+            input.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−o</code></span></dt>
+
+          <dd>
+            <p><span class="emphasis"><em>Two-byte octal
+            display</em></span>. Display the input offset in
+            hexadecimal, followed by eight space-separated, six
+            column, zero-filled, two byte quantities of input data,
+            in octal, per line.</p>
+          </dd>
+
+          <dt><span class="term"><em class="parameter"><code>−s</code></em> <span class="command"><strong>offset</strong></span></span></dt>
+
+          <dd>
+            <p>Skip <span class="command"><strong>offset</strong></span> bytes from the
+            beginning of the input. By default, <span class="command"><strong>offset</strong></span> is interpreted
+            as a decimal number. With a leading <code class="constant">0x</code> or <code class="constant">0X</code>, <span class="command"><strong>offset</strong></span> is interpreted
+            as a hexadecimal number, otherwise, with a leading
+            <code class="constant">0</code>, <span class="command"><strong>offset</strong></span> is interpreted
+            as an octal number. Appending the character
+            <code class="literal">b</code>, <code class="literal">k</code>, or <code class="literal">m</code>
+            to <span class="command"><strong>offset</strong></span>
+            causes it to be interpreted as a multiple of
+            <code class="constant">512</code>, <code class="constant">1024</code>, or <code class="constant">1048576</code>, respectively.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−v</code></span></dt>
+
+          <dd>
+            <p>The <code class="option">−v</code> option
+            causes hexdump to display all input data. Without the
+            <code class="option">−v</code> option, any number
+            of groups of output lines, which would be identical to
+            the immediately preceding group of output lines (except
+            for the input offsets), are replaced with a line
+            comprised of a single asterisk.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−x</code></span></dt>
+
+          <dd>
+            <p><span class="emphasis"><em>Two-byte hexadecimal
+            display</em></span>. Display the input offset in
+            hexadecimal, followed by eight, space separated, four
+            column, zero-filled, two-byte quantities of input data,
+            in hexadecimal, per line.</p>
+          </dd>
+        </dl>
+      </div>
+
+      <p>For each input file, sequentially copies the input to
+      standard output, transforming the data according to the
+      format strings specified by the <em class="parameter"><code>−e</code></em> and <em class="parameter"><code>−f</code></em> options, in the order
+      that they were specified.</p>
+
+      <div class="refsect2" title="Formats">
+        <a id="hexdump-1_sect2" name="hexdump-1_sect2" shape="rect"> </a>
+
+        <h3>Formats</h3>
+
+        <p>A format string contains any number of format units,
+        separated by whitespace. A format unit contains up to three
+        items: an iteration count, a byte count, and a format.</p>
+
+        <p>The iteration count is an optional positive integer,
+        which defaults to one. Each format is applied iteration
+        count times.</p>
+
+        <p>The byte count is an optional positive integer. If
+        specified it defines the number of bytes to be interpreted
+        by each iteration of the format.</p>
+
+        <p>If an iteration count and/or a byte count is specified,
+        a single slash must be placed after the iteration count
+        and/or before the byte count to disambiguate them. Any
+        whitespace before or after the slash is ignored.</p>
+
+        <p>The format is required and must be surrounded by double
+        quote (" ") marks. It is interpreted as a fprintf-style
+        format string (see <a class="link" href="../htmlman3/printf.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fprintf</span>(3)</span></a>), with the
+        following exceptions:</p>
+
+        <div class="orderedlist">
+          <ol class="orderedlist" type="1">
+            <li class="listitem">
+              <p>An asterisk (*) may not be used as a field width
+              or precision.</p>
+            </li>
+
+            <li class="listitem">
+              <p>A byte count or field precision <span class="command"><strong>is</strong></span> required for
+              each ``s'' conversion character (unlike the <a class="link" href="../htmlman3/printf.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fprintf</span>(3)</span></a> default
+              which prints the entire string if the precision is
+              unspecified).</p>
+            </li>
+
+            <li class="listitem">
+              <p>The conversion characters ``h'', ``l'', ``n'',
+              ``p'' and ``q'' are not supported.</p>
+            </li>
+
+            <li class="listitem">
+              <p>The single character escape sequences described in
+              the C standard are supported:</p>
+
+              <div class="const_table">
+                <table style="border-collapse: collapse;">
+                  <colgroup span="1">
+                    <col span="1" />
+                    <col span="1" />
+                  </colgroup>
+
+                  <tbody>
+                    <tr>
+                      <td style="" rowspan="1" colspan="1">NUL</td>
+
+                      <td style="" rowspan="1" colspan="1">\0</td>
+                    </tr>
+
+                    <tr>
+                      <td style="" rowspan="1" colspan="1">&lt;alert character&gt;</td>
+
+                      <td style="" rowspan="1" colspan="1">\a</td>
+                    </tr>
+
+                    <tr>
+                      <td style="" rowspan="1" colspan="1">&lt;backspace&gt;</td>
+
+                      <td style="" rowspan="1" colspan="1">\b</td>
+                    </tr>
+
+                    <tr>
+                      <td style="" rowspan="1" colspan="1">&lt;form-feed&gt;</td>
+
+                      <td style="" rowspan="1" colspan="1">\f</td>
+                    </tr>
+
+                    <tr>
+                      <td style="" rowspan="1" colspan="1">&lt;newline&gt;</td>
+
+                      <td style="" rowspan="1" colspan="1">\n</td>
+                    </tr>
+
+                    <tr>
+                      <td style="" rowspan="1" colspan="1">&lt;carriage return&gt;</td>
+
+                      <td style="" rowspan="1" colspan="1">\r</td>
+                    </tr>
+
+                    <tr>
+                      <td style="" rowspan="1" colspan="1">&lt;tab&gt;</td>
+
+                      <td style="" rowspan="1" colspan="1">\t</td>
+                    </tr>
+
+                    <tr>
+                      <td style="" rowspan="1" colspan="1">&lt;vertical tab&gt;</td>
+
+                      <td style="" rowspan="1" colspan="1">\v</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </li>
+          </ol>
+        </div>
+
+        <p>Hexdump also supports the following additional
+        conversion strings:</p>
+
+        <div class="variablelist">
+          <dl>
+            <dt><span class="term"><span class="command"><strong>_a</strong></span> [<span class="command"><strong>dox</strong></span>]</span></dt>
+
+            <dd>
+              <p>Display the input offset, cumulative across input
+              files, of the next byte to be displayed. The appended
+              characters <code class="literal">d</code>,
+              <code class="literal">o</code>, and <code class="literal">x</code> specify the display base as
+              decimal, octal or hexadecimal respectively.</p>
+            </dd>
+
+            <dt><span class="term"><code class="constant">_A</code>
+            [<span class="command"><strong>dox</strong></span>]</span></dt>
+
+            <dd>
+              <p>Identical to the <span class="command"><strong>_a</strong></span> conversion
+              string except that it is only performed once, when
+              all of the input data has been processed.</p>
+            </dd>
+
+            <dt><span class="term"><span class="command"><strong>_c</strong></span></span></dt>
+
+            <dd>
+              <p>Output characters in the default character set.
+              Nonprinting characters are displayed in three
+              character, zero-padded octal, except for those
+              representable by standard escape notation (see
+              above), which are displayed as two character
+              strings.</p>
+            </dd>
+
+            <dt><span class="term"><span class="command"><strong>_p</strong></span></span></dt>
+
+            <dd>
+              <p>Output characters in the default character set.
+              Nonprinting characters are displayed as a single
+              “.”.</p>
+            </dd>
+
+            <dt><span class="term"><span class="command"><strong>_u</strong></span></span></dt>
+
+            <dd>
+              <p>Output US ASCII characters, with the exception
+              that control characters are displayed using the
+              following, lower-case, names. Characters greater than
+              0xff, hexadecimal, are displayed as hexadecimal
+              strings.</p>
+
+              <div class="blockquote">
+                <blockquote class="blockquote">
+                  <div class="const_table">
+                    <table style="border-collapse: collapse;">
+                      <colgroup span="1">
+                        <col span="1" />
+                        <col span="1" />
+                        <col span="1" />
+                        <col span="1" />
+                        <col span="1" />
+                        <col span="1" />
+                      </colgroup>
+
+                      <tbody>
+                        <tr>
+                          <td style="" rowspan="1" colspan="1">000 nul</td>
+
+                          <td style="" rowspan="1" colspan="1">001 soh</td>
+
+                          <td style="" rowspan="1" colspan="1">002 stx</td>
+
+                          <td style="" rowspan="1" colspan="1">003 etx</td>
+
+                          <td style="" rowspan="1" colspan="1">004 eot</td>
+
+                          <td style="" rowspan="1" colspan="1">005 enq</td>
+
+                          <td style="" rowspan="1" colspan="1"> </td>
+                        </tr>
+
+                        <tr>
+                          <td style="" rowspan="1" colspan="1">006 ack</td>
+
+                          <td style="" rowspan="1" colspan="1">007 bel</td>
+
+                          <td style="" rowspan="1" colspan="1">008 bs</td>
+
+                          <td style="" rowspan="1" colspan="1">009 ht</td>
+
+                          <td style="" rowspan="1" colspan="1">00A lf</td>
+
+                          <td style="" rowspan="1" colspan="1">00B vt</td>
+
+                          <td style="" rowspan="1" colspan="1"> </td>
+                        </tr>
+
+                        <tr>
+                          <td style="" rowspan="1" colspan="1">00C ff</td>
+
+                          <td style="" rowspan="1" colspan="1">00D cr</td>
+
+                          <td style="" rowspan="1" colspan="1">00E so</td>
+
+                          <td style="" rowspan="1" colspan="1">00F si</td>
+
+                          <td style="" rowspan="1" colspan="1">010 dle</td>
+
+                          <td style="" rowspan="1" colspan="1">011 dc1</td>
+
+                          <td style="" rowspan="1" colspan="1"> </td>
+                        </tr>
+
+                        <tr>
+                          <td style="" rowspan="1" colspan="1">012 dc2</td>
+
+                          <td style="" rowspan="1" colspan="1">013 dc3</td>
+
+                          <td style="" rowspan="1" colspan="1">014 dc4</td>
+
+                          <td style="" rowspan="1" colspan="1">015 nak</td>
+
+                          <td style="" rowspan="1" colspan="1">016 syn</td>
+
+                          <td style="" rowspan="1" colspan="1">017 etb</td>
+
+                          <td style="" rowspan="1" colspan="1"> </td>
+                        </tr>
+
+                        <tr>
+                          <td style="" rowspan="1" colspan="1">018 can</td>
+
+                          <td style="" rowspan="1" colspan="1">019 em</td>
+
+                          <td style="" rowspan="1" colspan="1">01A sub</td>
+
+                          <td style="" rowspan="1" colspan="1">01B esc</td>
+
+                          <td style="" rowspan="1" colspan="1">01C fs</td>
+
+                          <td style="" rowspan="1" colspan="1">01D gs</td>
+
+                          <td style="" rowspan="1" colspan="1"> </td>
+                        </tr>
+
+                        <tr>
+                          <td style="" rowspan="1" colspan="1">01E rs</td>
+
+                          <td style="" rowspan="1" colspan="1">01F us</td>
+
+                          <td style="" rowspan="1" colspan="1">0FF del</td>
+
+                          <td style="" rowspan="1" colspan="1"> </td>
+
+                          <td style="" rowspan="1" colspan="1"> </td>
+
+                          <td style="" rowspan="1" colspan="1"> </td>
+
+                          <td style="" rowspan="1" colspan="1"> </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </blockquote>
+              </div>
+            </dd>
+          </dl>
+        </div>
+
+        <p>The default and supported byte counts for the conversion
+        characters are as follows:</p>
+
+        <div class="variablelist">
+          <dl>
+            <dt><span class="term"><em class="replaceable"><code>%_c</code></em>, <em class="replaceable"><code>%_p</code></em>, <em class="replaceable"><code>%_u</code></em>, <em class="replaceable"><code>%c</code></em></span></dt>
+
+            <dd>
+              <p>One byte counts only.</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>%d</code></em>, <em class="replaceable"><code>%i</code></em>, <em class="replaceable"><code>%o</code></em>, <em class="replaceable"><code>%u</code></em>, <em class="replaceable"><code>%X</code></em>, <em class="replaceable"><code>%x</code></em></span></dt>
+
+            <dd>
+              <p>Four byte default, one, two and four byte counts
+              supported.</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>%E</code></em>, <em class="replaceable"><code>%e</code></em>, <em class="replaceable"><code>%f</code></em>, <em class="replaceable"><code>%G</code></em>, <em class="replaceable"><code>%g</code></em></span></dt>
+
+            <dd>
+              <p>Eight byte default, four byte counts
+              supported.</p>
+            </dd>
+          </dl>
+        </div>
+
+        <p>The amount of data interpreted by each format string is
+        the sum of the data required by each format unit, which is
+        the iteration count times the byte count, or the iteration
+        count times the number of bytes required by the format if
+        the byte count is not specified.</p>
+
+        <p>The input is manipulated in ``blocks'', where a block is
+        defined as the largest amount of data specified by any
+        format string. Format strings interpreting less than an
+        input block's worth of data, whose last format unit both
+        interprets some number of bytes and does not have a
+        specified iteration count, have the iteration count
+        incremented until the entire input block has been processed
+        or there is not enough data remaining in the block to
+        satisfy the format string.</p>
+
+        <p>If, either as a result of user specification or hexdump
+        modifying the iteration count as described above, an
+        iteration count is greater than one, no trailing whitespace
+        characters are output during the last iteration.</p>
+
+        <p>It is an error to specify a byte count as well as
+        multiple conversion characters or strings unless all but
+        one of the conversion characters or strings is <span class="command"><strong>_a</strong></span> or <code class="constant">_A</code>.</p>
+
+        <p>If, as a result of the specification of the <em class="parameter"><code>−n</code></em> option or
+        end-of-file being reached, input data only partially
+        satisfies a format string, the input block is zero-padded
+        sufficiently to display all available data (i.e. any format
+        units overlapping the end of data will display some number
+        of the zero bytes).</p>
+
+        <p>Further output by such format strings is replaced by an
+        equivalent number of spaces. An equivalent number of spaces
+        is defined as the number of spaces output by an
+        <code class="option">s</code> conversion character with the
+        same field width and precision as the original conversion
+        character or conversion string but with any
+        “+”, “ ”, “#”
+        conversion flag characters removed, and referencing a NULL
+        string.</p>
+
+        <p>If no format strings are specified, the default display
+        is equivalent to specifying the <code class="option">−x</code> option.</p>
+
+        <p>exits 0 on success and &gt;0 if an error occurred.</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="EXAMPLES">
+      <a id="hexdump-1_sect3" name="hexdump-1_sect3" shape="rect"> </a>
+
+      <h2>EXAMPLES</h2>
+
+      <p>Display the input in perusal format:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+"%06.6_ao "  12/1 "%3_u "
+"\t\t" "%_p "
+"\n"
+</pre>
+      </div>
+
+      <p>Implement the −x option:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+"%07.7_Ax\n"
+"%07.7_ax  " 8/2 "%04x " "\n"
+</pre>
+      </div>
+    </div>
+
+    <div class="refsect1" title="STANDARDS">
+      <a id="hexdump-1_sect4" name="hexdump-1_sect4" shape="rect"> </a>
+
+      <h2>STANDARDS</h2>
+
+      <p>The utility is expected to be <span class="emphasis"><em>IEEE Std 1003.2 (<span class="quote">“<span class="quote">POSIX.2</span>”</span>)</em></span>
+      compatible.</p>
+    </div>
+
+    <div class="refsect1" title="AVAILABILITY">
+      <a id="hexdump-1_sect5" name="hexdump-1_sect5" shape="rect"> </a>
+
+      <h2>AVAILABILITY</h2>
+
+      <p>The hexdump command is part of the util-linux package and
+      is available from
+      ftp://ftp.kernel.org/pub/linux/utils/util-linux/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright (c) 1989, 1990, 1993<br />
+
+                  The Regents of the University of California.  All rights reserved.<br />
+
+                  <br />
+                  Redistribution and use in source and binary forms, with or without<br />
+
+                  modification, are permitted provided that the following conditions<br />
+
+                  are met:<br />
+                  1. Redistributions of source code must retain the above copyright<br />
+
+                     notice, this list of conditions and the following disclaimer.<br />
+
+                  2. Redistributions in binary form must reproduce the above copyright<br />
+
+                     notice, this list of conditions and the following disclaimer in the<br />
+
+                     documentation and/or other materials provided with the distribution.<br />
+
+                  3. All advertising materials mentioning features or use of this software<br />
+
+                     must display the following acknowledgement:<br />
+
+                  This product includes software developed by the University of<br />
+
+                  California, Berkeley and its contributors.<br />
+
+                  4. Neither the name of the University nor the names of its contributors<br />
+
+                     may be used to endorse or promote products derived from this software<br />
+
+                     without specific prior written permission.<br />
+
+                  <br />
+                  THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND<br />
+
+                  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE<br />
+
+                  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE<br />
+
+                  ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE<br />
+
+                  FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL<br />
+
+                  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS<br />
+
+                  OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)<br />
+
+                  HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT<br />
+
+                  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY<br />
+
+                  OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF<br />
+
+                  SUCH DAMAGE.<br />
+                  <br />
+                  from: <script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>(#)hexdump.1
+                  8.2 (Berkeley) 4/18/94<br />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical">
+	<TextView android:layout_height="wrap_content" android:text="Second"
+		android:textSize="30sp" android:layout_width="wrap_content"
+		android:layout_gravity="center_horizontal" />
+	<EditText android:layout_height="wrap_content" android:id="@+id/edit_name"
+		android:hint="Enter your name" android:layout_width="match_parent"
+		android:layout_marginBottom="5dp" android:layout_marginTop="5dp" 
+		/>
+	<Button android:text="Ok" android:id="@+id/button_ok"
+		android:layout_width="wrap_content" android:layout_height="wrap_content" 
+		android:layout_marginBottom="5dp" android:layout_marginTop="5dp" 
+		/>
+	<Button android:text="Cancel" android:id="@+id/button_cancel"
+		android:layout_width="wrap_content" android:layout_height="wrap_content" 
+		android:layout_marginBottom="5dp" android:layout_marginTop="5dp" 
+		/>
+</LinearLayout>

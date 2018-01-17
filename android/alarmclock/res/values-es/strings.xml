@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Translation by Ilija Milicevic <engr3337@gmail.com> -->
+<resources>
+  <string name="app_name">Alarm Klock</string>
+  <string name="delete_all">Borrar todo</string>
+  <string name="label">Nombre</string>
+  <string name="repeat">Repetir</string>
+  <string name="alarm_tone">Tono de alarma</string>
+  <string name="fade_description">De %1$d%% a %2$d%% a los %3$d segundos</string>
+  <string name="ok">OK</string>
+  <string name="cancel">Cancelar</string>
+  <string name="delete">Borrar</string>
+  <string name="snooze">SNOOZE</string>
+  <string name="dismiss">DESCARTAR</string>
+  <string name="plus_five">+5</string>
+  <string name="minus_five">-5</string>
+  <string name="day">%d dia</string>
+  <string name="days">%d dias</string>
+  <string name="hour">%d hora</string>
+  <string name="hours">%d horas</string>
+  <string name="minute">%d minuto</string>
+  <string name="minutes">%d minutos</string>
+  <string name="am">AM</string>
+  <string name="pm">PM</string>
+  <string name="dow_sun_short">Do</string>
+  <string name="dow_mon_short">Lu</string>
+  <string name="dow_tue_short">Ma</string>
+  <string name="dow_wed_short">Mi</string>
+  <string name="dow_thu_short">Ju</string>
+  <string name="dow_fri_short">Vi</string>
+  <string name="dow_sat_short">Sa</string>
+  <string name="dow_sun">Domingo</string>
+  <string name="dow_mon">Lunes</string>
+  <string name="dow_tue">Martes</string>
+  <string name="dow_wed">Miercoles</string>
+  <string name="dow_thu">Jueves</string>
+  <string name="dow_fri">Viernes</string>
+  <string name="dow_sat">Sabado</string>
+  <string name="no_repeats">Sin repeticiones</string>
+  <string name="everyday">Todos los dias</string>
+  <string name="weekdays">Dias de la semana</string>
+  <string name="weekends">Fines de semana</string>
+  <string name="internal">Internos</string>
+  <string name="artists">Artistas</string>
+  <string name="songs">Canciones</string>
+  <string name="selected">Seleccionado: </string>
+  <string name="time_out_title">Apagado de alarma</string>
+  <string name="time_out_error">ADVERTENCIA: Esta alarma ha agotado su tiempo de espera y ha sido desactivada.</string>
+</resources>

@@ -1,0 +1,1693 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#D0D0D0">
+	<ScrollView
+	    android:id="@+id/svDates"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:padding="@dimen/scroll_padding">
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:orientation="vertical" >
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon0"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon0"
+	                android:layout_toRightOf="@+id/ivIcon0"
+	                android:text="@string/date_one"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon0"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_one"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	        </RelativeLayout>
+			<ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon1"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon1"
+	                android:layout_toRightOf="@+id/ivIcon1"
+	                android:text="@string/date_two"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon1"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_two"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+			<ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon2"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon2"
+	                android:layout_toRightOf="@+id/ivIcon2"
+	                android:text="@string/date_three"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon2"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_three"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+			<ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon3"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon3"
+	                android:layout_toRightOf="@+id/ivIcon3"
+	                android:text="@string/date_four"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon3"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_four"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+			<ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon4"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon4"
+	                android:layout_toRightOf="@+id/ivIcon4"
+	                android:text="@string/date_five"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon4"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_five"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+	        <ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon5"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon5"
+	                android:layout_toRightOf="@+id/ivIcon5"
+	                android:text="@string/date_six"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon5"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_six"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+	        <ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon6"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon6"
+	                android:layout_toRightOf="@+id/ivIcon6"
+	                android:text="@string/date_seven"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon6"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_seven"
+
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+	        <ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon7"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon7"
+	                android:layout_toRightOf="@+id/ivIcon7"
+	                android:text="@string/date_eight"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon7"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_eight"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+	        <ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon8"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon8"
+	                android:layout_toRightOf="@+id/ivIcon8"
+	                android:text="@string/date_nine"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon8"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_nine"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+	        <ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon9"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon9"
+	                android:layout_toRightOf="@+id/ivIcon9"
+	                android:text="@string/date_ten"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon9"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_ten"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+	        <ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon10"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon10"
+	                android:layout_toRightOf="@+id/ivIcon10"
+	                android:text="@string/date_eleven"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon10"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_eleven"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+	        <ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon11"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon11"
+	                android:layout_toRightOf="@+id/ivIcon11"
+	                android:text="@string/date_twelve"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon11"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_twelve"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+	        <ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon12"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon12"
+	                android:layout_toRightOf="@+id/ivIcon12"
+	                android:text="@string/date_thirteen"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon12"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_thirteen"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+	        <ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon13"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon13"
+	                android:layout_toRightOf="@+id/ivIcon13"
+	                android:text="@string/date_fourteen"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon13"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_fourteen"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+	        <ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon14"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon14"
+	                android:layout_toRightOf="@+id/ivIcon14"
+	                android:text="@string/date_fifteen"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon14"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_fifteen"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+	        <ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon15"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon15"
+	                android:layout_toRightOf="@+id/ivIcon15"
+	                android:text="@string/date_sixteen"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon15"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_sixteen"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+	        <ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon16"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon16"
+	                android:layout_toRightOf="@+id/ivIcon16"
+	                android:text="@string/date_seventeen"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon16"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_seventeen"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+	        <ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon17"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon17"
+	                android:layout_toRightOf="@+id/ivIcon17"
+	                android:text="@string/date_eighteen"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon17"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_eighteen"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+	        <ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon18"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon18"
+	                android:layout_toRightOf="@+id/ivIcon18"
+	                android:text="@string/date_nineteen"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon18"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_nineteen"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+	        <ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon19"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon19"
+	                android:layout_toRightOf="@+id/ivIcon19"
+	                android:text="@string/date_twenty"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon19"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_twenty"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+	        <ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon20"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon20"
+	                android:layout_toRightOf="@+id/ivIcon20"
+	                android:text="@string/date_twentyone"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon20"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_twentyone"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+	        <ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon21"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon21"
+	                android:layout_toRightOf="@+id/ivIcon21"
+	                android:text="@string/date_twentytwo"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon21"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_twentytwo"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+	        <ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon22"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon22"
+	                android:layout_toRightOf="@+id/ivIcon22"
+	                android:text="@string/date_twentythree"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon22"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_twentythree"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+	        <ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon23"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon23"
+	                android:layout_toRightOf="@+id/ivIcon23"
+	                android:text="@string/date_twentyfour"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon23"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_twentyfour"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+	        <ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon24"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon24"
+	                android:layout_toRightOf="@+id/ivIcon24"
+	                android:text="@string/date_twentyfive"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon24"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_twentyfive"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+	        <ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon25"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon25"
+	                android:layout_toRightOf="@+id/ivIcon25"
+	                android:text="@string/date_twentysix"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon25"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_twentysix"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+	        <ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon26"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon26"
+	                android:layout_toRightOf="@+id/ivIcon26"
+	                android:text="@string/date_twentyseven"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon26"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_twentyseven"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+	        <ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon27"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon27"
+	                android:layout_toRightOf="@+id/ivIcon27"
+	                android:text="@string/date_twentyeight"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon27"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_twentyeight"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+	        <ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon28"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon28"
+	                android:layout_toRightOf="@+id/ivIcon28"
+	                android:text="@string/date_twentynine"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon28"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_twentynine"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+	        <ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon29"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon29"
+	                android:layout_toRightOf="@+id/ivIcon29"
+	                android:text="@string/date_thirty"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon29"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_thirty"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+	        <ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon30"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon30"
+	                android:layout_toRightOf="@+id/ivIcon30"
+	                android:text="@string/date_thirtyone"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon30"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_thirtyone"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+	        <ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon31"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon31"
+	                android:layout_toRightOf="@+id/ivIcon31"
+	                android:text="@string/date_thirtytwo"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon31"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_thirtytwo"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+	        <ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon32"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon32"
+	                android:layout_toRightOf="@+id/ivIcon32"
+	                android:text="@string/date_thirtythree"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon32"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_thirtythree"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+	        <ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon33"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon33"
+	                android:layout_toRightOf="@+id/ivIcon33"
+	                android:text="@string/date_thirtyfour"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon33"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_thirtyfour"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+	        <ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon34"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon34"
+	                android:layout_toRightOf="@+id/ivIcon34"
+	                android:text="@string/date_thirtyfive"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon34"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_thirtyfive"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+	        <ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon35"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon35"
+	                android:layout_toRightOf="@+id/ivIcon35"
+	                android:text="@string/date_thirtysix"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon35"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_thirtysix"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+	        <ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon36"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon36"
+	                android:layout_toRightOf="@+id/ivIcon36"
+	                android:text="@string/date_thirtyseven"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon36"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_thirtyseven"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+	        <ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon37"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon37"
+	                android:layout_toRightOf="@+id/ivIcon37"
+	                android:text="@string/date_thirtyeight"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon37"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_thirtyeight"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+	        <ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon38"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon38"
+	                android:layout_toRightOf="@+id/ivIcon38"
+	                android:text="@string/date_thirtynine"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon38"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_thirtynine"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+	        <ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon39"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon39"
+	                android:layout_toRightOf="@+id/ivIcon39"
+	                android:text="@string/date_forty"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon39"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_forty"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+			<ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon40"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon40"
+	                android:layout_toRightOf="@+id/ivIcon40"
+	                android:text="@string/date_fortyone"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon40"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_fortyone"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+	        <ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon41"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon41"
+	                android:layout_toRightOf="@+id/ivIcon41"
+	                android:text="@string/date_fortytwo"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon41"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_fortytwo"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+	        <ImageView
+        		android:id="@+id/ivCal"
+        		android:layout_width="fill_parent"
+        		android:layout_height="@dimen/divider_height"
+        		android:src="@drawable/divider" />
+	        <RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/rlDateOne"
+	            android:background="@drawable/dateborder"
+	            android:padding="@dimen/date_layout_pad" >
+	            <ImageView
+	                android:id="@+id/ivIcon42"
+        			android:layout_width="@dimen/cal_icon_size"
+        			android:layout_height="@dimen/cal_icon_size"
+	                android:src="@drawable/calicon" />
+
+	            <TextView
+	                android:id="@+id/tvDate"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignTop="@+id/ivIcon42"
+	                android:layout_toRightOf="@+id/ivIcon42"
+	                android:text="@string/date_fortythree"
+	                android:layout_marginLeft="@dimen/cal_text_left_margin"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+
+	            <TextView
+	                android:id="@+id/tvReason"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignBottom="@+id/ivIcon42"
+	                android:layout_alignLeft="@+id/tvDate"
+	                android:text="@string/holiday_fortythree"
+	                android:textSize="@dimen/cal_text_size"
+	                android:textColor="@color/dateholiday" />
+	            
+	        </RelativeLayout>
+	    </LinearLayout>
+	</ScrollView>
+</LinearLayout>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Translation by Thiago Elias <thi747@gmail.com> -->
+<resources>
+  <string name="app_name">Alarm Klock</string>
+  <string name="delete_all">Excluir Tudo</string>
+  <string name="label">Nome</string>
+  <string name="repeat">Repetir</string>
+  <string name="alarm_tone">Toque do alarme</string>
+  <string name="fade_description">De %1$d%% até %2$d%% por %3$d segundos</string>
+  <string name="ok">OK</string>
+  <string name="cancel">Cancelar</string>
+  <string name="delete">Excluir</string>
+  <string name="snooze">SONECA</string>
+  <string name="dismiss">DISPENSAR</string>
+  <string name="plus_five">+5</string>
+  <string name="minus_five">-5</string>
+  <string name="day">%d dia</string>
+  <string name="days">%d dias</string>
+  <string name="hour">%d hora</string>
+  <string name="hours">%d horas</string>
+  <string name="minute">%d minuto</string>
+  <string name="minutes">%d minutos</string>
+  <string name="am">AM</string>
+  <string name="pm">PM</string>
+  <string name="dow_sun_short">Dom</string>
+  <string name="dow_mon_short">Seg</string>
+  <string name="dow_tue_short">Ter</string>
+  <string name="dow_wed_short">Qua</string>
+  <string name="dow_thu_short">Qui</string>
+  <string name="dow_fri_short">Sex</string>
+  <string name="dow_sat_short">Sab</string>
+  <string name="dow_sun">Domingo</string>
+  <string name="dow_mon">Segunda</string>
+  <string name="dow_tue">Terça</string>
+  <string name="dow_wed">Quarta</string>
+  <string name="dow_thu">Quinta</string>
+  <string name="dow_fri">Sexta</string>
+  <string name="dow_sat">Sábado</string>
+  <string name="no_repeats">Sem repetições</string>
+  <string name="everyday">Todos os dias</string>
+  <string name="weekdays">Dias úteis</string>
+  <string name="weekends">Fim de semana</string>
+  <string name="internal">Interno</string>
+  <string name="artists">Artistas</string>
+  <string name="songs">Músicas</string>
+  <string name="selected">Selecionado: </string>
+  <string name="time_out_title">Expiração do alarme</string>
+  <string name="time_out_error">AVISO: Este alarme expirou esperando por alguma confirmação.</string>
+</resources>

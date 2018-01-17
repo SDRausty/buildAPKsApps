@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>faccessat(2) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="faccessat(2) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="faccessat(2) — Linux manual pages">
+    <a id="faccessat.2" name="faccessat.2" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>faccessat — check user's permissions of a file
+      relative to a directory file descriptor</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+#include &lt;fcntl.h&gt; /* Definition of AT_* constants */
+#include &lt;unistd.h&gt;
+</pre>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">faccessat</b>(</code></td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">dirfd</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">const char *<var class="pdparam">pathname</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">mode</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">flags</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;">
+        <table border="0" summary="Note">
+          <tr>
+            <td rowspan="2" align="center" valign="top" width="25" colspan="1">
+            <img alt="[Note]" src="../stylesheet/note.png" /></td>
+
+            <th align="left" rowspan="1" colspan="1">Note</th>
+          </tr>
+
+          <tr>
+            <td align="left" valign="top" rowspan="1" colspan="1">
+              <div class="featuretests">
+                <table style="border-collapse: collapse;">
+                  <colgroup span="1">
+                    <col span="1" />
+                  </colgroup>
+
+                  <thead>
+                    <tr>
+                      <th style="" rowspan="1" colspan="1">Feature Test Macro Requirements
+                      for glibc (see <a class="link" href="../htmlman7/feature_test_macros.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">feature_test_macros</span>(7)</span></a>):</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td style="" rowspan="1" colspan="1"><code class="function">faccessat</code>():</td>
+                    </tr>
+
+                    <tr>
+                      <td class="featuretestver" style="" rowspan="1" colspan="1">Since
+                      glibc 2.10:</td>
+                    </tr>
+
+                    <tr>
+                      <td class="featuretestdef" style="" rowspan="1" colspan="1">
+                      <code class="constant">_XOPEN_SOURCE</code>
+                      &gt;= 700 || <code class="constant">_POSIX_C_SOURCE</code> &gt;=
+                      200809L</td>
+                    </tr>
+
+                    <tr>
+                      <td class="featuretestver" style="" rowspan="1" colspan="1">Before
+                      glibc 2.10:</td>
+                    </tr>
+
+                    <tr>
+                      <td class="featuretestdef" style="" rowspan="1" colspan="1">
+                      <code class="constant">_ATFILE_SOURCE</code></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="faccessat-2_sect1" name="faccessat-2_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>The <code class="function">faccessat</code>() system call
+      operates in exactly the same way as <a class="link" href="../htmlman2/access.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">access</span>(2)</span></a>, except for the
+      differences described in this manual page.</p>
+
+      <p>If the pathname given in <em class="parameter"><code>pathname</code></em> is relative, then it
+      is interpreted relative to the directory referred to by the
+      file descriptor <em class="parameter"><code>dirfd</code></em>
+      (rather than relative to the current working directory of the
+      calling process, as is done by <a class="link" href="../htmlman2/access.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">access</span>(2)</span></a> for a relative
+      pathname).</p>
+
+      <p>If <em class="parameter"><code>pathname</code></em> is
+      relative and <em class="parameter"><code>dirfd</code></em> is
+      the special value <code class="constant">AT_FDCWD</code>,
+      then <em class="parameter"><code>pathname</code></em> is
+      interpreted relative to the current working directory of the
+      calling process (like <a class="link" href="../htmlman2/access.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">access</span>(2)</span></a>).</p>
+
+      <p>If <em class="parameter"><code>pathname</code></em> is
+      absolute, then <em class="parameter"><code>dirfd</code></em>
+      is ignored.</p>
+
+      <p><em class="parameter"><code>flags</code></em> is
+      constructed by ORing together zero or more of the following
+      values:</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="constant">AT_EACCESS</code></span></dt>
+
+          <dd>
+            <p>Perform access checks using the effective user and
+            group IDs. By default, <code class="function">faccessat</code>() uses the real IDs (like
+            <a class="link" href="../htmlman2/access.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">access</span>(2)</span></a>).</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">AT_SYMLINK_NOFOLLOW</code></span></dt>
+
+          <dd>
+            <p>If <em class="parameter"><code>pathname</code></em>
+            is a symbolic link, do not dereference it: instead
+            return information about the link itself.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="faccessat-2_sect2" name="faccessat-2_sect2" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p>On success, (all requested permissions granted)
+      <code class="function">faccessat</code>() returns 0. On
+      error, −1 is returned and <code class="varname">errno</code> is set to indicate the error.</p>
+    </div>
+
+    <div class="refsect1" title="ERRORS">
+      <a id="faccessat-2_sect3" name="faccessat-2_sect3" shape="rect"> </a>
+
+      <h2>ERRORS</h2>
+
+      <p>The same errors that occur for <a class="link" href="../htmlman2/access.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">access</span>(2)</span></a> can also occur
+      for <code class="function">faccessat</code>(). The following
+      additional errors can occur for <code class="function">faccessat</code>():</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><span class="errorname">EBADF</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>dirfd</code></em> is not
+            a valid file descriptor.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EINVAL</span></span></dt>
+
+          <dd>
+            <p>Invalid flag specified in <em class="parameter"><code>flags</code></em>.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENOTDIR</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>pathname</code></em> is
+            relative and <em class="parameter"><code>dirfd</code></em> is a file
+            descriptor referring to a file other than a
+            directory.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="VERSIONS">
+      <a id="faccessat-2_sect4" name="faccessat-2_sect4" shape="rect"> </a>
+
+      <h2>VERSIONS</h2>
+
+      <p><code class="function">faccessat</code>() was added to
+      Linux in kernel 2.6.16.</p>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="faccessat-2_sect5" name="faccessat-2_sect5" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>POSIX.1-2008.</p>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="faccessat-2_sect6" name="faccessat-2_sect6" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p>See <a class="link" href="../htmlman2/openat.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">openat</span>(2)</span></a> for an
+      explanation of the need for <code class="function">faccessat</code>().</p>
+
+      <div class="warning" title="Warning" style="margin-left: 0.5in; margin-right: 0.5in;">
+        <table border="0" summary="Warning">
+          <tr>
+            <td rowspan="2" align="center" valign="top" width="25" colspan="1">
+            <img alt="[Warning]" src="../stylesheet/warning.png" /></td>
+
+            <th align="left" rowspan="1" colspan="1">Warning</th>
+          </tr>
+
+          <tr>
+            <td align="left" valign="top" rowspan="1" colspan="1">
+              <p><code class="function">faccessat</code>() is
+              subject to the same kinds of races as <a class="link" href="../htmlman2/access.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">access</span>(2)</span></a> and
+              <a class="link" href="../htmlman3/euidaccess.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">euidaccess</span>(3)</span></a>.</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="refsect2" title="Glibc Notes">
+        <a id="faccessat-2_sect7" name="faccessat-2_sect7" shape="rect"> </a>
+
+        <h3>Glibc Notes</h3>
+
+        <p>The <code class="constant">AT_EACCESS</code> and
+        <code class="constant">AT_SYMLINK_NOFOLLOW</code> flags are
+        actually implemented within the glibc wrapper function for
+        <code class="function">faccessat</code>(). If either of
+        these flags are specified, then the wrapper function
+        employs <a class="link" href="../htmlman2/fstatat.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fstatat</span>(2)</span></a> to determine
+        access permissions.</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="faccessat-2_sect8" name="faccessat-2_sect8" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman2/access.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">access</span>(2)</span></a>, <a class="link" href="../htmlman2/openat.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">openat</span>(2)</span></a>, <a class="link" href="../htmlman3/euidaccess.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">euidaccess</span>(3)</span></a>, <a class="link" href="../htmlman7/credentials.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">credentials</span>(7)</span></a>, <a class="link" href="../htmlman7/path_resolution.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">path_resolution</span>(7)</span></a>,
+      <a class="link" href="../htmlman7/symlink.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">symlink</span>(7)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="faccessat-2_sect9" name="faccessat-2_sect9" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.30 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                  This manpage is Copyright (C) 2006, Michael Kerrisk<br />
+
+                  <br />
+                  Permission is granted to make and distribute verbatim copies of this<br />
+
+                  manual provided the copyright notice and this permission notice are<br />
+
+                  preserved on all copies.<br />
+                  <br />
+                  Permission is granted to copy and distribute modified versions of this<br />
+
+                  manual under the conditions for verbatim copying, provided that the<br />
+
+                  entire resulting derived work is distributed under the terms of a<br />
+
+                  permission notice identical to this one.<br />
+
+                  <br />
+                  Since the Linux kernel and libraries are constantly changing, this<br />
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no<br />
+
+                  responsibility for errors or omissions, or for damages resulting from<br />
+
+                  the use of the information contained herein.  The author(s) may not<br />
+
+                  have taken the same level of care in the production of this manual,<br />
+
+                  which is licensed free of charge, as they might when working<br />
+
+                  professionally.<br />
+                  <br />
+                  Formatted or processed versions of this manual, if unaccompanied by<br />
+
+                  the source, must acknowledge the copyright and authors of this work.<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

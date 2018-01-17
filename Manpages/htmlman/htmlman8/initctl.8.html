@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>initctl(8) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="initctl(8) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="initctl(8) — Linux manual pages">
+    <a id="initctl.8" name="initctl.8" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>initctl — utility to control simpleinit(8)</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">need</code> [<code class="option">−r</code>] service</p>
+      </div>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">display-services</code></p>
+      </div>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">provide</code> service</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="OVERVIEW">
+      <a id="initctl-8_sect1" name="initctl-8_sect1" shape="rect"> </a>
+
+      <h2>OVERVIEW</h2>
+
+      <p>The <span class="command"><strong>initctl</strong></span>
+      programme is designed to help improve the robustness,
+      scalability and readability of system boot scripts. It is now
+      possible to write a modularised set of boot scripts without
+      the complex and fragile numbered symlink scheme used in
+      SysV-style boot scripts. Each script can simply declare,
+      using <span class="citerefentry"><span class="refentrytitle">need</span>(8)</span>, what must run before
+      them.</p>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION for need">
+      <a id="initctl-8_sect2" name="initctl-8_sect2" shape="rect"> </a>
+
+      <h2>DESCRIPTION for need</h2>
+
+      <p>The <span class="command"><strong>need</strong></span>
+      programme is a utility that tells <a class="link" href="../htmlman8/simpleinit.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">simpleinit</span>(8)</span></a> to start a
+      <em class="parameter"><code>service</code></em> (usually a
+      script in <code class="filename">/sbin/init.d</code>) and
+      will wait for the service to become available. If the service
+      is already available, it will not be started again.</p>
+
+      <p>The <em class="parameter"><code>−r</code></em>
+      option is used to tell <a class="link" href="../htmlman8/simpleinit.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">simpleinit</span>(8)</span></a> to "roll
+      back" (stop) services up to (but not including) <em class="parameter"><code>service</code></em>. If <em class="parameter"><code>service</code></em> is not specified, all
+      services are stopped. The <em class="parameter"><code>−r</code></em> option thus allows the
+      system to be partially or wholly shut down in an orderly
+      fashion. The <a class="link" href="../htmlman8/shutdown.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">shutdown</span>(8)</span></a> programme still
+      needs to be run.</p>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION for display-services">
+      <a id="initctl-8_sect3" name="initctl-8_sect3" shape="rect"> </a>
+
+      <h2>DESCRIPTION for display-services</h2>
+
+      <p>When invoked as <em class="replaceable"><code>display-services</code></em> it will
+      write the list of currently available services and the list
+      of failed services to the standard output.</p>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION for provide">
+      <a id="initctl-8_sect4" name="initctl-8_sect4" shape="rect"> </a>
+
+      <h2>DESCRIPTION for provide</h2>
+
+      <p>When invoked as <span class="command"><strong>provide</strong></span> it tells <a class="link" href="../htmlman8/simpleinit.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">simpleinit</span>(8)</span></a> that the
+      parent (calling) process will be providing a service with
+      name <em class="parameter"><code>service</code></em>. If the
+      calling process exits successfully (status 0) the service is
+      deemed to be available. Only one instance of <em class="parameter"><code>service</code></em> may be started, so
+      alternate providers will block and may fail.</p>
+
+      <p>Using <span class="command"><strong>provide</strong></span> it is possible to
+      have multiple potential providers for the same (generic)
+      service (e.g. <span class="command"><strong>sendmail</strong></span> and <span class="command"><strong>qmail</strong></span> both provide a
+      <span class="command"><strong>mta</strong></span> service),
+      where only one actually provides the service. This may be
+      used by service startup scripts which check for configuration
+      files.</p>
+    </div>
+
+    <div class="refsect1" title="EXIT CODE">
+      <a id="initctl-8_sect5" name="initctl-8_sect5" shape="rect"> </a>
+
+      <h2>EXIT CODE</h2>
+
+      <p>The exit code from <span class="command"><strong>need</strong></span> is 0 if the service
+      was successfully started, 1 if the service failed badly, and
+      2 if the service is unavailable (i.e. disabled in
+      configuration files). These exit codes reflect the exit codes
+      from the service startup scripts.</p>
+
+      <p>The exit code from <span class="emphasis"><em>need
+      -r</em></span> is 0 if the service was successfully stopped,
+      1 if the service could not be stopped, and 2 if the service
+      was not available to start with. The service shutdown scripts
+      may only return 0 (for success) or 1 (for failure).</p>
+
+      <p>The exit code from <span class="command"><strong>provide</strong></span> is 0 if the service
+      may be provided, 1 if it may not, and 2 if the parent process
+      is not a child of init. It may block waiting for another
+      provider which is initialising the service.</p>
+    </div>
+
+    <div class="refsect1" title="SIGNALS">
+      <a id="initctl-8_sect6" name="initctl-8_sect6" shape="rect"> </a>
+
+      <h2>SIGNALS</h2>
+
+      <p><a class="link" href="../htmlman8/initctl.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">initctl</span>(8)</span></a> uses
+      <code class="constant">SIGUSR1</code>, <code class="constant">SIGUSR2</code> and <code class="constant">SIGPOLL</code> for communication with <a class="link" href="../htmlman8/simpleinit.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">simpleinit</span>(8)</span></a>. Don't send
+      these signals to it.</p>
+    </div>
+
+    <div class="refsect1" title="FILES">
+      <a id="initctl-8_sect7" name="initctl-8_sect7" shape="rect"> </a>
+
+      <h2>FILES</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="filename">/dev/initctl</code></span></dt>
+
+          <dd>
+            <p>This is the control FIFO, created by <a class="link" href="../htmlman8/simpleinit.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">simpleinit</span>(8)</span></a>, which
+            <a class="link" href="../htmlman8/initctl.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">initctl</span>(8)</span></a> writes
+            commands to.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="initctl-8_sect8" name="initctl-8_sect8" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman8/simpleinit.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">simpleinit</span>(8)</span></a>, <span class="citerefentry"><span class="refentrytitle">init</span>(8)</span></p>
+
+      <p>A more complete discussion of the new boot script system,
+      based on <span class="citerefentry"><span class="refentrytitle">need</span>(8)</span>, is available from:
+      http://www.atnf.csiro.au/~rgooch/linux/boot-scripts/</p>
+    </div>
+
+    <div class="refsect1" title="AUTHOR">
+      <a id="initctl-8_sect9" name="initctl-8_sect9" shape="rect"> </a>
+
+      <h2>AUTHOR</h2>
+
+      <p>Richard Gooch (rgooch@atnf.csiro.au)</p>
+    </div>
+
+    <div class="refsect1" title="AVAILABILITY">
+      <a id="initctl-8_sect10" name="initctl-8_sect10" shape="rect"> </a>
+
+      <h2>AVAILABILITY</h2>
+
+      <p>The initctl command is part of the util-linux package and
+      is available from
+      ftp://ftp.kernel.org/pub/linux/utils/util-linux/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright (C) 2000-2001  Richard Gooch<br />
+
+                  <br />
+                  This program is free software; you can redistribute it and/or modify<br />
+
+                  it under the terms of the GNU General Public License as published by<br />
+
+                  the Free Software Foundation; either version 2 of the License, or<br />
+
+                  (at your option) any later version.<br />
+
+                  <br />
+                  This program is distributed in the hope that it will be useful,<br />
+
+                  but WITHOUT ANY WARRANTY; without even the implied warranty of<br />
+
+                  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<br />
+
+                  GNU General Public License for more details.<br />
+
+                  <br />
+                  You should have received a copy of the GNU General Public License<br />
+
+                  along with this program; if not, write to the Free Software<br />
+
+                  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.<br />
+
+                  <br />
+                  Richard Gooch may be reached by email at  rgooch<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>atnf.csiro.au<br />
+
+                  The postal address is:<br />
+                    Richard Gooch, c/o ATNF, P. O. Box 76, Epping, N.S.W., 2121, Australia.<br />
+
+                  <br />
+                  initctl.8 Richard Gooch
+                  21-FEB-2001<br />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>p11tool(1) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="p11tool(1) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="p11tool(1) — Linux manual pages">
+    <a id="p11tool.1" name="p11tool.1" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>p11tool — Manipulate PKCS #11 tokens.</p>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="p11tool-1_sect1" name="p11tool-1_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>Export/import data from PKCS #11 tokens. To use PKCS #11
+      tokens with gnutls the configuration file
+      /etc/gnutls/pkcs11.conf has to exist and contain a number of
+      lines of the form "load=/usr/lib/opensc-pkcs11.so".</p>
+    </div>
+
+    <div class="refsect1" title="OPTIONS">
+      <a id="p11tool-1_sect2" name="p11tool-1_sect2" shape="rect"> </a>
+
+      <h2>OPTIONS</h2>
+
+      <div class="refsect2" title="Program control options">
+        <a id="p11tool-1_sect3" name="p11tool-1_sect3" shape="rect"> </a>
+
+        <h3>Program control options</h3>
+
+        <div class="variablelist">
+          <dl>
+            <dt><span class="term"><code class="option">−d,
+            −−debug LEVEL</code></span></dt>
+
+            <dd>
+              <p>Specify the debug level. Default is 1.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−h,
+            −−help</code></span></dt>
+
+            <dd>
+              <p>Shows this help text</p>
+            </dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="refsect2" title="Generic options">
+        <a id="p11tool-1_sect4" name="p11tool-1_sect4" shape="rect"> </a>
+
+        <h3>Generic options</h3>
+
+        <div class="variablelist">
+          <dl>
+            <dt><span class="term"><code class="option">−−login</code></span></dt>
+
+            <dd>
+              <p>Force login to the token for the intended
+              operation.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−provider
+            MODULE</code></span></dt>
+
+            <dd>
+              <p>In addition to /etc/gnutls/pkcs11.conf, load the
+              specified module.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−outfile FILE</code></span></dt>
+
+            <dd>
+              <p>Print output to FILE.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−inder,
+            −−inraw</code></span></dt>
+
+            <dd>
+              <p>Input is DER formatted.</p>
+            </dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="refsect2" title="Getting information on available X.509 certificates">
+        <a id="p11tool-1_sect5" name="p11tool-1_sect5" shape="rect"> </a>
+
+        <h3>Getting information on available X.509
+        certificates</h3>
+
+        <div class="variablelist">
+          <dl>
+            <dt><span class="term"><code class="option">−−list−tokens</code></span></dt>
+
+            <dd>
+              <p>Prints all available tokens.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−initialize
+            URL</code></span></dt>
+
+            <dd>
+              <p>Initializes (formats) the specified by the URL
+              token. Note that several tokens do not support this
+              fascility.</p>
+            </dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="refsect2" title="Getting information on available X.509 certificates">
+        <a id="p11tool-1_sect6" name="p11tool-1_sect6" shape="rect"> </a>
+
+        <h3>Getting information on available X.509
+        certificates</h3>
+
+        <div class="variablelist">
+          <dl>
+            <dt><span class="term"><code class="option">−−list−all−certs</code></span></dt>
+
+            <dd>
+              <p>Prints all available certificates.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−list−certs</code></span></dt>
+
+            <dd>
+              <p>Prints all certificates that have a corresponding
+              private key stored in the token.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−list−trusted</code></span></dt>
+
+            <dd>
+              <p>Prints all certificates that have been marked as
+              trusted.</p>
+            </dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="refsect2" title="Getting information on private keys">
+        <a id="p11tool-1_sect7" name="p11tool-1_sect7" shape="rect"> </a>
+
+        <h3>Getting information on private keys</h3>
+
+        <div class="variablelist">
+          <dl>
+            <dt><span class="term"><code class="option">−−list−privkeys</code></span></dt>
+
+            <dd>
+              <p>Prints all available private keys.</p>
+            </dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="refsect2" title="Handling generic objects">
+        <a id="p11tool-1_sect8" name="p11tool-1_sect8" shape="rect"> </a>
+
+        <h3>Handling generic objects</h3>
+
+        <div class="variablelist">
+          <dl>
+            <dt><span class="term"><code class="option">−−export URL</code></span></dt>
+
+            <dd>
+              <p>Exports the object (e.g. certificate) specified by
+              the URL.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−delete URL</code></span></dt>
+
+            <dd>
+              <p>Deletes the object specified by the URL. Note that
+              several tokens do not support deletion.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−detailed−url</code></span></dt>
+
+            <dd>
+              <p>When printing URLs print them in a detailed (to
+              the PKCS #11 module used) form.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−no−detailed−url</code></span></dt>
+
+            <dd>
+              <p>When printing URLs, do not print details on the
+              module used.</p>
+            </dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="refsect2" title="Storing objects">
+        <a id="p11tool-1_sect9" name="p11tool-1_sect9" shape="rect"> </a>
+
+        <h3>Storing objects</h3>
+
+        <div class="variablelist">
+          <dl>
+            <dt><span class="term"><code class="option">−−write URL</code></span></dt>
+
+            <dd>
+              <p>Flag to set when writing an object. Requires one
+              of −−load−privkey,
+              −−load−pubkey,
+              −−load−certificate or
+              −−secret−key options.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−load−privkey</code></span></dt>
+
+            <dd>
+              <p>Load a private key for the write operations.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−load−pubkey</code></span></dt>
+
+            <dd>
+              <p>Load an X.509 subjectPublicKey for the write
+              operation.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−load−certificate</code></span></dt>
+
+            <dd>
+              <p>Load an X.509 certificate for the write
+              operation.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−secret−key</code></span></dt>
+
+            <dd>
+              <p>Specify a hex encoded secret key for the write
+              operation.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−trusted</code></span></dt>
+
+            <dd>
+              <p>The object stored will be marked as trusted.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−label</code></span></dt>
+
+            <dd>
+              <p>The label of the object stored.</p>
+            </dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="refsect2" title="Controlling output">
+        <a id="p11tool-1_sect10" name="p11tool-1_sect10" shape="rect"> </a>
+
+        <h3>Controlling output</h3>
+
+        <div class="variablelist">
+          <dl>
+            <dt><span class="term"><span class="emphasis"><em>−8,
+            −−pkcs8</em></span></span></dt>
+
+            <dd>
+              <p>Use PKCS #8 format for private keys.</p>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="EXAMPLES">
+      <a id="p11tool-1_sect11" name="p11tool-1_sect11" shape="rect"> </a>
+
+      <h2>EXAMPLES</h2>
+
+      <p>To store a private key and certificate, run:</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="informalexample">
+            <pre class="programlisting" xml:space="preserve">
+$ p11tool −−login −−write "pkcs11:XXX"  −−load-privkey key.pem --label "MyKey"
+$ p11tool −−login −−write "pkcs11:XXX"  −−load-certificate cert.pem --label "MyCert"
+</pre>
+          </div>
+        </blockquote>
+      </div>
+
+      <p>To view all objects in a token, use:</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="informalexample">
+            <pre class="programlisting" xml:space="preserve">
+$ p11tool −−login −−list−all 
+</pre>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="refsect1" title="AUTHOR">
+      <a id="p11tool-1_sect12" name="p11tool-1_sect12" shape="rect"> </a>
+
+      <h2>AUTHOR</h2>
+
+      <p>Nikos Mavrogiannopoulos &lt;nmav@gnutls.org&gt; and
+      others; see /usr/share/doc/gnutls−bin/AUTHORS for a
+      complete list.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

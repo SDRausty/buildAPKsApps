@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>getcwd(3) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="getcwd(3) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="getcwd(3) — Linux manual pages">
+    <a id="getcwd.3" name="getcwd.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>getcwd, getwd, get_current_dir_name — Get current
+      working directory</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;unistd.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">char *<b class="fsfunc">getcwd</b>(</code></td>
+
+            <td rowspan="1" colspan="1">char *<var class="pdparam">buf</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">size_t <var class="pdparam">size</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">char *<b class="fsfunc">getwd</b>(</code></td>
+
+            <td rowspan="1" colspan="1">char *<var class="pdparam">buf</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">char *<b class="fsfunc">get_current_dir_name</b>(</code></td>
+
+            <td rowspan="1" colspan="1"><code>void)</code>;</td>
+
+            <td rowspan="1" colspan="1"> </td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;">
+        <table border="0" summary="Note">
+          <tr>
+            <td rowspan="2" align="center" valign="top" width="25" colspan="1">
+            <img alt="[Note]" src="../stylesheet/note.png" /></td>
+
+            <th align="left" rowspan="1" colspan="1">Note</th>
+          </tr>
+
+          <tr>
+            <td align="left" valign="top" rowspan="1" colspan="1">
+              <div class="featuretests">
+                <table style="border-collapse: collapse;">
+                  <colgroup span="1">
+                    <col span="1" />
+                  </colgroup>
+
+                  <thead>
+                    <tr>
+                      <th style="" rowspan="1" colspan="1">Feature Test Macro Requirements
+                      for glibc (see <a class="link" href="../htmlman7/feature_test_macros.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">feature_test_macros</span>(7)</span></a>):</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td style="" rowspan="1" colspan="1"><code class="function">get_current_dir_name</code>():</td>
+                    </tr>
+
+                    <tr>
+                      <td class="featuretestdef" style="" rowspan="1" colspan="1">
+                      <code class="constant">_GNU_SOURCE</code></td>
+                    </tr>
+
+                    <tr>
+                      <td style="" rowspan="1" colspan="1"><code class="function">getwd</code>():</td>
+                    </tr>
+
+                    <tr>
+                      <td class="featuretestver" style="" rowspan="1" colspan="1">Since
+                      glibc 2.12:</td>
+                    </tr>
+
+                    <tr>
+                      <td class="featuretestdef" style="" rowspan="1" colspan="1">
+                      <code class="constant">_BSD_SOURCE</code> ||
+                      (<code class="constant">_XOPEN_SOURCE</code>
+                      &gt;= 500 || <code class="constant">_XOPEN_SOURCE</code> &amp;&amp;
+                      <code class="constant">_XOPEN_SOURCE_EXTENDED</code>)
+                      &amp;&amp; !(<code class="constant">_POSIX_C_SOURCE</code> &gt;=
+                      200809L || <code class="constant">_XOPEN_SOURCE</code> &gt;=
+                      700)</td>
+                    </tr>
+
+                    <tr>
+                      <td class="featuretestver" style="" rowspan="1" colspan="1">Before
+                      glibc 2.12:</td>
+                    </tr>
+
+                    <tr>
+                      <td class="featuretestdef" style="" rowspan="1" colspan="1">
+                      <code class="constant">_BSD_SOURCE</code> ||
+                      <code class="constant">_XOPEN_SOURCE</code>
+                      &gt;= 500 || <code class="constant">_XOPEN_SOURCE</code> &amp;&amp;
+                      <code class="constant">_XOPEN_SOURCE_EXTENDED</code></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="getcwd-3_sect1" name="getcwd-3_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>These functions return a null-terminated string containing
+      an absolute pathname that is the current working directory of
+      the calling process. The pathname is returned as the function
+      result and via the argument <em class="parameter"><code>buf</code></em>, if present.</p>
+
+      <p>The <code class="function">getcwd</code>() function copies
+      an absolute pathname of the current working directory to the
+      array pointed to by <em class="parameter"><code>buf</code></em>, which is of length
+      <em class="parameter"><code>size</code></em>.</p>
+
+      <p>If the length of the absolute pathname of the current
+      working directory, including the terminating null byte,
+      exceeds <em class="parameter"><code>size</code></em> bytes,
+      NULL is returned, and <code class="varname">errno</code> is
+      set to <span class="errorname">ERANGE</span>; an application
+      should check for this error, and allocate a larger buffer if
+      necessary.</p>
+
+      <p>As an extension to the POSIX.1-2001 standard, Linux
+      (libc4, libc5, glibc) <code class="function">getcwd</code>()
+      allocates the buffer dynamically using <a class="link" href="../htmlman3/malloc.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">malloc</span>(3)</span></a> if <em class="parameter"><code>buf</code></em> is NULL. In this case, the
+      allocated buffer has the length <em class="parameter"><code>size</code></em> unless <em class="parameter"><code>size</code></em> is zero, when <em class="parameter"><code>buf</code></em> is allocated as big as
+      necessary. The caller should <a class="link" href="../htmlman3/malloc.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">free</span>(3)</span></a> the returned
+      buffer.</p>
+
+      <p><code class="function">get_current_dir_name</code>() will
+      <a class="link" href="../htmlman3/malloc.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">malloc</span>(3)</span></a> an array big
+      enough to hold the absolute pathname of the current working
+      directory. If the environment variable <code class="constant">PWD</code> is set, and its value is correct, then
+      that value will be returned. The caller should <a class="link" href="../htmlman3/malloc.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">free</span>(3)</span></a> the returned
+      buffer.</p>
+
+      <p><code class="function">getwd</code>() does not <a class="link" href="../htmlman3/malloc.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">malloc</span>(3)</span></a> any memory. The
+      <em class="parameter"><code>buf</code></em> argument should
+      be a pointer to an array at least <code class="constant">PATH_MAX</code> bytes long. If the length of the
+      absolute pathname of the current working directory, including
+      the terminating null byte, exceeds <code class="constant">PATH_MAX</code> bytes, NULL is returned, and
+      <code class="varname">errno</code> is set to <span class="errorname">ENAMETOOLONG</span>. (Note that on some systems,
+      <code class="constant">PATH_MAX</code> may not be a
+      compile-time constant; furthermore, its value may depend on
+      the file system, see <a class="link" href="../htmlman3/fpathconf.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pathconf</span>(3)</span></a>.) For
+      portability and security reasons, use of <code class="function">getwd</code>() is deprecated.</p>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="getcwd-3_sect2" name="getcwd-3_sect2" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p>On success, these functions return a pointer to a string
+      containing the pathname of the current working directory. In
+      the case <code class="function">getcwd</code>() and
+      <code class="function">getwd</code>() this is the same value
+      as <em class="replaceable"><code>buf.</code></em></p>
+
+      <p>On failure, these functions return NULL, and <code class="varname">errno</code> is set to indicate the error. The
+      contents of the array pointed to by <em class="parameter"><code>buf</code></em> are undefined on error.</p>
+    </div>
+
+    <div class="refsect1" title="ERRORS">
+      <a id="getcwd-3_sect3" name="getcwd-3_sect3" shape="rect"> </a>
+
+      <h2>ERRORS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><span class="errorname">EACCES</span></span></dt>
+
+          <dd>
+            <p>Permission to read or search a component of the
+            filename was denied.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EFAULT</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>buf</code></em> points
+            to a bad address.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EINVAL</span></span></dt>
+
+          <dd>
+            <p>The <em class="parameter"><code>size</code></em>
+            argument is zero and <em class="parameter"><code>buf</code></em> is not a null
+            pointer.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EINVAL</span></span></dt>
+
+          <dd>
+            <p><code class="function">getwd</code>(): <em class="parameter"><code>buf</code></em> is NULL.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENAMETOOLONG</span></span></dt>
+
+          <dd>
+            <p><code class="function">getwd</code>(): The size of
+            the null-terminated absolute pathname string exceeds
+            <code class="constant">PATH_MAX</code> bytes.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENOENT</span></span></dt>
+
+          <dd>
+            <p>The current working directory has been unlinked.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ERANGE</span></span></dt>
+
+          <dd>
+            <p>The <em class="parameter"><code>size</code></em>
+            argument is less than the length of the absolute
+            pathname of the working directory, including the
+            terminating null byte. You need to allocate a bigger
+            array and try again.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="getcwd-3_sect4" name="getcwd-3_sect4" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p><code class="function">getcwd</code>() conforms to
+      POSIX.1-2001. Note however that POSIX.1-2001 leaves the
+      behavior of <code class="function">getcwd</code>()
+      unspecified if <em class="parameter"><code>buf</code></em> is
+      NULL.</p>
+
+      <p><code class="function">getwd</code>() is present in
+      POSIX.1-2001, but marked LEGACY. POSIX.1-2008 removes the
+      specification of <code class="function">getwd</code>(). Use
+      <code class="function">getcwd</code>() instead. POSIX.1-2001
+      does not define any errors for <code class="function">getwd</code>().</p>
+
+      <p><code class="function">get_current_dir_name</code>() is a
+      GNU extension.</p>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="getcwd-3_sect5" name="getcwd-3_sect5" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p>Under Linux, the function <code class="function">getcwd</code>() is a system call (since 2.1.92).
+      On older systems it would query <code class="filename">/proc/self/cwd</code>. If both system call and
+      proc file system are missing, a generic implementation is
+      called. Only in that case can these calls fail under Linux
+      with <span class="errorname">EACCES</span>.</p>
+
+      <p>These functions are often used to save the location of the
+      current working directory for the purpose of returning to it
+      later. Opening the current directory (".") and calling
+      <a class="link" href="../htmlman2/chdir.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fchdir</span>(2)</span></a> to return is
+      usually a faster and more reliable alternative when
+      sufficiently many file descriptors are available, especially
+      on platforms other than Linux.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="getcwd-3_sect6" name="getcwd-3_sect6" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman2/chdir.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">chdir</span>(2)</span></a>, <a class="link" href="../htmlman2/chdir.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fchdir</span>(2)</span></a>, <a class="link" href="../htmlman2/open.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">open</span>(2)</span></a>, <a class="link" href="../htmlman2/unlink.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">unlink</span>(2)</span></a>, <a class="link" href="../htmlman3/malloc.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">free</span>(3)</span></a>, <a class="link" href="../htmlman3/malloc.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">malloc</span>(3)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="getcwd-3_sect7" name="getcwd-3_sect7" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.28 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright (c) 1993 by Thomas Koenig (ig25<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>rz.uni-karlsruhe.de)<br />
+
+                  <br />
+                  Permission is granted to make and distribute verbatim copies of this<br />
+
+                  manual provided the copyright notice and this permission notice are<br />
+
+                  preserved on all copies.<br />
+                  <br />
+                  Permission is granted to copy and distribute modified versions of this<br />
+
+                  manual under the conditions for verbatim copying, provided that the<br />
+
+                  entire resulting derived work is distributed under the terms of a<br />
+
+                  permission notice identical to this one.<br />
+
+                  <br />
+                  Since the Linux kernel and libraries are constantly changing, this<br />
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no<br />
+
+                  responsibility for errors or omissions, or for damages resulting from<br />
+
+                  the use of the information contained herein.  The author(s) may not<br />
+
+                  have taken the same level of care in the production of this manual,<br />
+
+                  which is licensed free of charge, as they might when working<br />
+
+                  professionally.<br />
+                  <br />
+                  Formatted or processed versions of this manual, if unaccompanied by<br />
+
+                  the source, must acknowledge the copyright and authors of this work.<br />
+
+                  License.<br />
+                  Modified Wed Jul 21 22:35:42 1993 by Rik Faith (faith<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cs.unc.edu)<br />
+
+                  Modified 18 Mar 1996 by Martin Schulze (joey<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>infodrom.north.de):<br />
+
+                    Corrected description of getwd().<br />
+
+                  Modified Sat Aug 21 12:32:12 MET 1999 by aeb - applied fix by aj<br />
+
+                  Modified Mon Dec 11 13:32:51 MET 2000 by aeb<br />
+
+                  Modified Thu Apr 22 03:49:15 CEST 2002 by Roger Luethi &lt;rl<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>hellgate.ch&gt;<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

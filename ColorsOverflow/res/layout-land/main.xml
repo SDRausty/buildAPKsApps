@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--============================================================================
+ =                                                                             =
+ = Overflow is very simple but very addictive board game. The game is for two  =
+ = players who try to conquer all stones of the opposite player. The game was  =
+ = developed as master thesis in New Bulgarian University, Sofia, Bulgaria.    =
+ =                                                                             =
+ = Copyright (C) 2012 by Yuriy Stanchev  ( i_stanchev@ml1.net )                =
+ =                                                                             =
+ = This program is free software: you can redistribute it and/or modify        =
+ = it under the terms of the GNU General Public License as published by        =
+ = the Free Software Foundation, either version 3 of the License, or           =
+ = (at your option) any later version.                                         =
+ =                                                                             =
+ = This program is distributed in the hope that it will be useful,             =
+ = but WITHOUT ANY WARRANTY; without even the implied warranty of              =
+ = MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the               =
+ = GNU General Public License for more details.                                =
+ =                                                                             =
+ = You should have received a copy of the GNU General Public License           =
+ = along with this program. If not, see <http://www.gnu.org/licenses/>.        =
+ =                                                                             =
+ ============================================================================-->
+
+<TableLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_height="fill_parent"
+android:layout_width="fill_parent"
+android:padding="15dip"
+android:layout_gravity="center"
+android:stretchColumns="*" 
+android:orientation="horizontal" >
+    <TableRow>
+    <Button
+        android:id="@+id/bNew"
+        android:layout_width="182dp"
+        android:layout_height="40dp"
+        android:background="@drawable/menu_button_brown"
+        android:padding="5dp"
+        android:textColor="@color/black"
+        android:text="@string/newgame" />
+
+    <Button
+        android:id="@+id/bSettings"
+        android:layout_width="182dp"
+        android:layout_height="40dp"
+        android:background="@drawable/menu_button_brown"
+        android:padding="5dp"
+        android:textColor="@color/black"
+        android:text="@string/settings" />
+</TableRow>
+<TableRow>
+    <Button
+        android:id="@+id/bAbout"
+        android:layout_width="182dp"
+        android:layout_height="40dp"
+        android:background="@drawable/menu_button_brown"
+        android:padding="5dp"
+        android:textColor="@color/black"
+        android:text="@string/about" />
+    
+
+    <Button
+        android:id="@+id/bGameRules"
+        android:layout_width="182dp"
+        android:layout_height="40dp"
+        android:background="@drawable/menu_button_brown"
+        android:padding="5dp"
+        android:textColor="@color/black"
+        android:text="@string/rules" />
+    </TableRow>
+    <TableRow>
+    <Button
+        android:id="@+id/bHighscore"
+        android:layout_width="182dp"
+        android:layout_height="40dp"
+        android:background="@drawable/menu_button_brown"
+        android:padding="5dp"
+        android:textColor="@color/black"
+        android:text="@string/highscore" />
+    
+    <Button
+        android:id="@+id/bExit"
+        android:layout_width="182dp"
+        android:layout_height="40dp"
+        android:background="@drawable/menu_button_brown"
+        android:padding="5dp"
+        android:textColor="@color/black"
+        android:text="@string/exit" />
+    </TableRow>
+</TableLayout>

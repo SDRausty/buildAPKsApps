@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	package="com.sikni8.parkingsuspension" android:versionCode="4"
+	android:versionName="1.3">
+	<uses-sdk android:minSdkVersion="14"
+	    android:targetSdkVersion="27" />
+
+	<application
+	    android:icon="@drawable/icon"
+	    android:label="@string/app_name"
+	    android:allowBackup="true"
+	    android:screenOrientation="portrait"
+        android:theme="@style/MyTheme" >
+		<activity android:name="com.sikni8.parkingsuspension.MainActivity"
+			android:label="@string/app_name"
+			android:screenOrientation="sensorPortrait"
+			android:configChanges="orientation|keyboardHidden">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		<activity
+            android:name="com.sikni8.parkingsuspension.AboutApp"
+            android:label="About"
+			android:screenOrientation="sensorPortrait"
+			android:configChanges="orientation|keyboardHidden"
+            android:parentActivityName="com.sikni8.parkingsuspension" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sikni8.parkingsuspension" />
+        </activity>
+		<activity
+            android:name="com.sikni8.parkingsuspension.ShowHelp"
+            android:label="Help"
+			android:screenOrientation="sensorPortrait"
+			android:configChanges="orientation|keyboardHidden"
+            android:parentActivityName="com.sikni8.parkingsuspension" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sikni8.parkingsuspension" />
+        </activity>
+
+		<receiver android:name="com.sikni8.parkingsuspension.ParkingWidget" android:label="@string/widgetname">
+			<intent-filter>
+				<action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+				<action android:name="android.intent.action.TIME_SET" />
+			</intent-filter>
+			<meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_info" />
+		</receiver>
+		
+		<receiver android:name="com.sikni8.parkingsuspension.ParkingMiniWidget" android:label="@string/widgetmininame">
+			<intent-filter>
+				<action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+				<action android:name="android.intent.action.TIME_SET" />
+			</intent-filter>
+			<meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_mini_info" />
+		</receiver>
+
+	</application>
+</manifest>

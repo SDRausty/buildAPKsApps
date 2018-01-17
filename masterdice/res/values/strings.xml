@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GM Dice</string>
+    <string name="app_name_long">GameMaster Dice</string>
+    <string name="ds_choose">Choose dice</string>
+    <string name="ds_custom">More...</string>
+    <string name="ds_config">Configure dice</string>
+    <string name="spin_count">Number of dice</string>
+    <string name="spin_sides">Sides on a die</string>
+    <string name="spin_modifier">Probe modifier</string>
+
+    <string name="log_empty">Push buttons to roll!\n\nLong-press buttons to configure dice.</string>
+    <string name="roll_placeholder">Roll it!</string>
+    <string name="roll_result">Roll Result</string>
+
+    <string name="binary_no">no</string>
+    <string name="binary_yes">yes</string>
+
+    <string name="menu_screen_on">Keep screen on</string>
+    <string name="menu_clear_log">Clear log</string>
+    <string name="menu_about">About...</string>
+
+    <string name="about_text">Copyright © 2011 Georg Lukas &lt;georg@op-co.de&gt;\n
+    	\n
+	</string>
+    <string name="about_gpl">This program is free software; you can redistribute it and/or
+	modify it under the terms of the GNU General Public License
+	as published by the Free Software Foundation; either version 2
+	of the License, or (at your option) any later version.
+	\n\n
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	\n\n
+	You should have received a copy of the GNU General Public License
+	along with this program; if not, write to the Free Software
+	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+	\n\n
+	http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+	</string>
+
+	<string name="about_home">Home Page</string>
+</resources>

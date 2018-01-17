@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="caldwell.ben.trolly"
+      android:versionCode="6"
+      android:versionName="1.4">
+	<uses-sdk android:minSdkVersion="14" />
+    <application android:icon="@drawable/icon" android:label="@string/app_name">
+    	<provider android:name=".TrollyProvider"
+            android:authorities="caldwell.ben.provider.Trolly"
+        />
+        <activity android:name=".Trolly"
+        		android:icon="@drawable/icon_48"
+                android:label="@string/app_name"
+                android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="org.openintents.action.INSERT_FROM_EXTRAS" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="org.openintents.type/string.arraylist.shopping" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".TrollyPreferences"
+        		android:label="@string/app_name" >
+        </activity>
+    </application>
+</manifest> 

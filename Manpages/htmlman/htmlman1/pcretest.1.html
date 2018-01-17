@@ -1,0 +1,1449 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>pcretest(1) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="pcretest(1) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="pcretest(1) — Linux manual pages">
+    <a id="pcretest.1" name="pcretest.1" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>pcretest — a program for testing Perl-compatible
+      regular expressions.</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">pcretest</code> [options] [source]
+        [destination]</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="pcretest-1_sect1" name="pcretest-1_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><span class="command"><strong>pcretest</strong></span> was
+      written as a test program for the PCRE regular expression
+      library itself, but it can also be used for experimenting
+      with regular expressions. This document describes the
+      features of the test program; for details of the regular
+      expressions themselves, see the <a class="link" href="../htmlman3/pcrepattern.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pcrepattern</span>(3)</span></a>
+      documentation. For details of the PCRE library function calls
+      and their options, see the <a class="link" href="../htmlman3/pcreapi.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pcreapi</span>(3)</span></a>
+      documentation.</p>
+    </div>
+
+    <div class="refsect1" title="OPTIONS">
+      <a id="pcretest-1_sect2" name="pcretest-1_sect2" shape="rect"> </a>
+
+      <h2>OPTIONS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="option">−b</code></span></dt>
+
+          <dd>
+            <p>Behave as if each regex has the <code class="filename">/B</code> (show bytecode) modifier; the
+            internal form is output after compilation.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−C</code></span></dt>
+
+          <dd>
+            <p>Output the version number of the PCRE library, and
+            all available information about the optional features
+            that are included, and then exit.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−d</code></span></dt>
+
+          <dd>
+            <p>Behave as if each regex has the <code class="filename">/D</code> (debug) modifier; the internal
+            form and information about the compiled pattern is
+            output after compilation; <code class="option">−d</code> is equivalent to <code class="option">−b −i</code>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−dfa</code></span></dt>
+
+          <dd>
+            <p>Behave as if each data line contains the \D escape
+            sequence; this causes the alternative matching
+            function, <code class="function">pcre_dfa_exec</code>(), to be used instead
+            of the standard <code class="function">pcre_exec</code>() function (more detail is
+            given below).</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−help</code></span></dt>
+
+          <dd>
+            <p>Output a brief summary these options and then
+            exit.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−i</code></span></dt>
+
+          <dd>
+            <p>Behave as if each regex has the <code class="filename">/I</code> modifier; information about the
+            compiled pattern is given after compilation.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−M</code></span></dt>
+
+          <dd>
+            <p>Behave as if each data line contains the \M escape
+            sequence; this causes PCRE to discover the minimum
+            MATCH_LIMIT and MATCH_LIMIT_RECURSION settings by
+            calling <code class="function">pcre_exec</code>()
+            repeatedly with different limits.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−m</code></span></dt>
+
+          <dd>
+            <p>Output the size of each compiled pattern after it
+            has been compiled. This is equivalent to adding
+            <code class="filename">/M</code> to each regular
+            expression. For compatibility with earlier versions of
+            pcretest, <code class="option">−s</code> is a
+            synonym for <code class="option">−m</code>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−o</code> <em class="parameter"><code>osize</code></em></span></dt>
+
+          <dd>
+            <p>Set the number of elements in the output vector that
+            is used when calling <code class="function">pcre_exec</code>() or <code class="function">pcre_dfa_exec</code>() to be <em class="parameter"><code>osize</code></em>. The default value
+            is 45, which is enough for 14 capturing subexpressions
+            for <code class="function">pcre_exec</code>() or 22
+            different matches for <code class="function">pcre_dfa_exec</code>(). The vector size can
+            be changed for individual matching calls by including
+            \O in the data line (see below).</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−p</code></span></dt>
+
+          <dd>
+            <p>Behave as if each regex has the <code class="filename">/P</code> modifier; the POSIX wrapper API is
+            used to call PCRE. None of the other options has any
+            effect when <code class="option">−p</code> is
+            set.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−q</code></span></dt>
+
+          <dd>
+            <p>Do not output the version number of <span class="command"><strong>pcretest</strong></span> at the start
+            of execution.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−S</code> <em class="parameter"><code>size</code></em></span></dt>
+
+          <dd>
+            <p>On Unix-like systems, set the size of the runtime
+            stack to <em class="parameter"><code>size</code></em>
+            megabytes.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−t</code></span></dt>
+
+          <dd>
+            <p>Run each compile, study, and match many times with a
+            timer, and output resulting time per compile or match
+            (in milliseconds). Do not set <code class="option">−m</code> with <code class="option">−t</code>, because you will then get the
+            size output a zillion times, and the timing will be
+            distorted. You can control the number of iterations
+            that are used for timing by following <code class="option">−t</code> with a number (as a separate
+            item on the command line). For example, "-t 1000" would
+            iterate 1000 times. The default is to iterate 500000
+            times.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−tm</code></span></dt>
+
+          <dd>
+            <p>This is like <code class="option">−t</code>
+            except that it times only the matching phase, not the
+            compile or study phases.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="pcretest-1_sect3" name="pcretest-1_sect3" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>If <span class="command"><strong>pcretest</strong></span>
+      is given two filename arguments, it reads from the first and
+      writes to the second. If it is given only one filename
+      argument, it reads from that file and writes to stdout.
+      Otherwise, it reads from stdin and writes to stdout, and
+      prompts for each line of input, using "re&gt;" to prompt for
+      regular expressions, and "data&gt;" to prompt for data
+      lines.</p>
+
+      <p>When <span class="command"><strong>pcretest</strong></span> is built, a
+      configuration option can specify that it should be linked
+      with the <span class="command"><strong>libreadline</strong></span> library. When
+      this is done, if the input is from a terminal, it is read
+      using the <code class="function">readline</code>() function.
+      This provides line-editing and history facilities. The output
+      from the <code class="option">−help</code> option
+      states whether or not <code class="function">readline</code>() will be used.</p>
+
+      <p>The program handles any number of sets of input on a
+      single input file. Each set starts with a regular expression,
+      and continues with any number of data lines to be matched
+      against the pattern.</p>
+
+      <p>Each data line is matched separately and independently. If
+      you want to do multi-line matches, you have to use the \n
+      escape sequence (or \r or \r\n, etc., depending on the
+      newline setting) in a single line of input to encode the
+      newline sequences. There is no limit on the length of data
+      lines; the input buffer is automatically extended if it is
+      too small.</p>
+
+      <p>An empty line signals the end of the data lines, at which
+      point a new regular expression is read. The regular
+      expressions are given enclosed in any non-alphanumeric
+      delimiters other than backslash, for example:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+/(a|bc)x+yz/
+</pre>
+      </div>
+
+      <p>White space before the initial delimiter is ignored. A
+      regular expression may be continued over several input lines,
+      in which case the newline characters are included within it.
+      It is possible to include the delimiter within the pattern by
+      escaping it, for example</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+/abc\/def/
+</pre>
+      </div>
+
+      <p>If you do so, the escape and the delimiter form part of
+      the pattern, but since delimiters are always
+      non-alphanumeric, this does not affect its interpretation. If
+      the terminating delimiter is immediately followed by a
+      backslash, for example,</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+/abc/\
+</pre>
+      </div>
+
+      <p>then a backslash is added to the end of the pattern. This
+      is done to provide a way of testing the error condition that
+      arises if a pattern finishes with a backslash, because</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+/abc\/
+</pre>
+      </div>
+
+      <p>is interpreted as the first line of a pattern that starts
+      with "abc/", causing pcretest to read the next line as a
+      continuation of the regular expression.</p>
+    </div>
+
+    <div class="refsect1" title="PATTERN MODIFIERS">
+      <a id="pcretest-1_sect4" name="pcretest-1_sect4" shape="rect"> </a>
+
+      <h2>PATTERN MODIFIERS</h2>
+
+      <p>A pattern may be followed by any number of modifiers,
+      which are mostly single characters. Following Perl usage,
+      these are referred to below as, for example, "the
+      <code class="filename">/i</code> modifier", even though the
+      delimiter of the pattern need not always be a slash, and no
+      slash is used when writing modifiers. Whitespace may appear
+      between the final pattern delimiter and the first modifier,
+      and between the modifiers themselves.</p>
+
+      <p>The <code class="filename">/i</code>, <code class="filename">/m</code>, <code class="filename">/s</code>, and
+      <code class="filename">/x</code> modifiers set the
+      PCRE_CASELESS, PCRE_MULTILINE, PCRE_DOTALL, or PCRE_EXTENDED
+      options, respectively, when <code class="function">pcre_compile</code>() is called. These four
+      modifier letters have the same effect as they do in Perl. For
+      example:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+/caseless/i
+</pre>
+      </div>
+
+      <p>The following table shows additional modifiers for setting
+      PCRE compile-time options that do not correspond to anything
+      in Perl:</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="informaltable">
+            <table style="border-collapse: collapse;">
+              <colgroup span="1">
+                <col span="1" />
+                <col span="1" />
+              </colgroup>
+
+              <tbody>
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">/8</code></td>
+
+                  <td style="" rowspan="1" colspan="1">PCRE_UTF8</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">/?</code></td>
+
+                  <td style="" rowspan="1" colspan="1">PCRE_NO_UTF8_CHECK</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">/A</code></td>
+
+                  <td style="" rowspan="1" colspan="1"><code class="literal">PCRE_ANCHORED</code></td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">/C</code></td>
+
+                  <td style="" rowspan="1" colspan="1"><code class="literal">PCRE_AUTO_CALLOUT</code></td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">/E</code></td>
+
+                  <td style="" rowspan="1" colspan="1"><code class="literal">PCRE_DOLLAR_ENDONLY</code></td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">/f</code></td>
+
+                  <td style="" rowspan="1" colspan="1"><code class="literal">PCRE_FIRSTLINE</code></td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">/J</code></td>
+
+                  <td style="" rowspan="1" colspan="1"><code class="literal">PCRE_DUPNAMES</code></td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">/N</code></td>
+
+                  <td style="" rowspan="1" colspan="1"><code class="literal">PCRE_NO_AUTO_CAPTURE</code></td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">/U</code></td>
+
+                  <td style="" rowspan="1" colspan="1"><code class="literal">PCRE_UNGREEDY</code></td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">/W</code></td>
+
+                  <td style="" rowspan="1" colspan="1"><code class="literal">PCRE_UCP</code></td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">/X</code></td>
+
+                  <td style="" rowspan="1" colspan="1"><code class="literal">PCRE_EXTRA</code></td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">/Y</code></td>
+
+                  <td style="" rowspan="1" colspan="1"><code class="literal">PCRE_NO_START_OPTIMIZE</code></td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">/&lt;JS&gt;</code></td>
+
+                  <td style="" rowspan="1" colspan="1"><code class="literal">PCRE_JAVASCRIPT_COMPAT</code></td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">/&lt;cr&gt;</code></td>
+
+                  <td style="" rowspan="1" colspan="1"><code class="literal">PCRE_NEWLINE_CR</code></td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">/&lt;lf&gt;</code></td>
+
+                  <td style="" rowspan="1" colspan="1"><code class="literal">PCRE_NEWLINE_LF</code></td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">/&lt;crlf&gt;</code></td>
+
+                  <td style="" rowspan="1" colspan="1"><code class="literal">PCRE_NEWLINE_CRLF</code></td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">/&lt;anycrlf&gt;</code></td>
+
+                  <td style="" rowspan="1" colspan="1"><code class="literal">PCRE_NEWLINE_ANYCRLF</code></td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">/&lt;any&gt;</code></td>
+
+                  <td style="" rowspan="1" colspan="1"><code class="literal">PCRE_NEWLINE_ANY</code></td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">/&lt;bsr_anycrlf&gt;</code></td>
+
+                  <td style="" rowspan="1" colspan="1"><code class="literal">PCRE_BSR_ANYCRLF</code></td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">/&lt;bsr_unicode&gt;</code></td>
+
+                  <td style="" rowspan="1" colspan="1"><code class="literal">PCRE_BSR_UNICODE</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </blockquote>
+      </div>
+
+      <p>The modifiers that are enclosed in angle brackets are
+      literal strings as shown, including the angle brackets, but
+      the letters can be in either case. This example sets
+      multiline matching with CRLF as the line ending sequence:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+/^abc/m&lt;crlf&gt;
+</pre>
+      </div>
+
+      <p>As well as turning on the PCRE_UTF8 option, the
+      <code class="filename">/8</code> modifier also causes any
+      non-printing characters in output strings to be printed using
+      the \x{hh...} notation if they are valid UTF-8 sequences.
+      Full details of the PCRE options are given in the <a class="link" href="../htmlman3/pcreapi.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pcreapi</span>(3)</span></a>
+      documentation.</p>
+
+      <div class="refsect2" title="Finding all matches in a string">
+        <a id="pcretest-1_sect5" name="pcretest-1_sect5" shape="rect"> </a>
+
+        <h3>Finding all matches in a string</h3>
+
+        <p>Searching for all possible matches within each subject
+        string can be requested by the <code class="filename">/g</code> or <code class="filename">/G</code>
+        modifier. After finding a match, PCRE is called again to
+        search the remainder of the subject string. The difference
+        between <code class="filename">/g</code> and <code class="filename">/G</code> is that the former uses the <em class="parameter"><code>startoffset</code></em> argument to
+        <code class="function">pcre_exec</code>() to start
+        searching at a new point within the entire string (which is
+        in effect what Perl does), whereas the latter passes over a
+        shortened substring. This makes a difference to the
+        matching process if the pattern begins with a lookbehind
+        assertion (including \b or \B).</p>
+
+        <p>If any call to <code class="function">pcre_exec</code>()
+        in a <code class="filename">/g</code> or <code class="filename">/G</code> sequence matches an empty string, the
+        next call is done with the PCRE_NOTEMPTY_ATSTART and
+        PCRE_ANCHORED flags set in order to search for another,
+        non-empty, match at the same point. If this second match
+        fails, the start offset is advanced, and the normal match
+        is retried. This imitates the way Perl handles such cases
+        when using the <code class="filename">/g</code> modifier or
+        the <code class="function">split</code>() function.
+        Normally, the start offset is advanced by one character,
+        but if the newline convention recognizes CRLF as a newline,
+        and the current character is CR followed by LF, an advance
+        of two is used.</p>
+      </div>
+
+      <div class="refsect2" title="Other modifiers">
+        <a id="pcretest-1_sect6" name="pcretest-1_sect6" shape="rect"> </a>
+
+        <h3>Other modifiers</h3>
+
+        <p>There are yet more modifiers for controlling the way
+        <span class="command"><strong>pcretest</strong></span>
+        operates.</p>
+
+        <p>The <code class="filename">/+</code> modifier requests
+        that as well as outputting the substring that matched the
+        entire pattern, pcretest should in addition output the
+        remainder of the subject string. This is useful for tests
+        where the subject contains multiple copies of the same
+        substring.</p>
+
+        <p>The <code class="filename">/B</code> modifier is a
+        debugging feature. It requests that <span class="command"><strong>pcretest</strong></span> output a
+        representation of the compiled byte code after compilation.
+        Normally this information contains length and offset
+        values; however, if <code class="filename">/Z</code> is
+        also present, this data is replaced by spaces. This is a
+        special feature for use in the automatic test scripts; it
+        ensures that the same output is generated for different
+        internal link sizes.</p>
+
+        <p>The <code class="filename">/D</code> modifier is a PCRE
+        debugging feature, and is equivalent to <code class="filename">/BI</code>, that is, both the <code class="filename">/B</code> and the <code class="filename">/I</code> modifiers.</p>
+
+        <p>The <code class="filename">/F</code> modifier causes
+        <span class="command"><strong>pcretest</strong></span> to
+        flip the byte order of the fields in the compiled pattern
+        that contain 2-byte and 4-byte numbers. This facility is
+        for testing the feature in PCRE that allows it to execute
+        patterns that were compiled on a host with a different
+        endianness. This feature is not available when the POSIX
+        interface to PCRE is being used, that is, when the
+        <code class="filename">/P</code> pattern modifier is
+        specified. See also the section about saving and reloading
+        compiled patterns below.</p>
+
+        <p>The <code class="filename">/I</code> modifier requests
+        that <span class="command"><strong>pcretest</strong></span>
+        output information about the compiled pattern (whether it
+        is anchored, has a fixed first character, and so on). It
+        does this by calling <code class="function">pcre_fullinfo</code>() after compiling a
+        pattern. If the pattern is studied, the results of that are
+        also output.</p>
+
+        <p>The <code class="filename">/K</code> modifier requests
+        <span class="command"><strong>pcretest</strong></span> to
+        show names from backtracking control verbs that are
+        returned from calls to <code class="function">pcre_exec</code>(). It causes <span class="command"><strong>pcretest</strong></span> to create a
+        <em class="parameter"><code>pcre_extra</code></em> block if
+        one has not already been created by a call to <code class="function">pcre_study</code>(), and to set the
+        PCRE_EXTRA_MARK flag and the <span class="command"><strong>mark</strong></span> field within it,
+        every time that <code class="function">pcre_exec</code>()
+        is called. If the variable that the <span class="command"><strong>mark</strong></span> field points to is
+        non-NULL for a match, non-match, or partial match,
+        <span class="command"><strong>pcretest</strong></span>
+        prints the string to which it points. For a match, this is
+        shown on a line by itself, tagged with "MK:". For a
+        non-match it is added to the message.</p>
+
+        <p>The <code class="filename">/L</code> modifier must be
+        followed directly by the name of a locale, for example,</p>
+
+        <div class="informalexample">
+          <pre class="programlisting" xml:space="preserve">
+/pattern/Lfr_FR
+</pre>
+        </div>
+
+        <p>For this reason, it must be the last modifier. The given
+        locale is set, <code class="function">pcre_maketables</code>() is called to build a
+        set of character tables for the locale, and this is then
+        passed to <code class="function">pcre_compile</code>() when
+        compiling the regular expression. Without an <code class="filename">/L</code> (or <code class="filename">/T</code>)
+        modifier, NULL is passed as the tables pointer; that is,
+        <code class="filename">/L</code> applies only to the
+        expression on which it appears.</p>
+
+        <p>The <code class="filename">/M</code> modifier causes the
+        size of memory block used to hold the compiled pattern to
+        be output.</p>
+
+        <p>The <code class="filename">/S</code> modifier causes
+        <code class="function">pcre_study</code>() to be called
+        after the expression has been compiled, and the results
+        used when the expression is matched.</p>
+
+        <p>The <code class="filename">/T</code> modifier must be
+        followed by a single digit. It causes a specific set of
+        built-in character tables to be passed to <code class="function">pcre_compile</code>(). It is used in the
+        standard PCRE tests to check behaviour with different
+        character tables. The digit specifies the tables as
+        follows:</p>
+
+        <div class="informalexample">
+          <pre class="programlisting" xml:space="preserve">
+ 0   the default ASCII tables, as distributed in
+       pcre_chartables.c.dist
+ 1   a set of tables defining ISO 8859 characters
+</pre>
+        </div>
+
+        <p>In table 1, some characters whose codes are greater than
+        128 are identified as letters, digits, spaces, etc.</p>
+      </div>
+
+      <div class="refsect2" title="Using the POSIX wrapper API">
+        <a id="pcretest-1_sect7" name="pcretest-1_sect7" shape="rect"> </a>
+
+        <h3>Using the POSIX wrapper API</h3>
+
+        <p>The <code class="filename">/P</code> modifier causes
+        <span class="command"><strong>pcretest</strong></span> to
+        call PCRE via the POSIX wrapper API rather than its native
+        API. When <code class="filename">/P</code> is set, the
+        following modifiers set options for the <code class="function">regcomp</code>() function:</p>
+
+        <div class="informalexample">
+          <pre class="programlisting" xml:space="preserve">
+ /i    REG_ICASE
+ /m    REG_NEWLINE
+ /N    REG_NOSUB
+ /s    REG_DOTALL     )
+ /U    REG_UNGREEDY   ) These options are not part of
+ /W    REG_UCP        )   the POSIX standard
+ /8    REG_UTF8       )
+</pre>
+        </div>
+
+        <p>The <code class="filename">/+</code> modifier works as
+        described above. All other modifiers are ignored.</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DATA LINES">
+      <a id="pcretest-1_sect8" name="pcretest-1_sect8" shape="rect"> </a>
+
+      <h2>DATA LINES</h2>
+
+      <p>Before each data line is passed to <code class="function">pcre_exec</code>(), leading and trailing
+      whitespace is removed, and it is then scanned for \ escapes.
+      Some of these are pretty esoteric features, intended for
+      checking out some of the more complicated features of PCRE.
+      If you are just testing "ordinary" regular expressions, you
+      probably don't need any of these. The following escapes are
+      recognized:</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="informaltable">
+            <table style="border-collapse: collapse;">
+              <colgroup span="1">
+                <col span="1" />
+                <col span="1" />
+              </colgroup>
+
+              <tbody>
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\a</code></td>
+
+                  <td style="" rowspan="1" colspan="1">alarm (<code class="literal">BEL</code>, \x07)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\b</code></td>
+
+                  <td style="" rowspan="1" colspan="1">backspace (\x08)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\e</code></td>
+
+                  <td style="" rowspan="1" colspan="1">escape (\x27)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\f</code></td>
+
+                  <td style="" rowspan="1" colspan="1">formfeed (\x0c)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\n</code></td>
+
+                  <td style="" rowspan="1" colspan="1">newline (\x0a)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\qdd</code></td>
+
+                  <td style="" rowspan="1" colspan="1">set the <code class="literal">PCRE_MATCH_LIMIT</code> limit to dd
+                  (any number of digits)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\r</code></td>
+
+                  <td style="" rowspan="1" colspan="1">carriage return (\x0d)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\t</code></td>
+
+                  <td style="" rowspan="1" colspan="1">tab (\x09)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\v</code></td>
+
+                  <td style="" rowspan="1" colspan="1">vertical tab (\x0b)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\nnn</code></td>
+
+                  <td style="" rowspan="1" colspan="1">octal character (up to 3 octal
+                  digits) always a byte unless &gt; 255 in
+                  <code class="literal">UTF</code>-8 mode</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\xhh</code></td>
+
+                  <td style="" rowspan="1" colspan="1">hexadecimal byte (up to 2 hex
+                  digits)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\x{hh...}</code></td>
+
+                  <td style="" rowspan="1" colspan="1">hexadecimal character, any number of
+                  digits in <code class="literal">UTF</code>-8
+                  mode</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\A</code></td>
+
+                  <td style="" rowspan="1" colspan="1">pass the <code class="literal">PCRE_ANCHORED</code> option to
+                  <code class="function">pcre_exec</code>() or
+                  <code class="function">pcre_dfa_exec</code>()</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\B</code></td>
+
+                  <td style="" rowspan="1" colspan="1">pass the <code class="literal">PCRE_NOTBOL</code> option to
+                  <code class="function">pcre_exec</code>() or
+                  <code class="function">pcre_dfa_exec</code>()</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\Cdd</code></td>
+
+                  <td style="" rowspan="1" colspan="1">call pcre_copy_substring() for
+                  substring dd after a successful match (number
+                  less than 32)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\Cname</code></td>
+
+                  <td style="" rowspan="1" colspan="1">call pcre_copy_named_substring() for
+                  substring "name" after a successful match (name
+                  termin- ated by next non alphanumeric
+                  character)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\C+</code></td>
+
+                  <td style="" rowspan="1" colspan="1">show the current captured substrings
+                  at callout time</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\C-</code></td>
+
+                  <td style="" rowspan="1" colspan="1">do not supply a callout
+                  function</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\C!n</code></td>
+
+                  <td style="" rowspan="1" colspan="1">return 1 instead of 0 when callout
+                  number n is reached</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\C!n!m</code></td>
+
+                  <td style="" rowspan="1" colspan="1">return 1 instead of 0 when callout
+                  number n is reached for the nth time</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\C*n</code></td>
+
+                  <td style="" rowspan="1" colspan="1">pass the number n (may be negative)
+                  as callout data; this is used as the callout
+                  return value</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\D</code></td>
+
+                  <td style="" rowspan="1" colspan="1">use the <code class="function">pcre_dfa_exec</code>() match
+                  function</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\F</code></td>
+
+                  <td style="" rowspan="1" colspan="1">only shortest match for <code class="function">pcre_dfa_exec</code>()</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\Gdd</code></td>
+
+                  <td style="" rowspan="1" colspan="1">call pcre_get_substring() for
+                  substring dd after a successful match (number
+                  less than 32)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\Gname</code></td>
+
+                  <td style="" rowspan="1" colspan="1">call pcre_get_named_substring() for
+                  substring "name" after a successful match (name
+                  termin- ated by next non-alphanumeric
+                  character)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\L</code></td>
+
+                  <td style="" rowspan="1" colspan="1">call pcre_get_substringlist() after
+                  a successful match</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\M</code></td>
+
+                  <td style="" rowspan="1" colspan="1">discover the minimum <code class="literal">MATCH_LIMIT</code> and <code class="literal">MATCH_LIMIT_RECURSION</code>
+                  settings</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\N</code></td>
+
+                  <td style="" rowspan="1" colspan="1">pass the <code class="literal">PCRE_NOTEMPTY</code> option to
+                  <code class="function">pcre_exec</code>() or
+                  <code class="function">pcre_dfa_exec</code>(); if
+                  used twice, pass the <code class="literal">PCRE_NOTEMPTY_ATSTART</code>
+                  option</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\Odd</code></td>
+
+                  <td style="" rowspan="1" colspan="1">set the size of the output vector
+                  passed to <code class="function">pcre_exec</code>() to dd (any number
+                  of digits)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\P</code></td>
+
+                  <td style="" rowspan="1" colspan="1">pass the <code class="literal">PCRE_PARTIAL_SOFT</code> option to
+                  <code class="function">pcre_exec</code>() or
+                  <code class="function">pcre_dfa_exec</code>(); if
+                  used twice, pass the <code class="literal">PCRE_PARTIAL_HARD</code> option</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\Qdd</code></td>
+
+                  <td style="" rowspan="1" colspan="1">set the <code class="literal">PCRE_MATCH_LIMIT_RECURSION</code> limit
+                  to dd (any number of digits)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\R</code></td>
+
+                  <td style="" rowspan="1" colspan="1">pass the <code class="literal">PCRE_DFA_RESTART</code> option to
+                  <code class="function">pcre_dfa_exec</code>()</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\S</code></td>
+
+                  <td style="" rowspan="1" colspan="1">output details of memory get/free
+                  calls during matching</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\Y</code></td>
+
+                  <td style="" rowspan="1" colspan="1">pass the <code class="literal">PCRE_NO_START_OPTIMIZE</code> option to
+                  <code class="function">pcre_exec</code>() or
+                  <code class="function">pcre_dfa_exec</code>()</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\Z</code></td>
+
+                  <td style="" rowspan="1" colspan="1">pass the <code class="literal">PCRE_NOTEOL</code> option to
+                  <code class="function">pcre_exec</code>() or
+                  <code class="function">pcre_dfa_exec</code>()</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\?</code></td>
+
+                  <td style="" rowspan="1" colspan="1">pass the PCRE_NO_UTF8_CHECK option
+                  to <code class="function">pcre_exec</code>() or
+                  <code class="function">pcre_dfa_exec</code>()</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\&gt;dd</code></td>
+
+                  <td style="" rowspan="1" colspan="1">start the match at offset dd
+                  (optional "-"; then any number of digits); this
+                  sets the <em class="parameter"><code>startoffset</code></em>
+                  argument for <code class="function">pcre_exec</code>() or <code class="function">pcre_dfa_exec</code>()</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\&lt;cr&gt;</code></td>
+
+                  <td style="" rowspan="1" colspan="1">pass the <code class="literal">PCRE_NEWLINE_CR</code> option to
+                  <code class="function">pcre_exec</code>() or
+                  <code class="function">pcre_dfa_exec</code>()</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\&lt;lf&gt;</code></td>
+
+                  <td style="" rowspan="1" colspan="1">pass the <code class="literal">PCRE_NEWLINE_LF</code> option to
+                  <code class="function">pcre_exec</code>() or
+                  <code class="function">pcre_dfa_exec</code>()</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\&lt;crlf&gt;</code></td>
+
+                  <td style="" rowspan="1" colspan="1">pass the <code class="literal">PCRE_NEWLINE_CRLF</code> option to
+                  <code class="function">pcre_exec</code>() or
+                  <code class="function">pcre_dfa_exec</code>()</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\&lt;anycrlf&gt;</code></td>
+
+                  <td style="" rowspan="1" colspan="1">pass the <code class="literal">PCRE_NEWLINE_ANYCRLF</code> option to
+                  <code class="function">pcre_exec</code>() or
+                  <code class="function">pcre_dfa_exec</code>()</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\&lt;any&gt;</code></td>
+
+                  <td style="" rowspan="1" colspan="1">pass the <code class="literal">PCRE_NEWLINE_ANY</code> option to
+                  <code class="function">pcre_exec</code>() or
+                  <code class="function">pcre_dfa_exec</code>()</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </blockquote>
+      </div>
+
+      <p>Note that \xhh always specifies one byte, even in UTF-8
+      mode; this makes it possible to construct invalid UTF-8
+      sequences for testing purposes. On the other hand, \x{hh} is
+      interpreted as a UTF-8 character in UTF-8 mode, generating
+      more than one byte if the value is greater than 127. When not
+      in UTF-8 mode, it generates one byte for values less than
+      256, and causes an error for greater values.</p>
+
+      <p>The escapes that specify line ending sequences are literal
+      strings, exactly as shown. No more than one newline setting
+      should be present in any data line.</p>
+
+      <p>A backslash followed by anything else just escapes the
+      anything else. If the very last character is a backslash, it
+      is ignored. This gives a way of passing an empty line as
+      data, since a real empty line terminates the data input.</p>
+
+      <p>If \M is present, <span class="command"><strong>pcretest</strong></span> calls <code class="function">pcre_exec</code>() several times, with different
+      values in the <em class="parameter"><code>match_limit</code></em> and <em class="parameter"><code>match_limit_recursion</code></em> fields of
+      the <em class="parameter"><code>pcre_extra</code></em> data
+      structure, until it finds the minimum numbers for each
+      parameter that allow <code class="function">pcre_exec</code>() to complete. The <em class="parameter"><code>match_limit</code></em> number is a measure
+      of the amount of backtracking that takes place, and checking
+      it out can be instructive. For most simple matches, the
+      number is quite small, but for patterns with very large
+      numbers of matching possibilities, it can become large very
+      quickly with increasing length of subject string. The
+      <em class="parameter"><code>match_limit_recursion</code></em>
+      number is a measure of how much stack (or, if PCRE is
+      compiled with NO_RECURSE, how much heap) memory is needed to
+      complete the match attempt.</p>
+
+      <p>When \O is used, the value specified may be higher or
+      lower than the size set by the <code class="option">−O</code> command line option (or defaulted to
+      45); \O applies only to the call of <code class="function">pcre_exec</code>() for the line in which it
+      appears.</p>
+
+      <p>If the <code class="filename">/P</code> modifier was
+      present on the pattern, causing the POSIX wrapper API to be
+      used, the only option-setting sequences that have any effect
+      are \B, \N, and \Z, causing REG_NOTBOL, REG_NOTEMPTY, and
+      REG_NOTEOL, respectively, to be passed to <code class="function">regexec</code>().</p>
+
+      <p>The use of \x{hh...} to represent UTF-8 characters is not
+      dependent on the use of the <code class="filename">/8</code>
+      modifier on the pattern. It is recognized always. There may
+      be any number of hexadecimal digits inside the braces. The
+      result is from one to six bytes, encoded according to the
+      original UTF-8 rules of RFC 2279. This allows for values in
+      the range 0 to 0x7FFFFFFF. Note that not all of those are
+      valid Unicode code points, or indeed valid UTF-8 characters
+      according to the later rules in RFC 3629.</p>
+    </div>
+
+    <div class="refsect1" title="THE ALTERNATIVE MATCHING FUNCTION">
+      <a id="pcretest-1_sect9" name="pcretest-1_sect9" shape="rect"> </a>
+
+      <h2>THE ALTERNATIVE MATCHING FUNCTION</h2>
+
+      <p>By default, <span class="command"><strong>pcretest</strong></span> uses the standard
+      PCRE matching function, <code class="function">pcre_exec</code>() to match each data line. From
+      release 6.0, PCRE supports an alternative matching function,
+      <code class="function">pcre_dfa_test</code>(), which operates
+      in a different way, and has some restrictions. The
+      differences between the two functions are described in the
+      <a class="link" href="../htmlman3/pcrematching.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pcrematching</span>(3)</span></a>
+      documentation.</p>
+
+      <p>If a data line contains the \D escape sequence, or if the
+      command line contains the <code class="option">−dfa</code> option, the alternative matching
+      function is called. This function finds all possible matches
+      at a given point. If, however, the \F escape sequence is
+      present in the data line, it stops after the first match is
+      found. This is always the shortest possible match.</p>
+    </div>
+
+    <div class="refsect1" title="DEFAULT OUTPUT FROM PCRETEST">
+      <a id="pcretest-1_sect10" name="pcretest-1_sect10" shape="rect"> </a>
+
+      <h2>DEFAULT OUTPUT FROM PCRETEST</h2>
+
+      <p>This section describes the output when the normal matching
+      function, <code class="function">pcre_exec</code>(), is being
+      used.</p>
+
+      <p>When a match succeeds, pcretest outputs the list of
+      captured substrings that <code class="function">pcre_exec</code>() returns, starting with number 0
+      for the string that matched the whole pattern. Otherwise, it
+      outputs "No match" when the return is PCRE_ERROR_NOMATCH, and
+      "Partial match:" followed by the partially matching substring
+      when <code class="function">pcre_exec</code>() returns
+      PCRE_ERROR_PARTIAL. (Note that this is the entire substring
+      that was inspected during the partial match; it may include
+      characters before the actual match start if a lookbehind
+      assertion, \K, \b, or \B was involved.) For any other
+      returns, it outputs the PCRE negative error number. Here is
+      an example of an interactive <span class="command"><strong>pcretest</strong></span> run.</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+ $ pcretest
+ PCRE version 7.0 30-Nov-2006
+</pre>
+      </div>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+   re&gt; /^abc(\d+)/
+ data&gt; abc123
+  0: abc123
+  1: 123
+ data&gt; xyz
+ No match
+</pre>
+      </div>
+
+      <p>Note that unset capturing substrings that are not followed
+      by one that is set are not returned by <code class="function">pcre_exec</code>(), and are not shown by
+      <span class="command"><strong>pcretest</strong></span>. In
+      the following example, there are two capturing substrings,
+      but when the first data line is matched, the second, unset
+      substring is not shown. An "internal" unset substring is
+      shown as "&lt;unset&gt;", as for the second data line.</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+   re&gt; /(a)|(b)/
+ data&gt; a
+  0: a
+  1: a
+ data&gt; b
+  0: b
+  1: &lt;unset&gt;
+  2: b
+</pre>
+      </div>
+
+      <p>If the strings contain any non-printing characters, they
+      are output as \0x escapes, or as \x{...} escapes if the
+      <code class="filename">/8</code> modifier was present on the
+      pattern. See below for the definition of non-printing
+      characters. If the pattern has the <code class="filename">/+</code> modifier, the output for substring 0 is
+      followed by the the rest of the subject string, identified by
+      "0+" like this:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+   re&gt; /cat/+
+ data&gt; cataract
+  0: cat
+  0+ aract
+</pre>
+      </div>
+
+      <p>If the pattern has the <code class="filename">/g</code> or
+      <code class="filename">/G</code> modifier, the results of
+      successive matching attempts are output in sequence, like
+      this:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+   re&gt; /\Bi(\w\w)/g
+ data&gt; Mississippi
+  0: iss
+  1: ss
+  0: iss
+  1: ss
+  0: ipp
+  1: pp
+</pre>
+      </div>
+
+      <p>"No match" is output only if the first match attempt
+      fails.</p>
+
+      <p>If any of the sequences <em class="replaceable"><code>\C</code></em>, <em class="replaceable"><code>\G</code></em>, or <em class="replaceable"><code>\L</code></em> are present in a data line
+      that is successfully matched, the substrings extracted by the
+      convenience functions are output with C, G, or L after the
+      string number instead of a colon. This is in addition to the
+      normal full list. The string length (that is, the return from
+      the extraction function) is given in parentheses after each
+      string for <em class="replaceable"><code>\C</code></em> and
+      <em class="replaceable"><code>\G</code></em>.</p>
+
+      <p>Note that whereas patterns can be continued over several
+      lines (a plain "&gt;" prompt is used for continuations), data
+      lines may not. However newlines can be included in data by
+      means of the \n escape (or \r, \r\n, etc., depending on the
+      newline sequence setting).</p>
+    </div>
+
+    <div class="refsect1" title="OUTPUT FROM THE ALTERNATIVE MATCHING FUNCTION">
+      <a id="pcretest-1_sect11" name="pcretest-1_sect11" shape="rect"> </a>
+
+      <h2>OUTPUT FROM THE ALTERNATIVE MATCHING FUNCTION</h2>
+
+      <p>When the alternative matching function, <code class="function">pcre_dfa_exec</code>(), is used (by means of the
+      \D escape sequence or the <code class="option">−dfa</code> command line option), the output
+      consists of a list of all the matches that start at the first
+      point in the subject where there is at least one match. For
+      example:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+   re&gt; /(tang|tangerine|tan)/
+ data&gt; yellow tangerine\D
+  0: tangerine
+  1: tang
+  2: tan
+</pre>
+      </div>
+
+      <p>(Using the normal matching function on this data finds
+      only "tang".) The longest matching string is always given
+      first (and numbered zero). After a PCRE_ERROR_PARTIAL return,
+      the output is "Partial match:", followed by the partially
+      matching substring. (Note that this is the entire substring
+      that was inspected during the partial match; it may include
+      characters before the actual match start if a lookbehind
+      assertion, \K, \b, or \B was involved.)</p>
+
+      <p>If <code class="filename">/g</code> is present on the
+      pattern, the search for further matches resumes at the end of
+      the longest match. For example:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+   re&gt; /(tang|tangerine|tan)/g
+ data&gt; yellow tangerine and tangy sultana\D
+  0: tangerine
+  1: tang
+  2: tan
+  0: tang
+  1: tan
+  0: tan
+</pre>
+      </div>
+
+      <p>Since the matching function does not support substring
+      capture, the escape sequences that are concerned with
+      captured substrings are not relevant.</p>
+    </div>
+
+    <div class="refsect1" title="RESTARTING AFTER A PARTIAL MATCH">
+      <a id="pcretest-1_sect12" name="pcretest-1_sect12" shape="rect"> </a>
+
+      <h2>RESTARTING AFTER A PARTIAL MATCH</h2>
+
+      <p>When the alternative matching function has given the
+      PCRE_ERROR_PARTIAL return, indicating that the subject
+      partially matched the pattern, you can restart the match with
+      additional subject data by means of the \R escape sequence.
+      For example:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+   re&gt; /^\d?\d(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\d\d$/
+ data&gt; 23ja\P\D
+ Partial match: 23ja
+ data&gt; n05\R\D
+  0: n05
+</pre>
+      </div>
+
+      <p>For further information about partial matching, see the
+      <a class="link" href="../htmlman3/pcrepartial.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pcrepartial</span>(3)</span></a>
+      documentation.</p>
+    </div>
+
+    <div class="refsect1" title="CALLOUTS">
+      <a id="pcretest-1_sect13" name="pcretest-1_sect13" shape="rect"> </a>
+
+      <h2>CALLOUTS</h2>
+
+      <p>If the pattern contains any callout requests, <span class="command"><strong>pcretest</strong></span>'s callout function
+      is called during matching. This works with both matching
+      functions. By default, the called function displays the
+      callout number, the start and current positions in the text
+      at the callout time, and the next pattern item to be tested.
+      For example, the output</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+ ---&gt;pqrabcdef
+   0    ^  ^     \d
+</pre>
+      </div>
+
+      <p>indicates that callout number 0 occurred for a match
+      attempt starting at the fourth character of the subject
+      string, when the pointer was at the seventh character of the
+      data, and when the next pattern item was \d. Just one
+      circumflex is output if the start and current positions are
+      the same.</p>
+
+      <p>Callouts numbered 255 are assumed to be automatic
+      callouts, inserted as a result of the <code class="filename">/C</code> pattern modifier. In this case, instead
+      of showing the callout number, the offset in the pattern,
+      preceded by a plus, is output. For example:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+   re&gt; /\d?[A-E]\*/C
+ data&gt; E*
+ ---&gt;E*
+  +0 ^      \d?
+  +3 ^      [A-E]
+  +8 ^^     \*
+ +10 ^ ^
+  0: E*
+</pre>
+      </div>
+
+      <p>The callout function in <span class="command"><strong>pcretest</strong></span> returns zero
+      (carry on matching) by default, but you can use a \C item in
+      a data line (as described above) to change this.</p>
+
+      <p>Inserting callouts can be helpful when using <span class="command"><strong>pcretest</strong></span> to check
+      complicated regular expressions. For further information
+      about callouts, see the <a class="link" href="../htmlman3/pcrecallout.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pcrecallout</span>(3)</span></a>
+      documentation.</p>
+    </div>
+
+    <div class="refsect1" title="NON-PRINTING CHARACTERS">
+      <a id="pcretest-1_sect14" name="pcretest-1_sect14" shape="rect"> </a>
+
+      <h2>NON-PRINTING CHARACTERS</h2>
+
+      <p>When <span class="command"><strong>pcretest</strong></span> is outputting text
+      in the compiled version of a pattern, bytes other than 32-126
+      are always treated as non-printing characters are are
+      therefore shown as hex escapes.</p>
+
+      <p>When <span class="command"><strong>pcretest</strong></span> is outputting text
+      that is a matched part of a subject string, it behaves in the
+      same way, unless a different locale has been set for the
+      pattern (using the <code class="filename">/L</code>
+      modifier). In this case, the <code class="function">isprint</code>() function to distinguish printing
+      and non-printing characters.</p>
+    </div>
+
+    <div class="refsect1" title="SAVING AND RELOADING COMPILED PATTERNS">
+      <a id="pcretest-1_sect15" name="pcretest-1_sect15" shape="rect"> </a>
+
+      <h2>SAVING AND RELOADING COMPILED PATTERNS</h2>
+
+      <p>The facilities described in this section are not available
+      when the POSIX inteface to PCRE is being used, that is, when
+      the <code class="filename">/P</code> pattern modifier is
+      specified.</p>
+
+      <p>When the POSIX interface is not in use, you can cause
+      <span class="command"><strong>pcretest</strong></span> to
+      write a compiled pattern to a file, by following the
+      modifiers with &gt; and a file name. For example:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+/pattern/im &gt;/some/file
+</pre>
+      </div>
+
+      <p>See the <a class="link" href="../htmlman3/pcreprecompile.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pcreprecompile</span>(3)</span></a>
+      documentation for a discussion about saving and re-using
+      compiled patterns.</p>
+
+      <p>The data that is written is binary. The first eight bytes
+      are the length of the compiled pattern data followed by the
+      length of the optional study data, each written as four bytes
+      in big-endian order (most significant byte first). If there
+      is no study data (either the pattern was not studied, or
+      studying did not return any data), the second length is zero.
+      The lengths are followed by an exact copy of the compiled
+      pattern. If there is additional study data, this follows
+      immediately after the compiled pattern. After writing the
+      file, <span class="command"><strong>pcretest</strong></span>
+      expects to read a new pattern.</p>
+
+      <p>A saved pattern can be reloaded into <span class="command"><strong>pcretest</strong></span> by specifing &lt;
+      and a file name instead of a pattern. The name of the file
+      must not contain a &lt; character, as otherwise <span class="command"><strong>pcretest</strong></span> will interpret the
+      line as a pattern delimited by &lt; characters. For
+      example:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+  re&gt; &lt;/some/file
+ Compiled regex loaded from /some/file
+ No study data
+</pre>
+      </div>
+
+      <p>When the pattern has been loaded, <span class="command"><strong>pcretest</strong></span> proceeds to read
+      data lines in the usual way.</p>
+
+      <p>You can copy a file written by <span class="command"><strong>pcretest</strong></span> to a different
+      host and reload it there, even if the new host has opposite
+      endianness to the one on which the pattern was compiled. For
+      example, you can compile on an i86 machine and run on a SPARC
+      machine.</p>
+
+      <p>File names for saving and reloading can be absolute or
+      relative, but note that the shell facility of expanding a
+      file name that starts with a tilde (~) is not available.</p>
+
+      <p>The ability to save and reload files in <span class="command"><strong>pcretest</strong></span> is intended for
+      testing and experimentation. It is not intended for
+      production use because only a single pattern can be written
+      to a file. Furthermore, there is no facility for supplying
+      custom character tables for use with a reloaded pattern. If
+      the original pattern was compiled with custom tables, an
+      attempt to match a subject string using a reloaded pattern is
+      likely to cause <span class="command"><strong>pcretest</strong></span> to crash. Finally,
+      if you attempt to load a file that is not in the correct
+      format, the result is undefined.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="pcretest-1_sect16" name="pcretest-1_sect16" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman3/pcre.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pcre</span>(3)</span></a>, <a class="link" href="../htmlman3/pcreapi.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pcreapi</span>(3)</span></a>, <a class="link" href="../htmlman3/pcrecallout.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pcrecallout</span>(3)</span></a>, <a class="link" href="../htmlman3/pcrematching.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pcrematching</span>(3)</span></a>,
+      <code class="function">pcrepartial</code>(d), <a class="link" href="../htmlman3/pcrepattern.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pcrepattern</span>(3)</span></a>, <a class="link" href="../htmlman3/pcreprecompile.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pcreprecompile</span>(3)</span></a>.</p>
+    </div>
+
+    <div class="refsect1" title="AUTHOR">
+      <a id="pcretest-1_sect17" name="pcretest-1_sect17" shape="rect"> </a>
+
+      <h2>AUTHOR</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+Philip Hazel
+University Computing Service
+Cambridge CB2 3QH, England.
+</pre>
+      </div>
+    </div>
+
+    <div class="refsect1" title="REVISION">
+      <a id="pcretest-1_sect18" name="pcretest-1_sect18" shape="rect"> </a>
+
+      <h2>REVISION</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+Last updated: 21 November 2010
+Copyright (c) 1997-2010 University of Cambridge.
+</pre>
+      </div>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <thead>
+            <tr>
+              <th style="" rowspan="1" colspan="1">COPYRIGHT</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <p>This manual page is taken from the <a class="ulink" href="http://www.PCRE.org/" target="_top" shape="rect">PCRE library</a>, which is distributed under
+                the BSD license.</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

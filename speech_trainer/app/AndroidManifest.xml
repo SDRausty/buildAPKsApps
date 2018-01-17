@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="mixedbit.speechtrainer"
+      android:debuggable="false"
+      android:versionCode="5"
+      android:versionName="1.04">
+    <!-- The app could run on sdk version 3, but than it would require WRITE_EXTERNAL_STORAGE and 
+        READ_PHONE_STATE permissions (any application targeting 3.0 or earlier is assumed 
+        to need such permissions). -->  
+    <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="27"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"></uses-permission>
+    <uses-feature android:name="android.hardware.microphone" android:required="true"></uses-feature>
+   <application android:icon="@drawable/icon" android:label="@string/app_name" android:name="TrainingApplication" >
+  		<activity android:name="mixedbit.speechtrainer.view.TrainingActivity" android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>        
+ 		<activity android:name="mixedbit.speechtrainer.view.TrainingPreferenceActivity" android:label="@string/settingsTitle" />
+        <activity android:name="mixedbit.speechtrainer.view.FileViewerActivity" android:label="@string/app_name" />
+    </application>
+</manifest>

@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>insque(3) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="insque(3) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="insque(3) — Linux manual pages">
+    <a id="insque.3" name="insque.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>insque, remque — insert/remove an item from a
+      queue</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;search.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">void <b class="fsfunc">insque</b>(</code></td>
+
+            <td rowspan="1" colspan="1">void *<var class="pdparam">elem</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">void *<var class="pdparam">prev</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">void <b class="fsfunc">remque</b>(</code></td>
+
+            <td rowspan="1" colspan="1">void *<var class="pdparam">elem</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;">
+        <table border="0" summary="Note">
+          <tr>
+            <td rowspan="2" align="center" valign="top" width="25" colspan="1">
+            <img alt="[Note]" src="../stylesheet/note.png" /></td>
+
+            <th align="left" rowspan="1" colspan="1">Note</th>
+          </tr>
+
+          <tr>
+            <td align="left" valign="top" rowspan="1" colspan="1">
+              <div class="featuretests">
+                <table style="border-collapse: collapse;">
+                  <colgroup span="1">
+                    <col span="1" />
+                  </colgroup>
+
+                  <thead>
+                    <tr>
+                      <th style="" rowspan="1" colspan="1">Feature Test Macro Requirements
+                      for glibc (see <a class="link" href="../htmlman7/feature_test_macros.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">feature_test_macros</span>(7)</span></a>):</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td style="" rowspan="1" colspan="1"><code class="function">insque</code>(), <code class="function">remque</code>():</td>
+                    </tr>
+
+                    <tr>
+                      <td class="featuretestdef" style="" rowspan="1" colspan="1">
+                      <code class="constant">_SVID_SOURCE</code> ||
+                      <code class="constant">_XOPEN_SOURCE</code>
+                      &gt;= 500 || <code class="constant">_XOPEN_SOURCE</code> &amp;&amp;
+                      <code class="constant">_XOPEN_SOURCE_EXTENDED</code></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="insque-3_sect1" name="insque-3_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>The <code class="function">insque</code>() and
+      <code class="function">remque</code>() functions manipulate
+      doubly-linked lists. Each element in the list is a structure
+      of which the first two elements are a forward and a backward
+      pointer. The linked list may be linear (i.e., NULL forward
+      pointer at the end of the list and NULL backward pointer at
+      the start of the list) or circular.</p>
+
+      <p>The <code class="function">insque</code>() function
+      inserts the element pointed to by <em class="parameter"><code>elem</code></em> immediately after the
+      element pointed to by <em class="parameter"><code>prev</code></em>.</p>
+
+      <p>If the list is linear, then the call <span class="emphasis"><em>insque(elem, NULL)</em></span> can be used to
+      insert the initial list element, and the call sets the
+      forward and backward pointers of <em class="parameter"><code>elem</code></em> to NULL.</p>
+
+      <p>If the list is circular, the caller should ensure that the
+      forward and backward pointers of the first element are
+      initialized to point to that element, and the <em class="parameter"><code>prev</code></em> argument of the
+      <code class="function">insque</code>() call should also point
+      to the element.</p>
+
+      <p>The <code class="function">remque</code>() function
+      removes the element pointed to by <em class="parameter"><code>elem</code></em> from the doubly-linked
+      list.</p>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="insque-3_sect2" name="insque-3_sect2" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>POSIX.1-2001.</p>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="insque-3_sect3" name="insque-3_sect3" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p>Traditionally (e.g., SunOS, Linux libc 4 and libc 5), the
+      arguments of these functions were of type <span class="type">struct qelem *</span>, defined as:</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="structdef">
+            <table style="border-collapse: collapse;">
+              <colgroup span="1">
+                <col span="1" />
+                <col span="1" />
+                <col span="1" />
+                <col span="1" />
+                <col span="1" />
+              </colgroup>
+
+              <tbody>
+                <tr>
+                  <td class="structdefhdr" style="" align="left" rowspan="1" colspan="1">
+                  struct</td>
+
+                  <td class="structdefhdr" style="" colspan="4" align="left" rowspan="1"><span class="structname">qelem</span> {</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">struct qelem</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                  *</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>q_forw</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"> </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">struct qelem</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                  *</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>q_back</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"> </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">char</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>q_data</code></em>[1];</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"> </td>
+                </tr>
+
+                <tr>
+                  <td class="structdefftr" style="" colspan="5" align="left" rowspan="1">};</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </blockquote>
+      </div>
+
+      <p>This is still what you will get if <code class="constant">_GNU_SOURCE</code> is defined before including
+      <code class="literal">&lt;</code><code class="filename">search.h</code><code class="literal">&gt;</code></p>
+
+      <p>The location of the prototypes for these functions differs
+      among several versions of UNIX. The above is the POSIX
+      version. Some systems place them in <code class="literal">&lt;</code><code class="filename">string.h</code><code class="literal">&gt;</code>
+      Linux libc4 and libc 5 placed them in <code class="literal">&lt;</code><code class="filename">stdlib.h</code><code class="literal">&gt;</code></p>
+    </div>
+
+    <div class="refsect1" title="BUGS">
+      <a id="insque-3_sect4" name="insque-3_sect4" shape="rect"> </a>
+
+      <h2>BUGS</h2>
+
+      <p>In glibc 2.4 and earlier, it was not possible to specify
+      <em class="parameter"><code>prev</code></em> as NULL.
+      Consequently, to build a linear list, the caller had to build
+      a list using an initial call that contained the first two
+      elements of the list, with the forward and backward pointers
+      in each element suitably initialized.</p>
+    </div>
+
+    <div class="refsect1" title="EXAMPLE">
+      <a id="insque-3_sect5" name="insque-3_sect5" shape="rect"> </a>
+
+      <h2>EXAMPLE</h2>
+
+      <p>The program below demonstrates the use of <code class="function">insque</code>(). Here is an example run of the
+      program:</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="informalexample">
+            <pre class="programlisting" xml:space="preserve">
+$ <span class="emphasis"><em>./a.out -c a b c</em></span>
+Traversing completed list:
+    a
+    b
+    c
+That was a circular list
+</pre>
+          </div>
+        </blockquote>
+      </div>
+
+      <div class="refsect2" title="Program source">
+        <a id="insque-3_sect6" name="insque-3_sect6" shape="rect"> </a>
+
+        <h3>Program source</h3>
+
+        <div class="informalexample">
+          <pre class="programlisting" xml:space="preserve">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;search.h&gt;
+
+struct element {
+    struct element *forward;
+    struct element *backward;
+    char *name;
+};
+
+static struct element *
+new_element(void)
+{
+    struct element *e;
+
+    e = malloc(sizeof(struct element));
+    if (e == NULL) {
+        fprintf(stderr, "malloc() failed\n");
+        exit(EXIT_FAILURE);
+    }
+
+    return e;
+}
+
+int
+main(int argc, char *argv[])
+{
+    struct element *first, *elem, *prev;
+    int circular, opt, errfnd;
+
+    /* The "−c" command−line option can be used to specify that the
+       list is circular */
+
+    errfnd = 0;
+    circular = 0;
+    while ((opt = getopt(argc, argv, "c")) != −1) {
+        switch (opt) {
+        case 'c':
+            circular = 1;
+            break;
+        default:
+            errfnd = 1;
+            break;
+        }
+    }
+
+    if (errfnd || optind &gt;= argc) {
+        fprintf(stderr,  "Usage: %s [−c] string...\n", argv[0]);
+        exit(EXIT_FAILURE);
+    }
+
+    /* Create first element and place it in the linked list */
+
+    elem = new_element();
+    first = elem;
+
+    elem−&gt;name = argv[optind];
+
+    if (circular) {
+        elem−&gt;forward = elem;
+        elem−&gt;backward = elem;
+        insque(elem, elem);
+    } else {
+        insque(elem, NULL);
+    }
+
+    /* Add remaining command−line arguments as list elements */
+
+    while (++optind &lt; argc) {
+        prev = elem;
+
+        elem = new_element();
+        elem−&gt;name = argv[optind];
+        insque(elem, prev);
+    }
+
+    /* Traverse the list from the start, printing element names */
+
+    printf("Traversing completed list:\n");
+    elem = first;
+    do {
+        printf("    %s\n", elem−&gt;name);
+        elem = elem−&gt;forward;
+    } while (elem != NULL &amp;&amp; elem != first);
+
+    if (elem == first)
+        printf("That was a circular list\n");
+
+    exit(EXIT_SUCCESS);
+}
+</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="insque-3_sect7" name="insque-3_sect7" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.29 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    peter memishian -- meem<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>gnu.ai.mit.edu<br />
+
+                  $Id: insque.3,v 1.2 1996/10/30 21:03:39 meem Exp meem $<br />
+
+                  and Copyright (c) 2010, Michael Kerrisk &lt;mtk.manpages<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>gmail.com&gt;<br />
+
+                  <br />
+                  Permission is granted to make and distribute verbatim copies of this<br />
+
+                  manual provided the copyright notice and this permission notice are<br />
+
+                  preserved on all copies.<br />
+                  <br />
+                  Permission is granted to copy and distribute modified versions of this<br />
+
+                  manual under the conditions for verbatim copying, provided that the<br />
+
+                  entire resulting derived work is distributed under the terms of a<br />
+
+                  permission notice identical to this one.<br />
+
+                  <br />
+                  Since the Linux kernel and libraries are constantly changing, this<br />
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no<br />
+
+                  responsibility for errors or omissions, or for damages resulting from<br />
+
+                  the use of the information contained herein.  The author(s) may not<br />
+
+                  have taken the same level of care in the production of this manual,<br />
+
+                  which is licensed free of charge, as they might when working<br />
+
+                  professionally.<br />
+                  <br />
+                  Formatted or processed versions of this manual, if unaccompanied by<br />
+
+                  the source, must acknowledge the copyright and authors of this work.<br />
+
+                  <br />
+                  References consulted:<br />
+                    Linux libc source code (5.4.7)<br />
+
+                    Solaris 2.x, OSF/1, and HP-UX manpages<br />
+
+                    Curry's "UNIX Systems Programming for SVR4" (O'Reilly &amp; Associates 1996)<br />
+
+                  <br />
+                  Changed to POSIX, 2003-08-11, aeb+wh<br />
+
+                  mtk, 2010-09-09: Noted glibc 2.4 bug, added info on circular<br />
+
+                  lists, added example program<br />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

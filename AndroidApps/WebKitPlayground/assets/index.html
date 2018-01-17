@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+</head>
+
+<body>
+
+<style>
+#TestCanvas
+{
+	display: none;
+	position: absolute;
+	left: 0px;
+    top: 0px;
+}
+p
+{
+	font-size: 125%;
+}
+</style>
+
+<div id="ControlPanel">
+<h1>Android WebKit Playground</h1>
+
+<h2>Introduction</h2>
+<p>This app demonstrates the use of a WebView to call into the underlying OS from JavaScript.
+Two kinds of tests are performed, making calls from JavaScript to Java and interactive 
+painting.</p>
+<p>The calls to Java use JavaScriptInterface (both one way calls and 
+two way round trip calls are tested) and the prompt hook. The purpose 
+is to demonstrate the two techniques and test any performance differences.</p>
+<p>There are three kinds of interactive tests. Painting on an HTML5 Canvas,
+on an Android Canvas via JavaScript, and on the same Android Canvas via Java.</p>
+<p>To run the drawing tests, stroke
+rapidly with the finger on the screen when the drawing area is displayed.
+Time for 100 strokes is measured starting from the finger touches the screen.
+When the test is complete this page is displayed again.
+While this test is not totally accurate, it gives a feel for interactive
+drawing performance.</p>
+
+<h2>JavaScript to Java Call Tests</h2>
+<h3><a href="javascript:OneWayTest()">
+    One Way Test:</a> Test of 10000 JS to Java calls</h3>
+<h3><a href="javascript:TwoWayTest()">
+    Two Way Test:</a> Test of 10000 JS to Java round trip calls</h3>
+<h3><a href="javascript:PromptTest()">
+    Two Way Prompt Test: </a> Test of 10000 round trip prompt calls</h3>
+    
+<h3>Results:</h3>
+<h3>One Way Test: <span id="OneWayTestResult">???</span> ms</h3>
+<h3>Two Way Test: <span id="TwoWayTestResult">???</span> ms</h3>
+<h3>Prompt Test: <span id="PromptTestResult">???</span> ms</h3>
+
+<h2>Interactive Tests</h2>
+<h3><a href="javascript:HTML5CanvasTest()">
+    HTML5 Canvas Test</a> Test of 100 drag events (manual test)</h3>
+<h3><a href="javascript:AndroidCanvasJSTest()">
+    Android Canvas JS Test</a> Test of 100 drag events (manual test)</h3>
+<h3><a href="javascript:AndroidCanvasNativeTest()">
+    Android Canvas Native Test</a> Test of 100 drag events (manual test)</h3>
+    
+<h3>Results:</h3>
+<h3>HTML5 Canvas Test: <span id="HTML5CanvasTestResult">???</span> ms</h3>
+<h3>Android Canvas JS Test: <span id="JavaCanvasJSTestResult">???</span> ms</h3>
+<h3>Android Canvas Native Test: <span id="JavaCanvasNativeTestResult">???</span> ms</h3>
+</div>
+
+<canvas id="TestCanvas" width="100" height="100"></canvas>
+
+<script>
+// Global variables used for testing
+
+var Counter = 0
+var TimeStamp = 0
+var NumCalls = 10000
+var NumDrags = 100
+
+// JS to Android communication tests
+
+function OneWayTest()
+{
+	TimeStamp = Date.now()
+	for (var i = 1; i <= NumCalls; ++i)
+	{
+		Test.oneWayCall(i, NumCalls)
+	}
+}
+
+function OneWayCallback()
+{
+	TimeStamp = Date.now() - TimeStamp
+	SetElementText("OneWayTestResult", TimeStamp)
+}
+
+function TwoWayTest()
+{
+	TimeStamp = Date.now()
+	Counter = 0
+	TwoWayCallback()
+}
+
+function TwoWayCallback()
+{
+	++ Counter
+	if (Counter == NumCalls)
+	{
+		TimeStamp = Date.now() - TimeStamp
+		SetElementText("TwoWayTestResult", TimeStamp)
+	}
+	else
+	{
+		Test.twoWayCall()
+	}
+}
+
+function PromptTest()
+{
+	TimeStamp = Date.now()
+	Counter = 0
+	PromptCallback()
+}
+
+function PromptCallback()
+{
+	++ Counter
+	if (Counter == NumCalls)
+	{
+		TimeStamp = Date.now() - TimeStamp
+		SetElementText("PromptTestResult", TimeStamp)
+	}
+	else
+	{
+		prompt("test")
+	}
+}
+
+// Android Canvas tests
+
+function AndroidCanvasJSTest()
+{
+	Test.setupJavaScriptDrawingTest()
+	
+	// Wait a little so that surface is ready (would
+	// be better to use surface listener).
+	setTimeout(function() {
+	    SetColor(255, 255, 200)
+	    FillRect(0, 0, 2000, 2000)
+	    UpdateScreen()
+    },
+    500)
+}
+
+function AndroidCanvasNativeTest()
+{
+	Test.setupNativeDrawingTest()
+	
+	// Wait a little so that surface is ready (would
+	// be better to use surface listener).
+	setTimeout(function() {
+	    SetColor(255, 200, 200)
+	    FillRect(0, 0, 2000, 2000)
+	    UpdateScreen()
+    },
+    500)
+}
+
+function AndroidCanvasNativeTestCallback(result)
+{
+	SetElementText("JavaCanvasNativeTestResult", result)
+	Test.showWebView()
+}
+
+// Touch events for Android Canvas JS test
+
+function TouchDown(x, y, id)
+{
+    Counter = 0
+    TimeStamp = Date.now()
+}
+
+function TouchDrag(x, y, id)
+{
+	++ Counter
+    if (Counter == NumDrags)
+    {
+		TimeStamp = Date.now() - TimeStamp
+		SetElementText("JavaCanvasJSTestResult", TimeStamp)
+		Test.showWebView()
+    }
+    else
+    {
+		SetColor(200, 200, 0)
+		FillRect(x - 30, y - 30, 60, 60)
+		UpdateScreen()
+	}
+}
+
+function TouchUp(x, y, id)
+{
+}
+
+// Android canvas drawing functions
+
+function SetColor(r, g, b)
+{
+	Surface.setColor(r, g, b)
+}
+
+function FillRect(x, y, w, h)
+{
+	Surface.fillRect(x, y, w, h)
+}
+
+function UpdateScreen()
+{
+	Surface.updateScreen()
+}
+
+// Helper function to display test result
+
+function SetElementText(elementId, text)
+{
+	document.getElementById(elementId).innerHTML = text
+}
+
+// HTML5 Canvas variables and functions
+
+var Canvas = {}
+Canvas.mouseIsDown = false
+
+Canvas.initalize = function()
+{
+    var canvas = document.getElementById("TestCanvas")
+
+    canvas.addEventListener("touchstart", Canvas.touchDown, false)
+    canvas.addEventListener("touchmove", Canvas.touchMove, true)
+    canvas.addEventListener("touchend", Canvas.touchUp, false)
+
+	Canvas.canvas = canvas
+    Canvas.context = canvas.getContext("2d")
+}
+
+Canvas.resize = function()
+{
+    Canvas.canvas.width = window.innerWidth
+    Canvas.canvas.height = window.innerHeight
+}
+
+Canvas.touchDown = function(event)
+{
+    event.preventDefault()
+    
+    // Start test.
+    Canvas.mouseIsDown = true
+    Counter = 0
+    TimeStamp = Date.now()
+}
+
+Canvas.touchMove = function(event)
+{
+    event.preventDefault()
+    
+    if (!Canvas.mouseIsDown) { return }
+    
+    ++ Counter
+    if (Counter == NumDrags)
+    {
+        // Report result and hide canvas.
+    	Canvas.mouseIsDown = false
+        Canvas.canvas.style.display = "none"
+        document.getElementById("ControlPanel").style.display = "block"
+    	TimeStamp = Date.now() - TimeStamp
+		SetElementText("HTML5CanvasTestResult", TimeStamp)
+    }
+    else
+    {
+	    var x = event.targetTouches[0].pageX - Canvas.canvas.offsetLeft
+	    var y = event.targetTouches[0].pageY - Canvas.canvas.offsetTop
+	    Canvas.context.fillStyle = "rgb(0,0,200)"
+	    Canvas.context.fillRect(x - 30, y - 30, 60, 60)
+	}
+}
+
+Canvas.touchUp = function()
+{
+    event.preventDefault()
+    
+    Canvas.mouseIsDown = false;
+}
+
+// Initialize canvas.
+Canvas.initalize()
+
+// Prepare canvas test.
+function HTML5CanvasTest()
+{
+    // Show canvas.
+    
+    document.getElementById("ControlPanel").style.display = "none"
+    Canvas.canvas.style.display = "block"
+    Canvas.resize()
+    
+    Canvas.context.fillStyle = "rgb(200,200,255)"
+	Canvas.context.fillRect(0, 0, 2000, 2000)    
+}
+</script>
+
+</body>
+</html>

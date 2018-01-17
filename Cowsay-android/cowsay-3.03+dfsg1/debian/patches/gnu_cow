@@ -1,0 +1,34 @@
+Description: Add a new cow
+Forwarded: no
+Origin: vendor, http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=367310#5
+Bug-Debian: http://bugs.debian.org/367310
+Author: Gerfried Fuchs <alfie@debian.org>
+
+--- /dev/null
++++ cowsay-3.03/cows/gnu.cow
+@@ -0,0 +1,25 @@
++## vim:ft=perl:
++## GNU/say - (c) 2006 Gerfried Fuchs <rhonda@deb.at>
++##               distributed under the WTFPLv2 license
++##
++$the_cow = <<"EOC";
++    $thoughts               ,-----._
++  .  $thoughts         .  ,'        `-.__,------._
++ //   $thoughts      __\\\\'                        `-.
++((    _____-'___))                           |
++ `:='/     (alf_/                            |
++ `.=|      |='                               |
++    |)   O |                                  \\
++    |      |                               /\\  \\
++    |     /                          .    /  \\  \\
++    |    .-..__            ___   .--' \\  |\\   \\  |
++   |o o  |     ``--.___.  /   `-'      \\  \\\\   \\ |
++    `--''        '  .' / /             |  | |   | \\
++     $tongue          |  | / /              |  | |   mmm
++                 |  ||  |              | /| |
++                 ( .' \\ \\              || | |
++                 | |   \\ \\            // / /
++                 | |    \\ \\          || |_|
++                /  |    |_/         /_|
++               /__/
++EOC

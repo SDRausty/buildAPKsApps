@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>syslog(2) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="syslog(2) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="syslog(2) — Linux manual pages">
+    <a id="syslog.2" name="syslog.2" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>syslog, klogctl — read and/or clear kernel message
+      ring buffer; set console_loglevel</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">syslog</b>(</code></td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">type</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">char *<var class="pdparam">bufp</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">len</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+                 /* No wrapper provided in glibc */
+
+/* The glibc interface */
+#include &lt;sys/klog.h&gt;
+</pre>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">klogctl</b>(</code></td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">type</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">char *<var class="pdparam">bufp</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">len</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="syslog-2_sect1" name="syslog-2_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>If you need the C library function <code class="function">syslog</code>() (which talks to <span class="citerefentry"><span class="refentrytitle">syslogd</span>(8)</span>), then look at
+      <a class="link" href="../htmlman3/syslog.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">syslog</span>(3)</span></a>. The system call
+      of this name is about controlling the kernel <code class="function">printk</code>() buffer, and the glibc version is
+      called <code class="function">klogctl</code>().</p>
+
+      <p>The <em class="parameter"><code>type</code></em> argument
+      determines the action taken by this function.</p>
+
+      <p>Quoting from <code class="filename">kernel/printk.c</code>:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+/*
+ * Commands to sys_syslog:
+ *
+ *      0 −− Close the log.  Currently a NOP.
+ *      1 −− Open the log. Currently a NOP.
+ *      2 −− Read from the log.
+ *      3 −− Read all messages remaining in the ring buffer.
+ *      4 −− Read and clear all messages remaining in the ring buffer
+ *      5 −− Clear ring buffer.
+ *      6 −− Disable printk to console
+ *      7 −− Enable printk to console
+ *      8 −− Set level of messages printed to console
+ *      9 −− Return number of unread characters in the log buffer
+ *     10 −− Return size of the log buffer
+ */
+</pre>
+      </div>
+
+      <p>Only command types 3 and 10 are allowed to unprivileged
+      processes. Type 9 was added in 2.4.10; type 10 in 2.6.6.</p>
+
+      <div class="refsect2" title="The kernel log buffer">
+        <a id="syslog-2_sect2" name="syslog-2_sect2" shape="rect"> </a>
+
+        <h3>The kernel log buffer</h3>
+
+        <p>The kernel has a cyclic buffer of length <code class="constant">LOG_BUF_LEN</code> in which messages given as
+        arguments to the kernel function <code class="function">printk</code>() are stored (regardless of their
+        loglevel). In early kernels, <code class="constant">LOG_BUF_LEN</code> had the value 4096; from
+        kernel 1.3.54, it was 8192; from kernel 2.1.113 it was
+        16384; since 2.4.23/2.6 the value is a kernel configuration
+        option. In recent kernels the size can be queried with
+        command type 10.</p>
+
+        <p>The call <em class="replaceable"><code>syslog(2,buf,len)</code></em> waits
+        until this kernel log buffer is nonempty, and then reads at
+        most <em class="parameter"><code>len</code></em> bytes into
+        the buffer <em class="replaceable"><code>buf</code></em>.
+        It returns the number of bytes read. Bytes read from the
+        log disappear from the log buffer: the information can only
+        be read once. This is the function executed by the kernel
+        when a user program reads <code class="filename">/proc/kmsg</code>.</p>
+
+        <p>The call <em class="replaceable"><code>syslog(3,buf,len)</code></em> will read
+        the last <em class="parameter"><code>len</code></em> bytes
+        from the log buffer (nondestructively), but will not read
+        more than was written into the buffer since the last "clear
+        ring buffer" command (which does not clear the buffer at
+        all). It returns the number of bytes read.</p>
+
+        <p>The call <em class="replaceable"><code>syslog(4,buf,len)</code></em> does
+        precisely the same, but also executes the "clear ring
+        buffer" command.</p>
+
+        <p>The call <em class="replaceable"><code>syslog(5,dummy,dummy)</code></em>
+        executes just the "clear ring buffer" command. (In each
+        call where <em class="replaceable"><code>buf</code></em> or
+        <em class="parameter"><code>len</code></em> is shown as
+        "dummy", the value of the argument is ignored by the
+        call.)</p>
+
+        <p>The call <em class="replaceable"><code>syslog(6,dummy,dummy)</code></em> sets
+        the console log level to minimum, so that no messages are
+        printed to the console.</p>
+
+        <p>The call <em class="replaceable"><code>syslog(7,dummy,dummy)</code></em> sets
+        the console log level to default, so that messages are
+        printed to the console.</p>
+
+        <p>The call <em class="replaceable"><code>syslog(8,dummy,level)</code></em> sets
+        the console log level to <em class="replaceable"><code>level</code></em>, which must be an
+        integer between 1 and 8 (inclusive). See the <em class="replaceable"><code>loglevel</code></em> section for
+        details.</p>
+
+        <p>The call <em class="replaceable"><code>syslog(9,dummy,dummy)</code></em>
+        returns the number of bytes currently available to be read
+        on the kernel log buffer.</p>
+
+        <p>The call <em class="replaceable"><code>syslog(10,dummy,dummy)</code></em>
+        returns the total size of the kernel log buffer.</p>
+      </div>
+
+      <div class="refsect2" title="The loglevel">
+        <a id="syslog-2_sect3" name="syslog-2_sect3" shape="rect"> </a>
+
+        <h3>The loglevel</h3>
+
+        <p>The kernel routine <code class="function">printk</code>() will only print a message on the
+        console, if it has a loglevel less than the value of the
+        variable <em class="replaceable"><code>console_loglevel</code></em>. This
+        variable initially has the value <code class="constant">DEFAULT_CONSOLE_LOGLEVEL</code> (7), but is set
+        to 10 if the kernel command line contains the word "debug",
+        and to 15 in case of a kernel fault (the 10 and 15 are just
+        silly, and equivalent to 8). This variable is set (to a
+        value in the range 1-8) by the call <em class="replaceable"><code>syslog(8,dummy,value)</code></em>. The
+        calls <em class="replaceable"><code>syslog(type,dummy,dummy)</code></em>
+        with <em class="parameter"><code>type</code></em> equal to
+        6 or 7, set it to 1 (kernel panics only) or 7 (all except
+        debugging messages), respectively.</p>
+
+        <p>Every text line in a message has its own loglevel. This
+        level is <span class="emphasis"><em>DEFAULT_MESSAGE_LOGLEVEL −
+        1</em></span> (6) unless the line starts with &lt;d&gt;
+        where <em class="replaceable"><code>d</code></em> is a
+        digit in the range 1-7, in which case the level is
+        <em class="replaceable"><code>d</code></em>. The
+        conventional meaning of the loglevel is defined in
+        <code class="literal">&lt;</code><code class="filename">linux/kernel.h</code><code class="literal">&gt;</code> as follows:</p>
+
+        <div class="informalexample">
+          <pre class="programlisting" xml:space="preserve">
+#define KERN_EMERG    "&lt;0&gt;"  /* system is unusable               */
+#define KERN_ALERT    "&lt;1&gt;"  /* action must be taken immediately */
+#define KERN_CRIT     "&lt;2&gt;"  /* critical conditions              */
+#define KERN_ERR      "&lt;3&gt;"  /* error conditions                 */
+#define KERN_WARNING  "&lt;4&gt;"  /* warning conditions               */
+#define KERN_NOTICE   "&lt;5&gt;"  /* normal but significant condition */
+#define KERN_INFO     "&lt;6&gt;"  /* informational                    */
+#define KERN_DEBUG    "&lt;7&gt;"  /* debug-level messages             */
+</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="syslog-2_sect4" name="syslog-2_sect4" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p>For <em class="parameter"><code>type</code></em> equal to
+      2, 3, or 4, a successful call to <code class="function">syslog</code>() returns the number of bytes read.
+      For <em class="parameter"><code>type</code></em> 9,
+      <code class="function">syslog</code>() returns the number of
+      bytes currently available to be read on the kernel log
+      buffer. For <em class="parameter"><code>type</code></em> 10,
+      <code class="function">syslog</code>() returns the total size
+      of the kernel log buffer. For other values of <em class="parameter"><code>type</code></em>, 0 is returned on
+      success.</p>
+
+      <p>In case of error, −1 is returned, and <code class="varname">errno</code> is set to indicate the error.</p>
+    </div>
+
+    <div class="refsect1" title="ERRORS">
+      <a id="syslog-2_sect5" name="syslog-2_sect5" shape="rect"> </a>
+
+      <h2>ERRORS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><span class="errorname">EINVAL</span></span></dt>
+
+          <dd>
+            <p>Bad arguments (e.g., bad <em class="parameter"><code>type</code></em>; or for <em class="parameter"><code>type</code></em> 2, 3, or 4,
+            <em class="replaceable"><code>buf</code></em> is NULL,
+            or <em class="parameter"><code>len</code></em> is less
+            than zero; or for <em class="parameter"><code>type</code></em> 8, the <em class="replaceable"><code>level</code></em> is outside the
+            range 1 to 8).</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENOSYS</span></span></dt>
+
+          <dd>
+            <p>This <code class="function">syslog</code>() system
+            call is not available, because the kernel was compiled
+            with the <code class="constant">CONFIG_PRINTK</code>
+            kernel-configuration option disabled.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EPERM</span></span></dt>
+
+          <dd>
+            <p>An attempt was made to change console_loglevel or
+            clear the kernel message ring buffer by a process
+            without sufficient privilege (more precisely: without
+            the <code class="constant">CAP_SYS_ADMIN</code>
+            capability).</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">ERESTARTSYS</code></span></dt>
+
+          <dd>
+            <p>System call was interrupted by a signal; nothing was
+            read. (This can be seen only during a trace.)</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="syslog-2_sect6" name="syslog-2_sect6" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>This system call is Linux-specific and should not be used
+      in programs intended to be portable.</p>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="syslog-2_sect7" name="syslog-2_sect7" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p>From the very start people noted that it is unfortunate
+      that a system call and a library routine of the same name are
+      entirely different animals. In libc4 and libc5 the number of
+      this call was defined by <em class="replaceable"><code>SYS_klog</code></em>. In glibc 2.0 the
+      syscall is baptized <code class="function">klogctl</code>().</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="syslog-2_sect8" name="syslog-2_sect8" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman3/syslog.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">syslog</span>(3)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="syslog-2_sect9" name="syslog-2_sect9" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.30 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright (C) 1995 Andries Brouwer (aeb<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cwi.nl)<br />
+
+                  <br />
+                  Permission is granted to make and distribute verbatim copies of this<br />
+
+                  manual provided the copyright notice and this permission notice are<br />
+
+                  preserved on all copies.<br />
+                  <br />
+                  Permission is granted to copy and distribute modified versions of this<br />
+
+                  manual under the conditions for verbatim copying, provided that the<br />
+
+                  entire resulting derived work is distributed under the terms of a<br />
+
+                  permission notice identical to this one.<br />
+
+                  <br />
+                  Since the Linux kernel and libraries are constantly changing, this<br />
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no<br />
+
+                  responsibility for errors or omissions, or for damages resulting from<br />
+
+                  the use of the information contained herein.  The author(s) may not<br />
+
+                  have taken the same level of care in the production of this manual,<br />
+
+                  which is licensed free of charge, as they might when working<br />
+
+                  professionally.<br />
+                  <br />
+                  Formatted or processed versions of this manual, if unaccompanied by<br />
+
+                  the source, must acknowledge the copyright and authors of this work.<br />
+
+                  <br />
+                  Written 11 June 1995 by Andries Brouwer &lt;aeb<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cwi.nl&gt;<br />
+
+                  2008-02-15, Jeremy Kerr &lt;jk<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>ozlabs.org&gt;<br />
+
+                      Add info on command type 10; add details on types 6, 7, 8, &amp; 9.<br />
+
+                  2008-02-15, Michael Kerrisk &lt;mtk.manpages<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>gmail.com&gt;<br />
+
+                      Update LOG_BUF_LEN details; update RETURN VALUE section.<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

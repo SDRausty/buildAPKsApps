@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	package="com.bwx.bequick" 
+	android:versionName="1.9.9.3"
+	android:versionCode="201107260"
+	android:installLocation="auto"
+	>
+
+	<supports-screens android:largeScreens="true" android:anyDensity="true" />
+
+	<application 
+		android:name="SettingsApplication"
+		android:icon="@drawable/ic_logo" 
+		android:label="Quick Settings">
+
+		<activity android:name=".ShowSettingsActivity" android:label="Quick Settings"
+			android:icon="@drawable/ic_logo" android:launchMode="standard"
+			android:theme="@android:style/Theme.NoDisplay">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+			<intent-filter>
+				<action android:name="android.intent.action.SEARCH_LONG_PRESS" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</activity>
+
+		<activity android:name=".DialogSettingsActivity"
+			android:label="Quick Settings" android:icon="@drawable/ic_logo"
+			android:launchMode="singleInstance" android:theme="@style/NoTitleDialog"
+			android:excludeFromRecents="true">
+		</activity>
+
+		<activity 
+			android:name=".MainSettingsActivity" 
+			android:label="Quick Settings"
+			android:icon="@drawable/ic_logo"
+			android:launchMode="singleInstance"
+			android:excludeFromRecents="true"
+			android:theme="@style/NoTitle"
+			/>
+
+		<activity 
+			android:name=".LayoutSettingsActivity"
+			android:label="@string/txt_customize_settings"
+			android:excludeFromRecents="true"
+			android:theme="@style/NoTitle" 
+			/>
+
+		<activity android:name=".preferences.CommonPrefs"
+			android:label="@string/txt_preferences" android:excludeFromRecents="true" />
+
+		<activity android:name=".preferences.BrightnessPrefs"
+			android:label="@string/txt_preferences" android:excludeFromRecents="true" />
+
+		<activity android:name=".preferences.MobileDataApnPrefs"
+			android:label="@string/txt_preferences" android:excludeFromRecents="true" />
+
+		<activity android:name=".preferences.MobileDataPrefs"
+			android:label="@string/txt_preferences" android:excludeFromRecents="true" />
+
+		<activity android:name=".preferences.GpsPrefs"
+			android:label="@string/txt_preferences" android:excludeFromRecents="true" />
+
+		<activity android:name=".preferences.AirplaneModePrefs"
+			android:label="@string/txt_preferences" android:excludeFromRecents="true" />
+
+		<activity android:name=".flashlight.ScreenLightActivity"
+			android:label="Flashlight" android:launchMode="singleInstance"
+			android:excludeFromRecents="true" android:screenOrientation="portrait"
+			android:finishOnTaskLaunch="true" android:noHistory="true">
+		</activity>
+
+		<receiver android:name=".flashlight.LedFlashlightReceiver">
+			<intent-filter>
+				<action android:name="com.bwx.bequick.FLASHLIGHT" />
+				<action android:name="com.bwx.bequick.WARN_FLASHLIGHT" />
+			</intent-filter>
+		</receiver>
+
+		<receiver android:name=".receivers.StatusBarIntegrationReceiver">
+			<intent-filter>
+				<action android:name="android.intent.action.BOOT_COMPLETED" />
+				<action android:name="com.bwx.bequick.UPDATE_STATUSBAR_INTEGRATION" />
+				<action android:name="com.bwx.bequick.INIT_STATUSBAR_INTEGRATION" />
+				<action android:name="com.bwx.bequick.START_QS" />
+			</intent-filter>
+		</receiver>
+
+	</application>
+
+	<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="27" />
+
+	<!-- access -->
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+	<!-- control -->
+	<uses-permission android:name="android.permission.WAKE_LOCK" />
+	<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+	<uses-permission android:name="android.permission.WRITE_SETTINGS" />
+
+	<!-- bluetooth -->
+	<uses-permission android:name="android.permission.BLUETOOTH" />
+	<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+	<!-- data connection, write APN -->
+	<uses-permission android:name="android.permission.WRITE_APN_SETTINGS" />
+
+	<!-- enable / disable auto-sync  -->
+	<uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+	<uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+	<uses-permission android:name="android.permission.GET_ACCOUNTS" />
+
+	<!-- common features -->
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+	<uses-permission android:name="android.permission.VIBRATE" />
+
+	<!-- led flashlight for Motodroid -->
+	<uses-permission android:name="android.permission.FLASHLIGHT" android:required="false"/>
+	<uses-permission android:name="android.permission.HARDWARE_TEST" android:required="false"/>
+
+	<!-- GPS at rooted phones -->
+	<uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" android:required="false"/>
+	<uses-permission android:name="android.permission.READ_SECURE_SETTINGS" android:required="false"/>
+
+	<!-- led flashlight for froyo -->
+	<uses-permission android:name="android.permission.CAMERA" android:required="false" />
+	
+	<!-- mobile data switch -->
+	<uses-permission android:name="android.permission.MODIFY_PHONE_STATE" android:required="false"/>
+	
+	<!-- 4G -->
+	<uses-permission android:name="android.permission.ACCESS_WIMAX_STATE" android:required="false"/>
+	<uses-permission android:name="android.permission.CHANGE_WIMAX_STATE" android:required="false"/>
+	
+	<!-- not required features -->
+	<uses-feature android:name="android.hardware.camera" android:required="false"/>
+	<uses-feature android:name="android.hardware.camera.autofocus" android:required="false"/>
+	<uses-feature android:name="android.hardware.telephony" android:required="false"/>
+	<uses-feature android:name="android.hardware.location" android:required="false"/>
+	<uses-feature android:name="android.hardware.location.gps" android:required="false"/>
+	
+</manifest>

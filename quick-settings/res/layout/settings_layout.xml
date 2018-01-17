@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:background="@drawable/bitmap_background" android:orientation="vertical"
+	android:layout_width="fill_parent" android:layout_height="fill_parent">
+
+	<LinearLayout android:orientation="vertical"
+		android:layout_marginTop="2dp" android:layout_weight="1"
+		android:layout_width="fill_parent" android:layout_height="fill_parent">
+
+		<TextView android:textColor="@android:color/black"
+			android:background="@drawable/hint_area" android:gravity="center_vertical"
+			android:textSize="12sp" android:singleLine="false"
+			android:paddingLeft="6px" android:paddingRight="6px"
+			android:paddingTop="4px" android:paddingBottom="4px"
+			android:layout_height="wrap_content" android:layout_width="fill_parent"
+			android:text="@string/msg_drag_and_drop" />
+
+		<com.bwx.bequick.SortableSettingsListView
+			android:id="@android:id/list" android:divider="@android:drawable/divider_horizontal_dim_dark"
+			android:cacheColorHint="@android:color/transparent" android:textSize="18sp"
+			android:focusable="false" android:clickable="false"
+			android:layout_marginTop="2dp" android:drawSelectorOnTop="false"
+			android:layout_width="fill_parent" android:layout_height="fill_parent" />
+
+	</LinearLayout>
+
+</LinearLayout>

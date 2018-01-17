@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MaElStro</string>
+    <string name="action_clear">Clear database</string>
+    <string name="no_number">0000</string>
+
+</resources>

@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>madvise(2) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="madvise(2) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="madvise(2) — Linux manual pages">
+    <a id="madvise.2" name="madvise.2" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>madvise — give advice about use of memory</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;sys/mman.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">madvise</b>(</code></td>
+
+            <td rowspan="1" colspan="1">void *<var class="pdparam">addr</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">size_t <var class="pdparam">length</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">advice</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;">
+        <table border="0" summary="Note">
+          <tr>
+            <td rowspan="2" align="center" valign="top" width="25" colspan="1">
+            <img alt="[Note]" src="../stylesheet/note.png" /></td>
+
+            <th align="left" rowspan="1" colspan="1">Note</th>
+          </tr>
+
+          <tr>
+            <td align="left" valign="top" rowspan="1" colspan="1">
+              <div class="featuretests">
+                <table style="border-collapse: collapse;">
+                  <colgroup span="1">
+                    <col span="1" />
+                  </colgroup>
+
+                  <thead>
+                    <tr>
+                      <th style="" rowspan="1" colspan="1">Feature Test Macro Requirements
+                      for glibc (see <a class="link" href="../htmlman7/feature_test_macros.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">feature_test_macros</span>(7)</span></a>):</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td style="" rowspan="1" colspan="1"><code class="function">madvise</code>():</td>
+                    </tr>
+
+                    <tr>
+                      <td class="featuretestdef" style="" rowspan="1" colspan="1">
+                      <code class="constant">_BSD_SOURCE</code></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="madvise-2_sect1" name="madvise-2_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>The <code class="function">madvise</code>() system call
+      advises the kernel about how to handle paging input/output in
+      the address range beginning at address <em class="parameter"><code>addr</code></em> and with size <em class="parameter"><code>length</code></em> bytes. It allows an
+      application to tell the kernel how it expects to use some
+      mapped or shared memory areas, so that the kernel can choose
+      appropriate read-ahead and caching techniques. This call does
+      not influence the semantics of the application (except in the
+      case of <code class="constant">MADV_DONTNEED</code>), but may
+      influence its performance. The kernel is free to ignore the
+      advice.</p>
+
+      <p>The advice is indicated in the <em class="parameter"><code>advice</code></em> argument which can
+      be</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="constant">MADV_NORMAL</code></span></dt>
+
+          <dd>
+            <p>No special treatment. This is the default.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">MADV_RANDOM</code></span></dt>
+
+          <dd>
+            <p>Expect page references in random order. (Hence, read
+            ahead may be less useful than normally.)</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">MADV_SEQUENTIAL</code></span></dt>
+
+          <dd>
+            <p>Expect page references in sequential order. (Hence,
+            pages in the given range can be aggressively read
+            ahead, and may be freed soon after they are
+            accessed.)</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">MADV_WILLNEED</code></span></dt>
+
+          <dd>
+            <p>Expect access in the near future. (Hence, it might
+            be a good idea to read some pages ahead.)</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">MADV_DONTNEED</code></span></dt>
+
+          <dd>
+            <p>Do not expect access in the near future. (For the
+            time being, the application is finished with the given
+            range, so the kernel can free resources associated with
+            it.) Subsequent accesses of pages in this range will
+            succeed, but will result either in reloading of the
+            memory contents from the underlying mapped file (see
+            <a class="link" href="../htmlman2/mmap.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mmap</span>(2)</span></a>) or
+            zero-fill-on-demand pages for mappings without an
+            underlying file.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">MADV_REMOVE</code> (Since Linux
+          2.6.16)</span></dt>
+
+          <dd>
+            <p>Free up a given range of pages and its associated
+            backing store. Currently, only shmfs/tmpfs supports
+            this; other file systems return with the error
+            <span class="errorname">ENOSYS</span>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">MADV_DONTFORK</code> (Since Linux
+          2.6.16)</span></dt>
+
+          <dd>
+            <p>Do not make the pages in this range available to the
+            child after a <a class="link" href="../htmlman2/fork.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fork</span>(2)</span></a>. This is
+            useful to prevent copy-on-write semantics from changing
+            the physical location of a page(s) if the parent writes
+            to it after a <a class="link" href="../htmlman2/fork.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fork</span>(2)</span></a>. (Such page
+            relocations cause problems for hardware that DMAs into
+            the page(s).)</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">MADV_DOFORK</code> (Since Linux
+          2.6.16)</span></dt>
+
+          <dd>
+            <p>Undo the effect of <code class="constant">MADV_DONTFORK</code>, restoring the default
+            behavior, whereby a mapping is inherited across
+            <a class="link" href="../htmlman2/fork.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fork</span>(2)</span></a>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">MADV_HWPOISON</code> (Since Linux
+          2.6.32)</span></dt>
+
+          <dd>
+            <p>Poison a page and handle it like a hardware memory
+            corruption. This operation is only available for
+            privileged (<code class="constant">CAP_SYS_ADMIN</code>) processes. This
+            operation may result in the calling process receiving a
+            <code class="constant">SIGBUS</code> and the page being
+            unmapped. This feature is intended for testing of
+            memory error-handling code; it is only available if the
+            kernel was configured with <code class="constant">CONFIG_MEMORY_FAILURE</code>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">MADV_SOFT_OFFLINE</code> (Since Linux
+          2.6.33)</span></dt>
+
+          <dd>
+            <p>Soft offline the pages in the range specified by
+            <em class="parameter"><code>addr</code></em> and
+            <em class="parameter"><code>length</code></em>. The
+            memory of each page in the specified range is preserved
+            (i.e., when next accessed, the same content will be
+            visible, but in a new physical page frame), and the
+            original page is offlined (i.e., no longer used, and
+            taken out of normal memory management). The effect of
+            the <code class="constant">MADV_SOFT_OFFLINE</code>
+            operation is invisible to (i.e., does not change the
+            semantics of) the calling process. This feature is
+            intended for testing of memory error-handling code; it
+            is only available if the kernel was configured with
+            <code class="constant">CONFIG_MEMORY_FAILURE</code>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">MADV_MERGEABLE</code> (since Linux
+          2.6.32)</span></dt>
+
+          <dd>
+            <p>Enable Kernel Samepage Merging (KSM) for the pages
+            in the range specified by <em class="parameter"><code>addr</code></em> and <em class="parameter"><code>length</code></em>. The kernel
+            regularly scans those areas of user memory that have
+            been marked as mergeable, looking for pages with
+            identical content. These are replaced by a single
+            write-protected page (which is automatically copied if
+            a process later wants to update the content of the
+            page). KSM only merges private anonymous pages (see
+            <a class="link" href="../htmlman2/mmap.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mmap</span>(2)</span></a>). The KSM
+            feature is intended for applications that generate many
+            instances of the same data (e.g., virtualization
+            systems such as KVM). It can consume a lot of
+            processing power; use with care. See the kernel source
+            file <code class="filename">Documentation/vm/ksm.txt</code> for more
+            details. The <code class="constant">MADV_MERGEABLE</code> and <code class="constant">MADV_UNMERGEABLE</code> operations are only
+            available if the kernel was configured with <em class="replaceable"><code>CONFIG_KSM.</code></em></p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">MADV_UNMERGEABLE</code> (since Linux
+          2.6.32)</span></dt>
+
+          <dd>
+            <p>Undo the effect of an earlier <code class="constant">MADV_MERGEABLE</code> operation on the
+            specified address range; KSM unmerges whatever pages it
+            had merged in the address range specified by <em class="parameter"><code>addr</code></em> and <em class="parameter"><code>length</code></em>.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="madvise-2_sect2" name="madvise-2_sect2" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p>On success <code class="function">madvise</code>() returns
+      zero. On error, it returns −1 and <code class="varname">errno</code> is set appropriately.</p>
+    </div>
+
+    <div class="refsect1" title="ERRORS">
+      <a id="madvise-2_sect3" name="madvise-2_sect3" shape="rect"> </a>
+
+      <h2>ERRORS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><span class="errorname">EAGAIN</span></span></dt>
+
+          <dd>
+            <p>A kernel resource was temporarily unavailable.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EBADF</span></span></dt>
+
+          <dd>
+            <p>The map exists, but the area maps something that
+            isn't a file.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EINVAL</span></span></dt>
+
+          <dd>
+            <p>This error can occur for the following reasons:</p>
+
+            <div class="blockquote">
+              <blockquote class="blockquote">
+                <div class="itemizedlist">
+                  <ul class="itemizedlist" type="disc">
+                    <li class="listitem">
+                      <p>The value <em class="replaceable"><code>len</code></em> is
+                      negative.</p>
+                    </li>
+
+                    <li class="listitem">
+                      <p><em class="parameter"><code>addr</code></em> is not
+                      page-aligned.</p>
+                    </li>
+
+                    <li class="listitem">
+                      <p><em class="parameter"><code>advice</code></em> is not a
+                      valid value</p>
+                    </li>
+
+                    <li class="listitem">
+                      <p>The application is attempting to release
+                      locked or shared pages (with <code class="constant">MADV_DONTNEED</code>).</p>
+                    </li>
+
+                    <li class="listitem">
+                      <p><code class="constant">MADV_MERGEABLE</code> or
+                      <code class="constant">MADV_UNMERGEABLE</code> was
+                      specified in <em class="parameter"><code>advice</code></em>, but the
+                      kernel was not configured with <code class="constant">CONFIG_KSM</code>.</p>
+                    </li>
+                  </ul>
+                </div>
+              </blockquote>
+            </div>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EIO</span></span></dt>
+
+          <dd>
+            <p>(for <code class="constant">MADV_WILLNEED</code>)
+            Paging in this area would exceed the process's maximum
+            resident set size.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENOMEM</span></span></dt>
+
+          <dd>
+            <p>(for <code class="constant">MADV_WILLNEED</code>)
+            Not enough memory: paging in failed.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENOMEM</span></span></dt>
+
+          <dd>
+            <p>Addresses in the specified range are not currently
+            mapped, or are outside the address space of the
+            process.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="madvise-2_sect4" name="madvise-2_sect4" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>POSIX.1b. POSIX.1-2001 describes <span class="citerefentry"><span class="refentrytitle">posix_madvise</span>(3)</span> with constants
+      <code class="constant">POSIX_MADV_NORMAL</code>, etc., with a
+      behavior close to that described here. There is a similar
+      <a class="link" href="../htmlman2/posix_fadvise.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">posix_fadvise</span>(2)</span></a> for file
+      access.</p>
+
+      <p><code class="constant">MADV_REMOVE</code>, <code class="constant">MADV_DONTFORK</code>, <code class="constant">MADV_DOFORK</code>, <code class="constant">MADV_HWPOISON</code>, <code class="constant">MADV_MERGEABLE</code>, and <code class="constant">MADV_UNMERGEABLE</code> are Linux-specific.</p>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="madvise-2_sect5" name="madvise-2_sect5" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <div class="refsect2" title="Linux Notes">
+        <a id="madvise-2_sect6" name="madvise-2_sect6" shape="rect"> </a>
+
+        <h3>Linux Notes</h3>
+
+        <p>The current Linux implementation (2.4.0) views this
+        system call more as a command than as advice and hence may
+        return an error when it cannot do what it usually would do
+        in response to this advice. (See the ERRORS description
+        above.) This is nonstandard behavior.</p>
+
+        <p>The Linux implementation requires that the address
+        <em class="parameter"><code>addr</code></em> be
+        page-aligned, and allows <em class="parameter"><code>length</code></em> to be zero. If there
+        are some parts of the specified address range that are not
+        mapped, the Linux version of <code class="function">madvise</code>() ignores them and applies the
+        call to the rest (but returns <span class="errorname">ENOMEM</span> from the system call, as it
+        should).</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="madvise-2_sect7" name="madvise-2_sect7" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman2/getrlimit.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">getrlimit</span>(2)</span></a>, <a class="link" href="../htmlman2/mincore.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mincore</span>(2)</span></a>, <a class="link" href="../htmlman2/mmap.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mmap</span>(2)</span></a>, <a class="link" href="../htmlman2/mprotect.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mprotect</span>(2)</span></a>, <a class="link" href="../htmlman2/msync.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">msync</span>(2)</span></a>, <a class="link" href="../htmlman2/mmap.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">munmap</span>(2)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="madvise-2_sect8" name="madvise-2_sect8" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.26 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                  Copyright (C) 2001 David Gómez &lt;davidge<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>jazzfree.com&gt;<br />
+
+                  <br />
+                  Permission is granted to make and distribute verbatim copies of this<br />
+
+                  manual provided the copyright notice and this permission notice are<br />
+
+                  preserved on all copies.<br />
+                  <br />
+                  Permission is granted to copy and distribute modified versions of this<br />
+
+                  manual under the conditions for verbatim copying, provided that the<br />
+
+                  entire resulting derived work is distributed under the terms of a<br />
+
+                  permission notice identical to this one.<br />
+
+                  <br />
+                  Since the Linux kernel and libraries are constantly changing, this<br />
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no<br />
+
+                  responsibility for errors or omissions, or for damages resulting from<br />
+
+                  the use of the information contained herein.  The author(s) may not<br />
+
+                  have taken the same level of care in the production of this manual,<br />
+
+                  which is licensed free of charge, as they might when working<br />
+
+                  professionally.<br />
+                  <br />
+                  Formatted or processed versions of this manual, if unaccompanied by<br />
+
+                  the source, must acknowledge the copyright and authors of this work.<br />
+
+                  <br />
+                  Based on comments from mm/filemap.c. Last modified on 10-06-2001<br />
+
+                  Modified, 25 Feb 2002, Michael Kerrisk, &lt;mtk.manpages<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>gmail.com&gt;<br />
+
+                  Added notes on MADV_DONTNEED<br />
+                  2010-06-19, mtk, Added documentation of MADV_MERGEABLE and<br />
+
+                      MADV_UNMERGEABLE<br />
+                  2010-06-15, Andi Kleen, Add documentation of MADV_HWPOISON.<br />
+
+                  2010-06-19, Andi Kleen, Add documentation of MADV_SOFT_OFFLINE.<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

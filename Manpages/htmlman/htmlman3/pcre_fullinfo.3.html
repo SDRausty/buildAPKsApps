@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>pcre_fullinfo(3) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="pcre_fullinfo(3) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="pcre_fullinfo(3) — Linux manual pages">
+    <a id="pcre-fullinfo.3" name="pcre-fullinfo.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>PCRE — Perl-compatible regular expressions</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;pcre.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">pcre_fullinfo</b>(</code></td>
+
+            <td rowspan="1" colspan="1">const pcre *<var class="pdparam">code</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">const pcre_extra *<var class="pdparam">extra</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">what</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">void *<var class="pdparam">where</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="pcre-fullinfo-3_sect1" name="pcre-fullinfo-3_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>This function returns information about a compiled
+      pattern. Its arguments are:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+ <em class="parameter"><code>code</code></em>                      Compiled regular expression
+ <em class="parameter"><code>extra</code></em>                     Result of <code class="function">pcre_study</code>() or NULL
+ <em class="parameter"><code>what</code></em>                      What information is required
+ <em class="parameter"><code>where</code></em>                     Where to put the information
+</pre>
+      </div>
+
+      <p>The following information is available:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+ PCRE_INFO_BACKREFMAX      Number of highest back reference
+ PCRE_INFO_CAPTURECOUNT    Number of capturing subpatterns
+ PCRE_INFO_DEFAULT_TABLES  Pointer to default tables
+ PCRE_INFO_FIRSTBYTE       Fixed first byte for a match, or
+                             -1 for start of string
+                                or after newline, or
+                             -2 otherwise
+ PCRE_INFO_FIRSTTABLE      Table of first bytes (after studying)
+ PCRE_INFO_JCHANGED        Return 1 if (?J) or (?-J) was used
+ PCRE_INFO_LASTLITERAL     Literal last byte required
+ PCRE_INFO_MINLENGTH       Lower bound length of matching strings
+ PCRE_INFO_NAMECOUNT       Number of named subpatterns
+ PCRE_INFO_NAMEENTRYSIZE   Size of name table entry
+ PCRE_INFO_NAMETABLE       Pointer to name table
+ PCRE_INFO_OKPARTIAL       Return 1 if partial matching can be tried
+                             (always returns 1 after release 8.00)
+ PCRE_INFO_OPTIONS         Option bits used for compilation
+ PCRE_INFO_SIZE            Size of compiled pattern
+ PCRE_INFO_STUDYSIZE       Size of study data
+</pre>
+      </div>
+
+      <p>The yield of the function is zero on success or:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+ PCRE_ERROR_NULL           the argument <em class="parameter"><code>code</code></em> was NULL
+                           the argument <em class="parameter"><code>where</code></em> was NULL
+ PCRE_ERROR_BADMAGIC       the "magic number" was not found
+ PCRE_ERROR_BADOPTION      the value of <em class="parameter"><code>what</code></em> was invalid
+</pre>
+      </div>
+
+      <p>There is a complete description of the PCRE native API in
+      the <a class="link" href="../htmlman3/pcreapi.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pcreapi</span>(3)</span></a> page and a
+      description of the POSIX API in the <a class="link" href="../htmlman3/pcreposix.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pcreposix</span>(3)</span></a> page.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <thead>
+            <tr>
+              <th style="" rowspan="1" colspan="1">COPYRIGHT</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <p>This manual page is taken from the <a class="ulink" href="http://www.PCRE.org/" target="_top" shape="rect">PCRE library</a>, which is distributed under
+                the BSD license.</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

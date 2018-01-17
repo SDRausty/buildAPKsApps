@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="faces">
+        <item>Par défaut</item>
+        <item>Cyborg</item>
+        <item>Mort</item>
+        <item>Avide</item>
+        <item>Paranoïaque</item>
+        <item>Défoncé</item>
+        <item>Fatigué</item>
+        <item>Surexcité</item>
+        <item>Jeune</item>
+    </string-array>
+</resources>

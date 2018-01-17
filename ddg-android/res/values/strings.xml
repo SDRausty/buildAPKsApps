@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+	 Copyright Johan Hilding (2010)
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+    <!-- Search source name as displayed in the search dialog. -->
+    <string name="search_label">Duck Duck Go</string>
+
+    <string name="app_label">Duck Duck Go</string>
+
+    <!-- This is the hint text shown in the search widget, before text is entered. -->
+    <string name="search_hint">Duck Duck Go</string>
+    
+    <!--  This is displayed underneath the search_label in Settings -> Search -> Searchable Items -->
+    <string name="search_description">Duck Duck Go web search</string>
+    
+    
+    <!-- PREFERENCE STRINGS -->
+    <string name="search_intent_title">Search</string>
+    <string name="search_intent_summary">Search the Internet using Duck Duck Go</string>
+    
+    
+    <string name="help_intent_title">Help</string>
+    <string name="help_intent_summary">Learn how to use Duck Duck Go on Android</string>
+    
+    <string name="bang_preferences">Bang suggestions</string>
+    <string name="bang_dialog_title">Choose bang</string>
+    
+    <string name="bang_1_preference_title">1st bang suggestion</string>
+    
+    <string name="bang_2_preference_title">2nd bang suggestion</string>
+    
+    <string name="bang_3_preference_title">3rd bang suggestion</string>
+    
+    <string name="bang_4_preference_title">4th bang suggestion</string>
+</resources>

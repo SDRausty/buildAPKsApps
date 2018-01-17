@@ -1,0 +1,31 @@
+Description: Add a new cow
+Forwarded: no
+Origin: vendor, http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=193440#15
+Bug-Debian: http://bugs.debian.org/193440
+Author: Thom May <thom@debian.org>
+
+--- /dev/null
++++ cowsay-3.03/cows/mech-and-cow.cow
+@@ -0,0 +1,22 @@
++## mecha cow!
++##
++## Patch from Thom May
++$the_cow = <<EOC;
++                                   ,-----.
++                                   |     |
++                                ,--|     |-.
++                         __,----|  |     | |
++                       ,;::     |  `_____' |
++                       `._______|    i^i   |
++                                `----| |---'| .
++                           ,-------._| |== ||//
++                           |       |_|P`.  /'/
++                           `-------' 'Y Y/'/'
++                                     .==\ /_\
++   ^__^                             /   /'|  `i
++   (oo)\_______                   /'   /  |   |
++   (__)\       )\/\             /'    /   |   `i
++       ||----w |           ___,;`----'.___L_,-'`\__
++       ||     ||          i_____;----\.____i""\____\
++
++EOC

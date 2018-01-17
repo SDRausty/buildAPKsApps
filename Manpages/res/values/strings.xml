@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Manpages</string>
+    <string name="about_popup_name">Manpages - The Fine Manual</string>
+    <string name="about_popup_desc">Manpages allows to display GNU/Linux manual pages. Each page has its own license (often the GNU FDL).</string>
+    <string name="about_popup_licence">Application developed by Julien Guepin. This is free software licensed under the BSD license.</string>
+    <string name="download_suggest">You should download manual pages on your phone to be able to read it without internet connection. 23MB will be stored on your SD card or internal storage. Do you agree ?</string>
+    <string name="search">Search</string>
+    <string name="sections_title">Manpages sections: </string>
+    <string name="sections_1_title">1. Commands (Programs)</string>
+    <string name="sections_1_desc">Those commands that can be executed by the user from within a shell.</string>
+    <string name="sections_2_title">2. System calls</string>
+    <string name="sections_2_desc">Those functions which must be performed by the kernel.</string>
+    <string name="sections_3_title">3. Library calls</string>
+    <string name="sections_3_desc">Most of the libc functions.</string>
+    <string name="sections_4_title">4. Special files (devices)</string>
+    <string name="sections_4_desc">Files found in /dev.</string>
+    <string name="sections_5_title">5. File formats and conventions</string>
+    <string name="sections_5_desc">The format for /etc/passwd and other human-readable files.</string>
+    <string name="sections_6_title">6. Games</string>
+    <string name="sections_7_title">7. Conventions and miscellaneous</string>
+    <string name="sections_7_desc">Overviews of various topics, conventions and protocols, character set standards, and miscellaneous other things.</string>
+    <string name="sections_8_title">8. System management commands</string>
+    <string name="sections_8_desc">Commands like mount(8), many of which only root can execute.</string>
+    <string name="no_connection">No internet connection… retry later</string>
+    <string name="no_external_storage">No storage found… retry later</string>
+    <string name="error_writing">Error while writing file… retry later</string>
+    <string name="error_downloading">Error while writing file… retry later</string>
+</resources>

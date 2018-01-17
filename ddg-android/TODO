@@ -1,0 +1,8 @@
+* Redo the bang system.
+    - Add more bangs.
+    - Create a system to manage the bangs (right now it's two arrays which needs to be kept in sync. not cool).
+    - Somehow order the bangs to make it easy for the user to find the right bang.
+
+* Add screenshots and redo the help text to be simpler and easier.
+    - Add a javascript listener to the webview so that a simple "here" link can
+    replace the "Go Settings > ..." lines.

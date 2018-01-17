@@ -1,0 +1,19 @@
+Description: Work-around for broken baloons with empty messages
+Forwarded: no
+Origin: vendor, http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=165218#5 
+Bug-Debian: http://bugs.debian.org/165218
+Author: Jeronimo Pellegrini <pellegrini@mpcnet.com.br>
+
+--- cowsay-3.03.orig/cowsay
++++ cowsay-3.03/cowsay
+@@ -106,6 +106,10 @@ sub maxlength {
+ 	$l = length $i;
+ 	$m = $l if ($l > $m);
+     }
++##  maxlength patch from Jeronimo Pellegrini (Closes: #165218)
++    if ($m == -1) {
++	$m = 0;
++    }
+     return $m;
+ }
+ 

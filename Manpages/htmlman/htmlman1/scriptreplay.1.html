@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>replay(1) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="replay(1) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="replay(1) — Linux manual pages">
+    <a id="scriptreplay.1" name="scriptreplay.1" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>scriptreplay — play back typescripts, using timing
+      information</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">scriptreplay</code> timingfile [
+        typescript [divisor] ]</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="scriptreplay-1_sect1" name="scriptreplay-1_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>This program replays a typescript, using timing
+      information to ensure that output happens at the same speed
+      as it originally appeared when the script was recorded.</p>
+
+      <p>The replay simply displays the information again; the
+      programs that were run when the typescript was being recorded
+      are not run again. Since the same information is simply being
+      displayed, <span class="command"><strong>scriptreplay</strong></span> is only
+      guaranteed to work properly if run on the same type of
+      terminal the typescript was recorded on. Otherwise, any
+      escape characters in the typescript may be interpreted
+      differently by the terminal to which <span class="command"><strong>scriptreplay</strong></span> is sending its
+      output.</p>
+
+      <p>The timings information is what <a class="link" href="../htmlman1/script.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">script</span>(1)</span></a> outputs to
+      standard error if it is run with the <code class="option">−t</code> parameter.</p>
+
+      <p>By default, the typescript to display is assumed to be
+      named “typescript”, but other filenames may be
+      specified, as the second parameter.</p>
+
+      <p>If the third parameter is specified, it is used as a
+      speed-up multiplier. For example, a speed-up of 2 makes
+      <span class="command"><strong>scriptreplay</strong></span> go
+      twice as fast and a speed-up of 0.1 makes it go ten times
+      slower than the original session.</p>
+    </div>
+
+    <div class="refsect1" title="EXAMPLE">
+      <a id="scriptreplay-1_sect2" name="scriptreplay-1_sect2" shape="rect"> </a>
+
+      <h2>EXAMPLE</h2>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="informalexample">
+            <pre class="programlisting" xml:space="preserve">
+ % script -t 2&gt; timingfile
+ Script started, file is typescript
+ % ls
+ &lt;etc, etc&gt;
+ % exit
+ Script done, file is typescript
+ % scriptreplay timingfile
+</pre>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="scriptreplay-1_sect3" name="scriptreplay-1_sect3" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman1/script.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">script</span>(1)</span></a></p>
+    </div>
+
+    <div class="refsect1" title="AUTHOR">
+      <a id="scriptreplay-1_sect5" name="scriptreplay-1_sect5" shape="rect"> </a>
+
+      <h2>AUTHOR</h2>
+
+      <p>The original <span class="command"><strong>scriptreplay</strong></span> program was
+      written by Joey Hess &lt;joey@kitenet.net&gt;. The program
+      was re-written in C by James Youngman &lt;jay@gnu.org&gt; and
+      Karel Zak &lt;kzak@redhat.com&gt;.</p>
+    </div>
+
+    <div class="refsect1" title="AVAILABILITY">
+      <a id="scriptreplay-1_sect6" name="scriptreplay-1_sect6" shape="rect"> </a>
+
+      <h2>AVAILABILITY</h2>
+
+      <p>The <span class="command"><strong>scriptreplay</strong></span> command is
+      part of the util-linux package and is available from
+      ftp://ftp.kernel.org/pub/linux/utils/util-linux/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <thead>
+            <tr>
+              <th style="" rowspan="1" colspan="1">COPYRIGHT</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <p>Copyright © 2008 James Youngman</p>
+
+                <p>Copyright © 2008 Karel Zak</p>
+
+                <p>This is free software; see the source for
+                copying conditions. There is NO warranty; not even
+                for MERCHANTABILITY or FITNESS FOR A PARTICULAR
+                PURPOSE.</p>
+
+                <p>Released under the GNU General Public License
+                version 2 or later.</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:example="http://schemas.android.com/apk/res/com.mnm.seekbarpreference">
+    
+    <com.mnm.seekbarpreference.SeekBarPreference
+        android:key="seekBarPreference"
+	    android:title="@string/dialog_title"
+	    android:dialogTitle="@string/dialog_title"
+	    android:summary="@string/summary"
+	    android:persistent="true"
+	    android:defaultValue="20"
+	    example:minValue="10"
+	    example:maxValue="50" />
+    
+</PreferenceScreen>

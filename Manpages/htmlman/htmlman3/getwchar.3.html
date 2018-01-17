@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>getwchar(3) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="getwchar(3) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="getwchar(3) — Linux manual pages">
+    <a id="getwchar.3" name="getwchar.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>getwchar — read a wide character from standard
+      input</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;wchar.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">wint_t <b class="fsfunc">getwchar</b>(</code></td>
+
+            <td rowspan="1" colspan="1"><code>void)</code>;</td>
+
+            <td rowspan="1" colspan="1"> </td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="getwchar-3_sect1" name="getwchar-3_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>The <code class="function">getwchar</code>() function is
+      the wide-character equivalent of the <a class="link" href="../htmlman3/gets.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">getchar</span>(3)</span></a> function. It
+      reads a wide character from <code class="varname">stdin</code> and returns it. If the end of stream
+      is reached, or if <em class="replaceable"><code>ferror(stdin)</code></em> becomes true,
+      it returns <code class="constant">WEOF</code>. If a
+      wide-character conversion error occurs, it sets <code class="varname">errno</code> to <span class="errorname">EILSEQ</span> and returns <code class="constant">WEOF</code>.</p>
+
+      <p>For a nonlocking counterpart, see <a class="link" href="../htmlman3/unlocked_stdio.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">unlocked_stdio</span>(3)</span></a>.</p>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="getwchar-3_sect2" name="getwchar-3_sect2" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p>The <code class="function">getwchar</code>() function
+      returns the next wide-character from standard input, or
+      <code class="constant">WEOF</code>.</p>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="getwchar-3_sect3" name="getwchar-3_sect3" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>C99.</p>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="getwchar-3_sect4" name="getwchar-3_sect4" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p>The behavior of <code class="function">getwchar</code>()
+      depends on the <code class="constant">LC_CTYPE</code>
+      category of the current locale.</p>
+
+      <p>It is reasonable to expect that <code class="function">getwchar</code>() will actually read a multibyte
+      sequence from standard input and then convert it to a wide
+      character.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="getwchar-3_sect5" name="getwchar-3_sect5" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman3/fgetwc.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fgetwc</span>(3)</span></a>, <a class="link" href="../htmlman3/unlocked_stdio.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">unlocked_stdio</span>(3)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="getwchar-3_sect6" name="getwchar-3_sect6" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.29 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright (c) Bruno Haible &lt;haible<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>clisp.cons.org&gt;<br />
+
+                  <br />
+                  This is free documentation; you can redistribute it and/or<br />
+
+                  modify it under the terms of the GNU General Public License as<br />
+
+                  published by the Free Software Foundation; either version 2 of<br />
+
+                  the License, or (at your option) any later version.<br />
+
+                  <br />
+                  References consulted:<br />
+                    GNU glibc-2 source code and manual<br />
+
+                    Dinkumware C library reference http://www.dinkumware.com/<br />
+
+                    OpenGroup's Single UNIX specification<br />
+
+                       http://www.UNIX-systems.org/online.html<br />
+
+                    ISO/IEC 9899:1999<br />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,762 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>unix(7) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="unix(7) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="unix(7) — Linux manual pages">
+    <a id="unix.7" name="unix.7" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>unix, AF_UNIX, AF_LOCAL — Sockets for local
+      interprocess communication</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+#include &lt;sys/socket.h&gt;
+
+#include &lt;sys/un.h&gt;
+</pre>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">unix_socket = <b class="fsfunc">socket</b>(</code></td>
+
+            <td rowspan="1" colspan="1"><var class="pdparam">AF_UNIX</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1"><var class="pdparam">type</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1"><var class="pdparam">0</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">error = <b class="fsfunc">socketpair</b>(</code></td>
+
+            <td rowspan="1" colspan="1"><var class="pdparam">AF_UNIX</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1"><var class="pdparam">type</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1"><var class="pdparam">0</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">int *<var class="pdparam">sv</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="unix-7_sect1" name="unix-7_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>The <em class="parameter"><code>AF_UNIX</code></em> (also
+      known as <code class="constant">AF_LOCAL</code>) socket
+      family is used to communicate between processes on the same
+      machine efficiently. Traditionally, UNIX domain sockets can
+      be either unnamed, or bound to a file system pathname (marked
+      as being of type socket). Linux also supports an abstract
+      namespace which is independent of the file system.</p>
+
+      <p>Valid types are: <code class="constant">SOCK_STREAM</code>, for a stream-oriented socket
+      and <code class="constant">SOCK_DGRAM</code>, for a
+      datagram-oriented socket that preserves message boundaries
+      (as on most UNIX implementations, UNIX domain datagram
+      sockets are always reliable and don't reorder datagrams); and
+      (since Linux 2.6.4) <code class="constant">SOCK_SEQPACKET</code>, for a connection-oriented
+      socket that preserves message boundaries and delivers
+      messages in the order that they were sent.</p>
+
+      <p>UNIX domain sockets support passing file descriptors or
+      process credentials to other processes using ancillary
+      data.</p>
+
+      <div class="refsect2" title="Address Format">
+        <a id="unix-7_sect2" name="unix-7_sect2" shape="rect"> </a>
+
+        <h3>Address Format</h3>
+
+        <p>A UNIX domain socket address is represented in the
+        following structure:</p>
+
+        <div class="blockquote">
+          <blockquote class="blockquote">
+            <div class="structdef">
+              <table style="border-collapse: collapse;">
+                <colgroup span="1">
+                  <col span="1" />
+                  <col span="1" />
+                  <col span="1" />
+                  <col span="1" />
+                  <col span="1" />
+                </colgroup>
+
+                <tbody>
+                  <tr>
+                    <td style="" colspan="5" align="left" rowspan="1">
+                      <div class="literallayout">
+                        
+                        #define UNIX_PATH_MAX    108
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td style="" colspan="5" rowspan="1"> </td>
+                  </tr>
+
+                  <tr>
+                    <td class="structdefhdr" style="" align="left" rowspan="1" colspan="1">
+                    struct</td>
+
+                    <td class="structdefhdr" style="" colspan="4" align="left" rowspan="1"><span class="structname">sockaddr_un</span> {</td>
+                  </tr>
+
+                  <tr>
+                    <td style="" rowspan="1" colspan="1"> </td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><span class="type">sa_family_t</span></td>
+
+                    <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                     </td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>sun_family</code></em>;</td>
+
+                    <td style="" align="left" rowspan="1" colspan="1">
+                      <div class="literallayout">
+                        /* AF_UNIX */
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td style="" rowspan="1" colspan="1"> </td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><span class="type">char</span></td>
+
+                    <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                     </td>
+
+                    <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>sun_path</code></em>[UNIX_PATH_MAX];</td>
+
+                    <td style="" align="left" rowspan="1" colspan="1">
+                      <div class="literallayout">
+                        /* pathname */
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="structdefftr" style="" colspan="5" align="left" rowspan="1">};</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </blockquote>
+        </div>
+
+        <p><em class="parameter"><code>sun_family</code></em>
+        always contains <em class="parameter"><code>AF_UNIX</code></em>.</p>
+
+        <p>Three types of address are distinguished in this
+        structure:</p>
+
+        <div class="itemizedlist">
+          <ul class="itemizedlist" type="disc">
+            <li class="listitem">
+              <p><em class="replaceable"><code>pathname</code></em>: a UNIX
+              domain socket can be bound to a null-terminated file
+              system pathname using <a class="link" href="../htmlman2/bind.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">bind</span>(2)</span></a>. When the
+              address of the socket is returned by <a class="link" href="../htmlman2/getsockname.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">getsockname</span>(2)</span></a>,
+              <a class="link" href="../htmlman2/getpeername.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">getpeername</span>(2)</span></a>, and
+              <a class="link" href="../htmlman2/accept.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">accept</span>(2)</span></a>, its
+              length is <span class="emphasis"><em>offsetof(struct
+              sockaddr_un, sun_path) + strlen(sun_path) +
+              1</em></span>, and <em class="parameter"><code>sun_path</code></em> contains the
+              null-terminated pathname.</p>
+            </li>
+
+            <li class="listitem">
+              <p><em class="replaceable"><code>unnamed</code></em>:
+              A stream socket that has not been bound to a pathname
+              using <a class="link" href="../htmlman2/bind.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">bind</span>(2)</span></a> has no
+              name. Likewise, the two sockets created by <a class="link" href="../htmlman2/socketpair.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">socketpair</span>(2)</span></a> are
+              unnamed. When the address of an unnamed socket is
+              returned by <a class="link" href="../htmlman2/getsockname.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">getsockname</span>(2)</span></a>,
+              <a class="link" href="../htmlman2/getpeername.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">getpeername</span>(2)</span></a>, and
+              <a class="link" href="../htmlman2/accept.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">accept</span>(2)</span></a>, its
+              length is <em class="replaceable"><code>sizeof(sa_family_t)</code></em>,
+              and <em class="parameter"><code>sun_path</code></em>
+              should not be inspected.</p>
+            </li>
+
+            <li class="listitem">
+              <p><em class="replaceable"><code>abstract</code></em>: an abstract
+              socket address is distinguished by the fact that
+              <em class="replaceable"><code>sun_path[0]</code></em>
+              is a null byte ('\0'). The socket's address in this
+              namespace is given by the additional bytes in
+              <em class="parameter"><code>sun_path</code></em> that
+              are covered by the specified length of the address
+              structure. (Null bytes in the name have no special
+              significance.) The name has no connection with file
+              system pathnames. When the address of an abstract
+              socket is returned by <a class="link" href="../htmlman2/getsockname.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">getsockname</span>(2)</span></a>,
+              <a class="link" href="../htmlman2/getpeername.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">getpeername</span>(2)</span></a>, and
+              <a class="link" href="../htmlman2/accept.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">accept</span>(2)</span></a>, the
+              returned <em class="replaceable"><code>addrlen</code></em> is greater
+              than <em class="replaceable"><code>sizeof(sa_family_t)</code></em>
+              (i.e., greater than 2), and the name of the socket is
+              contained in the first <span class="emphasis"><em>(addrlen −
+              sizeof(sa_family_t))</em></span> bytes of <em class="parameter"><code>sun_path</code></em>. The abstract
+              socket namespace is a nonportable Linux
+              extension.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="refsect2" title="Socket Options">
+        <a id="unix-7_sect3" name="unix-7_sect3" shape="rect"> </a>
+
+        <h3>Socket Options</h3>
+
+        <p>For historical reasons these socket options are
+        specified with a <code class="constant">SOL_SOCKET</code>
+        type even though they are <em class="parameter"><code>AF_UNIX</code></em> specific. They can be
+        set with <a class="link" href="../htmlman2/getsockopt.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">setsockopt</span>(2)</span></a> and read
+        with <a class="link" href="../htmlman2/getsockopt.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">getsockopt</span>(2)</span></a> by
+        specifying <code class="constant">SOL_SOCKET</code> as the
+        socket family.</p>
+
+        <div class="variablelist">
+          <dl>
+            <dt><span class="term"><code class="constant">SO_PASSCRED</code></span></dt>
+
+            <dd>
+              <p>Enables the receiving of the credentials of the
+              sending process in an ancillary message. When this
+              option is set and the socket is not yet connected a
+              unique name in the abstract namespace will be
+              generated automatically. Expects an integer boolean
+              flag.</p>
+            </dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="refsect2" title="Autobind Feature">
+        <a id="unix-7_sect4" name="unix-7_sect4" shape="rect"> </a>
+
+        <h3>Autobind Feature</h3>
+
+        <p>If a <a class="link" href="../htmlman2/bind.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">bind</span>(2)</span></a> call specifies
+        <em class="replaceable"><code>addrlen</code></em> as
+        <em class="replaceable"><code>sizeof(sa_family_t)</code></em>, or the
+        <code class="constant">SO_PASSCRED</code> socket option was
+        specified for a socket that was not explicitly bound to an
+        address, then the socket is autobound to an abstract
+        address. The address consists of a null byte followed by 5
+        bytes in the character set <em class="replaceable"><code>[0-9a-f]</code></em>. (Thus, there is a
+        limit of 2^20 autobind addresses.)</p>
+      </div>
+
+      <div class="refsect2" title="Sockets API">
+        <a id="unix-7_sect5" name="unix-7_sect5" shape="rect"> </a>
+
+        <h3>Sockets API</h3>
+
+        <p>The following paragraphs describe domain-specific
+        details and unsupported features of the sockets API for
+        UNIX domain sockets on Linux.</p>
+
+        <p>UNIX domain sockets do not support the transmission of
+        out-of-band data (the <code class="constant">MSG_OOB</code>
+        flag for <a class="link" href="../htmlman2/send.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">send</span>(2)</span></a> and <a class="link" href="../htmlman2/recv.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">recv</span>(2)</span></a>).</p>
+
+        <p>The <a class="link" href="../htmlman2/send.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">send</span>(2)</span></a> <code class="constant">MSG_MORE</code> flag is not supported by UNIX
+        domain sockets.</p>
+
+        <p>The use of <code class="constant">MSG_TRUNC</code> in
+        the <em class="replaceable"><code>flags</code></em>
+        argument of <a class="link" href="../htmlman2/recv.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">recv</span>(2)</span></a> is not supported
+        by UNIX domain sockets.</p>
+
+        <p>The <code class="constant">SO_SNDBUF</code> socket
+        option does have an effect for UNIX domain sockets, but the
+        <code class="constant">SO_RCVBUF</code> option does not.
+        For datagram sockets, the <code class="constant">SO_SNDBUF</code> value imposes an upper limit on
+        the size of outgoing datagrams. This limit is calculated as
+        the doubled (see <a class="link" href="../htmlman7/socket.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">socket</span>(7)</span></a>) option value
+        less 32 bytes used for overhead.</p>
+      </div>
+
+      <div class="refsect2" title="Ancillary Messages">
+        <a id="unix-7_sect6" name="unix-7_sect6" shape="rect"> </a>
+
+        <h3>Ancillary Messages</h3>
+
+        <p>Ancillary data is sent and received using <a class="link" href="../htmlman2/send.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">sendmsg</span>(2)</span></a> and <a class="link" href="../htmlman2/recv.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">recvmsg</span>(2)</span></a>. For
+        historical reasons the ancillary message types listed below
+        are specified with a <code class="constant">SOL_SOCKET</code> type even though they are
+        <em class="parameter"><code>AF_UNIX</code></em> specific.
+        To send them set the <em class="replaceable"><code>cmsg_level</code></em> field of the
+        struct <em class="replaceable"><code>cmsghdr</code></em> to
+        <code class="constant">SOL_SOCKET</code> and the <em class="replaceable"><code>cmsg_type</code></em> field to the
+        type. For more information see <a class="link" href="../htmlman3/cmsg.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">cmsg</span>(3)</span></a>.</p>
+
+        <div class="variablelist">
+          <dl>
+            <dt><span class="term"><code class="constant">SCM_RIGHTS</code></span></dt>
+
+            <dd>
+              <p>Send or receive a set of open file descriptors
+              from another process. The data portion contains an
+              integer array of the file descriptors. The passed
+              file descriptors behave as though they have been
+              created with <a class="link" href="../htmlman2/dup.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">dup</span>(2)</span></a>.</p>
+            </dd>
+
+            <dt><span class="term"><code class="constant">SCM_CREDENTIALS</code></span></dt>
+
+            <dd>
+              <p>Send or receive UNIX credentials. This can be used
+              for authentication. The credentials are passed as a
+              <span class="emphasis"><em>struct ucred</em></span>
+              ancillary message. Thus structure is defined in
+              <code class="literal">&lt;</code><code class="filename">sys/socket.h</code><code class="literal">&gt;</code> as follows:</p>
+
+              <div class="blockquote">
+                <blockquote class="blockquote">
+                  <div class="structdef">
+                    <table style="border-collapse: collapse;">
+                      <colgroup span="1">
+                        <col span="1" />
+                        <col span="1" />
+                        <col span="1" />
+                        <col span="1" />
+                        <col span="1" />
+                      </colgroup>
+
+                      <tbody>
+                        <tr>
+                          <td class="structdefhdr" style="" align="left" rowspan="1" colspan="1">struct</td>
+
+                          <td class="structdefhdr" style="" colspan="4" align="left" rowspan="1"><span class="structname">ucred</span> {</td>
+                        </tr>
+
+                        <tr>
+                          <td style="" rowspan="1" colspan="1"> </td>
+
+                          <td style="" align="left" rowspan="1" colspan="1"><span class="type">pid_t</span></td>
+
+                          <td class="norightpad" style="" align="right" rowspan="1" colspan="1"> </td>
+
+                          <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>pid</code></em>;</td>
+
+                          <td style="" align="left" rowspan="1" colspan="1">
+                            <div class="literallayout">
+                              
+                              /* process ID of the sending process */
+                            </div>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td style="" rowspan="1" colspan="1"> </td>
+
+                          <td style="" align="left" rowspan="1" colspan="1"><span class="type">uid_t</span></td>
+
+                          <td class="norightpad" style="" align="right" rowspan="1" colspan="1"> </td>
+
+                          <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>uid</code></em>;</td>
+
+                          <td style="" align="left" rowspan="1" colspan="1">
+                            <div class="literallayout">
+                              
+                              /* user ID of the sending process */
+                            </div>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td style="" rowspan="1" colspan="1"> </td>
+
+                          <td style="" align="left" rowspan="1" colspan="1"><span class="type">gid_t</span></td>
+
+                          <td class="norightpad" style="" align="right" rowspan="1" colspan="1"> </td>
+
+                          <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>gid</code></em>;</td>
+
+                          <td style="" align="left" rowspan="1" colspan="1">
+                            <div class="literallayout">
+                              
+                              /* group ID of the sending process */
+                            </div>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td class="structdefftr" style="" colspan="5" align="left" rowspan="1">};</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </blockquote>
+              </div>
+
+              <p>Since glibc 2.8, the <code class="constant">_GNU_SOURCE</code> feature test macro must
+              be defined (before including <em class="replaceable"><code>any</code></em> header files) in
+              order to obtain the definition of this structure.</p>
+
+              <p>The credentials which the sender specifies are
+              checked by the kernel. A process with effective user
+              ID 0 is allowed to specify values that do not match
+              its own. The sender must specify its own process ID
+              (unless it has the capability <code class="constant">CAP_SYS_ADMIN</code>), its user ID,
+              effective user ID, or saved set-user-ID (unless it
+              has <code class="constant">CAP_SETUID</code>), and
+              its group ID, effective group ID, or saved
+              set-group-ID (unless it has <code class="constant">CAP_SETGID</code>). To receive a
+              <span class="emphasis"><em>struct ucred</em></span>
+              message the <code class="constant">SO_PASSCRED</code>
+              option must be enabled on the socket.</p>
+            </dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="refsect2" title="Ioctls">
+        <a id="unix-7_sect7" name="unix-7_sect7" shape="rect"> </a>
+
+        <h3>Ioctls</h3>
+
+        <p>The following <a class="link" href="../htmlman2/ioctl.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">ioctl</span>(2)</span></a> calls return
+        information in <em class="replaceable"><code>value</code></em>. The correct syntax
+        is:</p>
+
+        <div class="blockquote">
+          <blockquote class="blockquote">
+            <div class="informalexample">
+              <pre class="programlisting" xml:space="preserve">
+  <em class="replaceable"><code>int</code></em><span class="emphasis"><em> value</em></span>;
+<em class="replaceable"><code>error</code></em> = ioctl(<em class="replaceable"><code>tcp_socket</code></em>, <em class="replaceable"><code>ioctl_type</code></em>, &amp;<em class="replaceable"><code>value</code></em>);
+</pre>
+            </div>
+          </blockquote>
+        </div>
+
+        <p><em class="replaceable"><code>ioctl_type</code></em> can
+        be:</p>
+
+        <div class="variablelist">
+          <dl>
+            <dt><span class="term"><code class="constant">SIOCINQ</code></span></dt>
+
+            <dd>
+              <p>Returns the amount of queued unread data in the
+              receive buffer. The socket must not be in LISTEN
+              state, otherwise an error (<span class="errorname">EINVAL</span>) is returned. <code class="constant">SIOCINQ</code> is defined in <code class="literal">&lt;</code><code class="filename">linux/sockios.h</code><code class="literal">&gt;</code> Alternatively, you can use the
+              synonymous <code class="constant">FIONREAD</code>,
+              defined in <code class="literal">&lt;</code><code class="filename">sys/ioctl.h</code><code class="literal">&gt;</code></p>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="ERRORS">
+      <a id="unix-7_sect8" name="unix-7_sect8" shape="rect"> </a>
+
+      <h2>ERRORS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><span class="errorname">EADDRINUSE</span></span></dt>
+
+          <dd>
+            <p>The specified local address is already in use or the
+            file system socket object already exists.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ECONNREFUSED</span></span></dt>
+
+          <dd>
+            <p>The remote address specified by <a class="link" href="../htmlman2/connect.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">connect</span>(2)</span></a> was not a
+            listening socket. This error can also occur if the
+            target filename is not a socket.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ECONNRESET</span></span></dt>
+
+          <dd>
+            <p>Remote socket was unexpectedly closed.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EFAULT</span></span></dt>
+
+          <dd>
+            <p>User memory address was not valid.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EINVAL</span></span></dt>
+
+          <dd>
+            <p>Invalid argument passed. A common cause is that the
+            value <em class="parameter"><code>AF_UNIX</code></em>
+            was not specified in the <em class="replaceable"><code>sun_type</code></em> field of
+            passed addresses, or the socket was in an invalid state
+            for the applied operation.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EISCONN</span></span></dt>
+
+          <dd>
+            <p><a class="link" href="../htmlman2/connect.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">connect</span>(2)</span></a> called on
+            an already connected socket or a target address was
+            specified on a connected socket.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENOENT</span></span></dt>
+
+          <dd>
+            <p>The pathname in the remote address specified to
+            <code class="function">connect</code>() did not
+            exist.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENOMEM</span></span></dt>
+
+          <dd>
+            <p>Out of memory.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENOTCONN</span></span></dt>
+
+          <dd>
+            <p>Socket operation needs a target address, but the
+            socket is not connected.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EOPNOTSUPP</span></span></dt>
+
+          <dd>
+            <p>Stream operation called on non-stream oriented
+            socket or tried to use the out-of-band data option.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EPERM</span></span></dt>
+
+          <dd>
+            <p>The sender passed invalid credentials in the
+            <span class="emphasis"><em>struct
+            ucred</em></span>.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EPIPE</span></span></dt>
+
+          <dd>
+            <p>Remote socket was closed on a stream socket. If
+            enabled, a <code class="constant">SIGPIPE</code> is
+            sent as well. This can be avoided by passing the
+            <code class="constant">MSG_NOSIGNAL</code> flag to
+            <a class="link" href="../htmlman2/send.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">sendmsg</span>(2)</span></a> or
+            <a class="link" href="../htmlman2/recv.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">recvmsg</span>(2)</span></a>.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EPROTONOSUPPORT</span></span></dt>
+
+          <dd>
+            <p>Passed protocol is not <em class="parameter"><code>AF_UNIX</code></em>.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EPROTOTYPE</span></span></dt>
+
+          <dd>
+            <p>Remote socket does not match the local socket type
+            (<code class="constant">SOCK_DGRAM</code> versus
+            <code class="constant">SOCK_STREAM</code>)</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ESOCKTNOSUPPORT</span></span></dt>
+
+          <dd>
+            <p>Unknown socket type.</p>
+          </dd>
+        </dl>
+      </div>
+
+      <p>Other errors can be generated by the generic socket layer
+      or by the file system while generating a file system socket
+      object. See the appropriate manual pages for more
+      information.</p>
+    </div>
+
+    <div class="refsect1" title="VERSIONS">
+      <a id="unix-7_sect9" name="unix-7_sect9" shape="rect"> </a>
+
+      <h2>VERSIONS</h2>
+
+      <p><code class="constant">SCM_CREDENTIALS</code> and the
+      abstract namespace were introduced with Linux 2.2 and should
+      not be used in portable programs. (Some BSD-derived systems
+      also support credential passing, but the implementation
+      details differ.)</p>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="unix-7_sect10" name="unix-7_sect10" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p>In the Linux implementation, sockets which are visible in
+      the file system honor the permissions of the directory they
+      are in. Their owner, group and their permissions can be
+      changed. Creation of a new socket will fail if the process
+      does not have write and search (execute) permission on the
+      directory the socket is created in. Connecting to the socket
+      object requires read/write permission. This behavior differs
+      from many BSD-derived systems which ignore permissions for
+      UNIX domain sockets. Portable programs should not rely on
+      this feature for security.</p>
+
+      <p>Binding to a socket with a filename creates a socket in
+      the file system that must be deleted by the caller when it is
+      no longer needed (using <a class="link" href="../htmlman2/unlink.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">unlink</span>(2)</span></a>). The usual UNIX
+      close-behind semantics apply; the socket can be unlinked at
+      any time and will be finally removed from the file system
+      when the last reference to it is closed.</p>
+
+      <p>To pass file descriptors or credentials over a
+      <code class="constant">SOCK_STREAM</code>, you need to send
+      or receive at least one byte of nonancillary data in the same
+      <a class="link" href="../htmlman2/send.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">sendmsg</span>(2)</span></a> or <a class="link" href="../htmlman2/recv.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">recvmsg</span>(2)</span></a> call.</p>
+
+      <p>UNIX domain stream sockets do not support the notion of
+      out-of-band data.</p>
+    </div>
+
+    <div class="refsect1" title="EXAMPLE">
+      <a id="unix-7_sect11" name="unix-7_sect11" shape="rect"> </a>
+
+      <h2>EXAMPLE</h2>
+
+      <p>See <a class="link" href="../htmlman2/bind.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">bind</span>(2)</span></a>.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="unix-7_sect12" name="unix-7_sect12" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman2/recv.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">recvmsg</span>(2)</span></a>, <a class="link" href="../htmlman2/send.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">sendmsg</span>(2)</span></a>, <a class="link" href="../htmlman2/socket.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">socket</span>(2)</span></a>, <a class="link" href="../htmlman2/socketpair.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">socketpair</span>(2)</span></a>, <a class="link" href="../htmlman3/cmsg.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">cmsg</span>(3)</span></a>, <a class="link" href="../htmlman7/capabilities.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">capabilities</span>(7)</span></a>, <a class="link" href="../htmlman7/credentials.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">credentials</span>(7)</span></a>, <a class="link" href="../htmlman7/socket.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">socket</span>(7)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="unix-7_sect13" name="unix-7_sect13" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.32 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    This man page is Copyright (C) 1999 Andi Kleen &lt;ak<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>muc.de&gt;.<br />
+
+                  Permission is granted to distribute possibly modified copies<br />
+
+                  of this page provided the header is included verbatim,<br />
+
+                  and in case of nontrivial modification author and date<br />
+
+                  of the modification is added to the header.<br />
+
+                  <br />
+                  Modified, 2003-12-02, Michael Kerrisk, &lt;mtk.manpages<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>gmail.com&gt;<br />
+
+                  Modified, 2003-09-23, Adam Langley<br />
+
+                  Modified, 2004-05-27, Michael Kerrisk, &lt;mtk.manpages<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>gmail.com&gt;<br />
+
+                  Added SOCK_SEQPACKET<br />
+                  2008-05-27, mtk, Provide a clear description of the three types of<br />
+
+                      address that can appear in the sockaddr_un structure: pathname,<br />
+
+                      unnamed, and abstract.<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

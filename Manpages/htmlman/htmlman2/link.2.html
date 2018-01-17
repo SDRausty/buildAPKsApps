@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>link(2) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="link(2) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="link(2) — Linux manual pages">
+    <a id="link.2" name="link.2" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>link — make a new name for a file</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;unistd.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">link</b>(</code></td>
+
+            <td rowspan="1" colspan="1">const char *<var class="pdparam">oldpath</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">const char *<var class="pdparam">newpath</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="link-2_sect1" name="link-2_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><code class="function">link</code>() creates a new link
+      (also known as a hard link) to an existing file.</p>
+
+      <p>If <em class="parameter"><code>newpath</code></em> exists
+      it will <em class="replaceable"><code>not</code></em> be
+      overwritten.</p>
+
+      <p>This new name may be used exactly as the old one for any
+      operation; both names refer to the same file (and so have the
+      same permissions and ownership) and it is impossible to tell
+      which name was the "original".</p>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="link-2_sect2" name="link-2_sect2" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p>On success, zero is returned. On error, −1 is
+      returned, and <code class="varname">errno</code> is set
+      appropriately.</p>
+    </div>
+
+    <div class="refsect1" title="ERRORS">
+      <a id="link-2_sect3" name="link-2_sect3" shape="rect"> </a>
+
+      <h2>ERRORS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><span class="errorname">EACCES</span></span></dt>
+
+          <dd>
+            <p>Write access to the directory containing <em class="parameter"><code>newpath</code></em> is denied, or
+            search permission is denied for one of the directories
+            in the path prefix of <em class="parameter"><code>oldpath</code></em> or <em class="parameter"><code>newpath</code></em>. (See also
+            <a class="link" href="../htmlman7/path_resolution.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">path_resolution</span>(7)</span></a>.)</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EEXIST</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>newpath</code></em>
+            already exists.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EFAULT</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>oldpath</code></em> or
+            <em class="parameter"><code>newpath</code></em> points
+            outside your accessible address space.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EIO</span></span></dt>
+
+          <dd>
+            <p>An I/O error occurred.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ELOOP</span></span></dt>
+
+          <dd>
+            <p>Too many symbolic links were encountered in
+            resolving <em class="parameter"><code>oldpath</code></em> or <em class="parameter"><code>newpath</code></em>.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EMLINK</span></span></dt>
+
+          <dd>
+            <p>The file referred to by <em class="parameter"><code>oldpath</code></em> already has the
+            maximum number of links to it.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENAMETOOLONG</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>oldpath</code></em> or
+            <em class="parameter"><code>newpath</code></em> was too
+            long.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENOENT</span></span></dt>
+
+          <dd>
+            <p>A directory component in <em class="parameter"><code>oldpath</code></em> or <em class="parameter"><code>newpath</code></em> does not exist or
+            is a dangling symbolic link.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENOMEM</span></span></dt>
+
+          <dd>
+            <p>Insufficient kernel memory was available.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENOSPC</span></span></dt>
+
+          <dd>
+            <p>The device containing the file has no room for the
+            new directory entry.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENOTDIR</span></span></dt>
+
+          <dd>
+            <p>A component used as a directory in <em class="parameter"><code>oldpath</code></em> or <em class="parameter"><code>newpath</code></em> is not, in fact,
+            a directory.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EPERM</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>oldpath</code></em> is a
+            directory.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EPERM</span></span></dt>
+
+          <dd>
+            <p>The file system containing <em class="parameter"><code>oldpath</code></em> and <em class="parameter"><code>newpath</code></em> does not support
+            the creation of hard links.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EROFS</span></span></dt>
+
+          <dd>
+            <p>The file is on a read-only file system.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EXDEV</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>oldpath</code></em> and
+            <em class="parameter"><code>newpath</code></em> are not
+            on the same mounted file system. (Linux permits a file
+            system to be mounted at multiple points, but
+            <code class="function">link</code>() does not work
+            across different mount points, even if the same file
+            system is mounted on both.)</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="link-2_sect4" name="link-2_sect4" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>SVr4, 4.3BSD, POSIX.1-2001 (but see NOTES).</p>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="link-2_sect5" name="link-2_sect5" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p>Hard links, as created by <code class="function">link</code>(), cannot span file systems. Use
+      <a class="link" href="../htmlman2/symlink.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">symlink</span>(2)</span></a> if this is
+      required.</p>
+
+      <p>POSIX.1-2001 says that <code class="function">link</code>() should dereference <em class="parameter"><code>oldpath</code></em> if it is a symbolic
+      link. However, since kernel 2.0, Linux does not do so: if
+      <em class="parameter"><code>oldpath</code></em> is a symbolic
+      link, then <em class="parameter"><code>newpath</code></em> is
+      created as a (hard) link to the same symbolic link file
+      (i.e., <em class="parameter"><code>newpath</code></em>
+      becomes a symbolic link to the same file that <em class="parameter"><code>oldpath</code></em> refers to). Some other
+      implementations behave in the same manner as Linux.
+      POSIX.1-2008 changes the specification of <code class="function">link</code>(), making it implementation-dependent
+      whether or not <em class="parameter"><code>oldpath</code></em> is dereferenced if it
+      is a symbolic link. For precise control over the treatment of
+      symbolic links when creating a link, see <a class="link" href="../htmlman2/linkat.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">linkat</span>(2)</span></a>.</p>
+    </div>
+
+    <div class="refsect1" title="BUGS">
+      <a id="link-2_sect6" name="link-2_sect6" shape="rect"> </a>
+
+      <h2>BUGS</h2>
+
+      <p>On NFS file systems, the return code may be wrong in case
+      the NFS server performs the link creation and dies before it
+      can say so. Use <a class="link" href="../htmlman2/stat.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">stat</span>(2)</span></a> to find out if the
+      link got created.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="link-2_sect7" name="link-2_sect7" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman1/ln.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">ln</span>(1)</span></a>, <a class="link" href="../htmlman2/linkat.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">linkat</span>(2)</span></a>, <a class="link" href="../htmlman2/open.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">open</span>(2)</span></a>, <a class="link" href="../htmlman2/rename.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">rename</span>(2)</span></a>, <a class="link" href="../htmlman2/stat.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">stat</span>(2)</span></a>, <a class="link" href="../htmlman2/symlink.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">symlink</span>(2)</span></a>, <a class="link" href="../htmlman2/unlink.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">unlink</span>(2)</span></a>, <a class="link" href="../htmlman7/path_resolution.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">path_resolution</span>(7)</span></a>,
+      <a class="link" href="../htmlman7/symlink.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">symlink</span>(7)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="link-2_sect8" name="link-2_sect8" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.24 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                  This manpage is Copyright (C) 1992 Drew Eckhardt;<br />
+
+                                                1993 Michael Haardt, Ian Jackson.<br />
+
+                  <br />
+                  Permission is granted to make and distribute verbatim copies of this<br />
+
+                  manual provided the copyright notice and this permission notice are<br />
+
+                  preserved on all copies.<br />
+                  <br />
+                  Permission is granted to copy and distribute modified versions of this<br />
+
+                  manual under the conditions for verbatim copying, provided that the<br />
+
+                  entire resulting derived work is distributed under the terms of a<br />
+
+                  permission notice identical to this one.<br />
+
+                  <br />
+                  Since the Linux kernel and libraries are constantly changing, this<br />
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no<br />
+
+                  responsibility for errors or omissions, or for damages resulting from<br />
+
+                  the use of the information contained herein.  The author(s) may not<br />
+
+                  have taken the same level of care in the production of this manual,<br />
+
+                  which is licensed free of charge, as they might when working<br />
+
+                  professionally.<br />
+                  <br />
+                  Formatted or processed versions of this manual, if unaccompanied by<br />
+
+                  the source, must acknowledge the copyright and authors of this work.<br />
+
+                  <br />
+                  Modified 1993-07-23 by Rik Faith &lt;faith<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cs.unc.edu&gt;<br />
+
+                  Modified 1994-08-21 by Michael Haardt<br />
+
+                  Modified 2004-06-23 by Michael Kerrisk &lt;mtk.manpages<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>gmail.com&gt;<br />
+
+                  Modified 2005-04-04, as per suggestion by Michael Hardt for rename.2<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

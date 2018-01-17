@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>getrpcport(3) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="getrpcport(3) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="getrpcport(3) — Linux manual pages">
+    <a id="getrpcport.3" name="getrpcport.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>getrpcport — get RPC port number</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">getrpcport</b>(</code></td>
+
+            <td rowspan="1" colspan="1">char *<var class="pdparam">host</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">prognum</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">versnum</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">proto</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="getrpcport-3_sect1" name="getrpcport-3_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><code class="function">getrpcport</code>() returns the
+      port number for version <em class="parameter"><code>versnum</code></em> of the RPC program
+      <em class="parameter"><code>prognum</code></em> running on
+      <em class="parameter"><code>host</code></em> and using
+      protocol <em class="parameter"><code>proto</code></em>. It
+      returns 0 if it cannot contact the portmapper, or if
+      <em class="parameter"><code>prognum</code></em> is not
+      registered. If <em class="parameter"><code>prognum</code></em> is registered but not
+      with version <em class="parameter"><code>versnum</code></em>,
+      it will still return a port number (for some version of the
+      program) indicating that the program is indeed registered.
+      The version mismatch will be detected upon the first call to
+      the service.</p>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="getrpcport-3_sect2" name="getrpcport-3_sect2" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>Not in POSIX.1-2001. Present on the BSDs, Solaris, and
+      many other systems.</p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="getrpcport-3_sect3" name="getrpcport-3_sect3" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.24 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    This page was taken from the 4.4BSD-Lite CDROM (BSD license)<br />
+
+                  <br />
+                  <script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>(#)getrpcport.3r
+                  2.2 88/08/02 4.0 RPCSRC; from 1.12 88/02/26 SMI<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+Description: Add a new cow
+Forwarded: no
+Origin: vendor, http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=143810#5
+Bug-Debian: http://bugs.debian.org/143810
+Author: Steven Barker <scbarker@uiuc.edu>
+
+--- /dev/null
++++ cowsay-3.03/cows/apt.cow
+@@ -0,0 +1,8 @@
++$the_cow = <<"EOC";
++       $thoughts (__)
++         ($eyes)
++   /------\\/
++  / |    ||
++ *  /\\---/\\
++    ~~   ~~
++EOC
