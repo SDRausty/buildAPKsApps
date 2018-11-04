@@ -7,3 +7,4 @@ cd && git clone https://github.com/sdrausty/buildAPKs
 cd buildAPKs
 git submodule update --init sources/apps
 ```
+See subdirectories for individual project licenses.
