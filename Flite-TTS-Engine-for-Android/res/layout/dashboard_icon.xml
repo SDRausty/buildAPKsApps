@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+   xmlns:android="http://schemas.android.com/apk/res/android"
+   android:layout_width="fill_parent"
+   android:layout_height="wrap_content"
+   android:layout_marginBottom="20.0dip"
+   android:gravity="center"
+   android:orientation="vertical">
+ 
+    <ImageView
+       android:id="@+id/dashboard_icon_img"
+       android:layout_width="wrap_content"
+       android:layout_height="96.0dip"
+       android:tint="#40C0FF"
+       android:background="@drawable/dashboard_button_background" 
+       android:scaleType="fitCenter" />
+ 
+    <TextView
+       android:id="@+id/dashboard_icon_text"
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginBottom="20.0dip"
+       android:layout_marginTop="2.0dip"
+       android:gravity="center"
+       android:textAppearance="?android:textAppearanceMedium"
+       android:textColor="@android:color/white" />
+ 
+</LinearLayout>
