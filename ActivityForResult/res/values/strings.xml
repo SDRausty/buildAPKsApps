@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="button_choose_name_text">Choose Name</string>
-    <string name="title_first">Name Display</string>
-    <string name="app_name">Start Activity for Result</string>
-</resources>
