@@ -13,3 +13,6 @@
 [submodule "speech_trainer"]
 	path = speech_trainer
 	url = https://github.com/wrr/speech_trainer
+[submodule "com.mobilepearls.appsharer"]
+	path = com.mobilepearls.appsharer
+	url = https://github.com/mobilepearls/com.mobilepearls.appsharer

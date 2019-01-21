@@ -3,3 +3,4 @@ git submodule add https://github.com/rorist/Cowsay-android rorist/Cowsay-android
 git submodule add https://github.com/rorist/android-alarm-button rorist/android-alarm-button/
 git submodule add https://github.com/rorist/android-reverse rorist/android-reverse
 git submodule add https://github.com/wrr/speech_trainer
+git submodule add https://github.com/mobilepearls/com.mobilepearls.appsharer
