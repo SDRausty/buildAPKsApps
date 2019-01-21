@@ -16,3 +16,6 @@
 [submodule "com.mobilepearls.appsharer"]
 	path = com.mobilepearls.appsharer
 	url = https://github.com/mobilepearls/com.mobilepearls.appsharer
+[submodule "SmsBomber"]
+	path = SmsBomber
+	url = https://github.com/vxhex/SmsBomber
