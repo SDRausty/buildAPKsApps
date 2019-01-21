@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>pcre-config(1) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="pcre-config(1) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="pcre-config(1) — Linux manual pages">
+    <a id="pcre-config.1" name="pcre-config.1" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>pcre-config — program to return PCRE
+      configuration</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">pcre-config</code> [<code class="option">−−prefix</code>] [<code class="option">−−exec−prefix</code>]
+        [<code class="option">−−version</code>]
+        [<code class="option">−−libs</code>]
+        [<code class="option">−−libs−posix</code>]
+        [<code class="option">−−cflags</code>]
+        [<code class="option">−−cflags−posix</code>]</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="pcre-config-1_sect1" name="pcre-config-1_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><span class="command"><strong>pcre-config</strong></span>
+      returns the configuration of the installed PCRE libraries and
+      the options required to compile a program to use them.</p>
+    </div>
+
+    <div class="refsect1" title="OPTIONS">
+      <a id="pcre-config-1_sect2" name="pcre-config-1_sect2" shape="rect"> </a>
+
+      <h2>OPTIONS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><em class="parameter"><code>−−prefix</code></em></span></dt>
+
+          <dd>
+            <p>Writes the directory prefix used in the PCRE
+            installation for architecture independent files
+            (<code class="filename">/usr</code> on many systems,
+            <code class="filename">/usr/local</code> on some
+            systems) to the standard output.</p>
+          </dd>
+
+          <dt><span class="term"><em class="parameter"><code>−−exec-prefix</code></em></span></dt>
+
+          <dd>
+            <p>Writes the directory prefix used in the PCRE
+            installation for architecture dependent files (normally
+            the same as <em class="parameter"><code>−−prefix</code></em>) to
+            the standard output.</p>
+          </dd>
+
+          <dt><span class="term"><em class="parameter"><code>−−version</code></em></span></dt>
+
+          <dd>
+            <p>Writes the version number of the installed PCRE
+            libraries to the standard output.</p>
+          </dd>
+
+          <dt><span class="term"><em class="parameter"><code>−−libs</code></em></span></dt>
+
+          <dd>
+            <p>Writes to the standard output the command line
+            options required to link with PCRE (<code class="option">−lpcre</code> on many systems).</p>
+          </dd>
+
+          <dt><span class="term"><em class="parameter"><code>−−libs-posix</code></em></span></dt>
+
+          <dd>
+            <p>Writes to the standard output the command line
+            options required to link with the PCRE posix emulation
+            library (<code class="option">−lpcreposix</code>
+            <code class="option">−lpcre</code> on many
+            systems).</p>
+          </dd>
+
+          <dt><span class="term"><em class="parameter"><code>−−cflags</code></em></span></dt>
+
+          <dd>
+            <p>Writes to the standard output the command line
+            options required to compile files that use PCRE (this
+            may include some <code class="option">−I</code>
+            options, but is blank on many systems).</p>
+          </dd>
+
+          <dt><span class="term"><em class="parameter"><code>−−cflags-posix</code></em></span></dt>
+
+          <dd>
+            <p>Writes to the standard output the command line
+            options required to compile files that use the PCRE
+            posix emulation library (this may include some
+            <code class="option">−I</code> options, but is
+            blank on many systems).</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="pcre-config-1_sect3" name="pcre-config-1_sect3" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman3/pcre.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pcre</span>(3)</span></a></p>
+    </div>
+
+    <div class="refsect1" title="AUTHOR">
+      <a id="pcre-config-1_sect4" name="pcre-config-1_sect4" shape="rect"> </a>
+
+      <h2>AUTHOR</h2>
+
+      <p>This manual page was originally written by Mark Baker for
+      the Debian GNU/Linux system. It has been slightly revised as
+      a generic PCRE man page.</p>
+    </div>
+
+    <div class="refsect1" title="REVISION">
+      <a id="pcre-config-1_sect5" name="pcre-config-1_sect5" shape="rect"> </a>
+
+      <h2>REVISION</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+Last updated: 18 April 2007
+</pre>
+      </div>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <thead>
+            <tr>
+              <th style="" rowspan="1" colspan="1">COPYRIGHT</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <p>This manual page is taken from the <a class="ulink" href="http://www.PCRE.org/" target="_top" shape="rect">PCRE library</a>, which is distributed under
+                the BSD license.</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

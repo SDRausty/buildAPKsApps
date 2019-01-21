@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>ddate(1) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="ddate(1) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="ddate(1) — Linux manual pages">
+    <a id="ddate.1" name="ddate.1" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>ddate — converts Gregorian dates to Discordian
+      dates</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">ddate</code> [+format] [date]</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="ddate-1_sect1" name="ddate-1_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><span class="command"><strong>ddate</strong></span> prints
+      the date in Discordian date format.</p>
+
+      <p>If called with no arguments, <span class="command"><strong>ddate</strong></span> will get the current
+      system date, convert this to the Discordian date format and
+      print this on the standard output. Alternatively, a Gregorian
+      date may be specified on the command line, in the form of a
+      numerical day, month and year.</p>
+
+      <p>If a format string is specified, the Discordian date will
+      be printed in a format specified by the string. This
+      mechanism works similarly to the format string mechanism of
+      <em class="replaceable"><code>date(1),</code></em> only
+      almost completely differently. The fields are:</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><em class="replaceable"><code>%A</code></em></span></dt>
+
+          <dd>
+            <p>Full name of the day of the week (i.e.,
+            Sweetmorn)</p>
+          </dd>
+
+          <dt><span class="term"><em class="replaceable"><code>%a</code></em></span></dt>
+
+          <dd>
+            <p>Abbreviated name of the day of the week (i.e.,
+            SM)</p>
+          </dd>
+
+          <dt><span class="term"><em class="replaceable"><code>%B</code></em></span></dt>
+
+          <dd>
+            <p>Full name of the season (i.e., Chaos)</p>
+          </dd>
+
+          <dt><span class="term"><em class="replaceable"><code>%b</code></em></span></dt>
+
+          <dd>
+            <p>Abbreviated name of the season (i.e., Chs)</p>
+          </dd>
+
+          <dt><span class="term"><em class="replaceable"><code>%d</code></em></span></dt>
+
+          <dd>
+            <p>Ordinal number of day in season (i.e., 23)</p>
+          </dd>
+
+          <dt><span class="term"><em class="replaceable"><code>%e</code></em></span></dt>
+
+          <dd>
+            <p>Cardinal number of day in season (i.e., 23rd)</p>
+          </dd>
+
+          <dt><span class="term"><em class="replaceable"><code>%H</code></em></span></dt>
+
+          <dd>
+            <p>Name of current Holyday, if any</p>
+          </dd>
+
+          <dt><span class="term"><em class="replaceable"><code>%N</code></em></span></dt>
+
+          <dd>
+            <p>Magic code to prevent rest of format from being
+            printed unless today is a Holyday.</p>
+          </dd>
+
+          <dt><span class="term"><em class="replaceable"><code>%n</code></em></span></dt>
+
+          <dd>
+            <p>Newline</p>
+          </dd>
+
+          <dt><span class="term"><em class="replaceable"><code>%t</code></em></span></dt>
+
+          <dd>
+            <p>Tab</p>
+          </dd>
+
+          <dt><span class="term"><em class="replaceable"><code>%X</code></em></span></dt>
+
+          <dd>
+            <p>Number of days remaining until X-Day. (Not valid if
+            the SubGenius options are not compiled in.)</p>
+          </dd>
+
+          <dt><span class="term"><em class="replaceable"><code>%{</code></em></span></dt>
+
+          <dt><span class="term"><em class="replaceable"><code>%}</code></em></span></dt>
+
+          <dd>
+            <p>Used to enclose the part of the string which is to
+            be replaced with the words "St. Tib's Day" if the
+            current day is St. Tib's Day.</p>
+          </dd>
+
+          <dt><span class="term"><em class="replaceable"><code>%.</code></em></span></dt>
+
+          <dd>
+            <p>Try it and see.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="EXAMPLES">
+      <a id="ddate-1_sect2" name="ddate-1_sect2" shape="rect"> </a>
+
+      <h2>EXAMPLES</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+% ddate
+Sweetmorn, Bureaucracy 42, 3161 YOLD
+
+% ddate +'Today is %{%A, the %e of %B%}, %Y. %N%nCelebrate %H'
+Today is Sweetmorn, the 42nd of Bureaucracy, 3161.
+
+% ddate +"It's %{%A, the %e of %B%}, %Y. %N%nCelebrate %H" 26 9 1995
+It's Prickle-Prickle, the 50th of Bureaucracy, 3161.
+Celebrate Bureflux
+
+% ddate +"Today's %{%A, the %e of %B%}, %Y. %N%nCelebrate %H" 29 2 1996
+Today's St. Tib's Day, 3162.
+</pre>
+      </div>
+    </div>
+
+    <div class="refsect1" title="BUGS">
+      <a id="ddate-1_sect3" name="ddate-1_sect3" shape="rect"> </a>
+
+      <h2>BUGS</h2>
+
+      <p><em class="replaceable"><code>ddate(1)</code></em> will
+      produce undefined behavior if asked to produce the date for
+      St. Tib's day and its format string does not contain the St.
+      Tib's Day delimiters %{ and %}.</p>
+    </div>
+
+    <div class="refsect1" title="NOTE">
+      <a id="ddate-1_sect4" name="ddate-1_sect4" shape="rect"> </a>
+
+      <h2>NOTE</h2>
+
+      <p>After `X-Day' passed without incident, the Church of the
+      SubGenius declared that it had got the year upside down -
+      X-Day is actually in 8661 AD rather than 1998 AD. Thus, the
+      True X-Day is Cfn 40, 9827.</p>
+    </div>
+
+    <div class="refsect1" title="AUTHOR">
+      <a id="ddate-1_sect5" name="ddate-1_sect5" shape="rect"> </a>
+
+      <h2>AUTHOR</h2>
+
+      <p>Original program by Druel the Chaotic aka Jeremy Johnson
+      (mpython@gnu.ai.mit.edu)</p>
+
+      <p>Major rewrite by Lee H:. O:. Smith, KYTP, aka Andrew
+      Bulhak (acb@dev.null.org)</p>
+
+      <p>Five tons of flax.</p>
+    </div>
+
+    <div class="refsect1" title="DISTRIBUTION POLICY">
+      <a id="ddate-1_sect6" name="ddate-1_sect6" shape="rect"> </a>
+
+      <h2>DISTRIBUTION POLICY</h2>
+
+      <p>Public domain. All rites reversed.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="ddate-1_sect7" name="ddate-1_sect7" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p>date(1),</p>
+
+      <p>http://www.subgenius.com/</p>
+
+      <p>Malaclypse the Younger, <span class="emphasis"><em>Principia Discordia, Or How I Found Goddess
+      And What I Did To Her When I Found Her</em></span></p>
+    </div>
+
+    <div class="refsect1" title="AVAILABILITY">
+      <a id="ddate-1_sect8" name="ddate-1_sect8" shape="rect"> </a>
+
+      <h2>AVAILABILITY</h2>
+
+      <p>The ddate command is part of the util-linux package and is
+      available from
+      ftp://ftp.kernel.org/pub/linux/utils/util-linux/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    All Rites Reversed.  This file is in the PUBLIC DOMAIN.<br />
+
+                  Kallisti.<br />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

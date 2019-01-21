@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>readlink(2) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="readlink(2) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="readlink(2) — Linux manual pages">
+    <a id="readlink.2" name="readlink.2" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>readlink — read value of a symbolic link</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;unistd.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">ssize_t <b class="fsfunc">readlink</b>(</code></td>
+
+            <td rowspan="1" colspan="1">const char *<var class="pdparam">path</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">char *<var class="pdparam">buf</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">size_t <var class="pdparam">bufsiz</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;">
+        <table border="0" summary="Note">
+          <tr>
+            <td rowspan="2" align="center" valign="top" width="25" colspan="1">
+            <img alt="[Note]" src="../stylesheet/note.png" /></td>
+
+            <th align="left" rowspan="1" colspan="1">Note</th>
+          </tr>
+
+          <tr>
+            <td align="left" valign="top" rowspan="1" colspan="1">
+              <div class="featuretests">
+                <table style="border-collapse: collapse;">
+                  <colgroup span="1">
+                    <col span="1" />
+                  </colgroup>
+
+                  <thead>
+                    <tr>
+                      <th style="" rowspan="1" colspan="1">Feature Test Macro Requirements
+                      for glibc (see <a class="link" href="../htmlman7/feature_test_macros.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">feature_test_macros</span>(7)</span></a>):</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td style="" rowspan="1" colspan="1"><code class="function">readlink</code>():</td>
+                    </tr>
+
+                    <tr>
+                      <td class="featuretestdef" style="" rowspan="1" colspan="1">
+                      <code class="constant">_BSD_SOURCE</code> ||
+                      <code class="constant">_XOPEN_SOURCE</code>
+                      &gt;= 500 || <code class="constant">_XOPEN_SOURCE</code> &amp;&amp;
+                      <code class="constant">_XOPEN_SOURCE_EXTENDED</code> ||
+                      <code class="constant">_POSIX_C_SOURCE</code>
+                      &gt;= 200112L</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="readlink-2_sect1" name="readlink-2_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><code class="function">readlink</code>() places the
+      contents of the symbolic link <em class="parameter"><code>path</code></em> in the buffer <em class="parameter"><code>buf</code></em>, which has size <em class="parameter"><code>bufsiz</code></em>. <code class="function">readlink</code>() does not append a null byte to
+      <em class="parameter"><code>buf</code></em>. It will truncate
+      the contents (to a length of <em class="parameter"><code>bufsiz</code></em> characters), in case the
+      buffer is too small to hold all of the contents.</p>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="readlink-2_sect2" name="readlink-2_sect2" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p>On success, <code class="function">readlink</code>()
+      returns the number of bytes placed in <em class="parameter"><code>buf</code></em>. On error, −1 is
+      returned and <code class="varname">errno</code> is set to
+      indicate the error.</p>
+    </div>
+
+    <div class="refsect1" title="ERRORS">
+      <a id="readlink-2_sect3" name="readlink-2_sect3" shape="rect"> </a>
+
+      <h2>ERRORS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><span class="errorname">EACCES</span></span></dt>
+
+          <dd>
+            <p>Search permission is denied for a component of the
+            path prefix. (See also <a class="link" href="../htmlman7/path_resolution.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">path_resolution</span>(7)</span></a>.)</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EFAULT</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>buf</code></em> extends
+            outside the process's allocated address space.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EINVAL</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>bufsiz</code></em> is
+            not positive.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EINVAL</span></span></dt>
+
+          <dd>
+            <p>The named file is not a symbolic link.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EIO</span></span></dt>
+
+          <dd>
+            <p>An I/O error occurred while reading from the file
+            system.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ELOOP</span></span></dt>
+
+          <dd>
+            <p>Too many symbolic links were encountered in
+            translating the pathname.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENAMETOOLONG</span></span></dt>
+
+          <dd>
+            <p>A pathname, or a component of a pathname, was too
+            long.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENOENT</span></span></dt>
+
+          <dd>
+            <p>The named file does not exist.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENOMEM</span></span></dt>
+
+          <dd>
+            <p>Insufficient kernel memory was available.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENOTDIR</span></span></dt>
+
+          <dd>
+            <p>A component of the path prefix is not a
+            directory.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="readlink-2_sect4" name="readlink-2_sect4" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>4.4BSD (<code class="function">readlink</code>() first
+      appeared in 4.2BSD), POSIX.1-2001.</p>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="readlink-2_sect5" name="readlink-2_sect5" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p>In versions of glibc up to and including glibc 2.4, the
+      return type of <code class="function">readlink</code>() was
+      declared as <span class="type">int</span>. Nowadays, the
+      return type is declared as <span class="type">ssize_t</span>,
+      as (newly) required in POSIX.1-2001.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="readlink-2_sect6" name="readlink-2_sect6" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman2/stat.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">lstat</span>(2)</span></a>, <a class="link" href="../htmlman2/readlinkat.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">readlinkat</span>(2)</span></a>, <a class="link" href="../htmlman2/stat.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">stat</span>(2)</span></a>, <a class="link" href="../htmlman2/symlink.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">symlink</span>(2)</span></a>, <a class="link" href="../htmlman7/path_resolution.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">path_resolution</span>(7)</span></a>,
+      <a class="link" href="../htmlman7/symlink.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">symlink</span>(7)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="readlink-2_sect7" name="readlink-2_sect7" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.27 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright (c) 1983, 1991 The Regents of the University of California.<br />
+
+                  All rights reserved.<br />
+                  <br />
+                  Redistribution and use in source and binary forms, with or without<br />
+
+                  modification, are permitted provided that the following conditions<br />
+
+                  are met:<br />
+                  1. Redistributions of source code must retain the above copyright<br />
+
+                     notice, this list of conditions and the following disclaimer.<br />
+
+                  2. Redistributions in binary form must reproduce the above copyright<br />
+
+                     notice, this list of conditions and the following disclaimer in the<br />
+
+                     documentation and/or other materials provided with the distribution.<br />
+
+                  3. All advertising materials mentioning features or use of this software<br />
+
+                     must display the following acknowledgement:<br />
+
+                  This product includes software developed by the University of<br />
+
+                  California, Berkeley and its contributors.<br />
+
+                  4. Neither the name of the University nor the names of its contributors<br />
+
+                     may be used to endorse or promote products derived from this software<br />
+
+                     without specific prior written permission.<br />
+
+                  <br />
+                  THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND<br />
+
+                  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE<br />
+
+                  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE<br />
+
+                  ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE<br />
+
+                  FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL<br />
+
+                  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS<br />
+
+                  OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)<br />
+
+                  HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT<br />
+
+                  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY<br />
+
+                  OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF<br />
+
+                  SUCH DAMAGE.<br />
+                  <br />
+                      <script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>(#)readlink.2
+                  6.8 (Berkeley) 3/10/91<br />
+                  <br />
+                  Modified Sat Jul 24 00:10:21 1993 by Rik Faith (faith<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cs.unc.edu)<br />
+
+                  Modified Tue Jul  9 23:55:17 1996 by aeb<br />
+
+                  Modified Fri Jan 24 00:26:00 1997 by aeb<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

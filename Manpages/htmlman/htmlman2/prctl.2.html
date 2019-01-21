@@ -1,0 +1,673 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>prctl(2) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="prctl(2) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="prctl(2) — Linux manual pages">
+    <a id="prctl.2" name="prctl.2" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>prctl — operations on a process</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;sys/prctl.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">prctl</b>(</code></td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">option</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">unsigned long <var class="pdparam">arg2</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">unsigned long <var class="pdparam">arg3</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">unsigned long <var class="pdparam">arg4</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">unsigned long <var class="pdparam">arg5</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="prctl-2_sect1" name="prctl-2_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><code class="function">prctl</code>() is called with a
+      first argument describing what to do (with values defined in
+      <code class="literal">&lt;</code><code class="filename">linux/prctl.h</code><code class="literal">&gt;</code> and further arguments with a
+      significance depending on the first one. The first argument
+      can be:</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="constant">PR_CAPBSET_READ</code> (since Linux
+          2.6.25)</span></dt>
+
+          <dd>
+            <p>Return (as the function result) 1 if the capability
+            specified in <em class="parameter"><code>arg2</code></em> is in the calling
+            thread's capability bounding set, or 0 if it is not.
+            (The capability constants are defined in <code class="literal">&lt;</code><code class="filename">linux/capability.h</code><code class="literal">&gt;</code> The capability bounding set
+            dictates whether the process can receive the capability
+            through a file's permitted capability set on a
+            subsequent call to <a class="link" href="../htmlman2/execve.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">execve</span>(2)</span></a>.</p>
+
+            <p>If the capability specified in <em class="parameter"><code>arg2</code></em> is not valid, then
+            the call fails with the error <span class="errorname">EINVAL</span>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PR_CAPBSET_DROP</code> (since Linux
+          2.6.25)</span></dt>
+
+          <dd>
+            <p>If the calling thread has the <code class="constant">CAP_SETPCAP</code> capability, then drop the
+            capability specified by <em class="parameter"><code>arg2</code></em> from the calling
+            thread's capability bounding set. Any children of the
+            calling thread will inherit the newly reduced bounding
+            set.</p>
+
+            <p>The call fails with the error: <span class="errorname">EPERM</span> if the calling thread does not
+            have the <code class="constant">CAP_SETPCAP</code>;
+            <span class="errorname">EINVAL</span> if <em class="parameter"><code>arg2</code></em> does not represent a
+            valid capability; or <span class="errorname">EINVAL</span> if file capabilities are not
+            enabled in the kernel, in which case bounding sets are
+            not supported.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PR_SET_DUMPABLE</code> (since Linux
+          2.3.20)</span></dt>
+
+          <dd>
+            <p>Set the state of the flag determining whether core
+            dumps are produced for this process upon delivery of a
+            signal whose default behavior is to produce a core
+            dump. (Normally this flag is set for a process by
+            default, but it is cleared when a set-user-ID or
+            set-group-ID program is executed and also by various
+            system calls that manipulate process UIDs and GIDs). In
+            kernels up to and including 2.6.12, <em class="parameter"><code>arg2</code></em> must be either 0
+            (process is not dumpable) or 1 (process is dumpable).
+            Between kernels 2.6.13 and 2.6.17, the value 2 was also
+            permitted, which caused any binary which normally would
+            not be dumped to be dumped readable by root only; for
+            security reasons, this feature has been removed. (See
+            also the description of <code class="filename">/proc/sys/fs/suid_dumpable</code> in
+            <a class="link" href="../htmlman5/proc.5.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">proc</span>(5)</span></a>.)</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PR_GET_DUMPABLE</code> (since Linux
+          2.3.20)</span></dt>
+
+          <dd>
+            <p>Return (as the function result) the current state of
+            the calling process's dumpable flag.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PR_SET_ENDIAN</code> (since Linux 2.6.18,
+          PowerPC only)</span></dt>
+
+          <dd>
+            <p>Set the endian-ness of the calling process to the
+            value given in <em class="parameter"><code>arg2</code></em>, which should be one
+            of the following: <code class="constant">PR_ENDIAN_BIG</code>, <code class="constant">PR_ENDIAN_LITTLE</code>, or <code class="constant">PR_ENDIAN_PPC_LITTLE</code> (PowerPC pseudo
+            little endian).</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PR_GET_ENDIAN</code> (since Linux 2.6.18,
+          PowerPC only)</span></dt>
+
+          <dd>
+            <p>Return the endian-ness of the calling process, in
+            the location pointed to by <span class="emphasis"><em>(int *) arg2</em></span>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PR_SET_FPEMU</code> (since Linux 2.4.18,
+          2.5.9, only on ia64)</span></dt>
+
+          <dd>
+            <p>Set floating-point emulation control bits to
+            <em class="parameter"><code>arg2</code></em>. Pass
+            <code class="constant">PR_FPEMU_NOPRINT</code> to
+            silently emulate fp operations accesses, or
+            <code class="constant">PR_FPEMU_SIGFPE</code> to not
+            emulate fp operations and send <code class="constant">SIGFPE</code> instead.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PR_GET_FPEMU</code> (since Linux 2.4.18,
+          2.5.9, only on ia64)</span></dt>
+
+          <dd>
+            <p>Return floating-point emulation control bits, in the
+            location pointed to by <span class="emphasis"><em>(int
+            *) arg2</em></span>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PR_SET_FPEXC</code> (since Linux 2.4.21,
+          2.5.32, only on PowerPC)</span></dt>
+
+          <dd>
+            <p>Set floating-point exception mode to <em class="parameter"><code>arg2</code></em>. Pass <code class="constant">PR_FP_EXC_SW_ENABLE</code> to use FPEXC for
+            FP exception enables, <code class="constant">PR_FP_EXC_DIV</code> for floating-point
+            divide by zero, <code class="constant">PR_FP_EXC_OVF</code> for floating-point
+            overflow, <code class="constant">PR_FP_EXC_UND</code>
+            for floating-point underflow, <code class="constant">PR_FP_EXC_RES</code> for floating-point
+            inexact result, <code class="constant">PR_FP_EXC_INV</code> for floating-point
+            invalid operation, <code class="constant">PR_FP_EXC_DISABLED</code> for FP exceptions
+            disabled, <code class="constant">PR_FP_EXC_NONRECOV</code> for async
+            nonrecoverable exception mode, <code class="constant">PR_FP_EXC_ASYNC</code> for async recoverable
+            exception mode, <code class="constant">PR_FP_EXC_PRECISE</code> for precise
+            exception mode.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PR_GET_FPEXC</code> (since Linux 2.4.21,
+          2.5.32, only on PowerPC)</span></dt>
+
+          <dd>
+            <p>Return floating-point exception mode, in the
+            location pointed to by <span class="emphasis"><em>(int
+            *) arg2</em></span>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PR_SET_KEEPCAPS</code> (since Linux
+          2.2.18)</span></dt>
+
+          <dd>
+            <p>Set the state of the thread's "keep capabilities"
+            flag, which determines whether the threads's permitted
+            capability set is cleared when a change is made to the
+            threads's user IDs such that the threads's real UID,
+            effective UID, and saved set-user-ID all become nonzero
+            when at least one of them previously had the value 0.
+            By default, the permitted capability set is cleared
+            when such a change is made; setting the "keep
+            capabilities" flag prevents it from being cleared.
+            <em class="parameter"><code>arg2</code></em> must be
+            either 0 (permitted capabilities are cleared) or 1
+            (permitted capabilities are kept). (A thread's
+            <em class="replaceable"><code>effective</code></em>
+            capability set is always cleared when such a credential
+            change is made, regardless of the setting of the "keep
+            capabilities" flag.) The "keep capabilities" value will
+            be reset to 0 on subsequent calls to <a class="link" href="../htmlman2/execve.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">execve</span>(2)</span></a>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PR_GET_KEEPCAPS</code> (since Linux
+          2.2.18)</span></dt>
+
+          <dd>
+            <p>Return (as the function result) the current state of
+            the calling threads's "keep capabilities" flag.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PR_SET_NAME</code> (since Linux
+          2.6.9)</span></dt>
+
+          <dd>
+            <p>Set the process name for the calling process, using
+            the value in the location pointed to by <span class="emphasis"><em>(char *) arg2</em></span>. The name can
+            be up to 16 bytes long, and should be null-terminated
+            if it contains fewer bytes.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PR_GET_NAME</code> (since Linux
+          2.6.11)</span></dt>
+
+          <dd>
+            <p>Return the process name for the calling process, in
+            the buffer pointed to by <span class="emphasis"><em>(char *) arg2</em></span>. The buffer
+            should allow space for up to 16 bytes; the returned
+            string will be null-terminated if it is shorter than
+            that.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PR_SET_PDEATHSIG</code> (since Linux
+          2.1.57)</span></dt>
+
+          <dd>
+            <p>Set the parent process death signal of the calling
+            process to <em class="parameter"><code>arg2</code></em>
+            (either a signal value in the range 1..maxsig, or 0 to
+            clear). This is the signal that the calling process
+            will get when its parent dies. This value is cleared
+            for the child of a <a class="link" href="../htmlman2/fork.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fork</span>(2)</span></a>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PR_GET_PDEATHSIG</code> (since Linux
+          2.3.15)</span></dt>
+
+          <dd>
+            <p>Return the current value of the parent process death
+            signal, in the location pointed to by <span class="emphasis"><em>(int *) arg2</em></span>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PR_SET_SECCOMP</code> (since Linux
+          2.6.23)</span></dt>
+
+          <dd>
+            <p>Set the secure computing mode for the calling
+            thread. In the current implementation, <em class="parameter"><code>arg2</code></em> must be 1. After the
+            secure computing mode has been set to 1, the only
+            system calls that the thread is permitted to make are
+            <a class="link" href="../htmlman2/read.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">read</span>(2)</span></a>, <a class="link" href="../htmlman2/write.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">write</span>(2)</span></a>, <a class="link" href="../htmlman2/_exit.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">_exit</span>(2)</span></a>, and
+            <a class="link" href="../htmlman2/sigreturn.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">sigreturn</span>(2)</span></a>. Other
+            system calls result in the delivery of a <code class="constant">SIGKILL</code> signal. Secure computing mode
+            is useful for number-crunching applications that may
+            need to execute untrusted byte code, perhaps obtained
+            by reading from a pipe or socket. This operation is
+            only available if the kernel is configured with
+            CONFIG_SECCOMP enabled.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PR_GET_SECCOMP</code> (since Linux
+          2.6.23)</span></dt>
+
+          <dd>
+            <p>Return the secure computing mode of the calling
+            thread. Not very useful for the current implementation
+            (mode equals 1), but may be useful for other possible
+            future modes: if the caller is not in secure computing
+            mode, this operation returns 0; if the caller is in
+            secure computing mode, then the <code class="function">prctl</code>() call will cause a
+            <code class="constant">SIGKILL</code> signal to be sent
+            to the process. This operation is only available if the
+            kernel is configured with CONFIG_SECCOMP enabled.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PR_SET_SECUREBITS</code> (since Linux
+          2.6.26)</span></dt>
+
+          <dd>
+            <p>Set the "securebits" flags of the calling thread to
+            the value supplied in <em class="parameter"><code>arg2</code></em>. See <a class="link" href="../htmlman7/capabilities.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">capabilities</span>(7)</span></a>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PR_GET_SECUREBITS</code> (since Linux
+          2.6.26)</span></dt>
+
+          <dd>
+            <p>Return (as the function result) the "securebits"
+            flags of the calling thread. See <a class="link" href="../htmlman7/capabilities.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">capabilities</span>(7)</span></a>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PR_SET_TIMING</code> (since Linux
+          2.6.0-test4)</span></dt>
+
+          <dd>
+            <p>Set whether to use (normal, traditional) statistical
+            process timing or accurate timestamp-based process
+            timing, by passing <code class="constant">PR_TIMING_STATISTICAL</code> or <code class="constant">PR_TIMING_TIMESTAMP</code> to <em class="parameter"><code>arg2</code></em>. <code class="constant">PR_TIMING_TIMESTAMP</code> is not currently
+            implemented (attempting to set this mode will yield the
+            error <span class="errorname">EINVAL</span>).</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PR_GET_TIMING</code> (since Linux
+          2.6.0-test4)</span></dt>
+
+          <dd>
+            <p>Return (as the function result) which process timing
+            method is currently in use.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PR_SET_TSC</code> (since Linux 2.6.26, x86
+          only)</span></dt>
+
+          <dd>
+            <p>Set the state of the flag determining whether the
+            timestamp counter can be read by the process. Pass
+            <code class="constant">PR_TSC_ENABLE</code> to
+            <em class="parameter"><code>arg2</code></em> to allow
+            it to be read, or <code class="constant">PR_TSC_SIGSEGV</code> to generate a
+            <code class="constant">SIGSEGV</code> when the process
+            tries to read the timestamp counter.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PR_GET_TSC</code> (since Linux 2.6.26, x86
+          only)</span></dt>
+
+          <dd>
+            <p>Return the state of the flag determining whether the
+            timestamp counter can be read, in the location pointed
+            to by <span class="emphasis"><em>(int *)
+            arg2</em></span>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PR_SET_UNALIGN</code></span></dt>
+
+          <dd>
+            <p>(Only on: ia64, since Linux 2.3.48; parisc, since
+            Linux 2.6.15; PowerPC, since Linux 2.6.18; Alpha, since
+            Linux 2.6.22) Set unaligned access control bits to
+            <em class="parameter"><code>arg2</code></em>. Pass
+            <code class="constant">PR_UNALIGN_NOPRINT</code> to
+            silently fix up unaligned user accesses, or
+            <code class="constant">PR_UNALIGN_SIGBUS</code> to
+            generate <code class="constant">SIGBUS</code> on
+            unaligned user access.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PR_GET_UNALIGN</code></span></dt>
+
+          <dd>
+            <p>(see <code class="constant">PR_SET_UNALIGN</code>
+            for information on versions and architectures) Return
+            unaligned access control bits, in the location pointed
+            to by <span class="emphasis"><em>(int *)
+            arg2</em></span>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PR_MCE_KILL</code> (since Linux
+          2.6.32)</span></dt>
+
+          <dd>
+            <p>Set the machine check memory corruption kill policy
+            for the current thread. If <em class="parameter"><code>arg2</code></em> is <code class="constant">PR_MCE_KILL_CLEAR</code>, clear the thread
+            memory corruption kill policy and use the system-wide
+            default. (The system-wide default is defined by
+            <code class="filename">/proc/sys/vm/memory_failure_early_kill</code>;
+            see <a class="link" href="../htmlman5/proc.5.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">proc</span>(5)</span></a>.) If
+            <em class="parameter"><code>arg2</code></em> is
+            <code class="constant">PR_MCE_KILL_SET</code>, use a
+            thread-specific memory corruption kill policy. In this
+            case, <em class="parameter"><code>arg3</code></em>
+            defines whether the policy is <span class="emphasis"><em>early kill</em></span> (<code class="constant">PR_MCE_KILL_EARLY</code>), <span class="emphasis"><em>late kill</em></span> (<code class="constant">PR_MCE_KILL_LATE</code>), or the system-wide
+            default (<code class="constant">PR_MCE_KILL_DEFAULT</code>). Early kill
+            means that the task receives a <code class="constant">SIGBUS</code> signal as soon as hardware
+            memory corruption is detected inside its address space.
+            In late kill mode, the process is only killed when it
+            accesses a corrupted page. See <em class="replaceable"><code>sigaction(2)</code></em> for more
+            information on the <code class="constant">SIGBUS</code>
+            signal. The policy is inherited by children. The
+            remaining unused <code class="function">prctl</code>()
+            arguments must be zero for future compatibility.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">PR_MCE_KILL_GET</code> (since Linux
+          2.6.32)</span></dt>
+
+          <dd>
+            <p>Return the current per-process machine check kill
+            policy. All unused <code class="function">prctl</code>() arguments must be zero.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="prctl-2_sect2" name="prctl-2_sect2" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p>On success, <code class="constant">PR_GET_DUMPABLE</code>,
+      <code class="constant">PR_GET_KEEPCAPS</code>, <code class="constant">PR_CAPBSET_READ</code>, <code class="constant">PR_GET_TIMING</code>, <code class="constant">PR_GET_SECUREBITS</code>, <code class="constant">PR_MCE_KILL_GET</code>, and (if it returns)
+      <code class="constant">PR_GET_SECCOMP</code> return the
+      nonnegative values described above. All other <em class="parameter"><code>option</code></em> values return 0 on
+      success. On error, −1 is returned, and <code class="varname">errno</code> is set appropriately.</p>
+    </div>
+
+    <div class="refsect1" title="ERRORS">
+      <a id="prctl-2_sect3" name="prctl-2_sect3" shape="rect"> </a>
+
+      <h2>ERRORS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><span class="errorname">EFAULT</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>arg2</code></em> is an
+            invalid address.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EINVAL</span></span></dt>
+
+          <dd>
+            <p>The value of <em class="parameter"><code>option</code></em> is not
+            recognized.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EINVAL</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>option</code></em> is
+            <code class="constant">PR_MCE_KILL</code> or
+            <code class="constant">PR_MCE_KILL_GET</code>, and
+            unused <code class="function">prctl</code>() arguments
+            were not specified as zero.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EINVAL</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>arg2</code></em> is not
+            valid value for this <em class="parameter"><code>option</code></em>.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EINVAL</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>option</code></em> is
+            <code class="constant">PR_SET_SECCOMP</code> or
+            <code class="constant">PR_SET_SECCOMP</code>, and the
+            kernel was not configured with <code class="constant">CONFIG_SECCOMP</code>.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EPERM</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>option</code></em> is
+            <code class="constant">PR_SET_SECUREBITS</code>, and
+            the caller does not have the <code class="constant">CAP_SETPCAP</code> capability, or tried to
+            unset a "locked" flag, or tried to set a flag whose
+            corresponding locked flag was set (see <a class="link" href="../htmlman7/capabilities.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">capabilities</span>(7)</span></a>).</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EPERM</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>option</code></em> is
+            <code class="constant">PR_SET_KEEPCAPS</code>, and the
+            callers's <code class="constant">SECURE_KEEP_CAPS_LOCKED</code> flag is set
+            (see <a class="link" href="../htmlman7/capabilities.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">capabilities</span>(7)</span></a>).</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EPERM</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>option</code></em> is
+            <code class="constant">PR_CAPBSET_DROP</code>, and the
+            caller does not have the <code class="constant">CAP_SETPCAP</code> capability.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="VERSIONS">
+      <a id="prctl-2_sect4" name="prctl-2_sect4" shape="rect"> </a>
+
+      <h2>VERSIONS</h2>
+
+      <p>The <code class="function">prctl</code>() system call was
+      introduced in Linux 2.1.57.</p>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="prctl-2_sect5" name="prctl-2_sect5" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>This call is Linux-specific. IRIX has a <code class="function">prctl</code>() system call (also introduced in
+      Linux 2.1.44 as irix_prctl on the MIPS architecture), with
+      prototype</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+  <code class="function">ptrdiff_t prctl</code>(<em class="parameter"><code>int option</code></em>, <em class="parameter"><code>int arg2</code></em>, <em class="parameter"><code>int arg3</code></em>);
+</pre>
+      </div>
+
+      <p>and options to get the maximum number of processes per
+      user, get the maximum number of processors the calling
+      process can use, find out whether a specified process is
+      currently blocked, get or set the maximum stack size,
+      etc.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="prctl-2_sect6" name="prctl-2_sect6" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman2/signal.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">signal</span>(2)</span></a>, <a class="link" href="../htmlman5/core.5.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">core</span>(5)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="prctl-2_sect7" name="prctl-2_sect7" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.29 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                  Copyright (C) 1998 Andries Brouwer (aeb<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cwi.nl)<br />
+
+                  and Copyright (C) 2002 Michael Kerrisk &lt;mtk.manpages<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>gmail.com&gt;<br />
+
+                  and Copyright Guillem Jover &lt;guillem<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>hadrons.org&gt;<br />
+
+                  <br />
+                  Permission is granted to make and distribute verbatim copies of this<br />
+
+                  manual provided the copyright notice and this permission notice are<br />
+
+                  preserved on all copies.<br />
+                  <br />
+                  Permission is granted to copy and distribute modified versions of this<br />
+
+                  manual under the conditions for verbatim copying, provided that the<br />
+
+                  entire resulting derived work is distributed under the terms of a<br />
+
+                  permission notice identical to this one.<br />
+
+                  <br />
+                  Since the Linux kernel and libraries are constantly changing, this<br />
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no<br />
+
+                  responsibility for errors or omissions, or for damages resulting from<br />
+
+                  the use of the information contained herein.  The author(s) may not<br />
+
+                  have taken the same level of care in the production of this manual,<br />
+
+                  which is licensed free of charge, as they might when working<br />
+
+                  professionally.<br />
+                  <br />
+                  Formatted or processed versions of this manual, if unaccompanied by<br />
+
+                  the source, must acknowledge the copyright and authors of this work.<br />
+
+                  <br />
+                  Modified Thu Nov 11 04:19:42 MET 1999, aeb: added PR_GET_PDEATHSIG<br />
+
+                  Modified 27 Jun 02, Michael Kerrisk<br />
+
+                  Added PR_SET_DUMPABLE, PR_GET_DUMPABLE,<br />
+
+                  PR_SET_KEEPCAPS, PR_GET_KEEPCAPS<br />
+                  Modified 2006-08-30 Guillem Jover &lt;guillem<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>hadrons.org&gt;<br />
+
+                  Updated Linux versions where the options where introduced.<br />
+
+                  Added PR_SET_TIMING, PR_GET_TIMING, PR_SET_NAME, PR_GET_NAME,<br />
+
+                  PR_SET_UNALIGN, PR_GET_UNALIGN, PR_SET_FPEMU, PR_GET_FPEMU,<br />
+
+                  PR_SET_FPEXC, PR_GET_FPEXC<br />
+                  2008-04-29 Serge Hallyn, Document PR_CAPBSET_READ and PR_CAPBSET_DROP<br />
+
+                  2008-06-13 Erik Bosman, &lt;ejbosman<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cs.vu.nl&gt;<br />
+
+                      Document PR_GET_TSC and PR_SET_TSC.<br />
+
+                  2008-06-15 mtk, Document PR_SET_SECCOMP, PR_GET_SECCOMP<br />
+
+                  2009-10-03 Andi Kleen, document PR_MCE_KILL_*<br />
+
+                  <br />
+                  FIXME: Document PR_SET_TIMERSLACK and PR_GET_TIMERSLACK (new in 2.6.28)<br />
+
+                  FIXME: Document PR_TASK_PERF_EVENTS_DISABLE and<br />
+
+                         PR_TASK_PERF_EVENTS_ENABLE (new in 2.6.32)<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

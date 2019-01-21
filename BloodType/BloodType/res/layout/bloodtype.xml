@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:orientation="vertical"
+  android:background="#FFFFFF"
+  android:id="@+id/bloodDetail">
+<LinearLayout
+	android:layout_width="fill_parent"
+	android:layout_height="0dp"
+	android:orientation="horizontal"
+	android:layout_weight="1" >
+
+    <TextView
+        android:id="@+id/tvData"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:text="BLOOD\n\t\tTYPE:"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="@dimen/info_height"
+        android:shadowDx="4"
+        android:shadowDy="4"
+        android:shadowColor="#A7A7A7"
+        android:shadowRadius="15"
+        android:textColor="#D30308" />
+	<LinearLayout
+		android:layout_width="0dp"
+		android:layout_height="fill_parent"
+		android:orientation="horizontal"
+		android:layout_weight="1"
+		android:padding="@dimen/about_divider_height" >
+    	<TextView
+        	android:id="@+id/tvBloodDetail"
+        	android:layout_width="fill_parent"
+        	android:layout_height="fill_parent"
+        	android:background="@drawable/roundtv"
+        	android:text=""
+        	android:gravity="center"
+        	android:textSize="@dimen/btn_text"
+            android:textStyle="bold"
+            android:shadowDx="8"
+            android:shadowDy="8"
+            android:shadowColor="#CC900205"
+            android:shadowRadius="25"
+            android:textColor="#FFFFFF" />
+	</LinearLayout>
+</LinearLayout>
+<LinearLayout
+	android:layout_width="fill_parent"
+	android:layout_height="0dp"
+	android:orientation="vertical"
+	android:layout_weight="1"
+	android:paddingRight="@dimen/activity_vertical_margin"
+	android:paddingLeft="@dimen/activity_vertical_margin" >
+    <TextView
+        android:id="@+id/tvGive"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/btn_text"
+        android:text="@string/give_blood"
+        android:background="@drawable/inforoundedtv"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/about_section_pad"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:shadowDx="2"
+		android:shadowDy="2"
+		android:shadowColor="#CC900205"
+		android:shadowRadius="10"
+        android:textSize="@dimen/img_hdr_height" />
+	<TextView
+        android:id="@+id/tvGiveTo"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/detail_height"
+        android:text=""
+        android:background="@drawable/blooddisplayborder"
+        android:gravity="center"
+        android:textSize="@dimen/info_height"
+        android:textColor="#D30308"
+        android:shadowDx="4"
+		android:shadowDy="4"
+		android:shadowColor="#DBDBDB"
+		android:shadowRadius="10" />
+</LinearLayout>
+<LinearLayout
+	android:layout_width="fill_parent"
+	android:layout_height="0dp"
+	android:orientation="vertical"
+	android:layout_weight="1"
+	android:paddingRight="@dimen/activity_vertical_margin"
+	android:paddingLeft="@dimen/activity_vertical_margin" >
+	<TextView
+        android:id="@+id/tvReceive"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/btn_text"
+        android:text="@string/receive_blood"
+        android:background="@drawable/inforoundedtv"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/about_section_pad"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:shadowDx="2"
+		android:shadowDy="2"
+		android:shadowColor="#CC900205"
+		android:shadowRadius="10"
+        android:textSize="@dimen/img_hdr_height" />
+	<TextView
+        android:id="@+id/tvReceiveFrom"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/detail_height"
+        android:text=""
+        android:background="@drawable/blooddisplayborder"
+        android:gravity="center"
+        android:textSize="@dimen/info_height"
+        android:textColor="#D30308"
+        android:shadowDx="4"
+		android:shadowDy="4"
+		android:shadowColor="#DBDBDB"
+		android:shadowRadius="10" />
+</LinearLayout>
+</LinearLayout>

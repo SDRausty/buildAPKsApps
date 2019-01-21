@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_height="wrap_content" android:orientation="vertical" android:id="@+id/item_edit_root" android:layout_width="fill_parent" android:minWidth="300dp">
+<EditText android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/EditItemLabelEditText" android:text="-" android:inputType="text" android:imeOptions="actionNone" android:lines="1"></EditText>
+</LinearLayout>

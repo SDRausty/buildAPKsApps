@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>dup(2) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="dup(2) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="dup(2) — Linux manual pages">
+    <a id="dup.2" name="dup.2" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>dup, dup2, dup3 — duplicate a file descriptor</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;unistd.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">dup</b>(</code></td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">oldfd</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">dup2</b>(</code></td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">oldfd</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">newfd</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+
+#define _GNU_SOURCE              /* See feature_test_macros(7) */
+#include &lt;unistd.h&gt;
+</pre>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">dup3</b>(</code></td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">oldfd</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">newfd</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">flags</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="dup-2_sect1" name="dup-2_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>These system calls create a copy of the file descriptor
+      <em class="parameter"><code>oldfd</code></em>.</p>
+
+      <p><code class="function">dup</code>() uses the
+      lowest-numbered unused descriptor for the new descriptor.</p>
+
+      <p><code class="function">dup2</code>() makes <em class="parameter"><code>newfd</code></em> be the copy of <em class="parameter"><code>oldfd</code></em>, closing <em class="parameter"><code>newfd</code></em> first if necessary, but
+      note the following:</p>
+
+      <div class="itemizedlist">
+        <ul class="itemizedlist" type="disc">
+          <li class="listitem">
+            <p>If <em class="parameter"><code>oldfd</code></em> is
+            not a valid file descriptor, then the call fails, and
+            <em class="parameter"><code>newfd</code></em> is not
+            closed.</p>
+          </li>
+
+          <li class="listitem">
+            <p>If <em class="parameter"><code>oldfd</code></em> is
+            a valid file descriptor, and <em class="parameter"><code>newfd</code></em> has the same value
+            as <em class="parameter"><code>oldfd</code></em>, then
+            <code class="function">dup2</code>() does nothing, and
+            returns <em class="parameter"><code>newfd</code></em>.</p>
+          </li>
+        </ul>
+      </div>
+
+      <p>After a successful return from one of these system calls,
+      the old and new file descriptors may be used interchangeably.
+      They refer to the same open file description (see <a class="link" href="../htmlman2/open.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">open</span>(2)</span></a>) and thus share
+      file offset and file status flags; for example, if the file
+      offset is modified by using <a class="link" href="../htmlman2/lseek.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">lseek</span>(2)</span></a> on one of the
+      descriptors, the offset is also changed for the other.</p>
+
+      <p>The two descriptors do not share file descriptor flags
+      (the close-on-exec flag). The close-on-exec flag
+      (<code class="constant">FD_CLOEXEC</code>; see <a class="link" href="../htmlman2/fcntl.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fcntl</span>(2)</span></a>) for the duplicate
+      descriptor is off.</p>
+
+      <p><code class="function">dup3</code>() is the same as
+      <code class="function">dup2</code>(), except that:</p>
+
+      <div class="itemizedlist">
+        <ul class="itemizedlist" type="disc">
+          <li class="listitem">
+            <p>The caller can force the close-on-exec flag to be
+            set for the new file descriptor by specifying
+            <code class="constant">O_CLOEXEC</code> in <em class="parameter"><code>flags</code></em>. See the
+            description of the same flag in <a class="link" href="../htmlman2/open.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">open</span>(2)</span></a> for reasons
+            why this may be useful.</p>
+          </li>
+
+          <li class="listitem">
+            <p>If <em class="parameter"><code>oldfd</code></em>
+            equals <em class="parameter"><code>newfd</code></em>,
+            then <code class="function">dup3</code>() fails with
+            the error <span class="errorname">EINVAL</span>.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="dup-2_sect2" name="dup-2_sect2" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p>On success, these system calls return the new descriptor.
+      On error, −1 is returned, and <code class="varname">errno</code> is set appropriately.</p>
+    </div>
+
+    <div class="refsect1" title="ERRORS">
+      <a id="dup-2_sect3" name="dup-2_sect3" shape="rect"> </a>
+
+      <h2>ERRORS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><span class="errorname">EBADF</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>oldfd</code></em> isn't
+            an open file descriptor, or <em class="parameter"><code>newfd</code></em> is out of the
+            allowed range for file descriptors.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EBUSY</span></span></dt>
+
+          <dd>
+            <p>(Linux only) This may be returned by <code class="function">dup2</code>() or <code class="function">dup3</code>() during a race condition with
+            <a class="link" href="../htmlman2/open.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">open</span>(2)</span></a> and
+            <code class="function">dup</code>().</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EINTR</span></span></dt>
+
+          <dd>
+            <p>The <code class="function">dup2</code>() or
+            <code class="function">dup3</code>() call was
+            interrupted by a signal; see <a class="link" href="../htmlman7/signal.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">signal</span>(7)</span></a>.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EINVAL</span></span></dt>
+
+          <dd>
+            <p>(<code class="function">dup3</code>()) <em class="parameter"><code>flags</code></em> contain an invalid
+            value. Or, <em class="parameter"><code>oldfd</code></em> was equal to
+            <em class="parameter"><code>newfd</code></em>.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EMFILE</span></span></dt>
+
+          <dd>
+            <p>The process already has the maximum number of file
+            descriptors open and tried to open a new one.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="VERSIONS">
+      <a id="dup-2_sect4" name="dup-2_sect4" shape="rect"> </a>
+
+      <h2>VERSIONS</h2>
+
+      <p><code class="function">dup3</code>() was added to Linux in
+      version 2.6.27; glibc support is available starting with
+      version 2.9.</p>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="dup-2_sect5" name="dup-2_sect5" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p><code class="function">dup</code>(), <code class="function">dup2</code>(): SVr4, 4.3BSD, POSIX.1-2001.</p>
+
+      <p><code class="function">dup3</code>() is
+      Linux-specific.</p>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="dup-2_sect6" name="dup-2_sect6" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p>The error returned by <code class="function">dup2</code>()
+      is different from that returned by <code class="function">fcntl</code>(<em class="replaceable"><code>...,</code></em>F_DUPFD<span class="emphasis"><em>, ...</em></span>) when <em class="parameter"><code>newfd</code></em> is out of range. On some
+      systems <code class="function">dup2</code>() also sometimes
+      returns <span class="errorname">EINVAL</span> like
+      <code class="constant">F_DUPFD</code>.</p>
+
+      <p>If <em class="parameter"><code>newfd</code></em> was open,
+      any errors that would have been reported at <a class="link" href="../htmlman2/close.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">close</span>(2)</span></a> time are lost. A
+      careful programmer will not use <code class="function">dup2</code>() or <code class="function">dup3</code>() without closing <em class="parameter"><code>newfd</code></em> first.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="dup-2_sect7" name="dup-2_sect7" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman2/close.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">close</span>(2)</span></a>, <a class="link" href="../htmlman2/fcntl.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fcntl</span>(2)</span></a>, <a class="link" href="../htmlman2/open.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">open</span>(2)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="dup-2_sect8" name="dup-2_sect8" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.27 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                  This manpage is Copyright (C) 1992 Drew Eckhardt;<br />
+
+                  and Copyright (C) 1993 Michael Haardt, Ian Jackson.<br />
+
+                  and Copyright (C) 2005, 2008 Michael Kerrisk &lt;mtk.manpages<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>gmail.com&gt;<br />
+
+                  <br />
+                  Permission is granted to make and distribute verbatim copies of this<br />
+
+                  manual provided the copyright notice and this permission notice are<br />
+
+                  preserved on all copies.<br />
+                  <br />
+                  Permission is granted to copy and distribute modified versions of this<br />
+
+                  manual under the conditions for verbatim copying, provided that the<br />
+
+                  entire resulting derived work is distributed under the terms of a<br />
+
+                  permission notice identical to this one.<br />
+
+                  <br />
+                  Since the Linux kernel and libraries are constantly changing, this<br />
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no<br />
+
+                  responsibility for errors or omissions, or for damages resulting from<br />
+
+                  the use of the information contained herein.  The author(s) may not<br />
+
+                  have taken the same level of care in the production of this manual,<br />
+
+                  which is licensed free of charge, as they might when working<br />
+
+                  professionally.<br />
+                  <br />
+                  Formatted or processed versions of this manual, if unaccompanied by<br />
+
+                  the source, must acknowledge the copyright and authors of this work.<br />
+
+                  <br />
+                  Modified 1993-07-21, Rik Faith &lt;faith<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cs.unc.edu&gt;<br />
+
+                  Modified 1994-08-21, Michael Chastain &lt;mec<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>shell.portal.com&gt;:<br />
+
+                    Fixed typoes.<br />
+                  Modified 1997-01-31, Eric S. Raymond &lt;esr<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>thyrsus.com&gt;<br />
+
+                  Modified 2002-09-28, aeb<br />
+                  2009-01-12, mtk, reordered text in DESCRIPTION and added some<br />
+
+                      details for dup2().<br />
+
+                  2008-10-09, mtk: add description of dup3()<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

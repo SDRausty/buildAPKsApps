@@ -1,0 +1,708 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>msgop(2) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="msgop(2) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="msgop(2) — Linux manual pages">
+    <a id="msgop.2" name="msgop.2" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>msgrcv, msgsnd — message operations</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+#include &lt;sys/types.h&gt;
+#include &lt;sys/ipc.h&gt;
+#include &lt;sys/msg.h&gt;
+</pre>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">msgsnd</b>(</code></td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">msqid</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">const void *<var class="pdparam">msgp</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">size_t <var class="pdparam">msgsz</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">msgflg</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">ssize_t <b class="fsfunc">msgrcv</b>(</code></td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">msqid</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">void *<var class="pdparam">msgp</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">size_t <var class="pdparam">msgsz</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">long <var class="pdparam">msgtyp</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">msgflg</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="msgop-2_sect1" name="msgop-2_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>The <code class="function">msgsnd</code>() and
+      <code class="function">msgrcv</code>() system calls are used,
+      respectively, to send messages to, and receive messages from,
+      a message queue. The calling process must have write
+      permission on the message queue in order to send a message,
+      and read permission to receive a message.</p>
+
+      <p>The <em class="parameter"><code>msgp</code></em> argument
+      is a pointer to caller-defined structure of the following
+      general form:</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="structdef">
+            <table style="border-collapse: collapse;">
+              <colgroup span="1">
+                <col span="1" />
+                <col span="1" />
+                <col span="1" />
+                <col span="1" />
+                <col span="1" />
+              </colgroup>
+
+              <tbody>
+                <tr>
+                  <td class="structdefhdr" style="" align="left" rowspan="1" colspan="1">
+                  struct</td>
+
+                  <td class="structdefhdr" style="" colspan="4" align="left" rowspan="1"><span class="structname">msgbuf</span> {</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">long</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>mtype</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      
+                      /* message type, must be &gt; 0 */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">char</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>mtext</code></em>[1];</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      /* message data */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="structdefftr" style="" colspan="5" align="left" rowspan="1">};</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </blockquote>
+      </div>
+
+      <p>The <em class="parameter"><code>mtext</code></em> field is
+      an array (or other structure) whose size is specified by
+      <em class="parameter"><code>msgsz</code></em>, a nonnegative
+      integer value. Messages of zero length (i.e., no <em class="parameter"><code>mtext</code></em> field) are permitted. The
+      <em class="parameter"><code>mtype</code></em> field must have
+      a strictly positive integer value. This value can be used by
+      the receiving process for message selection (see the
+      description of <code class="function">msgrcv</code>()
+      below).</p>
+
+      <div class="refsect2" title="msgsnd()">
+        <a id="msgop-2_sect2" name="msgop-2_sect2" shape="rect"> </a>
+
+        <h3>msgsnd()</h3>
+
+        <p>The <code class="function">msgsnd</code>() system call
+        appends a copy of the message pointed to by <em class="parameter"><code>msgp</code></em> to the message queue
+        whose identifier is specified by <em class="parameter"><code>msqid</code></em>.</p>
+
+        <p>If sufficient space is available in the queue,
+        <code class="function">msgsnd</code>() succeeds
+        immediately. (The queue capacity is defined by the
+        <em class="replaceable"><code>msg_qbytes</code></em> field
+        in the associated data structure for the message queue.
+        During queue creation this field is initialized to
+        <code class="constant">MSGMNB</code> bytes, but this limit
+        can be modified using <a class="link" href="../htmlman2/msgctl.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">msgctl</span>(2)</span></a>.) If
+        insufficient space is available in the queue, then the
+        default behavior of <code class="function">msgsnd</code>()
+        is to block until space becomes available. If <code class="constant">IPC_NOWAIT</code> is specified in <em class="parameter"><code>msgflg</code></em>, then the call instead
+        fails with the error <span class="errorname">EAGAIN</span>.</p>
+
+        <p>A blocked <code class="function">msgsnd</code>() call
+        may also fail if:</p>
+
+        <div class="itemizedlist">
+          <ul class="itemizedlist" type="disc">
+            <li class="listitem">
+              <p>the queue is removed, in which case the system
+              call fails with <code class="varname">errno</code>
+              set to <span class="errorname">EIDRM</span>; or</p>
+            </li>
+
+            <li class="listitem">
+              <p>a signal is caught, in which case the system call
+              fails with <code class="varname">errno</code> set to
+              <span class="errorname">EINTR</span>;<em class="replaceable"><code>see</code></em> <a class="link" href="../htmlman7/signal.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">signal</span>(7)</span></a>.
+              (<code class="function">msgsnd</code>() is never
+              automatically restarted after being interrupted by a
+              signal handler, regardless of the setting of the
+              <code class="constant">SA_RESTART</code> flag when
+              establishing a signal handler.)</p>
+            </li>
+          </ul>
+        </div>
+
+        <p>Upon successful completion the message queue data
+        structure is updated as follows:</p>
+
+        <div class="itemizedlist">
+          <ul class="itemizedlist" type="disc">
+            <li class="listitem">
+              <p><em class="replaceable"><code>msg_lspid</code></em> is set to
+              the process ID of the calling process.</p>
+            </li>
+
+            <li class="listitem">
+              <p><em class="replaceable"><code>msg_qnum</code></em>
+              is incremented by 1.</p>
+            </li>
+
+            <li class="listitem">
+              <p><em class="replaceable"><code>msg_stime</code></em> is set to
+              the current time.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="refsect2" title="msgrcv()">
+        <a id="msgop-2_sect3" name="msgop-2_sect3" shape="rect"> </a>
+
+        <h3>msgrcv()</h3>
+
+        <p>The <code class="function">msgrcv</code>() system call
+        removes a message from the queue specified by <em class="parameter"><code>msqid</code></em> and places it in the
+        buffer pointed to by <em class="parameter"><code>msgp</code></em>.</p>
+
+        <p>The argument <em class="parameter"><code>msgsz</code></em> specifies the maximum
+        size in bytes for the member <em class="parameter"><code>mtext</code></em> of the structure
+        pointed to by the <em class="parameter"><code>msgp</code></em> argument. If the message
+        text has length greater than <em class="parameter"><code>msgsz</code></em>, then the behavior
+        depends on whether <code class="constant">MSG_NOERROR</code> is specified in <em class="parameter"><code>msgflg</code></em>. If <code class="constant">MSG_NOERROR</code> is specified, then the
+        message text will be truncated (and the truncated part will
+        be lost); if <code class="constant">MSG_NOERROR</code> is
+        not specified, then the message isn't removed from the
+        queue and the system call fails returning −1 with
+        <code class="varname">errno</code> set to <span class="errorname">E2BIG</span>.</p>
+
+        <p>The argument <em class="parameter"><code>msgtyp</code></em> specifies the type of
+        message requested as follows:</p>
+
+        <div class="itemizedlist">
+          <ul class="itemizedlist" type="disc">
+            <li class="listitem">
+              <p>If <em class="parameter"><code>msgtyp</code></em>
+              is 0, then the first message in the queue is
+              read.</p>
+            </li>
+
+            <li class="listitem">
+              <p>If <em class="parameter"><code>msgtyp</code></em>
+              is greater than 0, then the first message in the
+              queue of type <em class="parameter"><code>msgtyp</code></em> is read, unless
+              <code class="constant">MSG_EXCEPT</code> was
+              specified in <em class="parameter"><code>msgflg</code></em>, in which case
+              the first message in the queue of type not equal to
+              <em class="parameter"><code>msgtyp</code></em> will
+              be read.</p>
+            </li>
+
+            <li class="listitem">
+              <p>If <em class="parameter"><code>msgtyp</code></em>
+              is less than 0, then the first message in the queue
+              with the lowest type less than or equal to the
+              absolute value of <em class="parameter"><code>msgtyp</code></em> will be
+              read.</p>
+            </li>
+          </ul>
+        </div>
+
+        <p>The <em class="parameter"><code>msgflg</code></em>
+        argument is a bit mask constructed by ORing together zero
+        or more of the following flags:</p>
+
+        <div class="variablelist">
+          <dl>
+            <dt><span class="term"><code class="constant">IPC_NOWAIT</code></span></dt>
+
+            <dd>
+              <p>Return immediately if no message of the requested
+              type is in the queue. The system call fails with
+              <code class="varname">errno</code> set to
+              <span class="errorname">ENOMSG</span>.</p>
+            </dd>
+
+            <dt><span class="term"><code class="constant">MSG_EXCEPT</code></span></dt>
+
+            <dd>
+              <p>Used with <em class="parameter"><code>msgtyp</code></em> greater than 0
+              to read the first message in the queue with message
+              type that differs from <em class="parameter"><code>msgtyp</code></em>.</p>
+            </dd>
+
+            <dt><span class="term"><code class="constant">MSG_NOERROR</code></span></dt>
+
+            <dd>
+              <p>To truncate the message text if longer than
+              <em class="parameter"><code>msgsz</code></em>
+              bytes.</p>
+            </dd>
+          </dl>
+        </div>
+
+        <p>If no message of the requested type is available and
+        <code class="constant">IPC_NOWAIT</code> isn't specified in
+        <em class="parameter"><code>msgflg</code></em>, the calling
+        process is blocked until one of the following conditions
+        occurs:</p>
+
+        <div class="itemizedlist">
+          <ul class="itemizedlist" type="disc">
+            <li class="listitem">
+              <p>A message of the desired type is placed in the
+              queue.</p>
+            </li>
+
+            <li class="listitem">
+              <p>The message queue is removed from the system. In
+              this case the system call fails with <code class="varname">errno</code> set to <span class="errorname">EIDRM</span>.</p>
+            </li>
+
+            <li class="listitem">
+              <p>The calling process catches a signal. In this case
+              the system call fails with <code class="varname">errno</code> set to <span class="errorname">EINTR</span>. (<code class="function">msgrcv</code>() is never automatically
+              restarted after being interrupted by a signal
+              handler, regardless of the setting of the
+              <code class="constant">SA_RESTART</code> flag when
+              establishing a signal handler.)</p>
+            </li>
+          </ul>
+        </div>
+
+        <p>Upon successful completion the message queue data
+        structure is updated as follows:</p>
+
+        <div class="itemizedlist">
+          <ul class="itemizedlist" type="disc">
+            <li class="listitem">
+              <p><em class="replaceable"><code>msg_lrpid</code></em> is set to
+              the process ID of the calling process.</p>
+            </li>
+
+            <li class="listitem">
+              <p><em class="replaceable"><code>msg_qnum</code></em>
+              is decremented by 1.</p>
+            </li>
+
+            <li class="listitem">
+              <p><em class="replaceable"><code>msg_rtime</code></em> is set to
+              the current time.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="msgop-2_sect4" name="msgop-2_sect4" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p>On failure both functions return −1 with
+      <code class="varname">errno</code> indicating the error,
+      otherwise <code class="function">msgsnd</code>() returns 0
+      and <code class="function">msgrcv</code>() returns the number
+      of bytes actually copied into the <em class="parameter"><code>mtext</code></em> array.</p>
+    </div>
+
+    <div class="refsect1" title="ERRORS">
+      <a id="msgop-2_sect5" name="msgop-2_sect5" shape="rect"> </a>
+
+      <h2>ERRORS</h2>
+
+      <p>When <code class="function">msgsnd</code>() fails,
+      <code class="varname">errno</code> will be set to one among
+      the following values:</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><span class="errorname">EACCES</span></span></dt>
+
+          <dd>
+            <p>The calling process does not have write permission
+            on the message queue, and does not have the
+            <code class="constant">CAP_IPC_OWNER</code>
+            capability.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EAGAIN</span></span></dt>
+
+          <dd>
+            <p>The message can't be sent due to the <em class="replaceable"><code>msg_qbytes</code></em> limit for
+            the queue and <code class="constant">IPC_NOWAIT</code>
+            was specified in <em class="parameter"><code>msgflg</code></em>.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EFAULT</span></span></dt>
+
+          <dd>
+            <p>The address pointed to by <em class="parameter"><code>msgp</code></em> isn't
+            accessible.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EIDRM</span></span></dt>
+
+          <dd>
+            <p>The message queue was removed.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EINTR</span></span></dt>
+
+          <dd>
+            <p>Sleeping on a full message queue condition, the
+            process caught a signal.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EINVAL</span></span></dt>
+
+          <dd>
+            <p>Invalid <em class="parameter"><code>msqid</code></em> value, or
+            nonpositive <em class="parameter"><code>mtype</code></em> value, or invalid
+            <em class="parameter"><code>msgsz</code></em> value
+            (less than 0 or greater than the system value
+            <code class="constant">MSGMAX</code>).</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENOMEM</span></span></dt>
+
+          <dd>
+            <p>The system does not have enough memory to make a
+            copy of the message pointed to by <em class="parameter"><code>msgp</code></em>.</p>
+          </dd>
+        </dl>
+      </div>
+
+      <p>When <code class="function">msgrcv</code>() fails,
+      <code class="varname">errno</code> will be set to one among
+      the following values:</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><span class="errorname">E2BIG</span></span></dt>
+
+          <dd>
+            <p>The message text length is greater than <em class="parameter"><code>msgsz</code></em> and <code class="constant">MSG_NOERROR</code> isn't specified in
+            <em class="parameter"><code>msgflg</code></em>.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EACCES</span></span></dt>
+
+          <dd>
+            <p>The calling process does not have read permission on
+            the message queue, and does not have the <code class="constant">CAP_IPC_OWNER</code> capability.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EAGAIN</span></span></dt>
+
+          <dd>
+            <p>No message was available in the queue and
+            <code class="constant">IPC_NOWAIT</code> was specified
+            in <em class="parameter"><code>msgflg</code></em>.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EFAULT</span></span></dt>
+
+          <dd>
+            <p>The address pointed to by <em class="parameter"><code>msgp</code></em> isn't
+            accessible.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EIDRM</span></span></dt>
+
+          <dd>
+            <p>While the process was sleeping to receive a message,
+            the message queue was removed.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EINTR</span></span></dt>
+
+          <dd>
+            <p>While the process was sleeping to receive a message,
+            the process caught a signal; see <a class="link" href="../htmlman7/signal.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">signal</span>(7)</span></a>.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EINVAL</span></span></dt>
+
+          <dd>
+            <p><em class="replaceable"><code>msgqid</code></em> was
+            invalid, or <em class="parameter"><code>msgsz</code></em> was less than
+            0.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENOMSG</span></span></dt>
+
+          <dd>
+            <p><code class="constant">IPC_NOWAIT</code> was
+            specified in <em class="parameter"><code>msgflg</code></em> and no message of
+            the requested type existed on the message queue.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="msgop-2_sect6" name="msgop-2_sect6" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>SVr4, POSIX.1-2001.</p>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="msgop-2_sect7" name="msgop-2_sect7" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p>The <em class="parameter"><code>msgp</code></em> argument
+      is declared as <span class="type">struct msgbuf *</span> with
+      libc4, libc5, glibc 2.0, glibc 2.1. It is declared as
+      <span class="emphasis"><em>void *</em></span> with glibc 2.2
+      and later, as required by SUSv2 and SUSv3.</p>
+
+      <p>The following limits on message queue resources affect the
+      <code class="function">msgsnd</code>() call:</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="constant">MSGMAX</code></span></dt>
+
+          <dd>
+            <p>Maximum size for a message text: 8192 bytes (on
+            Linux, this limit can be read and modified via
+            <code class="filename">/proc/sys/kernel/msgmax</code>).</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">MSGMNB</code></span></dt>
+
+          <dd>
+            <p>Default maximum size in bytes of a message queue:
+            16384 bytes (on Linux, this limit can be read and
+            modified via <code class="filename">/proc/sys/kernel/msgmnb</code>). The
+            superuser can increase the size of a message queue
+            beyond <code class="constant">MSGMNB</code> by a
+            <a class="link" href="../htmlman2/msgctl.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">msgctl</span>(2)</span></a> system
+            call.</p>
+          </dd>
+        </dl>
+      </div>
+
+      <p>The implementation has no intrinsic limits for the system
+      wide maximum number of message headers (<code class="constant">MSGTQL</code>) and for the system wide maximum
+      size in bytes of the message pool (<code class="constant">MSGPOOL</code>).</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="msgop-2_sect8" name="msgop-2_sect8" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman2/msgctl.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">msgctl</span>(2)</span></a>, <a class="link" href="../htmlman2/msgget.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">msgget</span>(2)</span></a>, <a class="link" href="../htmlman7/capabilities.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">capabilities</span>(7)</span></a>, <a class="link" href="../htmlman7/mq_overview.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mq_overview</span>(7)</span></a>, <a class="link" href="../htmlman7/svipc.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">svipc</span>(7)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="msgop-2_sect9" name="msgop-2_sect9" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.25 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright 1993 Giorgio Ciucci &lt;giorgio<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>crcc.it&gt;<br />
+
+                  <br />
+                  Permission is granted to make and distribute verbatim copies of this<br />
+
+                  manual provided the copyright notice and this permission notice are<br />
+
+                  preserved on all copies.<br />
+                  <br />
+                  Permission is granted to copy and distribute modified versions of this<br />
+
+                  manual under the conditions for verbatim copying, provided that the<br />
+
+                  entire resulting derived work is distributed under the terms of a<br />
+
+                  permission notice identical to this one.<br />
+
+                  <br />
+                  Since the Linux kernel and libraries are constantly changing, this<br />
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no<br />
+
+                  responsibility for errors or omissions, or for damages resulting from<br />
+
+                  the use of the information contained herein.  The author(s) may not<br />
+
+                  have taken the same level of care in the production of this manual,<br />
+
+                  which is licensed free of charge, as they might when working<br />
+
+                  professionally.<br />
+                  <br />
+                  Formatted or processed versions of this manual, if unaccompanied by<br />
+
+                  the source, must acknowledge the copyright and authors of this work.<br />
+
+                  <br />
+                  Modified Tue Oct 22 16:40:11 1996 by Eric S. Raymond &lt;esr<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>thyrsus.com&gt;<br />
+
+                  Modified Mon Jul 10 21:09:59 2000 by aeb<br />
+
+                  Modified 1 Jun 2002, Michael Kerrisk &lt;mtk.manpages<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>gmail.com&gt;<br />
+
+                  Language clean-ups.<br />
+                  Enhanced and corrected information on msg_qbytes, MSGMNB and MSGMAX<br />
+
+                  Added note on restart behavior of msgsnd() and msgrcv()<br />
+
+                  Formatting clean-ups (argument and field names marked as .I<br />
+
+                  instead of .B)<br />
+                  Modified, 27 May 2004, Michael Kerrisk &lt;mtk.manpages<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>gmail.com&gt;<br />
+
+                      Added notes on capability requirements<br />
+
+                  Modified, 11 Nov 2004, Michael Kerrisk &lt;mtk.manpages<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>gmail.com&gt;<br />
+
+                  Language and formatting clean-ups<br />
+
+                  Added notes on /proc files<br />
+
+                  FIXME . Add example programs to this page.<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

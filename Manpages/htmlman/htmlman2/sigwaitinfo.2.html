@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>sigwaitinfo(2) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="sigwaitinfo(2) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="sigwaitinfo(2) — Linux manual pages">
+    <a id="sigwaitinfo.2" name="sigwaitinfo.2" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>sigwaitinfo, sigtimedwait — synchronously wait for
+      queued signals</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;signal.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">sigwaitinfo</b>(</code></td>
+
+            <td rowspan="1" colspan="1">const sigset_t *<var class="pdparam">set</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">siginfo_t *<var class="pdparam">info</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">sigtimedwait</b>(</code></td>
+
+            <td rowspan="1" colspan="1">const sigset_t *<var class="pdparam">set</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">siginfo_t *<var class="pdparam">info</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">const struct timespec *<var class="pdparam">timeout</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;">
+        <table border="0" summary="Note">
+          <tr>
+            <td rowspan="2" align="center" valign="top" width="25" colspan="1">
+            <img alt="[Note]" src="../stylesheet/note.png" /></td>
+
+            <th align="left" rowspan="1" colspan="1">Note</th>
+          </tr>
+
+          <tr>
+            <td align="left" valign="top" rowspan="1" colspan="1">
+              <div class="featuretests">
+                <table style="border-collapse: collapse;">
+                  <colgroup span="1">
+                    <col span="1" />
+                  </colgroup>
+
+                  <thead>
+                    <tr>
+                      <th style="" rowspan="1" colspan="1">Feature Test Macro Requirements
+                      for glibc (see <a class="link" href="../htmlman7/feature_test_macros.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">feature_test_macros</span>(7)</span></a>):</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td style="" rowspan="1" colspan="1"><code class="function">sigwaitinfo</code>(), <code class="function">sigtimedwait</code>():</td>
+                    </tr>
+
+                    <tr>
+                      <td class="featuretestdef" style="" rowspan="1" colspan="1">
+                      <code class="constant">_POSIX_C_SOURCE</code>
+                      &gt;= 199309L</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="sigwaitinfo-2_sect1" name="sigwaitinfo-2_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><code class="function">sigwaitinfo</code>() suspends
+      execution of the calling thread until one of the signals in
+      <em class="parameter"><code>set</code></em> is delivered. (If
+      one of the signals in <em class="parameter"><code>set</code></em> is already pending for the
+      calling thread, <code class="function">sigwaitinfo</code>()
+      will return immediately with information about that
+      signal.)</p>
+
+      <p><code class="function">sigwaitinfo</code>() removes the
+      delivered signal from the set of pending signals and returns
+      the signal number as its function result. If the <em class="parameter"><code>info</code></em> argument is not NULL, then
+      it returns a structure of type <span class="type">siginfo_t</span> (see <a class="link" href="../htmlman2/sigaction.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">sigaction</span>(2)</span></a>) containing
+      information about the signal.</p>
+
+      <p>Signals returned via <code class="function">sigwaitinfo</code>() are delivered in the usual
+      order; see <a class="link" href="../htmlman7/signal.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">signal</span>(7)</span></a> for further
+      details.</p>
+
+      <p><code class="function">sigtimedwait</code>() operates in
+      exactly the same way as <code class="function">sigwaitinfo</code>() except that it has an
+      additional argument, <em class="parameter"><code>timeout</code></em>, which enables an upper
+      bound to be placed on the time for which the thread is
+      suspended. This argument is of the following type:</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="structdef">
+            <table style="border-collapse: collapse;">
+              <colgroup span="1">
+                <col span="1" />
+                <col span="1" />
+                <col span="1" />
+                <col span="1" />
+                <col span="1" />
+              </colgroup>
+
+              <tbody>
+                <tr>
+                  <td class="structdefhdr" style="" align="left" rowspan="1" colspan="1">
+                  struct</td>
+
+                  <td class="structdefhdr" style="" colspan="4" align="left" rowspan="1"><span class="structname">timespec</span> {</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">long</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>tv_sec</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      /* seconds */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">long</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>tv_nsec</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      /* nanoseconds */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="structdefftr" style="" colspan="5" align="left" rowspan="1">};</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </blockquote>
+      </div>
+
+      <p>If both fields of this structure are specified as 0, a
+      poll is performed: <code class="function">sigtimedwait</code>() returns immediately, either
+      with information about a signal that was pending for the
+      caller, or with an error if none of the signals in <em class="parameter"><code>set</code></em> was pending.</p>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="sigwaitinfo-2_sect2" name="sigwaitinfo-2_sect2" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p>On success, both <code class="function">sigwaitinfo</code>() and <code class="function">sigtimedwait</code>() return a signal number
+      (i.e., a value greater than zero). On failure both calls
+      return −1, with <code class="varname">errno</code> set
+      to indicate the error.</p>
+    </div>
+
+    <div class="refsect1" title="ERRORS">
+      <a id="sigwaitinfo-2_sect3" name="sigwaitinfo-2_sect3" shape="rect"> </a>
+
+      <h2>ERRORS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><span class="errorname">EAGAIN</span></span></dt>
+
+          <dd>
+            <p>No signal in <em class="parameter"><code>set</code></em> was delivered within
+            the <em class="parameter"><code>timeout</code></em>
+            period specified to <code class="function">sigtimedwait</code>().</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EINTR</span></span></dt>
+
+          <dd>
+            <p>The wait was interrupted by a signal handler; see
+            <a class="link" href="../htmlman7/signal.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">signal</span>(7)</span></a>. (This
+            handler was for a signal other than one of those in
+            <em class="parameter"><code>set</code></em>.)</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EINVAL</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>timeout</code></em> was
+            invalid.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="sigwaitinfo-2_sect4" name="sigwaitinfo-2_sect4" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>POSIX.1-2001.</p>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="sigwaitinfo-2_sect5" name="sigwaitinfo-2_sect5" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p>In normal usage, the calling program blocks the signals in
+      <em class="parameter"><code>set</code></em> via a prior call
+      to <a class="link" href="../htmlman2/sigprocmask.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">sigprocmask</span>(2)</span></a> (so that the
+      default disposition for these signals does not occur if they
+      are delivered between successive calls to <code class="function">sigwaitinfo</code>() or <code class="function">sigtimedwait</code>()) and does not establish
+      handlers for these signals. In a multithreaded program, the
+      signal should be blocked in all threads to prevent the signal
+      being delivered to a thread other than the one calling
+      <code class="function">sigwaitinfo</code>() or <code class="function">sigtimedwait</code>()).</p>
+
+      <p>The set of signals that is pending for a given thread is
+      the union of the set of signals that is pending specifically
+      for that thread and the set of signals that is pending for
+      the process as a whole (see <a class="link" href="../htmlman7/signal.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">signal</span>(7)</span></a>).</p>
+
+      <p>If multiple threads of a process are blocked waiting for
+      the same signal(s) in <code class="function">sigwaitinfo</code>() or <code class="function">sigtimedwait</code>(), then exactly one of the
+      threads will actually receive the signal if it is delivered
+      to the process as a whole; which of the threads receives the
+      signal is indeterminate.</p>
+
+      <p>POSIX leaves the meaning of a NULL value for the
+      <em class="parameter"><code>timeout</code></em> argument of
+      <code class="function">sigtimedwait</code>() unspecified,
+      permitting the possibility that this has the same meaning as
+      a call to <code class="function">sigwaitinfo</code>(), and
+      indeed this is what is done on Linux.</p>
+
+      <p>On Linux, <code class="function">sigwaitinfo</code>() is a
+      library function implemented on top of <code class="function">sigtimedwait</code>().</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="sigwaitinfo-2_sect6" name="sigwaitinfo-2_sect6" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman2/kill.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">kill</span>(2)</span></a>, <a class="link" href="../htmlman2/sigaction.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">sigaction</span>(2)</span></a>, <a class="link" href="../htmlman2/signal.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">signal</span>(2)</span></a>, <a class="link" href="../htmlman2/signalfd.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">signalfd</span>(2)</span></a>, <a class="link" href="../htmlman2/sigpending.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">sigpending</span>(2)</span></a>, <a class="link" href="../htmlman2/sigprocmask.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">sigprocmask</span>(2)</span></a>, <a class="link" href="../htmlman2/sigqueue.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">sigqueue</span>(2)</span></a>, <a class="link" href="../htmlman3/sigsetops.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">sigsetops</span>(3)</span></a>, <a class="link" href="../htmlman3/sigwait.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">sigwait</span>(3)</span></a>, <a class="link" href="../htmlman7/signal.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">signal</span>(7)</span></a>, <a class="link" href="../htmlman7/time.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">time</span>(7)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="sigwaitinfo-2_sect7" name="sigwaitinfo-2_sect7" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.24 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright (c) 2002 Michael Kerrisk &lt;mtk.manpages<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>gmail.com&gt;<br />
+
+                  <br />
+                  Permission is granted to make and distribute verbatim copies of this<br />
+
+                  manual provided the copyright notice and this permission notice are<br />
+
+                  preserved on all copies.<br />
+                  <br />
+                  Permission is granted to copy and distribute modified versions of this<br />
+
+                  manual under the conditions for verbatim copying, provided that the<br />
+
+                  entire resulting derived work is distributed under the terms of a<br />
+
+                  permission notice identical to this one.<br />
+
+                  <br />
+                  Since the Linux kernel and libraries are constantly changing, this<br />
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no<br />
+
+                  responsibility for errors or omissions, or for damages resulting from<br />
+
+                  the use of the information contained herein.  The author(s) may not<br />
+
+                  have taken the same level of care in the production of this manual,<br />
+
+                  which is licensed free of charge, as they might when working<br />
+
+                  professionally.<br />
+                  <br />
+                  Formatted or processed versions of this manual, if unaccompanied by<br />
+
+                  the source, must acknowledge the copyright and authors of this work.<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

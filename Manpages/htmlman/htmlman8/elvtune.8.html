@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>elvtune(8) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="elvtune(8) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="elvtune(8) — Linux manual pages">
+    <a id="elvtune.8" name="elvtune.8" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>elvtune — I/O elevator tuner</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">elvtune</code> [ <code class="option">−r</code> r_lat ] [ <code class="option">−w</code> w_lat ] [ <code class="option">−b</code> b_max ] device...</p>
+      </div>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">elvtune</code> <code class="option">−h</code></p>
+      </div>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">elvtune</code> <code class="option">−v</code></p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="elvtune-8_sect1" name="elvtune-8_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><span class="command"><strong>elvtune</strong></span>
+      allows to tune the I/O elevator per blockdevice queue basis.
+      The tuning can be safely done at runtime. Tuning the elevator
+      means being able to change disk performance and
+      interactiveness. In the output of elvtune the address of the
+      queue tuned will be shown and it can be considered as a queue
+      ID. For example multiple partitions in the same harddisk will
+      share the same queue and so tuning one partition will be like
+      tuning the whole HD.</p>
+    </div>
+
+    <div class="refsect1" title="OPTIONS">
+      <a id="elvtune-8_sect2" name="elvtune-8_sect2" shape="rect"> </a>
+
+      <h2>OPTIONS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="option">−rr_lat</code></span></dt>
+
+          <dd>
+            <p>set the max latency that the I/O scheduler will
+            provide on each read.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−ww_lat</code></span></dt>
+
+          <dd>
+            <p>set the max latency that the I/O scheduler will
+            provide on each write.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−bb_max</code></span></dt>
+
+          <dd>
+            <p>max coalescing factor allowed on writes when there
+            are reads pending in the queue.</p>
+          </dd>
+
+          <dt><span class="term"><em class="parameter"><code>−h</code></em></span></dt>
+
+          <dd>
+            <p>help.</p>
+          </dd>
+
+          <dt><span class="term"><em class="parameter"><code>−v</code></em></span></dt>
+
+          <dd>
+            <p>version.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="NOTE">
+      <a id="elvtune-8_sect3" name="elvtune-8_sect3" shape="rect"> </a>
+
+      <h2>NOTE</h2>
+
+      <p>Actually the only fields tunable are those relative to the
+      IO scheduler. It's not possible to select a one-way or
+      two-way elevator yet.</p>
+
+      <p>For logical blockdevices like LVM the tuning has to be
+      done on the <span class="emphasis"><em>physical</em></span>
+      devices. Tuning the queue of the LVM logical device is
+      useless.</p>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="elvtune-8_sect4" name="elvtune-8_sect4" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p>0 on success and 1 on failure.</p>
+    </div>
+
+    <div class="refsect1" title="HISTORY">
+      <a id="elvtune-8_sect5" name="elvtune-8_sect5" shape="rect"> </a>
+
+      <h2>HISTORY</h2>
+
+      <p>Ioctls for tuning elevator behaviour were added in Linux
+      2.3.99-pre1.</p>
+    </div>
+
+    <div class="refsect1" title="AUTHORS">
+      <a id="elvtune-8_sect6" name="elvtune-8_sect6" shape="rect"> </a>
+
+      <h2>AUTHORS</h2>
+
+      <p>Andrea Arcangeli &lt;andrea@suse.de&gt; SuSE</p>
+    </div>
+
+    <div class="refsect1" title="AVAILABILITY">
+      <a id="elvtune-8_sect7" name="elvtune-8_sect7" shape="rect"> </a>
+
+      <h2>AVAILABILITY</h2>
+
+      <p>The elvtune command is part of the util-linux package and
+      is available from
+      ftp://ftp.kernel.org/pub/linux/utils/util-linux/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

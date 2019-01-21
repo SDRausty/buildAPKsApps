@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>blkid(8) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="blkid(8) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="blkid(8) — Linux manual pages">
+    <a id="blkid.8" name="blkid.8" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>blkid — command−line utility to locate/print
+      block device attributes</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">blkid</code> <code class="option">−L</code> label | <code class="option">−U</code> uuid</p>
+      </div>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">blkid</code> [<code class="option">−ghlv</code>] [ <code class="option">−c</code> file ] [ <code class="option">−w</code> file ] [ <code class="option">−o</code> format ] [ <code class="option">−s</code> tag ] [ <code class="option">−t</code> NAME=value ] [ device... ]</p>
+      </div>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">blkid</code> <code class="option">−p</code> [ <code class="option">−O</code> offset ] [ <code class="option">−S</code> size ] [ <code class="option">−o</code> format ] [ <code class="option">−s</code> tag ] [ <code class="option">−n</code> list ] [ <code class="option">−u</code> list ] device [ device... ]</p>
+      </div>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">blkid</code> <code class="option">−i</code> [ <code class="option">−o</code> format ] [ <code class="option">−s</code> tag ] device [ device... ]</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="blkid-8_sect1" name="blkid-8_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>The <span class="command"><strong>blkid</strong></span>
+      program is the command-line interface to working with
+      <a class="link" href="../htmlman3/libblkid.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">libblkid</span>(3)</span></a> library. It can
+      determine the type of content (e.g. filesystem, swap) a block
+      device holds, and also attributes (tokens, NAME=value pairs)
+      from the content metadata (e.g. LABEL or UUID fields).</p>
+
+      <p><span class="command"><strong>blkid</strong></span> has
+      two main forms of operation: either searching for a device
+      with a specific NAME=value pair, or displaying NAME=value
+      pairs for one or more devices.</p>
+    </div>
+
+    <div class="refsect1" title="OPTIONS">
+      <a id="blkid-8_sect2" name="blkid-8_sect2" shape="rect"> </a>
+
+      <h2>OPTIONS</h2>
+
+      <p>The <em class="parameter"><code>size</code></em> and
+      <em class="parameter"><code>offset</code></em> arguments may
+      be followed by binary (2^N) suffixes KiB, MiB, GiB, TiB, PiB
+      and EiB (the "iB" is optional, e.g. "K" has the same meaning
+      as "KiB") or decimal (10^N) suffixes KB, MB, GB, PB and
+      EB.</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="option">−c
+          cachefile</code></span></dt>
+
+          <dd>
+            <p>Read from <span class="command"><strong>cachefile</strong></span> instead of
+            reading from the default cache file <code class="filename">/etc/blkid.tab</code>. If you want to start
+            with a clean cache (i.e. don't report devices
+            previously scanned but not necessarily available at
+            this time), specify <code class="filename">/dev/null</code>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−g</code></span></dt>
+
+          <dd>
+            <p>Perform a garbage collection pass on the blkid cache
+            to remove devices which no longer exist.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−h</code></span></dt>
+
+          <dd>
+            <p>Display a usage message and exit.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−i</code></span></dt>
+
+          <dd>
+            <p>Display I/O Limits (aka I/O topology) information.
+            The 'export' output format is automatically enabled.
+            This option could be used together with <em class="parameter"><code>−p</code></em> option.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−l</code></span></dt>
+
+          <dd>
+            <p>Look up one device that matches the search parameter
+            specified using the <code class="option">−t</code> option. If there are multiple
+            devices that match the specified search parameter, then
+            the device with the highest priority is returned,
+            and/or the first device found at a given priority.
+            Device types in order of decreasing priority are Device
+            Mapper, EVMS, LVM, MD, and finally regular block
+            devices. If this option is not specified, <span class="command"><strong>blkid</strong></span> will print all
+            of the devices that match the search parameter.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−L
+          label</code></span></dt>
+
+          <dd>
+            <p>Look up one device that uses the label (same as: -l
+            -o device -t LABEL=&lt;label&gt;). This look up method
+            is able to reliable use /dev/disk/by-label udev
+            symlinks (depends on setting in /etc/blkid.conf). Avoid
+            to use the symlinks directly. It is not reliable to use
+            the symlinks without verification. The <em class="parameter"><code>−L</code></em> option works on
+            systems with and without udev.</p>
+
+            <p>Unfortunately, the original <a class="link" href="../htmlman8/blkid.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">blkid</span>(8)</span></a> from
+            e2fsprogs use the <em class="parameter"><code>−L</code></em> option as a
+            synonym to the <code class="option">−o
+            list</code> option. For better portability use "-l -o
+            device -t LABEL=&lt;label&gt;" and "-o list" in your
+            scripts rather than -L option.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−n
+          list</code></span></dt>
+
+          <dd>
+            <p>Restrict probing functions to defined (comma
+            separated) list of superblock types (names). The list
+            can be prefixed with "no" to specify the types which
+            should be ignored. For example:</p>
+
+            <div class="informalexample">
+              <pre class="programlisting" xml:space="preserve">
+  blkid -p -n vfat,ext3,ext4 /dev/sda1
+</pre>
+            </div>
+
+            <p>probes for vfat, ext3 and ext4 filesystems, and</p>
+
+            <div class="informalexample">
+              <pre class="programlisting" xml:space="preserve">
+  blkid -p -u nominix /dev/sda1
+</pre>
+            </div>
+
+            <p>probes for all supported formats exclude minix
+            filesystem. This option is useful with <em class="parameter"><code>−p</code></em> only.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−o
+          format</code></span></dt>
+
+          <dd>
+            <p>Display <span class="command"><strong>blkid</strong></span>'s output using
+            the specified format. The <em class="parameter"><code>format</code></em> parameter may
+            be:</p>
+
+            <div class="blockquote">
+              <blockquote class="blockquote">
+                <div class="variablelist">
+                  <dl>
+                    <dt><span class="term"><span class="command"><strong>full</strong></span></span></dt>
+
+                    <dd>
+                      <p>print all tags (the default)</p>
+                    </dd>
+
+                    <dt><span class="term"><span class="command"><strong>value</strong></span></span></dt>
+
+                    <dd>
+                      <p>print the value of the tags</p>
+                    </dd>
+
+                    <dt><span class="term"><em class="parameter"><code>list</code></em></span></dt>
+
+                    <dd>
+                      <p>print the devices in a user-friendly
+                      format, this output format is unsupported for
+                      low-level probing (<em class="parameter"><code>−p</code></em> or
+                      <em class="parameter"><code>−i</code></em>)</p>
+                    </dd>
+
+                    <dt><span class="term"><em class="parameter"><code>device</code></em></span></dt>
+
+                    <dd>
+                      <p>print the device name only, this output
+                      format is always enabled for <em class="parameter"><code>−L</code></em> and
+                      <em class="parameter"><code>−U</code></em>
+                      options</p>
+                    </dd>
+
+                    <dt><span class="term"><span class="command"><strong>udev</strong></span></span></dt>
+
+                    <dd>
+                      <p>print key="value" pairs for easy import
+                      into the udev environment. The keys are
+                      prefixed by ID_FS_ or ID_PART_ prefixes.</p>
+
+                      <p>The udev output returns ID_FS_AMBIVALENT
+                      tag if more superblocks are detected, and
+                      ID_PART_ENTRY_* tags are always returned for
+                      all partitions including empty
+                      partitions.</p>
+                    </dd>
+
+                    <dt><span class="term"><span class="command"><strong>export</strong></span></span></dt>
+
+                    <dd>
+                      <p>print key=value pairs for easy import into
+                      the environment. This output format is
+                      automatically enabled when I/O Limits
+                      (<em class="parameter"><code>−i</code></em>
+                      option) are requested.</p>
+                    </dd>
+                  </dl>
+                </div>
+              </blockquote>
+            </div>
+          </dd>
+
+          <dt><span class="term"><code class="option">−O
+          offset</code></span></dt>
+
+          <dd>
+            <p>Probe at the given offset (only useful with
+            <em class="parameter"><code>−p</code></em>). This
+            option could be used together with <em class="parameter"><code>−i</code></em> option.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−p</code></span></dt>
+
+          <dd>
+            <p>Switch to low-level superblock probing mode (bypass
+            cache).</p>
+
+            <p>Note that low-level probing also returns information
+            about partition table type (PTTYPE tag) and partitions
+            (PART_ENTRY_* tags).</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−s
+          tag</code></span></dt>
+
+          <dd>
+            <p>For each (specified) device, show only the tags that
+            match <em class="parameter"><code>tag</code></em>. It
+            is possible to specify multiple <code class="option">−s</code> options. If no tag is
+            specified, then all tokens are shown for all
+            (specified) devices. In order to just refresh the cache
+            without showing any tokens, use <code class="option">−s none</code> with no other
+            options.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−S
+          size</code></span></dt>
+
+          <dd>
+            <p>Overwrite device/file size (only useful with
+            <em class="parameter"><code>−p</code></em>).</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−t
+          NAME=value</code></span></dt>
+
+          <dd>
+            <p>Search for block devices with tokens named
+            <code class="constant">NAME</code> that have the value
+            <span class="command"><strong>value</strong></span>,
+            and display any devices which are found. Common values
+            for <code class="constant">NAME</code> include
+            <code class="constant">TYPE</code>, <code class="constant">LABEL</code>, and <code class="constant">UUID</code>. If there are no devices
+            specified on the command line, all block devices will
+            be searched; otherwise only the specified devices are
+            searched.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−u
+          list</code></span></dt>
+
+          <dd>
+            <p>Restrict probing functions to defined (comma
+            separated) list of "usage" types. Supported usage types
+            are: filesystem, raid, crypto and other. The list can
+            be prefixed with "no" to specify the usage types which
+            should be ignored. For example:</p>
+
+            <div class="informalexample">
+              <pre class="programlisting" xml:space="preserve">
+  blkid -p -u filesystem,other /dev/sda1
+</pre>
+            </div>
+
+            <p>probes for all filesystems and others (e.g. swap)
+            formats, and</p>
+
+            <div class="informalexample">
+              <pre class="programlisting" xml:space="preserve">
+  blkid -p -u noraid /dev/sda1
+</pre>
+            </div>
+
+            <p>probes for all supported formats exclude RAIDs. This
+            option is useful with <em class="parameter"><code>−p</code></em> only.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−U
+          uuid</code></span></dt>
+
+          <dd>
+            <p>Look up one device that uses the uuid. For more
+            details see the <em class="parameter"><code>−L</code></em> option.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−v</code></span></dt>
+
+          <dd>
+            <p>Display version number and exit.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−w
+          writecachefile</code></span></dt>
+
+          <dd>
+            <p>Write the device cache to <span class="command"><strong>writecachefile</strong></span>
+            instead of writing it to the default cache file
+            <code class="filename">/etc/blkid.tab</code>. If you
+            don't want to save the cache to the default file,
+            specify <code class="filename">/dev/null.</code> If not
+            specified it will be the same file as that given by the
+            <code class="option">−c</code> option.</p>
+          </dd>
+
+          <dt><span class="term"><em class="parameter"><code>device</code></em></span></dt>
+
+          <dd>
+            <p>Display tokens from only the specified device. It is
+            possible to give multiple <em class="parameter"><code>device</code></em> options on the
+            command line. If none is given, all devices which
+            appear in <code class="filename">/proc/partitions</code> are shown, if they
+            are recognized.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="RETURN CODE">
+      <a id="blkid-8_sect3" name="blkid-8_sect3" shape="rect"> </a>
+
+      <h2>RETURN CODE</h2>
+
+      <p>If the specified token was found, or if any tags were
+      shown from (specified) devices, 0 is returned.</p>
+
+      <p>If the specified token was not found, or no (specified)
+      devices could be identified an exit code of 2 is
+      returned.</p>
+
+      <p>For usage or other errors, an exit code of 4 is
+      returned.</p>
+
+      <p>If the ambivalent low-level probing result was detected an
+      exit code of 8 is returned.</p>
+    </div>
+
+    <div class="refsect1" title="AUTHOR">
+      <a id="blkid-8_sect4" name="blkid-8_sect4" shape="rect"> </a>
+
+      <h2>AUTHOR</h2>
+
+      <p><span class="command"><strong>blkid</strong></span> was
+      written by Andreas Dilger for libblkid and improved by
+      Theodore Ts'o and Karel Zak.</p>
+    </div>
+
+    <div class="refsect1" title="AVAILABILITY">
+      <a id="blkid-8_sect5" name="blkid-8_sect5" shape="rect"> </a>
+
+      <h2>AVAILABILITY</h2>
+
+      <p>The blkid command is part of the util-linux package and is
+      available from
+      ftp://ftp.kernel.org/pub/linux/utils/util-linux/.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="blkid-8_sect6" name="blkid-8_sect6" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman3/libblkid.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">libblkid</span>(3)</span></a> <a class="link" href="../htmlman8/findfs.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">findfs</span>(8)</span></a> <a class="link" href="../htmlman8/wipefs.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">wipefs</span>(8)</span></a></p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright 2000 Andreas Dilger (adilger<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>turbolinux.com)<br />
+
+                  <br />
+                  This man page was created for blkid from e2fsprogs-1.25.<br />
+
+                  <br />
+                  This file may be copied under the terms of the GNU Public License.<br />
+
+                  <br />
+                  Based on uuidgen, Mon Sep 17 10:42:12 2000, Andreas Dilger<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,1460 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>stat(2) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="stat(2) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="stat(2) — Linux manual pages">
+    <a id="stat.2" name="stat.2" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>stat, fstat, lstat — get file status</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+#include &lt;sys/types.h&gt;
+#include &lt;sys/stat.h&gt;
+#include &lt;unistd.h&gt;
+</pre>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">stat</b>(</code></td>
+
+            <td rowspan="1" colspan="1">const char *<var class="pdparam">path</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">struct stat *<var class="pdparam">buf</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">fstat</b>(</code></td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">fd</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">struct stat *<var class="pdparam">buf</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">lstat</b>(</code></td>
+
+            <td rowspan="1" colspan="1">const char *<var class="pdparam">path</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">struct stat *<var class="pdparam">buf</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;">
+        <table border="0" summary="Note">
+          <tr>
+            <td rowspan="2" align="center" valign="top" width="25" colspan="1">
+            <img alt="[Note]" src="../stylesheet/note.png" /></td>
+
+            <th align="left" rowspan="1" colspan="1">Note</th>
+          </tr>
+
+          <tr>
+            <td align="left" valign="top" rowspan="1" colspan="1">
+              <div class="featuretests">
+                <table style="border-collapse: collapse;">
+                  <colgroup span="1">
+                    <col span="1" />
+                  </colgroup>
+
+                  <thead>
+                    <tr>
+                      <th style="" rowspan="1" colspan="1">Feature Test Macro Requirements
+                      for glibc (see <a class="link" href="../htmlman7/feature_test_macros.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">feature_test_macros</span>(7)</span></a>):</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td style="" rowspan="1" colspan="1"><code class="function">lstat</code>():</td>
+                    </tr>
+
+                    <tr>
+                      <td class="featuretestdef" style="" rowspan="1" colspan="1">
+                      <code class="constant">_BSD_SOURCE</code> ||
+                      <code class="constant">_XOPEN_SOURCE</code>
+                      &gt;= 500 || <code class="constant">_XOPEN_SOURCE</code> &amp;&amp;
+                      <code class="constant">_XOPEN_SOURCE_EXTENDED</code></td>
+                    </tr>
+
+                    <tr>
+                      <td class="featuretestver" style="" rowspan="1" colspan="1">|| /*
+                      Since glibc 2.10: */</td>
+                    </tr>
+
+                    <tr>
+                      <td class="featuretestdef" style="" rowspan="1" colspan="1">
+                      <code class="constant">_POSIX_C_SOURCE</code>
+                      &gt;= 200112L</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="stat-2_sect1" name="stat-2_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>These functions return information about a file. No
+      permissions are required on the file itself, but — in
+      the case of <code class="function">stat</code>() and
+      <code class="function">lstat</code>() — execute
+      (search) permission is required on all of the directories in
+      <em class="parameter"><code>path</code></em> that lead to the
+      file.</p>
+
+      <p><code class="function">stat</code>() stats the file
+      pointed to by <em class="parameter"><code>path</code></em>
+      and fills in <em class="parameter"><code>buf</code></em>.</p>
+
+      <p><code class="function">lstat</code>() is identical to
+      <code class="function">stat</code>(), except that if
+      <em class="parameter"><code>path</code></em> is a symbolic
+      link, then the link itself is stat-ed, not the file that it
+      refers to.</p>
+
+      <p><code class="function">fstat</code>() is identical to
+      <code class="function">stat</code>(), except that the file to
+      be stat-ed is specified by the file descriptor <em class="parameter"><code>fd</code></em>.</p>
+
+      <p>All of these system calls return a <span class="structname">stat</span> structure, which contains the
+      following fields:</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="structdef">
+            <table style="border-collapse: collapse;">
+              <colgroup span="1">
+                <col span="1" />
+                <col span="1" />
+                <col span="1" />
+                <col span="1" />
+                <col span="1" />
+              </colgroup>
+
+              <tbody>
+                <tr>
+                  <td class="structdefhdr" style="" align="left" rowspan="1" colspan="1">
+                  struct</td>
+
+                  <td class="structdefhdr" style="" colspan="4" align="left" rowspan="1"><span class="structname">stat</span> {</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">dev_t</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>st_dev</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      
+                      /* ID of device containing file */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">ino_t</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>st_ino</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      /* inode number */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">mode_t</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>st_mode</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      /* protection */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">nlink_t</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>st_nlink</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      
+                      /* number of hard links */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">uid_t</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>st_uid</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      
+                      /* user ID of owner */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">gid_t</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>st_gid</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      
+                      /* group ID of owner */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">dev_t</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>st_rdev</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      
+                      /* device ID (if special file) */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">off_t</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>st_size</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      
+                      /* total size, in bytes */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">blksize_t</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>st_blksize</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      
+                      /* blocksize for file system I/O */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">blkcnt_t</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>st_blocks</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      
+                      /* number of 512B blocks allocated */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">time_t</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>st_atime</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      
+                      /* time of last access */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">time_t</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>st_mtime</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      
+                      /* time of last modification */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">time_t</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>st_ctime</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      
+                      /* time of last status change */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="structdefftr" style="" colspan="5" align="left" rowspan="1">};</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </blockquote>
+      </div>
+
+      <p>The <em class="parameter"><code>st_dev</code></em> field
+      describes the device on which this file resides. (The
+      <a class="link" href="../htmlman3/makedev.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">major</span>(3)</span></a> and <a class="link" href="../htmlman3/makedev.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">minor</span>(3)</span></a> macros may be
+      useful to decompose the device ID in this field.)</p>
+
+      <p>The <em class="parameter"><code>st_rdev</code></em> field
+      describes the device that this file (inode) represents.</p>
+
+      <p>The <em class="parameter"><code>st_size</code></em> field
+      gives the size of the file (if it is a regular file or a
+      symbolic link) in bytes. The size of a symlink is the length
+      of the pathname it contains, without a trailing null
+      byte.</p>
+
+      <p>The <em class="parameter"><code>st_blocks</code></em>
+      field indicates the number of blocks allocated to the file,
+      512-byte units. (This may be smaller than <em class="parameter"><code>st_size</code></em>/512 when the file has
+      holes.)</p>
+
+      <p>The <em class="parameter"><code>st_blksize</code></em>
+      field gives the "preferred" blocksize for efficient file
+      system I/O. (Writing to a file in smaller chunks may cause an
+      inefficient read-modify-rewrite.)</p>
+
+      <p>Not all of the Linux file systems implement all of the
+      time fields. Some file system types allow mounting in such a
+      way that file and/or directory accesses do not cause an
+      update of the <em class="parameter"><code>st_atime</code></em> field. (See <em class="replaceable"><code>noatime</code></em>, <em class="replaceable"><code>nodiratime</code></em>, and <em class="replaceable"><code>relatime</code></em> in <a class="link" href="../htmlman8/mount.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mount</span>(8)</span></a>, and related
+      information in <a class="link" href="../htmlman2/mount.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mount</span>(2)</span></a>.) In addition,
+      <em class="parameter"><code>st_atime</code></em> is not
+      updated if a file is opened with the <code class="constant">O_NOATIME</code>; see <a class="link" href="../htmlman2/open.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">open</span>(2)</span></a>.</p>
+
+      <p>The field <em class="parameter"><code>st_atime</code></em>
+      is changed by file accesses, for example, by <a class="link" href="../htmlman2/execve.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">execve</span>(2)</span></a>, <a class="link" href="../htmlman2/mknod.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mknod</span>(2)</span></a>, <a class="link" href="../htmlman2/pipe.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pipe</span>(2)</span></a>, <a class="link" href="../htmlman2/utime.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">utime</span>(2)</span></a> and <a class="link" href="../htmlman2/read.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">read</span>(2)</span></a> (of more than zero
+      bytes). Other routines, like <a class="link" href="../htmlman2/mmap.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mmap</span>(2)</span></a>, may or may not
+      update <em class="parameter"><code>st_atime</code></em>.</p>
+
+      <p>The field <em class="parameter"><code>st_mtime</code></em>
+      is changed by file modifications, for example, by <a class="link" href="../htmlman2/mknod.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mknod</span>(2)</span></a>, <a class="link" href="../htmlman2/truncate.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">truncate</span>(2)</span></a>, <a class="link" href="../htmlman2/utime.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">utime</span>(2)</span></a> and <a class="link" href="../htmlman2/write.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">write</span>(2)</span></a> (of more than zero
+      bytes). Moreover, <em class="parameter"><code>st_mtime</code></em> of a directory is
+      changed by the creation or deletion of files in that
+      directory. The <em class="parameter"><code>st_mtime</code></em> field is <em class="replaceable"><code>not</code></em> changed for changes in
+      owner, group, hard link count, or mode.</p>
+
+      <p>The field <em class="parameter"><code>st_ctime</code></em>
+      is changed by writing or by setting inode information (i.e.,
+      owner, group, link count, mode, etc.).</p>
+
+      <p>The following POSIX macros are defined to check the file
+      type using the <em class="parameter"><code>st_mode</code></em> field:</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="variablelist">
+            <dl>
+              <dt><span class="term"><code class="function">S_ISREG</code>(m)</span></dt>
+
+              <dd>
+                <p>is it a regular file?</p>
+              </dd>
+
+              <dt><span class="term"><code class="function">S_ISDIR</code>(m)</span></dt>
+
+              <dd>
+                <p>directory?</p>
+              </dd>
+
+              <dt><span class="term"><code class="function">S_ISCHR</code>(m)</span></dt>
+
+              <dd>
+                <p>character device?</p>
+              </dd>
+
+              <dt><span class="term"><code class="function">S_ISBLK</code>(m)</span></dt>
+
+              <dd>
+                <p>block device?</p>
+              </dd>
+
+              <dt><span class="term"><code class="function">S_ISFIFO</code>(m)</span></dt>
+
+              <dd>
+                <p>FIFO (named pipe)?</p>
+              </dd>
+
+              <dt><span class="term"><code class="function">S_ISLNK</code>(m)</span></dt>
+
+              <dd>
+                <p>symbolic link? (Not in POSIX.1-1996.)</p>
+              </dd>
+
+              <dt><span class="term"><code class="function">S_ISSOCK</code>(m)</span></dt>
+
+              <dd>
+                <p>socket? (Not in POSIX.1-1996.)</p>
+              </dd>
+            </dl>
+          </div>
+        </blockquote>
+      </div>
+
+      <p>The following flags are defined for the <em class="parameter"><code>st_mode</code></em> field:</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="informaltable">
+            <table style="border-collapse: collapse;">
+              <colgroup span="1">
+                <col span="1" />
+                <col span="1" />
+                <col span="1" />
+              </colgroup>
+
+              <tbody>
+                <tr>
+                  <td style="" align="left" rowspan="1" colspan="1"><code class="constant">S_IFMT</code></td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">0170000</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">bit mask for the file
+                  type bit fields</td>
+                </tr>
+
+                <tr>
+                  <td style="" align="left" rowspan="1" colspan="1"><code class="constant">S_IFSOCK</code></td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">0140000</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">socket</td>
+                </tr>
+
+                <tr>
+                  <td style="" align="left" rowspan="1" colspan="1"><code class="constant">S_IFLNK</code></td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">0120000</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">symbolic link</td>
+                </tr>
+
+                <tr>
+                  <td style="" align="left" rowspan="1" colspan="1"><code class="constant">S_IFREG</code></td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">0100000</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">regular file</td>
+                </tr>
+
+                <tr>
+                  <td style="" align="left" rowspan="1" colspan="1"><code class="constant">S_IFBLK</code></td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">0060000</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">block device</td>
+                </tr>
+
+                <tr>
+                  <td style="" align="left" rowspan="1" colspan="1"><code class="constant">S_IFDIR</code></td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">0040000</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">directory</td>
+                </tr>
+
+                <tr>
+                  <td style="" align="left" rowspan="1" colspan="1"><code class="constant">S_IFCHR</code></td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">0020000</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">character device</td>
+                </tr>
+
+                <tr>
+                  <td style="" align="left" rowspan="1" colspan="1"><code class="constant">S_IFIFO</code></td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">0010000</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">FIFO</td>
+                </tr>
+
+                <tr>
+                  <td style="" align="left" rowspan="1" colspan="1"><code class="constant">S_ISUID</code></td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">0004000</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">set UID bit</td>
+                </tr>
+
+                <tr>
+                  <td style="" align="left" rowspan="1" colspan="1"><code class="constant">S_ISGID</code></td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">0002000</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">set-group-ID bit (see
+                  below)</td>
+                </tr>
+
+                <tr>
+                  <td style="" align="left" rowspan="1" colspan="1"><code class="constant">S_ISVTX</code></td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">0001000</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">sticky bit (see
+                  below)</td>
+                </tr>
+
+                <tr>
+                  <td style="" align="left" rowspan="1" colspan="1"><code class="constant">S_IRWXU</code></td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">00700</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">mask for file owner
+                  permissions</td>
+                </tr>
+
+                <tr>
+                  <td style="" align="left" rowspan="1" colspan="1"><code class="constant">S_IRUSR</code></td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">00400</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">owner has read
+                  permission</td>
+                </tr>
+
+                <tr>
+                  <td style="" align="left" rowspan="1" colspan="1"><code class="constant">S_IWUSR</code></td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">00200</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">owner has write
+                  permission</td>
+                </tr>
+
+                <tr>
+                  <td style="" align="left" rowspan="1" colspan="1"><code class="constant">S_IXUSR</code></td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">00100</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">owner has execute
+                  permission</td>
+                </tr>
+
+                <tr>
+                  <td style="" align="left" rowspan="1" colspan="1"><code class="constant">S_IRWXG</code></td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">00070</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">mask for group
+                  permissions</td>
+                </tr>
+
+                <tr>
+                  <td style="" align="left" rowspan="1" colspan="1"><code class="constant">S_IRGRP</code></td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">00040</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">group has read
+                  permission</td>
+                </tr>
+
+                <tr>
+                  <td style="" align="left" rowspan="1" colspan="1"><code class="constant">S_IWGRP</code></td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">00020</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">group has write
+                  permission</td>
+                </tr>
+
+                <tr>
+                  <td style="" align="left" rowspan="1" colspan="1"><code class="constant">S_IXGRP</code></td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">00010</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">group has execute
+                  permission</td>
+                </tr>
+
+                <tr>
+                  <td style="" align="left" rowspan="1" colspan="1"><code class="constant">S_IRWXO</code></td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">00007</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">mask for permissions
+                  for others (not in group)</td>
+                </tr>
+
+                <tr>
+                  <td style="" align="left" rowspan="1" colspan="1"><code class="constant">S_IROTH</code></td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">00004</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">others have read
+                  permission</td>
+                </tr>
+
+                <tr>
+                  <td style="" align="left" rowspan="1" colspan="1"><code class="constant">S_IWOTH</code></td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">00002</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">others have write
+                  permission</td>
+                </tr>
+
+                <tr>
+                  <td style="" align="left" rowspan="1" colspan="1"><code class="constant">S_IXOTH</code></td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">00001</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">others have execute
+                  permission</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </blockquote>
+      </div>
+
+      <p>The set-group-ID bit (<code class="constant">S_ISGID</code>) has several special uses. For a
+      directory it indicates that BSD semantics is to be used for
+      that directory: files created there inherit their group ID
+      from the directory, not from the effective group ID of the
+      creating process, and directories created there will also get
+      the <code class="constant">S_ISGID</code> bit set. For a file
+      that does not have the group execution bit (<code class="constant">S_IXGRP</code>) set, the set-group-ID bit
+      indicates mandatory file/record locking.</p>
+
+      <p>The sticky bit (<code class="constant">S_ISVTX</code>) on
+      a directory means that a file in that directory can be
+      renamed or deleted only by the owner of the file, by the
+      owner of the directory, and by a privileged process.</p>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="stat-2_sect2" name="stat-2_sect2" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p>On success, zero is returned. On error, −1 is
+      returned, and <code class="varname">errno</code> is set
+      appropriately.</p>
+    </div>
+
+    <div class="refsect1" title="ERRORS">
+      <a id="stat-2_sect3" name="stat-2_sect3" shape="rect"> </a>
+
+      <h2>ERRORS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><span class="errorname">EACCES</span></span></dt>
+
+          <dd>
+            <p>Search permission is denied for one of the
+            directories in the path prefix of <em class="parameter"><code>path</code></em>. (See also <a class="link" href="../htmlman7/path_resolution.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">path_resolution</span>(7)</span></a>.)</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EBADF</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>fd</code></em> is
+            bad.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EFAULT</span></span></dt>
+
+          <dd>
+            <p>Bad address.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ELOOP</span></span></dt>
+
+          <dd>
+            <p>Too many symbolic links encountered while traversing
+            the path.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENAMETOOLONG</span></span></dt>
+
+          <dd>
+            <p>File name too long.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENOENT</span></span></dt>
+
+          <dd>
+            <p>A component of <em class="parameter"><code>path</code></em> does not exist, or
+            <em class="parameter"><code>path</code></em> is an
+            empty string.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENOMEM</span></span></dt>
+
+          <dd>
+            <p>Out of memory (i.e., kernel memory).</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENOTDIR</span></span></dt>
+
+          <dd>
+            <p>A component of the path prefix of <em class="parameter"><code>path</code></em> is not a
+            directory.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EOVERFLOW</span></span></dt>
+
+          <dd>
+            <p>(<code class="function">stat</code>()) <em class="parameter"><code>path</code></em> refers to a file
+            whose size cannot be represented in the type
+            <span class="type">off_t</span>. This can occur when an
+            application compiled on a 32-bit platform without
+            <code class="option">−D_FILE_OFFSET_BITS=64</code> calls
+            <code class="function">stat</code>() on a file whose
+            size exceeds <em class="replaceable"><code>(1&lt;&lt;31)-1</code></em>
+            bits.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="stat-2_sect4" name="stat-2_sect4" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>These system calls conform to SVr4, 4.3BSD,
+      POSIX.1-2001.</p>
+
+      <p>Use of the <em class="parameter"><code>st_blocks</code></em> and <em class="parameter"><code>st_blksize</code></em> fields may be less
+      portable. (They were introduced in BSD. The interpretation
+      differs between systems, and possibly on a single system when
+      NFS mounts are involved.) If you need to obtain the
+      definition of the <span class="type">blkcnt_t</span> or
+      <span class="type">blksize_t</span> types from <code class="literal">&lt;</code><code class="filename">sys/stat.h</code><code class="literal">&gt;</code>
+      then define <code class="constant">_XOPEN_SOURCE</code> with
+      the value 500 or greater (before including <em class="replaceable"><code>any</code></em> header files).</p>
+
+      <p>POSIX does not describe the <code class="constant">S_IFMT</code>, <code class="constant">S_IFSOCK</code>, <code class="constant">S_IFLNK</code>, <code class="constant">S_IFREG</code>, <code class="constant">S_IFBLK</code>, <code class="constant">S_IFDIR</code>, <code class="constant">S_IFCHR</code>, <code class="constant">S_IFIFO</code>, <code class="constant">S_ISVTX</code> bits, but instead demands the use
+      of the macros <code class="function">S_ISDIR</code>(), etc.
+      The <code class="function">S_ISLNK</code>() and <code class="function">S_ISSOCK</code>() macros are not in POSIX.1-1996,
+      but both are present in POSIX.1-2001; the former is from SVID
+      4, the latter from SUSv2.</p>
+
+      <p>UNIX V7 (and later systems) had <code class="constant">S_IREAD</code>, <code class="constant">S_IWRITE</code>, <code class="constant">S_IEXEC</code>, where POSIX prescribes the
+      synonyms <code class="constant">S_IRUSR</code>, <code class="constant">S_IWUSR</code>, <code class="constant">S_IXUSR</code>.</p>
+
+      <div class="refsect2" title="Other Systems">
+        <a id="stat-2_sect5" name="stat-2_sect5" shape="rect"> </a>
+
+        <h3>Other Systems</h3>
+
+        <p>Values that have been (or are) in use on various
+        systems:</p>
+
+        <div class="informaltable">
+          <table style="border-collapse: collapse;">
+            <colgroup span="1">
+              <col span="1" />
+              <col span="1" />
+              <col span="1" />
+              <col span="1" />
+              <col span="1" />
+            </colgroup>
+
+            <tbody>
+              <tr>
+                <td style="" align="left" rowspan="1" colspan="1">hex</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">name</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">ls</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">octal</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">description</td>
+              </tr>
+
+              <tr>
+                <td style="" align="left" rowspan="1" colspan="1">f000</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">S_IFMT</td>
+
+                <td style="" align="left" rowspan="1" colspan="1"> </td>
+
+                <td style="" align="left" rowspan="1" colspan="1">170000</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">mask for file type</td>
+              </tr>
+
+              <tr>
+                <td style="" align="left" rowspan="1" colspan="1">0000</td>
+
+                <td style="" align="left" rowspan="1" colspan="1"> </td>
+
+                <td style="" align="left" rowspan="1" colspan="1"> </td>
+
+                <td style="" align="left" rowspan="1" colspan="1">000000</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">SCO out-of-service inode;
+                BSD unknown type; SVID-v2 and XPG2 have both 0 and
+                0100000 for ordinary file</td>
+              </tr>
+
+              <tr>
+                <td style="" align="left" rowspan="1" colspan="1">1000</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">S_IFIFO</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">p|</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">010000</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">FIFO (named pipe)</td>
+              </tr>
+
+              <tr>
+                <td style="" align="left" rowspan="1" colspan="1">2000</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">S_IFCHR</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">c</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">020000</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">character special
+                (V7)</td>
+              </tr>
+
+              <tr>
+                <td style="" align="left" rowspan="1" colspan="1">3000</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">S_IFMPC</td>
+
+                <td style="" align="left" rowspan="1" colspan="1"> </td>
+
+                <td style="" align="left" rowspan="1" colspan="1">030000</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">multiplexed character
+                special (V7)</td>
+              </tr>
+
+              <tr>
+                <td style="" align="left" rowspan="1" colspan="1">4000</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">S_IFDIR</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">d/</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">040000</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">directory (V7)</td>
+              </tr>
+
+              <tr>
+                <td style="" align="left" rowspan="1" colspan="1">5000</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">S_IFNAM</td>
+
+                <td style="" align="left" rowspan="1" colspan="1"> </td>
+
+                <td style="" align="left" rowspan="1" colspan="1">050000</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">XENIX named special file
+                with two subtypes, distinguished by <em class="parameter"><code>st_rdev</code></em> values 1,
+                2</td>
+              </tr>
+
+              <tr>
+                <td style="" align="left" rowspan="1" colspan="1">0001</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">S_INSEM</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">s</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">000001</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">XENIX semaphore subtype
+                of IFNAM</td>
+              </tr>
+
+              <tr>
+                <td style="" align="left" rowspan="1" colspan="1">0002</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">S_INSHD</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">m</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">000002</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">XENIX shared data subtype
+                of IFNAM</td>
+              </tr>
+
+              <tr>
+                <td style="" align="left" rowspan="1" colspan="1">6000</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">S_IFBLK</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">b</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">060000</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">block special (V7)</td>
+              </tr>
+
+              <tr>
+                <td style="" align="left" rowspan="1" colspan="1">7000</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">S_IFMPB</td>
+
+                <td style="" align="left" rowspan="1" colspan="1"> </td>
+
+                <td style="" align="left" rowspan="1" colspan="1">070000</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">multiplexed block special
+                (V7)</td>
+              </tr>
+
+              <tr>
+                <td style="" align="left" rowspan="1" colspan="1">8000</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">S_IFREG</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">-</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">100000</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">regular (V7)</td>
+              </tr>
+
+              <tr>
+                <td style="" align="left" rowspan="1" colspan="1">9000</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">S_IFCMP</td>
+
+                <td style="" align="left" rowspan="1" colspan="1"> </td>
+
+                <td style="" align="left" rowspan="1" colspan="1">110000</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">VxFS compressed</td>
+              </tr>
+
+              <tr>
+                <td style="" align="left" rowspan="1" colspan="1">9000</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">S_IFNWK</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">n</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">110000</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">network special
+                (HP-UX)</td>
+              </tr>
+
+              <tr>
+                <td style="" align="left" rowspan="1" colspan="1">a000</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">S_IFLNK</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">l@</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">120000</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">symbolic link (BSD)</td>
+              </tr>
+
+              <tr>
+                <td style="" align="left" rowspan="1" colspan="1">b000</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">S_IFSHAD</td>
+
+                <td style="" align="left" rowspan="1" colspan="1"> </td>
+
+                <td style="" align="left" rowspan="1" colspan="1">130000</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">Solaris shadow inode for
+                ACL (not seen by userspace)</td>
+              </tr>
+
+              <tr>
+                <td style="" align="left" rowspan="1" colspan="1">c000</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">S_IFSOCK</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">s=</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">140000</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">socket (BSD; also
+                "S_IFSOC" on VxFS)</td>
+              </tr>
+
+              <tr>
+                <td style="" align="left" rowspan="1" colspan="1">d000</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">S_IFDOOR</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">D&gt;</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">150000</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">Solaris door</td>
+              </tr>
+
+              <tr>
+                <td style="" align="left" rowspan="1" colspan="1">e000</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">S_IFWHT</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">w%</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">160000</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">BSD whiteout (not used
+                for inode)</td>
+              </tr>
+
+              <tr>
+                <td style="" align="left" rowspan="1" colspan="1">0200</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">S_ISVTX</td>
+
+                <td style="" align="left" rowspan="1" colspan="1"> </td>
+
+                <td style="" align="left" rowspan="1" colspan="1">001000</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">sticky bit: save swapped
+                text even after use (V7) reserved (SVID-v2) On
+                nondirectories: don't cache this file (SunOS) On
+                directories: restricted deletion flag
+                (SVID-v4.2)</td>
+              </tr>
+
+              <tr>
+                <td style="" align="left" rowspan="1" colspan="1">0400</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">S_ISGID</td>
+
+                <td style="" align="left" rowspan="1" colspan="1"> </td>
+
+                <td style="" align="left" rowspan="1" colspan="1">002000</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">set-group-ID on execution
+                (V7) for directories: use BSD semantics for
+                propagation of GID</td>
+              </tr>
+
+              <tr>
+                <td style="" align="left" rowspan="1" colspan="1">0400</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">S_ENFMT</td>
+
+                <td style="" align="left" rowspan="1" colspan="1"> </td>
+
+                <td style="" align="left" rowspan="1" colspan="1">002000</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">System V file locking
+                enforcement (shared with S_ISGID)</td>
+              </tr>
+
+              <tr>
+                <td style="" align="left" rowspan="1" colspan="1">0800</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">S_ISUID</td>
+
+                <td style="" align="left" rowspan="1" colspan="1"> </td>
+
+                <td style="" align="left" rowspan="1" colspan="1">004000</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">set-user-ID on execution
+                (V7)</td>
+              </tr>
+
+              <tr>
+                <td style="" align="left" rowspan="1" colspan="1">0800</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">S_CDF</td>
+
+                <td style="" align="left" rowspan="1" colspan="1"> </td>
+
+                <td style="" align="left" rowspan="1" colspan="1">004000</td>
+
+                <td style="" align="left" rowspan="1" colspan="1">directory is a context
+                dependent file (HP-UX)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>A sticky command appeared in Version 32V AT&amp;T
+        UNIX.</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="stat-2_sect6" name="stat-2_sect6" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p>Since kernel 2.5.48, the <span class="structname">stat</span> structure supports nanosecond
+      resolution for the three file timestamp fields. Glibc exposes
+      the nanosecond component of each field using names of the
+      form <em class="replaceable"><code>st_atim.tv_nsec</code></em> if the
+      <code class="constant">_BSD_SOURCE</code> or <code class="constant">_SVID_SOURCE</code> feature test macro is defined.
+      These fields are specified in POSIX.1-2008, and, starting
+      with version 2.12, glibc also exposes these field names if
+      <code class="constant">_POSIX_C_SOURCE</code> is defined with
+      the value 200809L or greater, or <code class="constant">_XOPEN_SOURCE</code> is defined with the value 700
+      or greater. If none of the aforementioned macros are defined,
+      then the nanosecond values are exposed with names of the form
+      <em class="replaceable"><code>st_atimensec</code></em>. On
+      file systems that do not support subsecond timestamps, the
+      nanosecond fields are returned with the value 0.</p>
+
+      <p>On Linux, <code class="function">lstat</code>() will
+      generally not trigger automounter action, whereas
+      <code class="function">stat</code>() will.</p>
+
+      <p>For most files under the <code class="filename">/proc</code> directory, <code class="function">stat</code>() does not return the file size in the
+      <em class="parameter"><code>st_size</code></em> field;
+      instead the field is returned with the value 0.</p>
+
+      <div class="refsect2" title="Underlying kernel interface">
+        <a id="stat-2_sect7" name="stat-2_sect7" shape="rect"> </a>
+
+        <h3>Underlying kernel interface</h3>
+
+        <p>Over time, increases in the size of the <span class="structname">stat</span> structure have led to three
+        successive versions of <code class="function">stat</code>(): <code class="function">sys_stat</code>() (slot <em class="replaceable"><code>__NR_oldstat</code></em>), <code class="function">sys_newstat</code>() (slot <em class="replaceable"><code>__NR_stat</code></em>), and
+        <code class="function">sys_stat64</code>() (new in kernel
+        2.4; slot <em class="replaceable"><code>__NR_stat64</code></em>). The glibc
+        <code class="function">stat</code>() wrapper function hides
+        these details from applications, invoking the most recent
+        version of the system call provided by the kernel, and
+        repacking the returned information if required for old
+        binaries. Similar remarks apply for <code class="function">fstat</code>() and <code class="function">lstat</code>().</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="EXAMPLE">
+      <a id="stat-2_sect8" name="stat-2_sect8" shape="rect"> </a>
+
+      <h2>EXAMPLE</h2>
+
+      <p>The following program calls <code class="function">stat</code>() and displays selected fields in the
+      returned <span class="structname">stat</span> structure.</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+#include &lt;sys/types.h&gt;
+#include &lt;sys/stat.h&gt;
+#include &lt;time.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int
+main(int argc, char *argv[])
+{
+    struct stat sb;
+
+    if (argc != 2) {
+        fprintf(stderr, "Usage: %s &lt;pathname&gt;\n", argv[0]);
+        exit(EXIT_FAILURE);
+    }
+
+    if (stat(argv[1], &amp;sb) == −1) {
+        perror("stat");
+        exit(EXIT_FAILURE);
+    }
+
+    printf("File type:                ");
+
+    switch (sb.st_mode &amp; S_IFMT) {
+    case S_IFBLK:  printf("block device\n");            break;
+    case S_IFCHR:  printf("character device\n");        break;
+    case S_IFDIR:  printf("directory\n");               break;
+    case S_IFIFO:  printf("FIFO/pipe\n");               break;
+    case S_IFLNK:  printf("symlink\n");                 break;
+    case S_IFREG:  printf("regular file\n");            break;
+    case S_IFSOCK: printf("socket\n");                  break;
+    default:       printf("unknown?\n");                break;
+    }
+
+    printf("I−node number:            %ld\n", (long) sb.st_ino);
+
+    printf("Mode:                     %lo (octal)\n",
+            (unsigned long) sb.st_mode);
+
+    printf("Link count:               %ld\n", (long) sb.st_nlink);
+    printf("Ownership:                UID=%ld   GID=%ld\n",
+            (long) sb.st_uid, (long) sb.st_gid);
+
+    printf("Preferred I/O block size: %ld bytes\n",
+            (long) sb.st_blksize);
+    printf("File size:                %lld bytes\n",
+            (long long) sb.st_size);
+    printf("Blocks allocated:         %lld\n",
+            (long long) sb.st_blocks);
+
+    printf("Last status change:       %s", ctime(&amp;sb.st_ctime));
+    printf("Last file access:         %s", ctime(&amp;sb.st_atime));
+    printf("Last file modification:   %s", ctime(&amp;sb.st_mtime));
+
+    exit(EXIT_SUCCESS);
+}
+</pre>
+      </div>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="stat-2_sect9" name="stat-2_sect9" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman2/access.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">access</span>(2)</span></a>, <a class="link" href="../htmlman2/chmod.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">chmod</span>(2)</span></a>, <a class="link" href="../htmlman2/chown.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">chown</span>(2)</span></a>, <a class="link" href="../htmlman2/fstatat.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fstatat</span>(2)</span></a>, <a class="link" href="../htmlman2/readlink.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">readlink</span>(2)</span></a>, <a class="link" href="../htmlman2/utime.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">utime</span>(2)</span></a>, <a class="link" href="../htmlman7/capabilities.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">capabilities</span>(7)</span></a>, <a class="link" href="../htmlman7/symlink.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">symlink</span>(7)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="stat-2_sect10" name="stat-2_sect10" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.32 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    t<br />
+                  <br />
+                  Copyright (c) 1992 Drew Eckhardt (drew<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cs.colorado.edu), March 28, 1992<br />
+
+                  Parts Copyright (c) 1995 Nicolai Langfeldt (janl<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>ifi.uio.no), 1/1/95<br />
+
+                  and Copyright (c) 2007 Michael Kerrisk &lt;mtk.manpages<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>gmail.com&gt;<br />
+
+                  <br />
+                  Permission is granted to make and distribute verbatim copies of this<br />
+
+                  manual provided the copyright notice and this permission notice are<br />
+
+                  preserved on all copies.<br />
+                  <br />
+                  Permission is granted to copy and distribute modified versions of this<br />
+
+                  manual under the conditions for verbatim copying, provided that the<br />
+
+                  entire resulting derived work is distributed under the terms of a<br />
+
+                  permission notice identical to this one.<br />
+
+                  <br />
+                  Since the Linux kernel and libraries are constantly changing, this<br />
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no<br />
+
+                  responsibility for errors or omissions, or for damages resulting from<br />
+
+                  the use of the information contained herein.  The author(s) may not<br />
+
+                  have taken the same level of care in the production of this manual,<br />
+
+                  which is licensed free of charge, as they might when working<br />
+
+                  professionally.<br />
+                  <br />
+                  Formatted or processed versions of this manual, if unaccompanied by<br />
+
+                  the source, must acknowledge the copyright and authors of this work.<br />
+
+                  <br />
+                  Modified by Michael Haardt &lt;michael<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>moria.de&gt;<br />
+
+                  Modified 1993-07-24 by Rik Faith &lt;faith<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cs.unc.edu&gt;<br />
+
+                  Modified 1995-05-18 by Todd Larason &lt;jtl<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>molehill.org&gt;<br />
+
+                  Modified 1997-01-31 by Eric S. Raymond &lt;esr<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>thyrsus.com&gt;<br />
+
+                  Modified 1995-01-09 by Richard Kettlewell &lt;richard<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>greenend.org.uk&gt;<br />
+
+                  Modified 1998-05-13 by Michael Haardt &lt;michael<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cantor.informatik.rwth-aachen.de&gt;<br />
+
+                  Modified 1999-07-06 by aeb &amp; Albert Cahalan<br />
+
+                  Modified 2000-01-07 by aeb<br />
+                  Modified 2004-06-23 by Michael Kerrisk &lt;mtk.manpages<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>gmail.com&gt;<br />
+
+                  2007-06-08 mtk: Added example program<br />
+
+                  2007-07-05 mtk: Added details on underlying system call interfaces<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

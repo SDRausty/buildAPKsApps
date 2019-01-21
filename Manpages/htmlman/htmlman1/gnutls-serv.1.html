@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>gnutls\-serv(1) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="gnutls\-serv(1) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="gnutls\-serv(1) — Linux manual pages">
+    <a id="gnutls-serv.1" name="gnutls-serv.1" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>gnutls−serv — GnuTLS test server</p>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="gnutls-serv-1_sect1" name="gnutls-serv-1_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>Simple server program that listens to incoming TLS
+      connections.</p>
+    </div>
+
+    <div class="refsect1" title="OPTIONS">
+      <a id="gnutls-serv-1_sect2" name="gnutls-serv-1_sect2" shape="rect"> </a>
+
+      <h2>OPTIONS</h2>
+
+      <div class="refsect2" title="Program control options">
+        <a id="gnutls-serv-1_sect3" name="gnutls-serv-1_sect3" shape="rect"> </a>
+
+        <h3>Program control options</h3>
+
+        <div class="variablelist">
+          <dl>
+            <dt><span class="term"><code class="option">−d,
+            −−debug LEVEL</code></span></dt>
+
+            <dd>
+              <p>Specify the debug level. Default is 1.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−h,
+            −−help</code></span></dt>
+
+            <dd>
+              <p>prints this help</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−l,
+            −−list</code></span></dt>
+
+            <dd>
+              <p>Print a list of the supported algorithms and
+              modes.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−q,
+            −−quiet</code></span></dt>
+
+            <dd>
+              <p>Suppress some messages.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−v,
+            −−version</code></span></dt>
+
+            <dd>
+              <p>prints the program's version number</p>
+            </dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="refsect2" title="Server options">
+        <a id="gnutls-serv-1_sect4" name="gnutls-serv-1_sect4" shape="rect"> </a>
+
+        <h3>Server options</h3>
+
+        <div class="variablelist">
+          <dl>
+            <dt><span class="term"><code class="option">−p,
+            −−port integer</code></span></dt>
+
+            <dd>
+              <p>The port to listen on.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−nodb</code></span></dt>
+
+            <dd>
+              <p>Does not use the resume database.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−http</code></span></dt>
+
+            <dd>
+              <p>Act as an HTTP Server.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−echo</code></span></dt>
+
+            <dd>
+              <p>Act as an Echo Server.</p>
+            </dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="refsect2" title="TLS/SSL control options">
+        <a id="gnutls-serv-1_sect5" name="gnutls-serv-1_sect5" shape="rect"> </a>
+
+        <h3>TLS/SSL control options</h3>
+
+        <div class="variablelist">
+          <dl>
+            <dt><span class="term"><code class="option">−−priority <span class="emphasis"><em>PRIORITY
+            STRING</em></span></code></span></dt>
+
+            <dd>
+              <p>TLS algorithms and protocols to enable. You can
+              use predefined sets of ciphersuites such as:</p>
+            </dd>
+
+            <dt><span class="term"><code class="constant">PERFORMANCE</code></span></dt>
+
+            <dd>
+              <p>all the "secure" ciphersuites are enabled, limited
+              to 128 bit ciphers and sorted by terms of speed
+              performance.</p>
+            </dd>
+
+            <dt><span class="term"><code class="constant">NORMAL</code></span></dt>
+
+            <dd>
+              <p>option enables all "secure" ciphersuites. The
+              256-bit ciphers are included as a fallback only. The
+              ciphers are sorted by security margin.</p>
+            </dd>
+
+            <dt><span class="term"><code class="constant">SECURE128</code></span></dt>
+
+            <dd>
+              <p>flag enables all "secure" ciphersuites with
+              ciphers up to 128 bits, sorted by security
+              margin.</p>
+            </dd>
+
+            <dt><span class="term"><code class="constant">SECURE256</code></span></dt>
+
+            <dd>
+              <p>flag enables all "secure" ciphersuites including
+              the 256 bit ciphers, sorted by security margin.</p>
+            </dd>
+
+            <dt><span class="term"><code class="constant">EXPORT</code></span></dt>
+
+            <dd>
+              <p>all the ciphersuites are enabled, including the
+              low-security 40 bit ciphers.</p>
+            </dd>
+
+            <dt><span class="term"><code class="constant">NONE</code></span></dt>
+
+            <dd>
+              <p>nothing is enabled. This disables even protocols
+              and compression methods.</p>
+
+              <p>Check the GnuTLS manual on section "Priority
+              strings" for more information on allowed
+              keywords.</p>
+
+              <p><em class="replaceable"><code>Examples:</code></em></p>
+
+              <p>"NORMAL"</p>
+
+              <p>
+              "NONE:+VERS-TLS-ALL:+MAC-ALL:+RSA:+AES-128-CBC:+SIGN-ALL:+COMP-NULL"</p>
+
+              <p>"NORMAL:-ARCFOUR-128" means normal ciphers except
+              for ARCFOUR-128.</p>
+
+              <p>"SECURE:-VERS-SSL3.0:+COMP-DEFLATE" means that
+              only secure ciphers are enabled, SSL3.0 is disabled,
+              and libz compression enabled.</p>
+
+              <p>
+              "NONE:+VERS-TLS-ALL:+AES-128-CBC:+RSA:+SHA1:+COMP-NULL:+SIGN-RSA-SHA1"</p>
+
+              <p>"NORMAL:%COMPAT" is the most compatible mode</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−g,
+            −−generate</code></span></dt>
+
+            <dd>
+              <p>Generate Diffie-Hellman Parameters.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−kx <span class="emphasis"><em>kx1
+            kx2...</em></span></code></span></dt>
+
+            <dd>
+              <p>Key exchange methods to enable (use <span class="emphasis"><em>gnutls−cli
+              −−list</em></span> to show the supported
+              key exchange methods).</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−p,
+            −−port integer</code></span></dt>
+
+            <dd>
+              <p>The port to connect to.</p>
+            </dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="refsect2" title="Certificate options">
+        <a id="gnutls-serv-1_sect6" name="gnutls-serv-1_sect6" shape="rect"> </a>
+
+        <h3>Certificate options</h3>
+
+        <div class="variablelist">
+          <dl>
+            <dt><span class="term"><code class="option">−−pgpcertfile <code class="constant">FILE</code></code></span></dt>
+
+            <dd>
+              <p>PGP Public Key (certificate) file to use.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−pgpkeyfile <code class="constant">FILE</code></code></span></dt>
+
+            <dd>
+              <p>PGP Key file to use.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−pgpkeyring <code class="constant">FILE</code></code></span></dt>
+
+            <dd>
+              <p>PGP Key ring file to use.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−pgptrustdb <code class="constant">FILE</code></code></span></dt>
+
+            <dd>
+              <p>PGP trustdb file to use.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−srppasswd <code class="constant">FILE</code></code></span></dt>
+
+            <dd>
+              <p>SRP password file to use.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−srppasswdconf <code class="constant">FILE</code></code></span></dt>
+
+            <dd>
+              <p>SRP password configuration file to use.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−x509cafile <code class="constant">FILE</code></code></span></dt>
+
+            <dd>
+              <p>Certificate file to use.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−x509certfile <code class="constant">FILE</code></code></span></dt>
+
+            <dd>
+              <p>X.509 Certificate file to use.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−x509fmtder</code></span></dt>
+
+            <dd>
+              <p>Use DER format for certificates</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−x509keyfile <code class="constant">FILE</code></code></span></dt>
+
+            <dd>
+              <p>X.509 key file to use.</p>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="gnutls-serv-1_sect7" name="gnutls-serv-1_sect7" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman1/gnutls-cli.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">gnutls-cli</span>(1)</span></a>, <a class="link" href="../htmlman1/gnutls-cli-debug.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">gnutls-cli-debug</span>(1)</span></a></p>
+    </div>
+
+    <div class="refsect1" title="AUTHOR">
+      <a id="gnutls-serv-1_sect8" name="gnutls-serv-1_sect8" shape="rect"> </a>
+
+      <h2>AUTHOR</h2>
+
+      <p>Nikos Mavrogiannopoulos &lt;nmav@gnutls.org&gt; and
+      others; see /usr/share/doc/gnutls−bin/AUTHORS for a
+      complete list.</p>
+
+      <p>This manual page was written by Ivo Timmermans
+      &lt;ivo@debian.org&gt;, for the Debian GNU/Linux system (but
+      may be used by others).</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<PreferenceCategory android:title="@string/airmode_title">
+		<CheckBoxPreference 
+			android:singleLine="false"
+			android:title="@string/pref_one_click_switch"
+			android:key="noConfirmationAirmode"
+			/>
+	</PreferenceCategory>
+	
+</PreferenceScreen>

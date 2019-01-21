@@ -1,0 +1,10 @@
+<!-- https://github.com/google/material-design-icons/blob/master/content/svg/production/ic_forward_48px.svg -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+        android:height="48dp"
+        android:width="48dp"
+        android:viewportWidth="48"
+        android:viewportHeight="48">
+  <path
+      android:fillColor="@android:color/white"
+      android:pathData="M24 16V8l16 16-16 16v-8H8V16z" />
+</vector>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ This file is distributed under GPL v3 license
+ http://www.gnu.org/licenses/gpl-3.0.html
+
+ (c) 2012 Laura Arjona Reina - larjona99@gmail.com
+-->
+
+<resources>
+   <string name="app_name">Speech Trainer</string>
+   <string name="speechDetectionTitle">Modo de detección de discurso</string>
+   <string name="speechDetecionSummary">Cambiar automáticamente de grabación a reproducción.</string>
+   <string name="settingsTitle">Speech Trainer - ajustes</string>
+   <string name="settingsLink">Ajustes</string>
+   <string name="aboutTitleSuffix">sobre...</string>
+   <string name="aboutLink">Sobre...</string>
+   <string name="helpLink">Ayuda</string>
+   <string name="helpTitleSuffix">ayuda</string>
+   <string name="closeButton">Cerrar</string>
+   <string name="showTooltipTitle">Mostrar consejos</string>
+   <string name="showTooltipSummary">Mostrar consejos al principio del entrenamiento.</string>
+   <string name="interactiveTrainingTooltip">Pulse y mantenga para grabar, suelte para reproducir.</string>
+   <string name="automaticTrainingTooltip">Diga algo y espere a que sea reproducido.</string>
+   <string name="rateLink">Valorar</string>
+   <string name="aboutFile">about_es.html</string>
+   <string name="helpFile">help_es.html</string>
+</resources>

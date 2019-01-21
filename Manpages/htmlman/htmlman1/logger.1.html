@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>logger(1) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="logger(1) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="logger(1) — Linux manual pages">
+    <a id="logger.1" name="logger.1" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>logger — a shell command interface to the syslog(3)
+      system log module</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">logger</code> [<code class="option">−isd</code>] [ <code class="option">−f</code> file ] [ <code class="option">−p</code> pri ] [ <code class="option">−t</code> tag ] [ <code class="option">−u</code> socket ] [ message... ]</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="logger-1_sect1" name="logger-1_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><span class="command"><strong>Logger</strong></span> makes
+      entries in the system log. It provides a shell command
+      interface to the <a class="link" href="../htmlman3/syslog.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">syslog</span>(3)</span></a> system log
+      module.</p>
+
+      <p>Options:</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="option">−i</code></span></dt>
+
+          <dd>
+            <p>Log the process id of the logger process with each
+            line.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−s</code></span></dt>
+
+          <dd>
+            <p>Log the message to standard error, as well as the
+            system log.</p>
+          </dd>
+
+          <dt><span class="term"><em class="parameter"><code>−f</code></em> <em class="parameter"><code>file</code></em></span></dt>
+
+          <dd>
+            <p>Log the specified file.</p>
+          </dd>
+
+          <dt><span class="term"><em class="parameter"><code>−p</code></em> <em class="parameter"><code>pri</code></em></span></dt>
+
+          <dd>
+            <p>Enter the message with the specified priority. The
+            priority may be specified numerically or as a
+            ``facility.level'' pair. For example, ``−p
+            local3.info'' logs the message(s) as <span class="command"><strong>informational</strong></span> level
+            in the <em class="parameter"><code>local3</code></em>
+            facility. The default is ``user.notice.''</p>
+          </dd>
+
+          <dt><span class="term"><em class="parameter"><code>−t</code></em> <em class="parameter"><code>tag</code></em></span></dt>
+
+          <dd>
+            <p>Mark every line in the log with the specified
+            <em class="parameter"><code>tag</code></em>.</p>
+          </dd>
+
+          <dt><span class="term"><em class="parameter"><code>−u</code></em> <em class="parameter"><code>sock</code></em></span></dt>
+
+          <dd>
+            <p>Write to socket as specified with <em class="parameter"><code>socket</code></em> instead of builtin
+            syslog routines.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−d</code></span></dt>
+
+          <dd>
+            <p>Use a datagram instead of a stream connection to
+            this socket.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−−</code></span></dt>
+
+          <dd>
+            <p>End the argument list. This is to allow the
+            <em class="parameter"><code>message</code></em> to
+            start with a hyphen (−).</p>
+          </dd>
+
+          <dt><span class="term"><em class="parameter"><code>message</code></em></span></dt>
+
+          <dd>
+            <p>Write the message to log; if not specified, and the
+            <em class="parameter"><code>−f</code></em> flag
+            is not provided, standard input is logged.</p>
+          </dd>
+        </dl>
+      </div>
+
+      <p>The <span class="command"><strong>logger</strong></span>
+      utility exits 0 on success, and &gt;0 if an error occurs.</p>
+
+      <p>Valid facility names are: auth, authpriv (for security
+      information of a sensitive nature), cron, daemon, ftp, kern
+      (canât be generated from user process),
+      lpr, mail, news, security (deprecated synonym for auth),
+      syslog, user, uucp, and local0 to local7, inclusive.</p>
+
+      <p>Valid level names are): alert, crit, debug, emerg, err,
+      error (deprecated synonym for err), info, notice, panic
+      (deprecated synonym for emerg), warning, warn (deprecated
+      synonym for warning). For the priority order and intended
+      purposes of these levels, see <a class="link" href="../htmlman3/syslog.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">syslog</span>(3)</span></a>.</p>
+    </div>
+
+    <div class="refsect1" title="EXAMPLES">
+      <a id="logger-1_sect2" name="logger-1_sect2" shape="rect"> </a>
+
+      <h2>EXAMPLES</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+logger System rebooted
+
+logger −p local0.notice −t HOSTIDM −f /dev/idmc
+</pre>
+      </div>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="logger-1_sect3" name="logger-1_sect3" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman3/syslog.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">syslog</span>(3)</span></a>, <span class="citerefentry"><span class="refentrytitle">syslogd</span>(8)</span></p>
+    </div>
+
+    <div class="refsect1" title="STANDARDS">
+      <a id="logger-1_sect4" name="logger-1_sect4" shape="rect"> </a>
+
+      <h2>STANDARDS</h2>
+
+      <p>The <span class="command"><strong>logger</strong></span>
+      command is expected to be <span class="emphasis"><em>IEEE Std
+      1003.2 (<span class="quote">“<span class="quote">POSIX.2</span>”</span>)</em></span>
+      compatible.</p>
+    </div>
+
+    <div class="refsect1" title="AVAILABILITY">
+      <a id="logger-1_sect5" name="logger-1_sect5" shape="rect"> </a>
+
+      <h2>AVAILABILITY</h2>
+
+      <p>The logger command is part of the util-linux package and
+      is available from
+      ftp://ftp.kernel.org/pub/linux/utils/util-linux/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright (c) 1983, 1990, 1993<br />
+
+                  The Regents of the University of California.  All rights reserved.<br />
+
+                  <br />
+                  Redistribution and use in source and binary forms, with or without<br />
+
+                  modification, are permitted provided that the following conditions<br />
+
+                  are met:<br />
+                  1. Redistributions of source code must retain the above copyright<br />
+
+                     notice, this list of conditions and the following disclaimer.<br />
+
+                  2. Redistributions in binary form must reproduce the above copyright<br />
+
+                     notice, this list of conditions and the following disclaimer in the<br />
+
+                     documentation and/or other materials provided with the distribution.<br />
+
+                  3. All advertising materials mentioning features or use of this software<br />
+
+                     must display the following acknowledgement:<br />
+
+                  This product includes software developed by the University of<br />
+
+                  California, Berkeley and its contributors.<br />
+
+                  4. Neither the name of the University nor the names of its contributors<br />
+
+                     may be used to endorse or promote products derived from this software<br />
+
+                     without specific prior written permission.<br />
+
+                  <br />
+                  THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND<br />
+
+                  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE<br />
+
+                  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE<br />
+
+                  ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE<br />
+
+                  FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL<br />
+
+                  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS<br />
+
+                  OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)<br />
+
+                  HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT<br />
+
+                  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY<br />
+
+                  OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF<br />
+
+                  SUCH DAMAGE.<br />
+                  <br />
+                  <script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>(#)logger.1
+                  8.1 (Berkeley) 6/6/93<br />
+                  <br />
+                  Section on valid facility and level strings added by<br />
+
+                  and1000<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>debian.org, 26 Oct 1997.<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

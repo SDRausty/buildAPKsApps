@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Translation by winn...@gmail.com -->
+<resources>
+  <string name="app_name">Alarm Klock</string>
+  <string name="delete_all">Usuń wszystkie</string>
+  <string name="label">Etykieta</string>
+  <string name="repeat">Powtórz</string>
+  <string name="alarm_tone">Dźwięk alarmu</string>
+  <string name="fade_description">Od %1$d%% do %2$d%% w ciągu %3$d sekund.</string>
+  <string name="ok">OK</string>
+  <string name="cancel">Anuluj</string>
+  <string name="delete">Usuń</string>
+  <string name="snooze">DRZEMKA</string>
+  <string name="dismiss">WYŁĄCZ</string>
+  <string name="plus_five">+5</string>
+  <string name="minus_five">-5</string>
+  <string name="day">%d dzień</string>
+  <string name="days">%d dni</string>
+  <string name="hour">%d godzina</string>
+  <string name="hours">%d godzin</string>
+  <string name="minute">%d minuta</string>
+  <string name="minutes">%d minut</string>
+  <string name="am">AM</string>
+  <string name="pm">PM</string>
+  <string name="dow_sun_short">Nd</string>
+  <string name="dow_mon_short">Pn</string>
+  <string name="dow_tue_short">Wt</string>
+  <string name="dow_wed_short">Śr</string>
+  <string name="dow_thu_short">Cz</string>
+  <string name="dow_fri_short">Pt</string>
+  <string name="dow_sat_short">So</string>
+  <string name="dow_sun">Niedziela</string>
+  <string name="dow_mon">Poniedziałek</string>
+  <string name="dow_tue">Wtorek</string>
+  <string name="dow_wed">Środa</string>
+  <string name="dow_thu">Czwartek</string>
+  <string name="dow_fri">Piątek</string>
+  <string name="dow_sat">Sobota</string>
+  <string name="no_repeats">Bez powtarzania</string>
+  <string name="everyday">Codziennie</string>
+  <string name="weekdays">Dni tygodnia</string>
+  <string name="weekends">Weekendy</string>
+  <string name="internal">Pam. wewn.</string>
+  <string name="artists">Artyści</string>
+  <string name="songs">Utwory</string>
+  <string name="selected">Wybrane: </string>
+  <string name="time_out_title">Czas do wygaśnięcia alarmu</string>
+  <string name="time_out_error">UWAGA: Ten alarm wygasł oczekując na reakcję użytkownika.</string>
+</resources>

@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>findmnt(8) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="findmnt(8) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="findmnt(8) — Linux manual pages">
+    <a id="findmnt.8" name="findmnt.8" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>findmnt — find a filesystem</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">findmnt</code> [options]</p>
+      </div>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">findmnt</code> [options] device |
+        mountpoint</p>
+      </div>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">findmnt</code> [options]
+        [<code class="option">−−source</code>] device
+        [<code class="option">−−target</code>]
+        mountpoint</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="findmnt-8_sect1" name="findmnt-8_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><span class="command"><strong>findmnt</strong></span> will
+      list all mounted filesytems or search for a filesystem. The
+      <span class="command"><strong>findmnt</strong></span> command
+      is able to search in <code class="filename">/etc/fstab</code>, <code class="filename">/etc/fstab.d</code>, <code class="filename">/etc/mtab</code> or <code class="filename">/proc/self/mountinfo</code>. If <em class="parameter"><code>device</code></em> or <em class="parameter"><code>mountpoint</code></em> is not given, all
+      filesystems are shown.</p>
+
+      <p>The command prints all mounted filesystems in the
+      tree-like format by default.</p>
+    </div>
+
+    <div class="refsect1" title="OPTIONS">
+      <a id="findmnt-8_sect2" name="findmnt-8_sect2" shape="rect"> </a>
+
+      <h2>OPTIONS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="option">−h,
+          −−help</code></span></dt>
+
+          <dd>
+            <p>Print help and exit.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−s,
+          −−fstab</code></span></dt>
+
+          <dd>
+            <p>Search in <code class="filename">/etc/fstab</code>
+            and <code class="filename">/etc/fstab.d</code>. The
+            output is in the list format (see --list).</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−m,
+          −−mtab</code></span></dt>
+
+          <dd>
+            <p>Search in <code class="filename">/etc/mtab</code>.
+            The output is in the list format (see --list).</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−k,
+          −−kernel</code></span></dt>
+
+          <dd>
+            <p>Search in <code class="filename">/proc/self/mountinfo</code>. The output is
+            in the tree-like format. This is the default.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−c,
+          −−canonicalize</code></span></dt>
+
+          <dd>
+            <p>Canonicalize all printed paths.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−d,
+          −−direction</code> <span class="command"><strong>word</strong></span></span></dt>
+
+          <dd>
+            <p>The search direction - <span class="command"><strong>forward</strong></span> or
+            <span class="command"><strong>backward</strong></span>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−e,
+          −−evaluate</code></span></dt>
+
+          <dd>
+            <p>Convert all tags (LABEL or UUID) to the device
+            names.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−f,
+          −−first−only</code></span></dt>
+
+          <dd>
+            <p>Print the first matching filesystem only.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−i,
+          −−invert</code></span></dt>
+
+          <dd>
+            <p>Invert the sense of matching.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−l,
+          −−list</code></span></dt>
+
+          <dd>
+            <p>Use the list output format. This output format is
+            automatically enabled if the output is restricted by
+            <code class="option">−t</code>, <code class="option">−O</code>, <code class="option">−S</code> or <code class="option">−T</code> option and the option
+            <code class="option">−−submounts</code> is
+            not used.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−v,
+          −−nofsroot</code></span></dt>
+
+          <dd>
+            <p>Do not print a [/dir] in the SOURCE column for
+            bind-mounts or btrfs subvolumes.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−n,
+          −−noheadings</code></span></dt>
+
+          <dd>
+            <p>Do not print a header line.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−u,
+          −−notruncate</code></span></dt>
+
+          <dd>
+            <p>Do not truncate text in columns. The default is to
+            not truncate the <code class="constant">TARGET</code>,
+            <code class="constant">SOURCE</code>, <code class="constant">UUID</code> and <code class="constant">LABEL</code> columns. This option disables
+            text truncation also in all other columns.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−O,
+          −−options</code> <span class="command"><strong>list</strong></span></span></dt>
+
+          <dd>
+            <p>Used to limit the set of printed filesystems. More
+            than one option may be specified in a comma-separated
+            list. The <code class="option">−t</code> and
+            <code class="option">−O</code> options are
+            cumulative in effect. It is different from <code class="option">−t</code> in that each option is matched
+            exactly; a leading <span class="command"><strong>no</strong></span> at the beginning
+            of one option does not negate the rest. For more
+            details see <a class="link" href="../htmlman8/mount.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mount</span>(8)</span></a>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−o,
+          −−output</code> <span class="command"><strong>list</strong></span></span></dt>
+
+          <dd>
+            <p>Define output columns. Currently supported are
+            <code class="constant">SOURCE</code>, <code class="constant">TARGET</code>, <code class="constant">FSTYPE</code>, <code class="constant">OPTIONS</code>, <em class="replaceable"><code>VFS-OPTIONS</code></em>, <em class="replaceable"><code>FS-OPTIONS</code></em>,
+            <code class="constant">LABEL</code> and <code class="constant">UUID</code>. The <code class="constant">TARGET</code> column contains tree
+            formatting if the <code class="option">−−list</code> or <code class="option">−−raw</code> options are not
+            specified.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−r,
+          −−raw</code></span></dt>
+
+          <dd>
+            <p>Use raw output format.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−a,
+          −−ascii</code></span></dt>
+
+          <dd>
+            <p>Use ascii characters for tree formatting.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−t,
+          −−types</code> <span class="command"><strong>list</strong></span></span></dt>
+
+          <dd>
+            <p>Used to limit the set of printed filesystems. More
+            than one type may be specified in a comma-separated
+            list. The list of filesystem types can be prefixed with
+            <span class="command"><strong>no</strong></span> to
+            specify the filesystem types on which no action should
+            be taken. For more details see <a class="link" href="../htmlman8/mount.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mount</span>(8)</span></a>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−R,
+          −−submounts</code></span></dt>
+
+          <dd>
+            <p>Print recursively all submounts for the selected
+            filesystems. The restrictions defined by options
+            <code class="option">−t</code>, <code class="option">−O</code>, <code class="option">−S</code>, <code class="option">−T</code> and <code class="option">−−direction</code> are not applied
+            to submounts. All submounts are always printed in
+            tree-like order. The option enables the tree-like
+            output format by default. This option has no effect for
+            <code class="option">−−mtab</code> or
+            <code class="option">−−fstab</code>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−S,
+          −−source</code> <span class="command"><strong>spec</strong></span></span></dt>
+
+          <dd>
+            <p>Explicitly define the mount source. Supported are
+            device, LABEL= or UUID=.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−T,
+          −−target</code> <span class="command"><strong>dir</strong></span></span></dt>
+
+          <dd>
+            <p>Explicitly define the mount target (mountpoint
+            directory).</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="EXAMPLES">
+      <a id="findmnt-8_sect3" name="findmnt-8_sect3" shape="rect"> </a>
+
+      <h2>EXAMPLES</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><span class="emphasis"><em>findmnt
+          −−fstab −t nfs</em></span></span></dt>
+
+          <dd>
+            <p>Prints all nfs filesystems defined in <code class="filename">/etc/fstab</code>.</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>findmnt
+          −−fstab /mnt/foo</em></span></span></dt>
+
+          <dd>
+            <p>Prints all <code class="filename">/etc/fstab</code>
+            filesystems where the mountpoint directory is /mnt/foo.
+            It also prints bind mounts where /mnt/foo is a
+            source.</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>findmnt
+          −−fstab --target
+          /mnt/foo</em></span></span></dt>
+
+          <dd>
+            <p>Prints all <code class="filename">/etc/fstab</code>
+            filesystems where the mountpoint directory is
+            /mnt/foo.</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>findmnt
+          --fstab --evaluate</em></span></span></dt>
+
+          <dd>
+            <p>Prints all <code class="filename">/etc/fstab</code>
+            filesystems and converts LABEL= and UUID= tags to the
+            real device names.</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>findmnt
+          -n --raw --evaluate --output=target
+          LABEL=/boot</em></span></span></dt>
+
+          <dd>
+            <p>Prints only the mountpoint where the filesystem with
+            label "/boot" is mounted.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="AUTHORS">
+      <a id="findmnt-8_sect4" name="findmnt-8_sect4" shape="rect"> </a>
+
+      <h2>AUTHORS</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+Karel Zak &lt;kzak@redhat.com&gt;
+</pre>
+      </div>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="findmnt-8_sect5" name="findmnt-8_sect5" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman8/mount.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mount</span>(8)</span></a>, <a class="link" href="../htmlman5/fstab.5.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fstab</span>(5)</span></a></p>
+    </div>
+
+    <div class="refsect1" title="AVAILABILITY">
+      <a id="findmnt-8_sect6" name="findmnt-8_sect6" shape="rect"> </a>
+
+      <h2>AVAILABILITY</h2>
+
+      <p>The findmnt command is part of the util-linux package and
+      is available from
+      ftp://ftp.kernel.org/pub/linux/utils/util-linux/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

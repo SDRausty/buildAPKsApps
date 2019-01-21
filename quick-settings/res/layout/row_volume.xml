@@ -1,0 +1,42 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  	android:layout_height="20dp"
+    android:orientation="vertical"
+    android:layout_width="fill_parent">
+
+	<LinearLayout
+	    android:orientation="horizontal"
+	   	android:layout_marginRight="10dp"
+	   	android:layout_marginLeft="10dp"
+	   	android:layout_height="wrap_content"
+	    android:layout_width="fill_parent">
+
+		<!-- text -->	
+	   	<TextView android:id="@+id/text"
+	   		android:textColor="@android:color/white"
+	   		android:textSize="14sp"
+	   		android:singleLine="true"
+	   		android:layout_weight="1"
+	   		android:layout_height="fill_parent"
+	        android:layout_width="fill_parent"/>
+
+		<!-- value -->
+	   	<TextView android:id="@+id/value"
+	   		android:textColor="@android:color/white"
+	   		android:gravity="right"
+	   		android:textSize="14sp"
+	   		android:singleLine="true"
+	   		android:layout_gravity="right"
+	   		android:layout_height="fill_parent"
+	        android:layout_width="wrap_content"/>
+	</LinearLayout>
+	
+	<!-- bar -->
+   	<SeekBar android:id="@+id/seekbar"
+   	   	android:layout_marginRight="10dp"
+	   	android:layout_marginLeft="10dp"
+	   	android:maxHeight="16dp"
+    	android:layout_gravity="center_vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

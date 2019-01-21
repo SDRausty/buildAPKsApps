@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menu_1mintest"
+          android:icon="@drawable/menu_omt"
+          android:title="@string/mintest" />
+    <item android:id="@+id/menu_training"
+          android:icon="@drawable/menu_training"
+          android:title="@string/training" />
+    <item android:id="@+id/menu_hof"
+          android:icon="@drawable/menu_hof"
+          android:title="@string/hof" />     
+    <item android:id="@+id/menu_settings"
+          android:icon="@drawable/menu_settings"
+          android:title="@string/settings" />   
+    <item android:id="@+id/menu_Quit"
+          android:icon="@drawable/menu_quit"
+          android:title="@string/quit" />   
+</menu>

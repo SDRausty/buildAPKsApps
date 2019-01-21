@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>clock(3) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="clock(3) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="clock(3) — Linux manual pages">
+    <a id="clock.3" name="clock.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>clock — Determine processor time</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;time.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">clock_t <b class="fsfunc">clock</b>(</code></td>
+
+            <td rowspan="1" colspan="1"><code>void)</code>;</td>
+
+            <td rowspan="1" colspan="1"> </td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="clock-3_sect1" name="clock-3_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>The <code class="function">clock</code>() function returns
+      an approximation of processor time used by the program.</p>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="clock-3_sect2" name="clock-3_sect2" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p>The value returned is the CPU time used so far as a
+      <span class="type">clock_t</span>; to get the number of
+      seconds used, divide by <code class="constant">CLOCKS_PER_SEC</code>. If the processor time used
+      is not available or its value cannot be represented, the
+      function returns the value <span class="emphasis"><em>(clock_t) −1</em></span>.</p>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="clock-3_sect3" name="clock-3_sect3" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>C89, C99, POSIX.1-2001. POSIX requires that <code class="constant">CLOCKS_PER_SEC</code> equals 1000000 independent
+      of the actual resolution.</p>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="clock-3_sect4" name="clock-3_sect4" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p>The C standard allows for arbitrary values at the start of
+      the program; subtract the value returned from a call to
+      <code class="function">clock</code>() at the start of the
+      program to get maximum portability.</p>
+
+      <p>Note that the time can wrap around. On a 32-bit system
+      where <code class="constant">CLOCKS_PER_SEC</code> equals
+      1000000 this function will return the same value
+      approximately every 72 minutes.</p>
+
+      <p>On several other implementations, the value returned by
+      <code class="function">clock</code>() also includes the times
+      of any children whose status has been collected via <a class="link" href="../htmlman2/wait.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">wait</span>(2)</span></a> (or another
+      wait-type call). Linux does not include the times of
+      waited-for children in the value returned by <code class="function">clock</code>(). The <a class="link" href="../htmlman2/times.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">times</span>(2)</span></a> function, which
+      explicitly returns (separate) information about the caller
+      and its children, may be preferable.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="clock-3_sect5" name="clock-3_sect5" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman2/clock_getres.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">clock_gettime</span>(2)</span></a>, <a class="link" href="../htmlman2/getrusage.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">getrusage</span>(2)</span></a>, <a class="link" href="../htmlman2/times.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">times</span>(2)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="clock-3_sect6" name="clock-3_sect6" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.29 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright (c) 1993 by Thomas Koenig (ig25<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>rz.uni-karlsruhe.de)<br />
+
+                  <br />
+                  Permission is granted to make and distribute verbatim copies of this<br />
+
+                  manual provided the copyright notice and this permission notice are<br />
+
+                  preserved on all copies.<br />
+                  <br />
+                  Permission is granted to copy and distribute modified versions of this<br />
+
+                  manual under the conditions for verbatim copying, provided that the<br />
+
+                  entire resulting derived work is distributed under the terms of a<br />
+
+                  permission notice identical to this one.<br />
+
+                  <br />
+                  Since the Linux kernel and libraries are constantly changing, this<br />
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no<br />
+
+                  responsibility for errors or omissions, or for damages resulting from<br />
+
+                  the use of the information contained herein.  The author(s) may not<br />
+
+                  have taken the same level of care in the production of this manual,<br />
+
+                  which is licensed free of charge, as they might when working<br />
+
+                  professionally.<br />
+                  <br />
+                  Formatted or processed versions of this manual, if unaccompanied by<br />
+
+                  the source, must acknowledge the copyright and authors of this work.<br />
+
+                  License.<br />
+                  Modified Sat Jul 24 21:27:01 1993 by Rik Faith (faith<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cs.unc.edu)<br />
+
+                  Modified 14 Jun 2002, Michael Kerrisk &lt;mtk.manpages<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>gmail.com&gt;<br />
+
+                  Added notes on differences from other UNIX systems with respect to<br />
+
+                  waited-for children.<br />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

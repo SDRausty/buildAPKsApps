@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>timegm(3) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="timegm(3) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="timegm(3) — Linux manual pages">
+    <a id="timegm.3" name="timegm.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>timegm, timelocal — inverses of gmtime and
+      localtime</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;time.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">time_t <b class="fsfunc">timelocal</b>(</code></td>
+
+            <td rowspan="1" colspan="1">struct tm *<var class="pdparam">tm</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">time_t <b class="fsfunc">timegm</b>(</code></td>
+
+            <td rowspan="1" colspan="1">struct tm *<var class="pdparam">tm</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;">
+        <table border="0" summary="Note">
+          <tr>
+            <td rowspan="2" align="center" valign="top" width="25" colspan="1">
+            <img alt="[Note]" src="../stylesheet/note.png" /></td>
+
+            <th align="left" rowspan="1" colspan="1">Note</th>
+          </tr>
+
+          <tr>
+            <td align="left" valign="top" rowspan="1" colspan="1">
+              <div class="featuretests">
+                <table style="border-collapse: collapse;">
+                  <colgroup span="1">
+                    <col span="1" />
+                  </colgroup>
+
+                  <thead>
+                    <tr>
+                      <th style="" rowspan="1" colspan="1">Feature Test Macro Requirements
+                      for glibc (see <a class="link" href="../htmlman7/feature_test_macros.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">feature_test_macros</span>(7)</span></a>):</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td style="" rowspan="1" colspan="1"><code class="function">timelocal</code>(), <code class="function">timegm</code>():</td>
+                    </tr>
+
+                    <tr>
+                      <td class="featuretestdef" style="" rowspan="1" colspan="1">
+                      <code class="constant">_BSD_SOURCE</code> ||
+                      <code class="constant">_SVID_SOURCE</code></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="timegm-3_sect1" name="timegm-3_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>The functions <code class="function">timelocal</code>()
+      and <code class="function">timegm</code>() are the inverses
+      of <a class="link" href="../htmlman3/ctime.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">localtime</span>(3)</span></a> and <a class="link" href="../htmlman3/ctime.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">gmtime</span>(3)</span></a>.</p>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="timegm-3_sect2" name="timegm-3_sect2" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>These functions are nonstandard GNU extensions that are
+      also present on the BSDs. Avoid their use; see NOTES.</p>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="timegm-3_sect3" name="timegm-3_sect3" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p>The <code class="function">timelocal</code>() function is
+      equivalent to the POSIX standard function <a class="link" href="../htmlman3/ctime.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mktime</span>(3)</span></a>. There is no
+      reason to ever use it.</p>
+
+      <p>For a portable version of <code class="function">timegm</code>(), set the <code class="constant">TZ</code> environment variable to UTC, call
+      <a class="link" href="../htmlman3/ctime.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mktime</span>(3)</span></a> and restore the
+      value of <code class="constant">TZ</code>. Something like</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="informalexample">
+            <pre class="programlisting" xml:space="preserve">
+#include &lt;time.h&gt;
+#include &lt;stdlib.h&gt;
+
+time_t
+my_timegm(struct tm *tm)
+{
+    time_t ret;
+    char *tz;
+
+    tz = getenv("TZ");
+    setenv("TZ", "", 1);
+    tzset();
+    ret = mktime(tm);
+    if (tz)
+        setenv("TZ", tz, 1);
+    else
+        unsetenv("TZ");
+    tzset();
+    return ret;
+}
+</pre>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="timegm-3_sect4" name="timegm-3_sect4" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman3/ctime.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">gmtime</span>(3)</span></a>, <a class="link" href="../htmlman3/ctime.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">localtime</span>(3)</span></a>, <a class="link" href="../htmlman3/ctime.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mktime</span>(3)</span></a>, <a class="link" href="../htmlman3/tzset.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">tzset</span>(3)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="timegm-3_sect5" name="timegm-3_sect5" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.24 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright (C) 2001 Andries Brouwer &lt;aeb<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cwi.nl&gt;<br />
+
+                  <br />
+                  Permission is granted to make and distribute verbatim copies of this<br />
+
+                  manual provided the copyright notice and this permission notice are<br />
+
+                  preserved on all copies.<br />
+                  <br />
+                  Permission is granted to copy and distribute modified versions of this<br />
+
+                  manual under the conditions for verbatim copying, provided that the<br />
+
+                  entire resulting derived work is distributed under the terms of a<br />
+
+                  permission notice identical to this one.<br />
+
+                  <br />
+                  Since the Linux kernel and libraries are constantly changing, this<br />
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no<br />
+
+                  responsibility for errors or omissions, or for damages resulting from<br />
+
+                  the use of the information contained herein.  The author(s) may not<br />
+
+                  have taken the same level of care in the production of this manual,<br />
+
+                  which is licensed free of charge, as they might when working<br />
+
+                  professionally.<br />
+                  <br />
+                  Formatted or processed versions of this manual, if unaccompanied by<br />
+
+                  the source, must acknowledge the copyright and authors of this work.<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+Comments and thoughts about the DDG Android design:
+DuckDuckGo does the heavy lifting, consisting of appending the user's query to
+a base url.
+
+DuckDuckGoSettings is a failed attempt to present the user with some preferences like 
+Settings -> Search -> Google search. Right now it functions as the main screen of sorts.
+
+DummyProvider provides the user with bang suggestions. It is also used to add Duck Duck Go to the list of searchable items under
+Settings -> Search -> Searchable Items. If DDG is checked there, it is possible add
+a search widget on a home screen which searches DDG.
+Long-press on the homescreen, choose Widgets, scroll down and choose Google search and
+then choose Duck Duck Go. Voila! 

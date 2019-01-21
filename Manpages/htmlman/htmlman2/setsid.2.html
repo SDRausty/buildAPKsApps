@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>setsid(2) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="setsid(2) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="setsid(2) — Linux manual pages">
+    <a id="setsid.2" name="setsid.2" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>setsid — creates a session and sets the process
+      group ID</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;unistd.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">pid_t <b class="fsfunc">setsid</b>(</code></td>
+
+            <td rowspan="1" colspan="1"><code>void)</code>;</td>
+
+            <td rowspan="1" colspan="1"> </td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="setsid-2_sect1" name="setsid-2_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><code class="function">setsid</code>() creates a new
+      session if the calling process is not a process group leader.
+      The calling process is the leader of the new session, the
+      process group leader of the new process group, and has no
+      controlling tty. The process group ID and session ID of the
+      calling process are set to the PID of the calling process.
+      The calling process will be the only process in this new
+      process group and in this new session.</p>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="setsid-2_sect2" name="setsid-2_sect2" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p>On success, the (new) session ID of the calling process is
+      returned. On error, <span class="emphasis"><em>(pid_t)
+      −1</em></span> is returned, and <code class="varname">errno</code> is set to indicate the error.</p>
+    </div>
+
+    <div class="refsect1" title="ERRORS">
+      <a id="setsid-2_sect3" name="setsid-2_sect3" shape="rect"> </a>
+
+      <h2>ERRORS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><span class="errorname">EPERM</span></span></dt>
+
+          <dd>
+            <p>The process group ID of any process equals the PID
+            of the calling process. Thus, in particular,
+            <code class="function">setsid</code>() fails if the
+            calling process is already a process group leader.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="setsid-2_sect4" name="setsid-2_sect4" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>SVr4, POSIX.1-2001.</p>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="setsid-2_sect5" name="setsid-2_sect5" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p>A child created via <a class="link" href="../htmlman2/fork.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fork</span>(2)</span></a> inherits its
+      parent's session ID. The session ID is preserved across an
+      <a class="link" href="../htmlman2/execve.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">execve</span>(2)</span></a>.</p>
+
+      <p>A process group leader is a process with process group ID
+      equal to its PID. In order to be sure that <code class="function">setsid</code>() will succeed, <a class="link" href="../htmlman2/fork.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fork</span>(2)</span></a> and <a class="link" href="../htmlman2/_exit.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">_exit</span>(2)</span></a>, and have the
+      child do <code class="function">setsid</code>().</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="setsid-2_sect6" name="setsid-2_sect6" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman2/getsid.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">getsid</span>(2)</span></a>, <a class="link" href="../htmlman2/setpgid.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">setpgid</span>(2)</span></a>, <a class="link" href="../htmlman2/setpgid.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">setpgrp</span>(2)</span></a>, <a class="link" href="../htmlman3/tcgetsid.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">tcgetsid</span>(3)</span></a>, <a class="link" href="../htmlman7/credentials.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">credentials</span>(7)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="setsid-2_sect7" name="setsid-2_sect7" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.25 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright Michael Haardt (michael<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cantor.informatik.rwth-aachen.de)<br />
+
+                      Sat Aug 27 20:43:50 MET DST 1994<br />
+
+                  <br />
+                  This is free documentation; you can redistribute it and/or<br />
+
+                  modify it under the terms of the GNU General Public License as<br />
+
+                  published by the Free Software Foundation; either version 2 of<br />
+
+                  the License, or (at your option) any later version.<br />
+
+                  <br />
+                  The GNU General Public License's references to "object code"<br />
+
+                  and "executables" are to be interpreted as the output of any<br />
+
+                  document formatting or typesetting system, including<br />
+
+                  intermediate and printed output.<br />
+
+                  <br />
+                  This manual is distributed in the hope that it will be useful,<br />
+
+                  but WITHOUT ANY WARRANTY; without even the implied warranty of<br />
+
+                  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<br />
+
+                  GNU General Public License for more details.<br />
+
+                  <br />
+                  You should have received a copy of the GNU General Public<br />
+
+                  License along with this manual; if not, write to the Free<br />
+
+                  Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111,<br />
+
+                  USA.<br />
+                  <br />
+                  Modified Sun Sep 11 19:19:05 1994 &lt;faith<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cs.unc.edu&gt;<br />
+
+                  Modified Mon Mar 25 10:19:00 1996 &lt;aeb<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cwi.nl&gt; (merged a few<br />
+
+                  tiny changes from a man page by Charles Livingston).<br />
+
+                  Modified Sun Jul 21 14:45:46 1996 &lt;aeb<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cwi.nl&gt;<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

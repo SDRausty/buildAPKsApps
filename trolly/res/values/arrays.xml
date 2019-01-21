@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string-array name="sort_order">
+		<item>Alphabetical Ascending</item>
+		<item>Alphabetical Descending</item>
+		<item>Modified Ascending</item>
+		<item>Modified Descending</item>
+	</string-array>
+	<string-array name="sort_order_values">
+		<item>item ASC</item>
+		<item>item DESC</item>
+		<item>modified ASC</item>
+		<item>modified DESC</item>
+	</string-array>
+</resources>

@@ -1,0 +1,25 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+        android:id="@+id/action_about"
+        android:orderInCategory="200"
+        android:showAsAction="never"
+        android:title="About" />
+    <item
+        android:id="@+id/action_help"
+        android:orderInCategory="200"
+        android:showAsAction="never"
+        android:icon="@drawable/help"
+        android:title="Help" />
+    <item
+        android:id="@+id/action_rate"
+        android:orderInCategory="300"
+        android:showAsAction="never"
+        android:title="Rate This App"
+        android:icon="@drawable/star" />
+    <item
+        android:id="@+id/action_quit"
+        android:orderInCategory="400"
+        android:showAsAction="never"
+        android:title="Quit"
+        android:icon="@drawable/quit" />
+</menu>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <CheckBoxPreference android:title="@string/speechDetectionTitle" android:enabled="true" android:key="speechDetectionMode" android:summary="@string/speechDetecionSummary" android:defaultValue="true"></CheckBoxPreference>
+    <CheckBoxPreference android:title="@string/showTooltipTitle" android:enabled="true" android:key="showTooltip" android:summary="@string/showTooltipSummary" android:defaultValue="true"></CheckBoxPreference>
+</PreferenceScreen>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>wmemcmp(3) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="wmemcmp(3) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="wmemcmp(3) — Linux manual pages">
+    <a id="wmemcmp.3" name="wmemcmp.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>wmemcmp — compare two arrays of wide-characters</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;wchar.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">wmemcmp</b>(</code></td>
+
+            <td rowspan="1" colspan="1">const wchar_t *<var class="pdparam">s1</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">const wchar_t *<var class="pdparam">s2</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">size_t <var class="pdparam">n</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="wmemcmp-3_sect1" name="wmemcmp-3_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>The <code class="function">wmemcmp</code>() function is
+      the wide-character equivalent of the <a class="link" href="../htmlman3/memcmp.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">memcmp</span>(3)</span></a> function. It
+      compares the <em class="parameter"><code>n</code></em>
+      wide-characters starting at <em class="parameter"><code>s1</code></em> and the <em class="parameter"><code>n</code></em> wide-characters starting at
+      <em class="parameter"><code>s2</code></em>.</p>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="wmemcmp-3_sect2" name="wmemcmp-3_sect2" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p>The <code class="function">wmemcmp</code>() function
+      returns zero if the wide-character arrays of size <em class="parameter"><code>n</code></em> at <em class="parameter"><code>s1</code></em> and <em class="parameter"><code>s2</code></em> are equal. It returns an
+      integer greater than zero if at the first differing position
+      <code class="literal">i</code> (<code class="literal">i</code> &lt; <em class="parameter"><code>n</code></em>), the corresponding
+      wide-character <em class="replaceable"><code>s1[i]</code></em> is greater than
+      <em class="replaceable"><code>s2[i]</code></em>. It returns
+      an integer less than zero if at the first differing position
+      <code class="literal">i</code> (<code class="literal">i</code> &lt; <em class="parameter"><code>n</code></em>), the corresponding
+      wide-character <em class="replaceable"><code>s1[i]</code></em> is less than <em class="replaceable"><code>s2[i]</code></em>.</p>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="wmemcmp-3_sect3" name="wmemcmp-3_sect3" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>C99.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="wmemcmp-3_sect4" name="wmemcmp-3_sect4" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman3/memcmp.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">memcmp</span>(3)</span></a>, <a class="link" href="../htmlman3/wcscmp.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">wcscmp</span>(3)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="wmemcmp-3_sect5" name="wmemcmp-3_sect5" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.29 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright (c) Bruno Haible &lt;haible<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>clisp.cons.org&gt;<br />
+
+                  <br />
+                  This is free documentation; you can redistribute it and/or<br />
+
+                  modify it under the terms of the GNU General Public License as<br />
+
+                  published by the Free Software Foundation; either version 2 of<br />
+
+                  the License, or (at your option) any later version.<br />
+
+                  <br />
+                  References consulted:<br />
+                    GNU glibc-2 source code and manual<br />
+
+                    Dinkumware C library reference http://www.dinkumware.com/<br />
+
+                    OpenGroup's Single UNIX specification http://www.UNIX-systems.org/online.html<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

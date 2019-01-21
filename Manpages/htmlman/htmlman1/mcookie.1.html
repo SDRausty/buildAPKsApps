@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>mcookie(1) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="mcookie(1) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="mcookie(1) — Linux manual pages">
+    <a id="mcookie.1" name="mcookie.1" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>mcookie — generate magic cookies for xauth</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">mcookie</code> [<code class="option">−v</code>] [ <code class="option">−f</code> filename ]</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="mcookie-1_sect1" name="mcookie-1_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><span class="command"><strong>mcookie</strong></span>
+      generates a 128-bit random hexadecimal number for use with
+      the X authority system. Typical usage:</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <p>xauth add :0 . `mcookie`</p>
+        </blockquote>
+      </div>
+
+      <p>The "random" number generated is actually the output of
+      the MD5 message digest fed with various pieces of random
+      information: the current time, the process id, the parent
+      process id, the contents of an input file (if <code class="option">−f</code> is specified), and several bytes of
+      information from the first of the following devices which is
+      present: <code class="filename">/dev/random</code>,
+      <code class="filename">/dev/urandom</code>, files in
+      <code class="filename">/proc</code>, <code class="filename">/dev/audio</code>.</p>
+    </div>
+
+    <div class="refsect1" title="BUGS">
+      <a id="mcookie-1_sect2" name="mcookie-1_sect2" shape="rect"> </a>
+
+      <h2>BUGS</h2>
+
+      <p>The entropy in the generated 128-bit is probably quite
+      small (and, therefore, vulnerable to attack) unless a
+      non-pseudorandom number generator is used (e.g., <code class="filename">/dev/random</code> under Linux).</p>
+
+      <p>It is assumed that none of the devices opened will
+      block.</p>
+    </div>
+
+    <div class="refsect1" title="FILES">
+      <a id="mcookie-1_sect3" name="mcookie-1_sect3" shape="rect"> </a>
+
+      <h2>FILES</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+<code class="filename">/dev/random</code>
+<code class="filename">/dev/urandom</code>
+<code class="filename">/dev/audio</code>
+<code class="filename">/proc/stat</code>
+<code class="filename">/proc/loadavg</code>
+</pre>
+      </div>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="mcookie-1_sect4" name="mcookie-1_sect4" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><span class="citerefentry"><span class="refentrytitle">X</span>(1)</span>, <span class="citerefentry"><span class="refentrytitle">xauth</span>(1)</span>, <a class="link" href="../htmlman1/md5sum.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">md5sum</span>(1)</span></a></p>
+    </div>
+
+    <div class="refsect1" title="AVAILABILITY">
+      <a id="mcookie-1_sect5" name="mcookie-1_sect5" shape="rect"> </a>
+
+      <h2>AVAILABILITY</h2>
+
+      <p>The mcookie command is part of the util-linux package and
+      is available from
+      ftp://ftp.kernel.org/pub/linux/utils/util-linux/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    mcookie.1 --<br />
+                  Public Domain 1995 Rickard E. Faith (faith<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cs.unc.edu)<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

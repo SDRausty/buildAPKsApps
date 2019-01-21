@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>chrt(1) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="chrt(1) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="chrt(1) — Linux manual pages">
+    <a id="chrt.1" name="chrt.1" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>chrt — manipulate real-time attributes of a
+      process</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">chrt</code> [options] prio command
+        [arg...]</p>
+      </div>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">chrt</code> [options] <code class="option">−p</code> [prio] pid</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="chrt-1_sect1" name="chrt-1_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><a class="link" href="../htmlman1/chrt.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">chrt</span>(1)</span></a> sets or retrieves
+      the real-time scheduling attributes of an existing PID, or
+      runs COMMAND with the given attributes. Both policy (one of
+      <code class="constant">SCHED_OTHER</code>, <code class="constant">SCHED_FIFO</code>, <code class="constant">SCHED_RR</code>, <code class="constant">SCHED_BATCH</code>, or <code class="constant">SCHED_IDLE</code>) and priority can be set and
+      retrieved.</p>
+
+      <p>The <code class="constant">SCHED_BATCH</code> policy is
+      supported since Linux 2.6.16. The <code class="constant">SCHED_IDLE</code> policy is supported since Linux
+      2.6.23.</p>
+
+      <p>The <code class="constant">SCHED_RESET_ON_FORK</code> flag
+      for policies SCHED_RR and SCHED_FIFO is supported since Linux
+      2.6.31.</p>
+    </div>
+
+    <div class="refsect1" title="OPTIONS">
+      <a id="chrt-1_sect2" name="chrt-1_sect2" shape="rect"> </a>
+
+      <h2>OPTIONS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="option">−p,−−pid</code></span></dt>
+
+          <dd>
+            <p>operate on an existing PID and do not launch a new
+            task</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−b,−−batch</code></span></dt>
+
+          <dd>
+            <p>set scheduling policy to <code class="constant">SCHED_BATCH</code> (Linux specific)</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−f,−−fifo</code></span></dt>
+
+          <dd>
+            <p>set scheduling policy to <code class="constant">SCHED_FIFO</code></p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−i,−−idle</code></span></dt>
+
+          <dd>
+            <p>set scheduling policy to <code class="constant">SCHED_IDLE</code> (Linux specific)</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−m,−−max</code></span></dt>
+
+          <dd>
+            <p>show minimum and maximum valid priorities, then
+            exit</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−o,−−other</code></span></dt>
+
+          <dd>
+            <p>set policy scheduling policy to <code class="constant">SCHED_OTHER</code></p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−r,−−rr</code></span></dt>
+
+          <dd>
+            <p>set scheduling policy to <code class="constant">SCHED_RR</code> (the default)</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−R,−−reset−on−fork</code></span></dt>
+
+          <dd>
+            <p>add <code class="constant">SCHED_RESET_ON_FORK</code> flag to the
+            <code class="constant">SCHED_FIFO</code> or
+            <code class="constant">SCHED_RR</code> scheduling
+            policy (Linux specific)</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−v,−−verbose</code></span></dt>
+
+          <dd>
+            <p>show status information</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−h,−−help</code></span></dt>
+
+          <dd>
+            <p>display usage information and exit</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−V,−−version</code></span></dt>
+
+          <dd>
+            <p>display version information and exit</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="USAGE">
+      <a id="chrt-1_sect3" name="chrt-1_sect3" shape="rect"> </a>
+
+      <h2>USAGE</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term">The default behavior is to run a
+          new command::</span></dt>
+
+          <dd>
+            <p>chrt prio command [arguments]</p>
+          </dd>
+
+          <dt><span class="term">You can also retrieve the
+          real-time attributes of an existing task:</span></dt>
+
+          <dd>
+            <p>chrt -p pid</p>
+          </dd>
+
+          <dt><span class="term">Or set them:</span></dt>
+
+          <dd>
+            <p>chrt -p prio pid</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="PERMISSIONS">
+      <a id="chrt-1_sect4" name="chrt-1_sect4" shape="rect"> </a>
+
+      <h2>PERMISSIONS</h2>
+
+      <p>A user must possess <code class="constant">CAP_SYS_NICE</code> to change the scheduling
+      attributes of a process. Any user can retrieve the scheduling
+      information.</p>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="chrt-1_sect5" name="chrt-1_sect5" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p>Only <code class="constant">SCHED_FIFO</code>,
+      <code class="constant">SCHED_OTHER</code> and <code class="constant">SCHED_RR</code> are part of POSIX 1003.1b Process
+      Scheduling. The other scheduling attributes may be ignored on
+      some systems.</p>
+    </div>
+
+    <div class="refsect1" title="AUTHOR">
+      <a id="chrt-1_sect6" name="chrt-1_sect6" shape="rect"> </a>
+
+      <h2>AUTHOR</h2>
+
+      <p>Written by Robert M. Love.</p>
+    </div>
+
+    <div class="refsect1" title="COPYRIGHT">
+      <a id="chrt-1_sect7" name="chrt-1_sect7" shape="rect"> </a>
+
+      <h2>COPYRIGHT</h2>
+
+      <p>Copyright © 2004 Robert M. Love</p>
+
+      <p>This is free software; see the source for copying
+      conditions. There is NO warranty; not even for
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="chrt-1_sect8" name="chrt-1_sect8" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman1/taskset.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">taskset</span>(1)</span></a>, <a class="link" href="../htmlman1/nice.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">nice</span>(1)</span></a>, <a class="link" href="../htmlman1/renice.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">renice</span>(1)</span></a></p>
+
+      <p>See <a class="link" href="../htmlman2/sched_setscheduler.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">sched_setscheduler</span>(2)</span></a> for a
+      description of the Linux scheduling scheme.</p>
+    </div>
+
+    <div class="refsect1" title="AVAILABILITY">
+      <a id="chrt-1_sect9" name="chrt-1_sect9" shape="rect"> </a>
+
+      <h2>AVAILABILITY</h2>
+
+      <p>The chrt command is part of the util-linux package and is
+      available from
+      ftp://ftp.kernel.org/pub/linux/utils/util-linux/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    chrt(1) manpage<br />
+                  <br />
+                  Copyright (C) 2004 Robert Love<br />
+
+                  <br />
+                  This is free documentation; you can redistribute it and/or<br />
+
+                  modify it under the terms of the GNU General Public License as<br />
+
+                  published by the Free Software Foundation; either version 2 of<br />
+
+                  the License.<br />
+                  <br />
+                  The GNU General Public License's references to "object code"<br />
+
+                  and "executables" are to be interpreted as the output of any<br />
+
+                  document formatting or typesetting system, including<br />
+
+                  intermediate and printed output.<br />
+
+                  <br />
+                  This manual is distributed in the hope that it will be useful,<br />
+
+                  but WITHOUT ANY WARRANTY; without even the implied warranty of<br />
+
+                  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<br />
+
+                  GNU General Public License for more details.<br />
+
+                  <br />
+                  You should have received a copy of the GNU General Public<br />
+
+                  License along with this manual; if not, write to the Free<br />
+
+                  Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111,<br />
+
+                  USA.<br />
+                  <br />
+                  2002-05-11 Robert Love &lt;rml<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>tech9.net&gt;<br />
+
+                  Initial version<br />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

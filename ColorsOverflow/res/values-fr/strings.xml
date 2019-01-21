@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+        Copyright (C) 2015  Nicola Spanti (RyDroid) <dev@nicola-spanti.info>
+        
+        This program is free software: you can redistribute it and/or modify
+        it under the terms of the GNU Affero General Public License as published by
+        the Free Software Foundation, either version 3 of the License, or
+        (at your option) any later version.
+        
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        GNU Affero General Public License for more details.
+        
+        You should have received a copy of the GNU Affero General Public License
+        along with this program.  If not, see <https://www.gnu.org/licenses/>.
+    -->
+    
+    <string name="redirect_activity_is_missing_message">L\'activité redirection est manquante !</string>
+    <string name="app_name">Colors Overflow</string>
+    <string name="newgame">Nouvelle partie</string>
+    <string name="exit">Quitter</string>
+    <string name="about">À propos</string>
+    <string name="about_title">À propos de Colors Overflow</string>
+    <string name="sound">Son</string>
+    <string name="vibrate">Vibrer</string>
+    <string name="back">Retour</string>
+    <string name="settings">Paramètres</string>
+    <string name="rules">Règles du jeu</string>
+    <string name="highscore">Meilleur score</string>
+    <string name="splashdesc">Écran de démarrage</string>
+    <string name="red_won">Rouge</string>
+    <string name="blue_won">Bleu</string>
+    <string name="computer_won">L\'ordinateur</string>
+    <string name="blue_turn">Tour du bleu</string>
+    <string name="red_turn">Tour du rouge</string>
+    <string name="player">Joueur</string>
+    <string name="player_turn">C\'est le tour de %s.</string>
+    <string name="highscore_title">Meilleur score ! %s a gagné.</string>
+    <string name="toast_game_end">Le jeu est fini. %s a gagné.</string>
+    <string name="won_message">Vous avez le meilleur score. Quel est votre nom ?</string>
+    <string name="OK_button">OK</string>
+    <string name="human_game">Humain contre humain</string>
+    <string name="easy_game">Humain contre IA facile</string>
+    <string name="normal_game">Human contre IA moyenne</string>
+    <string name="hard_game">Human contre IA forte</string>
+    <string name="title_activity_splash">Colors Overflow</string>
+</resources>

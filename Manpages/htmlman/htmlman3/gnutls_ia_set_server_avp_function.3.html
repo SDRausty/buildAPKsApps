@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>gnutls_ia_set_server_avp_function(3) — Linux manual
+  pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="gnutls_ia_set_server_avp_function(3) — Linux manual pages" />
+
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="gnutls_ia_set_server_avp_function(3) — Linux manual pages">
+  <a id="gnutls-ia-set-server-avp-function.3" name="gnutls-ia-set-server-avp-function.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>gnutls_ia_set_server_avp_function — API function</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;gnutls/extra.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">void <b class="fsfunc">gnutls_ia_set_server_avp_function</b>(</code></td>
+
+            <td rowspan="1" colspan="1">gnutls_ia_server_credentials_t <var class="pdparam">cred</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">gnutls_ia_avp_func <var class="pdparam">avp_func</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="ARGUMENTS">
+      <a id="gnutls-ia-set-server-avp-function-3_sect1" name="gnutls-ia-set-server-avp-function-3_sect1" shape="rect"> </a>
+
+      <h2>ARGUMENTS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><span class="emphasis"><em>gnutls_ia_server_credentials_t
+          cred</em></span></span></dt>
+
+          <dd>
+            <p>is a <span class="type">gnutls_ia_server_credentials_t</span>
+            structure.</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>gnutls_ia_avp_func
+          avp_func</em></span></span></dt>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="gnutls-ia-set-server-avp-function-3_sect2" name="gnutls-ia-set-server-avp-function-3_sect2" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>Set the TLS/IA AVP callback handler used for the
+      session.</p>
+
+      <p>The callback's function form is: int (*avp_func)
+      (gnutls_session_t session, void *ptr, const char *last,
+      size_t lastlen, char **next, size_t *nextlen);</p>
+
+      <p>The <em class="parameter"><code>session</code></em>
+      parameter is the <span class="type">gnutls_session_t</span>
+      structure corresponding to the current session. The
+      <em class="parameter"><code>ptr</code></em> parameter is the
+      application hook pointer, set through <code class="function">gnutls_ia_set_server_avp_ptr</code>(). The AVP
+      received from the client is present in <em class="parameter"><code>last</code></em> of <em class="parameter"><code>lastlen</code></em> size. The newly
+      allocated output AVP to send to the client should be placed
+      in *<em class="parameter"><code>next</code></em> of
+      *<em class="parameter"><code>nextlen</code></em> size.</p>
+
+      <p>The AVP callback is called to process incoming AVPs from
+      the client, and to get a new AVP to send to the client. It
+      can also be used to instruct the TLS/IA handshake to do go
+      into the Intermediate or Final phases. It return a negative
+      error code, or a <span class="type">gnutls_ia_apptype_t</span> message type.</p>
+
+      <p>The callback may invoke <code class="function">gnutls_ia_permute_inner_secret</code>() to mix any
+      generated session keys with the TLS/IA inner secret.</p>
+
+      <p>Specifically, return <code class="constant">GNUTLS_IA_APPLICATION_PAYLOAD</code> (0) to send
+      another AVP to the client, return <code class="constant">GNUTLS_IA_INTERMEDIATE_PHASE_FINISHED</code> (1)
+      to indicate that an IntermediatePhaseFinished message should
+      be sent, and return <code class="constant">GNUTLS_IA_FINAL_PHASE_FINISHED</code> (2) to
+      indicate that an FinalPhaseFinished message should be sent.
+      In the last two cases, the contents of the <em class="parameter"><code>next</code></em> and <em class="parameter"><code>nextlen</code></em> parameter is not
+      used.</p>
+
+      <p>Note that the callback must use allocate the <em class="parameter"><code>next</code></em> parameter using
+      <code class="function">gnutls_malloc</code>(), because it is
+      released via <code class="function">gnutls_free</code>() by
+      the TLS/IA handshake function.</p>
+    </div>
+
+    <div class="refsect1" title="REPORTING BUGS">
+      <a id="gnutls-ia-set-server-avp-function-3_sect3" name="gnutls-ia-set-server-avp-function-3_sect3" shape="rect"> </a>
+
+      <h2>REPORTING BUGS</h2>
+
+      <p>Report bugs to &lt;bug-gnutls@gnu.org&gt;. GnuTLS home
+      page: http://www.gnu.org/software/gnutls/ General help using
+      GNU software: http://www.gnu.org/gethelp/</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="gnutls-ia-set-server-avp-function-3_sect5" name="gnutls-ia-set-server-avp-function-3_sect5" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p>The full documentation for <em class="citetitle">gnutls</em> is maintained as a Texinfo manual. If
+      the <span class="command"><strong>info</strong></span> and
+      <em class="citetitle">gnutls</em> programs are properly
+      installed at your site, the command</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+info gnutls
+</pre>
+      </div>
+
+      <p>should give you access to the complete manual.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <thead>
+            <tr>
+              <th style="" rowspan="1" colspan="1">COPYRIGHT</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <p>Copyright © 2008 Free Software
+                Foundation.</p>
+
+                <p>Copying and distribution of this file, with or
+                without modification, are permitted in any medium
+                without royalty provided the copyright notice and
+                this notice are preserved.</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Translation by Sebastian Dörner <sdoerner@st.ovgu.de> -->
+<resources>
+  <string name="app_name">Alarm Klock</string>
+  <string name="delete_all">Alle löschen</string>
+  <string name="label">Bezeichnung</string>
+  <string name="repeat">Wiederholung</string>
+  <string name="alarm_tone">Weckton</string>
+  <string name="fade_description">Von %1$d%% bis %2$d%% über %3$d Sekunden</string>
+  <string name="ok">OK</string>
+  <string name="cancel">Abbrechen</string>
+  <string name="delete">Löschen</string>
+  <string name="snooze">SNOOZE</string>
+  <string name="dismiss">AUSSCHALTEN</string>
+  <string name="plus_five">+5</string>
+  <string name="minus_five">-5</string>
+  <string name="day">%d Tag</string>
+  <string name="days">%d Tage</string>
+  <string name="hour">%d Stunde</string>
+  <string name="hours">%d Stunden</string>
+  <string name="minute">%d Minute</string>
+  <string name="minutes">%d Minuten</string>
+  <string name="am">AM</string>
+  <string name="pm">PM</string>
+  <string name="dow_sun_short">So</string>
+  <string name="dow_mon_short">Mo</string>
+  <string name="dow_tue_short">Di</string>
+  <string name="dow_wed_short">Mi</string>
+  <string name="dow_thu_short">Do</string>
+  <string name="dow_fri_short">Fr</string>
+  <string name="dow_sat_short">Sa</string>
+  <string name="dow_sun">Sonntag</string>
+  <string name="dow_mon">Montag</string>
+  <string name="dow_tue">Dienstag</string>
+  <string name="dow_wed">Mittwoch</string>
+  <string name="dow_thu">Donnerstag</string>
+  <string name="dow_fri">Freitag</string>
+  <string name="dow_sat">Samstag</string>
+  <string name="no_repeats">Keine Wiederholung</string>
+  <string name="everyday">Jeden Tag</string>
+  <string name="weekdays">Wochentags</string>
+  <string name="weekends">Am Wochenende</string>
+  <string name="internal">System</string>
+  <string name="artists">Interpreten</string>
+  <string name="songs">Lieder</string>
+  <string name="selected">Ausgewählt: </string>
+  <string name="time_out_title">Wecker-Zeitlimit</string>
+  <string name="time_out_error">ACHTUNG: Diese Weckzeit hat ihr Zeitlimit erreicht.</string>
+</resources>

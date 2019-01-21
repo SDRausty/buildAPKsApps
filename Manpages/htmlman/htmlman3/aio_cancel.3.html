@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>aio_cancel(3) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="aio_cancel(3) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="aio_cancel(3) — Linux manual pages">
+    <a id="aio-cancel.3" name="aio-cancel.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>aio_cancel — cancel an outstanding asynchronous I/O
+      request</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;aio.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">aio_cancel</b>(</code></td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">fd</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">struct aiocb *<var class="pdparam">aiocbp</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;">
+        <table border="0" summary="Note">
+          <tr>
+            <td rowspan="2" align="center" valign="top" width="25" colspan="1">
+            <img alt="[Note]" src="../stylesheet/note.png" /></td>
+
+            <th align="left" rowspan="1" colspan="1">Note</th>
+          </tr>
+
+          <tr>
+            <td align="left" valign="top" rowspan="1" colspan="1">
+              <p>Link with <code class="option">−lrt</code>.</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="aio-cancel-3_sect1" name="aio-cancel-3_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>The <code class="function">aio_cancel</code>() function
+      attempts to cancel outstanding asynchronous I/O requests for
+      the file descriptor <em class="parameter"><code>fd</code></em>. If <em class="parameter"><code>aiocbp</code></em> is NULL, all such
+      requests are canceled. Otherwise, only the request described
+      by the control block pointed to by <em class="parameter"><code>aiocbp</code></em> is canceled. (See
+      <a class="link" href="../htmlman7/aio.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">aio</span>(7)</span></a> for a description of
+      the <span class="structname">aiocb</span> structure.)</p>
+
+      <p>Normal asynchronous notification occurs for canceled
+      requests. The request return status is set to −1, and
+      the request error status is set to <span class="errorname">ECANCELED</span>. The control block of requests
+      that cannot be canceled is not changed.</p>
+
+      <p>If <em class="parameter"><code>aiocbp</code></em> is not
+      NULL, and <em class="parameter"><code>fd</code></em> differs
+      from the file descriptor with which the asynchronous
+      operation was initiated, unspecified results occur.</p>
+
+      <p>Which operations are cancelable is
+      implementation-defined.</p>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="aio-cancel-3_sect2" name="aio-cancel-3_sect2" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p>This function returns <code class="constant">AIO_CANCELED</code> if all requests were
+      successfully canceled. It returns <code class="constant">AIO_NOTCANCELED</code> when at least one of the
+      requests specified was not canceled because it was in
+      progress. In this case one may check the status of individual
+      requests using <a class="link" href="../htmlman3/aio_error.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">aio_error</span>(3)</span></a>. This function
+      returns <code class="constant">AIO_ALLDONE</code> if all
+      requests had already been completed before this call. When
+      some error occurs, −1 is returned, and <code class="varname">errno</code> is set appropriately.</p>
+    </div>
+
+    <div class="refsect1" title="ERRORS">
+      <a id="aio-cancel-3_sect3" name="aio-cancel-3_sect3" shape="rect"> </a>
+
+      <h2>ERRORS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><span class="errorname">EBADF</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>fd</code></em> is not a
+            valid file descriptor.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="VERSIONS">
+      <a id="aio-cancel-3_sect4" name="aio-cancel-3_sect4" shape="rect"> </a>
+
+      <h2>VERSIONS</h2>
+
+      <p>The <code class="function">aio_cancel</code>() function is
+      available since glibc 2.1.</p>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="aio-cancel-3_sect5" name="aio-cancel-3_sect5" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>POSIX.1-2001, POSIX.1-2008.</p>
+    </div>
+
+    <div class="refsect1" title="EXAMPLE">
+      <a id="aio-cancel-3_sect6" name="aio-cancel-3_sect6" shape="rect"> </a>
+
+      <h2>EXAMPLE</h2>
+
+      <p>See <a class="link" href="../htmlman7/aio.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">aio</span>(7)</span></a>.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="aio-cancel-3_sect7" name="aio-cancel-3_sect7" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman3/aio_error.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">aio_error</span>(3)</span></a>, <a class="link" href="../htmlman3/aio_fsync.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">aio_fsync</span>(3)</span></a>, <a class="link" href="../htmlman3/aio_read.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">aio_read</span>(3)</span></a>, <a class="link" href="../htmlman3/aio_return.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">aio_return</span>(3)</span></a>, <a class="link" href="../htmlman3/aio_suspend.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">aio_suspend</span>(3)</span></a>, <a class="link" href="../htmlman3/aio_write.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">aio_write</span>(3)</span></a>, <a class="link" href="../htmlman3/lio_listio.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">lio_listio</span>(3)</span></a>, <a class="link" href="../htmlman7/aio.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">aio</span>(7)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="aio-cancel-3_sect8" name="aio-cancel-3_sect8" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.29 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright (c) 2003 Andries Brouwer (aeb<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cwi.nl)<br />
+
+                  <br />
+                  This is free documentation; you can redistribute it and/or<br />
+
+                  modify it under the terms of the GNU General Public License as<br />
+
+                  published by the Free Software Foundation; either version 2 of<br />
+
+                  the License, or (at your option) any later version.<br />
+
+                  <br />
+                  The GNU General Public License's references to "object code"<br />
+
+                  and "executables" are to be interpreted as the output of any<br />
+
+                  document formatting or typesetting system, including<br />
+
+                  intermediate and printed output.<br />
+
+                  <br />
+                  This manual is distributed in the hope that it will be useful,<br />
+
+                  but WITHOUT ANY WARRANTY; without even the implied warranty of<br />
+
+                  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<br />
+
+                  GNU General Public License for more details.<br />
+
+                  <br />
+                  You should have received a copy of the GNU General Public<br />
+
+                  License along with this manual; if not, write to the Free<br />
+
+                  Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111,<br />
+
+                  USA.<br />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+  	<item android:title="Sections" android:id="@+id/section_menu" android:icon="@drawable/ic_menu_sections"></item>
+    <item android:id="@+id/download_menu" android:title="Download pages" android:icon="@drawable/ic_menu_download"></item>
+    <item android:title="About" android:id="@+id/about_menu" android:icon="@drawable/ic_menu_about"></item>
+    
+    
+</menu>

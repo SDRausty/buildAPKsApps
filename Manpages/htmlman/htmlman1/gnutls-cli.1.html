@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>gnutls\-cli(1) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="gnutls\-cli(1) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="gnutls\-cli(1) — Linux manual pages">
+    <a id="gnutls-cli.1" name="gnutls-cli.1" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>gnutls−cli — GnuTLS test client</p>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="gnutls-cli-1_sect1" name="gnutls-cli-1_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>Simple client program to set up a TLS connection to some
+      other computer. It sets up a TLS connection and forwards data
+      from the standard input to the secured socket and vice
+      versa.</p>
+    </div>
+
+    <div class="refsect1" title="OPTIONS">
+      <a id="gnutls-cli-1_sect2" name="gnutls-cli-1_sect2" shape="rect"> </a>
+
+      <h2>OPTIONS</h2>
+
+      <div class="refsect2" title="Program control options">
+        <a id="gnutls-cli-1_sect3" name="gnutls-cli-1_sect3" shape="rect"> </a>
+
+        <h3>Program control options</h3>
+
+        <div class="variablelist">
+          <dl>
+            <dt><span class="term"><code class="option">−d,
+            −−debug LEVEL</code></span></dt>
+
+            <dd>
+              <p>Specify the debug level. Default is 1.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−h,
+            −−help</code></span></dt>
+
+            <dd>
+              <p>Prints a short reminder of the command line
+              options.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−l,
+            −−list</code></span></dt>
+
+            <dd>
+              <p>Print a list of the supported algorithms and
+              modes.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−r,
+            −−resume</code></span></dt>
+
+            <dd>
+              <p>Connect, establish a session. Connect again and
+              resume this session.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−s,
+            −−starttls</code></span></dt>
+
+            <dd>
+              <p>Connect, establish a plain session and start TLS
+              when EOF or a SIGALRM is received.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−v,
+            −−version</code></span></dt>
+
+            <dd>
+              <p>Prints the program's version number.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−V,
+            −−verbose</code></span></dt>
+
+            <dd>
+              <p>More verbose output.</p>
+            </dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="refsect2" title="TLS/SSL control options">
+        <a id="gnutls-cli-1_sect4" name="gnutls-cli-1_sect4" shape="rect"> </a>
+
+        <h3>TLS/SSL control options</h3>
+
+        <div class="variablelist">
+          <dl>
+            <dt><span class="term"><code class="option">−−priority <span class="emphasis"><em>PRIORITY
+            STRING</em></span></code></span></dt>
+
+            <dd>
+              <p>TLS algorithms and protocols to enable. You can
+              use predefined sets of ciphersuites such as:</p>
+            </dd>
+
+            <dt><span class="term"><code class="constant">PERFORMANCE</code></span></dt>
+
+            <dd>
+              <p>all the "secure" ciphersuites are enabled, limited
+              to 128 bit ciphers and sorted by terms of speed
+              performance.</p>
+            </dd>
+
+            <dt><span class="term"><code class="constant">NORMAL</code></span></dt>
+
+            <dd>
+              <p>option enables all "secure" ciphersuites. The
+              256-bit ciphers are included as a fallback only. The
+              ciphers are sorted by security margin.</p>
+            </dd>
+
+            <dt><span class="term"><code class="constant">SECURE128</code></span></dt>
+
+            <dd>
+              <p>flag enables all "secure" ciphersuites with
+              ciphers up to 128 bits, sorted by security
+              margin.</p>
+            </dd>
+
+            <dt><span class="term"><code class="constant">SECURE256</code></span></dt>
+
+            <dd>
+              <p>flag enables all "secure" ciphersuites including
+              the 256 bit ciphers, sorted by security margin.</p>
+            </dd>
+
+            <dt><span class="term"><code class="constant">EXPORT</code></span></dt>
+
+            <dd>
+              <p>all the ciphersuites are enabled, including the
+              low-security 40 bit ciphers.</p>
+            </dd>
+
+            <dt><span class="term"><code class="constant">NONE</code></span></dt>
+
+            <dd>
+              <p>nothing is enabled. This disables even protocols
+              and compression methods.</p>
+
+              <p>Check the GnuTLS manual on section "Priority
+              strings" for more information on allowed
+              keywords.</p>
+
+              <p><em class="replaceable"><code>Examples:</code></em></p>
+
+              <p>"NORMAL"</p>
+
+              <p>
+              "NONE:+VERS-TLS-ALL:+MAC-ALL:+RSA:+AES-128-CBC:+SIGN-ALL:+COMP-NULL"</p>
+
+              <p>"NORMAL:-ARCFOUR-128" means normal ciphers except
+              for ARCFOUR-128.</p>
+
+              <p>"SECURE:-VERS-SSL3.0:+COMP-DEFLATE" means that
+              only secure ciphers are enabled, SSL3.0 is disabled,
+              and libz compression enabled.</p>
+
+              <p>
+              "NONE:+VERS-TLS-ALL:+AES-128-CBC:+RSA:+SHA1:+COMP-NULL:+SIGN-RSA-SHA1"</p>
+
+              <p>"NORMAL:%COMPAT" is the most compatible mode</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−crlf</code></span></dt>
+
+            <dd>
+              <p>Send CR LF instead of LF.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−f,
+            −−fingerprint</code></span></dt>
+
+            <dd>
+              <p>Send the openpgp fingerprint, instead of the
+              key.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−p,
+            −−port integer</code></span></dt>
+
+            <dd>
+              <p>The port to connect to.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−ciphers <span class="emphasis"><em>cipher1
+            cipher2...</em></span></code></span></dt>
+
+            <dd>
+              <p>Ciphers to enable (use <span class="emphasis"><em>gnutls−cli
+              −−list</em></span> to show the supported
+              ciphers).</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−protocols <span class="emphasis"><em>protocol1
+            protocol2...</em></span></code></span></dt>
+
+            <dd>
+              <p>Protocols to enable (use <span class="emphasis"><em>gnutls−cli
+              −−list</em></span> to show the supported
+              protocols).</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−comp <span class="emphasis"><em>comp1
+            comp2...</em></span></code></span></dt>
+
+            <dd>
+              <p>Compression methods to enable (use <span class="emphasis"><em>gnutls−cli
+              −−list</em></span> to show the supported
+              methods).</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−macs <span class="emphasis"><em>mac1
+            mac2...</em></span></code></span></dt>
+
+            <dd>
+              <p>MACs to enable (use <span class="emphasis"><em>gnutls−cli
+              −−list</em></span> to show the supported
+              MACs).</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−kx <span class="emphasis"><em>kx1
+            kx2...</em></span></code></span></dt>
+
+            <dd>
+              <p>Key exchange methods to enable (use <span class="emphasis"><em>gnutls−cli
+              −−list</em></span> to show the supported
+              methods).</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−ctypes <span class="emphasis"><em>certType1
+            certType2...</em></span></code></span></dt>
+
+            <dd>
+              <p>Certificate types to enable (use <span class="emphasis"><em>gnutls−cli
+              −−list</em></span> to show the supported
+              types).</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−recordsize
+            integer</code></span></dt>
+
+            <dd>
+              <p>The maximum record size to advertize.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−disable−extensions</code></span></dt>
+
+            <dd>
+              <p>Disable all the TLS extensions.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−print−cert</code></span></dt>
+
+            <dd>
+              <p>Print the certificate in PEM format.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−insecure</code></span></dt>
+
+            <dd>
+              <p>Don't abort program if server certificates can't
+              be validated.</p>
+            </dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="refsect2" title="Certificate options">
+        <a id="gnutls-cli-1_sect5" name="gnutls-cli-1_sect5" shape="rect"> </a>
+
+        <h3>Certificate options</h3>
+
+        <div class="variablelist">
+          <dl>
+            <dt><span class="term"><code class="option">−−pgpcertfile <code class="constant">FILE</code></code></span></dt>
+
+            <dd>
+              <p>PGP Public Key (certificate) file to use.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−pgpkeyfile <code class="constant">FILE</code></code></span></dt>
+
+            <dd>
+              <p>PGP Key file to use.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−pgpkeyring <code class="constant">FILE</code></code></span></dt>
+
+            <dd>
+              <p>PGP Key ring file to use.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−pgptrustdb <code class="constant">FILE</code></code></span></dt>
+
+            <dd>
+              <p>PGP trustdb file to use.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−pgpsubkey <em class="replaceable"><code>HEX|auto</code></em>2</code></span></dt>
+
+            <dd>
+              <p>PGP subkey to use.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−srppasswd <code class="constant">PASSWD</code></code></span></dt>
+
+            <dd>
+              <p>SRP password to use.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−srpusername <code class="constant">NAME</code></code></span></dt>
+
+            <dd>
+              <p>SRP username to use.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−x509cafile <code class="constant">FILE</code></code></span></dt>
+
+            <dd>
+              <p>Certificate file to use. This option accepts PKCS
+              #11 URLs such as
+              pkcs11:token=Root%20CA%20Certificates;serial=1%3AROOTS%3ADEFAULT;model=1%2E0;manufacturer=Gnome%20Keyring</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−x509certfile <code class="constant">FILE</code></code></span></dt>
+
+            <dd>
+              <p>X.509 Certificate file to use, or a PKCS #11
+              URL.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−x509fmtder</code></span></dt>
+
+            <dd>
+              <p>Use DER format for certificates</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−x509keyfile <code class="constant">FILE</code></code></span></dt>
+
+            <dd>
+              <p>X.509 key file or PKCS #11 URL to use.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−x509crlfile <code class="constant">FILE</code></code></span></dt>
+
+            <dd>
+              <p>X.509 CRL file to use.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−pskusername <code class="constant">NAME</code></code></span></dt>
+
+            <dd>
+              <p>PSK username to use.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−pskkey <code class="constant">KEY</code></code></span></dt>
+
+            <dd>
+              <p>PSK key (in hex) to use.</p>
+            </dd>
+
+            <dt><span class="term"><code class="option">−−opaque−prf−input
+            <code class="constant">DATA</code></code></span></dt>
+
+            <dd>
+              <p>Use Opaque PRF Input DATA.</p>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="gnutls-cli-1_sect6" name="gnutls-cli-1_sect6" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman1/gnutls-cli-debug.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">gnutls-cli-debug</span>(1)</span></a>,
+      <a class="link" href="../htmlman1/gnutls-serv.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">gnutls-serv</span>(1)</span></a></p>
+    </div>
+
+    <div class="refsect1" title="AUTHOR">
+      <a id="gnutls-cli-1_sect7" name="gnutls-cli-1_sect7" shape="rect"> </a>
+
+      <h2>AUTHOR</h2>
+
+      <p>Nikos Mavrogiannopoulos &lt;nmav@gnutls.org&gt; and
+      others; see /usr/share/doc/gnutls−bin/AUTHORS for a
+      complete list.</p>
+
+      <p>This manual page was written by Ivo Timmermans
+      &lt;ivo@debian.org&gt;, for the Debian GNU/Linux system (but
+      may be used by others).</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

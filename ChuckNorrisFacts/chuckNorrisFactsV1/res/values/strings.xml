@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World!</string>
+    <string name="app_name">ChuckNorrisFacts</string>
+    <string name="id">"Id: "</string>
+    <string name="fact">"Fact: "</string>
+    <string name="deRogar">DE ROGAR!!!!</string>
+    <string name="display_fact_with_id">Display Fact with Id:</string>
+    <string name="display">Display</string>
+    <string name="get_random_fact">Get a random fact!</string>
+    <string name="id_hint">Id...</string>
+
+</resources>

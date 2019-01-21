@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>pcreposix(3) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="pcreposix(3) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="pcreposix(3) — Linux manual pages">
+    <a id="pcreposix.3" name="pcreposix.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>PCRE — Perl-compatible regular expressions.</p>
+    </div>
+
+    <div class="refsect1" title="SYNOPSIS OF POSIX API">
+      <a id="pcreposix-3_sect1" name="pcreposix-3_sect1" shape="rect"> </a>
+
+      <h2>SYNOPSIS OF POSIX API</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;pcreposix.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">regcomp</b>(</code></td>
+
+            <td rowspan="1" colspan="1">regex_t *<var class="pdparam">preg</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">const char *<var class="pdparam">pattern</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">cflags</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">regexec</b>(</code></td>
+
+            <td rowspan="1" colspan="1">regex_t *<var class="pdparam">preg</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">const char *<var class="pdparam">string</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">size_t <var class="pdparam">nmatch</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">regmatch_t <var class="pdparam">pmatch[]</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">eflags</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">size_t <b class="fsfunc">regerror</b>(</code></td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">errcode</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">const regex_t *<var class="pdparam">preg</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">char *<var class="pdparam">errbuf</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">size_t <var class="pdparam">errbuf_size</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">void <b class="fsfunc">regfree</b>(</code></td>
+
+            <td rowspan="1" colspan="1">regex_t *<var class="pdparam">preg</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="pcreposix-3_sect2" name="pcreposix-3_sect2" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>This set of functions provides a POSIX-style API to the
+      PCRE regular expression package. See the <a class="link" href="../htmlman3/pcreapi.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pcreapi</span>(3)</span></a> documentation
+      for a description of PCRE's native API, which contains much
+      additional functionality.</p>
+
+      <p>The functions described here are just wrapper functions
+      that ultimately call the PCRE native API. Their prototypes
+      are defined in the <code class="filename">pcreposix.h</code>
+      header file, and on Unix systems the library itself is called
+      <em class="replaceable"><code>pcreposix.a</code></em>, so can
+      be accessed by adding <code class="option">−lpcreposix</code> to the command for linking
+      an application that uses them. Because the POSIX functions
+      call the native ones, it is also necessary to add
+      <code class="option">−lpcre</code>.</p>
+
+      <p>I have implemented only those POSIX option bits that can
+      be reasonably mapped to PCRE native options. In addition, the
+      option REG_EXTENDED is defined with the value zero. This has
+      no effect, but since programs that are written to the POSIX
+      interface often use it, this makes it easier to slot in PCRE
+      as a replacement library. Other POSIX options are not even
+      defined.</p>
+
+      <p>There are also some other options that are not defined by
+      POSIX. These have been added at the request of users who want
+      to make use of certain PCRE-specific features via the POSIX
+      calling interface.</p>
+
+      <p>When PCRE is called via these functions, it is only the
+      API that is POSIX-like in style. The syntax and semantics of
+      the regular expressions themselves are still those of Perl,
+      subject to the setting of various PCRE options, as described
+      below. "POSIX-like in style" means that the API approximates
+      to the POSIX definition; it is not fully POSIX-compatible,
+      and in multi-byte encoding domains it is probably even less
+      compatible.</p>
+
+      <p>The header for these functions is supplied as <code class="filename">pcreposix.h</code> to avoid any potential clash
+      with other POSIX libraries. It can, of course, be renamed or
+      aliased as <code class="filename">regex.h</code>, which is
+      the "correct" name. It provides two structure types,
+      <span class="type">regex_t</span> for compiled internal
+      forms, and <span class="type">regmatch_t</span> for returning
+      captured substrings. It also defines some constants whose
+      names start with "REG_"; these are used for setting options
+      and identifying error codes.</p>
+    </div>
+
+    <div class="refsect1" title="COMPILING A PATTERN">
+      <a id="pcreposix-3_sect3" name="pcreposix-3_sect3" shape="rect"> </a>
+
+      <h2>COMPILING A PATTERN</h2>
+
+      <p>The function <code class="function">regcomp</code>() is
+      called to compile a pattern into an internal form. The
+      pattern is a C string terminated by a binary zero, and is
+      passed in the argument <em class="parameter"><code>pattern</code></em>. The <em class="parameter"><code>preg</code></em> argument is a pointer to a
+      <span class="type">regex_t</span> structure that is used as a
+      base for storing information about the compiled regular
+      expression.</p>
+
+      <p>The argument <em class="parameter"><code>cflags</code></em> is either zero, or
+      contains one or more of the bits defined by the following
+      macros:</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="constant">REG_DOTALL</code></span></dt>
+
+          <dd>
+            <p>The PCRE_DOTALL option is set when the regular
+            expression is passed for compilation to the native
+            function. Note that REG_DOTALL is not part of the POSIX
+            standard.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">REG_ICASE</code></span></dt>
+
+          <dd>
+            <p>The PCRE_CASELESS option is set when the regular
+            expression is passed for compilation to the native
+            function.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">REG_NEWLINE</code></span></dt>
+
+          <dd>
+            <p>The PCRE_MULTILINE option is set when the regular
+            expression is passed for compilation to the native
+            function. Note that this does <span class="emphasis"><em>not</em></span> mimic the defined POSIX
+            behaviour for REG_NEWLINE (see the following
+            section).</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">REG_NOSUB</code></span></dt>
+
+          <dd>
+            <p>The PCRE_NO_AUTO_CAPTURE option is set when the
+            regular expression is passed for compilation to the
+            native function. In addition, when a pattern that is
+            compiled with this flag is passed to <code class="function">regexec</code>() for matching, the
+            <em class="parameter"><code>nmatch</code></em> and
+            <em class="parameter"><code>pmatch</code></em>
+            arguments are ignored, and no captured strings are
+            returned.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">REG_UCP</code></span></dt>
+
+          <dd>
+            <p>The PCRE_UCP option is set when the regular
+            expression is passed for compilation to the native
+            function. This causes PCRE to use Unicode properties
+            when matchine \d, \w, etc., instead of just recognizing
+            ASCII values. Note that REG_UTF8 is not part of the
+            POSIX standard.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">REG_UNGREEDY</code></span></dt>
+
+          <dd>
+            <p>The PCRE_UNGREEDY option is set when the regular
+            expression is passed for compilation to the native
+            function. Note that REG_UNGREEDY is not part of the
+            POSIX standard.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">REG_UTF8</code></span></dt>
+
+          <dd>
+            <p>The PCRE_UTF8 option is set when the regular
+            expression is passed for compilation to the native
+            function. This causes the pattern itself and all data
+            strings used for matching it to be treated as UTF-8
+            strings. Note that REG_UTF8 is not part of the POSIX
+            standard.</p>
+          </dd>
+        </dl>
+      </div>
+
+      <p>In the absence of these flags, no options are passed to
+      the native function. This means the the regex is compiled
+      with PCRE default semantics. In particular, the way it
+      handles newline characters in the subject string is the Perl
+      way, not the POSIX way. Note that setting PCRE_MULTILINE has
+      only <span class="emphasis"><em>some</em></span> of the
+      effects specified for REG_NEWLINE. It does not affect the way
+      newlines are matched by . (they are not) or by a negative
+      class such as [^a] (they are).</p>
+
+      <p>The yield of <code class="function">regcomp</code>() is
+      zero on success, and non-zero otherwise. The <em class="parameter"><code>preg</code></em> structure is filled in on
+      success, and one member of the structure is public:
+      <code class="varname">re_nsub</code> contains the number of
+      capturing subpatterns in the regular expression. Various
+      error codes are defined in the header file.</p>
+
+      <div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;">
+        <table border="0" summary="Note">
+          <tr>
+            <td rowspan="2" align="center" valign="top" width="25" colspan="1">
+            <img alt="[Note]" src="../stylesheet/note.png" /></td>
+
+            <th align="left" rowspan="1" colspan="1">Note</th>
+          </tr>
+
+          <tr>
+            <td align="left" valign="top" rowspan="1" colspan="1">
+              <p>If the yield of <code class="function">regcomp</code>() is non-zero, you must not
+              attempt to use the contents of the <em class="parameter"><code>preg</code></em> structure. If, for
+              example, you pass it to <code class="function">regexec</code>(), the result is undefined
+              and your program is likely to crash.</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="refsect1" title="MATCHING NEWLINE CHARACTERS">
+      <a id="pcreposix-3_sect4" name="pcreposix-3_sect4" shape="rect"> </a>
+
+      <h2>MATCHING NEWLINE CHARACTERS</h2>
+
+      <p>This area is not simple, because POSIX and Perl take
+      different views of things. It is not possible to get PCRE to
+      obey POSIX semantics, but then PCRE was never intended to be
+      a POSIX engine. The following table lists the different
+      possibilities for matching newline characters in PCRE:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+Default   Change with
+</pre>
+      </div>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+ . matches newline          no     PCRE_DOTALL
+ newline matches [^a]       yes    not changeable
+ $ matches \n at end        yes    PCRE_DOLLARENDONLY
+ $ matches \n in middle     no     PCRE_MULTILINE
+ ^ matches \n in middle     no     PCRE_MULTILINE
+</pre>
+      </div>
+
+      <p>This is the equivalent table for POSIX:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+Default   Change with
+</pre>
+      </div>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+ . matches newline          yes    REG_NEWLINE
+ newline matches [^a]       yes    REG_NEWLINE
+ $ matches \n at end        no     REG_NEWLINE
+ $ matches \n in middle     no     REG_NEWLINE
+ ^ matches \n in middle     no     REG_NEWLINE
+</pre>
+      </div>
+
+      <p>PCRE's behaviour is the same as Perl's, except that there
+      is no equivalent for PCRE_DOLLAR_ENDONLY in Perl. In both
+      PCRE and Perl, there is no way to stop newline from matching
+      [^a].</p>
+
+      <p>The default POSIX newline handling can be obtained by
+      setting PCRE_DOTALL and PCRE_DOLLAR_ENDONLY, but there is no
+      way to make PCRE behave exactly as for the REG_NEWLINE
+      action.</p>
+    </div>
+
+    <div class="refsect1" title="MATCHING A PATTERN">
+      <a id="pcreposix-3_sect5" name="pcreposix-3_sect5" shape="rect"> </a>
+
+      <h2>MATCHING A PATTERN</h2>
+
+      <p>The function <code class="function">regexec</code>() is
+      called to match a compiled pattern <em class="parameter"><code>preg</code></em> against a given <em class="parameter"><code>string</code></em>, which is by default
+      terminated by a zero byte (but see REG_STARTEND below),
+      subject to the options in <em class="parameter"><code>eflags</code></em>. These can be:</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="constant">REG_NOTBOL</code></span></dt>
+
+          <dd>
+            <p>The PCRE_NOTBOL option is set when calling the
+            underlying PCRE matching function.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">REG_NOTEMPTY</code></span></dt>
+
+          <dd>
+            <p>The PCRE_NOTEMPTY option is set when calling the
+            underlying PCRE matching function. Note that
+            REG_NOTEMPTY is not part of the POSIX standard.
+            However, setting this option can give more POSIX-like
+            behaviour in some situations.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">REG_NOTEOL</code></span></dt>
+
+          <dd>
+            <p>The PCRE_NOTEOL option is set when calling the
+            underlying PCRE matching function.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">REG_STARTEND</code></span></dt>
+
+          <dd>
+            <p>The string is considered to start at <em class="parameter"><code>string</code></em> + <em class="replaceable"><code>pmatch[0].rm_so</code></em> and to
+            have a terminating NUL located at <em class="parameter"><code>string</code></em> + <em class="replaceable"><code>pmatch[0].rm_eo</code></em> (there
+            need not actually be a NUL at that location),
+            regardless of the value of <em class="parameter"><code>nmatch</code></em>. This is a BSD
+            extension, compatible with but not specified by IEEE
+            Standard 1003.2 (POSIX.2), and should be used with
+            caution in software intended to be portable to other
+            systems. Note that a non-zero <code class="varname">rm_so</code> does not imply REG_NOTBOL;
+            REG_STARTEND affects only the location of the string,
+            not how it is matched.</p>
+          </dd>
+        </dl>
+      </div>
+
+      <p>If the pattern was compiled with the REG_NOSUB flag, no
+      data about any matched strings is returned. The <em class="parameter"><code>nmatch</code></em> and <em class="parameter"><code>pmatch</code></em> arguments of
+      <code class="function">regexec</code>() are ignored.</p>
+
+      <p>If the value of <em class="parameter"><code>nmatch</code></em> is zero, or if the value
+      <em class="parameter"><code>pmatch</code></em> is NULL, no
+      data about any matched strings is returned.</p>
+
+      <p>Otherwise,the portion of the string that was matched, and
+      also any captured substrings, are returned via the <em class="parameter"><code>pmatch</code></em> argument, which points
+      to an array of <em class="parameter"><code>nmatch</code></em>
+      structures of type <span class="type">regmatch_t</span>,
+      containing the members <code class="varname">rm_so</code> and
+      <code class="varname">rm_eo</code>. These contain the offset
+      to the first character of each substring and the offset to
+      the first character after the end of each substring,
+      respectively. The 0th element of the vector relates to the
+      entire portion of <em class="parameter"><code>string</code></em> that was matched;
+      subsequent elements relate to the capturing subpatterns of
+      the regular expression. Unused entries in the array have both
+      structure members set to -1.</p>
+
+      <p>A successful match yields a zero return; various error
+      codes are defined in the header file, of which REG_NOMATCH is
+      the "expected" failure code.</p>
+    </div>
+
+    <div class="refsect1" title="ERROR MESSAGES">
+      <a id="pcreposix-3_sect6" name="pcreposix-3_sect6" shape="rect"> </a>
+
+      <h2>ERROR MESSAGES</h2>
+
+      <p>The <code class="function">regerror</code>() function maps
+      a non-zero errorcode from either <code class="function">regcomp</code>() or <code class="function">regexec</code>() to a printable message. If
+      <em class="parameter"><code>preg</code></em> is not NULL, the
+      error should have arisen from the use of that structure. A
+      message terminated by a binary zero is placed in <em class="parameter"><code>errbuf</code></em>. The length of the
+      message, including the zero, is limited to <em class="parameter"><code>errbuf_size</code></em>. The yield of the
+      function is the size of buffer needed to hold the whole
+      message.</p>
+    </div>
+
+    <div class="refsect1" title="MEMORY USAGE">
+      <a id="pcreposix-3_sect7" name="pcreposix-3_sect7" shape="rect"> </a>
+
+      <h2>MEMORY USAGE</h2>
+
+      <p>Compiling a regular expression causes memory to be
+      allocated and associated with the <em class="parameter"><code>preg</code></em> structure. The function
+      <code class="function">regfree</code>() frees all such
+      memory, after which <em class="parameter"><code>preg</code></em> may no longer be used as a
+      compiled expression.</p>
+    </div>
+
+    <div class="refsect1" title="AUTHOR">
+      <a id="pcreposix-3_sect8" name="pcreposix-3_sect8" shape="rect"> </a>
+
+      <h2>AUTHOR</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+Philip Hazel
+University Computing Service
+Cambridge CB2 3QH, England.
+</pre>
+      </div>
+    </div>
+
+    <div class="refsect1" title="REVISION">
+      <a id="pcreposix-3_sect9" name="pcreposix-3_sect9" shape="rect"> </a>
+
+      <h2>REVISION</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+Last updated: 16 May 2010
+Copyright (c) 1997-2010 University of Cambridge.
+</pre>
+      </div>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <thead>
+            <tr>
+              <th style="" rowspan="1" colspan="1">COPYRIGHT</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <p>This manual page is taken from the <a class="ulink" href="http://www.PCRE.org/" target="_top" shape="rect">PCRE library</a>, which is distributed under
+                the BSD license.</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

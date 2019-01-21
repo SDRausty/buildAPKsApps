@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/clickable_left"
+	android:orientation="horizontal"
+	android:background="@android:drawable/list_selector_background"
+	android:minHeight="58dp"
+	android:focusable="true"
+	android:clickable="true"
+	android:layout_weight="1"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content" 
+	android:layout_gravity="center_vertical"
+	android:layout_marginRight="4dp">
+
+	<!-- image icon  -->
+	<ImageView android:id="@+id/icon_view"
+		android:layout_marginLeft="8dp"
+		android:layout_gravity="center_vertical"
+		android:layout_width="32dp"
+		android:layout_height="32dp" />
+
+	<LinearLayout android:orientation="vertical"
+		android:layout_weight="1"
+		android:layout_gravity="center_vertical"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="10dp">
+
+		<!-- title text -->
+		<TextView android:id="@+id/title_view" 
+			android:textSize="21sp"
+			android:textStyle="bold" 
+			android:textColor="#ffffff"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content" 
+            android:ellipsize="marquee"
+            android:singleLine="true" 
+            android:marqueeRepeatLimit="marquee_forever"
+			/>
+
+		<!-- description text -->
+		<TextView android:id="@+id/descr_view" 
+			android:textSize="14sp"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content" 
+            android:ellipsize="marquee"
+            android:singleLine="true" 
+            android:marqueeRepeatLimit="marquee_forever"
+			/>
+	</LinearLayout>
+
+    <ImageButton android:id="@+id/popup_button"
+    	android:src="@drawable/ic_popup"
+    	android:visibility="gone"
+    	android:layout_marginLeft="4dp"
+    	android:layout_gravity="center_vertical"
+        android:layout_width="58dp"
+        android:layout_height="46dp"/>
+
+</LinearLayout>

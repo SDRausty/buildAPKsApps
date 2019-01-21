@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string-array name="status_bar_variant_names">
+		<item>Zeige schwarzes Icon</item>
+		<item>Zeige weißes Icon</item>
+		<item>Zeige kein Icon, aber Text</item>
+		<item>Kein Statusleisteneintrag</item>
+	</string-array>
+
+	<string-array name="status_bar_variant_values">
+		<item>2</item>
+		<item>3</item>
+		<item>1</item>
+		<item>0</item>
+	</string-array>
+
+	<string-array name="appearance_variant_names">
+		<item>Vollbild</item>
+		<item>Dialog</item>
+	</string-array>
+
+	<string-array name="appearance_variant_values">
+		<item>0</item>
+		<item>1</item>
+	</string-array>
+
+	<string-array name="flashlight_names">
+		<item>LCD-Taschenlampe</item>
+		<item>LED-Taschenlampe</item>
+		<item>Keine Taschenlampe</item>
+	</string-array>
+
+	<string-array name="flashlight_values">
+		<item>0</item>
+		<item>1</item>
+		<item>2</item>
+	</string-array>
+
+	<string-array name="apn_modifier_names">
+		<item>Klassisch: \"[deaktiviert]\"</item>
+		<item>APNdroid: \"apndroid\"</item>
+		<item>Einfaches Vorzeichen: \"-\"</item>
+	</string-array>
+
+	<string-array name="apn_modifier_values">
+		<item>1</item>
+		<item>0</item>
+		<item>2</item>
+	</string-array>
+
+	<string-array name="flashlight_switch_names">
+		<item>Nach Ausrichtungswechsel</item>
+		<item>Verzögert</item>
+		<item>Durch Schütteln</item>
+	</string-array>
+
+	<string-array name="flashlight_switch_values">
+		<item>0</item>
+		<item>1</item>
+		<item>2</item>
+	</string-array>
+
+</resources>

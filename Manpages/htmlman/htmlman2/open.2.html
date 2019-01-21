@@ -1,0 +1,964 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>open(2) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="open(2) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="open(2) — Linux manual pages">
+    <a id="open.2" name="open.2" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>open, creat — open and possibly create a file or
+      device</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+#include &lt;sys/types.h&gt;
+#include &lt;sys/stat.h&gt;
+#include &lt;fcntl.h&gt;
+</pre>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">open</b>(</code></td>
+
+            <td rowspan="1" colspan="1">const char *<var class="pdparam">pathname</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">flags</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">open</b>(</code></td>
+
+            <td rowspan="1" colspan="1">const char *<var class="pdparam">pathname</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">flags</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">mode_t <var class="pdparam">mode</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">creat</b>(</code></td>
+
+            <td rowspan="1" colspan="1">const char *<var class="pdparam">pathname</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">mode_t <var class="pdparam">mode</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="open-2_sect1" name="open-2_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>Given a <em class="parameter"><code>pathname</code></em>
+      for a file, <code class="function">open</code>() returns a
+      file descriptor, a small, nonnegative integer for use in
+      subsequent system calls (<a class="link" href="../htmlman2/read.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">read</span>(2)</span></a>, <a class="link" href="../htmlman2/write.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">write</span>(2)</span></a>, <a class="link" href="../htmlman2/lseek.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">lseek</span>(2)</span></a>, <a class="link" href="../htmlman2/fcntl.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fcntl</span>(2)</span></a>, etc.). The file
+      descriptor returned by a successful call will be the
+      lowest-numbered file descriptor not currently open for the
+      process.</p>
+
+      <p>By default, the new file descriptor is set to remain open
+      across an <a class="link" href="../htmlman2/execve.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">execve</span>(2)</span></a> (i.e., the
+      <code class="constant">FD_CLOEXEC</code> file descriptor flag
+      described in <a class="link" href="../htmlman2/fcntl.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fcntl</span>(2)</span></a> is initially
+      disabled; the Linux-specific <code class="constant">O_CLOEXEC</code> flag, described below, can be
+      used to change this default). The file offset is set to the
+      beginning of the file (see <a class="link" href="../htmlman2/lseek.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">lseek</span>(2)</span></a>).</p>
+
+      <p>A call to <code class="function">open</code>() creates a
+      new <span class="emphasis"><em>open file
+      description</em></span>, an entry in the system-wide table of
+      open files. This entry records the file offset and the file
+      status flags (modifiable via the <a class="link" href="../htmlman2/fcntl.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fcntl</span>(2)</span></a> <code class="constant">F_SETFL</code> operation). A file descriptor is a
+      reference to one of these entries; this reference is
+      unaffected if <em class="parameter"><code>pathname</code></em> is subsequently
+      removed or modified to refer to a different file. The new
+      open file description is initially not shared with any other
+      process, but sharing may arise via <a class="link" href="../htmlman2/fork.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fork</span>(2)</span></a>.</p>
+
+      <p>The argument <em class="parameter"><code>flags</code></em>
+      must include one of the following <span class="emphasis"><em>access modes</em></span>: <code class="constant">O_RDONLY</code>, <code class="constant">O_WRONLY</code>, or <code class="constant">O_RDWR</code>. These request opening the file
+      read-only, write-only, or read/write, respectively.</p>
+
+      <p>In addition, zero or more file creation flags and file
+      status flags can be bitwise-<em class="replaceable"><code>or</code></em>'d in <em class="parameter"><code>flags</code></em>. The <span class="emphasis"><em>file creation flags</em></span> are
+      <code class="constant">O_CREAT</code>, <code class="constant">O_EXCL</code>, <code class="constant">O_NOCTTY</code>, and <code class="constant">O_TRUNC</code>. The <span class="emphasis"><em>file status flags</em></span> are all of the
+      remaining flags listed below. The distinction between these
+      two groups of flags is that the file status flags can be
+      retrieved and (in some cases) modified using <a class="link" href="../htmlman2/fcntl.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fcntl</span>(2)</span></a>. The full list of
+      file creation flags and file status flags is as follows:</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="constant">O_APPEND</code></span></dt>
+
+          <dd>
+            <p>The file is opened in append mode. Before each
+            <a class="link" href="../htmlman2/write.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">write</span>(2)</span></a>, the file
+            offset is positioned at the end of the file, as if with
+            <a class="link" href="../htmlman2/lseek.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">lseek</span>(2)</span></a>.
+            <code class="constant">O_APPEND</code> may lead to
+            corrupted files on NFS file systems if more than one
+            process appends data to a file at once. This is because
+            NFS does not support appending to a file, so the client
+            kernel has to simulate it, which can't be done without
+            a race condition.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">O_ASYNC</code></span></dt>
+
+          <dd>
+            <p>Enable signal-driven I/O: generate a signal
+            (<code class="constant">SIGIO</code> by default, but
+            this can be changed via <a class="link" href="../htmlman2/fcntl.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fcntl</span>(2)</span></a>) when input
+            or output becomes possible on this file descriptor.
+            This feature is only available for terminals,
+            pseudoterminals, sockets, and (since Linux 2.6) pipes
+            and FIFOs. See <a class="link" href="../htmlman2/fcntl.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fcntl</span>(2)</span></a> for further
+            details.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">O_CLOEXEC</code> (Since Linux
+          2.6.23)</span></dt>
+
+          <dd>
+            <p>Enable the close-on-exec flag for the new file
+            descriptor. Specifying this flag permits a program to
+            avoid additional <a class="link" href="../htmlman2/fcntl.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fcntl</span>(2)</span></a> <code class="constant">F_SETFD</code> operations to set the
+            <code class="constant">FD_CLOEXEC</code> flag.
+            Additionally, use of this flag is essential in some
+            multithreaded programs since using a separate <a class="link" href="../htmlman2/fcntl.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fcntl</span>(2)</span></a> <code class="constant">F_SETFD</code> operation to set the
+            <code class="constant">FD_CLOEXEC</code> flag does not
+            suffice to avoid race conditions where one thread opens
+            a file descriptor at the same time as another thread
+            does a <a class="link" href="../htmlman2/fork.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fork</span>(2)</span></a> plus
+            <a class="link" href="../htmlman2/execve.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">execve</span>(2)</span></a>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">O_CREAT</code></span></dt>
+
+          <dd>
+            <p>If the file does not exist it will be created. The
+            owner (user ID) of the file is set to the effective
+            user ID of the process. The group ownership (group ID)
+            is set either to the effective group ID of the process
+            or to the group ID of the parent directory (depending
+            on file system type and mount options, and the mode of
+            the parent directory, see the mount options <em class="replaceable"><code>bsdgroups</code></em> and
+            <em class="replaceable"><code>sysvgroups</code></em>
+            described in <a class="link" href="../htmlman8/mount.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mount</span>(8)</span></a>).</p>
+
+            <div class="blockquote">
+              <blockquote class="blockquote">
+                <p><em class="parameter"><code>mode</code></em>
+                specifies the permissions to use in case a new file
+                is created. This argument must be supplied when
+                <code class="constant">O_CREAT</code> is specified
+                in <em class="parameter"><code>flags</code></em>;
+                if <code class="constant">O_CREAT</code> is not
+                specified, then <em class="parameter"><code>mode</code></em> is ignored. The
+                effective permissions are modified by the process's
+                <code class="literal">umask</code> in the usual
+                way: The permissions of the created file are
+                <span class="emphasis"><em>(mode &amp;
+                ~umask)</em></span>. Note that this mode only
+                applies to future accesses of the newly created
+                file; the <code class="function">open</code>() call
+                that creates a read-only file may well return a
+                read/write file descriptor.</p>
+
+                <p>The following symbolic constants are provided
+                for <em class="parameter"><code>mode</code></em>:</p>
+
+                <div class="variablelist">
+                  <dl>
+                    <dt><span class="term"><code class="constant">S_IRWXU</code></span></dt>
+
+                    <dd>
+                      <p>00700 user (file owner) has read, write
+                      and execute permission</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="constant">S_IRUSR</code></span></dt>
+
+                    <dd>
+                      <p>00400 user has read permission</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="constant">S_IWUSR</code></span></dt>
+
+                    <dd>
+                      <p>00200 user has write permission</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="constant">S_IXUSR</code></span></dt>
+
+                    <dd>
+                      <p>00100 user has execute permission</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="constant">S_IRWXG</code></span></dt>
+
+                    <dd>
+                      <p>00070 group has read, write and execute
+                      permission</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="constant">S_IRGRP</code></span></dt>
+
+                    <dd>
+                      <p>00040 group has read permission</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="constant">S_IWGRP</code></span></dt>
+
+                    <dd>
+                      <p>00020 group has write permission</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="constant">S_IXGRP</code></span></dt>
+
+                    <dd>
+                      <p>00010 group has execute permission</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="constant">S_IRWXO</code></span></dt>
+
+                    <dd>
+                      <p>00007 others have read, write and execute
+                      permission</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="constant">S_IROTH</code></span></dt>
+
+                    <dd>
+                      <p>00004 others have read permission</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="constant">S_IWOTH</code></span></dt>
+
+                    <dd>
+                      <p>00002 others have write permission</p>
+                    </dd>
+
+                    <dt><span class="term"><code class="constant">S_IXOTH</code></span></dt>
+
+                    <dd>
+                      <p>00001 others have execute permission</p>
+                    </dd>
+                  </dl>
+                </div>
+              </blockquote>
+            </div>
+          </dd>
+
+          <dt><span class="term"><code class="constant">O_DIRECT</code> (Since Linux
+          2.4.10)</span></dt>
+
+          <dd>
+            <p>Try to minimize cache effects of the I/O to and from
+            this file. In general this will degrade performance,
+            but it is useful in special situations, such as when
+            applications do their own caching. File I/O is done
+            directly to/from user space buffers. The <code class="constant">O_DIRECT</code> flag on its own makes at an
+            effort to transfer data synchronously, but does not
+            give the guarantees of the <code class="constant">O_SYNC</code> that data and necessary
+            metadata are transferred. To guarantee synchronous I/O
+            the <code class="constant">O_SYNC</code> must be used
+            in addition to <code class="constant">O_DIRECT</code>.
+            See <code class="constant">NOTES</code> below for
+            further discussion.</p>
+
+            <p>A semantically similar (but deprecated) interface
+            for block devices is described in <a class="link" href="../htmlman8/raw.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">raw</span>(8)</span></a>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">O_DIRECTORY</code></span></dt>
+
+          <dd>
+            <p>If <em class="parameter"><code>pathname</code></em>
+            is not a directory, cause the open to fail. This flag
+            is Linux-specific, and was added in kernel version
+            2.1.126, to avoid denial-of-service problems if
+            <a class="link" href="../htmlman3/opendir.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">opendir</span>(3)</span></a> is called
+            on a FIFO or tape device, but should not be used
+            outside of the implementation of <a class="link" href="../htmlman3/opendir.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">opendir</span>(3)</span></a>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">O_EXCL</code></span></dt>
+
+          <dd>
+            <p>Ensure that this call creates the file: if this flag
+            is specified in conjunction with <code class="constant">O_CREAT</code>, and <em class="parameter"><code>pathname</code></em> already exists,
+            then <code class="function">open</code>() will
+            fail.</p>
+
+            <p>When these two flags are specified, symbolic links
+            are not followed: if <em class="parameter"><code>pathname</code></em> is a symbolic
+            link, then <code class="function">open</code>() fails
+            regardless of where the symbolic link points to.</p>
+
+            <p>In general, the behavior of <code class="constant">O_EXCL</code> is undefined if it is used
+            without <code class="constant">O_CREAT</code>. There is
+            one exception: on Linux 2.6 and later, <code class="constant">O_EXCL</code> can be used without
+            <code class="constant">O_CREAT</code> if <em class="parameter"><code>pathname</code></em> refers to a
+            block device. If the block device is in use by the
+            system (e.g., mounted), <code class="function">open</code>() fails with the error
+            <span class="errorname">EBUSY</span>.</p>
+
+            <p>On NFS, <code class="constant">O_EXCL</code> is only
+            supported when using NFSv3 or later on kernel 2.6 or
+            later. In NFS environments where <code class="constant">O_EXCL</code> support is not provided,
+            programs that rely on it for performing locking tasks
+            will contain a race condition. Portable programs that
+            want to perform atomic file locking using a lockfile,
+            and need to avoid reliance on NFS support for
+            <code class="constant">O_EXCL</code>, can create a
+            unique file on the same file system (e.g.,
+            incorporating hostname and PID), and use <a class="link" href="../htmlman2/link.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">link</span>(2)</span></a> to make a
+            link to the lockfile. If <a class="link" href="../htmlman2/link.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">link</span>(2)</span></a> returns 0,
+            the lock is successful. Otherwise, use <a class="link" href="../htmlman2/stat.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">stat</span>(2)</span></a> on the unique
+            file to check if its link count has increased to 2, in
+            which case the lock is also successful.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">O_LARGEFILE</code></span></dt>
+
+          <dd>
+            <p>(LFS) Allow files whose sizes cannot be represented
+            in an <span class="type">off_t</span> (but can be
+            represented in an <span class="type">off64_t</span>) to
+            be opened. The <code class="constant">_LARGEFILE64_SOURCE</code> macro must be
+            defined (before including <em class="replaceable"><code>any</code></em> header files) in
+            order to obtain this definition. Setting the
+            <code class="constant">_FILE_OFFSET_BITS</code> feature
+            test macro to 64 (rather than using <code class="constant">O_LARGEFILE</code>) is the preferred method
+            of obtaining method of accessing large files on 32-bit
+            systems (see <a class="link" href="../htmlman7/feature_test_macros.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">feature_test_macros</span>(7)</span></a>).</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">O_NOATIME</code> (Since Linux
+          2.6.8)</span></dt>
+
+          <dd>
+            <p>Do not update the file last access time (st_atime in
+            the inode) when the file is <a class="link" href="../htmlman2/read.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">read</span>(2)</span></a>. This flag is
+            intended for use by indexing or backup programs, where
+            its use can significantly reduce the amount of disk
+            activity. This flag may not be effective on all file
+            systems. One example is NFS, where the server maintains
+            the access time.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">O_NOCTTY</code></span></dt>
+
+          <dd>
+            <p>If <em class="parameter"><code>pathname</code></em>
+            refers to a terminal device — see <a class="link" href="../htmlman4/tty.4.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">tty</span>(4)</span></a> — it
+            will not become the process's controlling terminal even
+            if the process does not have one.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">O_NOFOLLOW</code></span></dt>
+
+          <dd>
+            <p>If <em class="parameter"><code>pathname</code></em>
+            is a symbolic link, then the open fails. This is a
+            FreeBSD extension, which was added to Linux in version
+            2.1.126. Symbolic links in earlier components of the
+            pathname will still be followed.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">O_NONBLOCK</code> or <code class="constant">O_NDELAY</code></span></dt>
+
+          <dd>
+            <p>When possible, the file is opened in nonblocking
+            mode. Neither the <code class="function">open</code>()
+            nor any subsequent operations on the file descriptor
+            which is returned will cause the calling process to
+            wait. For the handling of FIFOs (named pipes), see also
+            <a class="link" href="../htmlman7/fifo.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fifo</span>(7)</span></a>. For a
+            discussion of the effect of <code class="constant">O_NONBLOCK</code> in conjunction with
+            mandatory file locks and with file leases, see
+            <a class="link" href="../htmlman2/fcntl.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fcntl</span>(2)</span></a>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">O_SYNC</code></span></dt>
+
+          <dd>
+            <p>The file is opened for synchronous I/O. Any
+            <a class="link" href="../htmlman2/write.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">write</span>(2)</span></a>s on the
+            resulting file descriptor will block the calling
+            process until the data has been physically written to
+            the underlying hardware. <span class="emphasis"><em>But
+            see NOTES below</em></span>.</p>
+          </dd>
+
+          <dt><span class="term"><code class="constant">O_TRUNC</code></span></dt>
+
+          <dd>
+            <p>If the file already exists and is a regular file and
+            the open mode allows writing (i.e., is <code class="constant">O_RDWR</code> or <code class="constant">O_WRONLY</code>) it will be truncated to
+            length 0. If the file is a FIFO or terminal device
+            file, the <code class="constant">O_TRUNC</code> flag is
+            ignored. Otherwise the effect of <code class="constant">O_TRUNC</code> is unspecified.</p>
+          </dd>
+        </dl>
+      </div>
+
+      <p>Some of these optional flags can be altered using
+      <a class="link" href="../htmlman2/fcntl.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fcntl</span>(2)</span></a> after the file has
+      been opened.</p>
+
+      <p><code class="function">creat</code>() is equivalent to
+      <code class="function">open</code>() with <em class="parameter"><code>flags</code></em> equal to <em class="replaceable"><code>O_CREAT|O_WRONLY|O_TRUNC</code></em>.</p>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="open-2_sect2" name="open-2_sect2" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p><code class="function">open</code>() and <code class="function">creat</code>() return the new file descriptor, or
+      −1 if an error occurred (in which case, <code class="varname">errno</code> is set appropriately).</p>
+    </div>
+
+    <div class="refsect1" title="ERRORS">
+      <a id="open-2_sect3" name="open-2_sect3" shape="rect"> </a>
+
+      <h2>ERRORS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><span class="errorname">EACCES</span></span></dt>
+
+          <dd>
+            <p>The requested access to the file is not allowed, or
+            search permission is denied for one of the directories
+            in the path prefix of <em class="parameter"><code>pathname</code></em>, or the file did
+            not exist yet and write access to the parent directory
+            is not allowed. (See also <a class="link" href="../htmlman7/path_resolution.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">path_resolution</span>(7)</span></a>.)</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EEXIST</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>pathname</code></em>
+            already exists and <code class="constant">O_CREAT</code> and <code class="constant">O_EXCL</code> were used.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EFAULT</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>pathname</code></em>
+            points outside your accessible address space.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EFBIG</span></span></dt>
+
+          <dd>
+            <p>See <span class="errorname">EOVERFLOW</span>.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EINTR</span></span></dt>
+
+          <dd>
+            <p>While blocked waiting to complete an open of a slow
+            device (e.g., a FIFO; see <a class="link" href="../htmlman7/fifo.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fifo</span>(7)</span></a>), the call
+            was interrupted by a signal handler; see <a class="link" href="../htmlman7/signal.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">signal</span>(7)</span></a>.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EISDIR</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>pathname</code></em>
+            refers to a directory and the access requested involved
+            writing (that is, <code class="constant">O_WRONLY</code> or <code class="constant">O_RDWR</code> is set).</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ELOOP</span></span></dt>
+
+          <dd>
+            <p>Too many symbolic links were encountered in
+            resolving <em class="parameter"><code>pathname</code></em>, or <code class="constant">O_NOFOLLOW</code> was specified but
+            <em class="parameter"><code>pathname</code></em> was a
+            symbolic link.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EMFILE</span></span></dt>
+
+          <dd>
+            <p>The process already has the maximum number of files
+            open.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENAMETOOLONG</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>pathname</code></em> was
+            too long.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENFILE</span></span></dt>
+
+          <dd>
+            <p>The system limit on the total number of open files
+            has been reached.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENODEV</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>pathname</code></em>
+            refers to a device special file and no corresponding
+            device exists. (This is a Linux kernel bug; in this
+            situation <span class="errorname">ENXIO</span> must be
+            returned.)</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENOENT</span></span></dt>
+
+          <dd>
+            <p><code class="constant">O_CREAT</code> is not set and
+            the named file does not exist. Or, a directory
+            component in <em class="parameter"><code>pathname</code></em> does not exist
+            or is a dangling symbolic link.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENOMEM</span></span></dt>
+
+          <dd>
+            <p>Insufficient kernel memory was available.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENOSPC</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>pathname</code></em> was
+            to be created but the device containing <em class="parameter"><code>pathname</code></em> has no room for
+            the new file.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENOTDIR</span></span></dt>
+
+          <dd>
+            <p>A component used as a directory in <em class="parameter"><code>pathname</code></em> is not, in fact,
+            a directory, or <code class="constant">O_DIRECTORY</code> was specified and
+            <em class="parameter"><code>pathname</code></em> was
+            not a directory.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENXIO</span></span></dt>
+
+          <dd>
+            <p><code class="constant">O_NONBLOCK</code> |
+            <code class="constant">O_WRONLY</code> is set, the
+            named file is a FIFO and no process has the file open
+            for reading. Or, the file is a device special file and
+            no corresponding device exists.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EOVERFLOW</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>pathname</code></em>
+            refers to a regular file that is too large to be
+            opened. The usual scenario here is that an application
+            compiled on a 32-bit platform without <code class="option">−D_FILE_OFFSET_BITS=64</code> tried to
+            open a file whose size exceeds <em class="replaceable"><code>(2&lt;&lt;31)-1</code></em> bits;
+            see also <code class="constant">O_LARGEFILE</code>
+            above. This is the error specified by POSIX.1-2001; in
+            kernels before 2.6.24, Linux gave the error
+            <span class="errorname">EFBIG</span> for this case.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EPERM</span></span></dt>
+
+          <dd>
+            <p>The <code class="constant">O_NOATIME</code> flag was
+            specified, but the effective user ID of the caller did
+            not match the owner of the file and the caller was not
+            privileged (<code class="constant">CAP_FOWNER</code>).</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EROFS</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>pathname</code></em>
+            refers to a file on a read-only file system and write
+            access was requested.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ETXTBSY</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>pathname</code></em>
+            refers to an executable image which is currently being
+            executed and write access was requested.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EWOULDBLOCK</span></span></dt>
+
+          <dd>
+            <p>The <code class="constant">O_NONBLOCK</code> flag
+            was specified, and an incompatible lease was held on
+            the file (see <a class="link" href="../htmlman2/fcntl.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fcntl</span>(2)</span></a>).</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="open-2_sect4" name="open-2_sect4" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>SVr4, 4.3BSD, POSIX.1-2001. The <code class="constant">O_DIRECTORY</code>, <code class="constant">O_NOATIME</code>, and <code class="constant">O_NOFOLLOW</code> flags are Linux-specific, and
+      one may need to define <code class="constant">_GNU_SOURCE</code> (before including <em class="replaceable"><code>any</code></em> header files) to obtain
+      their definitions.</p>
+
+      <p>The <code class="constant">O_CLOEXEC</code> flag is not
+      specified in POSIX.1-2001, but is specified in
+      POSIX.1-2008.</p>
+
+      <p><code class="constant">O_DIRECT</code> is not specified in
+      POSIX; one has to define <code class="constant">_GNU_SOURCE</code> (before including <em class="replaceable"><code>any</code></em> header files) to get its
+      definition.</p>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="open-2_sect5" name="open-2_sect5" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p>Under Linux, the <code class="constant">O_NONBLOCK</code>
+      flag indicates that one wants to open but does not
+      necessarily have the intention to read or write. This is
+      typically used to open devices in order to get a file
+      descriptor for use with <a class="link" href="../htmlman2/ioctl.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">ioctl</span>(2)</span></a>.</p>
+
+      <p>Unlike the other values that can be specified in
+      <em class="parameter"><code>flags</code></em>, the
+      <span class="emphasis"><em>access mode</em></span> values
+      <code class="constant">O_RDONLY</code>, <code class="constant">O_WRONLY</code>, and <code class="constant">O_RDWR</code>, do not specify individual bits.
+      Rather, they define the low order two bits of <em class="parameter"><code>flags</code></em>, and are defined
+      respectively as 0, 1, and 2. In other words, the combination
+      <span class="emphasis"><em>O_RDONLY | O_WRONLY</em></span> is
+      a logical error, and certainly does not have the same meaning
+      as <code class="constant">O_RDWR</code>. Linux reserves the
+      special, nonstandard access mode 3 (binary 11) in <em class="parameter"><code>flags</code></em> to mean: check for read
+      and write permission on the file and return a descriptor that
+      can't be used for reading or writing. This nonstandard access
+      mode is used by some Linux drivers to return a descriptor
+      that is only to be used for device-specific <a class="link" href="../htmlman2/ioctl.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">ioctl</span>(2)</span></a> operations.</p>
+
+      <p>The (undefined) effect of <span class="emphasis"><em>O_RDONLY | O_TRUNC</em></span> varies among
+      implementations. On many systems the file is actually
+      truncated.</p>
+
+      <p>There are many infelicities in the protocol underlying
+      NFS, affecting amongst others <code class="constant">O_SYNC</code> and <code class="constant">O_NDELAY</code>.</p>
+
+      <p>POSIX provides for three different variants of
+      synchronized I/O, corresponding to the flags <code class="constant">O_SYNC</code>, <code class="constant">O_DSYNC</code>, and <code class="constant">O_RSYNC</code>. Currently (2.6.31), Linux only
+      implements <code class="constant">O_SYNC</code>, but glibc
+      maps <code class="constant">O_DSYNC</code> and <code class="constant">O_RSYNC</code> to the same numerical value as
+      <code class="constant">O_SYNC</code>. Most Linux file systems
+      don't actually implement the POSIX <code class="constant">O_SYNC</code> semantics, which require all
+      metadata updates of a write to be on disk on returning to
+      userspace, but only the <code class="constant">O_DSYNC</code>
+      semantics, which require only actual file data and metadata
+      necessary to retrieve it to be on disk by the time the system
+      call returns.</p>
+
+      <p>Note that <code class="function">open</code>() can open
+      device special files, but <code class="function">creat</code>() cannot create them; use <a class="link" href="../htmlman2/mknod.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mknod</span>(2)</span></a> instead.</p>
+
+      <p>On NFS file systems with UID mapping enabled, <code class="function">open</code>() may return a file descriptor but,
+      for example, <a class="link" href="../htmlman2/read.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">read</span>(2)</span></a> requests are denied
+      with <span class="errorname">EACCES</span>. This is because
+      the client performs <code class="function">open</code>() by
+      checking the permissions, but UID mapping is performed by the
+      server upon read and write requests.</p>
+
+      <p>If the file is newly created, its <em class="replaceable"><code>st_atime</code></em>, <em class="replaceable"><code>st_ctime</code></em>, <em class="replaceable"><code>st_mtime</code></em> fields
+      (respectively, time of last access, time of last status
+      change, and time of last modification; see <a class="link" href="../htmlman2/stat.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">stat</span>(2)</span></a>) are set to the
+      current time, and so are the <em class="replaceable"><code>st_ctime</code></em> and <em class="replaceable"><code>st_mtime</code></em> fields of the parent
+      directory. Otherwise, if the file is modified because of the
+      <code class="constant">O_TRUNC</code> flag, its st_ctime and
+      st_mtime fields are set to the current time.</p>
+
+      <div class="refsect2" title="O_DIRECT">
+        <a id="open-2_sect6" name="open-2_sect6" shape="rect"> </a>
+
+        <h3>O_DIRECT</h3>
+
+        <p>The <code class="constant">O_DIRECT</code> flag may
+        impose alignment restrictions on the length and address of
+        userspace buffers and the file offset of I/Os. In Linux
+        alignment restrictions vary by file system and kernel
+        version and might be absent entirely. However there is
+        currently no file system−independent interface for an
+        application to discover these restrictions for a given file
+        or file system. Some file systems provide their own
+        interfaces for doing so, for example the <code class="constant">XFS_IOC_DIOINFO</code> operation in <span class="citerefentry"><span class="refentrytitle">xfsctl</span>(3)</span>.</p>
+
+        <p>Under Linux 2.4, transfer sizes, and the alignment of
+        the user buffer and the file offset must all be multiples
+        of the logical block size of the file system. Under Linux
+        2.6, alignment to 512-byte boundaries suffices.</p>
+
+        <p>The <code class="constant">O_DIRECT</code> flag was
+        introduced in SGI IRIX, where it has alignment restrictions
+        similar to those of Linux 2.4. IRIX has also a <a class="link" href="../htmlman2/fcntl.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fcntl</span>(2)</span></a> call to query
+        appropriate alignments, and sizes. FreeBSD 4.x introduced a
+        flag of the same name, but without alignment
+        restrictions.</p>
+
+        <p><code class="constant">O_DIRECT</code> support was added
+        under Linux in kernel version 2.4.10. Older Linux kernels
+        simply ignore this flag. Some file systems may not
+        implement the flag and <code class="function">open</code>()
+        will fail with <span class="errorname">EINVAL</span> if it
+        is used.</p>
+
+        <p>Applications should avoid mixing <code class="constant">O_DIRECT</code> and normal I/O to the same file,
+        and especially to overlapping byte regions in the same
+        file. Even when the file system correctly handles the
+        coherency issues in this situation, overall I/O throughput
+        is likely to be slower than using either mode alone.
+        Likewise, applications should avoid mixing <a class="link" href="../htmlman2/mmap.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mmap</span>(2)</span></a> of files with
+        direct I/O to the same files.</p>
+
+        <p>The behaviour of <code class="constant">O_DIRECT</code>
+        with NFS will differ from local file systems. Older
+        kernels, or kernels configured in certain ways, may not
+        support this combination. The NFS protocol does not support
+        passing the flag to the server, so <code class="constant">O_DIRECT</code> I/O will only bypass the page
+        cache on the client; the server may still cache the I/O.
+        The client asks the server to make the I/O synchronous to
+        preserve the synchronous semantics of <code class="constant">O_DIRECT</code>. Some servers will perform
+        poorly under these circumstances, especially if the I/O
+        size is small. Some servers may also be configured to lie
+        to clients about the I/O having reached stable storage;
+        this will avoid the performance penalty at some risk to
+        data integrity in the event of server power failure. The
+        Linux NFS client places no alignment restrictions on
+        <code class="constant">O_DIRECT</code> I/O.</p>
+
+        <p>In summary, <code class="constant">O_DIRECT</code> is a
+        potentially powerful tool that should be used with caution.
+        It is recommended that applications treat use of
+        <code class="constant">O_DIRECT</code> as a performance
+        option which is disabled by default.</p>
+
+        <div class="blockquote">
+          <blockquote class="blockquote">
+            <p>"The thing that has always disturbed me about
+            O_DIRECT is that the whole interface is just stupid,
+            and was probably designed by a deranged monkey on some
+            serious mind-controlling substances." — Linus</p>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="BUGS">
+      <a id="open-2_sect7" name="open-2_sect7" shape="rect"> </a>
+
+      <h2>BUGS</h2>
+
+      <p>Currently, it is not possible to enable signal-driven I/O
+      by specifying <code class="constant">O_ASYNC</code> when
+      calling <code class="function">open</code>(); use <a class="link" href="../htmlman2/fcntl.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fcntl</span>(2)</span></a> to enable this
+      flag.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="open-2_sect8" name="open-2_sect8" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman2/chmod.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">chmod</span>(2)</span></a>, <a class="link" href="../htmlman2/chown.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">chown</span>(2)</span></a>, <a class="link" href="../htmlman2/close.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">close</span>(2)</span></a>, <a class="link" href="../htmlman2/dup.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">dup</span>(2)</span></a>, <a class="link" href="../htmlman2/fcntl.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fcntl</span>(2)</span></a>, <a class="link" href="../htmlman2/link.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">link</span>(2)</span></a>, <a class="link" href="../htmlman2/lseek.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">lseek</span>(2)</span></a>, <a class="link" href="../htmlman2/mknod.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mknod</span>(2)</span></a>, <a class="link" href="../htmlman2/mmap.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mmap</span>(2)</span></a>, <a class="link" href="../htmlman2/mount.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mount</span>(2)</span></a>, <a class="link" href="../htmlman2/openat.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">openat</span>(2)</span></a>, <a class="link" href="../htmlman2/read.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">read</span>(2)</span></a>, <a class="link" href="../htmlman2/socket.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">socket</span>(2)</span></a>, <a class="link" href="../htmlman2/stat.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">stat</span>(2)</span></a>, <a class="link" href="../htmlman2/umask.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">umask</span>(2)</span></a>, <a class="link" href="../htmlman2/unlink.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">unlink</span>(2)</span></a>, <a class="link" href="../htmlman2/write.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">write</span>(2)</span></a>, <a class="link" href="../htmlman3/fopen.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fopen</span>(3)</span></a>, <a class="link" href="../htmlman7/fifo.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fifo</span>(7)</span></a>, <a class="link" href="../htmlman7/path_resolution.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">path_resolution</span>(7)</span></a>,
+      <a class="link" href="../htmlman7/symlink.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">symlink</span>(7)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="open-2_sect9" name="open-2_sect9" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.32 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                  This manpage is Copyright (C) 1992 Drew Eckhardt;<br />
+
+                                                1993 Michael Haardt, Ian Jackson.<br />
+
+                                                2008 Greg Banks<br />
+
+                  <br />
+                  Permission is granted to make and distribute verbatim copies of this<br />
+
+                  manual provided the copyright notice and this permission notice are<br />
+
+                  preserved on all copies.<br />
+                  <br />
+                  Permission is granted to copy and distribute modified versions of this<br />
+
+                  manual under the conditions for verbatim copying, provided that the<br />
+
+                  entire resulting derived work is distributed under the terms of a<br />
+
+                  permission notice identical to this one.<br />
+
+                  <br />
+                  Since the Linux kernel and libraries are constantly changing, this<br />
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no<br />
+
+                  responsibility for errors or omissions, or for damages resulting from<br />
+
+                  the use of the information contained herein.  The author(s) may not<br />
+
+                  have taken the same level of care in the production of this manual,<br />
+
+                  which is licensed free of charge, as they might when working<br />
+
+                  professionally.<br />
+                  <br />
+                  Formatted or processed versions of this manual, if unaccompanied by<br />
+
+                  the source, must acknowledge the copyright and authors of this work.<br />
+
+                  <br />
+                  Modified 1993-07-21 by Rik Faith &lt;faith<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cs.unc.edu&gt;<br />
+
+                  Modified 1994-08-21 by Michael Haardt<br />
+
+                  Modified 1996-04-13 by Andries Brouwer &lt;aeb<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cwi.nl&gt;<br />
+
+                  Modified 1996-05-13 by Thomas Koenig<br />
+
+                  Modified 1996-12-20 by Michael Haardt<br />
+
+                  Modified 1999-02-19 by Andries Brouwer &lt;aeb<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cwi.nl&gt;<br />
+
+                  Modified 1998-11-28 by Joseph S. Myers &lt;jsm28<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>hermes.cam.ac.uk&gt;<br />
+
+                  Modified 1999-06-03 by Michael Haardt<br />
+
+                  Modified 2002-05-07 by Michael Kerrisk &lt;mtk.manpages<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>gmail.com&gt;<br />
+
+                  Modified 2004-06-23 by Michael Kerrisk &lt;mtk.manpages<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>gmail.com&gt;<br />
+
+                  2004-12-08, mtk, reordered flags list alphabetically<br />
+
+                  2004-12-08, Martin Pool &lt;mbp<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>sourcefrog.net&gt; (&amp; mtk), added O_NOATIME<br />
+
+                  2007-09-18, mtk, Added description of O_CLOEXEC + other minor edits<br />
+
+                  2008-01-03, mtk, with input from Trond Myklebust<br />
+
+                      &lt;trond.myklebust<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>fys.uio.no&gt; and Timo Sirainen &lt;tss<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>iki.fi&gt;<br />
+
+                      Rewrite description of O_EXCL.<br />
+
+                  2008-01-11, Greg Banks &lt;gnb<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>melbourne.sgi.com&gt;: add more detail<br />
+
+                      on O_DIRECT.<br />
+                  2008-02-26, Michael Haardt: Reorganized text for O_CREAT and mode<br />
+
+                  <br />
+                  FIXME . Apr 08: The next POSIX revision has O_EXEC, O_SEARCH, and<br />
+
+                  O_TTYINIT.  Eventually these may need to be documented.  --mtk<br />
+
+                  FIXME Linux 2.6.33 has O_DSYNC, and a hidden __O_SYNC.<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:background="#ffffff">
+
+	<TextView android:id="@+id/text" android:textColor="@android:color/black"
+		android:layout_width="fill_parent" android:text="Turn the screen out of your face as its brightness will go full in couple of seconds"
+		android:gravity="center" android:layout_height="fill_parent" android:textSize="20sp" android:layout_marginLeft="20dp" android:layout_marginRight="20dp"/>
+
+</LinearLayout>

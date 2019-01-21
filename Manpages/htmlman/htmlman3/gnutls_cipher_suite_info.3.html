@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>gnutls_cipher_suite_info(3) — Linux manual
+  pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="gnutls_cipher_suite_info(3) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="gnutls_cipher_suite_info(3) — Linux manual pages">
+    <a id="gnutls-cipher-suite-info.3" name="gnutls-cipher-suite-info.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>gnutls_cipher_suite_info — API function</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;gnutls/gnutls.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">const char *<b class="fsfunc">gnutls_cipher_suite_info</b>(</code></td>
+
+            <td rowspan="1" colspan="1">size_t <var class="pdparam">idx</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">char * <var class="pdparam">cs_id</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">gnutls_kx_algorithm_t * <var class="pdparam">kx</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">gnutls_cipher_algorithm_t * <var class="pdparam">cipher</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">gnutls_mac_algorithm_t * <var class="pdparam">mac</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">gnutls_protocol_t * <var class="pdparam">min_version</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="ARGUMENTS">
+      <a id="gnutls-cipher-suite-info-3_sect1" name="gnutls-cipher-suite-info-3_sect1" shape="rect"> </a>
+
+      <h2>ARGUMENTS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><span class="emphasis"><em>size_t
+          idx</em></span></span></dt>
+
+          <dd>
+            <p>index of cipher suite to get information about,
+            starts on 0.</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>char *
+          cs_id</em></span></span></dt>
+
+          <dd>
+            <p>output buffer with room for 2 bytes, indicating
+            cipher suite value</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>gnutls_kx_algorithm_t *
+          kx</em></span></span></dt>
+
+          <dd>
+            <p>output variable indicating key exchange algorithm,
+            or <code class="constant">NULL</code>.</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>gnutls_cipher_algorithm_t *
+          cipher</em></span></span></dt>
+
+          <dd>
+            <p>output variable indicating cipher, or <code class="constant">NULL</code>.</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>gnutls_mac_algorithm_t *
+          mac</em></span></span></dt>
+
+          <dd>
+            <p>output variable indicating MAC algorithm, or
+            <code class="constant">NULL</code>.</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>gnutls_protocol_t *
+          min_version</em></span></span></dt>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="gnutls-cipher-suite-info-3_sect2" name="gnutls-cipher-suite-info-3_sect2" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>Get information about supported cipher suites. Use the
+      function iteratively to get information about all supported
+      cipher suites. Call with idx=0 to get information about first
+      cipher suite, then idx=1 and so on until the function returns
+      NULL.</p>
+    </div>
+
+    <div class="refsect1" title="RETURNS">
+      <a id="gnutls-cipher-suite-info-3_sect3" name="gnutls-cipher-suite-info-3_sect3" shape="rect"> </a>
+
+      <h2>RETURNS</h2>
+
+      <p>the name of <em class="parameter"><code>idx</code></em>
+      cipher suite, and set the information about the cipher suite
+      in the output variables. If <em class="parameter"><code>idx</code></em> is out of bounds,
+      <code class="constant">NULL</code> is returned.</p>
+    </div>
+
+    <div class="refsect1" title="REPORTING BUGS">
+      <a id="gnutls-cipher-suite-info-3_sect4" name="gnutls-cipher-suite-info-3_sect4" shape="rect"> </a>
+
+      <h2>REPORTING BUGS</h2>
+
+      <p>Report bugs to &lt;bug-gnutls@gnu.org&gt;. GnuTLS home
+      page: http://www.gnu.org/software/gnutls/ General help using
+      GNU software: http://www.gnu.org/gethelp/</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="gnutls-cipher-suite-info-3_sect6" name="gnutls-cipher-suite-info-3_sect6" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p>The full documentation for <em class="citetitle">gnutls</em> is maintained as a Texinfo manual. If
+      the <span class="command"><strong>info</strong></span> and
+      <em class="citetitle">gnutls</em> programs are properly
+      installed at your site, the command</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+info gnutls
+</pre>
+      </div>
+
+      <p>should give you access to the complete manual.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <thead>
+            <tr>
+              <th style="" rowspan="1" colspan="1">COPYRIGHT</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <p>Copyright © 2008 Free Software
+                Foundation.</p>
+
+                <p>Copying and distribution of this file, with or
+                without modification, are permitted in any medium
+                without royalty provided the copyright notice and
+                this notice are preserved.</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

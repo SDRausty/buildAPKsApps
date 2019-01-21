@@ -1,0 +1,35 @@
+<resources>
+
+    <!--
+         Customize dimensions originally defined in res/values/dimens.xml (such as
+         screen margins) for sw600dp devices (e.g. 7" tablets) here.
+    -->
+    <dimen name="activity_horizontal_margin">12dp</dimen>
+    <dimen name="activity_vertical_margin">12dp</dimen>
+    <dimen name="img_top_header">100dp</dimen>
+    <dimen name="top_hdr_logo">60dp</dimen>
+    <dimen name="menu_button">60dp</dimen>
+    <dimen name="btn_text">60dp</dimen>
+    <dimen name="shadow_radius">37dp</dimen>
+    <dimen name="info_height">60dp</dimen>
+    <dimen name="info_text">37dp</dimen>
+    <dimen name="about_logo_size">225dp</dimen>
+    <dimen name="img_hdr_height">30dp</dimen>
+    <dimen name="about_divider_height">30dp</dimen>
+    <dimen name="padding_for_about_info">15dp</dimen>
+    <dimen name="about_hdr_text">28dp</dimen>
+    <dimen name="about_ftr_text">22dp</dimen>
+    <dimen name="about_section_pad">30dp</dimen>
+    <dimen name="logo_margin_top">12dp</dimen>
+    <dimen name="detail_height">150dp</dimen>
+    
+    <dimen name="padding_for_contents">7dp</dimen>
+    <dimen name="inner_padding">15dp</dimen>
+    <dimen name="help_text_size">27dp</dimen>
+	<dimen name="margin_top_help_group">15dp</dimen>
+	<dimen name="margin_left_tvinfo">15dp</dimen>
+	
+	<dimen name="bloodtype_table_height">75dp</dimen>
+	<dimen name="bloodtype_table_hdr_text">20dp</dimen>
+
+</resources>

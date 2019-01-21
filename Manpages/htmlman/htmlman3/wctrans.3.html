@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>wctrans(3) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="wctrans(3) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="wctrans(3) — Linux manual pages">
+    <a id="wctrans.3" name="wctrans.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>wctrans — wide-character translation mapping</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;wctype.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">wctrans_t <b class="fsfunc">wctrans</b>(</code></td>
+
+            <td rowspan="1" colspan="1">const char *<var class="pdparam">name</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="wctrans-3_sect1" name="wctrans-3_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>The <span class="type">wctrans_t</span> type represents a
+      mapping which can map a wide character to another wide
+      character. Its nature is implementation-dependent, but the
+      special value <span class="emphasis"><em>(wctrans_t)
+      0</em></span> denotes an invalid mapping. Nonzero
+      <span class="type">wctrans_t</span> values can be passed to
+      the <a class="link" href="../htmlman3/towctrans.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">towctrans</span>(3)</span></a> function to
+      actually perform the wide-character mapping.</p>
+
+      <p>The <code class="function">wctrans</code>() function
+      returns a mapping, given by its name. The set of valid names
+      depends on the <code class="constant">LC_CTYPE</code>
+      category of the current locale, but the following names are
+      valid in all locales.</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+  "tolower" − realizes the 
+<a class="link" href="../htmlman3/toupper.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">tolower</span>(3)</span></a>
+mapping
+  "toupper" − realizes the 
+<a class="link" href="../htmlman3/toupper.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">toupper</span>(3)</span></a>
+mapping
+</pre>
+      </div>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="wctrans-3_sect2" name="wctrans-3_sect2" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p>The <code class="function">wctrans</code>() function
+      returns a mapping descriptor if the <em class="parameter"><code>name</code></em> is valid. Otherwise it
+      returns <span class="emphasis"><em>(wctrans_t)
+      0</em></span>.</p>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="wctrans-3_sect3" name="wctrans-3_sect3" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>C99.</p>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="wctrans-3_sect4" name="wctrans-3_sect4" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p>The behavior of <code class="function">wctrans</code>()
+      depends on the <code class="constant">LC_CTYPE</code>
+      category of the current locale.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="wctrans-3_sect5" name="wctrans-3_sect5" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman3/towctrans.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">towctrans</span>(3)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="wctrans-3_sect6" name="wctrans-3_sect6" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.29 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright (c) Bruno Haible &lt;haible<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>clisp.cons.org&gt;<br />
+
+                  <br />
+                  This is free documentation; you can redistribute it and/or<br />
+
+                  modify it under the terms of the GNU General Public License as<br />
+
+                  published by the Free Software Foundation; either version 2 of<br />
+
+                  the License, or (at your option) any later version.<br />
+
+                  <br />
+                  References consulted:<br />
+                    GNU glibc-2 source code and manual<br />
+
+                    Dinkumware C library reference http://www.dinkumware.com/<br />
+
+                    OpenGroup's Single UNIX specification http://www.UNIX-systems.org/online.html<br />
+
+                    ISO/IEC 9899:1999<br />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

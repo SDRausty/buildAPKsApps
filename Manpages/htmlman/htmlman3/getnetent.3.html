@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>getnetent(3) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="getnetent(3) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="getnetent(3) — Linux manual pages">
+    <a id="getnetent.3" name="getnetent.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>getnetent, getnetbyname, getnetbyaddr, setnetent,
+      endnetent — get network entry</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;netdb.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">struct netent *<b class="fsfunc">getnetent</b>(</code></td>
+
+            <td rowspan="1" colspan="1"><code>void)</code>;</td>
+
+            <td rowspan="1" colspan="1"> </td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">struct netent *<b class="fsfunc">getnetbyname</b>(</code></td>
+
+            <td rowspan="1" colspan="1">const char *<var class="pdparam">name</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">struct netent *<b class="fsfunc">getnetbyaddr</b>(</code></td>
+
+            <td rowspan="1" colspan="1">uint32_t <var class="pdparam">net</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">type</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">void <b class="fsfunc">setnetent</b>(</code></td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">stayopen</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">void <b class="fsfunc">endnetent</b>(</code></td>
+
+            <td rowspan="1" colspan="1"><code>void)</code>;</td>
+
+            <td rowspan="1" colspan="1"> </td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="getnetent-3_sect1" name="getnetent-3_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>The <code class="function">getnetent</code>() function
+      reads the next entry from the networks database and returns a
+      <span class="structname">netent</span> structure containing
+      the broken-out fields from the entry. A connection is opened
+      to the database if necessary.</p>
+
+      <p>The <code class="function">getnetbyname</code>() function
+      returns a <span class="structname">netent</span> structure
+      for the entry from the database that matches the network
+      <em class="parameter"><code>name</code></em>.</p>
+
+      <p>The <code class="function">getnetbyaddr</code>() function
+      returns a <span class="structname">netent</span> structure
+      for the entry from the database that matches the network
+      number <em class="parameter"><code>net</code></em> of type
+      <em class="parameter"><code>type</code></em>. The <em class="parameter"><code>net</code></em> argument must be in host
+      byte order.</p>
+
+      <p>The <code class="function">setnetent</code>() function
+      opens a connection to the database, and sets the next entry
+      to the first entry. If <em class="parameter"><code>stayopen</code></em> is nonzero, then the
+      connection to the database will not be closed between calls
+      to one of the <code class="function">getnet*</code>()
+      functions.</p>
+
+      <p>The <code class="function">endnetent</code>() function
+      closes the connection to the database.</p>
+
+      <p>The <span class="structname">netent</span> structure is
+      defined in <code class="literal">&lt;</code><code class="filename">netdb.h</code><code class="literal">&gt;</code> as
+      follows:</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="structdef">
+            <table style="border-collapse: collapse;">
+              <colgroup span="1">
+                <col span="1" />
+                <col span="1" />
+                <col span="1" />
+                <col span="1" />
+                <col span="1" />
+              </colgroup>
+
+              <tbody>
+                <tr>
+                  <td class="structdefhdr" style="" align="left" rowspan="1" colspan="1">
+                  struct</td>
+
+                  <td class="structdefhdr" style="" colspan="4" align="left" rowspan="1"><span class="structname">netent</span> {</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">char</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                  *</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>n_name</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      
+                      /* official network name */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">char</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                  **</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>n_aliases</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      /* alias list */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">int</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>n_addrtype</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      
+                      /* net address type */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">uint32_t</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>n_net</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      /* network number */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="structdefftr" style="" colspan="5" align="left" rowspan="1">};</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </blockquote>
+      </div>
+
+      <p>The members of the <span class="structname">netent</span>
+      structure are:</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><em class="parameter"><code>n_name</code></em></span></dt>
+
+          <dd>
+            <p>The official name of the network.</p>
+          </dd>
+
+          <dt><span class="term"><em class="parameter"><code>n_aliases</code></em></span></dt>
+
+          <dd>
+            <p>A NULL-terminated list of alternative names for the
+            network.</p>
+          </dd>
+
+          <dt><span class="term"><em class="parameter"><code>n_addrtype</code></em></span></dt>
+
+          <dd>
+            <p>The type of the network number; always <code class="constant">AF_INET</code>.</p>
+          </dd>
+
+          <dt><span class="term"><em class="parameter"><code>n_net</code></em></span></dt>
+
+          <dd>
+            <p>The network number in host byte order.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="getnetent-3_sect2" name="getnetent-3_sect2" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p>The <code class="function">getnetent</code>(),
+      <code class="function">getnetbyname</code>() and <code class="function">getnetbyaddr</code>() functions return a pointer
+      to a statically allocated <span class="structname">netent</span> structure, or a NULL pointer if an
+      error occurs or the end of the file is reached.</p>
+    </div>
+
+    <div class="refsect1" title="FILES">
+      <a id="getnetent-3_sect3" name="getnetent-3_sect3" shape="rect"> </a>
+
+      <h2>FILES</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="filename">/etc/networks</code></span></dt>
+
+          <dd>
+            <p>networks database file</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="getnetent-3_sect4" name="getnetent-3_sect4" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>4.3BSD, POSIX.1-2001.</p>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="getnetent-3_sect5" name="getnetent-3_sect5" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p>In glibc versions before 2.2, the <em class="parameter"><code>net</code></em> argument of <code class="function">getnetbyaddr</code>() was of type <span class="type">long</span>.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="getnetent-3_sect6" name="getnetent-3_sect6" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman3/getnetent_r.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">getnetent_r</span>(3)</span></a>, <a class="link" href="../htmlman3/getprotoent.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">getprotoent</span>(3)</span></a>, <a class="link" href="../htmlman3/getservent.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">getservent</span>(3)</span></a></p>
+
+      <p>RFC 1101</p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="getnetent-3_sect7" name="getnetent-3_sect7" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.24 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright 1993 David Metcalfe (david<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>prism.demon.co.uk)<br />
+
+                  <br />
+                  Permission is granted to make and distribute verbatim copies of this<br />
+
+                  manual provided the copyright notice and this permission notice are<br />
+
+                  preserved on all copies.<br />
+                  <br />
+                  Permission is granted to copy and distribute modified versions of this<br />
+
+                  manual under the conditions for verbatim copying, provided that the<br />
+
+                  entire resulting derived work is distributed under the terms of a<br />
+
+                  permission notice identical to this one.<br />
+
+                  <br />
+                  Since the Linux kernel and libraries are constantly changing, this<br />
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no<br />
+
+                  responsibility for errors or omissions, or for damages resulting from<br />
+
+                  the use of the information contained herein.  The author(s) may not<br />
+
+                  have taken the same level of care in the production of this manual,<br />
+
+                  which is licensed free of charge, as they might when working<br />
+
+                  professionally.<br />
+                  <br />
+                  Formatted or processed versions of this manual, if unaccompanied by<br />
+
+                  the source, must acknowledge the copyright and authors of this work.<br />
+
+                  <br />
+                  References consulted:<br />
+                      Linux libc source code<br />
+
+                      Lewine's _POSIX Programmer's Guide_ (O'Reilly &amp; Associates, 1991)<br />
+
+                      386BSD man pages<br />
+
+                  Modified Sat Jul 24 21:48:06 1993 by Rik Faith (faith<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cs.unc.edu)<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<!-- #C2DB28 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+	android:background="@drawable/toolbar320"
+	android:layout_marginTop="1dp" android:orientation="horizontal"
+	android:layout_width="fill_parent" android:layout_height="42dp">
+
+	<!-- left pane -->
+	<LinearLayout android:orientation="vertical"
+		android:layout_marginTop="3dp" android:layout_weight="1"
+		android:layout_width="fill_parent" android:layout_height="fill_parent">
+
+		<LinearLayout android:orientation="horizontal"
+			android:layout_width="wrap_content" android:layout_height="wrap_content">
+
+			<TextView android:id="@+id/memory_state_value"
+				android:textColor="@android:color/white" android:gravity="center_vertical"
+				android:textSize="12sp" android:singleLine="true"
+				android:layout_marginLeft="6dp" android:layout_height="fill_parent"
+				android:layout_width="wrap_content" />
+
+		</LinearLayout>
+
+		<LinearLayout android:orientation="horizontal"
+			android:layout_width="wrap_content" android:layout_height="fill_parent">
+
+			<TextView android:id="@+id/card_state_value"
+				android:textColor="@android:color/white" android:gravity="center_vertical"
+				android:textSize="12sp" android:singleLine="true"
+				android:layout_marginLeft="6dp" android:layout_height="fill_parent"
+				android:layout_width="wrap_content" />
+
+		</LinearLayout>
+
+	</LinearLayout>
+
+	<!-- right pane -->
+	<LinearLayout android:orientation="horizontal"
+		android:layout_marginTop="2dp" android:layout_marginRight="4dp"
+		android:layout_width="wrap_content" android:layout_height="fill_parent">
+
+		<!--
+			<TextView android:id="@+id/battery_state_value"
+			android:text="@string/battery_state_value"
+			android:textColor="@android:color/white"
+			android:background="@drawable/ic_battery" android:gravity="center"
+			android:textSize="12sp" android:singleLine="true"
+			android:layout_gravity="center" android:layout_height="25dp"
+			android:layout_width="40dp"/>
+		-->
+
+		<ImageButton android:id="@+id/flashlight"
+			android:background="@drawable/button_black" android:src="@drawable/ic_flashlight"
+			android:gravity="center" android:layout_marginRight="2px"
+			android:layout_gravity="center" android:layout_height="40dp"
+			android:layout_width="58dp" />
+
+		<ImageButton android:id="@+id/battery" android:background="@drawable/button_black"
+			android:gravity="center" android:layout_gravity="center"
+			android:layout_height="40dp" android:layout_width="58dp" />
+
+
+	</LinearLayout>
+
+</LinearLayout>

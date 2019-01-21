@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>fallocate(2) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="fallocate(2) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="fallocate(2) — Linux manual pages">
+    <a id="fallocate.2" name="fallocate.2" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>fallocate — manipulate file space</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+#define _GNU_SOURCE              /* See feature_test_macros(7) */
+#include &lt;fcntl.h&gt;
+</pre>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">fallocate</b>(</code></td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">fd</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">mode</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">off_t <var class="pdparam">offset</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">off_t <var class="pdparam">len</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="fallocate-2_sect1" name="fallocate-2_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>This is a nonportable, Linux-specific system call. For the
+      portable, POSIX.1-specified method of ensuring that space is
+      allocated for a file, see <code class="function">posix_fallocate</code>().</p>
+
+      <p><code class="function">fallocate</code>() allows the
+      caller to directly manipulate the allocated disk space for
+      the file referred to by <em class="parameter"><code>fd</code></em> for the byte range starting
+      at <em class="parameter"><code>offset</code></em> and
+      continuing for <em class="parameter"><code>len</code></em>
+      bytes.</p>
+
+      <p>The <em class="parameter"><code>mode</code></em> argument
+      determines the operation to be performed on the given range.
+      Currently only one flag is supported for <em class="parameter"><code>mode</code></em>:</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="constant">FALLOC_FL_KEEP_SIZE</code></span></dt>
+
+          <dd>
+            <p>This flag allocates and initializes to zero the disk
+            space within the range specified by <em class="parameter"><code>offset</code></em> and <em class="parameter"><code>len</code></em>. After a successful
+            call, subsequent writes into this range are guaranteed
+            not to fail because of lack of disk space.
+            Preallocating zeroed blocks beyond the end of the file
+            is useful for optimizing append workloads.
+            Preallocating blocks does not change the file size (as
+            reported by <a class="link" href="../htmlman2/stat.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">stat</span>(2)</span></a>) even if it
+            is less than <em class="parameter"><code>offset</code></em>+<em class="parameter"><code>len</code></em>.</p>
+          </dd>
+        </dl>
+      </div>
+
+      <p>If <code class="constant">FALLOC_FL_KEEP_SIZE</code> flag
+      is not specified in <em class="parameter"><code>mode</code></em>, the default behavior is
+      almost same as when this flag is specified. The only
+      difference is that on success, the file size will be changed
+      if <span class="emphasis"><em>offset + len</em></span> is
+      greater than the file size. This default behavior closely
+      resembles the behavior of the <a class="link" href="../htmlman3/posix_fallocate.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">posix_fallocate</span>(3)</span></a> library
+      function, and is intended as a method of optimally
+      implementing that function.</p>
+
+      <p>Because allocation is done in block size chunks,
+      <code class="function">fallocate</code>() may allocate a
+      larger range than that which was specified.</p>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="fallocate-2_sect2" name="fallocate-2_sect2" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p><code class="function">fallocate</code>() returns zero on
+      success, and -1 on failure.</p>
+    </div>
+
+    <div class="refsect1" title="ERRORS">
+      <a id="fallocate-2_sect3" name="fallocate-2_sect3" shape="rect"> </a>
+
+      <h2>ERRORS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><span class="errorname">EBADF</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>fd</code></em> is not a
+            valid file descriptor, or is not opened for
+            writing.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EFBIG</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>offset</code></em>+<em class="parameter"><code>len</code></em> exceeds the maximum
+            file size.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EINTR</span></span></dt>
+
+          <dd>
+            <p>A signal was caught during execution.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EINVAL</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>offset</code></em> was
+            less than 0, or <em class="parameter"><code>len</code></em> was less than or
+            equal to 0.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EIO</span></span></dt>
+
+          <dd>
+            <p>An I/O error occurred while reading from or writing
+            to a file system.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENODEV</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>fd</code></em> does not
+            refer to a regular file or a directory. (If <em class="parameter"><code>fd</code></em> is a pipe or FIFO, a
+            different error results.)</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENOSPC</span></span></dt>
+
+          <dd>
+            <p>There is not enough space left on the device
+            containing the file referred to by <em class="parameter"><code>fd</code></em>.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENOSYS</span></span></dt>
+
+          <dd>
+            <p>The file system containing the file referred to by
+            <em class="parameter"><code>fd</code></em> does not
+            support this operation.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EOPNOTSUPP</span></span></dt>
+
+          <dd>
+            <p>The <em class="parameter"><code>mode</code></em> is
+            not supported by the file system containing the file
+            referred to by <em class="parameter"><code>fd</code></em>.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="VERSIONS">
+      <a id="fallocate-2_sect4" name="fallocate-2_sect4" shape="rect"> </a>
+
+      <h2>VERSIONS</h2>
+
+      <p><code class="function">fallocate</code>() is available on
+      Linux since kernel 2.6.23. Support is provided by glibc since
+      version 2.10.</p>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="fallocate-2_sect5" name="fallocate-2_sect5" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p><code class="function">fallocate</code>() is
+      Linux-specific.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="fallocate-2_sect6" name="fallocate-2_sect6" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman2/truncate.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">ftruncate</span>(2)</span></a>, <span class="citerefentry"><span class="refentrytitle">posix_fadvise</span>(3)</span>, <a class="link" href="../htmlman3/posix_fallocate.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">posix_fallocate</span>(3)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="fallocate-2_sect7" name="fallocate-2_sect7" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.27 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright (c) 2007 Silicon Graphics, Inc. All Rights Reserved<br />
+
+                  Written by Dave Chinner &lt;dgc<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>sgi.com&gt;<br />
+
+                  May be distributed as per GNU General Public License version 2.<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

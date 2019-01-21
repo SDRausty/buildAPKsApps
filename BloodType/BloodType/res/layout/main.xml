@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_weight="1"
+    android:padding="0dp"
+    android:id="@+id/bloodType"
+    android:background="#FEFEFE" >
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/info_height"
+        android:id="@+id/rowInfo"
+        android:gravity="center"
+        android:background="@drawable/infoborder" >
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/blood_select"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="5"
+            android:shadowColor="#CCCECECE"
+            android:textSize="@dimen/info_text"
+            android:textStyle="bold" />
+	</LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/rowOne"
+        android:layout_weight="1">
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/btnA"
+            android:layout_weight="1"
+            android:text="A+"
+            android:background="#D30308"
+            android:textColor="#FFFFFF"
+            android:layout_margin="2dp"
+            android:textSize="@dimen/btn_text"
+            android:textStyle="bold"
+            android:shadowDx="8"
+            android:shadowDy="8"
+            android:shadowColor="#CC900205"
+            android:shadowRadius="25" />
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/btnB"
+            android:layout_weight="1"
+            android:text="O+"
+            android:background="#D30308"
+            android:textColor="#FFFFFF"
+            android:layout_margin="2dp"
+            android:textSize="@dimen/btn_text"
+            android:textStyle="bold"
+            android:shadowDx="8"
+            android:shadowDy="8"
+            android:shadowColor="#CC900205"
+            android:shadowRadius="25" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/btnC"
+            android:layout_weight="1"
+            android:text="B+"
+            android:background="#D30308"
+            android:textColor="#FFFFFF"
+            android:layout_margin="2dp"
+            android:textSize="@dimen/btn_text"
+            android:textStyle="bold"
+            android:shadowDx="8"
+            android:shadowDy="8"
+            android:shadowColor="#CC900205"
+            android:shadowRadius="25" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/rowTwo"
+        android:layout_weight="1">
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/btnD"
+            android:layout_weight="1"
+            android:text="AB+"
+            android:background="#D30308"
+            android:textColor="#FFFFFF"
+            android:layout_margin="2dp"
+            android:textSize="@dimen/btn_text"
+            android:textStyle="bold"
+            android:shadowDx="8"
+            android:shadowDy="8"
+            android:shadowColor="#CC900205"
+            android:shadowRadius="25" />
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/btnE"
+            android:layout_weight="1"
+            android:text="A-"
+            android:background="#D30308"
+            android:textColor="#FFFFFF"
+            android:layout_margin="2dp"
+            android:textSize="@dimen/btn_text"
+            android:textStyle="bold"
+            android:shadowDx="8"
+            android:shadowDy="8"
+            android:shadowColor="#CC900205"
+            android:shadowRadius="25" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/btnF"
+            android:layout_weight="1"
+            android:text="O-"
+            android:background="#D30308"
+            android:textColor="#FFFFFF"
+            android:layout_margin="2dp"
+            android:textSize="@dimen/btn_text"
+            android:textStyle="bold"
+            android:shadowDx="8"
+            android:shadowDy="8"
+            android:shadowColor="#CC900205"
+            android:shadowRadius="25" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/rowThree"
+        android:layout_weight="1">
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/btnG"
+            android:layout_weight="1"
+            android:text="B-"
+            android:background="#D30308"
+            android:textColor="#FFFFFF"
+            android:layout_margin="2dp"
+            android:textSize="@dimen/btn_text"
+            android:textStyle="bold"
+            android:shadowDx="8"
+            android:shadowDy="8"
+            android:shadowColor="#CC900205"
+            android:shadowRadius="25" />
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/btnH"
+            android:layout_weight="1"
+            android:text="AB-"
+            android:background="#D30308"
+            android:textColor="#FFFFFF"
+            android:layout_margin="2dp"
+            android:textSize="@dimen/btn_text"
+            android:textStyle="bold"
+            android:shadowDx="8"
+            android:shadowDy="8"
+            android:shadowColor="#CC900205"
+            android:shadowRadius="25" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/btnI"
+            android:layout_weight="1"
+            android:visibility="invisible" />
+    </LinearLayout>
+</LinearLayout>

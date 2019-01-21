@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string-array name="status_bar_variant_names">
+		<item>Add &amp; show black icon</item>
+		<item>Add &amp; show white icon</item>
+		<item>Add &amp; hide icon</item>
+		<item>Do not add</item>
+	</string-array>
+
+	<string-array name="status_bar_variant_values">
+		<item>2</item>
+		<item>3</item>
+		<item>1</item>
+		<item>0</item>
+	</string-array>
+
+	<string-array name="appearance_variant_names">
+		<item>Full screen</item>
+		<item>Dialog</item>
+	</string-array>
+
+	<string-array name="appearance_variant_values">
+		<item>0</item>
+		<item>1</item>
+	</string-array>
+
+	<string-array name="flashlight_names">
+		<item>Screen flashlight</item>
+		<item>LED flashlight</item>
+		<item>No flashlight</item>
+	</string-array>
+
+	<string-array name="flashlight_values">
+		<item>0</item>
+		<item>1</item>
+		<item>2</item>
+	</string-array>
+
+	<string-array name="apn_modifier_names">
+		<item>Classic: \"[disabled]\"</item>
+		<item>APNdroid: \"apndroid\"</item>
+		<item>Simple prefix: \"-\"</item>
+	</string-array>
+
+	<string-array name="apn_modifier_values">
+		<item>1</item>
+		<item>0</item>
+		<item>2</item>
+	</string-array>
+
+	<string-array name="flashlight_switch_names">
+		<item>On orientation change</item>
+		<item>After a delay</item>
+		<item>On shaking the phone</item>
+	</string-array>
+
+	<string-array name="flashlight_switch_values">
+		<item>0</item>
+		<item>1</item>
+		<item>2</item>
+	</string-array>
+
+</resources>

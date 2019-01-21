@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World!</string>
+    <string name="app_name">ChuckNorrisFacts</string>
+    <string name="id">"Id: "</string>
+    <string name="fact">"Fact: "</string>
+    <string name="next">Next</string>
+    <string name="random">Random</string>
+    <string name="previous">Previous</string>
+    <string name="filter_facts_hint">Filter facts...</string>
+    <string name="unknown_id">Unknown Id</string>
+    <string name="unknown_fact">Unknown fact</string>
+
+</resources>

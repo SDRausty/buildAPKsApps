@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Blood Type</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="about"><u>ABOUT</u></string>
+	<string name="ver"><u>VERSION</u></string>
+	<string name="copy"><u>COPYRIGHT</u></string>
+	<string name="contact"><u>CONTACT</u></string>
+	
+	<string name="about_explain">Who can give and receive from what blood type? This app gives you that information in a simple and clean interface, yet elegant way so everyone can understand.</string>
+	<string name="copyright_info">© 2013 [Designed and Programmed by SiKni8]\nLogo Design By: Matt Moore\nAll other images are copyright to their respective owners</string>
+	<string name="contact_me">Any questions? comments? recommendations? Send me an email to SiKni8@yahoo.com.</string>
+	<string name="info_get">Blood Type data has been retrieved from Red Cross database system.</string>
+	<string name="blood_select">SELECT A BLOOD TYPE</string>
+	<string name="give_blood">Can Give Blood To...</string>
+	<string name="receive_blood">Can Receive Blood From...</string>
+	<string name="table_blood">Blood Type</string>
+	<string name="table_give_blood">Give Blood To</string>
+	<string name="table_receive_blood">Receive Blood From</string>
+	
+	<string name="share_blood_chart">Share Blood Chart</string>
+	<string name="save_img_title">Saving Image</string>
+	<string name="save_img_ftr">Saving Image in Progress...</string>
+	
+	<string name="menu_table">Blood Chart</string>
+	<string name="menu_about">About</string>
+	<string name="menu_help">Help</string>
+	<string name="menu_rate">Rate This App</string>
+	<string name="menu_quit">Quit</string>
+	
+	<string name="menu_share_save">Save Chart Image</string>
+	<string name="menu_share_share">Share Chart Image</string>
+
+</resources>

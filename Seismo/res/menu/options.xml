@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:id="@+id/Filter" android:alphabeticShortcut="f" android:title="Unfilter noise" android:titleCondensed="Unfilter" android:orderInCategory="2"></item>
+<item android:orderInCategory="1" android:id="@+id/Pause" android:alphabeticShortcut="p" android:titleCondensed="Pause" android:title="Pause measurement"></item>
+<item android:id="@+id/Axis" android:titleCondensed="Axis" android:title="Axis of measurement" android:orderInCategory="3">
+<menu>
+<item android:orderInCategory="1" android:id="@+id/x" android:title="x" android:alphabeticShortcut="x"></item>
+<item android:orderInCategory="2" android:id="@+id/y" android:title="y" android:alphabeticShortcut="y"></item>
+<item android:orderInCategory="3" android:id="@+id/z" android:title="z" android:alphabeticShortcut="z"></item>
+</menu>
+</item>
+<item android:alphabeticShortcut="s" android:titleCondensed="Storage" android:id="@+id/Storage" android:title="Storage for graphs" android:orderInCategory="4">
+<menu>
+<item android:alphabeticShortcut="s" android:id="@+id/Save" android:orderInCategory="1" android:titleCondensed="Save" android:title="Save"></item>
+
+<item android:orderInCategory="3" android:title="Export" android:titleCondensed="Export" android:alphabeticShortcut="e" android:id="@+id/Export"></item>
+</menu>
+</item>
+<item android:alphabeticShortcut="h" android:titleCondensed="Help" android:id="@+id/Help" android:title="Help" android:orderInCategory="5"></item>
+</menu>

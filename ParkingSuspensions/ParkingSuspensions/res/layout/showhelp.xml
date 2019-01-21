@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_margin="0dp"
+    android:padding="0dp"
+    android:background="#E5E5E5"
+    android:id="@+id/llHelp">
+<RelativeLayout 
+    android:id="@+id/rlAll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="0dp"
+    android:layout_margin="0dp" >
+	<TextView
+	    android:id="@+id/tvExplain"
+	    android:layout_width="wrap_content"
+	    android:layout_height="@dimen/explain_height"
+	    android:text="What each icon represents..."
+	    android:gravity="center"
+	    android:textStyle="bold"
+	    android:layout_marginLeft="@dimen/explain_margin_left"
+	    android:textSize="@dimen/about_hdr_text" />
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="@dimen/rl_guide_height"
+		android:id="@+id/rlNS"
+		android:layout_below="@+id/tvExplain"
+		android:background="@drawable/dateborder"
+		android:padding="@dimen/date_layout_pad" >
+		<ImageView
+			android:id="@+id/ivIcon0"
+			android:layout_width="@dimen/cal_icon_size"
+			android:layout_height="@dimen/cal_icon_size"
+			android:layout_centerVertical="true"
+			android:src="@drawable/redcircle" />
+		<TextView
+			android:id="@+id/tvDate"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_toRightOf="@+id/ivIcon0"
+			android:text="Alternate Side Parking is Not Suspended"
+			android:layout_marginLeft="@dimen/cal_text_left_margin"
+			android:textSize="@dimen/cal_text_size"
+			android:textColor="@color/dateholiday"
+			android:textStyle="bold"
+			android:paddingBottom="@dimen/help_text_pad_bottom" />
+		<TextView
+			android:id="@+id/tvReason"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/tvDate"
+			android:layout_alignLeft="@+id/tvDate"
+			android:text="When the application widget shows this icon, you have to move your car for street cleaning"
+			android:textSize="@dimen/cal_text_size"
+			android:textColor="@color/dateholiday" />
+	</RelativeLayout>
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="@dimen/rl_guide_height"
+		android:id="@+id/rlS"
+		android:layout_below="@+id/rlNS"
+		android:background="@drawable/dateborder"
+		android:padding="@dimen/date_layout_pad" >
+		<ImageView
+			android:id="@+id/ivIcon0"
+			android:layout_width="@dimen/cal_icon_size"
+			android:layout_height="@dimen/cal_icon_size"
+			android:layout_centerVertical="true"
+			android:src="@drawable/greencircle" />
+		<TextView
+			android:id="@+id/tvDate"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_toRightOf="@+id/ivIcon0"
+			android:text="Alternate Side Parking is Suspended"
+			android:layout_marginLeft="@dimen/cal_text_left_margin"
+			android:textSize="@dimen/cal_text_size"
+			android:textColor="@color/dateholiday"
+			android:textStyle="bold"
+			android:paddingBottom="@dimen/help_text_pad_bottom" />
+		<TextView
+			android:id="@+id/tvReason"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/tvDate"
+			android:layout_alignLeft="@+id/tvDate"
+			android:text="When the application widget shows this icon, you do not have to move your car for street cleaning"
+			android:textSize="@dimen/cal_text_size"
+			android:textColor="@color/dateholiday" />
+	</RelativeLayout>
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="@dimen/rl_guide_height"
+		android:id="@+id/rlNSD"
+		android:layout_below="@+id/rlS"
+		android:background="@drawable/dateborder"
+		android:padding="@dimen/date_layout_pad" >
+		<ImageView
+			android:id="@+id/ivIcon0"
+			android:layout_width="@dimen/cal_icon_size"
+			android:layout_height="@dimen/cal_icon_size"
+			android:layout_centerVertical="true"
+			android:src="@drawable/calicon" />
+		<TextView
+			android:id="@+id/tvDate"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_toRightOf="@+id/ivIcon0"
+			android:text="Alternate Side Parking is Not Suspended"
+			android:layout_marginLeft="@dimen/cal_text_left_margin"
+			android:textSize="@dimen/cal_text_size"
+			android:textColor="@color/dateholiday"
+			android:textStyle="bold"
+			android:paddingBottom="@dimen/help_text_pad_bottom" />
+		<TextView
+			android:id="@+id/tvReason"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/tvDate"
+			android:layout_alignLeft="@+id/tvDate"
+			android:text="This icon represents all the holidays within a calendar year where Alternate Side parking will be suspended."
+			android:textSize="@dimen/cal_text_size"
+			android:textColor="@color/dateholiday" />
+	</RelativeLayout>
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="@dimen/rl_guide_height"
+		android:id="@+id/rlSD"
+		android:layout_below="@+id/rlNSD"
+		android:background="@drawable/dateborder"
+		android:padding="@dimen/date_layout_pad" >
+		<ImageView
+			android:id="@+id/ivIcon0"
+			android:layout_width="@dimen/cal_icon_size"
+			android:layout_height="@dimen/cal_icon_size"
+			android:layout_centerVertical="true"
+			android:src="@drawable/caliconpressed" />
+		<TextView
+			android:id="@+id/tvDate"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_toRightOf="@+id/ivIcon0"
+			android:text="Alternate Side Parking is Suspended"
+			android:layout_marginLeft="@dimen/cal_text_left_margin"
+			android:textSize="@dimen/cal_text_size"
+			android:textColor="@color/dateholiday"
+			android:textStyle="bold"
+			android:paddingBottom="@dimen/help_text_pad_bottom" />
+		<TextView
+			android:id="@+id/tvReason"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/tvDate"
+			android:layout_alignLeft="@+id/tvDate"
+			android:text="A date with this icon represents Alternate Side parking is suspended for that day."
+			android:textSize="@dimen/cal_text_size"
+			android:textColor="@color/dateholiday" />
+	</RelativeLayout>
+</RelativeLayout>
+</LinearLayout>

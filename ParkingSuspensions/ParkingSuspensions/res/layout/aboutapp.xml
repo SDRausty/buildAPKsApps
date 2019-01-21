@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_margin="0dp"
+    android:padding="0dp"
+    android:background="#E5E5E5"
+    android:id="@+id/llAbout">
+<RelativeLayout 
+    android:id="@+id/rlAll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="0dp"
+    android:layout_margin="0dp" >
+
+    <ImageView
+        android:id="@+id/ivTop"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/img_hdr_height"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/hdrtop"
+        android:scaleType="fitXY" />
+    
+
+    <ImageView
+        android:id="@+id/ivBottom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/img_hdr_height"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/hdrbottom"
+        android:scaleType="fitXY" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivTop"
+        android:layout_above="@+id/ivBottom" >
+
+        <ImageView
+            android:id="@+id/ivLogo"
+            android:layout_width="@dimen/about_logo_size"
+            android:layout_height="@dimen/about_logo_size"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/logo" />
+
+        <ImageView
+            android:id="@+id/ivDivider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/about_divider_height"
+            android:layout_below="@+id/ivLogo"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/divider" />
+        
+		<LinearLayout
+	    	android:id="@+id/llInfo"
+    		android:orientation="vertical"
+    		android:layout_width="match_parent"
+    		android:layout_height="match_parent"
+			android:layout_centerVertical="true"
+			android:layout_below="@+id/ivDivider" >
+				<ScrollView
+					android:id="@+id/svInfo"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:isScrollContainer="true"
+					android:scrollbarThumbVertical="@drawable/scolors" >
+				<RelativeLayout 
+					android:id="@+id/rlAboutAppInfo"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:padding="@dimen/padding_for_about_info"
+					android:layout_margin="0dp" >
+
+					<TextView
+					    android:id="@+id/tvAboutHdr"
+					    android:layout_width="wrap_content"
+					    android:layout_height="wrap_content"
+					    android:layout_alignParentTop="true"
+					    android:layout_centerHorizontal="true"
+					    android:text="@string/about"
+					    android:textColor="#000000"
+					    android:textSize="@dimen/about_hdr_text" />
+					
+					<TextView
+					    android:id="@+id/tvAboutExplain"
+					    android:layout_width="wrap_content"
+					    android:layout_height="wrap_content"
+					    android:layout_centerHorizontal="true"
+					    android:gravity="center"
+					    android:layout_below="@+id/tvAboutHdr"
+					    android:text="Do you have a car and would like to know what holidays the Alternate Side (street clearning) parking is suspended? This app gives you that info at your fingertip without having to turn on your laptop/desktop. With a simple and easy to understand design, you won't ever need to waste time looking elsewhere."
+					    android:textSize="@dimen/about_ftr_text"
+					    android:textColor="#000000" />
+					
+					<TextView
+					    android:id="@+id/tvVersion"
+					    android:layout_width="wrap_content"
+					    android:layout_height="wrap_content"
+						android:layout_below="@+id/tvAboutExplain"
+					    android:layout_centerHorizontal="true"
+					    android:layout_marginTop="@dimen/about_section_pad"
+					    android:textSize="@dimen/about_hdr_text"
+					    android:text="@string/ver"
+					    android:textColor="#000000" />
+					
+					<TextView
+					    android:id="@+id/tvVersionInfo"
+					    android:layout_width="wrap_content"
+					    android:layout_height="wrap_content"
+					    android:layout_centerHorizontal="true"
+					    android:gravity="center"
+					    android:layout_below="@+id/tvVersion"
+					    android:textSize="@dimen/about_ftr_text"
+					    android:text="1.3"
+					    android:textColor="#000000" />
+					
+					<TextView
+					    android:id="@+id/tvCopyright"
+					    android:layout_width="wrap_content"
+					    android:layout_height="wrap_content"
+						android:layout_below="@+id/tvVersionInfo"
+					    android:layout_centerHorizontal="true"
+					    android:layout_marginTop="@dimen/about_section_pad"
+					    android:textSize="@dimen/about_hdr_text"
+					    android:text="@string/copy"
+					    android:textColor="#000000" />
+					
+					<TextView
+					    android:id="@+id/tvCopyrightInfo"
+					    android:layout_width="wrap_content"
+					    android:layout_height="wrap_content"
+					    android:layout_centerHorizontal="true"
+					    android:gravity="center"
+					    android:layout_below="@+id/tvCopyright"
+					    android:textSize="@dimen/about_ftr_text"
+					    android:text="© 2013 [Designed and Programmed by SiKni8]\nAll images are copyright to their respective owners"
+					    android:textColor="#000000" />
+
+					<TextView
+					    android:id="@+id/tvContact"
+					    android:layout_width="wrap_content"
+					    android:layout_height="wrap_content"
+					    android:layout_centerHorizontal="true"
+					    android:layout_below="@+id/tvCopyrightInfo"
+					    android:layout_marginTop="@dimen/about_section_pad"
+					    android:textSize="@dimen/about_hdr_text"
+					    android:text="@string/contact"
+					    android:textColor="#000000" />
+
+					<TextView
+					    android:id="@+id/tvContactExplain"
+					    android:layout_width="wrap_content"
+					    android:layout_height="wrap_content"
+					    android:layout_centerHorizontal="true"
+					    android:gravity="center"
+					    android:layout_below="@+id/tvContact"
+					    android:textSize="@dimen/about_ftr_text"
+					    android:text="Any questions? comments? recommendations? Send me an email to SiKni8@yahoo.com."
+					    android:textColor="#000000" />
+
+				</RelativeLayout>
+				</ScrollView>
+    		</LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>
+</LinearLayout>

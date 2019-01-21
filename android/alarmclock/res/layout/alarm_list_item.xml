@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:descendantFocusability="blocksDescendants"
+              android:orientation="horizontal"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content">
+  <LinearLayout
+      android:orientation="vertical"
+      android:layout_weight="1"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+      <TextView
+          android:id="@+id/time"
+          style="@android:style/TextAppearance.Large"
+          android:gravity="start"
+          android:singleLine="true"
+          android:layout_weight="1"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content" />
+      <TextView
+          android:id="@+id/label"
+          style="@android:style/TextAppearance.Medium"
+          android:gravity="end"
+          android:singleLine="true"
+          android:layout_weight="10"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+      <TextView
+          android:id="@+id/countdown"
+          android:textStyle="italic"
+          android:gravity="start"
+          android:singleLine="true"
+          android:layout_weight="1"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content" />
+      <TextView
+          android:id="@+id/repeat"
+          android:gravity="end"
+          android:singleLine="true"
+          android:layout_weight="10"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content" />
+    </LinearLayout>
+  </LinearLayout>
+
+  <CheckBox
+      android:id="@+id/enabled"
+      android:clickable="false"
+      android:layout_marginLeft="12dp"
+      android:layout_marginRight="12dp"
+      android:layout_gravity="center"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content" />
+
+</LinearLayout>

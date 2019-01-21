@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+<TextView android:layout_height="wrap_content" style="@style/ActiveText" android:text="@+id/RestoreName" android:id="@+id/RestoreName" android:layout_width="fill_parent" android:paddingBottom="20sp" android:paddingTop="20sp"></TextView>
+</LinearLayout>

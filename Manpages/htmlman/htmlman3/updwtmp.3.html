@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>updwtmp(3) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="updwtmp(3) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="updwtmp(3) — Linux manual pages">
+    <a id="updwtmp.3" name="updwtmp.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>updwtmp, logwtmp — append an entry to the wtmp
+      file</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;utmp.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">void <b class="fsfunc">updwtmp</b>(</code></td>
+
+            <td rowspan="1" colspan="1">const char *<var class="pdparam">wtmp_file</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">const struct utmp *<var class="pdparam">ut</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">void <b class="fsfunc">logwtmp</b>(</code></td>
+
+            <td rowspan="1" colspan="1">const char *<var class="pdparam">line</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">const char *<var class="pdparam">name</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">const char *<var class="pdparam">host</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="updwtmp-3_sect1" name="updwtmp-3_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><code class="function">updwtmp</code>() appends the utmp
+      structure <em class="parameter"><code>ut</code></em> to the
+      wtmp file.</p>
+
+      <p><code class="function">logwtmp</code>() constructs a utmp
+      structure using <em class="parameter"><code>line</code></em>,
+      <em class="parameter"><code>name</code></em>, <em class="parameter"><code>host</code></em>, current time and current
+      process ID. Then it calls <code class="function">updwtmp</code>() to append the structure to the
+      wtmp file.</p>
+    </div>
+
+    <div class="refsect1" title="FILES">
+      <a id="updwtmp-3_sect2" name="updwtmp-3_sect2" shape="rect"> </a>
+
+      <h2>FILES</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="filename">/var/log/wtmp</code></span></dt>
+
+          <dd>
+            <p>database of past user logins</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="updwtmp-3_sect3" name="updwtmp-3_sect3" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>Not in POSIX.1-2001. Present on Solaris, NetBSD, and
+      perhaps other systems.</p>
+    </div>
+
+    <div class="refsect1" title="AVAILABILITY">
+      <a id="updwtmp-3_sect4" name="updwtmp-3_sect4" shape="rect"> </a>
+
+      <h2>AVAILABILITY</h2>
+
+      <p>Both functions are available under glibc2, but not under
+      libc5. However, <code class="function">logwtmp</code>() used
+      to occur in the old libbsd. These days, the <code class="function">logwtmp</code>() function is included in libutil.
+      (Hence you'll need to add <code class="option">−lutil</code> to your compiler command line to
+      get it.)</p>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="updwtmp-3_sect5" name="updwtmp-3_sect5" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p>For consistency with the other "utmpx" functions (see
+      <a class="link" href="../htmlman3/getutent.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">getutxent</span>(3)</span></a>), glibc
+      provides (since version 2.1):</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+<span class="emphasis"><em>#include &lt;utmpx.h&gt;</em></span>
+
+  <code class="function">void updwtmpx</code>(<em class="parameter"><code>const char *wtmpx_file</code></em>, <em class="parameter"><code>const struct utmpx *utx</code></em>);
+</pre>
+      </div>
+
+      <p>This function performs the same task as <code class="function">updwtmp</code>(), but differs in that it takes a
+      <code class="function">utmpx</code> structure as its last
+      argument.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="updwtmp-3_sect6" name="updwtmp-3_sect6" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman3/getutent.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">getutxent</span>(3)</span></a>, <a class="link" href="../htmlman5/utmp.5.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">wtmp</span>(5)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="updwtmp-3_sect7" name="updwtmp-3_sect7" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.24 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright 1997 Nicolás Lichtmaier &lt;nick<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>debian.org&gt;<br />
+
+                  Created Wed Jul  2 23:27:34 ART 1997<br />
+
+                  <br />
+                  This is free documentation; you can redistribute it and/or<br />
+
+                  modify it under the terms of the GNU General Public License as<br />
+
+                  published by the Free Software Foundation; either version 2 of<br />
+
+                  the License, or (at your option) any later version.<br />
+
+                  <br />
+                  The GNU General Public License's references to "object code"<br />
+
+                  and "executables" are to be interpreted as the output of any<br />
+
+                  document formatting or typesetting system, including<br />
+
+                  intermediate and printed output.<br />
+
+                  <br />
+                  This manual is distributed in the hope that it will be useful,<br />
+
+                  but WITHOUT ANY WARRANTY; without even the implied warranty of<br />
+
+                  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<br />
+
+                  GNU General Public License for more details.<br />
+
+                  <br />
+                  Added info on availability, aeb, 971207<br />
+
+                  Added -lutil remark, 030718<br />
+                  2008-07-02, mtk, document updwtmpx()<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>gnutls_x509_crt_set_proxy_dn(3) — Linux manual
+  pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="gnutls_x509_crt_set_proxy_dn(3) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="gnutls_x509_crt_set_proxy_dn(3) — Linux manual pages">
+    <a id="gnutls-x509-crt-set-proxy-dn.3" name="gnutls-x509-crt-set-proxy-dn.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>gnutls_x509_crt_set_proxy_dn — API function</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;gnutls/x509.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">gnutls_x509_crt_set_proxy_dn</b>(</code></td>
+
+            <td rowspan="1" colspan="1">gnutls_x509_crt_t <var class="pdparam">crt</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">gnutls_x509_crt_t <var class="pdparam">eecrt</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">unsigned int <var class="pdparam">raw_flag</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">const void * <var class="pdparam">name</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">unsigned int <var class="pdparam">sizeof_name</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="ARGUMENTS">
+      <a id="gnutls-x509-crt-set-proxy-dn-3_sect1" name="gnutls-x509-crt-set-proxy-dn-3_sect1" shape="rect"> </a>
+
+      <h2>ARGUMENTS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><span class="emphasis"><em>gnutls_x509_crt_t
+          crt</em></span></span></dt>
+
+          <dd>
+            <p>a gnutls_x509_crt_t structure with the new proxy
+            cert</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>gnutls_x509_crt_t
+          eecrt</em></span></span></dt>
+
+          <dd>
+            <p>the end entity certificate that will be issuing the
+            proxy</p>
+          </dd>
+
+          <dt><span class="term"><span class="type">unsigned int
+          raw_flag</span></span></dt>
+
+          <dd>
+            <p>must be 0, or 1 if the CN is DER encoded</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>const
+          void * name</em></span></span></dt>
+
+          <dd>
+            <p>a pointer to the CN name, may be NULL (but MUST then
+            be added later)</p>
+          </dd>
+
+          <dt><span class="term"><span class="type">unsigned int
+          sizeof_name</span></span></dt>
+
+          <dd>
+            <p>holds the size of <em class="parameter"><code>name</code></em></p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="gnutls-x509-crt-set-proxy-dn-3_sect2" name="gnutls-x509-crt-set-proxy-dn-3_sect2" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>This function will set the subject in <em class="parameter"><code>crt</code></em> to the end entity's
+      <em class="parameter"><code>eecrt</code></em> subject name,
+      and add a single Common Name component <em class="parameter"><code>name</code></em> of size <em class="parameter"><code>sizeof_name</code></em>. This corresponds
+      to the required proxy certificate naming style. Note that if
+      <em class="parameter"><code>name</code></em> is <code class="constant">NULL</code>, you MUST set it later by using
+      <code class="function">gnutls_x509_crt_set_dn_by_oid</code>()
+      or similar.</p>
+    </div>
+
+    <div class="refsect1" title="RETURNS">
+      <a id="gnutls-x509-crt-set-proxy-dn-3_sect3" name="gnutls-x509-crt-set-proxy-dn-3_sect3" shape="rect"> </a>
+
+      <h2>RETURNS</h2>
+
+      <p>On success, <span class="errorname">GNUTLS_E_SUCCESS</span> is returned, otherwise a
+      negative error value.</p>
+    </div>
+
+    <div class="refsect1" title="REPORTING BUGS">
+      <a id="gnutls-x509-crt-set-proxy-dn-3_sect4" name="gnutls-x509-crt-set-proxy-dn-3_sect4" shape="rect"> </a>
+
+      <h2>REPORTING BUGS</h2>
+
+      <p>Report bugs to &lt;bug-gnutls@gnu.org&gt;. GnuTLS home
+      page: http://www.gnu.org/software/gnutls/ General help using
+      GNU software: http://www.gnu.org/gethelp/</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="gnutls-x509-crt-set-proxy-dn-3_sect6" name="gnutls-x509-crt-set-proxy-dn-3_sect6" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p>The full documentation for <em class="citetitle">gnutls</em> is maintained as a Texinfo manual. If
+      the <span class="command"><strong>info</strong></span> and
+      <em class="citetitle">gnutls</em> programs are properly
+      installed at your site, the command</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+info gnutls
+</pre>
+      </div>
+
+      <p>should give you access to the complete manual.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <thead>
+            <tr>
+              <th style="" rowspan="1" colspan="1">COPYRIGHT</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <p>Copyright © 2008 Free Software
+                Foundation.</p>
+
+                <p>Copying and distribution of this file, with or
+                without modification, are permitted in any medium
+                without royalty provided the copyright notice and
+                this notice are preserved.</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

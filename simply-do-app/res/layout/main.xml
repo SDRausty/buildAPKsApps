@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+    
+<ViewSwitcher android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/ListsItemsSwitcher">
+    <include android:id="@+id/listsView" layout="@layout/lists" />
+    <include android:id="@+id/itemsView" layout="@layout/items" />
+</ViewSwitcher>
+    
+</LinearLayout>

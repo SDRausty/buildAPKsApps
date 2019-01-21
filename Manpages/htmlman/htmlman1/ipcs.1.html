@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>ipcs(1) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="ipcs(1) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="ipcs(1) — Linux manual pages">
+    <a id="ipcs.1" name="ipcs.1" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>ipcs — provide information on ipc facilities</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">ipcs</code> [<code class="option">−asmq</code>] [<code class="option">−tclup</code>]</p>
+      </div>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">ipcs</code> [<code class="option">−smq</code>] <code class="option">−i</code> id</p>
+      </div>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">ipcs</code> <code class="option">−h</code></p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="ipcs-1_sect1" name="ipcs-1_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><span class="command"><strong>ipcs</strong></span>
+      provides information on the ipc facilities for which the
+      calling process has read access.</p>
+
+      <p>The <code class="option">−i</code> option allows a
+      specific resource <em class="parameter"><code>id</code></em>
+      to be specified. Only information on this <em class="parameter"><code>id</code></em> will be printed.</p>
+
+      <p>Resources may be specified as follows:</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="option">−m</code></span></dt>
+
+          <dd>
+            <p>shared memory segments</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−q</code></span></dt>
+
+          <dd>
+            <p>message queues</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−s</code></span></dt>
+
+          <dd>
+            <p>semaphore arrays</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−a</code></span></dt>
+
+          <dd>
+            <p>all (this is the default)</p>
+          </dd>
+        </dl>
+      </div>
+
+      <p>The output format may be specified as follows:</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="option">−t</code></span></dt>
+
+          <dd>
+            <p>time</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−p</code></span></dt>
+
+          <dd>
+            <p>pid</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−c</code></span></dt>
+
+          <dd>
+            <p>creator</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−l</code></span></dt>
+
+          <dd>
+            <p>limits</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−u</code></span></dt>
+
+          <dd>
+            <p>summary</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="ipcs-1_sect2" name="ipcs-1_sect2" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman1/ipcrm.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">ipcrm</span>(1)</span></a>, <a class="link" href="../htmlman1/ipcmk.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">ipcmk</span>(1)</span></a></p>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="ipcs-1_sect3" name="ipcs-1_sect3" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>The Linux ipcs utility is not fully compatible to the
+      POSIX ipcs utility. The Linux version does not support the
+      <code class="option">−b</code> and <code class="option">−o</code> options, but does support the
+      <code class="option">−l</code> and <code class="option">−u</code> options not defined by POSIX. The
+      portable application shall not use the <code class="option">−a</code>, <code class="option">−b</code>, <code class="option">−o</code>, <code class="option">−l</code>, and <code class="option">−u</code> options.</p>
+    </div>
+
+    <div class="refsect1" title="AUTHOR">
+      <a id="ipcs-1_sect4" name="ipcs-1_sect4" shape="rect"> </a>
+
+      <h2>AUTHOR</h2>
+
+      <p>krishna balasubramanian (balasub@cis.ohio-state.edu)</p>
+    </div>
+
+    <div class="refsect1" title="AVAILABILITY">
+      <a id="ipcs-1_sect5" name="ipcs-1_sect5" shape="rect"> </a>
+
+      <h2>AVAILABILITY</h2>
+
+      <p>The ipcs command is part of the util-linux package and is
+      available from
+      ftp://ftp.kernel.org/pub/linux/utils/util-linux/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright 1993 Rickard E. Faith (faith<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cs.unc.edu)<br />
+
+                  May be distributed under the GNU General Public License<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

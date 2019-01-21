@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>sync(8) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="sync(8) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="sync(8) — Linux manual pages">
+    <a id="sync.8" name="sync.8" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>sync — synchronize data on disk with memory</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">sync</code> [<code class="option">−−help</code>] [<code class="option">−−version</code>]</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="sync-8_sect1" name="sync-8_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><span class="command"><strong>sync</strong></span> writes
+      any data buffered in memory out to disk. This can include
+      (but is not limited to) modified superblocks, modified
+      inodes, and delayed reads and writes. This must be
+      implemented by the kernel; The <span class="command"><strong>sync</strong></span> program does nothing
+      but exercise the <a class="link" href="../htmlman2/sync.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">sync</span>(2)</span></a> system call.</p>
+
+      <p>The kernel keeps data in memory to avoid doing (relatively
+      slow) disk reads and writes. This improves performance, but
+      if the computer crashes, data may be lost or the file system
+      corrupted as a result. <span class="command"><strong>sync</strong></span> ensures that
+      everything in memory is written to disk.</p>
+
+      <p><span class="command"><strong>sync</strong></span> should
+      be called before the processor is halted in an unusual manner
+      (e.g., before causing a kernel panic when debugging new
+      kernel code). In general, the processor should be halted
+      using the <a class="link" href="../htmlman8/shutdown.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">shutdown</span>(8)</span></a> or <a class="link" href="../htmlman8/shutdown.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">reboot</span>(8)</span></a> or <a class="link" href="../htmlman8/shutdown.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">halt</span>(8)</span></a> commands, which
+      will attempt to put the system in a quiescent state before
+      calling <a class="link" href="../htmlman2/sync.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">sync</span>(2)</span></a>. (Various
+      implementations of these commands exist; consult your
+      documentation; on some systems one should not call <a class="link" href="../htmlman8/shutdown.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">reboot</span>(8)</span></a> and <a class="link" href="../htmlman8/shutdown.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">halt</span>(8)</span></a> directly.)</p>
+    </div>
+
+    <div class="refsect1" title="OPTIONS">
+      <a id="sync-8_sect2" name="sync-8_sect2" shape="rect"> </a>
+
+      <h2>OPTIONS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="option">−−help</code></span></dt>
+
+          <dd>
+            <p>Print a usage message on standard output and exit
+            successfully.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−−version</code></span></dt>
+
+          <dd>
+            <p>Print version information on standard output, then
+            exit successfully.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−−</code></span></dt>
+
+          <dd>
+            <p>Terminate option list.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="ENVIRONMENT">
+      <a id="sync-8_sect3" name="sync-8_sect3" shape="rect"> </a>
+
+      <h2>ENVIRONMENT</h2>
+
+      <p>The variables <code class="constant">LANG</code>,
+      <code class="constant">LC_ALL</code>, <code class="constant">LC_CTYPE</code>, and <code class="constant">LC_MESSAGES</code> have the usual meaning.</p>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="sync-8_sect4" name="sync-8_sect4" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>POSIX.2.</p>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="sync-8_sect5" name="sync-8_sect5" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p>On Linux, <span class="command"><strong>sync</strong></span> is only guaranteed to
+      schedule the dirty blocks for writing; it can actually take a
+      short time before all the blocks are finally written. The
+      <a class="link" href="../htmlman8/shutdown.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">reboot</span>(8)</span></a> and <a class="link" href="../htmlman8/shutdown.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">halt</span>(8)</span></a> commands take this
+      into account by sleeping for a few seconds after calling
+      <a class="link" href="../htmlman2/sync.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">sync</span>(2)</span></a>.</p>
+
+      <p>This page describes <span class="command"><strong>sync</strong></span> as found in the
+      fileutils-4.0 package; other versions may differ
+      slightly.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="sync-8_sect6" name="sync-8_sect6" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman2/sync.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">sync</span>(2)</span></a>, <a class="link" href="../htmlman8/shutdown.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">halt</span>(8)</span></a>, <a class="link" href="../htmlman8/shutdown.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">reboot</span>(8)</span></a>, <span class="citerefentry"><span class="refentrytitle">update</span>(8)</span></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="sync-8_sect7" name="sync-8_sect7" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.24 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Reboot/halt and Linux information extracted from Rick Faith's original<br />
+
+                  sync(8) manpage, dating back to the Linux 0.99 days.  The Linux-specific<br />
+
+                  information is attributed to Linus Torvalds<br />
+
+                  Copyright 1992, 1993 Rickard E. Faith (faith<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cs.unc.edu)<br />
+
+                  May be distributed under the GNU General Public License<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

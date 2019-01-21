@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string-array name="status_bar_variant_names">
+		<item>Voeg toe met zwart icoon</item>
+		<item>Voeg toe met wit icoon</item>
+		<item>Voeg toe zonder icoon</item>
+		<item>Voeg niet toe</item>
+	</string-array>
+
+	<string-array name="status_bar_variant_values">
+		<item>2</item>
+		<item>3</item>
+		<item>1</item>
+		<item>0</item>
+	</string-array>
+
+	<string-array name="appearance_variant_names">
+		<item>Volledig scherm</item>
+		<item>Dialoogvenster</item>
+	</string-array>
+
+	<string-array name="appearance_variant_values">
+		<item>0</item>
+		<item>1</item>
+	</string-array>
+
+	<string-array name="flashlight_names">
+		<item>Scherm zaklamp</item>
+		<item>LED zaklamp</item>
+		<item>Geen zaklamp</item>
+	</string-array>
+
+	<string-array name="flashlight_values">
+		<item>0</item>
+		<item>1</item>
+		<item>2</item>
+	</string-array>
+
+	<string-array name="apn_modifier_names">
+		<item>Klassiek: \"[disabled]\"</item>
+		<item>APNdroid: \"apndroid\"</item>
+		<item>Simpel voorvoegsel: \"-\"</item>
+	</string-array>
+
+	<string-array name="apn_modifier_values">
+		<item>1</item>
+		<item>0</item>
+		<item>2</item>
+	</string-array>
+
+	<string-array name="flashlight_switch_names">
+		<item>Bij oriëntatie verandering</item>
+		<item>Na een tijdje</item>
+		<item>Bij schudden</item>
+	</string-array>
+
+	<string-array name="flashlight_switch_values">
+		<item>0</item>
+		<item>1</item>
+		<item>2</item>
+	</string-array>
+
+</resources>

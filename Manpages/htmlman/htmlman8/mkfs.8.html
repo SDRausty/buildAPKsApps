@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>mkfs(8) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="mkfs(8) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="mkfs(8) — Linux manual pages">
+    <a id="mkfs.8" name="mkfs.8" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>mkfs — build a Linux file system</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">mkfs</code> [<code class="option">−V</code>] [ <code class="option">−t</code> fstype ] [fs−options]
+        filesys [blocks]</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="mkfs-8_sect1" name="mkfs-8_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><span class="command"><strong>mkfs</strong></span> is used
+      to build a Linux file system on a device, usually a hard disk
+      partition. <em class="parameter"><code>filesys</code></em> is
+      either the device name (e.g. <code class="filename">/dev/hda1</code>, <code class="filename">/dev/sdb2</code>), or a regular file that shall
+      contain the file system. <em class="parameter"><code>blocks</code></em> is the number of blocks
+      to be used for the file system.</p>
+
+      <p>The exit code returned by <span class="command"><strong>mkfs</strong></span> is 0 on success and 1
+      on failure.</p>
+
+      <p>In actuality, <span class="command"><strong>mkfs</strong></span> is simply a front-end
+      for the various file system builders (<em class="replaceable"><code>mkfs.</code></em><em class="parameter"><code>fstype</code></em>) available under Linux.
+      The file system-specific builder is searched for in a number
+      of directories like perhaps <code class="filename">/sbin</code>, <code class="filename">/sbin/fs</code>, <code class="filename">/sbin/fs.d</code>, <code class="filename">/etc/fs</code>, <code class="filename">/etc</code>
+      (the precise list is defined at compile time but at least
+      contains <code class="filename">/sbin</code> and <code class="filename">/sbin/fs</code>), and finally in the directories
+      listed in the PATH environment variable. Please see the file
+      system-specific builder manual pages for further details.</p>
+    </div>
+
+    <div class="refsect1" title="OPTIONS">
+      <a id="mkfs-8_sect2" name="mkfs-8_sect2" shape="rect"> </a>
+
+      <h2>OPTIONS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><em class="parameter"><code>−V</code></em></span></dt>
+
+          <dd>
+            <p>Produce verbose output, including all file
+            system-specific commands that are executed. Specifying
+            this option more than once inhibits execution of any
+            file system-specific commands. This is really only
+            useful for testing.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−tfstype</code></span></dt>
+
+          <dd>
+            <p>Specifies the type of file system to be built. If
+            not specified, the default file system type (currently
+            ext2) is used.</p>
+          </dd>
+
+          <dt><span class="term"><em class="parameter"><code>fs-options</code></em></span></dt>
+
+          <dd>
+            <p>File system-specific options to be passed to the
+            real file system builder. Although not guaranteed, the
+            following options are supported by most file system
+            builders.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−c</code></span></dt>
+
+          <dd>
+            <p>Check the device for bad blocks before building the
+            file system.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−lfilename</code></span></dt>
+
+          <dd>
+            <p>Read the bad blocks list from <em class="replaceable"><code>filename</code></em></p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−v</code></span></dt>
+
+          <dd>
+            <p>Produce verbose output.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="BUGS">
+      <a id="mkfs-8_sect3" name="mkfs-8_sect3" shape="rect"> </a>
+
+      <h2>BUGS</h2>
+
+      <p>All generic options must precede and not be combined with
+      file system-specific options. Some file system-specific
+      programs do not support the <code class="option">−v</code> (verbose) option, nor return
+      meaningful exit codes. Also, some file system-specific
+      programs do not automatically detect the device size and
+      require the <em class="parameter"><code>blocks</code></em>
+      parameter to be specified.</p>
+    </div>
+
+    <div class="refsect1" title="AUTHORS">
+      <a id="mkfs-8_sect4" name="mkfs-8_sect4" shape="rect"> </a>
+
+      <h2>AUTHORS</h2>
+
+      <p>David Engel (david@ods.com)</p>
+
+      <p>Fred N. van Kempen (waltje@uwalt.nl.mugnet.org)</p>
+
+      <p>Ron Sommeling (sommel@sci.kun.nl)</p>
+
+      <p>The manual page was shamelessly adapted from Remy Card's
+      version for the ext2 file system.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="mkfs-8_sect5" name="mkfs-8_sect5" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman5/filesystems.5.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fs</span>(5)</span></a>, <span class="citerefentry"><span class="refentrytitle">badblocks</span>(8)</span>, <a class="link" href="../htmlman8/fsck.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fsck</span>(8)</span></a>, <span class="citerefentry"><span class="refentrytitle">mkdosfs</span>(8)</span>, <span class="citerefentry"><span class="refentrytitle">mke2fs</span>(8)</span>, <a class="link" href="../htmlman8/mkfs.bfs.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mkfs.bfs</span>(8)</span></a>, <span class="citerefentry"><span class="refentrytitle">mkfs.ext2</span>(8)</span>, <span class="citerefentry"><span class="refentrytitle">mkfs.ext3</span>(8)</span>, <span class="citerefentry"><span class="refentrytitle">mkfs.ext4</span>(8)</span>, <a class="link" href="../htmlman8/mkfs.minix.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mkfs.minix</span>(8)</span></a>, <span class="citerefentry"><span class="refentrytitle">mkfs.msdos</span>(8)</span>, <span class="citerefentry"><span class="refentrytitle">mkfs.vfat</span>(8)</span>, <span class="citerefentry"><span class="refentrytitle">mkfs.xfs</span>(8)</span>, <span class="citerefentry"><span class="refentrytitle">mkfs.xiafs</span>(8)</span></p>
+    </div>
+
+    <div class="refsect1" title="AVAILABILITY">
+      <a id="mkfs-8_sect6" name="mkfs-8_sect6" shape="rect"> </a>
+
+      <h2>AVAILABILITY</h2>
+
+      <p>The mkfs command is part of the util-linux package and is
+      available from
+      ftp://ftp.kernel.org/pub/linux/utils/util-linux/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

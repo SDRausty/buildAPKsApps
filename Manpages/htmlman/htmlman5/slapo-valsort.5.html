@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>slapo-valsort(5) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="slapo-valsort(5) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="slapo-valsort(5) — Linux manual pages">
+    <a id="slapo-valsort.5" name="slapo-valsort.5" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>slapo−valsort — Value Sorting overlay to
+      slapd</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+ETCDIR/slapd.conf
+  
+</pre>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="slapo-valsort-5_sect1" name="slapo-valsort-5_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>The Value Sorting overlay can be used with a backend
+      database to sort the values of specific multi-valued
+      attributes within a subtree. The sorting occurs whenever the
+      attributes are returned in a search response.</p>
+
+      <p>Sorting can be specified in ascending or descending order,
+      using either numeric or alphanumeric sort methods.
+      Additionally, a "weighted" sort can be specified, which uses
+      a numeric weight prepended to the attribute values. The
+      weighted sort is always performed in ascending order, but may
+      be combined with the other methods for values that all have
+      equal weights. The weight is specified by prepending an
+      integer weight {&lt;<em class="replaceable"><code>weight</code></em>&gt;} in front of each
+      value of the attribute for which weighted sorting is desired.
+      This weighting factor is stripped off and never returned in
+      search results.</p>
+    </div>
+
+    <div class="refsect1" title="CONFIGURATION">
+      <a id="slapo-valsort-5_sect2" name="slapo-valsort-5_sect2" shape="rect"> </a>
+
+      <h2>CONFIGURATION</h2>
+
+      <p>These <em class="replaceable"><code>slapd.conf</code></em>
+      options apply to the Value Sorting overlay. They should
+      appear after the <em class="replaceable"><code>overlay</code></em> directive.</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="function">valsort−attr &lt;<em class="replaceable"><code>attribute</code></em>, &gt;
+          &lt;<em class="replaceable"><code>baseDN</code></em>&gt;</code>(<em class="parameter"><code>&lt;<em class="replaceable"><code>sort-method</code></em>&gt;
+          | weighted [&lt;<em class="replaceable"><code>sort-method</code></em>&gt;]</code></em>)</span></dt>
+
+          <dd>
+            <p>Configure a sorting method for the specified
+            <em class="replaceable"><code>attribute</code></em> in
+            the subtree rooted at <em class="replaceable"><code>baseDN</code></em>. The <em class="replaceable"><code>sort-method</code></em> may be one
+            of <em class="replaceable"><code>alpha−ascend</code></em>,
+            <em class="replaceable"><code>alpha−descend</code></em>,
+            <em class="replaceable"><code>numeric−ascend</code></em>,
+            or <em class="replaceable"><code>numeric−descend</code></em>.
+            If the special <em class="replaceable"><code>weighted</code></em> method is
+            specified, a secondary <em class="replaceable"><code>sort-method</code></em> may also be
+            specified. It is an error to specify an alphanumeric
+            <em class="replaceable"><code>sort-method</code></em>
+            for an attribute with Integer or NumericString syntax,
+            and it is an error to specify a numeric <em class="replaceable"><code>sort-method</code></em> for an
+            attribute with a syntax other than Integer or
+            NumericString.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="EXAMPLES">
+      <a id="slapo-valsort-5_sect3" name="slapo-valsort-5_sect3" shape="rect"> </a>
+
+      <h2>EXAMPLES</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+        database bdb
+        suffix dc=example,dc=com
+        ...
+        overlay valsort
+        valsort−attr member ou=groups,dc=example,dc=com alpha−ascend
+</pre>
+      </div>
+    </div>
+
+    <div class="refsect1" title="FILES">
+      <a id="slapo-valsort-5_sect4" name="slapo-valsort-5_sect4" shape="rect"> </a>
+
+      <h2>FILES</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><em class="replaceable"><code>ETCDIR/slapd.conf</code></em></span></dt>
+
+          <dd>
+            <p>default <em class="replaceable"><code>slapd</code></em> configuration
+            file</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="slapo-valsort-5_sect5" name="slapo-valsort-5_sect5" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman5/slapd.conf.5.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">slapd.conf</span>(5)</span></a>, <a class="link" href="../htmlman5/slapd-config.5.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">slapd-config</span>(5)</span></a>.</p>
+    </div>
+
+    <div class="refsect1" title="ACKNOWLEDGEMENTS">
+      <a id="slapo-valsort-5_sect6" name="slapo-valsort-5_sect6" shape="rect"> </a>
+
+      <h2>ACKNOWLEDGEMENTS</h2>
+
+      <p>This module was written in 2005 by Howard Chu of Symas
+      Corporation. The work was sponsored by Stanford
+      University.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                  See the following documents: <a class="ulink" href="../openldap-COPYRIGHT.html" target="_top" shape="rect">COPYRIGHT</a>, <a class="ulink" href="../openldap-LICENSE.html" target="_top" shape="rect">LICENSE</a><br />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

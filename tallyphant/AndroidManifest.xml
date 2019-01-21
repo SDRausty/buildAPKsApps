@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ciarang.tallyphant"
+    android:versionCode="5"
+    android:versionName="0.4" >
+
+    <uses-sdk android:minSdkVersion="14" />
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!--
+    The following two permissions are for UDP sending of counter updates to a
+    user-specified host/port, when enabled in Preferences
+    -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+
+    <application
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name" >
+        <activity
+            android:configChanges="keyboardHidden|orientation"
+            android:label="@string/app_name"
+            android:name=".TallyphantActivity"
+            android:windowSoftInputMode="stateHidden" >
+            <intent-filter >
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="Preferences" >
+        </activity>
+        <activity android:name="ItemEdit" >
+        </activity>
+    </application>
+
+</manifest>

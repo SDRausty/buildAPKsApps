@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="txt_quick_settings">Quick Settings</string>
+
+    <string name="txt_status_unknown">Desconhecido</string>
+    <string name="txt_status_turned_on">Ligado</string>
+    <string name="txt_status_turned_off">Desligado</string>
+    <string name="txt_status_turning_on">Ligando...</string>
+    <string name="txt_status_turning_off">Desligando...</string>
+    <string name="txt_status_enabled">Activado</string>
+    <string name="txt_status_disabled">Desactivado</string>
+    
+    <string name="wifi_title">Wi-Fi</string>
+    <string name="txt_net_status_connecting">Ligando...</string>
+    <string name="txt_net_status_obtainingip">Obtendo endereço IP...</string>
+    <string name="txt_net_status_connected_to">Ligado a %s</string>
+    <string name="txt_net_status_connected">Ligado</string>
+    <string name="txt_net_status_failed">Ligação não estabelecida</string>
+    <string name="txt_net_status_disconnecting">Desligando...</string>
+    <string name="txt_net_status_disconnected">Desligado</string>
+    
+    <string name="gps_title">Receptor GPS</string>
+    <string name="txt_brightness">Brilho</string>
+    <string name="msg_disable_autobrightness">Brilho automático está activo. Deseja desligar e definir o brilho manualmente?</string>
+
+    <string name="battery_state_title">Estado da bateria:</string>
+    <string name="battery_state_value">%d%%</string>
+    <string name="txt_memory_state_value">Mem. disp.:</string>
+    <string name="txt_card_state_value">Cart. SD disp.:</string>
+    <string name="txt_no_card">Sem cartão SD</string>
+
+    <string name="airmode_title">Modo de voo</string>
+
+    <string name="btn_yes">Sim</string>
+    <string name="btn_no">Não</string>
+    <string name="btn_close">Fechar</string>
+    <string name="btn_set">Definir</string>
+    <string name="btn_calcel">Cancelar</string>
+
+    <string name="txt_ringer">Toque</string>
+    <string name="txt_ringer_mode">Modo de toque</string>
+    <string name="txt_ringer_silent">Silêncio</string>
+    <string name="txt_ringer_sound">Apenas som</string>
+    <string name="txt_ringer_vibro">Apenas vibração</string>
+    <string name="txt_ringer_vibrosound">Som e vibração</string>
+    
+    <string name="txt_bt">Bluetooth</string>
+    <string name="txt_no_apn">Sem APNs definidos</string>
+    
+    <string name="txt_screen_timeout">Desligar ecrã</string>
+    <string name="txt_screen_timeout_value_seconds">%d segundos</string>
+    <string name="txt_screen_timeout_value_minute">%d minuto</string>
+    <string name="txt_screen_timeout_value_minutes">%d minutos</string>
+    <string name="txt_screen_timeout_value_never">Nunca desligar</string>
+    
+    <string name="txt_customize_settings">Quick Settings > Definições</string>
+    <string name="txt_preferences">Quick Settings > Preferências</string>
+    <string name="txt_visible_settings">Definições visíveis</string>
+    <string name="txt_hidden_settings">Definições escondidas</string>
+    <string name="msg_drag_and_drop">Pressione e arraste o icone à direita de cada linha para reordenar definições e as mover entre as duas listas.</string>
+    
+    <string name="txt_auto_sync">Sincronização automática</string>
+    <string name="txt_enable_background_data">Pressione para activar troca de dados</string>
+
+    <string name="txt_volume">Controlo de volume</string>
+    <string name="txt_volume_descr">Pressione para controlar o volume</string>
+    <string name="txt_volume_ringer">Volume do toque</string>
+    <string name="txt_volume_notification">Volume das notificações</string>
+    <string name="txt_volume_media">Volume multimédia</string>
+    <string name="txt_volume_alarm">Volume dos alarmes</string>
+    <string name="txt_volume_voice_call">Volume de chamadas de voz</string>
+    <string name="txt_volume_system">Volume do sistema</string>
+    <string name="msg_zero_ringer_warning">Poderá perder chamadas com o volume de toque a 0.</string>
+    <string name="msg_zero_notification_warning">Poderá perder notificações com o volume de notificações a 0.</string>
+    <string name="msg_not_silent_warning">O seu telemóvel deixou de estar silencioso porque definiu um volume de toque de %d.</string>
+
+    <string name="msg_disabled_warning">
+    Está a ver esta mensagem porque é a primeira vez que usa a opção \"Dados móveis (APNs)\".
+    \n\nAs configurações dos APNs foram actualizadas. Se continuar a ter ligação tente alterar o texto adicionado nas preferências de \"Dados móveis (APNs)\" (pressione longamente sobre esta opção).
+    \n\nDesinstale o Quick Settings com os APNs activos, caso contrário poderá ficar sem ligações e ter de editar os APNs manualmente.
+    \n\nVisite a página do projecto para mais informações em caso de dúvidas ou problemas com o controlo de APNs.
+    </string>
+    
+    <string name="msg_switch_to_air_mode">Pretende activar o modo de voo e terminar todas as ligações sem fios?</string>
+    <string name="msg_cannot_init_setting">Ups... A definição "%s" não pode ser controlada pelo seu dispositivo</string>
+
+    <string name="menu_customize_settings">Definições</string>
+    <string name="menu_preferences">Preferências</string>
+
+    <string name="txt_auto_rotate">Orientação automática</string>
+    
+    <!-- unlock pattern -->
+    <string name="txt_unlock_pattern">Padrão desbloqueio</string>
+    <string name="txt_set_unlock_pattern">Definir padrão de desbloqueio</string>
+    <string name="msg_which_unlock_pattern">Que padrão de desbloqueio deve ser activado?\n\nNote: se não definiu um padrão de desbloqueio anteriormente deverá escolher um novo.</string>
+    <string name="btn_current_unlock_pattern">Actual</string>
+    <string name="btn_new_unlock_pattern">Novo</string>
+    
+    <string name="txt_toolbar">Barra de ferramentas</string>
+
+    <string name="pref_common">Comum</string>
+    <string name="pref_status_bar">Atalho na barra de estado</string>
+    <string name="pref_status_bar_descr">Pressione para activar ou desactivar atalho na barra de estado</string>
+    <string name="pref_view_mode">Aparência</string>
+    <string name="pref_view_mode_descr">Pressione para escolher entre ecrã inteiro ou caixa de diálogo</string>
+    <string name="msg_tap_to_change_settings">Pressione para alterar definições rapidamente</string>
+
+    <string name="msg_reinstall_required">A aplicação Quick Settings não foi devidamente actualizada. Por favor, desinstale e e volte a instalar.\n\nPedimos desculpa por qualquer inconveniência que tenha causado.</string>
+
+	<string name="txt_master_volume">Volume global</string>
+	<string name="txt_master_volume_desc">T: %1$d, N: %2$d, M: %3$d, A: %4$d</string>
+
+	<string name="txt_autobrightness_enabled">Brilho automático está activo</string>
+	<string name="txt_autobrightness_disabled">Brilho automático foi desactivado</string>
+    <string name="msg_enable_autobrightness">Deverá activar esta opção apenas se o seu dispositivo estiver equipado com um sensor de luz.\n\nActivar?</string>
+    <string name="pref_light_sensor">Usar sensor de luminosidade</string>
+    <string name="pref_light_sensor_descr">Pressione para activar ou desactivar o uso do sensor de luminosidade</string>
+
+    <string name="txt_flashlight">Lanterna</string>
+    <string name="pref_flashlight_descr">Pressione para escolher o tipo de lanterna</string>
+    <string name="msg_flashlight_led_usage">O uso prolongado da lanterna LED pode danificar o seu telemóvel. Sabendo isto confirma responsabilizar-se por qualquer dano causado.\n\nNão pode utilizar a lanterna LED se não aceitar responsabilizar-se.</string>
+    <string name="btn_accept">Aceito</string>
+    <string name="msg_flashlight_not_supported">A lanterna LED não pode ser utilizada no seu telemóvel. Será utilizado o ecrã no seu lugar.</string>
+
+	<string name="txt_haptic_feedback">Vibração</string>
+	<string name="txt_haptic_feedback_on">Vibrar brevemente ao pressionar botões das definições</string>
+	<string name="txt_haptic_feedback_off">Não vibrar ao pressionar botões das definições</string>
+	
+	<string name="txt_addons">Quick Settings > Aditivos</string>
+    <string name="menu_addons">Aditivos</string>
+    <string name="txt_addon_quick_battery">Quick Battery</string>
+    <string name="txt_addon_quick_battery_descr">É uma widget que mostra a percentagem de bateria restante e ao mesmo tempo um atalho para o Quick Settings</string>
+    <string name="txt_install">Instalar</string>
+    <string name="txt_uninstall">Desinstalar</string>
+	
+    <string name="pref_disable_mms">Desactivar MMS</string>
+    <string name="pref_disable_mms_descr_disabled">Não receberá MMS se desactivar a transferência de dados móvel</string>
+    <string name="pref_disable_mms_descr_enabled">Receberá MMS mesmo desactivando a transferência de dados móvel</string>
+
+    <string name="txt_volume_bind">Usar volume de toque para notificações</string>
+    <string name="txt_initializing">Inicializando...</string>
+    
+    <string name="pref_one_click_switch">Alterar com um toque</string>
+    <string name="txt_eula">End-User License Agreement</string>
+    <string name="btn_decline">Declinar</string>
+
+    <string name="pref_anp_modifier">Texto adicionado</string>
+    <string name="pref_anp_modifier_descr">Sufixo ou prefixo a adicionar a um APN para o desactivar</string>
+    <string name="pref_restor_pref_apn">Recuperar APNs preferidos</string>
+    <string name="pref_restor_pref_apn_descr">Poderá ajudar em casos em que a ligação não é reestabelecida</string>
+
+    <string name="pref_statusbar_integration">Integração na barra de estado</string>
+    <string name="pref_inverse_notif_color">Inverter cor da notificação</string>
+    <string name="pref_inverse_notif_color_on">Texto e ícone são brancos</string>
+    <string name="pref_inverse_notif_color_off">Texto e ícone são pretos</string>
+
+    <string name="pref_about">Sobre</string>
+    <string name="pref_about_descr">Sobre o Quick Settings</string>
+
+    <string name="txt_full_brightness">Brilho máximo</string>
+    <string name="txt_full_brightness_descr">Pressione para escolher como quer activar o brilho máximo da lanterna</string>
+    <string name="msg_flashlight_delay">Desvie o olhar, o brilho máximo será activado dentro de segundos</string>
+    <string name="msg_flashlight_orientation">Aponte o ecrã para baixo para activar o brilho máximo</string>
+    <string name="msg_flashlight_shake">Agite o telemóvel para activar o brilho máximo</string>
+    
+		<!-- version 1.9.5 -->    
+    <string name="txt_pattern">Padrão</string>
+    <string name="txt_pin">PIN</string>
+    <string name="txt_password">Palavra-chave</string>
+    <string name="txt_wifi_hotspot">Ponto de acesso Wi-Fi</string>
+    
+		<!-- 1.9.6 -->
+    <string name="txt_apn_control">Dados móveis (APNs)</string>
+    <string name="txt_mobile_data">Dados móveis</string>
+    <string name="txt_enable_data_access_first">Altere a definição do acesso a dados através da rede móvel nas definições do sistema</string>
+    <string name="msg_enabling_mobile_data">Activando dados móveis</string>
+    <string name="msg_2g_hint">Se a conexão não for estabelecida, tente alternar entre as redes 2G e 3G para forçar uma nova conexão</string>
+    <string name="msg_use_mobile_data_hint">É preferível a utilização da opção \"Dados móveis\" em vez de \"Dados móveis (APNs)\"</string>
+    
+    <!-- about, should stay at very bottom -->
+    <string name="copyright">© 2010 Sergej Shafarenka</string>
+    <string name="about_info">&lt;b>Versãon:&lt;/b> %s&lt;br>&lt;b>Contributers:&lt;/b> Brian Rodgers, Shimon Simon&lt;br>&lt;b>Tradutores:&lt;/b> Hugo Lopes (pt)</string>
+
+</resources>

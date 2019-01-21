@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string-array name="status_bar_variant_names">
+		<item>표시 &amp; 검은색 아이콘</item>
+		<item>표시하고 &amp; 하얀색 아이콘</item>
+		<item>표시 &amp; 아이콘 표시 안함</item>
+		<item>표시하지 않음</item>
+	</string-array>
+
+	<string-array name="status_bar_variant_values">
+		<item>2</item>
+		<item>3</item>
+		<item>1</item>
+		<item>0</item>
+	</string-array>
+
+	<string-array name="appearance_variant_names">
+		<item>전체 화면</item>
+		<item>다이얼로그</item>
+	</string-array>
+
+	<string-array name="appearance_variant_values">
+		<item>0</item>
+		<item>1</item>
+	</string-array>
+
+	<string-array name="flashlight_names">
+		<item>스크린 플래시 라이트</item>
+		<item>LED 플래시 라이트</item>
+		<item>플래시 라이트 사용 안함</item>
+	</string-array>
+
+	<string-array name="flashlight_values">
+		<item>0</item>
+		<item>1</item>
+		<item>2</item>
+	</string-array>
+
+	<string-array name="apn_modifier_names">
+		<item>Classic: \"[disabled]\"</item>
+		<item>APNdroid: \"apndroid\"</item>
+		<item>Simple prefix: \"-\"</item>
+	</string-array>
+
+	<string-array name="apn_modifier_values">
+		<item>1</item>
+		<item>0</item>
+		<item>2</item>
+	</string-array>
+
+	<string-array name="flashlight_switch_names">
+		<item>방향이 바뀌었을 때</item>
+		<item>약간의 대기 후</item>
+		<item>폰을 흔들때</item>
+	</string-array>
+
+	<string-array name="flashlight_switch_values">
+		<item>0</item>
+		<item>1</item>
+		<item>2</item>
+	</string-array>
+
+</resources>

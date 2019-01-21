@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>wcstoimax(3) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="wcstoimax(3) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="wcstoimax(3) — Linux manual pages">
+    <a id="wcstoimax.3" name="wcstoimax.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>wcstoimax, wcstoumax — convert wide-character string
+      to integer</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+#include &lt;stddef.h&gt;
+#include &lt;inttypes.h&gt;
+</pre>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">intmax_t <b class="fsfunc">wcstoimax</b>(</code></td>
+
+            <td rowspan="1" colspan="1">const wchar_t *<var class="pdparam">nptr</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">wchar_t **<var class="pdparam">endptr</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">base</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">uintmax_t <b class="fsfunc">wcstoumax</b>(</code></td>
+
+            <td rowspan="1" colspan="1">const wchar_t *<var class="pdparam">nptr</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">wchar_t **<var class="pdparam">endptr</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">base</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="wcstoimax-3_sect1" name="wcstoimax-3_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>These functions are just like <span class="citerefentry"><span class="refentrytitle">wcstol</span>(3)</span> and <span class="citerefentry"><span class="refentrytitle">wcstoul</span>(3)</span>, except that they
+      return a value of type <span class="type">intmax_t</span> and
+      <span class="type">uintmax_t</span>, respectively.</p>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="wcstoimax-3_sect2" name="wcstoimax-3_sect2" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>C99.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="wcstoimax-3_sect3" name="wcstoimax-3_sect3" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman3/abs.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">imaxabs</span>(3)</span></a>, <a class="link" href="../htmlman3/div.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">imaxdiv</span>(3)</span></a>, <a class="link" href="../htmlman3/strtoimax.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">strtoimax</span>(3)</span></a>, <a class="link" href="../htmlman3/strtoimax.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">strtoumax</span>(3)</span></a>, <span class="citerefentry"><span class="refentrytitle">wcstol</span>(3)</span>, <span class="citerefentry"><span class="refentrytitle">wcstoul</span>(3)</span></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="wcstoimax-3_sect4" name="wcstoimax-3_sect4" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.24 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright (c) 2003 Andries Brouwer (aeb<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cwi.nl)<br />
+
+                  <br />
+                  This is free documentation; you can redistribute it and/or<br />
+
+                  modify it under the terms of the GNU General Public License as<br />
+
+                  published by the Free Software Foundation; either version 2 of<br />
+
+                  the License, or (at your option) any later version.<br />
+
+                  <br />
+                  The GNU General Public License's references to "object code"<br />
+
+                  and "executables" are to be interpreted as the output of any<br />
+
+                  document formatting or typesetting system, including<br />
+
+                  intermediate and printed output.<br />
+
+                  <br />
+                  This manual is distributed in the hope that it will be useful,<br />
+
+                  but WITHOUT ANY WARRANTY; without even the implied warranty of<br />
+
+                  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<br />
+
+                  GNU General Public License for more details.<br />
+
+                  <br />
+                  You should have received a copy of the GNU General Public<br />
+
+                  License along with this manual; if not, write to the Free<br />
+
+                  Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111,<br />
+
+                  USA.<br />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

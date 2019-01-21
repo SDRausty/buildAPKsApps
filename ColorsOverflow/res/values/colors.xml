@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <color name="background">#dddddd</color>
+    <color name="positive">#ff0000</color>
+    <color name="negative">#0000ff</color>
+    <color name="line">#000000</color>
+    <color name="splash">#808080</color>
+    <color name="black">#000000</color>
+</resources>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:orientation="vertical"
+  android:id="@+id/llHelp">
+<ScrollView
+	android:id="@+id/scrollView1"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content" >
+<RelativeLayout 
+    android:id="@+id/rlContents"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/padding_for_contents" >
+    <LinearLayout
+    	android:orientation="vertical"
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:padding="@dimen/inner_padding"
+    	android:id="@+id/llFirst"
+    	android:background="@drawable/dateborder" >
+	<RelativeLayout 
+    	android:id="@+id/rlEnterDollar"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content" >
+		<TextView
+	    	android:id="@+id/tvInfo"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:text="@string/info_get"
+			android:textStyle="bold"
+			android:textSize="@dimen/help_text_size"
+			android:textColor="#0017A2"
+			android:shadowColor="#02EE08"
+			android:shadowDx="1"
+			android:shadowDy="1"
+			android:gravity="center" />
+	</RelativeLayout>
+	</LinearLayout>
+    <!--<LinearLayout
+    	android:orientation="vertical"
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:padding="@dimen/inner_padding"
+    	android:id="@+id/llSecond"
+    	android:layout_below="@+id/llFirst"
+    	android:background="@drawable/dateborder"
+    	android:layout_marginTop="@dimen/margin_top_help_group" >
+	<RelativeLayout 
+    	android:id="@+id/rlEnterDollar"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content" >
+		<ImageView
+			android:id="@+id/ivQuesOne"
+			android:layout_width="@dimen/top_hdr_logo"
+			android:layout_height="@dimen/top_hdr_logo"
+			android:layout_alignParentLeft="true"
+			android:src="@drawable/help"
+			android:scaleType="fitXY"
+			android:layout_centerVertical="true" />
+		<TextView
+	    	android:id="@+id/tvQuesOne"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:layout_toRightOf="@+id/ivQuesOne"
+	    	android:text="What is Consumer Price Index [CPI]?"
+			android:textStyle="bold"
+			android:textSize="@dimen/help_text_size"
+			android:textColor="#0017A2"
+			android:shadowColor="#02EE08"
+			android:shadowDx="1"
+			android:shadowDy="1"
+			android:layout_marginLeft="@dimen/margin_left_tvinfo" />
+		<TextView
+	    	android:id="@+id/tvAnsOne"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:layout_toRightOf="@+id/ivQuesOne"
+	    	android:text="The Consumer Price Index [CPI] is a measure of the average change over time in the prices paid by urban consumers for a market basket of consumer goods and services."
+	    	android:layout_below="@+id/tvQuesOne"
+			android:textSize="@dimen/help_text_size"
+			android:textColor="#0017A2"
+			android:shadowColor="#02EE08"
+			android:shadowDx="1"
+			android:shadowDy="1"
+			android:layout_marginLeft="@dimen/margin_left_tvinfo" />
+	</RelativeLayout>
+	</LinearLayout>-->
+</RelativeLayout>
+</ScrollView>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center" >
+<ImageView
+    android:id="@+id/ivPlus"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/plus" />
+</LinearLayout>
+
+</LinearLayout>

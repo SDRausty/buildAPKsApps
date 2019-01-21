@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>pcrecpp(3) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="pcrecpp(3) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="pcrecpp(3) — Linux manual pages">
+    <a id="pcrecpp.3" name="pcrecpp.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>PCRE — Perl-compatible regular expressions.</p>
+    </div>
+
+    <div class="refsect1" title="SYNOPSIS OF C++ WRAPPER">
+      <a id="pcrecpp-3_sect1" name="pcrecpp-3_sect1" shape="rect"> </a>
+
+      <h2>SYNOPSIS OF C++ WRAPPER</h2>
+
+      <p><span class="emphasis"><em>#include
+      &lt;pcrecpp.h&gt;</em></span></p>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="pcrecpp-3_sect2" name="pcrecpp-3_sect2" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>The C++ wrapper for PCRE was provided by Google Inc. Some
+      additional functionality was added by Giuseppe Maxia. This
+      brief man page was constructed from the notes in the
+      <code class="filename">pcrecpp.h</code> file, which should be
+      consulted for further details.</p>
+    </div>
+
+    <div class="refsect1" title="MATCHING INTERFACE">
+      <a id="pcrecpp-3_sect3" name="pcrecpp-3_sect3" shape="rect"> </a>
+
+      <h2>MATCHING INTERFACE</h2>
+
+      <p>The "FullMatch" operation checks that supplied text
+      matches a supplied pattern exactly. If pointer arguments are
+      supplied, it copies matched sub-strings that match
+      sub-patterns into them.</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+ Example: successful match
+    pcrecpp::RE re("h.*o");
+    re.FullMatch("hello");
+</pre>
+      </div>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+ Example: unsuccessful match (requires full match):
+    pcrecpp::RE re("e");
+    !re.FullMatch("hello");
+</pre>
+      </div>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+ Example: creating a temporary RE object:
+    pcrecpp::RE("h.*o").FullMatch("hello");
+</pre>
+      </div>
+
+      <p>You can pass in a "const char*" or a "string" for "text".
+      The examples below tend to use a const char*. You can, as in
+      the different examples above, store the RE object explicitly
+      in a variable or use a temporary RE object. The examples
+      below use one mode or the other arbitrarily. Either could
+      correctly be used for any of these examples.</p>
+
+      <p>You must supply extra pointer arguments to extract matched
+      subpieces.</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+ Example: extracts "ruby" into "s" and 1234 into "i"
+    int i;
+    string s;
+    pcrecpp::RE re("(\\w+):(\\d+)");
+    re.FullMatch("ruby:1234", &amp;s, &amp;i);
+</pre>
+      </div>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+ Example: does not try to extract any extra sub-patterns
+    re.FullMatch("ruby:1234", &amp;s);
+</pre>
+      </div>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+ Example: does not try to extract into NULL
+    re.FullMatch("ruby:1234", NULL, &amp;i);
+</pre>
+      </div>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+ Example: integer overflow causes failure
+    !re.FullMatch("ruby:1234567891234", NULL, &amp;i);
+</pre>
+      </div>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+ Example: fails because there aren't enough sub-patterns:
+    !pcrecpp::RE("\\w+:\\d+").FullMatch("ruby:1234", &amp;s);
+</pre>
+      </div>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+ Example: fails because string cannot be stored in integer
+    !pcrecpp::RE("(.*)").FullMatch("ruby", &amp;i);
+</pre>
+      </div>
+
+      <p>The provided pointer arguments can be pointers to any
+      scalar numeric type, or one of:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+  string        (matched piece is copied to string)
+  StringPiece   (StringPiece is mutated to point to matched piece)
+  T             (where "bool T::ParseFrom(const char*, int)" exists)
+  NULL          (the corresponding matched sub-pattern is not copied)
+</pre>
+      </div>
+
+      <p>The function returns true iff all of the following
+      conditions are satisfied:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+a. "text" matches "pattern" exactly;
+</pre>
+      </div>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+ b. The number of matched sub-patterns is &gt;= number of supplied
+    pointers;
+</pre>
+      </div>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+ c. The "i"th argument has a suitable type for holding the
+    string captured as the "i"th sub-pattern. If you pass in
+    void * NULL for the "i"th argument, or a non-void * NULL
+    of the correct type, or pass fewer arguments than the
+    number of sub-patterns, "i"th captured sub-pattern is
+    ignored.
+</pre>
+      </div>
+
+      <p>CAVEAT: An optional sub-pattern that does not exist in the
+      matched string is assigned the empty string. Therefore, the
+      following will return false (because the empty string is not
+      a valid number):</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+  int number;
+  pcrecpp::RE::FullMatch("abc", "[a-z]+(\\d+)?", &amp;number);
+</pre>
+      </div>
+
+      <p>The matching interface supports at most 16 arguments per
+      call. If you need more, consider using the more general
+      interface <em class="replaceable"><code>pcrecpp::RE::DoMatch</code></em>. See
+      <code class="filename">pcrecpp.h</code> for the signature for
+      <code class="function">DoMatch</code>.</p>
+
+      <div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;">
+        <table border="0" summary="Note">
+          <tr>
+            <td rowspan="2" align="center" valign="top" width="25" colspan="1">
+            <img alt="[Note]" src="../stylesheet/note.png" /></td>
+
+            <th align="left" rowspan="1" colspan="1">Note</th>
+          </tr>
+
+          <tr>
+            <td align="left" valign="top" rowspan="1" colspan="1">
+              <p>Do not use <code class="function">no_arg</code>,
+              which is used internally to mark the end of a list of
+              optional arguments, as a placeholder for missing
+              arguments, as this can lead to segfaults.</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="refsect1" title="QUOTING METACHARACTERS">
+      <a id="pcrecpp-3_sect4" name="pcrecpp-3_sect4" shape="rect"> </a>
+
+      <h2>QUOTING METACHARACTERS</h2>
+
+      <p>You can use the "QuoteMeta" operation to insert
+      backslashes before all potentially meaningful characters in a
+      string. The returned string, used as a regular expression,
+      will exactly match the original string.</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+ Example:
+    string quoted = RE::QuoteMeta(unquoted);
+</pre>
+      </div>
+
+      <p>Note that it's legal to escape a character even if it has
+      no special meaning in a regular expression -- so this
+      function does that. (This also makes it identical to the perl
+      function of the same name; see "perldoc -f quotemeta".) For
+      example, "1.5-2.0?" becomes "1\.5\-2\.0\?".</p>
+    </div>
+
+    <div class="refsect1" title="PARTIAL MATCHES">
+      <a id="pcrecpp-3_sect5" name="pcrecpp-3_sect5" shape="rect"> </a>
+
+      <h2>PARTIAL MATCHES</h2>
+
+      <p>You can use the "PartialMatch" operation when you want the
+      pattern to match any substring of the text.</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+ Example: simple search for a string:
+    pcrecpp::RE("ell").PartialMatch("hello");
+</pre>
+      </div>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+ Example: find first number in a string:
+    int number;
+    pcrecpp::RE re("(\\d+)");
+    re.PartialMatch("x*100 + 20", &amp;number);
+    assert(number == 100);
+</pre>
+      </div>
+    </div>
+
+    <div class="refsect1" title="UTF-8 AND THE MATCHING INTERFACE">
+      <a id="pcrecpp-3_sect6" name="pcrecpp-3_sect6" shape="rect"> </a>
+
+      <h2>UTF-8 AND THE MATCHING INTERFACE</h2>
+
+      <p>By default, pattern and text are plain text, one byte per
+      character. The UTF8 flag, passed to the constructor, causes
+      both pattern and string to be treated as UTF-8 text, still a
+      byte stream but potentially multiple bytes per character. In
+      practice, the text is likelier to be UTF-8 than the pattern,
+      but the match returned may depend on the UTF8 flag, so always
+      use it when matching UTF8 text. For example, "." will match
+      one byte normally but with UTF8 set may match up to three
+      bytes of a multi-byte character.</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+ Example:
+    pcrecpp::RE_Options options;
+    options.set_utf8();
+    pcrecpp::RE re(utf8_pattern, options);
+    re.FullMatch(utf8_string);
+</pre>
+      </div>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+ Example: using the convenience function UTF8():
+    pcrecpp::RE re(utf8_pattern, pcrecpp::UTF8());
+    re.FullMatch(utf8_string);
+</pre>
+      </div>
+
+      <div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;">
+        <table border="0" summary="Note">
+          <tr>
+            <td rowspan="2" align="center" valign="top" width="25" colspan="1">
+            <img alt="[Note]" src="../stylesheet/note.png" /></td>
+
+            <th align="left" rowspan="1" colspan="1">Note</th>
+          </tr>
+
+          <tr>
+            <td align="left" valign="top" rowspan="1" colspan="1">
+              <p>The UTF8 flag is ignored if pcre was not
+              configured with the --enable-utf8 flag.</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="refsect1" title="PASSING MODIFIERS TO THE REGULAR EXPRESSION ENGINE">
+      <a id="pcrecpp-3_sect7" name="pcrecpp-3_sect7" shape="rect"> </a>
+
+      <h2>PASSING MODIFIERS TO THE REGULAR EXPRESSION ENGINE</h2>
+
+      <p>PCRE defines some modifiers to change the behavior of the
+      regular expression engine. The C++ wrapper defines an
+      auxiliary class, RE_Options, as a vehicle to pass such
+      modifiers to a RE class. Currently, the following modifiers
+      are supported:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+modifier              description               Perl corresponding
+</pre>
+      </div>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+  PCRE_CASELESS         case insensitive match      /i
+  PCRE_MULTILINE        multiple lines match        /m
+  PCRE_DOTALL           dot matches newlines        /s
+  PCRE_DOLLAR_ENDONLY   $ matches only at end       N/A
+  PCRE_EXTRA            strict escape parsing       N/A
+  PCRE_EXTENDED         ignore whitespaces          /x
+  PCRE_UTF8             handles UTF8 chars          built-in
+  PCRE_UNGREEDY         reverses * and *?           N/A
+  PCRE_NO_AUTO_CAPTURE  disables capturing parens   N/A (*)
+</pre>
+      </div>
+
+      <p>(*) Both Perl and PCRE allow non capturing parentheses by
+      means of the "?:" modifier within the pattern itself. e.g.
+      (?:ab|cd) does not capture, while (ab|cd) does.</p>
+
+      <p>For a full account on how each modifier works, please
+      check the PCRE API reference page.</p>
+
+      <p>For each modifier, there are two member functions whose
+      name is made out of the modifier in lowercase, without the
+      "PCRE_" prefix. For instance, PCRE_CASELESS is handled by</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+bool caseless()
+</pre>
+      </div>
+
+      <p>which returns true if the modifier is set, and</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+RE_Options &amp; set_caseless(bool)
+</pre>
+      </div>
+
+      <p>which sets or unsets the modifier. Moreover,
+      PCRE_EXTRA_MATCH_LIMIT can be accessed through the
+      <code class="function">set_match_limit</code>() and
+      <code class="varname">match_limit</code>() member functions.
+      Setting <code class="varname">match_limit</code> to a
+      non-zero value will limit the execution of pcre to keep it
+      from doing bad things like blowing the stack or taking an
+      eternity to return a result. A value of 5000 is good enough
+      to stop stack blowup in a 2MB thread stack. Setting
+      <code class="varname">match_limit</code> to zero disables
+      match limiting. Alternatively, you can call <code class="function">match_limit_recursion</code>() which uses
+      PCRE_EXTRA_MATCH_LIMIT_RECURSION to limit how much PCRE
+      recurses. <code class="varname">match_limit</code>() limits
+      the number of matches PCRE does; <code class="function">match_limit_recursion</code>() limits the depth of
+      internal recursion, and therefore the amount of stack that is
+      used.</p>
+
+      <p>Normally, to pass one or more modifiers to a RE class, you
+      declare a <span class="type">RE_Options</span> object, set
+      the appropriate options, and pass this object to a RE
+      constructor. Example:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+  RE_options opt;
+  opt.set_caseless(true);
+  if (RE("HELLO", opt).PartialMatch("hello world")) ...
+</pre>
+      </div>
+
+      <p>RE_options has two constructors. The default constructor
+      takes no arguments and creates a set of flags that are off by
+      default. The optional parameter <code class="varname">option_flags</code> is to facilitate transfer of
+      legacy code from C programs. This lets you do</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+  RE(pattern,
+    RE_Options(PCRE_CASELESS|PCRE_MULTILINE)).PartialMatch(str);
+</pre>
+      </div>
+
+      <p>However, new code is better off doing</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+  RE(pattern,
+    RE_Options().set_caseless(true).set_multiline(true))
+      .PartialMatch(str);
+</pre>
+      </div>
+
+      <p>If you are going to pass one of the most used modifiers,
+      there are some convenience functions that return a RE_Options
+      class with the appropriate modifier already set: <code class="function">CASELESS</code>(), <code class="function">UTF8</code>(), <code class="function">MULTILINE</code>(), <code class="function">DOTALL</code>(), and <code class="function">EXTENDED</code>().</p>
+
+      <p>If you need to set several options at once, and you don't
+      want to go through the pains of declaring a RE_Options object
+      and setting several options, there is a parallel method that
+      give you such ability on the fly. You can concatenate several
+      <code class="function">set_xxxxx</code>() member functions,
+      since each of them returns a reference to its class object.
+      For example, to pass PCRE_CASELESS, PCRE_EXTENDED, and
+      PCRE_MULTILINE to a RE with one statement, you may write:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+  RE(" ^ xyz \\s+ .* blah$",
+    RE_Options()
+      .set_caseless(true)
+      .set_extended(true)
+      .set_multiline(true)).PartialMatch(sometext);
+</pre>
+      </div>
+    </div>
+
+    <div class="refsect1" title="SCANNING TEXT INCREMENTALLY">
+      <a id="pcrecpp-3_sect8" name="pcrecpp-3_sect8" shape="rect"> </a>
+
+      <h2>SCANNING TEXT INCREMENTALLY</h2>
+
+      <p>The "Consume" operation may be useful if you want to
+      repeatedly match regular expressions at the front of a string
+      and skip over them as they match. This requires use of the
+      "StringPiece" type, which represents a sub-range of a real
+      string. Like RE, StringPiece is defined in the pcrecpp
+      namespace.</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+ Example: read lines of the form "var = value" from a string.
+    string contents = ...;                 // Fill string somehow
+    pcrecpp::StringPiece input(contents);  // Wrap in a StringPiece
+</pre>
+      </div>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+    string var;
+    int value;
+    pcrecpp::RE re("(\\w+) = (\\d+)\n");
+    while (re.Consume(&amp;input, &amp;var, &amp;value)) {
+      ...;
+    }
+</pre>
+      </div>
+
+      <p>Each successful call to "Consume" will set "var/value",
+      and also advance "input" so it points past the matched
+      text.</p>
+
+      <p>The "FindAndConsume" operation is similar to "Consume" but
+      does not anchor your match at the beginning of the string.
+      For example, you could extract all words from a string by
+      repeatedly calling</p>
+
+      <p>pcrecpp::RE("(\\w+)").FindAndConsume(&amp;input,
+      &amp;word)</p>
+    </div>
+
+    <div class="refsect1" title="PARSING HEX/OCTAL/C-RADIX NUMBERS">
+      <a id="pcrecpp-3_sect9" name="pcrecpp-3_sect9" shape="rect"> </a>
+
+      <h2>PARSING HEX/OCTAL/C-RADIX NUMBERS</h2>
+
+      <p>By default, if you pass a pointer to a numeric value, the
+      corresponding text is interpreted as a base-10 number. You
+      can instead wrap the pointer with a call to one of the
+      operators Hex(), Octal(), or CRadix() to interpret the text
+      in another base. The CRadix operator interprets C-style "0"
+      (base-8) and "0x" (base-16) prefixes, but defaults to
+      base-10.</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+ Example:
+   int a, b, c, d;
+   pcrecpp::RE re("(.*) (.*) (.*) (.*)");
+   re.FullMatch("100 40 0100 0x40",
+                pcrecpp::Octal(&amp;a), pcrecpp::Hex(&amp;b),
+                pcrecpp::CRadix(&amp;c), pcrecpp::CRadix(&amp;d));
+</pre>
+      </div>
+
+      <p>will leave 64 in a, b, c, and d.</p>
+    </div>
+
+    <div class="refsect1" title="REPLACING PARTS OF STRINGS">
+      <a id="pcrecpp-3_sect10" name="pcrecpp-3_sect10" shape="rect"> </a>
+
+      <h2>REPLACING PARTS OF STRINGS</h2>
+
+      <p>You can replace the first match of "pattern" in "str" with
+      "rewrite". Within "rewrite", backslash-escaped digits (\1 to
+      \9) can be used to insert text matching corresponding
+      parenthesized group from the pattern. \0 in "rewrite" refers
+      to the entire matching text. For example:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+ string s = "yabba dabba doo";
+ pcrecpp::RE("b+").Replace("d", &amp;s);
+</pre>
+      </div>
+
+      <p>will leave "s" containing "yada dabba doo". The result is
+      true if the pattern matches and a replacement occurs, false
+      otherwise.</p>
+
+      <p><code class="function">GlobalReplace</code> is like
+      <code class="function">Replace</code> except that it replaces
+      all occurrences of the pattern in the string with the
+      rewrite. Replacements are not subject to re-matching. For
+      example:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+ string s = "yabba dabba doo";
+ pcrecpp::RE("b+").GlobalReplace("d", &amp;s);
+</pre>
+      </div>
+
+      <p>will leave "s" containing "yada dada doo". It returns the
+      number of replacements made.</p>
+
+      <p><code class="function">Extract</code> is like <code class="function">Replace</code>, except that if the pattern
+      matches, "rewrite" is copied into "out" (an additional
+      argument) with substitutions. The non-matching portions of
+      "text" are ignored. Returns true iff a match occurred and the
+      extraction happened successfully; if no match occurs, the
+      string is left unaffected.</p>
+    </div>
+
+    <div class="refsect1" title="AUTHOR">
+      <a id="pcrecpp-3_sect11" name="pcrecpp-3_sect11" shape="rect"> </a>
+
+      <h2>AUTHOR</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+The C++ wrapper was contributed by Google Inc.
+Copyright (c) 2007 Google Inc.
+</pre>
+      </div>
+    </div>
+
+    <div class="refsect1" title="REVISION">
+      <a id="pcrecpp-3_sect12" name="pcrecpp-3_sect12" shape="rect"> </a>
+
+      <h2>REVISION</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+Last updated: 17 March 2009
+</pre>
+      </div>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <thead>
+            <tr>
+              <th style="" rowspan="1" colspan="1">COPYRIGHT</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <p>This manual page is taken from the <a class="ulink" href="http://www.PCRE.org/" target="_top" shape="rect">PCRE library</a>, which is distributed under
+                the BSD license.</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

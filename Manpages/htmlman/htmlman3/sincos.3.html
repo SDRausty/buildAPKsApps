@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>sincos(3) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="sincos(3) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="sincos(3) — Linux manual pages">
+    <a id="sincos.3" name="sincos.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>sincos, sincosf, sincosl — calculate sin and cos
+      simultaneously</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+#define _GNU_SOURCE          /* See feature_test_macros(7) */
+#include &lt;math.h&gt;
+</pre>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">void <b class="fsfunc">sincos</b>(</code></td>
+
+            <td rowspan="1" colspan="1">double <var class="pdparam">x</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">double *<var class="pdparam">sin</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">double *<var class="pdparam">cos</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">void <b class="fsfunc">sincosf</b>(</code></td>
+
+            <td rowspan="1" colspan="1">float <var class="pdparam">x</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">float *<var class="pdparam">sin</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">float *<var class="pdparam">cos</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">void <b class="fsfunc">sincosl</b>(</code></td>
+
+            <td rowspan="1" colspan="1">long double <var class="pdparam">x</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">long double *<var class="pdparam">sin</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">long double *<var class="pdparam">cos</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;">
+        <table border="0" summary="Note">
+          <tr>
+            <td rowspan="2" align="center" valign="top" width="25" colspan="1">
+            <img alt="[Note]" src="../stylesheet/note.png" /></td>
+
+            <th align="left" rowspan="1" colspan="1">Note</th>
+          </tr>
+
+          <tr>
+            <td align="left" valign="top" rowspan="1" colspan="1">
+              <p>Link with <code class="option">−lm</code>.</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="sincos-3_sect1" name="sincos-3_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>Several applications need sine and cosine of the same
+      angle <em class="parameter"><code>x</code></em>. This
+      function computes both at the same time, and stores the
+      results in *<em class="parameter"><code>sin</code></em> and
+      *<em class="parameter"><code>cos</code></em>.</p>
+
+      <p>If <em class="parameter"><code>x</code></em> is a NaN, a
+      NaN is returned in *<em class="parameter"><code>sin</code></em> and *<em class="parameter"><code>cos</code></em>.</p>
+
+      <p>If <em class="parameter"><code>x</code></em> is positive
+      infinity or negative infinity, a domain error occurs, and a
+      NaN is returned in *<em class="parameter"><code>sin</code></em> and *<em class="parameter"><code>cos</code></em>.</p>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="sincos-3_sect2" name="sincos-3_sect2" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p>These functions return <span class="type">void</span>.</p>
+    </div>
+
+    <div class="refsect1" title="ERRORS">
+      <a id="sincos-3_sect3" name="sincos-3_sect3" shape="rect"> </a>
+
+      <h2>ERRORS</h2>
+
+      <p>See <a class="link" href="../htmlman7/math_error.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">math_error</span>(7)</span></a> for
+      information on how to determine whether an error has occurred
+      when calling these functions.</p>
+
+      <p>The following errors can occur:</p>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term">Domain error: <em class="parameter"><code>x</code></em> is an
+          infinity</span></dt>
+
+          <dd>
+            <p>An invalid floating-point exception (<code class="constant">FE_INVALID</code>) is raised.</p>
+          </dd>
+        </dl>
+      </div>
+
+      <p>These functions do not set <code class="varname">errno</code>.</p>
+    </div>
+
+    <div class="refsect1" title="VERSIONS">
+      <a id="sincos-3_sect4" name="sincos-3_sect4" shape="rect"> </a>
+
+      <h2>VERSIONS</h2>
+
+      <p>These functions first appeared in glibc in version
+      2.1.</p>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="sincos-3_sect5" name="sincos-3_sect5" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>This function is a GNU extension.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="sincos-3_sect6" name="sincos-3_sect6" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman3/cos.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">cos</span>(3)</span></a>, <a class="link" href="../htmlman3/sin.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">sin</span>(3)</span></a>, <a class="link" href="../htmlman3/tan.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">tan</span>(3)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="sincos-3_sect7" name="sincos-3_sect7" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.30 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright 2002 Walter Harms (walter.harms<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>informatik.uni-oldenburg.de)<br />
+
+                  Distributed under GPL, 2002-07-27 Walter Harms<br />
+
+                  and Copyright 2008, Linux Foundation, written by Michael Kerrisk<br />
+
+                      &lt;mtk.manpages<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>gmail.com&gt;<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

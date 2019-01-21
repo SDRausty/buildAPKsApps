@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>gnutls_global_set_mem_functions(3) — Linux manual
+  pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="gnutls_global_set_mem_functions(3) — Linux manual pages" />
+
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="gnutls_global_set_mem_functions(3) — Linux manual pages">
+    <a id="gnutls-global-set-mem-functions.3" name="gnutls-global-set-mem-functions.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>gnutls_global_set_mem_functions — API function</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;gnutls/gnutls.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">void <b class="fsfunc">gnutls_global_set_mem_functions</b>(</code></td>
+
+            <td rowspan="1" colspan="1">gnutls_alloc_function <var class="pdparam">alloc_func</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">gnutls_alloc_function <var class="pdparam">secure_alloc_func</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">gnutls_is_secure_function <var class="pdparam">is_secure_func</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">gnutls_realloc_function <var class="pdparam">realloc_func</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">gnutls_free_function <var class="pdparam">free_func</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="ARGUMENTS">
+      <a id="gnutls-global-set-mem-functions-3_sect1" name="gnutls-global-set-mem-functions-3_sect1" shape="rect"> </a>
+
+      <h2>ARGUMENTS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><span class="emphasis"><em>gnutls_alloc_function
+          alloc_func</em></span></span></dt>
+
+          <dd>
+            <p>it's the default memory allocation function. Like
+            <code class="function">malloc</code>().</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>gnutls_alloc_function
+          secure_alloc_func</em></span></span></dt>
+
+          <dd>
+            <p>This is the memory allocation function that will be
+            used for sensitive data.</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>gnutls_is_secure_function
+          is_secure_func</em></span></span></dt>
+
+          <dd>
+            <p>a function that returns 0 if the memory given is not
+            secure. May be NULL.</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>gnutls_realloc_function
+          realloc_func</em></span></span></dt>
+
+          <dd>
+            <p>A realloc function</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>gnutls_free_function
+          free_func</em></span></span></dt>
+
+          <dd>
+            <p>The function that frees allocated data. Must accept
+            a NULL pointer.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="gnutls-global-set-mem-functions-3_sect2" name="gnutls-global-set-mem-functions-3_sect2" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>This is the function were you set the memory allocation
+      functions gnutls is going to use. By default the libc's
+      allocation functions (<code class="function">malloc</code>(),
+      <code class="function">free</code>()), are used by gnutls, to
+      allocate both sensitive and not sensitive data. This function
+      is provided to set the memory allocation functions to
+      something other than the defaults</p>
+
+      <p>This function must be called before <code class="function">gnutls_global_init</code>() is called. This
+      function is not thread safe.</p>
+    </div>
+
+    <div class="refsect1" title="REPORTING BUGS">
+      <a id="gnutls-global-set-mem-functions-3_sect3" name="gnutls-global-set-mem-functions-3_sect3" shape="rect"> </a>
+
+      <h2>REPORTING BUGS</h2>
+
+      <p>Report bugs to &lt;bug-gnutls@gnu.org&gt;. GnuTLS home
+      page: http://www.gnu.org/software/gnutls/ General help using
+      GNU software: http://www.gnu.org/gethelp/</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="gnutls-global-set-mem-functions-3_sect5" name="gnutls-global-set-mem-functions-3_sect5" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p>The full documentation for <em class="citetitle">gnutls</em> is maintained as a Texinfo manual. If
+      the <span class="command"><strong>info</strong></span> and
+      <em class="citetitle">gnutls</em> programs are properly
+      installed at your site, the command</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+info gnutls
+</pre>
+      </div>
+
+      <p>should give you access to the complete manual.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <thead>
+            <tr>
+              <th style="" rowspan="1" colspan="1">COPYRIGHT</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <p>Copyright © 2008 Free Software
+                Foundation.</p>
+
+                <p>Copying and distribution of this file, with or
+                without modification, are permitted in any medium
+                without royalty provided the copyright notice and
+                this notice are preserved.</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

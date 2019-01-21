@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>fsfreeze(8) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="fsfreeze(8) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="fsfreeze(8) — Linux manual pages">
+    <a id="fsfreeze.8" name="fsfreeze.8" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>fsfreeze — suspend access to an filesystem (Linux
+      Ext3/4, ReiserFS, JFS, XFS).</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">fsfreeze</code> <code class="option">−f</code> mountpoint</p>
+      </div>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">fsfreeze</code> <code class="option">−u</code> mountpoint</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="fsfreeze-8_sect1" name="fsfreeze-8_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><span class="command"><strong>fsfreeze</strong></span>
+      suspends and resumes access to an filesystem</p>
+
+      <p><span class="command"><strong>fsfreeze</strong></span>
+      halts new access to the filesystem and creates a stable image
+      on disk. <span class="command"><strong>fsfreeze</strong></span> is intended to be
+      used with hardware RAID devices that support the creation of
+      snapshots.</p>
+
+      <p><span class="command"><strong>fsfreeze</strong></span> is
+      unnecessary for <em class="replaceable"><code>device-mapper</code></em> devices. The
+      device-mapper (and LVM) automatically freezes filesystem on
+      the device when a snapshot creation is requested. For more
+      details see the <span class="citerefentry"><span class="refentrytitle">dmsetup</span>(8)</span> man page.</p>
+
+      <p>The <em class="replaceable"><code>mount-point</code></em>
+      argument is the pathname of the directory where the
+      filesystem is mounted. The filesystem must be mounted to be
+      frozen (see <a class="link" href="../htmlman8/mount.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mount</span>(8)</span></a>).</p>
+    </div>
+
+    <div class="refsect1" title="OPTIONS">
+      <a id="fsfreeze-8_sect2" name="fsfreeze-8_sect2" shape="rect"> </a>
+
+      <h2>OPTIONS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="option">−h,
+          −−help</code></span></dt>
+
+          <dd>
+            <p>Print help and exit.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−f,
+          −−freeze</code></span></dt>
+
+          <dd>
+            <p>This option requests the specified a filesystem to
+            be frozen from new modifications. When this is
+            selected, all ongoing transactions in the filesystem
+            are allowed to complete, new write system calls are
+            halted, other calls which modify the filesystem are
+            halted, and all dirty data, metadata, and log
+            information are written to disk. Any process attempting
+            to write to the frozen filesystem will block waiting
+            for the filesystem to be unfrozen.</p>
+
+            <p>Note that even after freezing, the on-disk
+            filesystem can contain information on files that are
+            still in the process of unlinking. These files will not
+            be unlinked until the filesystem is unfrozen or a clean
+            mount of the snapshot is complete.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−u,
+          −−unfreeze</code></span></dt>
+
+          <dd>
+            <p>This option is used to un-freeze the filesystem and
+            allow operations to continue. Any filesystem
+            modifications that were blocked by the freeze are
+            unblocked and allowed to complete.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="AUTHOR">
+      <a id="fsfreeze-8_sect3" name="fsfreeze-8_sect3" shape="rect"> </a>
+
+      <h2>AUTHOR</h2>
+
+      <p>Written by Hajime Taira.</p>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="fsfreeze-8_sect4" name="fsfreeze-8_sect4" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p>This man page based on xfs_freeze. One of <code class="option">−f</code> or <code class="option">−u</code> must be supplied to <span class="command"><strong>fsfreeze</strong></span>.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="fsfreeze-8_sect5" name="fsfreeze-8_sect5" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman8/mount.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mount</span>(8)</span></a></p>
+    </div>
+
+    <div class="refsect1" title="AVAILABILITY">
+      <a id="fsfreeze-8_sect6" name="fsfreeze-8_sect6" shape="rect"> </a>
+
+      <h2>AVAILABILITY</h2>
+
+      <p>The fsfreeze command is part of the util-linux package and
+      is available from
+      ftp://ftp.kernel.org/pub/linux/utils/util-linux/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

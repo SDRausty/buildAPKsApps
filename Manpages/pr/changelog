@@ -1,0 +1,8 @@
+1.0
+* Fixed a bug with physical and htc keyboards
+
+1.5
+* Added ability to download all pages on the device SD card or internal storage. After that, you can read manpages without internet connection.
+
+1.51
+* Fixed typo in file size to download 5400MB > 5400KB

@@ -1,0 +1,931 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>sfdisk(8) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="sfdisk(8) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="sfdisk(8) — Linux manual pages">
+    <a id="sfdisk.8" name="sfdisk.8" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>sfdisk — Partition table manipulator for Linux</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">sfdisk</code> [options] device</p>
+      </div>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">sfdisk</code> <code class="option">−s</code> [partition]</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="sfdisk-8_sect1" name="sfdisk-8_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><span class="command"><strong>sfdisk</strong></span> has
+      four (main) uses: list the size of a partition, list the
+      partitions on a device, check the partitions on a device, and
+      - very dangerous - repartition a device.</p>
+
+      <p><span class="command"><strong>sfdisk</strong></span>
+      doesn't understand GUID Partition Table (GPT) and it is not
+      designed for large partitions. In particular case use more
+      advanced GNU <span class="citerefentry"><span class="refentrytitle">parted</span>(8)</span>.</p>
+
+      <div class="refsect2" title="List Sizes">
+        <a id="sfdisk-8_sect2" name="sfdisk-8_sect2" shape="rect"> </a>
+
+        <h3>List Sizes</h3>
+
+        <p><span class="emphasis"><em>sfdisk −s</em></span>
+        <em class="parameter"><code>partition</code></em> gives the
+        size of <em class="parameter"><code>partition</code></em>
+        in blocks. This may be useful in connection with programs
+        like <a class="link" href="../htmlman8/mkswap.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mkswap</span>(8)</span></a> or so. Here
+        <em class="parameter"><code>partition</code></em> is
+        usually something like <code class="filename">/dev/hda1</code> or <code class="filename">/dev/sdb12</code>, but may also be an entire
+        disk, like <code class="filename">/dev/xda</code>.</p>
+
+        <div class="blockquote">
+          <blockquote class="blockquote">
+            <div class="informalexample">
+              <pre class="programlisting" xml:space="preserve">
+% sfdisk −s /dev/hda9
+81599
+%
+</pre>
+            </div>
+          </blockquote>
+        </div>
+
+        <p>If the partition argument is omitted, <span class="command"><strong>sfdisk</strong></span> will list the
+        sizes of all disks, and the total:</p>
+
+        <div class="blockquote">
+          <blockquote class="blockquote">
+            <div class="informalexample">
+              <pre class="programlisting" xml:space="preserve">
+% sfdisk −s
+/dev/hda: 208896
+/dev/hdb: 1025136
+/dev/hdc: 1031063
+/dev/sda: 8877895
+/dev/sdb: 1758927
+total: 12901917 blocks
+%
+</pre>
+            </div>
+          </blockquote>
+        </div>
+      </div>
+
+      <div class="refsect2" title="List Partitions">
+        <a id="sfdisk-8_sect3" name="sfdisk-8_sect3" shape="rect"> </a>
+
+        <h3>List Partitions</h3>
+
+        <p>The second type of invocation: <span class="emphasis"><em>sfdisk −l</em></span> [<em class="parameter"><code>options</code></em>] <em class="parameter"><code>device</code></em> will list the
+        partitions on this device. If the device argument is
+        omitted, the partitions on all hard disks are listed.</p>
+
+        <div class="informalexample">
+          <pre class="programlisting" xml:space="preserve">
+% sfdisk −l /dev/hdc
+
+Disk /dev/hdc: 16 heads, 63 sectors, 2045 cylinders
+Units = cylinders of 516096 bytes, blocks of 1024 bytes, counting from 0
+
+   Device Boot Start     End   #cyls   #blocks   Id  System
+/dev/hdc1          0+    406     407−   205096+  83  Linux native
+/dev/hdc2        407     813     407    205128   83  Linux native
+/dev/hdc3        814    2044    1231    620424   83  Linux native
+/dev/hdc4          0       −       0         0    0  Empty
+%
+</pre>
+        </div>
+
+        <p>The trailing − and + signs indicate that rounding
+        has taken place, and that the actual value is slightly less
+        (more). To see the exact values, ask for a listing with
+        sectors as unit.</p>
+      </div>
+
+      <div class="refsect2" title="Check partitions">
+        <a id="sfdisk-8_sect4" name="sfdisk-8_sect4" shape="rect"> </a>
+
+        <h3>Check partitions</h3>
+
+        <p>The third type of invocation: <span class="emphasis"><em>sfdisk −V</em></span> <em class="parameter"><code>device</code></em> will apply various
+        consistency checks to the partition tables on <em class="parameter"><code>device</code></em>. It prints `OK' or
+        complains. The −V option can be used together with
+        −l. In a shell script one might use <span class="emphasis"><em>sfdisk −V −q</em></span>
+        <em class="parameter"><code>device</code></em> which only
+        returns a status.</p>
+      </div>
+
+      <div class="refsect2" title="Create partitions">
+        <a id="sfdisk-8_sect5" name="sfdisk-8_sect5" shape="rect"> </a>
+
+        <h3>Create partitions</h3>
+
+        <p>The fourth type of invocation: <span class="emphasis"><em>sfdisk</em></span> <em class="parameter"><code>device</code></em> will cause
+        <span class="command"><strong>sfdisk</strong></span> to
+        read the specification for the desired partitioning of
+        <em class="parameter"><code>device</code></em> from its
+        standard input, and then to change the partition tables on
+        that disk. Thus, it is possible to use <span class="command"><strong>sfdisk</strong></span> from a shell
+        script. When <span class="command"><strong>sfdisk</strong></span> determines that
+        its standard input is a terminal, it will be
+        conversational; otherwise it will abort on any error.</p>
+
+        <p>BE EXTREMELY CAREFUL - ONE TYPING MISTAKE AND ALL YOUR
+        DATA IS LOST</p>
+
+        <p>As a precaution, one can save the sectors changed by
+        <span class="command"><strong>sfdisk</strong></span>:</p>
+
+        <div class="blockquote">
+          <blockquote class="blockquote">
+            <div class="informalexample">
+              <pre class="programlisting" xml:space="preserve">
+% sfdisk /dev/hdd −O hdd-partition-sectors.save
+...
+%
+</pre>
+            </div>
+          </blockquote>
+        </div>
+
+        <p>Then, if you discover that you did something stupid
+        before anything else has been written to disk, it may be
+        possible to recover the old situation with</p>
+
+        <div class="blockquote">
+          <blockquote class="blockquote">
+            <div class="informalexample">
+              <pre class="programlisting" xml:space="preserve">
+% sfdisk /dev/hdd −I hdd-partition-sectors.save
+%
+</pre>
+            </div>
+          </blockquote>
+        </div>
+
+        <p>(This is not the same as saving the old partition table:
+        a readable version of the old partition table can be saved
+        using the −d option. However, if you create logical
+        partitions, the sectors describing them are located
+        somewhere on disk, possibly on sectors that were not part
+        of the partition table before. Thus, the information the
+        −O option saves is not a binary version of the output
+        of −d.)</p>
+
+        <p>There are many options.</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="OPTIONS">
+      <a id="sfdisk-8_sect6" name="sfdisk-8_sect6" shape="rect"> </a>
+
+      <h2>OPTIONS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="option">−v or
+          −−version</code></span></dt>
+
+          <dd>
+            <p>Print version number of <span class="command"><strong>sfdisk</strong></span> and exit
+            immediately.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−? or
+          −−help</code></span></dt>
+
+          <dd>
+            <p>Print a usage message and exit immediately.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−T or
+          −−list−types</code></span></dt>
+
+          <dd>
+            <p>Print the recognized types (system Id's).</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−s or
+          −−show−size</code></span></dt>
+
+          <dd>
+            <p>List the size of a partition.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−g or
+          −−show−geometry</code></span></dt>
+
+          <dd>
+            <p>List the kernel's idea of the geometry of the
+            indicated disk(s).</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−G or
+          −−show−pt−geometry</code></span></dt>
+
+          <dd>
+            <p>List the geometry of the indicated disks guessed by
+            looking at the partition table.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−l or
+          −−list</code></span></dt>
+
+          <dd>
+            <p>List the partitions of a device.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−d</code></span></dt>
+
+          <dd>
+            <p>Dump the partitions of a device in a format useful
+            as input to sfdisk. For example,</p>
+
+            <div class="informalexample">
+              <pre class="programlisting" xml:space="preserve">
+    % sfdisk -d /dev/hda &gt; hda.out
+    % sfdisk /dev/hda &lt; hda.out
+</pre>
+            </div>
+
+            <p>will correct the bad last extended partition that
+            the OS/2 fdisk creates.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−V or
+          −−verify</code></span></dt>
+
+          <dd>
+            <p>Test whether partitions seem correct. (See
+            above.)</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−i or
+          −−increment</code></span></dt>
+
+          <dd>
+            <p>Number cylinders etc. starting from 1 instead of
+            0.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−N
+          number</code></span></dt>
+
+          <dd>
+            <p>Change only the single partition indicated. For
+            example:</p>
+
+            <div class="informalexample">
+              <pre class="programlisting" xml:space="preserve">
+    % sfdisk /dev/hdb −N5
+    ,,,*
+    %
+</pre>
+            </div>
+
+            <p>will make the fifth partition on /dev/hdb bootable
+            (`active') and change nothing else. (Probably this
+            fifth partition is called /dev/hdb5, but you are free
+            to call it something else, like
+            `/my_equipment/disks/2/5' or so).</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−A
+          number</code></span></dt>
+
+          <dd>
+            <p>Make the indicated partition(s) active, and all
+            others inactive.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−cor
+          −−id number [Id]</code></span></dt>
+
+          <dd>
+            <p>If no Id argument given: print the partition Id of
+            the indicated partition. If an Id argument is present:
+            change the type (Id) of the indicated partition to the
+            given value. This option has the two very long forms
+            −−print−id and
+            −−change−id. For example:</p>
+
+            <div class="informalexample">
+              <pre class="programlisting" xml:space="preserve">
+    % sfdisk --print-id /dev/hdb 5
+    6
+    % sfdisk --change-id /dev/hdb 5 83
+    OK
+</pre>
+            </div>
+
+            <p>first reports that /dev/hdb5 has Id 6, and then
+            changes that into 83.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−uS or
+          −uB or −uC or −uM</code></span></dt>
+
+          <dd>
+            <p>Accept or report in units of sectors (blocks,
+            cylinders, megabytes, respectively). The default is
+            cylinders, at least when the geometry is known.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−x or
+          −−show−extended</code></span></dt>
+
+          <dd>
+            <p>Also list non-primary extended partitions on output,
+            and expect descriptors for them on input.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−C
+          cylinders</code></span></dt>
+
+          <dd>
+            <p>Specify the number of cylinders, possibly overriding
+            what the kernel thinks.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−H
+          heads</code></span></dt>
+
+          <dd>
+            <p>Specify the number of heads, possibly overriding
+            what the kernel thinks.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−S
+          sectors</code></span></dt>
+
+          <dd>
+            <p>Specify the number of sectors, possibly overriding
+            what the kernel thinks.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−f or
+          −−force</code></span></dt>
+
+          <dd>
+            <p>Do what I say, even if it is stupid.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−q or
+          −−quiet</code></span></dt>
+
+          <dd>
+            <p>Suppress warning messages.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−L or
+          −−Linux</code></span></dt>
+
+          <dd>
+            <p>Do not complain about things irrelevant for
+            Linux.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−D or
+          −−DOS</code></span></dt>
+
+          <dd>
+            <p>For DOS-compatibility: waste a little space. (More
+            precisely: if a partition cannot contain sector 0, e.g.
+            because that is the MBR of the device, or contains the
+            partition table of an extended partition, then
+            <span class="command"><strong>sfdisk</strong></span>
+            would make it start the next sector. However, when this
+            option is given it skips to the start of the next
+            track, wasting for example 33 sectors (in case of 34
+            sectors/track), just like certain versions of DOS do.)
+            Certain Disk Managers and boot loaders (such as OSBS,
+            but not LILO or the OS/2 Boot Manager) also live in
+            this empty space, so maybe you want this option if you
+            use one.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−E or
+          −−DOS−extended</code></span></dt>
+
+          <dd>
+            <p>Take the starting sector numbers of "inner" extended
+            partitions to be relative to the starting cylinder
+            boundary of the outer one, (like some versions of DOS
+            do) rather than to the starting sector (like Linux
+            does). (The fact that there is a difference here means
+            that one should always let extended partitions start at
+            cylinder boundaries if DOS and Linux should interpret
+            the partition table in the same way. Of course one can
+            only know where cylinder boundaries are when one knows
+            what geometry DOS will use for this disk.)</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−−IBM or
+          −−leave−last</code></span></dt>
+
+          <dd>
+            <p>Certain IBM diagnostic programs assume that they can
+            use the last cylinder on a disk for disk-testing
+            purposes. If you think you might ever run such
+            programs, use this option to tell <span class="command"><strong>sfdisk</strong></span> that it should
+            not allocate the last cylinder. Sometimes the last
+            cylinder contains a bad sector table.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−n</code></span></dt>
+
+          <dd>
+            <p>Go through all the motions, but do not actually
+            write to disk.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−R</code></span></dt>
+
+          <dd>
+            <p>Only execute the BLKRRPART ioctl (to make the kernel
+            re-read the partition table). This can be useful for
+            checking in advance that the final BLKRRPART will be
+            successful, and also when you changed the partition
+            table `by hand' (e.g., using dd from a backup). If the
+            kernel complains (`device busy for revalidation (usage
+            = 2)') then something still uses the device, and you
+            still have to unmount some file system, or say swapoff
+            to some swap partition.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−−no−reread</code></span></dt>
+
+          <dd>
+            <p>When starting a repartitioning of a disk, sfdisk
+            checks that this disk is not mounted, or in use as a
+            swap device, and refuses to continue if it is. This
+            option suppresses the test. (On the other hand, the
+            −f option would force sfdisk to continue even
+            when this test fails.)</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−O
+          file</code></span></dt>
+
+          <dd>
+            <p>Just before writing the new partition, output the
+            sectors that are going to be overwritten to <em class="replaceable"><code>file</code></em> (where hopefully
+            <em class="replaceable"><code>file</code></em> resides
+            on another disk, or on a floppy).</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−I
+          file</code></span></dt>
+
+          <dd>
+            <p>After destroying your filesystems with an
+            unfortunate <span class="command"><strong>sfdisk</strong></span> command, you
+            would have been able to restore the old situation if
+            only you had preserved it using the −O flag.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="THEORY">
+      <a id="sfdisk-8_sect7" name="sfdisk-8_sect7" shape="rect"> </a>
+
+      <h2>THEORY</h2>
+
+      <p>Block 0 of a disk (the Master Boot Record) contains among
+      other things four partition descriptors. The partitions
+      described here are called <span class="quote">“<span class="quote">primary</span>”</span> partitions.</p>
+
+      <p>A partition descriptor has 6 fields:</p>
+
+      <div class="structdef">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+            <col span="1" />
+            <col span="1" />
+            <col span="1" />
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td class="structdefhdr" style="" align="left" rowspan="1" colspan="1">
+              struct</td>
+
+              <td class="structdefhdr" style="" colspan="4" align="left" rowspan="1"><span class="structname">partition</span> {</td>
+            </tr>
+
+            <tr>
+              <td style="" rowspan="1" colspan="1"> </td>
+
+              <td style="" align="left" rowspan="1" colspan="1"><span class="type">unsigned char</span></td>
+
+              <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+               </td>
+
+              <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>bootable</code></em>;</td>
+
+              <td style="" align="left" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  /* 0 or 0x80 */
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td style="" rowspan="1" colspan="1"> </td>
+
+              <td style="" align="left" rowspan="1" colspan="1"><span class="type">hsc</span></td>
+
+              <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+               </td>
+
+              <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>begin_hsc</code></em>;</td>
+
+              <td style="" align="left" rowspan="1" colspan="1"> </td>
+            </tr>
+
+            <tr>
+              <td style="" rowspan="1" colspan="1"> </td>
+
+              <td style="" align="left" rowspan="1" colspan="1"><span class="type">unsigned char</span></td>
+
+              <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+               </td>
+
+              <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>id</code></em>;</td>
+
+              <td style="" align="left" rowspan="1" colspan="1"> </td>
+            </tr>
+
+            <tr>
+              <td style="" rowspan="1" colspan="1"> </td>
+
+              <td style="" align="left" rowspan="1" colspan="1"><span class="type">hsc</span></td>
+
+              <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+               </td>
+
+              <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>end_hsc</code></em>;</td>
+
+              <td style="" align="left" rowspan="1" colspan="1"> </td>
+            </tr>
+
+            <tr>
+              <td style="" rowspan="1" colspan="1"> </td>
+
+              <td style="" align="left" rowspan="1" colspan="1"><span class="type">unsigned int</span></td>
+
+              <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+               </td>
+
+              <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>starting_sector</code></em>;</td>
+
+              <td style="" align="left" rowspan="1" colspan="1"> </td>
+            </tr>
+
+            <tr>
+              <td style="" rowspan="1" colspan="1"> </td>
+
+              <td style="" align="left" rowspan="1" colspan="1"><span class="type">unsigned int</span></td>
+
+              <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+               </td>
+
+              <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>nr_of_sectors</code></em>;</td>
+
+              <td style="" align="left" rowspan="1" colspan="1"> </td>
+            </tr>
+
+            <tr>
+              <td class="structdefftr" style="" colspan="5" align="left" rowspan="1">};</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>The two hsc fields indicate head, sector and cylinder of
+      the begin and the end of the partition. Since each hsc field
+      only takes 3 bytes, only 24 bits are available, which does
+      not suffice for big disks (say &gt; 8GB). In fact, due to the
+      wasteful representation (that uses a byte for the number of
+      heads, which is typically 16), problems already start with
+      0.5GB. However Linux does not use these fields, and problems
+      can arise only at boot time, before Linux has been started.
+      For more details, see the <span class="command"><strong>lilo</strong></span> documentation.</p>
+
+      <p>Each partition has a type, its `Id', and if this type is 5
+      or f (`<span class="emphasis"><em>extended
+      partition</em></span>') the starting sector of the partition
+      again contains 4 partition descriptors. MSDOS only uses the
+      first two of these: the first one an actual data partition,
+      and the second one again an extended partition (or empty). In
+      this way one gets a chain of extended partitions. Other
+      operating systems have slightly different conventions. Linux
+      also accepts type 85 as equivalent to 5 and f - this can be
+      useful if one wants to have extended partitions under Linux
+      past the 1024 cylinder boundary, without DOS FDISK hanging.
+      (If there is no good reason, you should just use 5, which is
+      understood by other systems.)</p>
+
+      <p>Partitions that are not primary or extended are called
+      <span class="quote">“<span class="quote">logical</span>”</span>. Often, one cannot boot
+      from logical partitions (because the process of finding them
+      is more involved than just looking at the MBR). Note that of
+      an extended partition only the Id and the start are used.
+      There are various conventions about what to write in the
+      other fields. One should not try to use extended partitions
+      for data storage or swap.</p>
+    </div>
+
+    <div class="refsect1" title="INPUT FORMAT">
+      <a id="sfdisk-8_sect8" name="sfdisk-8_sect8" shape="rect"> </a>
+
+      <h2>INPUT FORMAT</h2>
+
+      <p><span class="command"><strong>sfdisk</strong></span> reads
+      lines of the form</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <p>&lt;start&gt; &lt;size&gt; &lt;id&gt; &lt;bootable&gt;
+          &lt;c,h,s&gt; &lt;c,h,s&gt;</p>
+        </blockquote>
+      </div>
+
+      <p>where each line fills one partition descriptor.</p>
+
+      <p>Fields are separated by whitespace, or comma or semicolon
+      possibly followed by whitespace; initial and trailing
+      whitespace is ignored. Numbers can be octal, decimal or
+      hexadecimal, decimal is default. When a field is absent or
+      empty, a default value is used.</p>
+
+      <p>The &lt;c,h,s&gt; parts can (and probably should) be
+      omitted - <span class="command"><strong>sfdisk</strong></span> computes them from
+      &lt;start&gt; and &lt;size&gt; and the disk geometry as given
+      by the kernel or specified using the −H, −S,
+      −C flags.</p>
+
+      <p>Bootable is specified as [*|−], with as default
+      not-bootable. (The value of this field is irrelevant for
+      Linux - when Linux runs it has been booted already - but
+      might play a role for certain boot loaders and for other
+      operating systems. For example, when there are several
+      primary DOS partitions, DOS assigns C: to the first among
+      these that is bootable.)</p>
+
+      <p>Id is given in hex, without the 0x prefix, or is
+      [E|S|L|X], where L (LINUX_NATIVE (83)) is the default, S is
+      LINUX_SWAP (82), E is EXTENDED_PARTITION (5), and X is
+      LINUX_EXTENDED (85).</p>
+
+      <p>The default value of start is the first nonassigned
+      sector/cylinder/...</p>
+
+      <p>The default value of size is as much as possible (until
+      next partition or end-of-disk).</p>
+
+      <p>However, for the four partitions inside an extended
+      partition, the defaults are: Linux partition, Extended
+      partition, Empty, Empty.</p>
+
+      <p>But when the −N option (change a single partition
+      only) is given, the default for each field is its previous
+      value.</p>
+
+      <p>A '+' can be specified instead of a number for size, which
+      means as much as possible. This is useful with the −N
+      option.</p>
+    </div>
+
+    <div class="refsect1" title="EXAMPLE">
+      <a id="sfdisk-8_sect9" name="sfdisk-8_sect9" shape="rect"> </a>
+
+      <h2>EXAMPLE</h2>
+
+      <p>The command</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="informalexample">
+            <pre class="programlisting" xml:space="preserve">
+sfdisk /dev/hdc &lt;&lt; EOF
+0,407
+,407
+;
+;
+EOF
+</pre>
+          </div>
+        </blockquote>
+      </div>
+
+      <p>will partition /dev/hdc just as indicated above.</p>
+
+      <p>The command</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="informalexample">
+            <pre class="programlisting" xml:space="preserve">
+sfdisk /dev/hdb &lt;&lt; EOF
+,3,L
+,60,L
+,19,S
+,,E
+,130,L
+,130,L
+,130,L
+,,L
+EOF
+</pre>
+          </div>
+        </blockquote>
+      </div>
+
+      <p>will partition /dev/hdb into two Linux partitions of 3 and
+      60 cylinders, a swap space of 19 cylinders, and an extended
+      partition covering the rest. Inside the extended partition
+      there are four Linux logical partitions, three of 130
+      cylinders and one covering the rest.</p>
+
+      <p>With the −x option, the number of input lines must
+      be a multiple of 4: you have to list the two empty partitions
+      that you never want using two blank lines. Without the
+      −x option, you give one line for the partitions inside
+      a extended partition, instead of four, and terminate with
+      end-of-file (^D). (And <span class="command"><strong>sfdisk</strong></span> will assume that
+      your input line represents the first of four, that the second
+      one is extended, and the 3rd and 4th are empty.)</p>
+    </div>
+
+    <div class="refsect1" title="DOS 6.x WARNING">
+      <a id="sfdisk-8_sect10" name="sfdisk-8_sect10" shape="rect"> </a>
+
+      <h2>DOS 6.x WARNING</h2>
+
+      <p>The DOS 6.x FORMAT command looks for some information in
+      the first sector of the data area of the partition, and
+      treats this information as more reliable than the information
+      in the partition table. DOS FORMAT expects DOS FDISK to clear
+      the first 512 bytes of the data area of a partition whenever
+      a size change occurs. DOS FORMAT will look at this extra
+      information even if the /U flag is given -- we consider this
+      a bug in DOS FORMAT and DOS FDISK.</p>
+
+      <p>The bottom line is that if you use sfdisk to change the
+      size of a DOS partition table entry, then you must also use
+      <span class="command"><strong>dd</strong></span> to zero the
+      first 512 bytes of that partition before using DOS FORMAT to
+      format the partition. For example, if you were using sfdisk
+      to make a DOS partition table entry for /dev/hda1, then
+      (after exiting sfdisk and rebooting Linux so that the
+      partition table information is valid) you would use the
+      command "dd if=/dev/zero of=/dev/hda1 bs=512 count=1" to zero
+      the first 512 bytes of the partition. <span class="emphasis"><em>BE EXTREMELY CAREFUL</em></span> if you use
+      the <span class="command"><strong>dd</strong></span> command,
+      since a small typo can make all of the data on your disk
+      useless.</p>
+
+      <p>For best results, you should always use an OS-specific
+      partition table program. For example, you should make DOS
+      partitions with the DOS FDISK program and Linux partitions
+      with the Linux sfdisk program.</p>
+    </div>
+
+    <div class="refsect1" title="DRDOS WARNINGS">
+      <a id="sfdisk-8_sect11" name="sfdisk-8_sect11" shape="rect"> </a>
+
+      <h2>DRDOS WARNINGS</h2>
+
+      <p>Stephen Tweedie reported (930515): `Most reports of
+      superblock corruption turn out to be due to bad partitioning,
+      with one filesystem overrunning the start of the next and
+      corrupting its superblock. I have even had this problem with
+      the supposedly-reliable DRDOS. This was quite possibly due to
+      DRDOS-6.0's FDISK command. Unless I created a blank track or
+      cylinder between the DRDOS partition and the immediately
+      following one, DRDOS would happily stamp all over the start
+      of the next partition. Mind you, as long as I keep a little
+      free disk space after any DRDOS partition, I don't have any
+      other problems with the two coexisting on the one drive.'</p>
+
+      <p>A. V. Le Blanc writes in README.efdisk: `Dr. DOS 5.0 and
+      6.0 has been reported to have problems cooperating with
+      Linux, and with this version of efdisk in particular. This
+      efdisk sets the system type to hexadecimal 81. Dr. DOS seems
+      to confuse this with hexadecimal 1, a DOS code. If you use
+      Dr. DOS, use the efdisk command 't' to change the system code
+      of any Linux partitions to some number less than hexadecimal
+      80; I suggest 41 and 42 for the moment.'</p>
+
+      <p>A. V. Le Blanc writes in his README.fdisk: `DR-DOS 5.0 and
+      6.0 are reported to have difficulties with partition ID codes
+      of 80 or more. The Linux `fdisk' used to set the system type
+      of new partitions to hexadecimal 81. DR-DOS seems to confuse
+      this with hexadecimal 1, a DOS code. The values 82 for swap
+      and 83 for file systems should not cause problems with
+      DR-DOS. If they do, you may use the `fdisk' command `t' to
+      change the system code of any Linux partitions to some number
+      less than hexadecimal 80; I suggest 42 and 43 for the
+      moment.'</p>
+
+      <p>In fact, it seems that only 4 bits are significant for the
+      DRDOS FDISK, so that for example 11 and 21 are listed as DOS
+      2.0. However, DRDOS itself seems to use the full byte. I have
+      not been able to reproduce any corruption with DRDOS or its
+      fdisk.</p>
+    </div>
+
+    <div class="refsect1" title="BUGS">
+      <a id="sfdisk-8_sect12" name="sfdisk-8_sect12" shape="rect"> </a>
+
+      <h2>BUGS</h2>
+
+      <p>There are too many options.</p>
+
+      <p>There is no support for non-DOS partition types.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="sfdisk-8_sect13" name="sfdisk-8_sect13" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman8/cfdisk.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">cfdisk</span>(8)</span></a>, <a class="link" href="../htmlman8/fdisk.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fdisk</span>(8)</span></a>, <a class="link" href="../htmlman8/mkfs.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mkfs</span>(8)</span></a>, <span class="citerefentry"><span class="refentrytitle">parted</span>(8)</span>, <span class="citerefentry"><span class="refentrytitle">partprobe</span>(8)</span>, <span class="citerefentry"><span class="refentrytitle">kpartx</span>(8)</span></p>
+    </div>
+
+    <div class="refsect1" title="AVAILABILITY">
+      <a id="sfdisk-8_sect14" name="sfdisk-8_sect14" shape="rect"> </a>
+
+      <h2>AVAILABILITY</h2>
+
+      <p>The sfdisk command is part of the util-linux package and
+      is available from
+      ftp://ftp.kernel.org/pub/linux/utils/util-linux/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright 1995 Andries E. Brouwer (aeb<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cwi.nl)<br />
+
+                  May be distributed under the GNU General Public License<br />
+
+                  The `DOS 6.x Warning' was taken from the old fdisk.8, which says<br />
+
+                  -- Copyright 1992, 1993 Rickard E. Faith (faith<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cs.unc.edu)<br />
+
+                  -- May be distributed under the GNU General Public License<br />
+
+                  The `DRDOS Warning' was taken from a net post by Stephen Tweedie.<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

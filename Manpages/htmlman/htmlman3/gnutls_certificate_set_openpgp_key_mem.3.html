@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>gnutls_certificate_set_openpgp_key_mem(3) — Linux
+  manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="gnutls_certificate_set_openpgp_key_mem(3) — Linux manual pages" />
+
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="gnutls_certificate_set_openpgp_key_mem(3) — Linux manual pages">
+  <a id="gnutls-certificate-set-openpgp-key-mem.3" name="gnutls-certificate-set-openpgp-key-mem.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>gnutls_certificate_set_openpgp_key_mem — API
+      function</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;gnutls/openpgp.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">gnutls_certificate_set_openpgp_key_mem</b>(</code></td>
+
+            <td rowspan="1" colspan="1">gnutls_certificate_credentials_t <var class="pdparam">res</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">const gnutls_datum_t * <var class="pdparam">cert</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">const gnutls_datum_t * <var class="pdparam">key</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">gnutls_openpgp_crt_fmt_t <var class="pdparam">format</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="ARGUMENTS">
+      <a id="gnutls-certificate-set-openpgp-key-mem-3_sect1" name="gnutls-certificate-set-openpgp-key-mem-3_sect1" shape="rect"> </a>
+
+      <h2>ARGUMENTS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><span class="emphasis"><em>gnutls_certificate_credentials_t
+          res</em></span></span></dt>
+
+          <dd>
+            <p>the destination context to save the data.</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>const
+          gnutls_datum_t * cert</em></span></span></dt>
+
+          <dd>
+            <p>the datum that contains the public key.</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>const
+          gnutls_datum_t * key</em></span></span></dt>
+
+          <dd>
+            <p>the datum that contains the secret key.</p>
+          </dd>
+
+          <dt><span class="term"><span class="emphasis"><em>gnutls_openpgp_crt_fmt_t
+          format</em></span></span></dt>
+
+          <dd>
+            <p>the format of the keys</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="gnutls-certificate-set-openpgp-key-mem-3_sect2" name="gnutls-certificate-set-openpgp-key-mem-3_sect2" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>This funtion is used to load OpenPGP keys into the GnuTLS
+      credential structure. The files should contain non encrypted
+      keys.</p>
+    </div>
+
+    <div class="refsect1" title="RETURNS">
+      <a id="gnutls-certificate-set-openpgp-key-mem-3_sect3" name="gnutls-certificate-set-openpgp-key-mem-3_sect3" shape="rect"> </a>
+
+      <h2>RETURNS</h2>
+
+      <p>On success, <span class="errorname">GNUTLS_E_SUCCESS</span> is returned, otherwise a
+      negative error value.</p>
+    </div>
+
+    <div class="refsect1" title="REPORTING BUGS">
+      <a id="gnutls-certificate-set-openpgp-key-mem-3_sect4" name="gnutls-certificate-set-openpgp-key-mem-3_sect4" shape="rect"> </a>
+
+      <h2>REPORTING BUGS</h2>
+
+      <p>Report bugs to &lt;bug-gnutls@gnu.org&gt;. GnuTLS home
+      page: http://www.gnu.org/software/gnutls/ General help using
+      GNU software: http://www.gnu.org/gethelp/</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="gnutls-certificate-set-openpgp-key-mem-3_sect6" name="gnutls-certificate-set-openpgp-key-mem-3_sect6" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p>The full documentation for <em class="citetitle">gnutls</em> is maintained as a Texinfo manual. If
+      the <span class="command"><strong>info</strong></span> and
+      <em class="citetitle">gnutls</em> programs are properly
+      installed at your site, the command</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+info gnutls
+</pre>
+      </div>
+
+      <p>should give you access to the complete manual.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <thead>
+            <tr>
+              <th style="" rowspan="1" colspan="1">COPYRIGHT</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <p>Copyright © 2008 Free Software
+                Foundation.</p>
+
+                <p>Copying and distribution of this file, with or
+                without modification, are permitted in any medium
+                without royalty provided the copyright notice and
+                this notice are preserved.</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

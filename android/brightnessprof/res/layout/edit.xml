@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent" >
+
+  <TextView android:id="@+id/name"
+    android:text="@string/name"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+
+  <EditText android:id="@+id/edit_name"
+    android:textSize="18sp"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:singleLine="true" />
+
+   <TextView android:id="@+id/brightness"
+    android:text="@string/brightness"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+
+  <EditText android:id="@+id/edit_brightness"
+    android:textSize="18sp"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:singleLine="true"
+    android:numeric="integer" />
+
+  <LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+
+    <Button android:id="@+id/ok_button"
+      android:text="@string/ok"
+      android:textSize="18sp"
+      android:layout_weight="1"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content" />
+
+    <Button android:id="@+id/cancel_button"
+      android:text="@string/cancel"
+      android:textSize="18sp"
+      android:layout_weight="1"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content" />
+  </LinearLayout>
+</LinearLayout>

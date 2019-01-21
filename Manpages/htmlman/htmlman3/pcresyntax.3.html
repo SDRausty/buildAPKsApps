@@ -1,0 +1,1743 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>pcresyntax(3) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="pcresyntax(3) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="pcresyntax(3) — Linux manual pages">
+    <a id="pcresyntax.3" name="pcresyntax.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>PCRE — Perl-compatible regular expressions</p>
+    </div>
+
+    <div class="refsect1" title="PCRE REGULAR EXPRESSION SYNTAX SUMMARY">
+      <a id="pcresyntax-3_sect1" name="pcresyntax-3_sect1" shape="rect"> </a>
+
+      <h2>PCRE REGULAR EXPRESSION SYNTAX SUMMARY</h2>
+
+      <p>The full syntax and semantics of the regular expressions
+      that are supported by PCRE are described in the <a class="link" href="../htmlman3/pcrepattern.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pcrepattern</span>(3)</span></a>
+      documentation. This document contains just a quick-reference
+      summary of the syntax.</p>
+    </div>
+
+    <div class="refsect1" title="QUOTING">
+      <a id="pcresyntax-3_sect2" name="pcresyntax-3_sect2" shape="rect"> </a>
+
+      <h2>QUOTING</h2>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="informaltable">
+            <table style="border-collapse: collapse;">
+              <colgroup span="1">
+                <col span="1" />
+                <col span="1" />
+              </colgroup>
+
+              <tbody>
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\x</code></td>
+
+                  <td style="" rowspan="1" colspan="1">where x is non-alphanumeric is a
+                  literal x</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\Q...\E</code></td>
+
+                  <td style="" rowspan="1" colspan="1">treat enclosed characters as
+                  literal</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="refsect1" title="CHARACTERS">
+      <a id="pcresyntax-3_sect3" name="pcresyntax-3_sect3" shape="rect"> </a>
+
+      <h2>CHARACTERS</h2>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="informaltable">
+            <table style="border-collapse: collapse;">
+              <colgroup span="1">
+                <col span="1" />
+                <col span="1" />
+              </colgroup>
+
+              <tbody>
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\a</code></td>
+
+                  <td style="" rowspan="1" colspan="1">alarm, that is, the BEL character
+                  (hex 07)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\cx</code></td>
+
+                  <td style="" rowspan="1" colspan="1">"control-x", where x is any ASCII
+                  character</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\e</code></td>
+
+                  <td style="" rowspan="1" colspan="1">escape (hex 1B)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\f</code></td>
+
+                  <td style="" rowspan="1" colspan="1">formfeed (hex 0C)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\n</code></td>
+
+                  <td style="" rowspan="1" colspan="1">newline (hex 0A)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\r</code></td>
+
+                  <td style="" rowspan="1" colspan="1">carriage return (hex 0D)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\t</code></td>
+
+                  <td style="" rowspan="1" colspan="1">tab (hex 09)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\ddd</code></td>
+
+                  <td style="" rowspan="1" colspan="1">character with octal code ddd, or
+                  backreference</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\xhh</code></td>
+
+                  <td style="" rowspan="1" colspan="1">character with hex code hh</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\x{hhh..}</code></td>
+
+                  <td style="" rowspan="1" colspan="1">character with hex code hhh..</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="refsect1" title="CHARACTER TYPES">
+      <a id="pcresyntax-3_sect4" name="pcresyntax-3_sect4" shape="rect"> </a>
+
+      <h2>CHARACTER TYPES</h2>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="informaltable">
+            <table style="border-collapse: collapse;">
+              <colgroup span="1">
+                <col span="1" />
+                <col span="1" />
+              </colgroup>
+
+              <tbody>
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">.</code></td>
+
+                  <td style="" rowspan="1" colspan="1">any character except newline; in
+                  dotall mode, any character whatsoever</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\C</code></td>
+
+                  <td style="" rowspan="1" colspan="1">one byte, even in UTF-8 mode (best
+                  avoided)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\d</code></td>
+
+                  <td style="" rowspan="1" colspan="1">a decimal digit</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\D</code></td>
+
+                  <td style="" rowspan="1" colspan="1">a character that is not a decimal
+                  digit</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\h</code></td>
+
+                  <td style="" rowspan="1" colspan="1">a horizontal whitespace
+                  character</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\H</code></td>
+
+                  <td style="" rowspan="1" colspan="1">a character that is not a horizontal
+                  whitespace character</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\N</code></td>
+
+                  <td style="" rowspan="1" colspan="1">a character that is not a
+                  newline</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\p{<em class="replaceable"><code>xx</code></em>}</code></td>
+
+                  <td style="" rowspan="1" colspan="1">a character with the <em class="replaceable"><code>xx</code></em> property</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\P{<em class="replaceable"><code>xx</code></em>}</code></td>
+
+                  <td style="" rowspan="1" colspan="1">a character without the <em class="replaceable"><code>xx</code></em> property</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\R</code></td>
+
+                  <td style="" rowspan="1" colspan="1">a newline sequence</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\s</code></td>
+
+                  <td style="" rowspan="1" colspan="1">a whitespace character</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\S</code></td>
+
+                  <td style="" rowspan="1" colspan="1">a character that is not a whitespace
+                  character</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\v</code></td>
+
+                  <td style="" rowspan="1" colspan="1">a vertical whitespace character</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\V</code></td>
+
+                  <td style="" rowspan="1" colspan="1">a character that is not a vertical
+                  whitespace character</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\w</code></td>
+
+                  <td style="" rowspan="1" colspan="1">a "word" character</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\W</code></td>
+
+                  <td style="" rowspan="1" colspan="1">a "non-word" character</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\X</code></td>
+
+                  <td style="" rowspan="1" colspan="1">an extended Unicode sequence</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </blockquote>
+      </div>
+
+      <p>In PCRE, by default, \d, \D, \s, \S, \w, and \W recognize
+      only ASCII characters, even in UTF-8 mode. However, this can
+      be changed by setting the PCRE_UCP option.</p>
+    </div>
+
+    <div class="refsect1" title="GENERAL CATEGORY PROPERTIES FOR \p and \P">
+      <a id="pcresyntax-3_sect5" name="pcresyntax-3_sect5" shape="rect"> </a>
+
+      <h2>GENERAL CATEGORY PROPERTIES FOR \p and \P</h2>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="informaltable">
+            <table style="border-collapse: collapse;">
+              <colgroup span="1">
+                <col span="1" />
+                <col span="1" />
+              </colgroup>
+
+              <tbody>
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">C</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Other</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">Cc</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Control</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">Cf</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Format</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">Cn</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Unassigned</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">Co</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Private use</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">Cs</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Surrogate</td>
+                </tr>
+
+                <tr>
+                  <td style="" colspan="2" rowspan="1"> </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">L</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Letter</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">Ll</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Lower case letter</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">Lm</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Modifier letter</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">Lo</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Other letter</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">Lt</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Title case letter</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">Lu</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Upper case letter</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">L&amp;</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Ll, Lu, or Lt</td>
+                </tr>
+
+                <tr>
+                  <td style="" colspan="2" rowspan="1"> </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">M</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Mark</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">Mc</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Spacing mark</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">Me</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Enclosing mark</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">Mn</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Non-spacing mark</td>
+                </tr>
+
+                <tr>
+                  <td style="" colspan="2" rowspan="1"> </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">N</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Number</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">Nd</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Decimal number</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">Nl</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Letter number</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">No</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Other number</td>
+                </tr>
+
+                <tr>
+                  <td style="" colspan="2" rowspan="1"> </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">P</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Punctuation</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">Pc</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Connector punctuation</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">Pd</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Dash punctuation</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">Pe</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Close punctuation</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">Pf</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Final punctuation</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">Pi</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Initial punctuation</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">Po</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Other punctuation</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">Ps</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Open punctuation</td>
+                </tr>
+
+                <tr>
+                  <td style="" colspan="2" rowspan="1"> </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">S</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Symbol</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">Sc</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Currency symbol</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">Sk</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Modifier symbol</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">Sm</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Mathematical symbol</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">So</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Other symbol</td>
+                </tr>
+
+                <tr>
+                  <td style="" colspan="2" rowspan="1"> </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">Z</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Separator</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">Zl</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Line separator</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">Zp</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Paragraph separator</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">Zs</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Space separator</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="refsect1" title="PCRE SPECIAL CATEGORY PROPERTIES FOR \p and \P">
+      <a id="pcresyntax-3_sect6" name="pcresyntax-3_sect6" shape="rect"> </a>
+
+      <h2>PCRE SPECIAL CATEGORY PROPERTIES FOR \p and \P</h2>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="informaltable">
+            <table style="border-collapse: collapse;">
+              <colgroup span="1">
+                <col span="1" />
+                <col span="1" />
+              </colgroup>
+
+              <tbody>
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">Xan</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Alphanumeric: union of properties L
+                  and N</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">Xps</code></td>
+
+                  <td style="" rowspan="1" colspan="1">POSIX space: property Z or tab, NL,
+                  VT, FF, CR</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">Xsp</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Perl space: property Z or tab, NL,
+                  FF, CR</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">Xwd</code></td>
+
+                  <td style="" rowspan="1" colspan="1">Perl word: property Xan or
+                  underscore</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="refsect1" title="SCRIPT NAMES FOR \p AND \P">
+      <a id="pcresyntax-3_sect7" name="pcresyntax-3_sect7" shape="rect"> </a>
+
+      <h2>SCRIPT NAMES FOR \p AND \P</h2>
+
+      <p>Arabic, Armenian, Avestan, Balinese, Bamum, Bengali,
+      Bopomofo, Braille, Buginese, Buhid, Canadian_Aboriginal,
+      Carian, Cham, Cherokee, Common, Coptic, Cuneiform, Cypriot,
+      Cyrillic, Deseret, Devanagari, Egyptian_Hieroglyphs,
+      Ethiopic, Georgian, Glagolitic, Gothic, Greek, Gujarati,
+      Gurmukhi, Han, Hangul, Hanunoo, Hebrew, Hiragana,
+      Imperial_Aramaic, Inherited, Inscriptional_Pahlavi,
+      Inscriptional_Parthian, Javanese, Kaithi, Kannada, Katakana,
+      Kayah_Li, Kharoshthi, Khmer, Lao, Latin, Lepcha, Limbu,
+      Linear_B, Lisu, Lycian, Lydian, Malayalam, Meetei_Mayek,
+      Mongolian, Myanmar, New_Tai_Lue, Nko, Ogham, Old_Italic,
+      Old_Persian, Old_South_Arabian, Old_Turkic, Ol_Chiki, Oriya,
+      Osmanya, Phags_Pa, Phoenician, Rejang, Runic, Samaritan,
+      Saurashtra, Shavian, Sinhala, Sundanese, Syloti_Nagri,
+      Syriac, Tagalog, Tagbanwa, Tai_Le, Tai_Tham, Tai_Viet, Tamil,
+      Telugu, Thaana, Thai, Tibetan, Tifinagh, Ugaritic, Vai,
+      Yi.</p>
+    </div>
+
+    <div class="refsect1" title="CHARACTER CLASSES">
+      <a id="pcresyntax-3_sect8" name="pcresyntax-3_sect8" shape="rect"> </a>
+
+      <h2>CHARACTER CLASSES</h2>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="informaltable">
+            <table style="border-collapse: collapse;">
+              <colgroup span="1">
+                <col span="1" />
+                <col span="1" />
+              </colgroup>
+
+              <tbody>
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">[...]</code></td>
+
+                  <td style="" rowspan="1" colspan="1">positive character class</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">[^...]</code></td>
+
+                  <td style="" rowspan="1" colspan="1">negative character class</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">[x-y]</code></td>
+
+                  <td style="" rowspan="1" colspan="1">range (can be used for hex
+                  characters)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">[[:xxx:]]</code></td>
+
+                  <td style="" rowspan="1" colspan="1">positive POSIX named set</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">[[:^xxx:]]</code></td>
+
+                  <td style="" rowspan="1" colspan="1">negative POSIX named set</td>
+                </tr>
+
+                <tr>
+                  <td style="" colspan="2" rowspan="1"> </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">alnum</code></td>
+
+                  <td style="" rowspan="1" colspan="1">alphanumeric</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">alpha</code></td>
+
+                  <td style="" rowspan="1" colspan="1">alphabetic</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">ascii</code></td>
+
+                  <td style="" rowspan="1" colspan="1">0-127</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">blank</code></td>
+
+                  <td style="" rowspan="1" colspan="1">space or tab</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">cntrl</code></td>
+
+                  <td style="" rowspan="1" colspan="1">control character</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">digit</code></td>
+
+                  <td style="" rowspan="1" colspan="1">decimal digit</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">graph</code></td>
+
+                  <td style="" rowspan="1" colspan="1">printing, excluding space</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">lower</code></td>
+
+                  <td style="" rowspan="1" colspan="1">lower case letter</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">print</code></td>
+
+                  <td style="" rowspan="1" colspan="1">printing, including space</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">punct</code></td>
+
+                  <td style="" rowspan="1" colspan="1">printing, excluding
+                  alphanumeric</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">space</code></td>
+
+                  <td style="" rowspan="1" colspan="1">whitespace</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">upper</code></td>
+
+                  <td style="" rowspan="1" colspan="1">upper case letter</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">word</code></td>
+
+                  <td style="" rowspan="1" colspan="1">same as \w</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">xdigit</code></td>
+
+                  <td style="" rowspan="1" colspan="1">hexadecimal digit</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </blockquote>
+      </div>
+
+      <p>In PCRE, POSIX character set names recognize only ASCII
+      characters by default, but some of them use Unicode
+      properties if PCRE_UCP is set. You can use \Q...\E inside a
+      character class.</p>
+    </div>
+
+    <div class="refsect1" title="QUANTIFIERS">
+      <a id="pcresyntax-3_sect9" name="pcresyntax-3_sect9" shape="rect"> </a>
+
+      <h2>QUANTIFIERS</h2>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="informaltable">
+            <table style="border-collapse: collapse;">
+              <colgroup span="1">
+                <col span="1" />
+                <col span="1" />
+              </colgroup>
+
+              <tbody>
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">?</code></td>
+
+                  <td style="" rowspan="1" colspan="1">0 or 1, greedy</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">?+</code></td>
+
+                  <td style="" rowspan="1" colspan="1">0 or 1, possessive</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">??</code></td>
+
+                  <td style="" rowspan="1" colspan="1">0 or 1, lazy</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">*</code></td>
+
+                  <td style="" rowspan="1" colspan="1">0 or more, greedy</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">*+</code></td>
+
+                  <td style="" rowspan="1" colspan="1">0 or more, possessive</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">*?</code></td>
+
+                  <td style="" rowspan="1" colspan="1">0 or more, lazy</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">+</code></td>
+
+                  <td style="" rowspan="1" colspan="1">1 or more, greedy</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">++</code></td>
+
+                  <td style="" rowspan="1" colspan="1">1 or more, possessive</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">+?</code></td>
+
+                  <td style="" rowspan="1" colspan="1">1 or more, lazy</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">{n}</code></td>
+
+                  <td style="" rowspan="1" colspan="1">exactly n</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">{n,m}</code></td>
+
+                  <td style="" rowspan="1" colspan="1">at least n, no more than m,
+                  greedy</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">{n,m}+</code></td>
+
+                  <td style="" rowspan="1" colspan="1">at least n, no more than m,
+                  possessive</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">{n,m}?</code></td>
+
+                  <td style="" rowspan="1" colspan="1">at least n, no more than m,
+                  lazy</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">{n,}</code></td>
+
+                  <td style="" rowspan="1" colspan="1">n or more, greedy</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">{n,}+</code></td>
+
+                  <td style="" rowspan="1" colspan="1">n or more, possessive</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">{n,}?</code></td>
+
+                  <td style="" rowspan="1" colspan="1">n or more, lazy</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="refsect1" title="ANCHORS AND SIMPLE ASSERTIONS">
+      <a id="pcresyntax-3_sect10" name="pcresyntax-3_sect10" shape="rect"> </a>
+
+      <h2>ANCHORS AND SIMPLE ASSERTIONS</h2>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="informaltable">
+            <table style="border-collapse: collapse;">
+              <colgroup span="1">
+                <col span="1" />
+                <col span="1" />
+              </colgroup>
+
+              <tbody>
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\b</code></td>
+
+                  <td style="" rowspan="1" colspan="1">word boundary</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\B</code></td>
+
+                  <td style="" rowspan="1" colspan="1">not a word boundary</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">^</code></td>
+
+                  <td style="" rowspan="1" colspan="1">start of subject also after internal
+                  newline in multiline mode</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\A</code></td>
+
+                  <td style="" rowspan="1" colspan="1">start of subject</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">$</code></td>
+
+                  <td style="" rowspan="1" colspan="1">end of subject also before newline
+                  at end of subject also before internal newline in
+                  multiline mode</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\Z</code></td>
+
+                  <td style="" rowspan="1" colspan="1">end of subject also before newline
+                  at end of subject</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\z</code></td>
+
+                  <td style="" rowspan="1" colspan="1">end of subject</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\G</code></td>
+
+                  <td style="" rowspan="1" colspan="1">first matching position in
+                  subject</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="refsect1" title="MATCH POINT RESET">
+      <a id="pcresyntax-3_sect11" name="pcresyntax-3_sect11" shape="rect"> </a>
+
+      <h2>MATCH POINT RESET</h2>
+
+      <p>\K reset start of match</p>
+    </div>
+
+    <div class="refsect1" title="ALTERNATION">
+      <a id="pcresyntax-3_sect12" name="pcresyntax-3_sect12" shape="rect"> </a>
+
+      <h2>ALTERNATION</h2>
+
+      <p>expr|expr|expr...</p>
+    </div>
+
+    <div class="refsect1" title="CAPTURING">
+      <a id="pcresyntax-3_sect13" name="pcresyntax-3_sect13" shape="rect"> </a>
+
+      <h2>CAPTURING</h2>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="informaltable">
+            <table style="border-collapse: collapse;">
+              <colgroup span="1">
+                <col span="1" />
+                <col span="1" />
+              </colgroup>
+
+              <tbody>
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(...)</code></td>
+
+                  <td style="" rowspan="1" colspan="1">capturing group</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(?&lt;name&gt;...)</code></td>
+
+                  <td style="" rowspan="1" colspan="1">named capturing group (Perl)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(?'name'...)</code></td>
+
+                  <td style="" rowspan="1" colspan="1">named capturing group (Perl)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(?P&lt;name&gt;...)</code></td>
+
+                  <td style="" rowspan="1" colspan="1">named capturing group (Python)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(?:...)</code></td>
+
+                  <td style="" rowspan="1" colspan="1">non-capturing group</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(?|...)</code></td>
+
+                  <td style="" rowspan="1" colspan="1">non-capturing group; reset group
+                  numbers for capturing groups in each
+                  alternative</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="refsect1" title="ATOMIC GROUPS">
+      <a id="pcresyntax-3_sect14" name="pcresyntax-3_sect14" shape="rect"> </a>
+
+      <h2>ATOMIC GROUPS</h2>
+
+      <p>(?&gt;...) atomic, non-capturing group</p>
+    </div>
+
+    <div class="refsect1" title="COMMENT">
+      <a id="pcresyntax-3_sect15" name="pcresyntax-3_sect15" shape="rect"> </a>
+
+      <h2>COMMENT</h2>
+
+      <p>(?#....) comment (not nestable)</p>
+    </div>
+
+    <div class="refsect1" title="OPTION SETTING">
+      <a id="pcresyntax-3_sect16" name="pcresyntax-3_sect16" shape="rect"> </a>
+
+      <h2>OPTION SETTING</h2>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="informaltable">
+            <table style="border-collapse: collapse;">
+              <colgroup span="1">
+                <col span="1" />
+                <col span="1" />
+              </colgroup>
+
+              <tbody>
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(?i)</code></td>
+
+                  <td style="" rowspan="1" colspan="1">caseless</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(?J)</code></td>
+
+                  <td style="" rowspan="1" colspan="1">allow duplicate names</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(?m)</code></td>
+
+                  <td style="" rowspan="1" colspan="1">multiline</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(?s)</code></td>
+
+                  <td style="" rowspan="1" colspan="1">single line (dotall)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(?U)</code></td>
+
+                  <td style="" rowspan="1" colspan="1">default ungreedy (lazy)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(?x)</code></td>
+
+                  <td style="" rowspan="1" colspan="1">extended (ignore white space)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(?-...)</code></td>
+
+                  <td style="" rowspan="1" colspan="1">unset option(s)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </blockquote>
+      </div>
+
+      <p>The following are recognized only at the start of a
+      pattern or after one of the newline-setting options with
+      similar syntax:</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+ (*NO_START_OPT) no start-match optimization (PCRE_NO_START_OPTIMIZE)
+ (*UTF8)         set UTF-8 mode (PCRE_UTF8)
+ (*UCP)          set PCRE_UCP (use Unicode properties for \d etc)
+</pre>
+      </div>
+    </div>
+
+    <div class="refsect1" title="LOOKAHEAD AND LOOKBEHIND ASSERTIONS">
+      <a id="pcresyntax-3_sect17" name="pcresyntax-3_sect17" shape="rect"> </a>
+
+      <h2>LOOKAHEAD AND LOOKBEHIND ASSERTIONS</h2>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="informaltable">
+            <table style="border-collapse: collapse;">
+              <colgroup span="1">
+                <col span="1" />
+                <col span="1" />
+              </colgroup>
+
+              <tbody>
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(?=...)</code></td>
+
+                  <td style="" rowspan="1" colspan="1">positive look ahead</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(?!...)</code></td>
+
+                  <td style="" rowspan="1" colspan="1">negative look ahead</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(?&lt;=...)</code></td>
+
+                  <td style="" rowspan="1" colspan="1">positive look behind</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(?&lt;!...)</code></td>
+
+                  <td style="" rowspan="1" colspan="1">negative look behind</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </blockquote>
+      </div>
+
+      <p>Each top-level branch of a look behind must be of a fixed
+      length.</p>
+    </div>
+
+    <div class="refsect1" title="BACKREFERENCES">
+      <a id="pcresyntax-3_sect18" name="pcresyntax-3_sect18" shape="rect"> </a>
+
+      <h2>BACKREFERENCES</h2>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="informaltable">
+            <table style="border-collapse: collapse;">
+              <colgroup span="1">
+                <col span="1" />
+                <col span="1" />
+              </colgroup>
+
+              <tbody>
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\n</code></td>
+
+                  <td style="" rowspan="1" colspan="1">reference by number (can be
+                  ambiguous)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\gn</code></td>
+
+                  <td style="" rowspan="1" colspan="1">reference by number</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\g{n}</code></td>
+
+                  <td style="" rowspan="1" colspan="1">reference by number</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\g{-n}</code></td>
+
+                  <td style="" rowspan="1" colspan="1">relative reference by number</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\k&lt;name&gt;</code></td>
+
+                  <td style="" rowspan="1" colspan="1">reference by name (Perl)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\k'name'</code></td>
+
+                  <td style="" rowspan="1" colspan="1">reference by name (Perl)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\g{name}</code></td>
+
+                  <td style="" rowspan="1" colspan="1">reference by name (Perl)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\k{name}</code></td>
+
+                  <td style="" rowspan="1" colspan="1">reference by name (.NET)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(?P=name)</code></td>
+
+                  <td style="" rowspan="1" colspan="1">reference by name (Python)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="refsect1" title="SUBROUTINE REFERENCES (POSSIBLY RECURSIVE)">
+      <a id="pcresyntax-3_sect19" name="pcresyntax-3_sect19" shape="rect"> </a>
+
+      <h2>SUBROUTINE REFERENCES (POSSIBLY RECURSIVE)</h2>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="informaltable">
+            <table style="border-collapse: collapse;">
+              <colgroup span="1">
+                <col span="1" />
+                <col span="1" />
+              </colgroup>
+
+              <tbody>
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(?R)</code></td>
+
+                  <td style="" rowspan="1" colspan="1">recurse whole pattern</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(?n)</code></td>
+
+                  <td style="" rowspan="1" colspan="1">call subpattern by absolute
+                  number</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(?+n)</code></td>
+
+                  <td style="" rowspan="1" colspan="1">call subpattern by relative
+                  number</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(?-n)</code></td>
+
+                  <td style="" rowspan="1" colspan="1">call subpattern by relative
+                  number</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(?&amp;name)</code></td>
+
+                  <td style="" rowspan="1" colspan="1">call subpattern by name (Perl)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(?P&gt;name)</code></td>
+
+                  <td style="" rowspan="1" colspan="1">call subpattern by name
+                  (Python)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\g&lt;name&gt;</code></td>
+
+                  <td style="" rowspan="1" colspan="1">call subpattern by name
+                  (Oniguruma)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\g'name'</code></td>
+
+                  <td style="" rowspan="1" colspan="1">call subpattern by name
+                  (Oniguruma)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\g&lt;n&gt;</code></td>
+
+                  <td style="" rowspan="1" colspan="1">call subpattern by absolute number
+                  (Oniguruma)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\g'n'</code></td>
+
+                  <td style="" rowspan="1" colspan="1">call subpattern by absolute number
+                  (Oniguruma)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\g&lt;+n&gt;</code></td>
+
+                  <td style="" rowspan="1" colspan="1">call subpattern by relative number
+                  (PCRE extension)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\g'+n'</code></td>
+
+                  <td style="" rowspan="1" colspan="1">call subpattern by relative number
+                  (PCRE extension)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\g&lt;-n&gt;</code></td>
+
+                  <td style="" rowspan="1" colspan="1">call subpattern by relative number
+                  (PCRE extension)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">\g'-n'</code></td>
+
+                  <td style="" rowspan="1" colspan="1">call subpattern by relative number
+                  (PCRE extension)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="refsect1" title="CONDITIONAL PATTERNS">
+      <a id="pcresyntax-3_sect20" name="pcresyntax-3_sect20" shape="rect"> </a>
+
+      <h2>CONDITIONAL PATTERNS</h2>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="informaltable">
+            <table style="border-collapse: collapse;">
+              <colgroup span="1">
+                <col span="1" />
+                <col span="1" />
+              </colgroup>
+
+              <tbody>
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(?(condition)yes-pattern)</code></td>
+
+                  <td style="" rowspan="1" colspan="1"> </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(?(condition)yes-pattern|no-pattern)</code></td>
+
+                  <td style="" rowspan="1" colspan="1"> </td>
+                </tr>
+
+                <tr>
+                  <td style="" colspan="2" rowspan="1"> </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(?(n)...</code></td>
+
+                  <td style="" rowspan="1" colspan="1">absolute reference condition</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(?(+n)...</code></td>
+
+                  <td style="" rowspan="1" colspan="1">relative reference condition</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(?(-n)...</code></td>
+
+                  <td style="" rowspan="1" colspan="1">relative reference condition</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(?(&lt;name&gt;)...</code></td>
+
+                  <td style="" rowspan="1" colspan="1">named reference condition
+                  (Perl)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(?('name')...</code></td>
+
+                  <td style="" rowspan="1" colspan="1">named reference condition
+                  (Perl)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(?(name)...</code></td>
+
+                  <td style="" rowspan="1" colspan="1">named reference condition
+                  (PCRE)</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(?(R)...</code></td>
+
+                  <td style="" rowspan="1" colspan="1">overall recursion condition</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(?(Rn)...</code></td>
+
+                  <td style="" rowspan="1" colspan="1">specific group recursion
+                  condition</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(?(R&amp;name)...</code></td>
+
+                  <td style="" rowspan="1" colspan="1">specific recursion condition</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(?(DEFINE)...</code></td>
+
+                  <td style="" rowspan="1" colspan="1">define subpattern for reference</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(?(assert)...</code></td>
+
+                  <td style="" rowspan="1" colspan="1">assertion condition</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="refsect1" title="BACKTRACKING CONTROL">
+      <a id="pcresyntax-3_sect21" name="pcresyntax-3_sect21" shape="rect"> </a>
+
+      <h2>BACKTRACKING CONTROL</h2>
+
+      <p>The following act immediately they are reached:</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="informaltable">
+            <table style="border-collapse: collapse;">
+              <colgroup span="1">
+                <col span="1" />
+                <col span="1" />
+              </colgroup>
+
+              <tbody>
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(*ACCEPT)</code></td>
+
+                  <td style="" rowspan="1" colspan="1">force successful match</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(*FAIL)</code></td>
+
+                  <td style="" rowspan="1" colspan="1">force backtrack; synonym (*F)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </blockquote>
+      </div>
+
+      <p>The following act only when a subsequent match failure
+      causes a backtrack to reach them. They all force a match
+      failure, but they differ in what happens afterwards. Those
+      that advance the start-of-match point do so only if the
+      pattern is not anchored.</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="informaltable">
+            <table style="border-collapse: collapse;">
+              <colgroup span="1">
+                <col span="1" />
+                <col span="1" />
+              </colgroup>
+
+              <tbody>
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(*COMMIT)</code></td>
+
+                  <td style="" rowspan="1" colspan="1">overall failure, no advance of
+                  starting point</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(*PRUNE)</code></td>
+
+                  <td style="" rowspan="1" colspan="1">advance to next starting
+                  character</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(*SKIP)</code></td>
+
+                  <td style="" rowspan="1" colspan="1">advance start to current matching
+                  position</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(*THEN)</code></td>
+
+                  <td style="" rowspan="1" colspan="1">local failure, backtrack to next
+                  alternation</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="refsect1" title="NEWLINE CONVENTIONS">
+      <a id="pcresyntax-3_sect22" name="pcresyntax-3_sect22" shape="rect"> </a>
+
+      <h2>NEWLINE CONVENTIONS</h2>
+
+      <p>These are recognized only at the very start of the pattern
+      or after a (*BSR_...) or (*UTF8) or (*UCP) option.</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="informaltable">
+            <table style="border-collapse: collapse;">
+              <colgroup span="1">
+                <col span="1" />
+                <col span="1" />
+              </colgroup>
+
+              <tbody>
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(*CR)</code></td>
+
+                  <td style="" rowspan="1" colspan="1">carriage return only</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(*LF)</code></td>
+
+                  <td style="" rowspan="1" colspan="1">linefeed only</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(*CRLF)</code></td>
+
+                  <td style="" rowspan="1" colspan="1">carriage return followed by
+                  linefeed</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(*ANYCRLF)</code></td>
+
+                  <td style="" rowspan="1" colspan="1">all three of the above</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(*ANY)</code></td>
+
+                  <td style="" rowspan="1" colspan="1">any Unicode newline sequence</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="refsect1" title="WHAT \R MATCHES">
+      <a id="pcresyntax-3_sect23" name="pcresyntax-3_sect23" shape="rect"> </a>
+
+      <h2>WHAT \R MATCHES</h2>
+
+      <p>These are recognized only at the very start of the pattern
+      or after a (*...) option that sets the newline convention or
+      UTF-8 or UCP mode.</p>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+ (*BSR_ANYCRLF)  CR, LF, or CRLF
+ (*BSR_UNICODE)  any Unicode newline sequence
+</pre>
+      </div>
+    </div>
+
+    <div class="refsect1" title="CALLOUTS">
+      <a id="pcresyntax-3_sect24" name="pcresyntax-3_sect24" shape="rect"> </a>
+
+      <h2>CALLOUTS</h2>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="informaltable">
+            <table style="border-collapse: collapse;">
+              <colgroup span="1">
+                <col span="1" />
+                <col span="1" />
+              </colgroup>
+
+              <tbody>
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(?C)</code></td>
+
+                  <td style="" rowspan="1" colspan="1">callout</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"><code class="literal">(?Cn)</code></td>
+
+                  <td style="" rowspan="1" colspan="1">callout with data n</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="pcresyntax-3_sect25" name="pcresyntax-3_sect25" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman3/pcrepattern.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pcrepattern</span>(3)</span></a>, <a class="link" href="../htmlman3/pcreapi.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pcreapi</span>(3)</span></a>, <a class="link" href="../htmlman3/pcrecallout.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pcrecallout</span>(3)</span></a>, <a class="link" href="../htmlman3/pcrematching.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pcrematching</span>(3)</span></a>, <a class="link" href="../htmlman3/pcre.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">pcre</span>(3)</span></a>.</p>
+    </div>
+
+    <div class="refsect1" title="AUTHOR">
+      <a id="pcresyntax-3_sect26" name="pcresyntax-3_sect26" shape="rect"> </a>
+
+      <h2>AUTHOR</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+Philip Hazel
+University Computing Service
+Cambridge CB2 3QH, England.
+</pre>
+      </div>
+    </div>
+
+    <div class="refsect1" title="REVISION">
+      <a id="pcresyntax-3_sect27" name="pcresyntax-3_sect27" shape="rect"> </a>
+
+      <h2>REVISION</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+Last updated: 21 November 2010
+Copyright (c) 1997-2010 University of Cambridge.
+</pre>
+      </div>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <thead>
+            <tr>
+              <th style="" rowspan="1" colspan="1">COPYRIGHT</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <p>This manual page is taken from the <a class="ulink" href="http://www.PCRE.org/" target="_top" shape="rect">PCRE library</a>, which is distributed under
+                the BSD license.</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

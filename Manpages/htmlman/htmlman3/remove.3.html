@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>remove(3) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="remove(3) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="remove(3) — Linux manual pages">
+    <a id="remove.3" name="remove.3" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>remove — remove a file or directory</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;stdio.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">remove</b>(</code></td>
+
+            <td rowspan="1" colspan="1">const char *<var class="pdparam">pathname</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="remove-3_sect1" name="remove-3_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><code class="function">remove</code>() deletes a name from
+      the file system. It calls <a class="link" href="../htmlman2/unlink.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">unlink</span>(2)</span></a> for files, and
+      <a class="link" href="../htmlman2/rmdir.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">rmdir</span>(2)</span></a> for
+      directories.</p>
+
+      <p>If the removed name was the last link to a file and no
+      processes have the file open, the file is deleted and the
+      space it was using is made available for reuse.</p>
+
+      <p>If the name was the last link to a file, but any processes
+      still have the file open, the file will remain in existence
+      until the last file descriptor referring to it is closed.</p>
+
+      <p>If the name referred to a symbolic link, the link is
+      removed.</p>
+
+      <p>If the name referred to a socket, FIFO, or device, the
+      name is removed, but processes which have the object open may
+      continue to use it.</p>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="remove-3_sect2" name="remove-3_sect2" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p>On success, zero is returned. On error, −1 is
+      returned, and <code class="varname">errno</code> is set
+      appropriately.</p>
+    </div>
+
+    <div class="refsect1" title="ERRORS">
+      <a id="remove-3_sect3" name="remove-3_sect3" shape="rect"> </a>
+
+      <h2>ERRORS</h2>
+
+      <p>The errors that occur are those for <a class="link" href="../htmlman2/unlink.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">unlink</span>(2)</span></a> and <a class="link" href="../htmlman2/rmdir.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">rmdir</span>(2)</span></a>.</p>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="remove-3_sect4" name="remove-3_sect4" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>C89, C99, 4.3BSD, POSIX.1-2001.</p>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="remove-3_sect5" name="remove-3_sect5" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p>Under libc4 and libc5, <code class="function">remove</code>() was an alias for <a class="link" href="../htmlman2/unlink.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">unlink</span>(2)</span></a> (and hence would
+      not remove directories).</p>
+    </div>
+
+    <div class="refsect1" title="BUGS">
+      <a id="remove-3_sect6" name="remove-3_sect6" shape="rect"> </a>
+
+      <h2>BUGS</h2>
+
+      <p>Infelicities in the protocol underlying NFS can cause the
+      unexpected disappearance of files which are still being
+      used.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="remove-3_sect7" name="remove-3_sect7" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman1/rm.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">rm</span>(1)</span></a>, <a class="link" href="../htmlman1/unlink.1.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">unlink</span>(1)</span></a>, <a class="link" href="../htmlman2/link.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">link</span>(2)</span></a>, <a class="link" href="../htmlman2/mknod.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mknod</span>(2)</span></a>, <a class="link" href="../htmlman2/open.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">open</span>(2)</span></a>, <a class="link" href="../htmlman2/rename.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">rename</span>(2)</span></a>, <a class="link" href="../htmlman2/rmdir.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">rmdir</span>(2)</span></a>, <a class="link" href="../htmlman2/unlink.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">unlink</span>(2)</span></a>, <a class="link" href="../htmlman3/mkfifo.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">mkfifo</span>(3)</span></a>, <a class="link" href="../htmlman7/symlink.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">symlink</span>(7)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="remove-3_sect8" name="remove-3_sect8" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.24 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    This file is derived from unlink.2, which has the following copyright:<br />
+
+                  <br />
+                  --snip--<br />
+                  This manpage is Copyright (C) 1992 Drew Eckhardt;<br />
+
+                                                1993 Ian Jackson.<br />
+
+                  <br />
+                  Permission is granted to make and distribute verbatim copies of this<br />
+
+                  manual provided the copyright notice and this permission notice are<br />
+
+                  preserved on all copies.<br />
+                  <br />
+                  Permission is granted to copy and distribute modified versions of this<br />
+
+                  manual under the conditions for verbatim copying, provided that the<br />
+
+                  entire resulting derived work is distributed under the terms of a<br />
+
+                  permission notice identical to this one.<br />
+
+                  <br />
+                  Since the Linux kernel and libraries are constantly changing, this<br />
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no<br />
+
+                  responsibility for errors or omissions, or for damages resulting from<br />
+
+                  the use of the information contained herein.  The author(s) may not<br />
+
+                  have taken the same level of care in the production of this manual,<br />
+
+                  which is licensed free of charge, as they might when working<br />
+
+                  professionally.<br />
+                  <br />
+                  Formatted or processed versions of this manual, if unaccompanied by<br />
+
+                  the source, must acknowledge the copyright and authors of this work.<br />
+
+                  --snip--<br />
+                  <br />
+                  Edited into remove.3 shape by:<br />
+
+                  Graeme W. Wilford (G.Wilford<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>ee.surrey.ac.uk) on 13th July 1994<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

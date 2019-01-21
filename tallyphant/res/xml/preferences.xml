@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="@string/feedback" >
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="playSound"
+            android:summary="@string/pref_playsound_d"
+            android:title="@string/pref_playsound" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="vibrate"
+            android:summary="@string/pref_vibrate_d"
+            android:title="@string/pref_vibrate" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="speak"
+            android:summary="@string/pref_speak_d"
+            android:title="@string/pref_speak" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/network" >
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="udp"
+            android:summary="@string/pref_udp_d"
+            android:title="@string/pref_udp" />
+
+        <EditTextPreference
+            android:defaultValue=""
+            android:inputType="text"
+            android:key="udpHost"
+            android:summary="@string/pref_udpHost_d"
+            android:title="@string/pref_udpHost" />
+
+        <EditTextPreference
+            android:defaultValue="9999"
+            android:inputType="number"
+            android:key="udpPort"
+            android:summary="@string/pref_udpPort_d"
+            android:title="@string/pref_udpPort" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>getxattr(2) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="getxattr(2) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="getxattr(2) — Linux manual pages">
+    <a id="getxattr.2" name="getxattr.2" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>getxattr, lgetxattr, fgetxattr — retrieve an
+      extended attribute value</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="informalexample">
+        <pre class="programlisting" xml:space="preserve">
+#include &lt;sys/types.h&gt;
+#include &lt;attr/xattr.h&gt;
+</pre>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">ssize_t <b class="fsfunc">getxattr</b>(</code></td>
+
+            <td rowspan="1" colspan="1">const char *<var class="pdparam">path</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">const char *<var class="pdparam">name</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">void *<var class="pdparam">value</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">size_t <var class="pdparam">size</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">ssize_t <b class="fsfunc">lgetxattr</b>(</code></td>
+
+            <td rowspan="1" colspan="1">const char *<var class="pdparam">path</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">const char *<var class="pdparam">name</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">void *<var class="pdparam">value</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">size_t <var class="pdparam">size</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+
+      <div class="funcsynopsis">
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">ssize_t <b class="fsfunc">fgetxattr</b>(</code></td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">fd</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">const char *<var class="pdparam">name</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">void *<var class="pdparam">value</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">size_t <var class="pdparam">size</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="getxattr-2_sect1" name="getxattr-2_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>Extended attributes are <em class="parameter"><code>name</code></em>:<em class="parameter"><code>value</code></em> pairs associated with
+      inodes (files, directories, symbolic links, etc.). They are
+      extensions to the normal attributes which are associated with
+      all inodes in the system (i.e., the <a class="link" href="../htmlman2/stat.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">stat</span>(2)</span></a> data). A complete
+      overview of extended attributes concepts can be found in
+      <span class="citerefentry"><span class="refentrytitle">attr</span>(5)</span>.</p>
+
+      <p><code class="function">getxattr</code>() retrieves the
+      <em class="parameter"><code>value</code></em> of the extended
+      attribute identified by <em class="parameter"><code>name</code></em> and associated with the
+      given <em class="parameter"><code>path</code></em> in the
+      file system. The length of the attribute <em class="parameter"><code>value</code></em> is returned.</p>
+
+      <p><code class="function">lgetxattr</code>() is identical to
+      <code class="function">getxattr</code>(), except in the case
+      of a symbolic link, where the link itself is interrogated,
+      not the file that it refers to.</p>
+
+      <p><code class="function">fgetxattr</code>() is identical to
+      <code class="function">getxattr</code>(), only the open file
+      referred to by <em class="parameter"><code>fd</code></em> (as
+      returned by <a class="link" href="../htmlman2/open.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">open</span>(2)</span></a>) is interrogated in
+      place of <em class="parameter"><code>path</code></em>.</p>
+
+      <p>An extended attribute <em class="parameter"><code>name</code></em> is a simple
+      null-terminated string. The name includes a namespace prefix;
+      there may be several, disjoint namespaces associated with an
+      individual inode. The value of an extended attribute is a
+      chunk of arbitrary textual or binary data of specified
+      length.</p>
+
+      <p>An empty buffer of <em class="parameter"><code>size</code></em> zero can be passed into
+      these calls to return the current size of the named extended
+      attribute, which can be used to estimate the size of a buffer
+      which is sufficiently large to hold the value associated with
+      the extended attribute.</p>
+
+      <p>The interface is designed to allow guessing of initial
+      buffer sizes, and to enlarge buffers when the return value
+      indicates that the buffer provided was too small.</p>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="getxattr-2_sect2" name="getxattr-2_sect2" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p>On success, a positive number is returned indicating the
+      size of the extended attribute value. On failure, −1 is
+      returned and <code class="varname">errno</code> is set
+      appropriately.</p>
+
+      <p>If the named attribute does not exist, or the process has
+      no access to this attribute, <code class="varname">errno</code> is set to <code class="constant">ENOATTR</code>.</p>
+
+      <p>If the <em class="parameter"><code>size</code></em> of the
+      <em class="parameter"><code>value</code></em> buffer is too
+      small to hold the result, <code class="varname">errno</code>
+      is set to <span class="errorname">ERANGE</span>.</p>
+
+      <p>If extended attributes are not supported by the file
+      system, or are disabled, <code class="varname">errno</code>
+      is set to <span class="errorname">ENOTSUP</span>.</p>
+
+      <p>The errors documented for the <a class="link" href="../htmlman2/stat.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">stat</span>(2)</span></a> system call are
+      also applicable here.</p>
+    </div>
+
+    <div class="refsect1" title="VERSIONS">
+      <a id="getxattr-2_sect3" name="getxattr-2_sect3" shape="rect"> </a>
+
+      <h2>VERSIONS</h2>
+
+      <p>These system calls have been available on Linux since
+      kernel 2.4; glibc support is provided since version 2.3.</p>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="getxattr-2_sect4" name="getxattr-2_sect4" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>These system calls are Linux-specific.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="getxattr-2_sect5" name="getxattr-2_sect5" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><span class="citerefentry"><span class="refentrytitle">getfattr</span>(1)</span>, <span class="citerefentry"><span class="refentrytitle">setfattr</span>(1)</span>, <a class="link" href="../htmlman2/listxattr.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">listxattr</span>(2)</span></a>, <a class="link" href="../htmlman2/open.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">open</span>(2)</span></a>, <a class="link" href="../htmlman2/removexattr.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">removexattr</span>(2)</span></a>, <a class="link" href="../htmlman2/setxattr.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">setxattr</span>(2)</span></a>, <a class="link" href="../htmlman2/stat.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">stat</span>(2)</span></a>, <span class="citerefentry"><span class="refentrytitle">attr</span>(5)</span>, <a class="link" href="../htmlman7/symlink.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">symlink</span>(7)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="getxattr-2_sect6" name="getxattr-2_sect6" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.24 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                  Extended attributes system calls manual pages<br />
+
+                  <br />
+                  Copyright (C) Andreas Gruenbacher, February 2001<br />
+
+                  Copyright (C) Silicon Graphics Inc, September 2001<br />
+
+                  <br />
+                  This is free documentation; you can redistribute it and/or<br />
+
+                  modify it under the terms of the GNU General Public License as<br />
+
+                  published by the Free Software Foundation; either version 2 of<br />
+
+                  the License, or (at your option) any later version.<br />
+
+                  <br />
+                  The GNU General Public License's references to "object code"<br />
+
+                  and "executables" are to be interpreted as the output of any<br />
+
+                  document formatting or typesetting system, including<br />
+
+                  intermediate and printed output.<br />
+
+                  <br />
+                  This manual is distributed in the hope that it will be useful,<br />
+
+                  but WITHOUT ANY WARRANTY; without even the implied warranty of<br />
+
+                  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<br />
+
+                  GNU General Public License for more details.<br />
+
+                  <br />
+                  You should have received a copy of the GNU General Public<br />
+
+                  License along with this manual; if not, write to the Free<br />
+
+                  Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111,<br />
+
+                  USA.<br />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

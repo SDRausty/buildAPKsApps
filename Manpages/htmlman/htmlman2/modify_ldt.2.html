@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>modify_ldt(2) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="modify_ldt(2) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="modify_ldt(2) — Linux manual pages">
+    <a id="modify-ldt.2" name="modify-ldt.2" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>modify_ldt — get or set ldt</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;sys/types.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">int <b class="fsfunc">modify_ldt</b>(</code></td>
+
+            <td rowspan="1" colspan="1">int <var class="pdparam">func</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">void *<var class="pdparam">ptr</var>,</td>
+          </tr>
+
+          <tr>
+            <td rowspan="1" colspan="1"> </td>
+
+            <td rowspan="1" colspan="1">unsigned long <var class="pdparam">bytecount</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="modify-ldt-2_sect1" name="modify-ldt-2_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><code class="function">modify_ldt</code>() reads or writes
+      the local descriptor table (ldt) for a process. The ldt is a
+      per-process memory management table used by the i386
+      processor. For more information on this table, see an Intel
+      386 processor handbook.</p>
+
+      <p>When <em class="parameter"><code>func</code></em> is 0,
+      <code class="function">modify_ldt</code>() reads the ldt into
+      the memory pointed to by <em class="parameter"><code>ptr</code></em>. The number of bytes read
+      is the smaller of <em class="parameter"><code>bytecount</code></em> and the actual size
+      of the ldt.</p>
+
+      <p>When <em class="parameter"><code>func</code></em> is 1,
+      <code class="function">modify_ldt</code>() modifies one ldt
+      entry. <em class="parameter"><code>ptr</code></em> points to
+      a <em class="replaceable"><code>user_desc</code></em>
+      structure and <em class="parameter"><code>bytecount</code></em> must equal the size
+      of this structure.</p>
+
+      <p>The <em class="replaceable"><code>user_desc</code></em>
+      structure is defined in <code class="literal">&lt;</code><code class="filename">asm/ldt.h</code><code class="literal">&gt;</code>
+      as:</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="structdef">
+            <table style="border-collapse: collapse;">
+              <colgroup span="1">
+                <col span="1" />
+                <col span="1" />
+                <col span="1" />
+                <col span="1" />
+                <col span="1" />
+              </colgroup>
+
+              <tbody>
+                <tr>
+                  <td class="structdefhdr" style="" align="left" rowspan="1" colspan="1">
+                  struct</td>
+
+                  <td class="structdefhdr" style="" colspan="4" align="left" rowspan="1"><span class="structname">user_desc</span> {</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">unsigned int</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>entry_number</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"> </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">unsigned long</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>base_addr</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"> </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">unsigned int</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>limit</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"> </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">unsigned int</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>seg_32bit</code></em>:1;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"> </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">unsigned int</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>contents</code></em>:2;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"> </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">unsigned int</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>read_exec_only</code></em>:1;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"> </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">unsigned int</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>limit_in_pages</code></em>:1;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"> </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">unsigned int</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>seg_not_present</code></em>:1;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"> </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">unsigned int</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>useable</code></em>:1;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"> </td>
+                </tr>
+
+                <tr>
+                  <td class="structdefftr" style="" colspan="5" align="left" rowspan="1">};</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </blockquote>
+      </div>
+
+      <p>In Linux 2.4 and earlier, this structure was named
+      <em class="replaceable"><code>modify_ldt_ldt_s</code></em>.</p>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="modify-ldt-2_sect2" name="modify-ldt-2_sect2" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p>On success, <code class="function">modify_ldt</code>()
+      returns either the actual number of bytes read (for reading)
+      or 0 (for writing). On failure, <code class="function">modify_ldt</code>() returns −1 and sets
+      <code class="varname">errno</code> to indicate the error.</p>
+    </div>
+
+    <div class="refsect1" title="ERRORS">
+      <a id="modify-ldt-2_sect3" name="modify-ldt-2_sect3" shape="rect"> </a>
+
+      <h2>ERRORS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><span class="errorname">EFAULT</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>ptr</code></em> points
+            outside the address space.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">EINVAL</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>ptr</code></em> is 0, or
+            <em class="parameter"><code>func</code></em> is 1 and
+            <em class="parameter"><code>bytecount</code></em> is
+            not equal to the size of the structure <em class="replaceable"><code>modify_ldt_ldt_s</code></em>, or
+            <em class="parameter"><code>func</code></em> is 1 and
+            the new ldt entry has invalid values.</p>
+          </dd>
+
+          <dt><span class="term"><span class="errorname">ENOSYS</span></span></dt>
+
+          <dd>
+            <p><em class="parameter"><code>func</code></em> is
+            neither 0 nor 1.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="modify-ldt-2_sect4" name="modify-ldt-2_sect4" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>This call is Linux-specific and should not be used in
+      programs intended to be portable.</p>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="modify-ldt-2_sect5" name="modify-ldt-2_sect5" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p>Glibc does not provide a wrapper for this system call;
+      call it using <a class="link" href="../htmlman2/syscall.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">syscall</span>(2)</span></a>.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="modify-ldt-2_sect6" name="modify-ldt-2_sect6" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman2/vm86.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">vm86</span>(2)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="modify-ldt-2_sect7" name="modify-ldt-2_sect7" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.24 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                  Copyright (c) 1995 Michael Chastain (mec<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>duracef.shout.net), 22 July 1995.<br />
+
+                  <br />
+                  This is free documentation; you can redistribute it and/or<br />
+
+                  modify it under the terms of the GNU General Public License as<br />
+
+                  published by the Free Software Foundation; either version 2 of<br />
+
+                  the License, or (at your option) any later version.<br />
+
+                  <br />
+                  The GNU General Public License's references to "object code"<br />
+
+                  and "executables" are to be interpreted as the output of any<br />
+
+                  document formatting or typesetting system, including<br />
+
+                  intermediate and printed output.<br />
+
+                  <br />
+                  This manual is distributed in the hope that it will be useful,<br />
+
+                  but WITHOUT ANY WARRANTY; without even the implied warranty of<br />
+
+                  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<br />
+
+                  GNU General Public License for more details.<br />
+
+                  <br />
+                  You should have received a copy of the GNU General Public<br />
+
+                  License along with this manual; if not, write to the Free<br />
+
+                  Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111,<br />
+
+                  USA.<br />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Translation by Ilija Milicevic <engr3337@gmail.com> -->
+<resources>
+  <string name="app_name">Alarm Klock</string>
+  <string name="delete_all">Briši Sve</string>
+  <string name="label">Oznaka</string>
+  <string name="repeat">Ponavljanje</string>
+  <string name="alarm_tone">Ton budilnika</string>
+  <string name="fade_description">Od %1$d%% do %2$d%%, %3$d, trajanje sekundi</string>
+  <string name="ok">U Redu</string>
+  <string name="cancel">Poništiti</string>
+  <string name="delete">Obrisati</string>
+  <string name="snooze">DREMANJE</string>
+  <string name="dismiss">OTKAŽI</string>
+  <string name="plus_five">+5</string>
+  <string name="minus_five">-5</string>
+  <string name="day">%d dan</string>
+  <string name="days">%d dana</string>
+  <string name="hour">%d sat</string>
+  <string name="hours">%d sati</string>
+  <string name="minute">%d minut</string>
+  <string name="minutes">%d minuta</string>
+  <string name="am">Ujutru</string>
+  <string name="pm">Popodne/Uveče</string>
+  <string name="dow_sun_short">Ned</string>
+  <string name="dow_mon_short">Pon</string>
+  <string name="dow_tue_short">Uto</string>
+  <string name="dow_wed_short">Sre</string>
+  <string name="dow_thu_short">Čet</string>
+  <string name="dow_fri_short">Pet</string>
+  <string name="dow_sat_short">Sub</string>
+  <string name="dow_sun">Nedelja</string>
+  <string name="dow_mon">Ponedeljak</string>
+  <string name="dow_tue">Utorak</string>
+  <string name="dow_wed">Sreda</string>
+  <string name="dow_thu">Četvrtak</string>
+  <string name="dow_fri">Petak</string>
+  <string name="dow_sat">Subota</string>
+  <string name="no_repeats">Nema ponavljanja</string>
+  <string name="everyday">Svaki dan</string>
+  <string name="weekdays">Radnim danima</string>
+  <string name="weekends">Vikendom</string>
+  <string name="internal">Interni</string>
+  <string name="artists">Umetnici</string>
+  <string name="songs">Pesme</string>
+  <string name="selected">Odabrano: </string>
+  <string name="time_out_title">Vreme gašenja budilnika</string>
+  <string name="time_out_error">UPOZORENJE: Budilnik se ugasio čekajući vašu komandu.</string>
+</resources>

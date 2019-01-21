@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<PreferenceCategory android:title="@string/txt_brightness">
+		<CheckBoxPreference 
+			android:id="@+id/pref_light_sensor"
+			android:title="@string/pref_light_sensor"
+			android:summary="@string/pref_light_sensor_descr"
+			android:key="lightSensor" 
+			/>
+	</PreferenceCategory>
+	
+</PreferenceScreen>

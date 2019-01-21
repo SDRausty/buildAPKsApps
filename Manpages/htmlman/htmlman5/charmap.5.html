@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>charmap(5) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="charmap(5) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="charmap(5) — Linux manual pages">
+    <a id="charmap.5" name="charmap.5" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>charmap — character symbols to define character
+      encodings</p>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="charmap-5_sect1" name="charmap-5_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>A character set description (charmap) defines a character
+      set of available characters and their encodings. All
+      supported character sets should have the <span class="emphasis"><em>portable character set</em></span> as a proper
+      subset.</p>
+
+      <div class="refsect2" title="Syntax">
+        <a id="charmap-5_sect2" name="charmap-5_sect2" shape="rect"> </a>
+
+        <h3>Syntax</h3>
+
+        <p>The charmap file starts with a header, that may consist
+        of the following keywords:</p>
+
+        <div class="variablelist">
+          <dl>
+            <dt><span class="term"><em class="replaceable"><code>&lt;codeset&gt;</code></em></span></dt>
+
+            <dd>
+              <p>is followed by the name of the codeset.</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>&lt;mb_cur_max&gt;</code></em></span></dt>
+
+            <dd>
+              <p>is followed by the max number of bytes for a
+              multibyte-character. Multibyte characters are
+              currently not supported. The default value is 1.</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>&lt;mb_cur_min&gt;</code></em></span></dt>
+
+            <dd>
+              <p>is followed by the min number of bytes for a
+              character. This value must be less or equal than
+              <em class="replaceable"><code>mb_cur_max</code></em>.
+              If not specified, it defaults to <em class="replaceable"><code>mb_cur_max</code></em>.</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>&lt;escape_char&gt;</code></em></span></dt>
+
+            <dd>
+              <p>is followed by a character that should be used as
+              the escape-character for the rest of the file to mark
+              characters that should be interpreted in a special
+              way. It defaults to the backslash ( <code class="literal">\</code> ).</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>&lt;comment_char&gt;</code></em></span></dt>
+
+            <dd>
+              <p>is followed by a character that will be used as
+              the comment-character for the rest of the file. It
+              defaults to the number sign ( <code class="literal">#</code> ).</p>
+            </dd>
+          </dl>
+        </div>
+
+        <p>The charmap-definition itself starts with the keyword
+        <code class="constant">CHARMAP</code> in column 1.</p>
+
+        <p>The following lines may have one of the two following
+        forms to define the character-encodings:</p>
+
+        <div class="variablelist">
+          <dl>
+            <dt><span class="term"><span class="emphasis"><em>&lt;symbolic-name&gt; &lt;encoding&gt;
+            &lt;comments&gt;</em></span></span></dt>
+
+            <dd>
+              <p>This form defines exactly one character and its
+              encoding.</p>
+            </dd>
+
+            <dt><span class="term"><span class="emphasis"><em>&lt;symbolic-name&gt;...&lt;symbolic-name&gt;
+            &lt;encoding&gt;
+            &lt;comments&gt;</em></span></span></dt>
+
+            <dd>
+              <p>This form defines a couple of characters. This is
+              only useful for multibyte-characters, which are
+              currently not implemented.</p>
+            </dd>
+          </dl>
+        </div>
+
+        <p>The last line in a charmap-definition file must contain
+        <span class="emphasis"><em>END CHARMAP.</em></span></p>
+      </div>
+
+      <div class="refsect2" title="Symbolic Names">
+        <a id="charmap-5_sect3" name="charmap-5_sect3" shape="rect"> </a>
+
+        <h3>Symbolic Names</h3>
+
+        <p>A <span class="emphasis"><em>symbolic name</em></span>
+        for a character contains only characters of the
+        <span class="emphasis"><em>portable character
+        set.</em></span> The name itself is enclosed between angle
+        brackets. Characters following an <em class="replaceable"><code>&lt;escape_char&gt;</code></em> are
+        interpreted as itself; for example, the sequence <em class="replaceable"><code>&lt;\\\&gt;&gt;</code></em> represents
+        the symbolic name <em class="replaceable"><code>\&gt;</code></em> enclosed in angle
+        brackets.</p>
+      </div>
+
+      <div class="refsect2" title="Character Encoding">
+        <a id="charmap-5_sect4" name="charmap-5_sect4" shape="rect"> </a>
+
+        <h3>Character Encoding</h3>
+
+        <p>The encoding may be in each of the following three
+        forms:</p>
+
+        <div class="variablelist">
+          <dl>
+            <dt><span class="term"><em class="replaceable"><code>&lt;escape_char&gt;d&lt;number&gt;</code></em></span></dt>
+
+            <dd>
+              <p>with a decimal number</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>&lt;escape_char&gt;x&lt;number&gt;</code></em></span></dt>
+
+            <dd>
+              <p>with a hexadecimal number</p>
+            </dd>
+
+            <dt><span class="term"><em class="replaceable"><code>&lt;escape_char&gt;&lt;number&gt;</code></em></span></dt>
+
+            <dd>
+              <p>with an octal number.</p>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="FILES">
+      <a id="charmap-5_sect5" name="charmap-5_sect5" shape="rect"> </a>
+
+      <h2>FILES</h2>
+
+      <p><code class="filename">/usr/share/i18n/charmaps/*</code></p>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="charmap-5_sect6" name="charmap-5_sect6" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>POSIX.2.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="charmap-5_sect7" name="charmap-5_sect7" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><span class="citerefentry"><span class="refentrytitle">locale</span>(1)</span>, <span class="citerefentry"><span class="refentrytitle">localedef</span>(1)</span>, <a class="link" href="../htmlman3/localeconv.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">localeconv</span>(3)</span></a>, <a class="link" href="../htmlman3/setlocale.3.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">setlocale</span>(3)</span></a>, <a class="link" href="../htmlman5/locale.5.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">locale</span>(5)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="charmap-5_sect8" name="charmap-5_sect8" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.24 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                  This file is part of locale(1) which displays the settings of the<br />
+
+                  current locale.<br />
+                  Copyright (C) 1994  Jochen Hein (Hein<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>Student.TU-Clausthal.de)<br />
+
+                  <br />
+                  This program is free software; you can redistribute it and/or modify<br />
+
+                  it under the terms of the GNU General Public License as published by<br />
+
+                  the Free Software Foundation; either version 2 of the License, or<br />
+
+                  (at your option) any later version.<br />
+
+                  <br />
+                  This program is distributed in the hope that it will be useful,<br />
+
+                  but WITHOUT ANY WARRANTY; without even the implied warranty of<br />
+
+                  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<br />
+
+                  GNU General Public License for more details.<br />
+
+                  <br />
+                  You should have received a copy of the GNU General Public License<br />
+
+                  along with this program; if not, write to the Free Software<br />
+
+                  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

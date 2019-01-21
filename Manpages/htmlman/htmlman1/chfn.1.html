@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>chfn(1) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="chfn(1) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="chfn(1) — Linux manual pages">
+    <a id="chfn.1" name="chfn.1" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>chfn — change your finger information</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">chfn</code> [ <code class="option">−f</code> full−name ] [ <code class="option">−o</code> office ] [ <code class="option">−p</code> office−phone ] [
+        <code class="option">−h</code> home−phone ]
+        [<code class="option">−u</code>] [<code class="option">−v</code>] [username]</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="chfn-1_sect1" name="chfn-1_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><span class="command"><strong>chfn</strong></span> is used
+      to change your finger information. This information is stored
+      in the <code class="filename">/etc/passwd</code> file, and is
+      displayed by the <span class="command"><strong>finger</strong></span> program. The Linux
+      <span class="command"><strong>finger</strong></span> command
+      will display four pieces of information that can be changed
+      by <span class="command"><strong>chfn</strong></span>: your
+      real name, your work room and phone, and your home phone.</p>
+
+      <p><span class="command"><strong>chfn</strong></span> is used
+      to change local entries only. Use ypchfn, lchfn or any other
+      implementation for non-local entries.</p>
+
+      <div class="refsect2" title="COMMAND LINE">
+        <a id="chfn-1_sect2" name="chfn-1_sect2" shape="rect"> </a>
+
+        <h3>COMMAND LINE</h3>
+
+        <p>Any of the four pieces of information can be specified
+        on the command line. If no information is given on the
+        command line, <span class="command"><strong>chfn</strong></span> enters interactive
+        mode.</p>
+      </div>
+
+      <div class="refsect2" title="INTERACTIVE MODE">
+        <a id="chfn-1_sect3" name="chfn-1_sect3" shape="rect"> </a>
+
+        <h3>INTERACTIVE MODE</h3>
+
+        <p>In interactive mode, <span class="command"><strong>chfn</strong></span> will prompt for each
+        field. At a prompt, you can enter the new information, or
+        just press return to leave the field unchanged. Enter the
+        keyword "none" to make the field blank.</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="OPTIONS">
+      <a id="chfn-1_sect4" name="chfn-1_sect4" shape="rect"> </a>
+
+      <h2>OPTIONS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><code class="option">−f,
+          −−full−name
+          full−name</code></span></dt>
+
+          <dd>
+            <p>Specify your real name.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−o,
+          −−office office</code></span></dt>
+
+          <dd>
+            <p>Specify your office room number.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−p,
+          −−office−phone
+          office−phone</code></span></dt>
+
+          <dd>
+            <p>Specify your office phone number.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−h,
+          −−home−phone
+          home−phone</code></span></dt>
+
+          <dd>
+            <p>Specify your home phone number.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−u,
+          −−help</code></span></dt>
+
+          <dd>
+            <p>Print a usage message and exit.</p>
+          </dd>
+
+          <dt><span class="term"><code class="option">−v,
+          −−version</code></span></dt>
+
+          <dd>
+            <p>Print version information and exit.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="chfn-1_sect5" name="chfn-1_sect5" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><span class="citerefentry"><span class="refentrytitle">finger</span>(1)</span>, <a class="link" href="../htmlman5/passwd.5.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">passwd</span>(5)</span></a></p>
+    </div>
+
+    <div class="refsect1" title="AUTHOR">
+      <a id="chfn-1_sect6" name="chfn-1_sect6" shape="rect"> </a>
+
+      <h2>AUTHOR</h2>
+
+      <p>Salvatore Valente &lt;svalente@mit.edu&gt;</p>
+    </div>
+
+    <div class="refsect1" title="AVAILABILITY">
+      <a id="chfn-1_sect7" name="chfn-1_sect7" shape="rect"> </a>
+
+      <h2>AVAILABILITY</h2>
+
+      <p>The chfn command is part of the util-linux package and is
+      available from
+      ftp://ftp.kernel.org/pub/linux/utils/util-linux/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                   chfn.1 -- change your finger information<br />
+
+                   (c) 1994 by salvatore valente &lt;svalente<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>athena.mit.edu&gt;<br />
+
+                  <br />
+                   this program is free software.  you can redistribute it and<br />
+
+                   modify it under the terms of the gnu general public license.<br />
+
+                   there is no warranty.<br />
+                  <br />
+                   $Author: faith $<br />
+                   $Revision: 1.1 $<br />
+                   $Date: 1995/03/12 01:29:16 $<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>inotify(7) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="inotify(7) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="inotify(7) — Linux manual pages">
+    <a id="inotify.7" name="inotify.7" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>inotify — monitoring file system events</p>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="inotify-7_sect1" name="inotify-7_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>The <em class="replaceable"><code>inotify</code></em> API
+      provides a mechanism for monitoring file system events.
+      Inotify can be used to monitor individual files, or to
+      monitor directories. When a directory is monitored, inotify
+      will return events for the directory itself, and for files
+      inside the directory.</p>
+
+      <p>The following system calls are used with this API:
+      <a class="link" href="../htmlman2/inotify_init.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">inotify_init</span>(2)</span></a> (or
+      <a class="link" href="../htmlman2/inotify_init.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">inotify_init1</span>(2)</span></a>),
+      <a class="link" href="../htmlman2/inotify_add_watch.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">inotify_add_watch</span>(2)</span></a>,
+      <a class="link" href="../htmlman2/inotify_rm_watch.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">inotify_rm_watch</span>(2)</span></a>,
+      <a class="link" href="../htmlman2/read.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">read</span>(2)</span></a>, and <a class="link" href="../htmlman2/close.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">close</span>(2)</span></a>.</p>
+
+      <p><a class="link" href="../htmlman2/inotify_init.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">inotify_init</span>(2)</span></a> creates an
+      inotify instance and returns a file descriptor referring to
+      the inotify instance. The more recent <a class="link" href="../htmlman2/inotify_init.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">inotify_init1</span>(2)</span></a> is like
+      <a class="link" href="../htmlman2/inotify_init.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">inotify_init</span>(2)</span></a>, but
+      provides some extra functionality.</p>
+
+      <p><a class="link" href="../htmlman2/inotify_add_watch.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">inotify_add_watch</span>(2)</span></a>
+      manipulates the "watch list" associated with an inotify
+      instance. Each item ("watch") in the watch list specifies the
+      pathname of a file or directory, along with some set of
+      events that the kernel should monitor for the file referred
+      to by that pathname. <a class="link" href="../htmlman2/inotify_add_watch.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">inotify_add_watch</span>(2)</span></a> either
+      creates a new watch item, or modifies an existing watch. Each
+      watch has a unique "watch descriptor", an integer returned by
+      <a class="link" href="../htmlman2/inotify_add_watch.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">inotify_add_watch</span>(2)</span></a> when
+      the watch is created.</p>
+
+      <p><a class="link" href="../htmlman2/inotify_rm_watch.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">inotify_rm_watch</span>(2)</span></a> removes
+      an item from an inotify watch list.</p>
+
+      <p>When all file descriptors referring to an inotify instance
+      have been closed, the underlying object and its resources are
+      freed for reuse by the kernel; all associated watches are
+      automatically freed.</p>
+
+      <p>To determine what events have occurred, an application
+      <a class="link" href="../htmlman2/read.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">read</span>(2)</span></a>s from the inotify
+      file descriptor. If no events have so far occurred, then,
+      assuming a blocking file descriptor, <a class="link" href="../htmlman2/read.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">read</span>(2)</span></a> will block until at
+      least one event occurs (unless interrupted by a signal, in
+      which case the call fails with the error <span class="errorname">EINTR</span>; see <a class="link" href="../htmlman7/signal.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">signal</span>(7)</span></a>).</p>
+
+      <p>Each successful <a class="link" href="../htmlman2/read.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">read</span>(2)</span></a> returns a buffer
+      containing one or more of the following structures:</p>
+
+      <div class="blockquote">
+        <blockquote class="blockquote">
+          <div class="structdef">
+            <table style="border-collapse: collapse;">
+              <colgroup span="1">
+                <col span="1" />
+                <col span="1" />
+                <col span="1" />
+                <col span="1" />
+                <col span="1" />
+              </colgroup>
+
+              <tbody>
+                <tr>
+                  <td class="structdefhdr" style="" align="left" rowspan="1" colspan="1">
+                  struct</td>
+
+                  <td class="structdefhdr" style="" colspan="4" align="left" rowspan="1"><span class="structname">inotify_event</span> {</td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">int</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>wd</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      /* Watch descriptor */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">uint32_t</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>mask</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      
+                      /* Mask of events */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">uint32_t</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>cookie</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      
+                      /* Unique cookie associating related<br />
+
+                      events (for rename(2)) */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">uint32_t</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>len</code></em>;</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      
+                      /* Size of name field */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="" rowspan="1" colspan="1"> </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><span class="type">char</span></td>
+
+                  <td class="norightpad" style="" align="right" rowspan="1" colspan="1">
+                   </td>
+
+                  <td style="" align="left" rowspan="1" colspan="1"><em class="structfield"><code>name</code></em>[];</td>
+
+                  <td style="" align="left" rowspan="1" colspan="1">
+                    <div class="literallayout">
+                      
+                      /* Optional null-terminated name */
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="structdefftr" style="" colspan="5" align="left" rowspan="1">};</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </blockquote>
+      </div>
+
+      <p><em class="parameter"><code>wd</code></em> identifies the
+      watch for which this event occurs. It is one of the watch
+      descriptors returned by a previous call to <a class="link" href="../htmlman2/inotify_add_watch.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">inotify_add_watch</span>(2)</span></a>.</p>
+
+      <p><em class="parameter"><code>mask</code></em> contains bits
+      that describe the event that occurred (see below).</p>
+
+      <p><em class="parameter"><code>cookie</code></em> is a unique
+      integer that connects related events. Currently this is only
+      used for rename events, and allows the resulting pair of
+      <code class="constant">IN_MOVE_FROM</code> and <code class="constant">IN_MOVE_TO</code> events to be connected by the
+      application.</p>
+
+      <p>The <em class="parameter"><code>name</code></em> field is
+      only present when an event is returned for a file inside a
+      watched directory; it identifies the file pathname relative
+      to the watched directory. This pathname is null-terminated,
+      and may include further null bytes to align subsequent reads
+      to a suitable address boundary.</p>
+
+      <p>The <em class="parameter"><code>len</code></em> field
+      counts all of the bytes in <em class="parameter"><code>name</code></em>, including the null bytes;
+      the length of each <em class="replaceable"><code>inotify_event</code></em> structure is
+      thus <em class="replaceable"><code>sizeof(inotify_event)+len</code></em>.</p>
+
+      <p>The behavior when the buffer given to <a class="link" href="../htmlman2/read.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">read</span>(2)</span></a> is too small to
+      return information about the next event depends on the kernel
+      version: in kernels before 2.6.21, <a class="link" href="../htmlman2/read.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">read</span>(2)</span></a> returns 0; since
+      kernel 2.6.21, <a class="link" href="../htmlman2/read.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">read</span>(2)</span></a> fails with the
+      error <span class="errorname">EINVAL</span>.</p>
+
+      <div class="refsect2" title="inotify events">
+        <a id="inotify-7_sect2" name="inotify-7_sect2" shape="rect"> </a>
+
+        <h3>inotify events</h3>
+
+        <p>The <a class="link" href="../htmlman2/inotify_add_watch.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">inotify_add_watch</span>(2)</span></a>
+        <em class="parameter"><code>mask</code></em> argument and
+        the <em class="parameter"><code>mask</code></em> field of
+        the <em class="replaceable"><code>inotify_event</code></em>
+        structure returned when <a class="link" href="../htmlman2/read.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">read</span>(2)</span></a>ing an inotify
+        file descriptor are both bit masks identifying inotify
+        events. The following bits can be specified in <em class="parameter"><code>mask</code></em> when calling <a class="link" href="../htmlman2/inotify_add_watch.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">inotify_add_watch</span>(2)</span></a> and
+        may be returned in the <em class="parameter"><code>mask</code></em> field returned by
+        <a class="link" href="../htmlman2/read.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">read</span>(2)</span></a>:</p>
+
+        <div class="blockquote">
+          <blockquote class="blockquote">
+            <div class="variablelist">
+              <dl>
+                <dt><span class="term"><code class="constant">IN_ACCESS</code></span></dt>
+
+                <dd>
+                  <p>File was accessed (read) (*).</p>
+                </dd>
+
+                <dt><span class="term"><code class="constant">IN_ATTRIB</code></span></dt>
+
+                <dd>
+                  <p>Metadata changed, e.g., permissions,
+                  timestamps, extended attributes, link count
+                  (since Linux 2.6.25), UID, GID, etc. (*).</p>
+                </dd>
+
+                <dt><span class="term"><code class="constant">IN_CLOSE_WRITE</code></span></dt>
+
+                <dd>
+                  <p>File opened for writing was closed (*).</p>
+                </dd>
+
+                <dt><span class="term"><code class="constant">IN_CLOSE_NOWRITE</code></span></dt>
+
+                <dd>
+                  <p>File not opened for writing was closed
+                  (*).</p>
+                </dd>
+
+                <dt><span class="term"><code class="constant">IN_CREATE</code></span></dt>
+
+                <dd>
+                  <p>File/directory created in watched directory
+                  (*).</p>
+                </dd>
+
+                <dt><span class="term"><code class="constant">IN_DELETE</code></span></dt>
+
+                <dd>
+                  <p>File/directory deleted from watched directory
+                  (*).</p>
+                </dd>
+
+                <dt><span class="term"><code class="constant">IN_DELETE_SELF</code></span></dt>
+
+                <dd>
+                  <p>Watched file/directory was itself deleted.</p>
+                </dd>
+
+                <dt><span class="term"><code class="constant">IN_MODIFY</code></span></dt>
+
+                <dd>
+                  <p>File was modified (*).</p>
+                </dd>
+
+                <dt><span class="term"><code class="constant">IN_MOVE_SELF</code></span></dt>
+
+                <dd>
+                  <p>Watched file/directory was itself moved.</p>
+                </dd>
+
+                <dt><span class="term"><code class="constant">IN_MOVED_FROM</code></span></dt>
+
+                <dd>
+                  <p>File moved out of watched directory (*).</p>
+                </dd>
+
+                <dt><span class="term"><code class="constant">IN_MOVED_TO</code></span></dt>
+
+                <dd>
+                  <p>File moved into watched directory (*).</p>
+                </dd>
+
+                <dt><span class="term"><code class="constant">IN_OPEN</code></span></dt>
+
+                <dd>
+                  <p>File was opened (*).</p>
+                </dd>
+              </dl>
+            </div>
+          </blockquote>
+        </div>
+
+        <p>When monitoring a directory, the events marked with an
+        asterisk (*) above can occur for files in the directory, in
+        which case the <em class="parameter"><code>name</code></em>
+        field in the returned <em class="replaceable"><code>inotify_event</code></em> structure
+        identifies the name of the file within the directory.</p>
+
+        <p>The <code class="constant">IN_ALL_EVENTS</code> macro is
+        defined as a bit mask of all of the above events. This
+        macro can be used as the <em class="parameter"><code>mask</code></em> argument when calling
+        <a class="link" href="../htmlman2/inotify_add_watch.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">inotify_add_watch</span>(2)</span></a>.</p>
+
+        <p>Two additional convenience macros are <code class="constant">IN_MOVE</code>, which equates to
+        IN_MOVED_FROM|IN_MOVED_TO, and <code class="constant">IN_CLOSE</code>, which equates to
+        IN_CLOSE_WRITE|IN_CLOSE_NOWRITE.</p>
+
+        <p>The following further bits can be specified in
+        <em class="parameter"><code>mask</code></em> when calling
+        <a class="link" href="../htmlman2/inotify_add_watch.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">inotify_add_watch</span>(2)</span></a>:</p>
+
+        <div class="blockquote">
+          <blockquote class="blockquote">
+            <div class="variablelist">
+              <dl>
+                <dt><span class="term"><code class="constant">IN_DONT_FOLLOW</code> (since Linux
+                2.6.15)</span></dt>
+
+                <dd>
+                  <p>Don't dereference <em class="replaceable"><code>pathname</code></em> if it is
+                  a symbolic link.</p>
+                </dd>
+
+                <dt><span class="term"><code class="constant">IN_EXCL_UNLINK</code> (since Linux
+                2.6.36)</span></dt>
+
+                <dd>
+                  <p>By default, when watching events on the
+                  children of a directory, events are generated for
+                  children even after they have been unlinked from
+                  the directory. This can result in large numbers
+                  of uninteresting events for some applications
+                  (e.g., if watching <code class="filename">/tmp</code>, in which many
+                  applications create temporary files whose names
+                  are immediately unlinked). Specifying
+                  <code class="constant">IN_EXCL_UNLINK</code>
+                  changes the default behavior, so that events are
+                  not generated for children after they have been
+                  unlinked from the watched directory.</p>
+                </dd>
+
+                <dt><span class="term"><code class="constant">IN_MASK_ADD</code></span></dt>
+
+                <dd>
+                  <p>Add (OR) events to watch mask for this
+                  pathname if it already exists (instead of
+                  replacing mask).</p>
+                </dd>
+
+                <dt><span class="term"><code class="constant">IN_ONESHOT</code></span></dt>
+
+                <dd>
+                  <p>Monitor <em class="replaceable"><code>pathname</code></em> for one
+                  event, then remove from watch list.</p>
+                </dd>
+
+                <dt><span class="term"><code class="constant">IN_ONLYDIR</code> (since Linux
+                2.6.15)</span></dt>
+
+                <dd>
+                  <p>Only watch <em class="replaceable"><code>pathname</code></em> if it is
+                  a directory.</p>
+                </dd>
+              </dl>
+            </div>
+          </blockquote>
+        </div>
+
+        <p>The following bits may be set in the <em class="parameter"><code>mask</code></em> field returned by
+        <a class="link" href="../htmlman2/read.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">read</span>(2)</span></a>:</p>
+
+        <div class="blockquote">
+          <blockquote class="blockquote">
+            <div class="variablelist">
+              <dl>
+                <dt><span class="term"><code class="constant">IN_IGNORED</code></span></dt>
+
+                <dd>
+                  <p>Watch was removed explicitly ( <a class="link" href="../htmlman2/inotify_rm_watch.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">inotify_rm_watch</span>(2)</span></a>)
+                  or automatically (file was deleted, or file
+                  system was unmounted).</p>
+                </dd>
+
+                <dt><span class="term"><code class="constant">IN_ISDIR</code></span></dt>
+
+                <dd>
+                  <p>Subject of this event is a directory.</p>
+                </dd>
+
+                <dt><span class="term"><code class="constant">IN_Q_OVERFLOW</code></span></dt>
+
+                <dd>
+                  <p>Event queue overflowed (<em class="parameter"><code>wd</code></em> is −1 for
+                  this event).</p>
+                </dd>
+
+                <dt><span class="term"><code class="constant">IN_UNMOUNT</code></span></dt>
+
+                <dd>
+                  <p>File system containing watched object was
+                  unmounted.</p>
+                </dd>
+              </dl>
+            </div>
+          </blockquote>
+        </div>
+      </div>
+
+      <div class="refsect2" title="/proc interfaces">
+        <a id="inotify-7_sect3" name="inotify-7_sect3" shape="rect"> </a>
+
+        <h3>/proc interfaces</h3>
+
+        <p>The following interfaces can be used to limit the amount
+        of kernel memory consumed by inotify:</p>
+
+        <div class="variablelist">
+          <dl>
+            <dt><span class="term"><code class="filename">/proc/sys/fs/inotify/max_queued_events</code></span></dt>
+
+            <dd>
+              <p>The value in this file is used when an application
+              calls <a class="link" href="../htmlman2/inotify_init.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">inotify_init</span>(2)</span></a> to
+              set an upper limit on the number of events that can
+              be queued to the corresponding inotify instance.
+              Events in excess of this limit are dropped, but an
+              <code class="constant">IN_Q_OVERFLOW</code> event is
+              always generated.</p>
+            </dd>
+
+            <dt><span class="term"><code class="filename">/proc/sys/fs/inotify/max_user_instances</code></span></dt>
+
+            <dd>
+              <p>This specifies an upper limit on the number of
+              inotify instances that can be created per real user
+              ID.</p>
+            </dd>
+
+            <dt><span class="term"><code class="filename">/proc/sys/fs/inotify/max_user_watches</code></span></dt>
+
+            <dd>
+              <p>This specifies an upper limit on the number of
+              watches that can be created per real user ID.</p>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="VERSIONS">
+      <a id="inotify-7_sect4" name="inotify-7_sect4" shape="rect"> </a>
+
+      <h2>VERSIONS</h2>
+
+      <p>Inotify was merged into the 2.6.13 Linux kernel. The
+      required library interfaces were added to glibc in version
+      2.4. (<code class="constant">IN_DONT_FOLLOW</code>,
+      <code class="constant">IN_MASK_ADD</code>, and <code class="constant">IN_ONLYDIR</code> were only added in version
+      2.5.)</p>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="inotify-7_sect5" name="inotify-7_sect5" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>The inotify API is Linux-specific.</p>
+    </div>
+
+    <div class="refsect1" title="NOTES">
+      <a id="inotify-7_sect6" name="inotify-7_sect6" shape="rect"> </a>
+
+      <h2>NOTES</h2>
+
+      <p>Inotify file descriptors can be monitored using <a class="link" href="../htmlman2/select.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">select</span>(2)</span></a>, <a class="link" href="../htmlman2/poll.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">poll</span>(2)</span></a>, and <a class="link" href="../htmlman7/epoll.7.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">epoll</span>(7)</span></a>. When an event is
+      available, the file descriptor indicates as readable.</p>
+
+      <p>Since Linux 2.6.25, signal-driven I/O notification is
+      available for inotify file descriptors; see the discussion of
+      <code class="constant">F_SETFL</code> (for setting the
+      <code class="constant">O_ASYNC</code> flag), <code class="constant">F_SETOWN</code>, and <code class="constant">F_SETSIG</code> in <a class="link" href="../htmlman2/fcntl.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fcntl</span>(2)</span></a>. The <em class="replaceable"><code>siginfo_t</code></em> structure
+      (described in <a class="link" href="../htmlman2/sigaction.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">sigaction</span>(2)</span></a>) that is
+      passed to the signal handler has the following fields set:
+      <em class="replaceable"><code>si_fd</code></em> is set to the
+      inotify file descriptor number; <em class="replaceable"><code>si_signo</code></em> is set to the signal
+      number; <em class="replaceable"><code>si_code</code></em> is
+      set to <code class="constant">POLL_IN</code>; and
+      <code class="constant">POLLIN</code> is set in <em class="replaceable"><code>si_band</code></em>.</p>
+
+      <p>If successive output inotify events produced on the
+      inotify file descriptor are identical (same <em class="parameter"><code>wd</code></em>, <em class="parameter"><code>mask</code></em>, <em class="parameter"><code>cookie</code></em>, and <em class="parameter"><code>name</code></em>) then they are coalesced
+      into a single event if the older event has not yet been read
+      (but see BUGS).</p>
+
+      <p>The events returned by reading from an inotify file
+      descriptor form an ordered queue. Thus, for example, it is
+      guaranteed that when renaming from one directory to another,
+      events will be produced in the correct order on the inotify
+      file descriptor.</p>
+
+      <p>The <code class="constant">FIONREAD</code> <a class="link" href="../htmlman2/ioctl.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">ioctl</span>(2)</span></a> returns the number
+      of bytes available to read from an inotify file
+      descriptor.</p>
+
+      <div class="refsect2" title="Limitations and caveats">
+        <a id="inotify-7_sect7" name="inotify-7_sect7" shape="rect"> </a>
+
+        <h3>Limitations and caveats</h3>
+
+        <p>Inotify monitoring of directories is not recursive: to
+        monitor subdirectories under a directory, additional
+        watches must be created. This can take a significant amount
+        time for large directory trees.</p>
+
+        <p>The inotify API provides no information about the user
+        or process that triggered the inotify event.</p>
+
+        <p>Note that the event queue can overflow. In this case,
+        events are lost. Robust applications should handle the
+        possibility of lost events gracefully.</p>
+
+        <p>The inotify API identifies affected files by filename.
+        However, by the time an application processes an inotify
+        event, the filename may already have been deleted or
+        renamed.</p>
+
+        <p>If monitoring an entire directory subtree, and a new
+        subdirectory is created in that tree, be aware that by the
+        time you create a watch for the new subdirectory, new files
+        may already have been created in the subdirectory.
+        Therefore, you may want to scan the contents of the
+        subdirectory immediately after adding the watch.</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="BUGS">
+      <a id="inotify-7_sect8" name="inotify-7_sect8" shape="rect"> </a>
+
+      <h2>BUGS</h2>
+
+      <p>In kernels before 2.6.16, the <code class="constant">IN_ONESHOT</code> <em class="parameter"><code>mask</code></em> flag does not work.</p>
+
+      <p>Before kernel 2.6.25, the kernel code that was intended to
+      coalesce successive identical events (i.e., the two most
+      recent events could potentially be coalesced if the older had
+      not yet been read) instead checked if the most recent event
+      could be coalesced with the <em class="replaceable"><code>oldest</code></em> unread event.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="inotify-7_sect9" name="inotify-7_sect9" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman2/inotify_add_watch.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">inotify_add_watch</span>(2)</span></a>,
+      <a class="link" href="../htmlman2/inotify_init.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">inotify_init</span>(2)</span></a>, <a class="link" href="../htmlman2/inotify_init.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">inotify_init1</span>(2)</span></a>, <a class="link" href="../htmlman2/inotify_rm_watch.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">inotify_rm_watch</span>(2)</span></a>,
+      <a class="link" href="../htmlman2/read.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">read</span>(2)</span></a>, <a class="link" href="../htmlman2/stat.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">stat</span>(2)</span></a>, <code class="filename">Documentation/filesystems/inotify.txt</code>.</p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="inotify-7_sect10" name="inotify-7_sect10" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.32 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    t<br />
+                  <br />
+                  Copyright (C) 2006 Michael Kerrisk &lt;mtk.manpages<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>gmail.com&gt;<br />
+
+                  <br />
+                  Permission is granted to make and distribute verbatim copies of this<br />
+
+                  manual provided the copyright notice and this permission notice are<br />
+
+                  preserved on all copies.<br />
+                  <br />
+                  Permission is granted to copy and distribute modified versions of this<br />
+
+                  manual under the conditions for verbatim copying, provided that the<br />
+
+                  entire resulting derived work is distributed under the terms of a<br />
+
+                  permission notice identical to this one.<br />
+
+                  <br />
+                  Since the Linux kernel and libraries are constantly changing, this<br />
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no<br />
+
+                  responsibility for errors or omissions, or for damages resulting from<br />
+
+                  the use of the information contained herein.  The author(s) may not<br />
+
+                  have taken the same level of care in the production of this manual,<br />
+
+                  which is licensed free of charge, as they might when working<br />
+
+                  professionally.<br />
+                  <br />
+                  Formatted or processed versions of this manual, if unaccompanied by<br />
+
+                  the source, must acknowledge the copyright and authors of this work.<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>addpart(8) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="addpart(8) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="addpart(8) — Linux manual pages">
+    <a id="addpart.8" name="addpart.8" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>addpart — simple wrapper around the "add partition"
+      ioctl</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="cmdsynopsis">
+        <p><code class="command">addpart</code> device partition
+        start length</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="addpart-8_sect1" name="addpart-8_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p><span class="command"><strong>addpart</strong></span> is a
+      program that informs the Linux kernel of new partition.</p>
+
+      <p>This command doesn't manipulate partitions on hard
+      drive.</p>
+    </div>
+
+    <div class="refsect1" title="PARAMETERS">
+      <a id="addpart-8_sect2" name="addpart-8_sect2" shape="rect"> </a>
+
+      <h2>PARAMETERS</h2>
+
+      <div class="variablelist">
+        <dl>
+          <dt><span class="term"><em class="parameter"><code>device</code></em></span></dt>
+
+          <dd>
+            <p>Specify the disk device.</p>
+          </dd>
+
+          <dt><span class="term"><em class="parameter"><code>partition</code></em></span></dt>
+
+          <dd>
+            <p>Specify the partition number.</p>
+          </dd>
+
+          <dt><span class="term"><em class="parameter"><code>start</code></em></span></dt>
+
+          <dd>
+            <p>Specify the begin of the partition (in 512-byte
+            sectors).</p>
+          </dd>
+
+          <dt><span class="term"><em class="parameter"><code>length</code></em></span></dt>
+
+          <dd>
+            <p>Specify the length of the partition (in 512-byte
+            sectors).</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="addpart-8_sect3" name="addpart-8_sect3" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman8/delpart.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">delpart</span>(8)</span></a>, <a class="link" href="../htmlman8/fdisk.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">fdisk</span>(8)</span></a>, <span class="citerefentry"><span class="refentrytitle">parted</span>(8)</span>, <span class="citerefentry"><span class="refentrytitle">partprobe</span>(8)</span>, <a class="link" href="../htmlman8/partx.8.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">partx</span>(8)</span></a></p>
+    </div>
+
+    <div class="refsect1" title="AVAILABILITY">
+      <a id="addpart-8_sect4" name="addpart-8_sect4" shape="rect"> </a>
+
+      <h2>AVAILABILITY</h2>
+
+      <p>The addpart command is part of the util-linux package and
+      is available from
+      ftp://ftp.kernel.org/pub/linux/utils/util-linux/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    addpart.8 --<br />
+                  Copyright 2007 Karel Zak &lt;kzak<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>redhat.com&gt;<br />
+
+                  Copyright 2007 Red Hat, Inc.<br />
+
+                  May be distributed under the GNU General Public License<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

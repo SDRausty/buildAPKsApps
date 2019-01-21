@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="txt_quick_settings">Quick Settings</string>
+
+    <string name="txt_status_unknown">Неизвестно</string>
+    <string name="txt_status_turned_on">Включено</string>
+    <string name="txt_status_turned_off">Выключено</string>
+    <string name="txt_status_turning_on">Включаю ...</string>
+    <string name="txt_status_turning_off">Выключаю ...</string>
+    <string name="txt_status_enabled">Активно</string>
+    <string name="txt_status_disabled">Неактивно</string>
+    
+    <string name="wifi_title">Wi-Fi</string>
+    <string name="txt_net_status_connecting">Соединение ...</string>
+    <string name="txt_net_status_obtainingip">Получение адреса ...</string>
+    <string name="txt_net_status_connected_to">Соединён с %s</string>
+    <string name="txt_net_status_connected">Соединён</string>
+    <string name="txt_net_status_failed">Соединиться не удалось</string>
+    <string name="txt_net_status_disconnecting">Отсоединение ...</string>
+    <string name="txt_net_status_disconnected">Отсоединён</string>
+    
+    <string name="gps_title">GPS-приёмник</string>
+    <string name="txt_brightness">Яркость</string>
+    <string name="msg_disable_autobrightness">Автоматическая яркость включена. Хотите её отключить и управлять яркостью вручную?</string>
+											  
+    <string name="battery_state_title">Состояние батареи:</string>
+    <string name="battery_state_value">%d%%</string>
+    <string name="txt_memory_state_value">Телефон своб.:</string>
+    <string name="txt_card_state_value">SD карта своб.:</string>
+    <string name="txt_no_card">Нет SD карты</string>
+
+    <string name="airmode_title">Режим самолёта</string>
+
+    <string name="btn_yes">Да</string>
+    <string name="btn_no">Нет</string>
+    <string name="btn_close">Закрыть</string>
+    <string name="btn_set">Установить</string>
+    <string name="btn_calcel">Отменить</string>
+
+    <string name="txt_ringer">Звонок</string>
+    <string name="txt_ringer_mode">Режим звонка</string>
+    <string name="txt_ringer_silent">Тихо</string>
+    <string name="txt_ringer_sound">Звук</string>
+    <string name="txt_ringer_vibro">Вибро</string>
+    <string name="txt_ringer_vibrosound">Звук и Вибро</string>
+    
+    <string name="txt_bt">Bluetooth</string>
+    <string name="txt_no_apn">APN не найдены</string>
+    
+    <string name="txt_screen_timeout">Выключать экран</string>
+    <string name="txt_screen_timeout_value_seconds">%d секунд(ы)</string>
+    <string name="txt_screen_timeout_value_minute">%d минута</string>
+    <string name="txt_screen_timeout_value_minutes">%d минуты</string>
+    <string name="txt_screen_timeout_value_never">Не выключать</string>
+    
+    <string name="txt_customize_settings">Quick Settings > Адаптация</string>
+    <string name="txt_preferences">Quick Settings > Настройки</string>
+    <string name="txt_visible_settings">Видимые настройки</string>
+    <string name="txt_hidden_settings">Скрытые настройки</string>
+    <string name="msg_drag_and_drop">Отсортируйте настройки по Вашему желанию, удерживая их за иконку справа и перетаскивая между видимым и скрытым списками.</string>
+    
+    <string name="txt_auto_sync">Синхронизация данных</string>
+    <string name="txt_enable_background_data">Нажмите для разрешения фоновых данных</string>
+
+    <string name="txt_volume">Громкость</string>
+    <string name="txt_volume_descr">Нажмите для регулировки громкости</string>
+    <string name="txt_volume_ringer">Громкость звонка</string>
+    <string name="txt_volume_notification">Громкость сообщений</string>
+    <string name="txt_volume_media">Громкость музыки</string>
+    <string name="txt_volume_alarm">Громкость будильника</string>
+    <string name="txt_volume_voice_call">Громкость собеседника</string>
+    <string name="txt_volume_system">Громкость системных звуков</string>
+    <string name="msg_zero_ringer_warning">Вы можете пропустить входящие вызовы, т.к. громкость звонка 0.</string>
+    <string name="msg_zero_notification_warning">Вы можете пропустить сообщения, т.к. громкость сообщений 0.</string>
+    <string name="msg_not_silent_warning">Режим "Тихо" выключен, т.к. Вы увеличили громкость до %d.</string>
+
+    <string name="msg_disabled_warning">
+    Вы видите это сообщение потому, что модифицируете APN в первый раз.
+    \n\nЕсли соединение не разорвалось, попробуйте изменить настройки APN активации доступные по долгому нажатию на ANP настройку.
+    \n\nЕсли Вы решили удалить Quick Settings, то не забудьте сперва активировать APN, иначе вам придётся это делать вручную.
+    \n\nДополнительная информация о APN доступна на сайте программы.
+    </string>
+    
+    <string name="msg_switch_to_air_mode">Хотите активировать режим самолета и разорвать все беспроводные соединения?</string>
+    <string name="msg_cannot_init_setting">Опа... Настройка "%s" не работает на Вашем устройстве</string>
+
+    <string name="menu_customize_settings">Адаптация</string>
+    <string name="menu_preferences">Настройки</string>
+ 
+    <string name="txt_auto_rotate">Авто-ориентиция</string>
+    
+    <!-- unlock pattern -->
+    <string name="txt_unlock_pattern">Блокировка</string>
+    <string name="txt_set_unlock_pattern">Нажмите для задания кода блокировки</string>
+    <string name="msg_which_unlock_pattern">Какой код блокировки хотите использовать?\n\nЗаметка: если Вы ещё не устанавливали кода блокировки, выберите опцию "новый".</string>
+    <string name="btn_current_unlock_pattern">Текущий</string>
+    <string name="btn_new_unlock_pattern">Новый</string>
+    
+    <string name="txt_toolbar">Панель инструментов</string>
+
+    <string name="pref_common">Общие</string>
+    <string name="pref_status_bar">Ярлык в панели состояния</string>
+    <string name="pref_status_bar_descr">Нажмите для активации ярлыка</string>
+    <string name="pref_view_mode">Внешний вид</string>
+    <string name="pref_view_mode_descr">Нажмите для выбора между диалогом и полным экраном</string>
+    <string name="msg_tap_to_change_settings">Нажмите для быстрого изменения настроек</string>
+
+    <string name="msg_reinstall_required">При обновлении программы произошла ошибка. Пожалуйста удалите и установите программу заново.\n\Извините за неудобства.</string>
+
+	<string name="txt_master_volume">Общая громкость</string>
+	<string name="txt_master_volume_desc">R: %1$d, N: %2$d, M: %3$d, A: %4$d</string>
+
+	<string name="txt_autobrightness_enabled">Авторегулировка яркости включена</string>
+	<string name="txt_autobrightness_disabled">Авторегулировка яркости отключена</string>
+    <string name="msg_enable_autobrightness">Активируйте эту опцию только в случае, если Ваш телефон оснащён датчиком освещённости.\n\nАктивировать?</string>
+    <string name="pref_light_sensor">Датчик освещённости</string>
+    <string name="pref_light_sensor_descr">Нажмите для активации или деактивации датчика освещённости</string>
+
+    <string name="txt_flashlight">Фонарик</string>
+    <string name="pref_flashlight_descr">Нажмите для выбора типа фонарика</string>
+    <string name="msg_flashlight_led_usage">Долгое использования светодиодного фонарика может привести к повреждению телефона. Зная это Вы всё равно хотите использовать эту функцию?</string>
+    <string name="btn_accept">Принимаю</string>
+    <string name="msg_flashlight_not_supported">Фонарик-вспышка не поддерживается на Вашем устройстве.</string>
+
+	<string name="txt_haptic_feedback">Виброотдача</string>
+	<string name="txt_haptic_feedback_on">Вибрация при выборе настроек включена</string>
+	<string name="txt_haptic_feedback_off">Вибрация при выборе настроек выключена</string>
+	
+	<!-- 
+	<string name="txt_addons">Quick Settings > Add-ons</string>
+    <string name="menu_addons">Add-ons</string>
+    <string name="txt_addon_quick_battery">Quick Battery</string>
+    <string name="txt_addon_quick_battery_descr">It is a desktop widget showing remaining battery status in percent and a handy shortcut to Quick Settings application at the same time</string>
+    <string name="txt_install">Install</string>
+    <string name="txt_uninstall">Uninstall</string>
+	 -->
+	
+    <string name="pref_disable_mms">Отключать MMS</string>
+    <string name="pref_disable_mms_descr_disabled">Вы не можете получать MMS</string>
+    <string name="pref_disable_mms_descr_enabled">Вы можете получать MMS</string>
+
+    <string name="txt_volume_bind">Использовать громкость звонка для сообщений</string>
+    <string name="txt_initializing">Инициализация ...</string>
+    
+    <string name="pref_one_click_switch">Немедленное переключение</string>
+    <string name="txt_eula">Лицензионное соглашение</string>
+    <string name="btn_decline">Не принимаю</string>
+
+    <string name="pref_anp_modifier">Строка изменения</string>
+    <string name="pref_anp_modifier_descr">Строка, которая будет добавлена к APN, для разрыва соединения</string>
+    <string name="pref_restor_pref_apn">Восстановить APN по умолчанию</string>
+    <string name="pref_restor_pref_apn_descr">Может помочь в случаях, если соединение не восстанавливается.</string>
+
+    <string name="pref_statusbar_integration">Интеграция с панелью состояния</string>
+    <string name="pref_inverse_notif_color">Инверсия цвета уведомления</string>
+    <string name="pref_inverse_notif_color_on">Текст и значок белые</string>
+    <string name="pref_inverse_notif_color_off">Текст и значок чёрные</string>
+
+    <string name="pref_about">О программе</string>
+    <string name="pref_about_descr">О Quick Settings</string>
+
+    <string name="txt_full_brightness">Полная яркость</string>
+    <string name="txt_full_brightness_descr">Нажмите для выбора критерия переключения полной яркости экранного фонарика</string>
+    <string name="msg_flashlight_delay">Отверните экран от лица. Полная яркость будет установлена через несколько секунд.</string>
+    <string name="msg_flashlight_orientation">Поверните телефон экраном вниз для включения полной яркости.</string>
+    <string name="msg_flashlight_shake">Несильно потрясите телефон для включения и выключения полной яркости.</string>
+    
+<!-- version 1.9.5 -->    
+    <string name="txt_pattern">Графический ключ</string>
+    <string name="txt_pin">PIN</string>
+    <string name="txt_password">Пароль</string>
+    <string name="txt_wifi_hotspot">Точка доступа</string>
+    
+<!-- 1.9.6 -->
+    <string name="txt_apn_control">Данные (APN)</string>
+    <string name="txt_mobile_data">Моб. данные</string>
+    <string name="txt_enable_data_access_first">Сперва разрешите передачу данных в системных настройках</string>
+    <string name="msg_enabling_mobile_data">Включаю передачу данных</string>
+    <string name="msg_2g_hint">Попробуйте переключить \"только 2G сети\", если соединение не устанавливается</string>
+   
+<!-- 1.9.7 -->    
+	<string name="msg_mms_only">Найден один APN конфигурирующий доступ к мобильным данным и MMS. Если его отключить, то телефон не сможет принимать MMS. \n\nОтключить этот APN?</string>
+    <string name="btn_disable">Отключить</string>
+    <string name="msg_use_mobile_data_hint">Из настроек \"Данные (APN)\" and \"Моб. данные\" выберите ту, которая работает на Вашем телефоне.</string>
+    <string name="txt_apn_on_off_status">Данные: %1$s, MMS: %2$s</string>
+    <string name="txt_on">ВКЛ</string>
+    <string name="txt_off">ВЫКЛ</string>
+    
+    <!-- about, should stay at very bottom -->
+    <string name="copyright">© 2010 Сергей Шафаренко</string>
+    <string name="about_info">&lt;b>Версия:&lt;/b> %s&lt;b>При помощи:&lt;/b> Brian Rodgers, Shimon Simon&lt;br></string>
+    
+</resources>

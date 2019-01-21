@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+	 Copyright Johan Hilding (2010)
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<!-- This is a primitive example showing the different types of preferences available. -->
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <PreferenceScreen
+        		android:key="search"
+                android:title="@string/search_intent_title"
+                android:summary="@string/search_intent_summary">
+        </PreferenceScreen>
+	<PreferenceCategory
+    	android:title="@string/help_intent_title">
+        
+        <PreferenceScreen
+        		android:key="help"
+                android:title="@string/help_intent_title"
+                android:summary="@string/help_intent_summary">
+
+            <intent android:action="android.intent.action.VIEW"
+                    android:data="http://www.android.com" />
+
+        </PreferenceScreen>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+    	android:title="@string/bang_preferences">
+            
+        <ListPreference
+                android:key="bang_1_preference"
+                android:title="@string/bang_1_preference_title"
+                android:entries="@array/bang_list_descriptions"
+                android:entryValues="@array/bang_list_bangs"
+                android:dialogTitle="@string/bang_dialog_title" 
+                />
+                
+		<ListPreference
+                android:key="bang_2_preference"
+                android:title="@string/bang_2_preference_title"
+                android:entries="@array/bang_list_descriptions"
+                android:entryValues="@array/bang_list_bangs"
+                android:dialogTitle="@string/bang_dialog_title" 
+                />
+        
+        <ListPreference
+                android:key="bang_3_preference"
+                android:title="@string/bang_3_preference_title"
+                android:entries="@array/bang_list_descriptions"
+                android:entryValues="@array/bang_list_bangs"
+                android:dialogTitle="@string/bang_dialog_title" 
+                />
+                
+        <ListPreference
+                android:key="bang_4_preference"
+                android:title="@string/bang_4_preference_title"
+                android:entries="@array/bang_list_descriptions"
+                android:entryValues="@array/bang_list_bangs"
+                android:dialogTitle="@string/bang_dialog_title" 
+                />
+    </PreferenceCategory>
+
+
+    
+</PreferenceScreen>

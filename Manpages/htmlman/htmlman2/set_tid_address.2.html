@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>set_tid_address(2) — Linux manual pages</title>
+  <link rel="stylesheet" href="../stylesheet/manpages.css" type="text/css" />
+  
+  <link rel="home" href="../index.html" title="set_tid_address(2) — Linux manual pages" />
+  <script type="text/javascript" src="../stylesheet/manpages.js" xml:space="preserve">
+</script>
+  <link rel="icon" href="../stylesheet/icon.gif" type="image/gif" />
+</head>
+
+<body onload="javascript:init()">
+  
+
+  <div class="refentry" title="set_tid_address(2) — Linux manual pages">
+    <a id="set-tid-address.2" name="set-tid-address.2" shape="rect"> </a>
+
+    <div class="titlepage"> </div>
+
+    <div class="refnamediv">
+      <h2>Name</h2>
+
+      <p>set_tid_address — set pointer to thread ID</p>
+    </div>
+
+    <div class="refsynopsisdiv" title="Synopsis">
+      <h2>Synopsis</h2>
+
+      <div class="funcsynopsis">
+        <pre class="funcsynopsisinfo" xml:space="preserve">
+#include &lt;linux/unistd.h&gt;
+</pre>
+
+        <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0" class="funcprototype-table">
+          <tr>
+            <td rowspan="1" colspan="1"><code class="funcdef">long <b class="fsfunc">set_tid_address</b>(</code></td>
+
+            <td rowspan="1" colspan="1">int *<var class="pdparam">tidptr</var><code>)</code>;</td>
+          </tr>
+        </table>
+
+        <div class="funcprototype-spacer">
+           
+        </div>
+      </div>
+    </div>
+
+    <div class="refsect1" title="DESCRIPTION">
+      <a id="set-tid-address-2_sect1" name="set-tid-address-2_sect1" shape="rect"> </a>
+
+      <h2>DESCRIPTION</h2>
+
+      <p>The kernel keeps for each process two values called
+      <em class="replaceable"><code>set_child_tid</code></em> and
+      <em class="replaceable"><code>clear_child_tid</code></em>
+      that are NULL by default.</p>
+
+      <div class="refsect2" title="set_child_tid">
+        <a id="set-tid-address-2_sect2" name="set-tid-address-2_sect2" shape="rect"> </a>
+
+        <h3>set_child_tid</h3>
+
+        <p>If a process is started using <a class="link" href="../htmlman2/clone.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">clone</span>(2)</span></a> with the
+        <code class="constant">CLONE_CHILD_SETTID</code> flag,
+        <em class="replaceable"><code>set_child_tid</code></em> is
+        set to <em class="replaceable"><code>child_tidptr</code></em>, the fifth
+        argument of that system call.</p>
+
+        <p>When <em class="replaceable"><code>set_child_tid</code></em> is set, the
+        very first thing the new process does is writing its PID at
+        this address.</p>
+      </div>
+
+      <div class="refsect2" title="clear_child_tid">
+        <a id="set-tid-address-2_sect3" name="set-tid-address-2_sect3" shape="rect"> </a>
+
+        <h3>clear_child_tid</h3>
+
+        <p>If a process is started using <a class="link" href="../htmlman2/clone.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">clone</span>(2)</span></a> with the
+        <code class="constant">CLONE_CHILD_CLEARTID</code> flag,
+        <em class="replaceable"><code>clear_child_tid</code></em>
+        is set to <em class="replaceable"><code>child_tidptr</code></em>, the fifth
+        argument of that system call.</p>
+
+        <p>The system call <code class="function">set_tid_address</code>() sets the <em class="replaceable"><code>clear_child_tid</code></em> value for
+        the calling process to <em class="parameter"><code>tidptr</code></em>.</p>
+
+        <p>When <em class="replaceable"><code>clear_child_tid</code></em> is set, and
+        the process exits, and the process was sharing memory with
+        other processes or threads, then 0 is written at this
+        address, and a <span class="emphasis"><em>futex(child_tidptr, FUTEX_WAKE, 1, NULL,
+        NULL, 0);</em></span> call is done. (That is, wake a single
+        process waiting on this futex.) Errors are ignored.</p>
+      </div>
+    </div>
+
+    <div class="refsect1" title="RETURN VALUE">
+      <a id="set-tid-address-2_sect4" name="set-tid-address-2_sect4" shape="rect"> </a>
+
+      <h2>RETURN VALUE</h2>
+
+      <p><code class="function">set_tid_address</code>() always
+      returns the PID of the calling process.</p>
+    </div>
+
+    <div class="refsect1" title="ERRORS">
+      <a id="set-tid-address-2_sect5" name="set-tid-address-2_sect5" shape="rect"> </a>
+
+      <h2>ERRORS</h2>
+
+      <p><code class="function">set_tid_address</code>() always
+      succeeds.</p>
+    </div>
+
+    <div class="refsect1" title="VERSIONS">
+      <a id="set-tid-address-2_sect6" name="set-tid-address-2_sect6" shape="rect"> </a>
+
+      <h2>VERSIONS</h2>
+
+      <p>This call is present since Linux 2.5.48. Details as given
+      here are valid since Linux 2.5.49.</p>
+    </div>
+
+    <div class="refsect1" title="CONFORMING TO">
+      <a id="set-tid-address-2_sect7" name="set-tid-address-2_sect7" shape="rect"> </a>
+
+      <h2>CONFORMING TO</h2>
+
+      <p>This system call is Linux-specific.</p>
+    </div>
+
+    <div class="refsect1" title="SEE ALSO">
+      <a id="set-tid-address-2_sect8" name="set-tid-address-2_sect8" shape="rect"> </a>
+
+      <h2>SEE ALSO</h2>
+
+      <p><a class="link" href="../htmlman2/clone.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">clone</span>(2)</span></a>, <a class="link" href="../htmlman2/futex.2.html" target="_top" shape="rect"><span class="citerefentry"><span class="refentrytitle">futex</span>(2)</span></a></p>
+    </div>
+
+    <div class="colophon" title="COLOPHON">
+      <a id="set-tid-address-2_sect9" name="set-tid-address-2_sect9" shape="rect"> </a>
+
+      <h2>COLOPHON</h2>
+
+      <p>This page is part of release 3.24 of the Linux <em class="replaceable"><code>man-pages</code></em> project. A
+      description of the project, and information about reporting
+      bugs, can be found at
+      http://www.kernel.org/doc/man-pages/.</p>
+
+      <div class="license">
+        <table style="border-collapse: collapse;">
+          <colgroup span="1">
+            <col span="1" />
+          </colgroup>
+
+          <tbody>
+            <tr>
+              <td style="" rowspan="1" colspan="1">
+                <div class="literallayout">
+                  <br />
+                    Copyright (C) 2004 Andries Brouwer (aeb<script type="text/javascript">document.write('@');</script><noscript>(@)</noscript>cwi.nl)<br />
+
+                  <br />
+                  Permission is granted to make and distribute verbatim copies of this<br />
+
+                  manual provided the copyright notice and this permission notice are<br />
+
+                  preserved on all copies.<br />
+                  <br />
+                  Permission is granted to copy and distribute modified versions of this<br />
+
+                  manual under the conditions for verbatim copying, provided that the<br />
+
+                  entire resulting derived work is distributed under the terms of a<br />
+
+                  permission notice identical to this one.<br />
+
+                  <br />
+                  Since the Linux kernel and libraries are constantly changing, this<br />
+
+                  manual page may be incorrect or out-of-date.  The author(s) assume no<br />
+
+                  responsibility for errors or omissions, or for damages resulting from<br />
+
+                  the use of the information contained herein.  The author(s) may not<br />
+
+                  have taken the same level of care in the production of this manual,<br />
+
+                  which is licensed free of charge, as they might when working<br />
+
+                  professionally.<br />
+                  <br />
+                  Formatted or processed versions of this manual, if unaccompanied by<br />
+
+                  the source, must acknowledge the copyright and authors of this work.<br />
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
