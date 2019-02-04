@@ -19,3 +19,9 @@
 [submodule "SmsBomber"]
 	path = SmsBomber
 	url = https://github.com/vxhex/SmsBomber
+[submodule "moon"]
+	path = moon
+	url = https://github.com/andviane/moon
+[submodule "prism"]
+	path = prism
+	url = https://github.com/andviane/prism
