@@ -28,3 +28,6 @@
 [submodule "CoolReader"]
 	path = CoolReader
 	url = https://github.com/SilangQuan/CoolReader
+[submodule "precise-pitch"]
+	path = precise-pitch
+	url = https://github.com/hzeller/precise-pitch
