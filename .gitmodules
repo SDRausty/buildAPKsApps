@@ -25,3 +25,6 @@
 [submodule "prism"]
 	path = prism
 	url = https://github.com/andviane/prism
+[submodule "CoolReader"]
+	path = CoolReader
+	url = https://github.com/SilangQuan/CoolReader
