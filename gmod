@@ -5,3 +5,5 @@ git submodule add https://github.com/rorist/android-reverse rorist/android-rever
 git submodule add https://github.com/wrr/speech_trainer
 git submodule add https://github.com/mobilepearls/com.mobilepearls.appsharer
 git submodule add https://github.com/vxhex/SmsBomber
+git submodule add https://github.com/SilangQuan/CoolReader
+git submodule add https://github.com/hzeller/precise-pitch
