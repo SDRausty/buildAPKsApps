@@ -7,9 +7,6 @@
 [submodule "rorist/android-alarm-button"]
 	path = rorist/android-alarm-button
 	url = https://github.com/rorist/android-alarm-button
-[submodule "rorist/android-reverse"]
-	path = rorist/android-reverse
-	url = https://github.com/rorist/android-reverse
 [submodule "speech_trainer"]
 	path = speech_trainer
 	url = https://github.com/wrr/speech_trainer
