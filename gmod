@@ -7,3 +7,4 @@ git submodule add https://github.com/mobilepearls/com.mobilepearls.appsharer
 git submodule add https://github.com/vxhex/SmsBomber
 git submodule add https://github.com/SilangQuan/CoolReader
 git submodule add https://github.com/hzeller/precise-pitch
+git submodule add https://github.com/nidhi1608/TipCalculator

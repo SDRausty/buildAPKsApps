@@ -28,3 +28,6 @@
 [submodule "precise-pitch"]
 	path = precise-pitch
 	url = https://github.com/hzeller/precise-pitch
+[submodule "TipCalculator"]
+	path = TipCalculator
+	url = https://github.com/nidhi1608/TipCalculator
