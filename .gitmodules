@@ -31,3 +31,6 @@
 [submodule "TipCalculator"]
 	path = TipCalculator
 	url = https://github.com/nidhi1608/TipCalculator
+[submodule "bible-android"]
+	path = bible-android
+	url = https://github.com/jblough/bible-android
