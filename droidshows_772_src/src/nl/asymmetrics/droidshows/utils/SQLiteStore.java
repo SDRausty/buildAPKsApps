@@ -371,7 +371,7 @@ public class SQLiteStore extends SQLiteOpenHelper
 					String aired = c.getString(c.getColumnIndex("firstAired"));
 					Date airedDate = null;
 					if (!aired.isEmpty() && !aired.equals("null")) {
-							try { 
+							try {
 								airedDate = dateFormat.parse(aired);
 								aired = SimpleDateFormat.getDateInstance().format(airedDate);
 							} catch (ParseException e) { e.printStackTrace(); }
@@ -597,7 +597,7 @@ public class SQLiteStore extends SQLiteOpenHelper
 					+ (nextEpisodeAiring.episode < 10 ? "x0" : "x") + nextEpisodeAiring.episode
 					+ (nextEpisode.firstAiredDate != null ? " [on] "
 						+ SimpleDateFormat.getDateInstance().format(nextEpisodeAiring.firstAiredDate) : "");
-		} 
+		}
 		
 		return "[ne] "+ nextEpisodeString
 				+ (nextEpisode.firstAiredDate != null ? " [on] "
@@ -818,7 +818,7 @@ public class SQLiteStore extends SQLiteOpenHelper
 					}
 				}
 				
-				Episode ep = s.getEpisodes().get(e); 
+				Episode ep = s.getEpisodes().get(e);
 				
 				if (ep.getEpisodeNumber() == 0 && ep.getEpisodeName().equals(" ") && ep.getOverview() == null) {
 					continue;

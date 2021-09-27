@@ -14,5 +14,5 @@
         android:inputType="textMultiLine"
         android:longClickable="false"
         android:text="@string/about_text" />
-    
+
 </RelativeLayout>

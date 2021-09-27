@@ -212,7 +212,7 @@ public class SerieEpisodes extends ListActivity {
 			final int firstListItemPosition = listView.getFirstVisiblePosition();
 			final int lastListItemPosition = firstListItemPosition + listView.getChildCount() - 1;
 			if (position < firstListItemPosition || position > lastListItemPosition)
-				return listView.getAdapter().getView(position, null, listView); 
+				return listView.getAdapter().getView(position, null, listView);
 			else					
 				return listView.getChildAt(position - firstListItemPosition);
 		} catch (Exception e) {

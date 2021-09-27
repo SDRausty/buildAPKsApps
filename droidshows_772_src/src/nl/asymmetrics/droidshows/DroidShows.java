@@ -220,7 +220,7 @@ public class DroidShows extends ListActivity
 		String pinnedShowsStr = sharedPrefs.getString(PINNED_SHOWS_NAME, "");
 		if (!pinnedShowsStr.isEmpty())
 			pinnedShows = new ArrayList<String>(Arrays.asList(pinnedShowsStr.replace("[", "").replace("]", "").split(", ")));
-		filterNetworks = sharedPrefs.getBoolean(FILTER_NETWORKS_NAME, false); 
+		filterNetworks = sharedPrefs.getBoolean(FILTER_NETWORKS_NAME, false);
 		String networksStr = sharedPrefs.getString(NETWORKS_NAME, "");
 		if (!networksStr.isEmpty())
 			networks = new ArrayList<String>(Arrays.asList(networksStr.replace("[", "").replace("]", "").split(", ")));
@@ -708,7 +708,7 @@ public class DroidShows extends ListActivity
 	private void backup(boolean auto, String backupFolder) {
 		File source = new File(getApplicationInfo().dataDir +"/databases/DroidShows.db");
 		File destination = new File(backupFolder, "DroidShows.db");
-		if (auto && (!autoBackupOption || 
+		if (auto && (!autoBackupOption ||
 				new SimpleDateFormat("yyyy-MM-dd")
 					.format(destination.lastModified()).equals(lastStatsUpdateCurrent) ||
 				source.lastModified() == destination.lastModified()))
@@ -1070,7 +1070,7 @@ public class DroidShows extends ListActivity
 		if (c != null && c.isFirst()) {
 			String imdbId = c.getString(0);
 		    if (!nextEpisode.equals("-1") && imdbId.equals(db.getSerieIMDbId(serieId)))	// Sometimes the given episode's IMDb id is that of the show's
-		    	imdbId = "-1";	// So we want to search for the episode instead of go to the show's page 
+		    	imdbId = "-1";	// So we want to search for the episode instead of go to the show's page
 		    String name = c.getString(1);
 			c.close();
 			String uri = "imdb:///";

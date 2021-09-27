@@ -1,6 +1,6 @@
-precision mediump float; 
+precision mediump float;
 uniform sampler2D u_Texture;
-varying vec2 v_TexCoordinate; 
+varying vec2 v_TexCoordinate;
 
 vec3 mosaic(vec2 position){
 	vec2 p = floor(position)/8.;

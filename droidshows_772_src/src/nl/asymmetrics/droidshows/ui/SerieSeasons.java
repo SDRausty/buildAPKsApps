@@ -236,7 +236,7 @@ public class SerieSeasons extends ListActivity
 					String unwatched = "";
 					unwatched = nunwatched +" "+ (nunwatched > 1 ? strNewEps : strNewEp) +" ";
 					if (nunwatchedAired > 0)
-						unwatched = (nunwatchedAired == nunwatched ? "" : nunwatchedAired 
+						unwatched = (nunwatchedAired == nunwatched ? "" : nunwatchedAired
 							+" "+ strOf +" ") + unwatched + strEpAired;
 					else
 						unwatched += strToBeAired;

@@ -1,7 +1,7 @@
 ##Color and Art Effect in OpenGL Shaders
 By [LittleCheeseCake](http://littlecheesecake.me)
 
-It has been a year! A year ago I put up some posts on image processing using Shaders just for my own record. I have never expected that this to be rewarded. Now the work is integrated in my very own [app](http://littlecheesecake.me/apps/moodcamera), and included in a published [book](http://www.amazon.com/Android-Programming-Pushing-Erik-Hellman/dp/1118717376/ref=sr_1_1?ie=UTF8&qid=1394721713&sr=8-1&keywords=push+the+limit+android). It is my privilege to receive by emails the feedbacks, queries and thanks notes from people around the world about what I have shared. I was not excelled at programming, neither at drawing or design, but I never stop learning. More important thing is that I start to get the meaning of: 
+It has been a year! A year ago I put up some posts on image processing using Shaders just for my own record. I have never expected that this to be rewarded. Now the work is integrated in my very own [app](http://littlecheesecake.me/apps/moodcamera), and included in a published [book](http://www.amazon.com/Android-Programming-Pushing-Erik-Hellman/dp/1118717376/ref=sr_1_1?ie=UTF8&qid=1394721713&sr=8-1&keywords=push+the+limit+android). It is my privilege to receive by emails the feedbacks, queries and thanks notes from people around the world about what I have shared. I was not excelled at programming, neither at drawing or design, but I never stop learning. More important thing is that I start to get the meaning of:
 >__CONNECTING THE DOTS__
 
 Being busy with study, I could barely spare time working on this topic. But ideas and inspirations always jumped out sometime that I could stop but to code. Whenever I came across a nice picture, a smart algorithm or anything that reminds me the fantasy of the world we viewed, I would noted down and later explored on it. Thanks to the [Pixel Shader](http://pixelshaders.com) by Toby Schachman, I could instantly experiment on my ideas (also a lot of inspirations are from this interactive book). I gathered all the ideas of color and art effects and deliver a new [camera app](http://littlecheesecake.me) that allows us to explore the combination of filter effects on real-time. I also put the source code of some filter effects discussed here into this simple demo app to share.
@@ -18,15 +18,15 @@ Previously I bind a color gradient map or pattern as a texture to an opengl targ
 
 * __Gradient Functions__
 
-It is a simple linear equation to represent gradient distributed over positions. The horizontal linear gradient is: 
+It is a simple linear equation to represent gradient distributed over positions. The horizontal linear gradient is:
 
 ```c
 vec4 LinearGradientH(vec4 start, vec4 end)
 {
     vec4 color;
-    
+
     color = position.x * (end - start) + start;
-    
+
     return color;
 }
 ```
@@ -41,7 +41,7 @@ vec4 RadiusGradient(vec4 center, vec4 corner, vec2 center_point)
     float radius = length(p);
 
     color = radius * (corner - center) + center;
-    
+
     return color;
 }
 ```
@@ -61,7 +61,7 @@ vec3 RandomGradientWarm() {
     color.r = position.y * (purple.r - pink.r) + pink.r;
     color.g = position.y * (purple.g - pink.g) + pink.g;
     color.b = position.x * (purple.b - pink.b) + pink.b;
- 
+
     return color;
 }
 ```
@@ -82,7 +82,7 @@ vec3 RandomGradientCool() {
     color.r = position.y * (purple.r - mint.r) + mint.r;
     color.g = position.x * (purple.g - mint.g) + mint.g;
     color.b = position.x * (purple.b - mint.b) + mint.b;
- 
+
     return color;
 }
 ```
@@ -127,7 +127,7 @@ vec3 MultiplyBlend(vec3 overlayComponent, float alpha, vec3 underlayComponent) {
 Overlay combines Multiply and Screen blend modes. The parts of the top layer where base layer is light become lighter, the parts where the base layer is dark become darker. An overlay with the same picture looks like an S-curve.
 
 $$
-f(a,b)=\left\{ 
+f(a,b)=\left\{
   \begin{array}{l l}
     2ab & \quad \text{if $b < 0.5$}\\
     1-2(1-a)(1-b) & \quad \text{otherwise}
@@ -154,7 +154,7 @@ vec3 OvelayBlender(vec3 Color, vec3 filter){
 
 ####**2.1 How to Draw**
 
-Forget about the codes and equations for a while, let's talk about how to draw on paper (here, actually I drew this on iPad, but I think it's similar) A sketch of the outline is first created. Then roughly blend the color on it. If want a finer look, nicely touch on some details. This is a simple approach I used to draw. 
+Forget about the codes and equations for a while, let's talk about how to draw on paper (here, actually I drew this on iPad, but I think it's similar) A sketch of the outline is first created. Then roughly blend the color on it. If want a finer look, nicely touch on some details. This is a simple approach I used to draw.
 
 ![drawing](http://media.virbcdn.com/files/96/752372330d3dd1f2-drawing.png "drawing")
 
@@ -195,7 +195,7 @@ vec2 circular(vec2 position){
 
 ![lili](http://media.virbcdn.com/files/99/3fe6eb3659136fc5-lili_s.png "lily")  ![van](http://media.virbcdn.com/files/d2/90868f86169649eb-lili_v_s.png "van")
 
-Just a trial, hope this is not taken as making fun of the great artists. I like painting, with pencils and brushes, or digitally[6], so I actually encourage us to draw with our hands, not a camera. But I also hope this artistic view can give us a new perspective of the real world, to appreciate the beauty hiding behind it. 
+Just a trial, hope this is not taken as making fun of the great artists. I like painting, with pencils and brushes, or digitally[6], so I actually encourage us to draw with our hands, not a camera. But I also hope this artistic view can give us a new perspective of the real world, to appreciate the beauty hiding behind it.
 
 
 **2.3 Comic Book **
@@ -211,7 +211,7 @@ vec3 StripsPattern(vec2 position)
 
 	float angle = 0.7;
 	vec2 direction = vec2(cos(angle), sin(angle));
-	float brightness = cos(dot(p, direction)); 
+	float brightness = cos(dot(p, direction));
 	vec3 color = vec3(1.-brightness);
 	
 	float gray = dot(color, W);
@@ -222,7 +222,7 @@ vec3 StripsPattern(vec2 position)
 }
 ```
 
-To generate a dots pattern 
+To generate a dots pattern
 
 ```c
 float divation(float a, float b){
@@ -241,7 +241,7 @@ vec3 DotsPattern(vec2 position, vec2 uPixelSize, float radius, float interval){
 	
 	if(mod_r < radius)
 		return vec3(1.);
-	else 
+	else
 		return vec3(0.);
 }
 ```
@@ -254,7 +254,7 @@ vec3 DotsPattern(vec2 position, vec2 uPixelSize, float radius, float interval){
 
 I think I have not really figured out the way to do blurring. Blur effect seems to be very popular after the releasing of IOS7. Gaussian blur however involves heavy computation. I tried using 9-by-9 Gaussian kernels to do blurring, with the optimized method proposed by Daniel Rakos[8], it runs really slowly on my Note II! So I give up the idea of trying filtering multiple times or with larger sized kernel. I also studied through the post and dig into the codes by Brad Larson[9], luckily I learned the way to write loop for shader! However I still cannot got the idea to do a fast blur with larger sized Gaussian kernel. How can it be so fast on iPhone? Is it the hardware issue or my understanding is not accurate. I think there should be smarter way to implement blurring. Later I will revisit some fundamentals of OpenGL.
 
-I come up with another way to do blur, also get inspiration from here[10]. Instead of using Gaussian kernel, I first mosaic the image, and then use the `smoothstep` and `mix` function to perform color interpolation. 
+I come up with another way to do blur, also get inspiration from here[10]. Instead of using Gaussian kernel, I first mosaic the image, and then use the `smoothstep` and `mix` function to perform color interpolation.
 
 ```
 vec3 mosaic(vec2 position){

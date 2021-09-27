@@ -5,11 +5,11 @@ Easy to use, fully functional color picker with compact design based on HSV colo
 
 * ColorPicker.java - basic color picker which allows user to pick a single color
 
-![Screenshot 1](http://www.chiralcode.com/colorpicker/base-screen1.png) ![Screenshot 2](http://www.chiralcode.com/colorpicker/base-screen2.png) ![Screenshot 3](http://www.chiralcode.com/colorpicker/base-screen3.png) 
+![Screenshot 1](http://www.chiralcode.com/colorpicker/base-screen1.png) ![Screenshot 2](http://www.chiralcode.com/colorpicker/base-screen2.png) ![Screenshot 3](http://www.chiralcode.com/colorpicker/base-screen3.png)
 
 * MultiColorPicker.java - color picker implementation which allows user to pick multiple colors with adjacent hue value
 
-![Screenshot 1](http://www.chiralcode.com/colorpicker/multi-screen1.png) ![Screenshot 2](http://www.chiralcode.com/colorpicker/multi-screen2.png) ![Screenshot 3](http://www.chiralcode.com/colorpicker/multi-screen3.png) 
+![Screenshot 1](http://www.chiralcode.com/colorpicker/multi-screen1.png) ![Screenshot 2](http://www.chiralcode.com/colorpicker/multi-screen2.png) ![Screenshot 3](http://www.chiralcode.com/colorpicker/multi-screen3.png)
 
 Usage
 -----
@@ -24,7 +24,7 @@ Color Picker can be put in layout xml file just like any other component.
         android:id="@+id/colorPicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-        
+
 Example can be found in ColorPickerActivity.java file.
 
 ### In dialog

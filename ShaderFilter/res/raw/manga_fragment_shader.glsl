@@ -1,6 +1,6 @@
-precision mediump float; 
+precision mediump float;
 uniform sampler2D u_Texture;
-varying vec2 v_TexCoordinate; 
+varying vec2 v_TexCoordinate;
 
 const vec3 W = vec3(0.2125, 0.7154, 0.0721);
 
@@ -11,7 +11,7 @@ vec3 StripsPattern(vec2 position)
 	float angle = 0.7;
 	vec2 direction = vec2(cos(angle), sin(angle));
 
-	float brightness = cos(dot(p, direction)); 
+	float brightness = cos(dot(p, direction));
 	vec3 color = vec3(1.-brightness);
 	
 	
@@ -54,7 +54,7 @@ void main()
 			color = vec3(20./255., 20./255., 20./255.);
 		else if(gray >= 0.25 && gray < 0.4)
 			color = StripsPattern(v_TexCoordinate);
-		else 
+		else
 			color = vec3(1.);
 	}
 	

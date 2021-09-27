@@ -27,13 +27,13 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);   
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-       
+
         mView = new GLSurfaceView(this);
         mView.setEGLContextClientVersion(2);
         mView.setRenderer(new GLLayer(this));
-        
+
         setContentView(mView);
     }
 
@@ -42,13 +42,13 @@ public class MainActivity extends Activity {
     public void onResume() {
         super.onResume();
         mView.onResume();
-       
+
     }
     protected void onPause() {
-    	super.onPause(); 
+    	super.onPause();
     	mView.onPause();
     }
-    
+
     /**menu button setup*/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -60,7 +60,7 @@ public class MainActivity extends Activity {
     	mItemCapture5 = menu.add("Manga");
     	mItemCapture6 = menu.add("Blur");
         return true;
-       
+
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

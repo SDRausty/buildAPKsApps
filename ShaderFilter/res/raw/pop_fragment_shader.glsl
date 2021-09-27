@@ -1,6 +1,6 @@
-precision mediump float; 
+precision mediump float;
 uniform sampler2D u_Texture;
-varying vec2 v_TexCoordinate; 
+varying vec2 v_TexCoordinate;
 
 const vec3 W = vec3(0.2125, 0.7154, 0.0721);
 
@@ -21,7 +21,7 @@ float locate(vec2 pos, float dx, float dy, float radius, float interval){
 	
 	if(mod_r < radius)
 		return 0.0;
-	else 
+	else
 		return mod_r;
 }
 

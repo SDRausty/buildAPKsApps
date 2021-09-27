@@ -7,7 +7,7 @@
     android:padding="0dp"
     android:background="#E5E5E5"
     android:id="@+id/llHelp">
-<RelativeLayout 
+<RelativeLayout
     android:id="@+id/rlAll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"

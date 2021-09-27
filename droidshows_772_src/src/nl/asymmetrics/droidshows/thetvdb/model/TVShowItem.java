@@ -82,7 +82,7 @@ public class TVShowItem {
 			  public void setNextAir(Date nextAir) {
 			          this.nextAir = nextAir;
 			  }
-  
+
         public int getUnwatched() {
                 return this.unwatched;
         }
@@ -114,7 +114,7 @@ public class TVShowItem {
 	        public void setDIcon(Drawable dicon) {
 	                this.dicon = dicon;
 	        }
-        
+
         public String getShowStatus() {
                 return this.showStatus;
         }
@@ -122,7 +122,7 @@ public class TVShowItem {
 	        public void setShowStatus(String showStatus) {
 	                this.showStatus = showStatus;
 	        }
-        
+
         public String getExtResources() {
             return this.extResources;
 	    }

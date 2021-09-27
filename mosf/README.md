@@ -36,7 +36,7 @@ Check out the [version for older SDKs](https://github.com/repat/mosf-older-sdks)
 * HTC Dream G1
 * Fairphone FP1
 * Motorola Razr HD (XT925)
-* Galaxy Ace 5839i 
+* Galaxy Ace 5839i
 
 ### Does not work on
 * Galaxy Nexus i925/ Nexus Prime
@@ -49,7 +49,7 @@ Check out the [version for older SDKs](https://github.com/repat/mosf-older-sdks)
 ## Permissions
 * CAMERA, because the LED is internally controlled by the camera object.
 
-## License 
+## License
 * [MIT](http://opensource.org/licenses/MIT)
 
 ## Contact
